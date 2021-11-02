@@ -1,0 +1,3822 @@
+{
+    "name": "ec",
+    "description": "A Pulumi package for creating and managing ElasticCloud resources.",
+    "keywords": [
+        "pulumi",
+        "ec",
+        "elasticsearch",
+        "es",
+        "elastic",
+        "elasticcloud"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`ec` Terraform Provider](https://github.com/elastic/terraform-provider-ec).",
+    "repository": "https://github.com/pulumi/pulumi-ec",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "apikey": {
+                "type": "string",
+                "description": "API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\".\n"
+            },
+            "insecure": {
+                "type": "boolean",
+                "description": "Allow the provider to skip TLS validation on its outgoing HTTP calls.\n"
+            },
+            "password": {
+                "type": "string",
+                "description": "Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service\nPrivate.\n"
+            },
+            "timeout": {
+                "type": "string",
+                "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
+            },
+            "username": {
+                "type": "string",
+                "description": "Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service\nPrivate.\n"
+            },
+            "verbose": {
+                "type": "boolean",
+                "description": "When set, a \"request.log\" file will be written with all outgoing HTTP requests. Defaults to \"false\".\n"
+            },
+            "verboseCredentials": {
+                "type": "boolean",
+                "description": "When set with verbose, the contents of the Authorization header will not be redacted. Defaults to \"false\".\n"
+            },
+            "verboseFile": {
+                "type": "string",
+                "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
+            }
+        }
+    },
+    "types": {
+        "ec:index/DeploymentApm:DeploymentApm": {
+            "properties": {
+                "config": {
+                    "$ref": "#/types/ec:index/DeploymentApmConfig:DeploymentApmConfig",
+                    "description": "APM settings applied to all topologies unless overridden in the `topology` element.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "elasticsearchClusterRefId": {
+                    "type": "string",
+                    "description": "This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "description": "Can be set on the APM resource. The default value `main-apm` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentApmTopology:DeploymentApmTopology"
+                    },
+                    "description": "Can be set multiple times to compose complex topologies.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "httpEndpoint",
+                        "httpsEndpoint",
+                        "region",
+                        "resourceId",
+                        "topologies"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentApmConfig:DeploymentApmConfig": {
+            "properties": {
+                "debugEnabled": {
+                    "type": "boolean",
+                    "description": "Enable debug mode for APM servers. Defaults to `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsJson": {
+                    "type": "string",
+                    "description": "JSON-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideJson": {
+                    "type": "string",
+                    "description": "JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/DeploymentApmTopology:DeploymentApmTopology": {
+            "properties": {
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "description": "Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "Amount in Gigabytes per topology element in the `\"\u003csize in GB\u003eg\"` notation. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "description": "Type of resource to which the size is assigned. Defaults to `\"memory\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "description": "Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "instanceConfigurationId",
+                        "size",
+                        "zoneCount"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentElasticsearch:DeploymentElasticsearch": {
+            "properties": {
+                "autoscale": {
+                    "type": "string",
+                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `\"true\"` or `\"false\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cloudId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "config": {
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchConfig:DeploymentElasticsearchConfig",
+                    "description": "Elasticsearch settings applied to all topologies unless overridden in the `topology` element.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "extensions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearchExtension:DeploymentElasticsearchExtension"
+                    },
+                    "description": "Custom Elasticsearch bundles or plugins. Can be set multiple times.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "description": "Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "remoteClusters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearchRemoteCluster:DeploymentElasticsearchRemoteCluster"
+                    },
+                    "description": "Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "snapshotSource": {
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshotSource:DeploymentElasticsearchSnapshotSource",
+                    "description": "Restores data from a snapshot of another deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearchTopology:DeploymentElasticsearchTopology"
+                    },
+                    "description": "Can be set multiple times to compose complex topologies.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustAccounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearchTrustAccount:DeploymentElasticsearchTrustAccount"
+                    },
+                    "description": "The trust relationships with other ESS accounts.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustExternals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearchTrustExternal:DeploymentElasticsearchTrustExternal"
+                    },
+                    "description": "The trust relationship with external entities (remote environments, remote accounts...).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "autoscale",
+                        "cloudId",
+                        "httpEndpoint",
+                        "httpsEndpoint",
+                        "region",
+                        "resourceId",
+                        "topologies",
+                        "trustAccounts",
+                        "trustExternals"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentElasticsearchConfig:DeploymentElasticsearchConfig": {
+            "properties": {
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "plugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsJson": {
+                    "type": "string",
+                    "description": "JSON-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideJson": {
+                    "type": "string",
+                    "description": "JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/DeploymentElasticsearchExtension:DeploymentElasticsearchExtension": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Extension type, only `bundle` or `plugin` are supported.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.\u003cname\u003e.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Elastic Stack version to use for all the deployment resources.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "url",
+                "version"
+            ]
+        },
+        "ec:index/DeploymentElasticsearchRemoteCluster:DeploymentElasticsearchRemoteCluster": {
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "Deployment alias, affects the format of the resource URLs.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "Remote deployment ID.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "description": "Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "skipUnavailable": {
+                    "type": "boolean",
+                    "description": "If true, skip the cluster during search when disconnected. Defaults to `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "alias",
+                "deploymentId"
+            ]
+        },
+        "ec:index/DeploymentElasticsearchSnapshotSource:DeploymentElasticsearchSnapshotSource": {
+            "properties": {
+                "snapshotName": {
+                    "type": "string",
+                    "description": "Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceElasticsearchClusterId": {
+                    "type": "string",
+                    "description": "ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "sourceElasticsearchClusterId"
+            ]
+        },
+        "ec:index/DeploymentElasticsearchTopology:DeploymentElasticsearchTopology": {
+            "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchTopologyAutoscaling:DeploymentElasticsearchTopologyAutoscaling",
+                    "description": "Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "configs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearchTopologyConfig:DeploymentElasticsearchTopologyConfig"
+                    },
+                    "description": "Elasticsearch settings applied to all topologies unless overridden in the `topology` element.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hot_content`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "description": "Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeData": {
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch cluster (data node).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeIngest": {
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch cluster (ingest node).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeMaster": {
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch cluster (master node).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeMl": {
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch cluster (machine learning node).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "Amount in Gigabytes per topology element in the `\"\u003csize in GB\u003eg\"` notation. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "description": "Type of resource to which the size is assigned. Defaults to `\"memory\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "description": "Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "autoscaling",
+                        "configs",
+                        "id",
+                        "instanceConfigurationId",
+                        "nodeRoles",
+                        "nodeTypeData",
+                        "nodeTypeIngest",
+                        "nodeTypeMaster",
+                        "nodeTypeMl",
+                        "size",
+                        "zoneCount"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentElasticsearchTopologyAutoscaling:DeploymentElasticsearchTopologyAutoscaling": {
+            "properties": {
+                "maxSize": {
+                    "type": "string",
+                    "description": "Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxSizeResource": {
+                    "type": "string",
+                    "description": "Defines the resource type the scale up will use (Defaults to `\"memory\"`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minSize": {
+                    "type": "string",
+                    "description": "Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minSizeResource": {
+                    "type": "string",
+                    "description": "Defines the resource type the scale down will use (Defaults to `\"memory\"`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policyOverrideJson": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "maxSize",
+                        "maxSizeResource",
+                        "minSize",
+                        "minSizeResource",
+                        "policyOverrideJson"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentElasticsearchTopologyConfig:DeploymentElasticsearchTopologyConfig": {
+            "properties": {
+                "plugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsJson": {
+                    "type": "string",
+                    "description": "JSON-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideJson": {
+                    "type": "string",
+                    "description": "JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "plugins",
+                        "userSettingsJson",
+                        "userSettingsOverrideJson",
+                        "userSettingsOverrideYaml",
+                        "userSettingsYaml"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentElasticsearchTrustAccount:DeploymentElasticsearchTrustAccount": {
+            "properties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "The account identifier to establish the new trust with.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustAll": {
+                    "type": "boolean",
+                    "description": "If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustAllowlists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of clusters to trust. Only used when `trust_all` is `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accountId",
+                "trustAll"
+            ]
+        },
+        "ec:index/DeploymentElasticsearchTrustExternal:DeploymentElasticsearchTrustExternal": {
+            "properties": {
+                "relationshipId": {
+                    "type": "string",
+                    "description": "Identifier of the the trust relationship with external entities (remote environments, remote accounts...).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustAll": {
+                    "type": "boolean",
+                    "description": "If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustAllowlists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of clusters to trust. Only used when `trust_all` is `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "relationshipId",
+                "trustAll"
+            ]
+        },
+        "ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch": {
+            "properties": {
+                "config": {
+                    "$ref": "#/types/ec:index/DeploymentEnterpriseSearchConfig:DeploymentEnterpriseSearchConfig",
+                    "description": "Enterprise Search settings applied to all topologies unless overridden in the `topology` element.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "elasticsearchClusterRefId": {
+                    "type": "string",
+                    "description": "This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "description": "Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentEnterpriseSearchTopology:DeploymentEnterpriseSearchTopology"
+                    },
+                    "description": "Can be set multiple times to compose complex topologies.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "httpEndpoint",
+                        "httpsEndpoint",
+                        "region",
+                        "resourceId",
+                        "topologies"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentEnterpriseSearchConfig:DeploymentEnterpriseSearchConfig": {
+            "properties": {
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsJson": {
+                    "type": "string",
+                    "description": "JSON-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideJson": {
+                    "type": "string",
+                    "description": "JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/DeploymentEnterpriseSearchTopology:DeploymentEnterpriseSearchTopology": {
+            "properties": {
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "description": "Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeAppserver": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeConnector": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeWorker": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "Amount in Gigabytes per topology element in the `\"\u003csize in GB\u003eg\"` notation. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "description": "Type of resource to which the size is assigned. Defaults to `\"memory\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "description": "Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "instanceConfigurationId",
+                        "nodeTypeAppserver",
+                        "nodeTypeConnector",
+                        "nodeTypeWorker",
+                        "size",
+                        "zoneCount"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentKibana:DeploymentKibana": {
+            "properties": {
+                "config": {
+                    "$ref": "#/types/ec:index/DeploymentKibanaConfig:DeploymentKibanaConfig",
+                    "description": "Kibana settings applied to all topologies unless overridden in the `topology` element.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "elasticsearchClusterRefId": {
+                    "type": "string",
+                    "description": "This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "description": "Can be set on the Kibana resource. The default value `main-kibana` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentKibanaTopology:DeploymentKibanaTopology"
+                    },
+                    "description": "Can be set multiple times to compose complex topologies.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "httpEndpoint",
+                        "httpsEndpoint",
+                        "region",
+                        "resourceId",
+                        "topologies"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentKibanaConfig:DeploymentKibanaConfig": {
+            "properties": {
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsJson": {
+                    "type": "string",
+                    "description": "JSON-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideJson": {
+                    "type": "string",
+                    "description": "JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsOverrideYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSettingsYaml": {
+                    "type": "string",
+                    "description": "YAML-formatted user level `elasticsearch.yml` setting overrides.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/DeploymentKibanaTopology:DeploymentKibanaTopology": {
+            "properties": {
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "description": "Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "Amount in Gigabytes per topology element in the `\"\u003csize in GB\u003eg\"` notation. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "description": "Type of resource to which the size is assigned. Defaults to `\"memory\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "description": "Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "instanceConfigurationId",
+                        "size",
+                        "zoneCount"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentObservability:DeploymentObservability": {
+            "properties": {
+                "deploymentId": {
+                    "type": "string",
+                    "description": "Remote deployment ID.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "logs": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "metrics": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "description": "Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "deploymentId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "deploymentId",
+                        "refId"
+                    ]
+                }
+            }
+        },
+        "ec:index/DeploymentTrafficFilterRule:DeploymentTrafficFilterRule": {
+            "properties": {
+                "azureEndpointGuid": {
+                    "type": "string",
+                    "description": "Azure endpoint GUID. Only applicable when the ruleset type is set to `\"azure_private_endpoint\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "azureEndpointName": {
+                    "type": "string",
+                    "description": "Azure endpoint name. Only applicable when the ruleset type is set to `\"azure_private_endpoint\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of this individual rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ruleset ID.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "source": {
+                    "type": "string",
+                    "description": "traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `\"azure_private_endpoint\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id"
+                    ]
+                }
+            }
+        },
+        "ec:index/getDeploymentApm:getDeploymentApm": {
+            "properties": {
+                "elasticsearchClusterRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthy": {
+                    "type": "boolean",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/getDeploymentApmTopology:getDeploymentApmTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "elasticsearchClusterRefId",
+                "healthy",
+                "httpEndpoint",
+                "httpsEndpoint",
+                "refId",
+                "resourceId",
+                "status",
+                "topologies",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentApmTopology:getDeploymentApmTopology": {
+            "properties": {
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "instanceConfigurationId",
+                "size",
+                "sizeResource",
+                "zoneCount"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentElasticsearch:getDeploymentElasticsearch": {
+            "properties": {
+                "autoscale": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cloudId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthy": {
+                    "type": "boolean",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/getDeploymentElasticsearchTopology:getDeploymentElasticsearchTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoscale",
+                "cloudId",
+                "healthy",
+                "httpEndpoint",
+                "httpsEndpoint",
+                "refId",
+                "resourceId",
+                "status",
+                "topologies",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentElasticsearchTopology:getDeploymentElasticsearchTopology": {
+            "properties": {
+                "autoscalings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/getDeploymentElasticsearchTopologyAutoscaling:getDeploymentElasticsearchTopologyAutoscaling"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeData": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeIngest": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeMaster": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeMl": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoscalings",
+                "instanceConfigurationId",
+                "nodeRoles",
+                "nodeTypeData",
+                "nodeTypeIngest",
+                "nodeTypeMaster",
+                "size",
+                "sizeResource",
+                "zoneCount"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentElasticsearchTopologyAutoscaling:getDeploymentElasticsearchTopologyAutoscaling": {
+            "properties": {
+                "maxSize": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxSizeResource": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minSize": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minSizeResource": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policyOverrideJson": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "maxSize",
+                "maxSizeResource",
+                "minSize",
+                "minSizeResource",
+                "policyOverrideJson"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentEnterpriseSearch:getDeploymentEnterpriseSearch": {
+            "properties": {
+                "elasticsearchClusterRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthy": {
+                    "type": "boolean",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/getDeploymentEnterpriseSearchTopology:getDeploymentEnterpriseSearchTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "elasticsearchClusterRefId",
+                "healthy",
+                "httpEndpoint",
+                "httpsEndpoint",
+                "refId",
+                "resourceId",
+                "status",
+                "topologies",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentEnterpriseSearchTopology:getDeploymentEnterpriseSearchTopology": {
+            "properties": {
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeAppserver": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeConnector": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeWorker": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "instanceConfigurationId",
+                "nodeTypeAppserver",
+                "nodeTypeConnector",
+                "nodeTypeWorker",
+                "size",
+                "sizeResource",
+                "zoneCount"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentKibana:getDeploymentKibana": {
+            "properties": {
+                "elasticsearchClusterRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthy": {
+                    "type": "boolean",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpsEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/getDeploymentKibanaTopology:getDeploymentKibanaTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "elasticsearchClusterRefId",
+                "healthy",
+                "httpEndpoint",
+                "httpsEndpoint",
+                "refId",
+                "resourceId",
+                "status",
+                "topologies",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentKibanaTopology:getDeploymentKibanaTopology": {
+            "properties": {
+                "instanceConfigurationId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sizeResource": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "instanceConfigurationId",
+                "size",
+                "sizeResource",
+                "zoneCount"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentObservability:getDeploymentObservability": {
+            "properties": {
+                "deploymentId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "logs": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "metrics": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "refId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "deploymentId",
+                "logs",
+                "metrics",
+                "refId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentsApm:getDeploymentsApm": {
+            "properties": {
+                "healthy": {
+                    "type": "string",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/getDeploymentsDeployment:getDeploymentsDeployment": {
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "apmRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "apmResourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "elasticsearchRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "elasticsearchResourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enterpriseSearchRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enterpriseSearchResourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "kibanaRefId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "kibanaResourceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "alias",
+                "apmRefId",
+                "apmResourceId",
+                "deploymentId",
+                "elasticsearchRefId",
+                "elasticsearchResourceId",
+                "enterpriseSearchRefId",
+                "enterpriseSearchResourceId",
+                "kibanaRefId",
+                "kibanaResourceId",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getDeploymentsElasticsearch:getDeploymentsElasticsearch": {
+            "properties": {
+                "healthy": {
+                    "type": "string",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/getDeploymentsEnterpriseSearch:getDeploymentsEnterpriseSearch": {
+            "properties": {
+                "healthy": {
+                    "type": "string",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/getDeploymentsKibana:getDeploymentsKibana": {
+            "properties": {
+                "healthy": {
+                    "type": "string",
+                    "description": "Overall health status of the deployment.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/getStackApm:getStackApm": {
+            "properties": {
+                "capacityConstraintsMax": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "capacityConstraintsMin": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "compatibleNodeTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultPlugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "denylists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "plugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "capacityConstraintsMax",
+                "capacityConstraintsMin",
+                "compatibleNodeTypes",
+                "defaultPlugins",
+                "denylists",
+                "dockerImage",
+                "plugins"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getStackElasticsearch:getStackElasticsearch": {
+            "properties": {
+                "capacityConstraintsMax": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "capacityConstraintsMin": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "compatibleNodeTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultPlugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "denylists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "plugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "capacityConstraintsMax",
+                "capacityConstraintsMin",
+                "compatibleNodeTypes",
+                "defaultPlugins",
+                "denylists",
+                "dockerImage",
+                "plugins"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getStackEnterpriseSearch:getStackEnterpriseSearch": {
+            "properties": {
+                "capacityConstraintsMax": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "capacityConstraintsMin": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "compatibleNodeTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultPlugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "denylists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "plugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "capacityConstraintsMax",
+                "capacityConstraintsMin",
+                "compatibleNodeTypes",
+                "defaultPlugins",
+                "denylists",
+                "dockerImage",
+                "plugins"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ec:index/getStackKibana:getStackKibana": {
+            "properties": {
+                "capacityConstraintsMax": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "capacityConstraintsMin": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "compatibleNodeTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultPlugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "denylists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dockerImage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "plugins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "capacityConstraintsMax",
+                "capacityConstraintsMin",
+                "compatibleNodeTypes",
+                "defaultPlugins",
+                "denylists",
+                "dockerImage",
+                "plugins"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the ec package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apikey": {
+                "type": "string",
+                "description": "API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\".\n"
+            },
+            "insecure": {
+                "type": "boolean",
+                "description": "Allow the provider to skip TLS validation on its outgoing HTTP calls.\n"
+            },
+            "password": {
+                "type": "string",
+                "description": "Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service\nPrivate.\n"
+            },
+            "timeout": {
+                "type": "string",
+                "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
+            },
+            "username": {
+                "type": "string",
+                "description": "Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service\nPrivate.\n"
+            },
+            "verbose": {
+                "type": "boolean",
+                "description": "When set, a \"request.log\" file will be written with all outgoing HTTP requests. Defaults to \"false\".\n"
+            },
+            "verboseCredentials": {
+                "type": "boolean",
+                "description": "When set with verbose, the contents of the Authorization header will not be redacted. Defaults to \"false\".\n"
+            },
+            "verboseFile": {
+                "type": "string",
+                "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
+            }
+        },
+        "inputProperties": {
+            "apikey": {
+                "type": "string",
+                "description": "API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\".\n"
+            },
+            "insecure": {
+                "type": "boolean",
+                "description": "Allow the provider to skip TLS validation on its outgoing HTTP calls.\n"
+            },
+            "password": {
+                "type": "string",
+                "description": "Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service\nPrivate.\n"
+            },
+            "timeout": {
+                "type": "string",
+                "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
+            },
+            "username": {
+                "type": "string",
+                "description": "Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service\nPrivate.\n"
+            },
+            "verbose": {
+                "type": "boolean",
+                "description": "When set, a \"request.log\" file will be written with all outgoing HTTP requests. Defaults to \"false\".\n"
+            },
+            "verboseCredentials": {
+                "type": "boolean",
+                "description": "When set with verbose, the contents of the Authorization header will not be redacted. Defaults to \"false\".\n"
+            },
+            "verboseFile": {
+                "type": "string",
+                "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
+            }
+        }
+    },
+    "resources": {
+        "ec:index/deployment:Deployment": {
+            "description": "\n\n\n## Import\n\n~\u003e **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~\u003e **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~\u003e **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example\n\n```sh\n $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n ",
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "Deployment alias, affects the format of the resource URLs.\n"
+                },
+                "apm": {
+                    "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
+                    "description": "APM instance definition, can only be specified once.\n"
+                },
+                "apmSecretToken": {
+                    "type": "string",
+                    "description": "Auto-generated APM secret_token, empty unless an `apm` resource is specified.\n* `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.\n* `elasticsearch.#.region` - Elasticsearch region.\n* `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).\n* `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.\n* `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.\n* `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.\n* `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.\n* `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.\n* `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.\n* `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.\n* `kibana.#.resource_id` - Kibana resource unique identifier.\n* `kibana.#.region` - Kibana region.\n* `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.\n* `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.\n* `apm.#.resource_id` - APM resource unique identifier.\n* `apm.#.region` - APM region.\n* `apm.#.http_endpoint` - APM resource HTTP endpoint.\n* `apm.#.https_endpoint` - APM resource HTTPs endpoint.\n* `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.\n* `enterprise_search.#.region` - Enterprise Search region.\n* `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.\n* `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.\n* `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.\n* `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.\n* `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.\n* `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.\n* `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.\n* `observability.#.logs` - Enables or disables shipping logs. Defaults to true.\n* `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.\n"
+                },
+                "deploymentTemplateId": {
+                    "type": "string",
+                    "description": "Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.\n"
+                },
+                "elasticsearch": {
+                    "$ref": "#/types/ec:index/DeploymentElasticsearch:DeploymentElasticsearch",
+                    "description": "Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.\n"
+                },
+                "elasticsearchPassword": {
+                    "type": "string",
+                    "description": "Auto-generated Elasticsearch password.\n"
+                },
+                "elasticsearchUsername": {
+                    "type": "string",
+                    "description": "Auto-generated Elasticsearch username.\n"
+                },
+                "enterpriseSearch": {
+                    "$ref": "#/types/ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch",
+                    "description": "Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.\n"
+                },
+                "kibana": {
+                    "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
+                    "description": "Kibana instance definition, can only be specified once.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the deployment.\n"
+                },
+                "observability": {
+                    "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
+                    "description": "Observability settings that you can set to ship logs and metrics to a separate deployment.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n"
+                },
+                "requestId": {
+                    "type": "string",
+                    "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key value map of arbitrary string tags.\n"
+                },
+                "trafficFilters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of traffic filter rule identifiers that will be applied to the deployment.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Elastic Stack version to use for all the deployment resources.\n"
+                }
+            },
+            "required": [
+                "alias",
+                "apmSecretToken",
+                "deploymentTemplateId",
+                "elasticsearch",
+                "elasticsearchPassword",
+                "elasticsearchUsername",
+                "name",
+                "region",
+                "version"
+            ],
+            "inputProperties": {
+                "alias": {
+                    "type": "string",
+                    "description": "Deployment alias, affects the format of the resource URLs.\n"
+                },
+                "apm": {
+                    "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
+                    "description": "APM instance definition, can only be specified once.\n"
+                },
+                "deploymentTemplateId": {
+                    "type": "string",
+                    "description": "Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.\n"
+                },
+                "elasticsearch": {
+                    "$ref": "#/types/ec:index/DeploymentElasticsearch:DeploymentElasticsearch",
+                    "description": "Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.\n"
+                },
+                "enterpriseSearch": {
+                    "$ref": "#/types/ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch",
+                    "description": "Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.\n"
+                },
+                "kibana": {
+                    "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
+                    "description": "Kibana instance definition, can only be specified once.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the deployment.\n"
+                },
+                "observability": {
+                    "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
+                    "description": "Observability settings that you can set to ship logs and metrics to a separate deployment.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n"
+                },
+                "requestId": {
+                    "type": "string",
+                    "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key value map of arbitrary string tags.\n"
+                },
+                "trafficFilters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of traffic filter rule identifiers that will be applied to the deployment.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Elastic Stack version to use for all the deployment resources.\n"
+                }
+            },
+            "requiredInputs": [
+                "deploymentTemplateId",
+                "elasticsearch",
+                "region",
+                "version"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Deployment resources.\n",
+                "properties": {
+                    "alias": {
+                        "type": "string",
+                        "description": "Deployment alias, affects the format of the resource URLs.\n"
+                    },
+                    "apm": {
+                        "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
+                        "description": "APM instance definition, can only be specified once.\n"
+                    },
+                    "apmSecretToken": {
+                        "type": "string",
+                        "description": "Auto-generated APM secret_token, empty unless an `apm` resource is specified.\n* `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.\n* `elasticsearch.#.region` - Elasticsearch region.\n* `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).\n* `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.\n* `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.\n* `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.\n* `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.\n* `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.\n* `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.\n* `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.\n* `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.\n* `kibana.#.resource_id` - Kibana resource unique identifier.\n* `kibana.#.region` - Kibana region.\n* `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.\n* `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.\n* `apm.#.resource_id` - APM resource unique identifier.\n* `apm.#.region` - APM region.\n* `apm.#.http_endpoint` - APM resource HTTP endpoint.\n* `apm.#.https_endpoint` - APM resource HTTPs endpoint.\n* `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.\n* `enterprise_search.#.region` - Enterprise Search region.\n* `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.\n* `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.\n* `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.\n* `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.\n* `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.\n* `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.\n* `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.\n* `observability.#.logs` - Enables or disables shipping logs. Defaults to true.\n* `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.\n"
+                    },
+                    "deploymentTemplateId": {
+                        "type": "string",
+                        "description": "Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.\n"
+                    },
+                    "elasticsearch": {
+                        "$ref": "#/types/ec:index/DeploymentElasticsearch:DeploymentElasticsearch",
+                        "description": "Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.\n"
+                    },
+                    "elasticsearchPassword": {
+                        "type": "string",
+                        "description": "Auto-generated Elasticsearch password.\n"
+                    },
+                    "elasticsearchUsername": {
+                        "type": "string",
+                        "description": "Auto-generated Elasticsearch username.\n"
+                    },
+                    "enterpriseSearch": {
+                        "$ref": "#/types/ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch",
+                        "description": "Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.\n"
+                    },
+                    "kibana": {
+                        "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
+                        "description": "Kibana instance definition, can only be specified once.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the deployment.\n"
+                    },
+                    "observability": {
+                        "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
+                        "description": "Observability settings that you can set to ship logs and metrics to a separate deployment.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `\"ece-region\"`.\n"
+                    },
+                    "requestId": {
+                        "type": "string",
+                        "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.\n"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Key value map of arbitrary string tags.\n"
+                    },
+                    "trafficFilters": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of traffic filter rule identifiers that will be applied to the deployment.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Elastic Stack version to use for all the deployment resources.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore": {
+            "description": "\n\n\n## Import\n\nThis resource cannot be imported. ",
+            "properties": {
+                "asFile": {
+                    "type": "boolean",
+                    "description": "Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as\nstring when value is a plain string\n"
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written\nto\n"
+                },
+                "settingName": {
+                    "type": "string",
+                    "description": "Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be\noverridden\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the\nkeystore.\n"
+                }
+            },
+            "required": [
+                "deploymentId",
+                "settingName",
+                "value"
+            ],
+            "inputProperties": {
+                "asFile": {
+                    "type": "boolean",
+                    "description": "Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as\nstring when value is a plain string\n"
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written\nto\n"
+                },
+                "settingName": {
+                    "type": "string",
+                    "description": "Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be\noverridden\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the\nkeystore.\n"
+                }
+            },
+            "requiredInputs": [
+                "deploymentId",
+                "settingName",
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeploymentElasticsearchKeystore resources.\n",
+                "properties": {
+                    "asFile": {
+                        "type": "boolean",
+                        "description": "Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as\nstring when value is a plain string\n"
+                    },
+                    "deploymentId": {
+                        "type": "string",
+                        "description": "Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written\nto\n"
+                    },
+                    "settingName": {
+                        "type": "string",
+                        "description": "Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be\noverridden\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the\nkeystore.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/deploymentExtension:DeploymentExtension": {
+            "description": "Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.\n\nExtensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### With download URL\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst exampleExtension = new ec.DeploymentExtension(\"example_extension\", {\n    description: \"my extension\",\n    downloadUrl: \"https://example.net\",\n    extensionType: \"bundle\",\n    version: \"*\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nexample_extension = ec.DeploymentExtension(\"exampleExtension\",\n    description=\"my extension\",\n    download_url=\"https://example.net\",\n    extension_type=\"bundle\",\n    version=\"*\")\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleExtension = new ElasticCloud.DeploymentExtension(\"exampleExtension\", new ElasticCloud.DeploymentExtensionArgs\n        {\n            Description = \"my extension\",\n            DownloadUrl = \"https://example.net\",\n            ExtensionType = \"bundle\",\n            Version = \"*\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewDeploymentExtension(ctx, \"exampleExtension\", \u0026ec.DeploymentExtensionArgs{\n\t\t\tDescription:   pulumi.String(\"my extension\"),\n\t\t\tDownloadUrl:   pulumi.String(\"https://example.net\"),\n\t\t\tExtensionType: pulumi.String(\"bundle\"),\n\t\t\tVersion:       pulumi.String(\"*\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Using extension in ec.Deployment\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst exampleExtension = new ec.DeploymentExtension(\"exampleExtension\", {\n    description: \"my extension\",\n    version: \"*\",\n    extensionType: \"bundle\",\n    downloadUrl: \"https://example.net\",\n});\nconst latest = ec.getStack({\n    versionRegex: \"latest\",\n    region: \"us-east-1\",\n});\nconst withExtension = new ec.Deployment(\"withExtension\", {\n    region: \"us-east-1\",\n    version: latest.then(latest =\u003e latest.version),\n    deploymentTemplateId: \"aws-io-optimized-v2\",\n    elasticsearch: {\n        extensions: [{\n            name: exampleExtension.name,\n            type: \"bundle\",\n            version: latest.then(latest =\u003e latest.version),\n            url: exampleExtension.url,\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nexample_extension = ec.DeploymentExtension(\"exampleExtension\",\n    description=\"my extension\",\n    version=\"*\",\n    extension_type=\"bundle\",\n    download_url=\"https://example.net\")\nlatest = ec.get_stack(version_regex=\"latest\",\n    region=\"us-east-1\")\nwith_extension = ec.Deployment(\"withExtension\",\n    region=\"us-east-1\",\n    version=latest.version,\n    deployment_template_id=\"aws-io-optimized-v2\",\n    elasticsearch=ec.DeploymentElasticsearchArgs(\n        extensions=[ec.DeploymentElasticsearchExtensionArgs(\n            name=example_extension.name,\n            type=\"bundle\",\n            version=latest.version,\n            url=example_extension.url,\n        )],\n    ))\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleExtension = new ElasticCloud.DeploymentExtension(\"exampleExtension\", new ElasticCloud.DeploymentExtensionArgs\n        {\n            Description = \"my extension\",\n            Version = \"*\",\n            ExtensionType = \"bundle\",\n            DownloadUrl = \"https://example.net\",\n        });\n        var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs\n        {\n            VersionRegex = \"latest\",\n            Region = \"us-east-1\",\n        }));\n        var withExtension = new ElasticCloud.Deployment(\"withExtension\", new ElasticCloud.DeploymentArgs\n        {\n            Region = \"us-east-1\",\n            Version = latest.Apply(latest =\u003e latest.Version),\n            DeploymentTemplateId = \"aws-io-optimized-v2\",\n            Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs\n            {\n                Extensions = \n                {\n                    new ElasticCloud.Inputs.DeploymentElasticsearchExtensionArgs\n                    {\n                        Name = exampleExtension.Name,\n                        Type = \"bundle\",\n                        Version = latest.Apply(latest =\u003e latest.Version),\n                        Url = exampleExtension.Url,\n                    },\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleExtension, err := ec.NewDeploymentExtension(ctx, \"exampleExtension\", \u0026ec.DeploymentExtensionArgs{\n\t\t\tDescription:   pulumi.String(\"my extension\"),\n\t\t\tVersion:       pulumi.String(\"*\"),\n\t\t\tExtensionType: pulumi.String(\"bundle\"),\n\t\t\tDownloadUrl:   pulumi.String(\"https://example.net\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlatest, err := ec.GetStack(ctx, \u0026GetStackArgs{\n\t\t\tVersionRegex: \"latest\",\n\t\t\tRegion:       \"us-east-1\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewDeployment(ctx, \"withExtension\", \u0026ec.DeploymentArgs{\n\t\t\tRegion:               pulumi.String(\"us-east-1\"),\n\t\t\tVersion:              pulumi.String(latest.Version),\n\t\t\tDeploymentTemplateId: pulumi.String(\"aws-io-optimized-v2\"),\n\t\t\tElasticsearch: \u0026DeploymentElasticsearchArgs{\n\t\t\t\tExtensions: DeploymentElasticsearchExtensionArray{\n\t\t\t\t\t\u0026DeploymentElasticsearchExtensionArgs{\n\t\t\t\t\t\tName:    exampleExtension.Name,\n\t\t\t\t\t\tType:    pulumi.String(\"bundle\"),\n\t\t\t\t\t\tVersion: pulumi.String(latest.Version),\n\t\t\t\t\t\tUrl:     exampleExtension.Url,\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nYou can import extensions using the `id`, for example\n\n```sh\n $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n ",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the extension.\n"
+                },
+                "downloadUrl": {
+                    "type": "string",
+                    "description": "The URL to download the extension archive.\n"
+                },
+                "extensionType": {
+                    "type": "string",
+                    "description": "`bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.\n"
+                },
+                "fileHash": {
+                    "type": "string",
+                    "description": "Hash value of the file. If it is changed, the file is reuploaded.\n"
+                },
+                "filePath": {
+                    "type": "string",
+                    "description": "File path of the extension uploaded.\n"
+                },
+                "lastModified": {
+                    "type": "string",
+                    "description": "The datetime the extension was last modified.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the extension.\n"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The extension file size in bytes.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The extension URL to be used in the plan.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.\n"
+                }
+            },
+            "required": [
+                "extensionType",
+                "lastModified",
+                "name",
+                "size",
+                "url",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the extension.\n"
+                },
+                "downloadUrl": {
+                    "type": "string",
+                    "description": "The URL to download the extension archive.\n"
+                },
+                "extensionType": {
+                    "type": "string",
+                    "description": "`bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.\n"
+                },
+                "fileHash": {
+                    "type": "string",
+                    "description": "Hash value of the file. If it is changed, the file is reuploaded.\n"
+                },
+                "filePath": {
+                    "type": "string",
+                    "description": "File path of the extension uploaded.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the extension.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.\n"
+                }
+            },
+            "requiredInputs": [
+                "extensionType",
+                "version"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeploymentExtension resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the extension.\n"
+                    },
+                    "downloadUrl": {
+                        "type": "string",
+                        "description": "The URL to download the extension archive.\n"
+                    },
+                    "extensionType": {
+                        "type": "string",
+                        "description": "`bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.\n"
+                    },
+                    "fileHash": {
+                        "type": "string",
+                        "description": "Hash value of the file. If it is changed, the file is reuploaded.\n"
+                    },
+                    "filePath": {
+                        "type": "string",
+                        "description": "File path of the extension uploaded.\n"
+                    },
+                    "lastModified": {
+                        "type": "string",
+                        "description": "The datetime the extension was last modified.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the extension.\n"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The extension file size in bytes.\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The extension URL to be used in the plan.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/deploymentTrafficFilter:DeploymentTrafficFilter": {
+            "description": "Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### IP type\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst latest = ec.getStack({\n    versionRegex: \"latest\",\n    region: \"us-east-1\",\n});\nconst example = new ec.DeploymentTrafficFilter(\"example\", {\n    region: \"us-east-1\",\n    type: \"ip\",\n    rules: [{\n        source: \"0.0.0.0/0\",\n    }],\n});\n// Create an Elastic Cloud deployment\nconst exampleMinimal = new ec.Deployment(\"exampleMinimal\", {\n    region: \"us-east-1\",\n    version: latest.then(latest =\u003e latest.version),\n    deploymentTemplateId: \"aws-io-optimized-v2\",\n    trafficFilters: [example.id],\n    elasticsearch: {},\n    kibana: {},\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nlatest = ec.get_stack(version_regex=\"latest\",\n    region=\"us-east-1\")\nexample = ec.DeploymentTrafficFilter(\"example\",\n    region=\"us-east-1\",\n    type=\"ip\",\n    rules=[ec.DeploymentTrafficFilterRuleArgs(\n        source=\"0.0.0.0/0\",\n    )])\n# Create an Elastic Cloud deployment\nexample_minimal = ec.Deployment(\"exampleMinimal\",\n    region=\"us-east-1\",\n    version=latest.version,\n    deployment_template_id=\"aws-io-optimized-v2\",\n    traffic_filters=[example.id],\n    elasticsearch=ec.DeploymentElasticsearchArgs(),\n    kibana=ec.DeploymentKibanaArgs())\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs\n        {\n            VersionRegex = \"latest\",\n            Region = \"us-east-1\",\n        }));\n        var example = new ElasticCloud.DeploymentTrafficFilter(\"example\", new ElasticCloud.DeploymentTrafficFilterArgs\n        {\n            Region = \"us-east-1\",\n            Type = \"ip\",\n            Rules = \n            {\n                new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs\n                {\n                    Source = \"0.0.0.0/0\",\n                },\n            },\n        });\n        // Create an Elastic Cloud deployment\n        var exampleMinimal = new ElasticCloud.Deployment(\"exampleMinimal\", new ElasticCloud.DeploymentArgs\n        {\n            Region = \"us-east-1\",\n            Version = latest.Apply(latest =\u003e latest.Version),\n            DeploymentTemplateId = \"aws-io-optimized-v2\",\n            TrafficFilters = \n            {\n                example.Id,\n            },\n            Elasticsearch = ,\n            Kibana = ,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlatest, err := ec.GetStack(ctx, \u0026GetStackArgs{\n\t\t\tVersionRegex: \"latest\",\n\t\t\tRegion:       \"us-east-1\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := ec.NewDeploymentTrafficFilter(ctx, \"example\", \u0026ec.DeploymentTrafficFilterArgs{\n\t\t\tRegion: pulumi.String(\"us-east-1\"),\n\t\t\tType:   pulumi.String(\"ip\"),\n\t\t\tRules: DeploymentTrafficFilterRuleArray{\n\t\t\t\t\u0026DeploymentTrafficFilterRuleArgs{\n\t\t\t\t\tSource: pulumi.String(\"0.0.0.0/0\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewDeployment(ctx, \"exampleMinimal\", \u0026ec.DeploymentArgs{\n\t\t\tRegion:               pulumi.String(\"us-east-1\"),\n\t\t\tVersion:              pulumi.String(latest.Version),\n\t\t\tDeploymentTemplateId: pulumi.String(\"aws-io-optimized-v2\"),\n\t\t\tTrafficFilters: pulumi.StringArray{\n\t\t\t\texample.ID(),\n\t\t\t},\n\t\t\tElasticsearch: nil,\n\t\t\tKibana:        nil,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Azure Private Link type\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst region = azure_australiaeast;\nconst latest = ec.getStack({\n    versionRegex: \"latest\",\n    region: region,\n});\nconst azure = new ec.DeploymentTrafficFilter(\"azure\", {\n    region: region,\n    type: \"azure_private_endpoint\",\n    rules: [{\n        azureEndpointName: \"my-azure-pl\",\n        azureEndpointGuid: \"78c64959-fd88-41cc-81ac-1cfcdb1ac32e\",\n    }],\n});\n// Create an Elastic Cloud deployment\nconst exampleMinimal = new ec.Deployment(\"exampleMinimal\", {\n    region: region,\n    version: latest.then(latest =\u003e latest.version),\n    deploymentTemplateId: \"azure-io-optimized-v3\",\n    trafficFilters: [azure.id],\n    elasticsearch: {},\n    kibana: {},\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nregion = azure_australiaeast\nlatest = ec.get_stack(version_regex=\"latest\",\n    region=region)\nazure = ec.DeploymentTrafficFilter(\"azure\",\n    region=region,\n    type=\"azure_private_endpoint\",\n    rules=[ec.DeploymentTrafficFilterRuleArgs(\n        azure_endpoint_name=\"my-azure-pl\",\n        azure_endpoint_guid=\"78c64959-fd88-41cc-81ac-1cfcdb1ac32e\",\n    )])\n# Create an Elastic Cloud deployment\nexample_minimal = ec.Deployment(\"exampleMinimal\",\n    region=region,\n    version=latest.version,\n    deployment_template_id=\"azure-io-optimized-v3\",\n    traffic_filters=[azure.id],\n    elasticsearch=ec.DeploymentElasticsearchArgs(),\n    kibana=ec.DeploymentKibanaArgs())\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var region = azure_australiaeast;\n        var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs\n        {\n            VersionRegex = \"latest\",\n            Region = region,\n        }));\n        var azure = new ElasticCloud.DeploymentTrafficFilter(\"azure\", new ElasticCloud.DeploymentTrafficFilterArgs\n        {\n            Region = region,\n            Type = \"azure_private_endpoint\",\n            Rules = \n            {\n                new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs\n                {\n                    AzureEndpointName = \"my-azure-pl\",\n                    AzureEndpointGuid = \"78c64959-fd88-41cc-81ac-1cfcdb1ac32e\",\n                },\n            },\n        });\n        // Create an Elastic Cloud deployment\n        var exampleMinimal = new ElasticCloud.Deployment(\"exampleMinimal\", new ElasticCloud.DeploymentArgs\n        {\n            Region = region,\n            Version = latest.Apply(latest =\u003e latest.Version),\n            DeploymentTemplateId = \"azure-io-optimized-v3\",\n            TrafficFilters = \n            {\n                azure.Id,\n            },\n            Elasticsearch = ,\n            Kibana = ,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tregion := azure_australiaeast\n\t\tlatest, err := ec.GetStack(ctx, \u0026GetStackArgs{\n\t\t\tVersionRegex: \"latest\",\n\t\t\tRegion:       region,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tazure, err := ec.NewDeploymentTrafficFilter(ctx, \"azure\", \u0026ec.DeploymentTrafficFilterArgs{\n\t\t\tRegion: pulumi.Any(region),\n\t\t\tType:   pulumi.String(\"azure_private_endpoint\"),\n\t\t\tRules: DeploymentTrafficFilterRuleArray{\n\t\t\t\t\u0026DeploymentTrafficFilterRuleArgs{\n\t\t\t\t\tAzureEndpointName: pulumi.String(\"my-azure-pl\"),\n\t\t\t\t\tAzureEndpointGuid: pulumi.String(\"78c64959-fd88-41cc-81ac-1cfcdb1ac32e\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewDeployment(ctx, \"exampleMinimal\", \u0026ec.DeploymentArgs{\n\t\t\tRegion:               pulumi.Any(region),\n\t\t\tVersion:              pulumi.String(latest.Version),\n\t\t\tDeploymentTemplateId: pulumi.String(\"azure-io-optimized-v3\"),\n\t\t\tTrafficFilters: pulumi.StringArray{\n\t\t\t\tazure.ID(),\n\t\t\t},\n\t\t\tElasticsearch: nil,\n\t\t\tKibana:        nil,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### GCP Private Service Connect type\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst region = asia_east1;\nconst latest = ec.getStack({\n    versionRegex: \"latest\",\n    region: region,\n});\nconst gcpPsc = new ec.DeploymentTrafficFilter(\"gcpPsc\", {\n    region: region,\n    type: \"gcp_private_service_connect_endpoint\",\n    rules: [{\n        source: \"18446744072646845332\",\n    }],\n});\n// Create an Elastic Cloud deployment\nconst exampleMinimal = new ec.Deployment(\"exampleMinimal\", {\n    region: region,\n    version: latest.then(latest =\u003e latest.version),\n    deploymentTemplateId: \"gcp-storage-optimized\",\n    trafficFilters: [gcpPsc.id],\n    elasticsearch: {},\n    kibana: {},\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nregion = asia_east1\nlatest = ec.get_stack(version_regex=\"latest\",\n    region=region)\ngcp_psc = ec.DeploymentTrafficFilter(\"gcpPsc\",\n    region=region,\n    type=\"gcp_private_service_connect_endpoint\",\n    rules=[ec.DeploymentTrafficFilterRuleArgs(\n        source=\"18446744072646845332\",\n    )])\n# Create an Elastic Cloud deployment\nexample_minimal = ec.Deployment(\"exampleMinimal\",\n    region=region,\n    version=latest.version,\n    deployment_template_id=\"gcp-storage-optimized\",\n    traffic_filters=[gcp_psc.id],\n    elasticsearch=ec.DeploymentElasticsearchArgs(),\n    kibana=ec.DeploymentKibanaArgs())\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var region = asia_east1;\n        var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs\n        {\n            VersionRegex = \"latest\",\n            Region = region,\n        }));\n        var gcpPsc = new ElasticCloud.DeploymentTrafficFilter(\"gcpPsc\", new ElasticCloud.DeploymentTrafficFilterArgs\n        {\n            Region = region,\n            Type = \"gcp_private_service_connect_endpoint\",\n            Rules = \n            {\n                new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs\n                {\n                    Source = \"18446744072646845332\",\n                },\n            },\n        });\n        // Create an Elastic Cloud deployment\n        var exampleMinimal = new ElasticCloud.Deployment(\"exampleMinimal\", new ElasticCloud.DeploymentArgs\n        {\n            Region = region,\n            Version = latest.Apply(latest =\u003e latest.Version),\n            DeploymentTemplateId = \"gcp-storage-optimized\",\n            TrafficFilters = \n            {\n                gcpPsc.Id,\n            },\n            Elasticsearch = ,\n            Kibana = ,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tregion := asia_east1\n\t\tlatest, err := ec.GetStack(ctx, \u0026GetStackArgs{\n\t\t\tVersionRegex: \"latest\",\n\t\t\tRegion:       region,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgcpPsc, err := ec.NewDeploymentTrafficFilter(ctx, \"gcpPsc\", \u0026ec.DeploymentTrafficFilterArgs{\n\t\t\tRegion: pulumi.Any(region),\n\t\t\tType:   pulumi.String(\"gcp_private_service_connect_endpoint\"),\n\t\t\tRules: DeploymentTrafficFilterRuleArray{\n\t\t\t\t\u0026DeploymentTrafficFilterRuleArgs{\n\t\t\t\t\tSource: pulumi.String(\"18446744072646845332\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewDeployment(ctx, \"exampleMinimal\", \u0026ec.DeploymentArgs{\n\t\t\tRegion:               pulumi.Any(region),\n\t\t\tVersion:              pulumi.String(latest.Version),\n\t\t\tDeploymentTemplateId: pulumi.String(\"gcp-storage-optimized\"),\n\t\t\tTrafficFilters: pulumi.StringArray{\n\t\t\t\tgcpPsc.ID(),\n\t\t\t},\n\t\t\tElasticsearch: nil,\n\t\t\tKibana:        nil,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nYou can import traffic filters using the `id`, for example\n\n```sh\n $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n ",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the ruleset.\n"
+                },
+                "includeByDefault": {
+                    "type": "boolean",
+                    "description": "To automatically include the ruleset in the new deployments. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the ruleset.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Filter region, the ruleset can only be attached to deployments in the specific region.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentTrafficFilterRule:DeploymentTrafficFilterRule"
+                    },
+                    "description": "Rule block, which can be specified multiple times for multiple rules.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the ruleset.  It can be `\"ip\"`, `\"vpce\"` or `\"azure_private_endpoint\"`.\n"
+                }
+            },
+            "required": [
+                "name",
+                "region",
+                "rules",
+                "type"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the ruleset.\n"
+                },
+                "includeByDefault": {
+                    "type": "boolean",
+                    "description": "To automatically include the ruleset in the new deployments. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the ruleset.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Filter region, the ruleset can only be attached to deployments in the specific region.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/DeploymentTrafficFilterRule:DeploymentTrafficFilterRule"
+                    },
+                    "description": "Rule block, which can be specified multiple times for multiple rules.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the ruleset.  It can be `\"ip\"`, `\"vpce\"` or `\"azure_private_endpoint\"`.\n"
+                }
+            },
+            "requiredInputs": [
+                "region",
+                "rules",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeploymentTrafficFilter resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the ruleset.\n"
+                    },
+                    "includeByDefault": {
+                        "type": "boolean",
+                        "description": "To automatically include the ruleset in the new deployments. Defaults to `false`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the ruleset.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Filter region, the ruleset can only be attached to deployments in the specific region.\n"
+                    },
+                    "rules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/DeploymentTrafficFilterRule:DeploymentTrafficFilterRule"
+                        },
+                        "description": "Rule block, which can be specified multiple times for multiple rules.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the ruleset.  It can be `\"ip\"`, `\"vpce\"` or `\"azure_private_endpoint\"`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation": {
+            "description": "\n\n\n## Import\n\nImport is not supported on this resource. ",
+            "properties": {
+                "deploymentId": {
+                    "type": "string",
+                    "description": "Deployment ID of the deployment to which the traffic filter rule is attached.\n"
+                },
+                "trafficFilterId": {
+                    "type": "string",
+                    "description": "Traffic filter ID of the rule to use for the attachment.\n"
+                }
+            },
+            "required": [
+                "deploymentId",
+                "trafficFilterId"
+            ],
+            "inputProperties": {
+                "deploymentId": {
+                    "type": "string",
+                    "description": "Deployment ID of the deployment to which the traffic filter rule is attached.\n"
+                },
+                "trafficFilterId": {
+                    "type": "string",
+                    "description": "Traffic filter ID of the rule to use for the attachment.\n"
+                }
+            },
+            "requiredInputs": [
+                "deploymentId",
+                "trafficFilterId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeploymentTrafficFilterAssociation resources.\n",
+                "properties": {
+                    "deploymentId": {
+                        "type": "string",
+                        "description": "Deployment ID of the deployment to which the traffic filter rule is attached.\n"
+                    },
+                    "trafficFilterId": {
+                        "type": "string",
+                        "description": "Traffic filter ID of the rule to use for the attachment.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "ec:index/getDeployment:getDeployment": {
+            "description": "Use this data source to retrieve information about an existing Elastic Cloud deployment.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst example = pulumi.output(ec.getDeployment({\n    id: \"f759065e5e64e9f3546f6c44f2743893\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nexample = ec.get_deployment(id=\"f759065e5e64e9f3546f6c44f2743893\")\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(ElasticCloud.GetDeployment.InvokeAsync(new ElasticCloud.GetDeploymentArgs\n        {\n            Id = \"f759065e5e64e9f3546f6c44f2743893\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.LookupDeployment(ctx, \u0026GetDeploymentArgs{\n\t\t\tId: \"f759065e5e64e9f3546f6c44f2743893\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDeployment.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of an existing Elastic Cloud deployment.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDeployment.\n",
+                "properties": {
+                    "alias": {
+                        "type": "string",
+                        "description": "Deployment alias.\n"
+                    },
+                    "apms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getDeploymentApm:getDeploymentApm"
+                        },
+                        "description": "Instance configuration of the APM type.\n* `apm.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.\n* `apm.#.healthy` - Resource kind health status.\n* `apm.#.http_endpoint` - HTTP endpoint for the resource kind.\n* `apm.#.https_endpoint` - HTTPS endpoint for the resource kind.\n* `apm.#.ref_id` - User specified ref_id for the resource kind.\n* `apm.#.resource_id` - The resource unique identifier.\n* `apm.#.status` - Resource kind status (for example, \"started\", \"stopped\", etc).\n* `apm.#.version` - Elastic stack version.\n* `apm.#.topology` - Node topology element definition.\n* `apm.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n* `apm.#.topology.#.size` - Amount of memory (RAM) per topology element in the \"\u003csize in GB\u003eg\" notation.\n* `apm.#.topology.#.zone_count` - Number of zones in which nodes will be placed.\n"
+                    },
+                    "deploymentTemplateId": {
+                        "type": "string",
+                        "description": "ID of the deployment template used to create the deployment.\n"
+                    },
+                    "elasticsearches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getDeploymentElasticsearch:getDeploymentElasticsearch"
+                        },
+                        "description": "Instance configuration of the Elasticsearch resource kind.\n* `elasticsearch.#.autoscale` - Whether or not Elasticsearch autoscaling is enabled.\n* `elasticsearch.#.healthy` - Resource kind health status.\n* `elasticsearch.#.cloud_id` - The encoded Elasticsearch credentials to use in Beats or Logstash. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.\n* `elasticsearch.#.http_endpoint` - HTTP endpoint for the resource kind.\n* `elasticsearch.#.https_endpoint` - HTTPS endpoint for the resource kind.\n* `elasticsearch.#.ref_id` - User specified ref_id for the resource kind.\n* `elasticsearch.#.resource_id` - The resource unique identifier.\n* `elasticsearch.#.status` - Resource kind status (for example, \"started\", \"stopped\", etc).\n* `elasticsearch.#.version` - Elastic stack version.\n* `elasticsearch.#.topology` - Topology element definition.\n* `elasticsearch.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n* `elasticsearch.#.topology.#.size` - Amount of memory (RAM) per topology element in the \"\u003csize in GB\u003eg\" notation.\n* `elasticsearch.#.topology.#.zone_count` - Number of zones in which nodes will be placed.\n* `elasticsearch.#.topology.#.node_roles` - Defines the list of Elasticsearch node roles assigned to the topology element (\u003e=7.10.0).\n* `elasticsearch.#.topology.#.node_type_data` - Defines whether this node can hold data (\u003c7.10.0).\n* `elasticsearch.#.topology.#.node_type_master` - Defines whether this node can be elected master (\u003c7.10.0).\n* `elasticsearch.#.topology.#.node_type_ingest` - Defines whether this node can run an ingest pipeline (\u003c7.10.0).\n* `elasticsearch.#.topology.#.node_type_ml` - Defines whether this node can run ML jobs (\u003c7.10.0).\n* `elasticsearch.#.topology.#.autoscaling.#.max_size` - The maximum size for the scale up policy.\n* `elasticsearch.#.topology.#.autoscaling.#.max_size_resource` - The maximum size resource for the scale up policy.\n* `elasticsearch.#.topology.#.autoscaling.#.min_size` - The minimum size for the scale down policy.\n* `elasticsearch.#.topology.#.autoscaling.#.min_size_resource` - The minimum size for the scale down policy.\n* `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - The advanced policy overrides for the autoscaling policy.\n"
+                    },
+                    "enterpriseSearches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getDeploymentEnterpriseSearch:getDeploymentEnterpriseSearch"
+                        },
+                        "description": "Instance configuration of the Enterprise Search type.\n* `enterprise_search.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.\n* `enterprise_search.#.healthy` - Resource kind health status.\n* `enterprise_search.#.http_endpoint` - HTTP endpoint for the resource kind.\n* `enterprise_search.#.https_endpoint` - HTTPS endpoint for the resource kind.\n* `enterprise_search.#.ref_id` - User specified ref_id for the resource kind.\n* `enterprise_search.#.resource_id` - The resource unique identifier.\n* `enterprise_search.#.status` - Resource kind status (for example, \"started\", \"stopped\", etc).\n* `enterprise_search.#.version` - Elastic stack version.\n* `enterprise_search.#.topology` - Node topology element definition.\n* `enterprise_search.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n* `enterprise_search.#.topology.#.size` - Amount of memory (RAM) per topology element in the \"\u003csize in GB\u003eg\" notation.\n* `enterprise_search.#.topology.#.zone_count` - Number of zones in which nodes will be placed.\n* `enterprise_search.#.topology.#.node_type_appserver` - Defines whether this instance should run as application/API server.\n* `enterprise_search.#.topology.#.node_type_connector` - Defines whether this instance should run as connector.\n* `enterprise_search.#.topology.#.node_type_worker` - Defines whether this instance should run as background worker.\n"
+                    },
+                    "healthy": {
+                        "type": "boolean",
+                        "description": "Overall health status of the deployment.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The unique ID of the deployment.\n"
+                    },
+                    "kibanas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getDeploymentKibana:getDeploymentKibana"
+                        },
+                        "description": "Instance configuration of the Kibana type.\n* `kibana.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.\n* `kibana.#.healthy` - Resource kind health status.\n* `kibana.#.http_endpoint` - HTTP endpoint for the resource kind.\n* `kibana.#.https_endpoint` - HTTPS endpoint for the resource kind.\n* `kibana.#.ref_id` - User specified ref_id for the resource kind.\n* `kibana.#.resource_id` - The resource unique identifier.\n* `kibana.#.status` - Resource kind status (for example, \"started\", \"stopped\", etc).\n* `kibana.#.version` - Elastic stack version.\n* `kibana.#.topology` - Node topology element definition.\n* `kibana.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n* `kibana.#.topology.#.size` - Amount of memory (RAM) per topology element in the \"\u003csize in GB\u003eg\" notation.\n* `kibana.#.topology.#.zone_count` - Number of zones in which nodes will be placed.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the deployment.\n"
+                    },
+                    "observabilities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getDeploymentObservability:getDeploymentObservability"
+                        }
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region where the deployment can be found.\n"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "trafficFilters": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Traffic filter block, which contains a list of traffic filter rule identifiers.\n* `tags` Key value map of arbitrary string tags.\n* `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.\n* `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.\n* `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.\n* `observability.#.logs` - Defines whether logs are enabled or disabled.\n* `observability.#.metrics` - Defines whether metrics are enabled or disabled.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "alias",
+                    "apms",
+                    "deploymentTemplateId",
+                    "elasticsearches",
+                    "enterpriseSearches",
+                    "healthy",
+                    "id",
+                    "kibanas",
+                    "name",
+                    "observabilities",
+                    "region",
+                    "tags",
+                    "trafficFilters"
+                ]
+            }
+        },
+        "ec:index/getDeployments:getDeployments": {
+            "description": "Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst example = pulumi.output(ec.getDeployments({\n    apm: {\n        version: \"7.9.1\",\n    },\n    deploymentTemplateId: \"azure-compute-optimized\",\n    elasticsearch: {\n        healthy: \"true\",\n    },\n    enterpriseSearch: {\n        healthy: \"true\",\n    },\n    kibana: {\n        status: \"started\",\n    },\n    namePrefix: \"test\",\n    size: 200,\n    tags: {\n        foo: \"bar\",\n    },\n}));\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nexample = ec.get_deployments(apm=ec.GetDeploymentsApmArgs(\n        version=\"7.9.1\",\n    ),\n    deployment_template_id=\"azure-compute-optimized\",\n    elasticsearch=ec.GetDeploymentsElasticsearchArgs(\n        healthy=\"true\",\n    ),\n    enterprise_search=ec.GetDeploymentsEnterpriseSearchArgs(\n        healthy=\"true\",\n    ),\n    kibana=ec.GetDeploymentsKibanaArgs(\n        status=\"started\",\n    ),\n    name_prefix=\"test\",\n    size=200,\n    tags={\n        \"foo\": \"bar\",\n    })\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(ElasticCloud.GetDeployments.InvokeAsync(new ElasticCloud.GetDeploymentsArgs\n        {\n            Apm = new ElasticCloud.Inputs.GetDeploymentsApmArgs\n            {\n                Version = \"7.9.1\",\n            },\n            DeploymentTemplateId = \"azure-compute-optimized\",\n            Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchArgs\n            {\n                Healthy = \"true\",\n            },\n            EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchArgs\n            {\n                Healthy = \"true\",\n            },\n            Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaArgs\n            {\n                Status = \"started\",\n            },\n            NamePrefix = \"test\",\n            Size = 200,\n            Tags = \n            {\n                { \"foo\", \"bar\" },\n            },\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"azure-compute-optimized\"\n\t\topt1 := \"test\"\n\t\topt2 := 200\n\t\t_, err := ec.GetDeployments(ctx, \u0026GetDeploymentsArgs{\n\t\t\tApm: GetDeploymentsApm{\n\t\t\t\tVersion: \"7.9.1\",\n\t\t\t},\n\t\t\tDeploymentTemplateId: \u0026opt0,\n\t\t\tElasticsearch: GetDeploymentsElasticsearch{\n\t\t\t\tHealthy: \"true\",\n\t\t\t},\n\t\t\tEnterpriseSearch: GetDeploymentsEnterpriseSearch{\n\t\t\t\tHealthy: \"true\",\n\t\t\t},\n\t\t\tKibana: GetDeploymentsKibana{\n\t\t\t\tStatus: \"started\",\n\t\t\t},\n\t\t\tNamePrefix: \u0026opt1,\n\t\t\tSize:       \u0026opt2,\n\t\t\tTags: map[string]interface{}{\n\t\t\t\t\"foo\": \"bar\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDeployments.\n",
+                "properties": {
+                    "apm": {
+                        "$ref": "#/types/ec:index/getDeploymentsApm:getDeploymentsApm",
+                        "description": "Filter by APM resource kind status or configuration.\n* `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).\n* `apm.#.version` - Elastic stack version.\n* `apm.#.healthy` - Overall health status of the APM instances.\n"
+                    },
+                    "deploymentTemplateId": {
+                        "type": "string",
+                        "description": "ID of the deployment template used to create the deployment.\n"
+                    },
+                    "elasticsearch": {
+                        "$ref": "#/types/ec:index/getDeploymentsElasticsearch:getDeploymentsElasticsearch",
+                        "description": "Filter by Elasticsearch resource kind status or configuration.\n* `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).\n* `elasticsearch.#.version` - Elastic stack version.\n* `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.\n"
+                    },
+                    "enterpriseSearch": {
+                        "$ref": "#/types/ec:index/getDeploymentsEnterpriseSearch:getDeploymentsEnterpriseSearch",
+                        "description": "Filter by Enterprise Search resource kind status or configuration.\n* `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).\n* `enterprise_search.#.version` - Elastic stack version.\n* `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.\n"
+                    },
+                    "healthy": {
+                        "type": "string",
+                        "description": "Overall health status of the deployment.\n"
+                    },
+                    "kibana": {
+                        "$ref": "#/types/ec:index/getDeploymentsKibana:getDeploymentsKibana",
+                        "description": "Filter by Kibana resource kind status or configuration.\n* `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).\n* `kibana.#.version` - Elastic stack version.\n* `kibana.#.healthy` - Overall health status of the Kibana instances.\n"
+                    },
+                    "namePrefix": {
+                        "type": "string",
+                        "description": "Prefix that one or several deployment names have in common.\n"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The maximum number of deployments to return. Defaults to `100`.\n"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Key value map of arbitrary string tags for the deployment.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDeployments.\n",
+                "properties": {
+                    "apm": {
+                        "$ref": "#/types/ec:index/getDeploymentsApm:getDeploymentsApm"
+                    },
+                    "deploymentTemplateId": {
+                        "type": "string"
+                    },
+                    "deployments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getDeploymentsDeployment:getDeploymentsDeployment"
+                        },
+                        "description": "List of deployments which match the specified query.\n* `deployments.#.deployment_id` - The deployment unique ID.\n* `deployments.#.alias` - Deployment alias.\n* `deployments.#.name` - The name of the deployment.\n* `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.\n* `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.\n* `deployments.#.kibana_resource_id` - The Kibana resource unique ID.\n* `deployments.#.kibana_ref_id` - The Kibana resource reference.\n* `deployments.#.apm_resource_id` - The APM resource unique ID.\n* `deployments.#.apm_ref_id` - The APM resource reference.\n* `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.\n* `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.\n"
+                    },
+                    "elasticsearch": {
+                        "$ref": "#/types/ec:index/getDeploymentsElasticsearch:getDeploymentsElasticsearch"
+                    },
+                    "enterpriseSearch": {
+                        "$ref": "#/types/ec:index/getDeploymentsEnterpriseSearch:getDeploymentsEnterpriseSearch"
+                    },
+                    "healthy": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "kibana": {
+                        "$ref": "#/types/ec:index/getDeploymentsKibana:getDeploymentsKibana"
+                    },
+                    "namePrefix": {
+                        "type": "string"
+                    },
+                    "returnCount": {
+                        "type": "integer"
+                    },
+                    "size": {
+                        "type": "integer"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deployments",
+                    "returnCount",
+                    "id"
+                ]
+            }
+        },
+        "ec:index/getStack:getStack": {
+            "description": "Use this data source to retrieve information about an existing Elastic Cloud stack.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst latest = pulumi.output(ec.getStack({\n    lock: true,\n    region: \"us-east-1\",\n    versionRegex: \"latest\",\n}));\nconst latestPatch = pulumi.output(ec.getStack({\n    region: \"us-east-1\",\n    versionRegex: \"7.9.?\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nlatest = ec.get_stack(lock=True,\n    region=\"us-east-1\",\n    version_regex=\"latest\")\nlatest_patch = ec.get_stack(region=\"us-east-1\",\n    version_regex=\"7.9.?\")\n```\n```csharp\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs\n        {\n            Lock = true,\n            Region = \"us-east-1\",\n            VersionRegex = \"latest\",\n        }));\n        var latestPatch = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs\n        {\n            Region = \"us-east-1\",\n            VersionRegex = \"7.9.?\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := true\n\t\t_, err := ec.GetStack(ctx, \u0026GetStackArgs{\n\t\t\tLock:         \u0026opt0,\n\t\t\tRegion:       \"us-east-1\",\n\t\t\tVersionRegex: \"latest\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.GetStack(ctx, \u0026GetStackArgs{\n\t\t\tRegion:       \"us-east-1\",\n\t\t\tVersionRegex: \"7.9.?\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getStack.\n",
+                "properties": {
+                    "lock": {
+                        "type": "boolean",
+                        "description": "Lock the `\"latest\"` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `\"ece-region`.\n"
+                    },
+                    "versionRegex": {
+                        "type": "string",
+                        "description": "Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `\"latest\"` is also accepted to obtain the latest available stack version.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "region",
+                    "versionRegex"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getStack.\n",
+                "properties": {
+                    "accessible": {
+                        "type": "boolean",
+                        "description": "To have this version accessible/not accessible by the calling user. This is only relevant for Elasticsearch Service (ESS), not for ECE.\n"
+                    },
+                    "allowlisted": {
+                        "type": "boolean",
+                        "description": "To include/not include this version in the `allowlist`. This is only relevant for Elasticsearch Service (ESS), not for ECE.\n"
+                    },
+                    "apms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getStackApm:getStackApm"
+                        },
+                        "description": "Information for APM workloads on this stack version.\n* `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.\n* `apm.#.capacity_constraints_min` - Minimum size of the instances.\n* `apm.#.capacity_constraints_max` - Maximum size of the instances.\n* `apm.#.compatible_node_types` - List of node types compatible with this one.\n* `apm.#.docker_image` - Docker image to use for the APM instance.\n"
+                    },
+                    "elasticsearches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getStackElasticsearch:getStackElasticsearch"
+                        },
+                        "description": "Information for Elasticsearch workloads on this stack version.\n* `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.\n* `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.\n* `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.\n* `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.\n* `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.\n* `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.\n* `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.\n"
+                    },
+                    "enterpriseSearches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getStackEnterpriseSearch:getStackEnterpriseSearch"
+                        },
+                        "description": "Information for Enterprise Search workloads on this stack version.\n* `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.\n* `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.\n* `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.\n* `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.\n* `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "kibanas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/getStackKibana:getStackKibana"
+                        },
+                        "description": "Information for Kibana workloads on this stack version.\n* `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.\n* `kibana.#.capacity_constraints_min` - Minimum size of the instances.\n* `kibana.#.capacity_constraints_max` - Maximum size of the instances.\n* `kibana.#.compatible_node_types` - List of node types compatible with this one.\n* `kibana.#.docker_image` - Docker image to use for the Kibana instance.\n"
+                    },
+                    "lock": {
+                        "type": "boolean"
+                    },
+                    "minUpgradableFrom": {
+                        "type": "string",
+                        "description": "The minimum stack version recommended.\n"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "upgradableTos": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The stack version you can upgrade to.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "The stack version.\n"
+                    },
+                    "versionRegex": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessible",
+                    "allowlisted",
+                    "apms",
+                    "elasticsearches",
+                    "enterpriseSearches",
+                    "kibanas",
+                    "minUpgradableFrom",
+                    "region",
+                    "upgradableTos",
+                    "version",
+                    "versionRegex",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": {
+                "ec": "ElasticCloud"
+            },
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-ec/sdk/go/ec"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing ElasticCloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/elastic/terraform-provider-ec)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-ec` repo](https://github.com/pulumi/pulumi-ec/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`elastic/terraform-provider-ec` repo](https://github.com/elastic/terraform-provider-ec/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/elastic/terraform-provider-ec)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-ec` repo](https://github.com/pulumi/pulumi-ec/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`elastic/terraform-provider-ec` repo](https://github.com/elastic/terraform-provider-ec/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
