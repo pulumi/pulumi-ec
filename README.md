@@ -33,7 +33,7 @@ pip install pulumi_ec
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumi/pulumi-ec/sdk/go/...
+go get github.com/pulumi/pulumi-ec/sdk
 ```
 
 ### .NET

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.ElasticCloud
 {
@@ -46,6 +47,42 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Task<GetStackResult> InvokeAsync(GetStackArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to retrieve information about an existing Elastic Cloud stack.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+        ///         {
+        ///             Lock = true,
+        ///             Region = "us-east-1",
+        ///             VersionRegex = "latest",
+        ///         }));
+        ///         var latestPatch = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+        ///         {
+        ///             Region = "us-east-1",
+        ///             VersionRegex = "7.9.?",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithVersion());
     }
 
 
@@ -70,6 +107,31 @@ namespace Pulumi.ElasticCloud
         public string VersionRegex { get; set; } = null!;
 
         public GetStackArgs()
+        {
+        }
+    }
+
+    public sealed class GetStackInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Lock the `"latest"` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+        /// </summary>
+        [Input("lock")]
+        public Input<bool>? Lock { get; set; }
+
+        /// <summary>
+        /// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
+        /// </summary>
+        [Input("region", required: true)]
+        public Input<string> Region { get; set; } = null!;
+
+        /// <summary>
+        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+        /// </summary>
+        [Input("versionRegex", required: true)]
+        public Input<string> VersionRegex { get; set; } = null!;
+
+        public GetStackInvokeArgs()
         {
         }
     }
