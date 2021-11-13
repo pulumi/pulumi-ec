@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.ElasticCloud
 {
@@ -39,6 +40,35 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Task<GetDeploymentResult> InvokeAsync(GetDeploymentArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to retrieve information about an existing Elastic Cloud deployment.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(ElasticCloud.GetDeployment.InvokeAsync(new ElasticCloud.GetDeploymentArgs
+        ///         {
+        ///             Id = "f759065e5e64e9f3546f6c44f2743893",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithVersion());
     }
 
 
@@ -51,6 +81,19 @@ namespace Pulumi.ElasticCloud
         public string Id { get; set; } = null!;
 
         public GetDeploymentArgs()
+        {
+        }
+    }
+
+    public sealed class GetDeploymentInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of an existing Elastic Cloud deployment.
+        /// </summary>
+        [Input("id", required: true)]
+        public Input<string> Id { get; set; } = null!;
+
+        public GetDeploymentInvokeArgs()
         {
         }
     }

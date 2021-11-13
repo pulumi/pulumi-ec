@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.ElasticCloud
 {
@@ -61,6 +62,57 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Task<GetDeploymentsResult> InvokeAsync(GetDeploymentsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(ElasticCloud.GetDeployments.InvokeAsync(new ElasticCloud.GetDeploymentsArgs
+        ///         {
+        ///             Apm = new ElasticCloud.Inputs.GetDeploymentsApmArgs
+        ///             {
+        ///                 Version = "7.9.1",
+        ///             },
+        ///             DeploymentTemplateId = "azure-compute-optimized",
+        ///             Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
+        ///             EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
+        ///             Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaArgs
+        ///             {
+        ///                 Status = "started",
+        ///             },
+        ///             NamePrefix = "test",
+        ///             Size = 200,
+        ///             Tags = 
+        ///             {
+        ///                 { "foo", "bar" },
+        ///             },
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -139,6 +191,85 @@ namespace Pulumi.ElasticCloud
         }
 
         public GetDeploymentsArgs()
+        {
+        }
+    }
+
+    public sealed class GetDeploymentsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Filter by APM resource kind status or configuration.
+        /// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+        /// * `apm.#.version` - Elastic stack version.
+        /// * `apm.#.healthy` - Overall health status of the APM instances.
+        /// </summary>
+        [Input("apm")]
+        public Input<Inputs.GetDeploymentsApmInputArgs>? Apm { get; set; }
+
+        /// <summary>
+        /// ID of the deployment template used to create the deployment.
+        /// </summary>
+        [Input("deploymentTemplateId")]
+        public Input<string>? DeploymentTemplateId { get; set; }
+
+        /// <summary>
+        /// Filter by Elasticsearch resource kind status or configuration.
+        /// * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+        /// * `elasticsearch.#.version` - Elastic stack version.
+        /// * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
+        /// </summary>
+        [Input("elasticsearch")]
+        public Input<Inputs.GetDeploymentsElasticsearchInputArgs>? Elasticsearch { get; set; }
+
+        /// <summary>
+        /// Filter by Enterprise Search resource kind status or configuration.
+        /// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+        /// * `enterprise_search.#.version` - Elastic stack version.
+        /// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+        /// </summary>
+        [Input("enterpriseSearch")]
+        public Input<Inputs.GetDeploymentsEnterpriseSearchInputArgs>? EnterpriseSearch { get; set; }
+
+        /// <summary>
+        /// Overall health status of the deployment.
+        /// </summary>
+        [Input("healthy")]
+        public Input<string>? Healthy { get; set; }
+
+        /// <summary>
+        /// Filter by Kibana resource kind status or configuration.
+        /// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+        /// * `kibana.#.version` - Elastic stack version.
+        /// * `kibana.#.healthy` - Overall health status of the Kibana instances.
+        /// </summary>
+        [Input("kibana")]
+        public Input<Inputs.GetDeploymentsKibanaInputArgs>? Kibana { get; set; }
+
+        /// <summary>
+        /// Prefix that one or several deployment names have in common.
+        /// </summary>
+        [Input("namePrefix")]
+        public Input<string>? NamePrefix { get; set; }
+
+        /// <summary>
+        /// The maximum number of deployments to return. Defaults to `100`.
+        /// </summary>
+        [Input("size")]
+        public Input<int>? Size { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Key value map of arbitrary string tags for the deployment.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
+        public GetDeploymentsInvokeArgs()
         {
         }
     }

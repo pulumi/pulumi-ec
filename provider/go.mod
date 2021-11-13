@@ -10,7 +10,6 @@ replace (
 require (
 	github.com/elastic/terraform-provider-ec v0.3.0
 	github.com/hashicorp/terraform-plugin-sdk v1.9.1 // indirect
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.9.0
-	github.com/pulumi/pulumi/pkg/v3 v3.15.0 // indirect
-	github.com/pulumi/pulumi/sdk/v3 v3.15.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.11.0
+	github.com/pulumi/pulumi/sdk/v3 v3.17.0
 )
