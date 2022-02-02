@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.ElasticCloud
 {
@@ -39,7 +38,7 @@ namespace Pulumi.ElasticCloud
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeploymentResult> InvokeAsync(GetDeploymentArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an existing Elastic Cloud deployment.
@@ -68,7 +67,7 @@ namespace Pulumi.ElasticCloud
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -55,12 +55,12 @@ export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeploymentTrafficFilterAssociationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeploymentTrafficFilterAssociationArgs | DeploymentTrafficFilterAssociationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentTrafficFilterAssociationState | undefined;
-            inputs["deploymentId"] = state ? state.deploymentId : undefined;
-            inputs["trafficFilterId"] = state ? state.trafficFilterId : undefined;
+            resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
+            resourceInputs["trafficFilterId"] = state ? state.trafficFilterId : undefined;
         } else {
             const args = argsOrState as DeploymentTrafficFilterAssociationArgs | undefined;
             if ((!args || args.deploymentId === undefined) && !opts.urn) {
@@ -69,13 +69,11 @@ export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
             if ((!args || args.trafficFilterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'trafficFilterId'");
             }
-            inputs["deploymentId"] = args ? args.deploymentId : undefined;
-            inputs["trafficFilterId"] = args ? args.trafficFilterId : undefined;
+            resourceInputs["deploymentId"] = args ? args.deploymentId : undefined;
+            resourceInputs["trafficFilterId"] = args ? args.trafficFilterId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DeploymentTrafficFilterAssociation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DeploymentTrafficFilterAssociation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

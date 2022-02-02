@@ -38,23 +38,19 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
     }
 
     /**
-     * Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-     * string when value is a plain string
+     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
      */
     public readonly asFile!: pulumi.Output<boolean | undefined>;
     /**
-     * Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-     * to
+     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
      */
     public readonly deploymentId!: pulumi.Output<string>;
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-     * overridden
+     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
     public readonly settingName!: pulumi.Output<string>;
     /**
-     * Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-     * keystore.
+     * Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      */
     public readonly value!: pulumi.Output<string>;
 
@@ -67,14 +63,14 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeploymentElasticsearchKeystoreArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeploymentElasticsearchKeystoreArgs | DeploymentElasticsearchKeystoreState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentElasticsearchKeystoreState | undefined;
-            inputs["asFile"] = state ? state.asFile : undefined;
-            inputs["deploymentId"] = state ? state.deploymentId : undefined;
-            inputs["settingName"] = state ? state.settingName : undefined;
-            inputs["value"] = state ? state.value : undefined;
+            resourceInputs["asFile"] = state ? state.asFile : undefined;
+            resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
+            resourceInputs["settingName"] = state ? state.settingName : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as DeploymentElasticsearchKeystoreArgs | undefined;
             if ((!args || args.deploymentId === undefined) && !opts.urn) {
@@ -86,15 +82,13 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
             if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            inputs["asFile"] = args ? args.asFile : undefined;
-            inputs["deploymentId"] = args ? args.deploymentId : undefined;
-            inputs["settingName"] = args ? args.settingName : undefined;
-            inputs["value"] = args ? args.value : undefined;
+            resourceInputs["asFile"] = args ? args.asFile : undefined;
+            resourceInputs["deploymentId"] = args ? args.deploymentId : undefined;
+            resourceInputs["settingName"] = args ? args.settingName : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DeploymentElasticsearchKeystore.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DeploymentElasticsearchKeystore.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -103,23 +97,19 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
  */
 export interface DeploymentElasticsearchKeystoreState {
     /**
-     * Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-     * string when value is a plain string
+     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
      */
     asFile?: pulumi.Input<boolean>;
     /**
-     * Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-     * to
+     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
      */
     deploymentId?: pulumi.Input<string>;
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-     * overridden
+     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
     settingName?: pulumi.Input<string>;
     /**
-     * Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-     * keystore.
+     * Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      */
     value?: pulumi.Input<string>;
 }
@@ -129,23 +119,19 @@ export interface DeploymentElasticsearchKeystoreState {
  */
 export interface DeploymentElasticsearchKeystoreArgs {
     /**
-     * Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-     * string when value is a plain string
+     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
      */
     asFile?: pulumi.Input<boolean>;
     /**
-     * Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-     * to
+     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
      */
     deploymentId: pulumi.Input<string>;
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-     * overridden
+     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
     settingName: pulumi.Input<string>;
     /**
-     * Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-     * keystore.
+     * Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      */
     value: pulumi.Input<string>;
 }

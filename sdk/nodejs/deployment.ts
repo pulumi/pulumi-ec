@@ -149,26 +149,26 @@ export class Deployment extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeploymentArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeploymentArgs | DeploymentState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentState | undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["apm"] = state ? state.apm : undefined;
-            inputs["apmSecretToken"] = state ? state.apmSecretToken : undefined;
-            inputs["deploymentTemplateId"] = state ? state.deploymentTemplateId : undefined;
-            inputs["elasticsearch"] = state ? state.elasticsearch : undefined;
-            inputs["elasticsearchPassword"] = state ? state.elasticsearchPassword : undefined;
-            inputs["elasticsearchUsername"] = state ? state.elasticsearchUsername : undefined;
-            inputs["enterpriseSearch"] = state ? state.enterpriseSearch : undefined;
-            inputs["kibana"] = state ? state.kibana : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["observability"] = state ? state.observability : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["requestId"] = state ? state.requestId : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["trafficFilters"] = state ? state.trafficFilters : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["apm"] = state ? state.apm : undefined;
+            resourceInputs["apmSecretToken"] = state ? state.apmSecretToken : undefined;
+            resourceInputs["deploymentTemplateId"] = state ? state.deploymentTemplateId : undefined;
+            resourceInputs["elasticsearch"] = state ? state.elasticsearch : undefined;
+            resourceInputs["elasticsearchPassword"] = state ? state.elasticsearchPassword : undefined;
+            resourceInputs["elasticsearchUsername"] = state ? state.elasticsearchUsername : undefined;
+            resourceInputs["enterpriseSearch"] = state ? state.enterpriseSearch : undefined;
+            resourceInputs["kibana"] = state ? state.kibana : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["observability"] = state ? state.observability : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["requestId"] = state ? state.requestId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["trafficFilters"] = state ? state.trafficFilters : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as DeploymentArgs | undefined;
             if ((!args || args.deploymentTemplateId === undefined) && !opts.urn) {
@@ -183,27 +183,25 @@ export class Deployment extends pulumi.CustomResource {
             if ((!args || args.version === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["apm"] = args ? args.apm : undefined;
-            inputs["deploymentTemplateId"] = args ? args.deploymentTemplateId : undefined;
-            inputs["elasticsearch"] = args ? args.elasticsearch : undefined;
-            inputs["enterpriseSearch"] = args ? args.enterpriseSearch : undefined;
-            inputs["kibana"] = args ? args.kibana : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["observability"] = args ? args.observability : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["requestId"] = args ? args.requestId : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["trafficFilters"] = args ? args.trafficFilters : undefined;
-            inputs["version"] = args ? args.version : undefined;
-            inputs["apmSecretToken"] = undefined /*out*/;
-            inputs["elasticsearchPassword"] = undefined /*out*/;
-            inputs["elasticsearchUsername"] = undefined /*out*/;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["apm"] = args ? args.apm : undefined;
+            resourceInputs["deploymentTemplateId"] = args ? args.deploymentTemplateId : undefined;
+            resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
+            resourceInputs["enterpriseSearch"] = args ? args.enterpriseSearch : undefined;
+            resourceInputs["kibana"] = args ? args.kibana : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["observability"] = args ? args.observability : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["requestId"] = args ? args.requestId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["trafficFilters"] = args ? args.trafficFilters : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["apmSecretToken"] = undefined /*out*/;
+            resourceInputs["elasticsearchPassword"] = undefined /*out*/;
+            resourceInputs["elasticsearchUsername"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Deployment.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Deployment.__pulumiType, name, resourceInputs, opts);
     }
 }
 

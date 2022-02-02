@@ -60,23 +60,21 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            inputs["apikey"] = args ? args.apikey : undefined;
-            inputs["endpoint"] = args ? args.endpoint : undefined;
-            inputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
-            inputs["password"] = args ? args.password : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["verbose"] = pulumi.output(args ? args.verbose : undefined).apply(JSON.stringify);
-            inputs["verboseCredentials"] = pulumi.output(args ? args.verboseCredentials : undefined).apply(JSON.stringify);
-            inputs["verboseFile"] = args ? args.verboseFile : undefined;
+            resourceInputs["apikey"] = args ? args.apikey : undefined;
+            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
+            resourceInputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["verbose"] = pulumi.output(args ? args.verbose : undefined).apply(JSON.stringify);
+            resourceInputs["verboseCredentials"] = pulumi.output(args ? args.verboseCredentials : undefined).apply(JSON.stringify);
+            resourceInputs["verboseFile"] = args ? args.verboseFile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

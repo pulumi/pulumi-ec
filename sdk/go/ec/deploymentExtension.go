@@ -16,6 +16,46 @@ import (
 // Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
 //
 // ## Example Usage
+// ### With extension file
+//
+// ```go
+// package main
+//
+// import (
+// 	"crypto/sha256"
+// 	"fmt"
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func filebase64sha256OrPanic(path string) pulumi.StringPtrInput {
+// 	if fileData, err := ioutil.ReadFile(path); err == nil {
+// 		hashedData := sha256.Sum256([]byte(fileData))
+// 		return pulumi.String(base64.StdEncoding.EncodeToString(hashedData[:]))
+// 	} else {
+// 		panic(err.Error())
+// 	}
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		filePath := "/path/to/plugin.zip"
+// 		_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
+// 			Description:   pulumi.String("my extension"),
+// 			Version:       pulumi.String("*"),
+// 			ExtensionType: pulumi.String("bundle"),
+// 			FilePath:      pulumi.String(filePath),
+// 			FileHash:      filebase64sha256OrPanic(filePath),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### With download URL
 // ```go
 // package main
@@ -253,7 +293,7 @@ type DeploymentExtensionInput interface {
 }
 
 func (*DeploymentExtension) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentExtension)(nil))
+	return reflect.TypeOf((**DeploymentExtension)(nil)).Elem()
 }
 
 func (i *DeploymentExtension) ToDeploymentExtensionOutput() DeploymentExtensionOutput {
@@ -262,35 +302,6 @@ func (i *DeploymentExtension) ToDeploymentExtensionOutput() DeploymentExtensionO
 
 func (i *DeploymentExtension) ToDeploymentExtensionOutputWithContext(ctx context.Context) DeploymentExtensionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentExtensionOutput)
-}
-
-func (i *DeploymentExtension) ToDeploymentExtensionPtrOutput() DeploymentExtensionPtrOutput {
-	return i.ToDeploymentExtensionPtrOutputWithContext(context.Background())
-}
-
-func (i *DeploymentExtension) ToDeploymentExtensionPtrOutputWithContext(ctx context.Context) DeploymentExtensionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentExtensionPtrOutput)
-}
-
-type DeploymentExtensionPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentExtensionPtrOutput() DeploymentExtensionPtrOutput
-	ToDeploymentExtensionPtrOutputWithContext(ctx context.Context) DeploymentExtensionPtrOutput
-}
-
-type deploymentExtensionPtrType DeploymentExtensionArgs
-
-func (*deploymentExtensionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentExtension)(nil))
-}
-
-func (i *deploymentExtensionPtrType) ToDeploymentExtensionPtrOutput() DeploymentExtensionPtrOutput {
-	return i.ToDeploymentExtensionPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentExtensionPtrType) ToDeploymentExtensionPtrOutputWithContext(ctx context.Context) DeploymentExtensionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentExtensionPtrOutput)
 }
 
 // DeploymentExtensionArrayInput is an input type that accepts DeploymentExtensionArray and DeploymentExtensionArrayOutput values.
@@ -346,7 +357,7 @@ func (i DeploymentExtensionMap) ToDeploymentExtensionMapOutputWithContext(ctx co
 type DeploymentExtensionOutput struct{ *pulumi.OutputState }
 
 func (DeploymentExtensionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentExtension)(nil))
+	return reflect.TypeOf((**DeploymentExtension)(nil)).Elem()
 }
 
 func (o DeploymentExtensionOutput) ToDeploymentExtensionOutput() DeploymentExtensionOutput {
@@ -357,44 +368,10 @@ func (o DeploymentExtensionOutput) ToDeploymentExtensionOutputWithContext(ctx co
 	return o
 }
 
-func (o DeploymentExtensionOutput) ToDeploymentExtensionPtrOutput() DeploymentExtensionPtrOutput {
-	return o.ToDeploymentExtensionPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentExtensionOutput) ToDeploymentExtensionPtrOutputWithContext(ctx context.Context) DeploymentExtensionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentExtension) *DeploymentExtension {
-		return &v
-	}).(DeploymentExtensionPtrOutput)
-}
-
-type DeploymentExtensionPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentExtensionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentExtension)(nil))
-}
-
-func (o DeploymentExtensionPtrOutput) ToDeploymentExtensionPtrOutput() DeploymentExtensionPtrOutput {
-	return o
-}
-
-func (o DeploymentExtensionPtrOutput) ToDeploymentExtensionPtrOutputWithContext(ctx context.Context) DeploymentExtensionPtrOutput {
-	return o
-}
-
-func (o DeploymentExtensionPtrOutput) Elem() DeploymentExtensionOutput {
-	return o.ApplyT(func(v *DeploymentExtension) DeploymentExtension {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentExtension
-		return ret
-	}).(DeploymentExtensionOutput)
-}
-
 type DeploymentExtensionArrayOutput struct{ *pulumi.OutputState }
 
 func (DeploymentExtensionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentExtension)(nil))
+	return reflect.TypeOf((*[]*DeploymentExtension)(nil)).Elem()
 }
 
 func (o DeploymentExtensionArrayOutput) ToDeploymentExtensionArrayOutput() DeploymentExtensionArrayOutput {
@@ -406,15 +383,15 @@ func (o DeploymentExtensionArrayOutput) ToDeploymentExtensionArrayOutputWithCont
 }
 
 func (o DeploymentExtensionArrayOutput) Index(i pulumi.IntInput) DeploymentExtensionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentExtension {
-		return vs[0].([]DeploymentExtension)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentExtension {
+		return vs[0].([]*DeploymentExtension)[vs[1].(int)]
 	}).(DeploymentExtensionOutput)
 }
 
 type DeploymentExtensionMapOutput struct{ *pulumi.OutputState }
 
 func (DeploymentExtensionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DeploymentExtension)(nil))
+	return reflect.TypeOf((*map[string]*DeploymentExtension)(nil)).Elem()
 }
 
 func (o DeploymentExtensionMapOutput) ToDeploymentExtensionMapOutput() DeploymentExtensionMapOutput {
@@ -426,18 +403,16 @@ func (o DeploymentExtensionMapOutput) ToDeploymentExtensionMapOutputWithContext(
 }
 
 func (o DeploymentExtensionMapOutput) MapIndex(k pulumi.StringInput) DeploymentExtensionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeploymentExtension {
-		return vs[0].(map[string]DeploymentExtension)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DeploymentExtension {
+		return vs[0].(map[string]*DeploymentExtension)[vs[1].(string)]
 	}).(DeploymentExtensionOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentExtensionInput)(nil)).Elem(), &DeploymentExtension{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentExtensionPtrInput)(nil)).Elem(), &DeploymentExtension{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentExtensionArrayInput)(nil)).Elem(), DeploymentExtensionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentExtensionMapInput)(nil)).Elem(), DeploymentExtensionMap{})
 	pulumi.RegisterOutputType(DeploymentExtensionOutput{})
-	pulumi.RegisterOutputType(DeploymentExtensionPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentExtensionArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentExtensionMapOutput{})
 }

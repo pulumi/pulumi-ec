@@ -102,7 +102,7 @@ type DeploymentTrafficFilterAssociationInput interface {
 }
 
 func (*DeploymentTrafficFilterAssociation) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentTrafficFilterAssociation)(nil))
+	return reflect.TypeOf((**DeploymentTrafficFilterAssociation)(nil)).Elem()
 }
 
 func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociationOutput() DeploymentTrafficFilterAssociationOutput {
@@ -111,35 +111,6 @@ func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociatio
 
 func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociationOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterAssociationOutput)
-}
-
-func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociationPtrOutput() DeploymentTrafficFilterAssociationPtrOutput {
-	return i.ToDeploymentTrafficFilterAssociationPtrOutputWithContext(context.Background())
-}
-
-func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociationPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterAssociationPtrOutput)
-}
-
-type DeploymentTrafficFilterAssociationPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentTrafficFilterAssociationPtrOutput() DeploymentTrafficFilterAssociationPtrOutput
-	ToDeploymentTrafficFilterAssociationPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationPtrOutput
-}
-
-type deploymentTrafficFilterAssociationPtrType DeploymentTrafficFilterAssociationArgs
-
-func (*deploymentTrafficFilterAssociationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentTrafficFilterAssociation)(nil))
-}
-
-func (i *deploymentTrafficFilterAssociationPtrType) ToDeploymentTrafficFilterAssociationPtrOutput() DeploymentTrafficFilterAssociationPtrOutput {
-	return i.ToDeploymentTrafficFilterAssociationPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentTrafficFilterAssociationPtrType) ToDeploymentTrafficFilterAssociationPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterAssociationPtrOutput)
 }
 
 // DeploymentTrafficFilterAssociationArrayInput is an input type that accepts DeploymentTrafficFilterAssociationArray and DeploymentTrafficFilterAssociationArrayOutput values.
@@ -195,7 +166,7 @@ func (i DeploymentTrafficFilterAssociationMap) ToDeploymentTrafficFilterAssociat
 type DeploymentTrafficFilterAssociationOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterAssociationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentTrafficFilterAssociation)(nil))
+	return reflect.TypeOf((**DeploymentTrafficFilterAssociation)(nil)).Elem()
 }
 
 func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssociationOutput() DeploymentTrafficFilterAssociationOutput {
@@ -206,44 +177,10 @@ func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssoc
 	return o
 }
 
-func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssociationPtrOutput() DeploymentTrafficFilterAssociationPtrOutput {
-	return o.ToDeploymentTrafficFilterAssociationPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssociationPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentTrafficFilterAssociation) *DeploymentTrafficFilterAssociation {
-		return &v
-	}).(DeploymentTrafficFilterAssociationPtrOutput)
-}
-
-type DeploymentTrafficFilterAssociationPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentTrafficFilterAssociationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentTrafficFilterAssociation)(nil))
-}
-
-func (o DeploymentTrafficFilterAssociationPtrOutput) ToDeploymentTrafficFilterAssociationPtrOutput() DeploymentTrafficFilterAssociationPtrOutput {
-	return o
-}
-
-func (o DeploymentTrafficFilterAssociationPtrOutput) ToDeploymentTrafficFilterAssociationPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationPtrOutput {
-	return o
-}
-
-func (o DeploymentTrafficFilterAssociationPtrOutput) Elem() DeploymentTrafficFilterAssociationOutput {
-	return o.ApplyT(func(v *DeploymentTrafficFilterAssociation) DeploymentTrafficFilterAssociation {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentTrafficFilterAssociation
-		return ret
-	}).(DeploymentTrafficFilterAssociationOutput)
-}
-
 type DeploymentTrafficFilterAssociationArrayOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterAssociationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentTrafficFilterAssociation)(nil))
+	return reflect.TypeOf((*[]*DeploymentTrafficFilterAssociation)(nil)).Elem()
 }
 
 func (o DeploymentTrafficFilterAssociationArrayOutput) ToDeploymentTrafficFilterAssociationArrayOutput() DeploymentTrafficFilterAssociationArrayOutput {
@@ -255,15 +192,15 @@ func (o DeploymentTrafficFilterAssociationArrayOutput) ToDeploymentTrafficFilter
 }
 
 func (o DeploymentTrafficFilterAssociationArrayOutput) Index(i pulumi.IntInput) DeploymentTrafficFilterAssociationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentTrafficFilterAssociation {
-		return vs[0].([]DeploymentTrafficFilterAssociation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentTrafficFilterAssociation {
+		return vs[0].([]*DeploymentTrafficFilterAssociation)[vs[1].(int)]
 	}).(DeploymentTrafficFilterAssociationOutput)
 }
 
 type DeploymentTrafficFilterAssociationMapOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterAssociationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DeploymentTrafficFilterAssociation)(nil))
+	return reflect.TypeOf((*map[string]*DeploymentTrafficFilterAssociation)(nil)).Elem()
 }
 
 func (o DeploymentTrafficFilterAssociationMapOutput) ToDeploymentTrafficFilterAssociationMapOutput() DeploymentTrafficFilterAssociationMapOutput {
@@ -275,18 +212,16 @@ func (o DeploymentTrafficFilterAssociationMapOutput) ToDeploymentTrafficFilterAs
 }
 
 func (o DeploymentTrafficFilterAssociationMapOutput) MapIndex(k pulumi.StringInput) DeploymentTrafficFilterAssociationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeploymentTrafficFilterAssociation {
-		return vs[0].(map[string]DeploymentTrafficFilterAssociation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DeploymentTrafficFilterAssociation {
+		return vs[0].(map[string]*DeploymentTrafficFilterAssociation)[vs[1].(string)]
 	}).(DeploymentTrafficFilterAssociationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterAssociationInput)(nil)).Elem(), &DeploymentTrafficFilterAssociation{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterAssociationPtrInput)(nil)).Elem(), &DeploymentTrafficFilterAssociation{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterAssociationArrayInput)(nil)).Elem(), DeploymentTrafficFilterAssociationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterAssociationMapInput)(nil)).Elem(), DeploymentTrafficFilterAssociationMap{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterAssociationOutput{})
-	pulumi.RegisterOutputType(DeploymentTrafficFilterAssociationPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterAssociationArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterAssociationMapOutput{})
 }

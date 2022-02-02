@@ -315,6 +315,27 @@ class DeploymentExtension(pulumi.CustomResource):
         Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
 
         ## Example Usage
+        ### With extension file
+
+        ```python
+        import pulumi
+        import base64
+        import hashlib
+        import pulumi_ec as ec
+
+        def computeFilebase64sha256(path):
+        	fileData = open(path).read().encode()
+        	hashedData = hashlib.sha256(fileData.encode()).digest()
+        	return base64.b64encode(hashedData).decode()
+
+        file_path = "/path/to/plugin.zip"
+        example_extension = ec.DeploymentExtension("exampleExtension",
+            description="my extension",
+            version="*",
+            extension_type="bundle",
+            file_path=file_path,
+            file_hash=computeFilebase64sha256(file_path))
+        ```
         ### With download URL
         ```python
         import pulumi
@@ -382,6 +403,27 @@ class DeploymentExtension(pulumi.CustomResource):
         Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
 
         ## Example Usage
+        ### With extension file
+
+        ```python
+        import pulumi
+        import base64
+        import hashlib
+        import pulumi_ec as ec
+
+        def computeFilebase64sha256(path):
+        	fileData = open(path).read().encode()
+        	hashedData = hashlib.sha256(fileData.encode()).digest()
+        	return base64.b64encode(hashedData).decode()
+
+        file_path = "/path/to/plugin.zip"
+        example_extension = ec.DeploymentExtension("exampleExtension",
+            description="my extension",
+            version="*",
+            extension_type="bundle",
+            file_path=file_path,
+            file_hash=computeFilebase64sha256(file_path))
+        ```
         ### With download URL
         ```python
         import pulumi

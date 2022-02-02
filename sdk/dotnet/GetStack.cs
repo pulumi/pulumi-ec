@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.ElasticCloud
 {
@@ -46,7 +45,7 @@ namespace Pulumi.ElasticCloud
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetStackResult> InvokeAsync(GetStackArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an existing Elastic Cloud stack.
@@ -82,7 +81,7 @@ namespace Pulumi.ElasticCloud
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
     }
 
 
