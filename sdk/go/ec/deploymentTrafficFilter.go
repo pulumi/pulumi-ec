@@ -300,7 +300,7 @@ type DeploymentTrafficFilterInput interface {
 }
 
 func (*DeploymentTrafficFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentTrafficFilter)(nil))
+	return reflect.TypeOf((**DeploymentTrafficFilter)(nil)).Elem()
 }
 
 func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterOutput() DeploymentTrafficFilterOutput {
@@ -309,35 +309,6 @@ func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterOutput() DeploymentTr
 
 func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterOutputWithContext(ctx context.Context) DeploymentTrafficFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterOutput)
-}
-
-func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterPtrOutput() DeploymentTrafficFilterPtrOutput {
-	return i.ToDeploymentTrafficFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterPtrOutput)
-}
-
-type DeploymentTrafficFilterPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentTrafficFilterPtrOutput() DeploymentTrafficFilterPtrOutput
-	ToDeploymentTrafficFilterPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterPtrOutput
-}
-
-type deploymentTrafficFilterPtrType DeploymentTrafficFilterArgs
-
-func (*deploymentTrafficFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentTrafficFilter)(nil))
-}
-
-func (i *deploymentTrafficFilterPtrType) ToDeploymentTrafficFilterPtrOutput() DeploymentTrafficFilterPtrOutput {
-	return i.ToDeploymentTrafficFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentTrafficFilterPtrType) ToDeploymentTrafficFilterPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterPtrOutput)
 }
 
 // DeploymentTrafficFilterArrayInput is an input type that accepts DeploymentTrafficFilterArray and DeploymentTrafficFilterArrayOutput values.
@@ -393,7 +364,7 @@ func (i DeploymentTrafficFilterMap) ToDeploymentTrafficFilterMapOutputWithContex
 type DeploymentTrafficFilterOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentTrafficFilter)(nil))
+	return reflect.TypeOf((**DeploymentTrafficFilter)(nil)).Elem()
 }
 
 func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutput() DeploymentTrafficFilterOutput {
@@ -404,44 +375,10 @@ func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutputWithContex
 	return o
 }
 
-func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterPtrOutput() DeploymentTrafficFilterPtrOutput {
-	return o.ToDeploymentTrafficFilterPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentTrafficFilter) *DeploymentTrafficFilter {
-		return &v
-	}).(DeploymentTrafficFilterPtrOutput)
-}
-
-type DeploymentTrafficFilterPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentTrafficFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentTrafficFilter)(nil))
-}
-
-func (o DeploymentTrafficFilterPtrOutput) ToDeploymentTrafficFilterPtrOutput() DeploymentTrafficFilterPtrOutput {
-	return o
-}
-
-func (o DeploymentTrafficFilterPtrOutput) ToDeploymentTrafficFilterPtrOutputWithContext(ctx context.Context) DeploymentTrafficFilterPtrOutput {
-	return o
-}
-
-func (o DeploymentTrafficFilterPtrOutput) Elem() DeploymentTrafficFilterOutput {
-	return o.ApplyT(func(v *DeploymentTrafficFilter) DeploymentTrafficFilter {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentTrafficFilter
-		return ret
-	}).(DeploymentTrafficFilterOutput)
-}
-
 type DeploymentTrafficFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentTrafficFilter)(nil))
+	return reflect.TypeOf((*[]*DeploymentTrafficFilter)(nil)).Elem()
 }
 
 func (o DeploymentTrafficFilterArrayOutput) ToDeploymentTrafficFilterArrayOutput() DeploymentTrafficFilterArrayOutput {
@@ -453,15 +390,15 @@ func (o DeploymentTrafficFilterArrayOutput) ToDeploymentTrafficFilterArrayOutput
 }
 
 func (o DeploymentTrafficFilterArrayOutput) Index(i pulumi.IntInput) DeploymentTrafficFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentTrafficFilter {
-		return vs[0].([]DeploymentTrafficFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentTrafficFilter {
+		return vs[0].([]*DeploymentTrafficFilter)[vs[1].(int)]
 	}).(DeploymentTrafficFilterOutput)
 }
 
 type DeploymentTrafficFilterMapOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DeploymentTrafficFilter)(nil))
+	return reflect.TypeOf((*map[string]*DeploymentTrafficFilter)(nil)).Elem()
 }
 
 func (o DeploymentTrafficFilterMapOutput) ToDeploymentTrafficFilterMapOutput() DeploymentTrafficFilterMapOutput {
@@ -473,18 +410,16 @@ func (o DeploymentTrafficFilterMapOutput) ToDeploymentTrafficFilterMapOutputWith
 }
 
 func (o DeploymentTrafficFilterMapOutput) MapIndex(k pulumi.StringInput) DeploymentTrafficFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeploymentTrafficFilter {
-		return vs[0].(map[string]DeploymentTrafficFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DeploymentTrafficFilter {
+		return vs[0].(map[string]*DeploymentTrafficFilter)[vs[1].(string)]
 	}).(DeploymentTrafficFilterOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterInput)(nil)).Elem(), &DeploymentTrafficFilter{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterPtrInput)(nil)).Elem(), &DeploymentTrafficFilter{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterArrayInput)(nil)).Elem(), DeploymentTrafficFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterMapInput)(nil)).Elem(), DeploymentTrafficFilterMap{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterOutput{})
-	pulumi.RegisterOutputType(DeploymentTrafficFilterPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterMapOutput{})
 }

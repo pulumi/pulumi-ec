@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.ElasticCloud
 {
@@ -61,7 +60,7 @@ namespace Pulumi.ElasticCloud
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeploymentsResult> InvokeAsync(GetDeploymentsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
@@ -112,7 +111,7 @@ namespace Pulumi.ElasticCloud
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());
     }
 
 

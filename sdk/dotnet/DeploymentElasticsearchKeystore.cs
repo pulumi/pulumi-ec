@@ -18,29 +18,25 @@ namespace Pulumi.ElasticCloud
     public partial class DeploymentElasticsearchKeystore : Pulumi.CustomResource
     {
         /// <summary>
-        /// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-        /// string when value is a plain string
+        /// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
         /// </summary>
         [Output("asFile")]
         public Output<bool?> AsFile { get; private set; } = null!;
 
         /// <summary>
-        /// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-        /// to
+        /// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
-        /// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-        /// overridden
+        /// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         /// </summary>
         [Output("settingName")]
         public Output<string> SettingName { get; private set; } = null!;
 
         /// <summary>
-        /// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-        /// keystore.
+        /// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         /// </summary>
         [Output("value")]
         public Output<string> Value { get; private set; } = null!;
@@ -92,29 +88,25 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentElasticsearchKeystoreArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-        /// string when value is a plain string
+        /// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
         /// </summary>
         [Input("asFile")]
         public Input<bool>? AsFile { get; set; }
 
         /// <summary>
-        /// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-        /// to
+        /// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
         /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
         /// <summary>
-        /// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-        /// overridden
+        /// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         /// </summary>
         [Input("settingName", required: true)]
         public Input<string> SettingName { get; set; } = null!;
 
         /// <summary>
-        /// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-        /// keystore.
+        /// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
@@ -127,29 +119,25 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentElasticsearchKeystoreState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-        /// string when value is a plain string
+        /// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
         /// </summary>
         [Input("asFile")]
         public Input<bool>? AsFile { get; set; }
 
         /// <summary>
-        /// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-        /// to
+        /// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
         /// </summary>
         [Input("deploymentId")]
         public Input<string>? DeploymentId { get; set; }
 
         /// <summary>
-        /// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-        /// overridden
+        /// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         /// </summary>
         [Input("settingName")]
         public Input<string>? SettingName { get; set; }
 
         /// <summary>
-        /// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-        /// keystore.
+        /// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

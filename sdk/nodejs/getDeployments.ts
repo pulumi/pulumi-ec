@@ -42,9 +42,7 @@ export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOp
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("ec:index/getDeployments:getDeployments", {
         "apm": args.apm,
         "deploymentTemplateId": args.deploymentTemplateId,

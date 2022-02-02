@@ -15,6 +15,39 @@ namespace Pulumi.ElasticCloud
     /// Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
     /// 
     /// ## Example Usage
+    /// ### With extension file
+    /// 
+    /// ```csharp
+    /// using System;
+    /// using System.IO;
+    /// using System.Security.Cryptography;
+    /// using System.Text;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    /// 	private static string ComputeFileBase64Sha256(string path) {
+    /// 		var fileData = Encoding.UTF8.GetBytes(File.ReadAllText(path));
+    /// 		var hashData = SHA256.Create().ComputeHash(fileData);
+    /// 		return Convert.ToBase64String(hashData);
+    /// 	}
+    /// 
+    ///     public MyStack()
+    ///     {
+    ///         var filePath = "/path/to/plugin.zip";
+    ///         var exampleExtension = new ElasticCloud.DeploymentExtension("exampleExtension", new ElasticCloud.DeploymentExtensionArgs
+    ///         {
+    ///             Description = "my extension",
+    ///             Version = "*",
+    ///             ExtensionType = "bundle",
+    ///             FilePath = filePath,
+    ///             FileHash = ComputeFileBase64Sha256(filePath),
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ### With download URL
     /// ```csharp
     /// using Pulumi;

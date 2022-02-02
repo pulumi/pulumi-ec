@@ -10,6 +10,28 @@ import * as utilities from "./utilities";
  * Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
  *
  * ## Example Usage
+ * ### With extension file
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as crypto from "crypto";
+ * import * as ec from "@pulumi/ec";
+ * import * from "fs";
+ *
+ * func computeFilebase64sha256(path string) string {
+ * 	const fileData = Buffer.from(fs.readFileSync(path), 'binary')
+ * 	return crypto.createHash('sha256').update(fileData).digest('hex')
+ * }
+ *
+ * const filePath = "/path/to/plugin.zip";
+ * const exampleExtension = new ec.DeploymentExtension("exampleExtension", {
+ *     description: "my extension",
+ *     version: "*",
+ *     extensionType: "bundle",
+ *     filePath: filePath,
+ *     fileHash: computeFilebase64sha256(filePath),
+ * });
+ * ```
  * ### With download URL
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -138,20 +160,20 @@ export class DeploymentExtension extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeploymentExtensionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeploymentExtensionArgs | DeploymentExtensionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentExtensionState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["downloadUrl"] = state ? state.downloadUrl : undefined;
-            inputs["extensionType"] = state ? state.extensionType : undefined;
-            inputs["fileHash"] = state ? state.fileHash : undefined;
-            inputs["filePath"] = state ? state.filePath : undefined;
-            inputs["lastModified"] = state ? state.lastModified : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["size"] = state ? state.size : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["downloadUrl"] = state ? state.downloadUrl : undefined;
+            resourceInputs["extensionType"] = state ? state.extensionType : undefined;
+            resourceInputs["fileHash"] = state ? state.fileHash : undefined;
+            resourceInputs["filePath"] = state ? state.filePath : undefined;
+            resourceInputs["lastModified"] = state ? state.lastModified : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as DeploymentExtensionArgs | undefined;
             if ((!args || args.extensionType === undefined) && !opts.urn) {
@@ -160,21 +182,19 @@ export class DeploymentExtension extends pulumi.CustomResource {
             if ((!args || args.version === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["downloadUrl"] = args ? args.downloadUrl : undefined;
-            inputs["extensionType"] = args ? args.extensionType : undefined;
-            inputs["fileHash"] = args ? args.fileHash : undefined;
-            inputs["filePath"] = args ? args.filePath : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["version"] = args ? args.version : undefined;
-            inputs["lastModified"] = undefined /*out*/;
-            inputs["size"] = undefined /*out*/;
-            inputs["url"] = undefined /*out*/;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["downloadUrl"] = args ? args.downloadUrl : undefined;
+            resourceInputs["extensionType"] = args ? args.extensionType : undefined;
+            resourceInputs["fileHash"] = args ? args.fileHash : undefined;
+            resourceInputs["filePath"] = args ? args.filePath : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["lastModified"] = undefined /*out*/;
+            resourceInputs["size"] = undefined /*out*/;
+            resourceInputs["url"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DeploymentExtension.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DeploymentExtension.__pulumiType, name, resourceInputs, opts);
     }
 }
 

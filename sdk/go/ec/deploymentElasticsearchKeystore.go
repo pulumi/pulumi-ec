@@ -17,17 +17,13 @@ import (
 type DeploymentElasticsearchKeystore struct {
 	pulumi.CustomResourceState
 
-	// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-	// string when value is a plain string
+	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
 	AsFile pulumi.BoolPtrOutput `pulumi:"asFile"`
-	// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-	// to
+	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-	// overridden
+	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName pulumi.StringOutput `pulumi:"settingName"`
-	// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-	// keystore.
+	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value pulumi.StringOutput `pulumi:"value"`
 }
 
@@ -69,32 +65,24 @@ func GetDeploymentElasticsearchKeystore(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentElasticsearchKeystore resources.
 type deploymentElasticsearchKeystoreState struct {
-	// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-	// string when value is a plain string
+	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
 	AsFile *bool `pulumi:"asFile"`
-	// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-	// to
+	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
 	DeploymentId *string `pulumi:"deploymentId"`
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-	// overridden
+	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName *string `pulumi:"settingName"`
-	// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-	// keystore.
+	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value *string `pulumi:"value"`
 }
 
 type DeploymentElasticsearchKeystoreState struct {
-	// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-	// string when value is a plain string
+	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
 	AsFile pulumi.BoolPtrInput
-	// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-	// to
+	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
 	DeploymentId pulumi.StringPtrInput
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-	// overridden
+	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName pulumi.StringPtrInput
-	// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-	// keystore.
+	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value pulumi.StringPtrInput
 }
 
@@ -103,33 +91,25 @@ func (DeploymentElasticsearchKeystoreState) ElementType() reflect.Type {
 }
 
 type deploymentElasticsearchKeystoreArgs struct {
-	// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-	// string when value is a plain string
+	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
 	AsFile *bool `pulumi:"asFile"`
-	// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-	// to
+	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
 	DeploymentId string `pulumi:"deploymentId"`
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-	// overridden
+	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName string `pulumi:"settingName"`
-	// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-	// keystore.
+	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value string `pulumi:"value"`
 }
 
 // The set of arguments for constructing a DeploymentElasticsearchKeystore resource.
 type DeploymentElasticsearchKeystoreArgs struct {
-	// Optionally stores the remote keystore setting as a file. The default is false, which stores the keystore setting as
-	// string when value is a plain string
+	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
 	AsFile pulumi.BoolPtrInput
-	// Required deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written
-	// to
+	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
 	DeploymentId pulumi.StringInput
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be
-	// overridden
+	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName pulumi.StringInput
-	// Required value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the
-	// keystore.
+	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value pulumi.StringInput
 }
 
@@ -145,7 +125,7 @@ type DeploymentElasticsearchKeystoreInput interface {
 }
 
 func (*DeploymentElasticsearchKeystore) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchKeystore)(nil))
+	return reflect.TypeOf((**DeploymentElasticsearchKeystore)(nil)).Elem()
 }
 
 func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystoreOutput() DeploymentElasticsearchKeystoreOutput {
@@ -154,35 +134,6 @@ func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystoreOutpu
 
 func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystoreOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystoreOutput)
-}
-
-func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystorePtrOutput() DeploymentElasticsearchKeystorePtrOutput {
-	return i.ToDeploymentElasticsearchKeystorePtrOutputWithContext(context.Background())
-}
-
-func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystorePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystorePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystorePtrOutput)
-}
-
-type DeploymentElasticsearchKeystorePtrInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchKeystorePtrOutput() DeploymentElasticsearchKeystorePtrOutput
-	ToDeploymentElasticsearchKeystorePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystorePtrOutput
-}
-
-type deploymentElasticsearchKeystorePtrType DeploymentElasticsearchKeystoreArgs
-
-func (*deploymentElasticsearchKeystorePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentElasticsearchKeystore)(nil))
-}
-
-func (i *deploymentElasticsearchKeystorePtrType) ToDeploymentElasticsearchKeystorePtrOutput() DeploymentElasticsearchKeystorePtrOutput {
-	return i.ToDeploymentElasticsearchKeystorePtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentElasticsearchKeystorePtrType) ToDeploymentElasticsearchKeystorePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystorePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystorePtrOutput)
 }
 
 // DeploymentElasticsearchKeystoreArrayInput is an input type that accepts DeploymentElasticsearchKeystoreArray and DeploymentElasticsearchKeystoreArrayOutput values.
@@ -238,7 +189,7 @@ func (i DeploymentElasticsearchKeystoreMap) ToDeploymentElasticsearchKeystoreMap
 type DeploymentElasticsearchKeystoreOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchKeystoreOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchKeystore)(nil))
+	return reflect.TypeOf((**DeploymentElasticsearchKeystore)(nil)).Elem()
 }
 
 func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystoreOutput() DeploymentElasticsearchKeystoreOutput {
@@ -249,44 +200,10 @@ func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystore
 	return o
 }
 
-func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystorePtrOutput() DeploymentElasticsearchKeystorePtrOutput {
-	return o.ToDeploymentElasticsearchKeystorePtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystorePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystorePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchKeystore) *DeploymentElasticsearchKeystore {
-		return &v
-	}).(DeploymentElasticsearchKeystorePtrOutput)
-}
-
-type DeploymentElasticsearchKeystorePtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchKeystorePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentElasticsearchKeystore)(nil))
-}
-
-func (o DeploymentElasticsearchKeystorePtrOutput) ToDeploymentElasticsearchKeystorePtrOutput() DeploymentElasticsearchKeystorePtrOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchKeystorePtrOutput) ToDeploymentElasticsearchKeystorePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystorePtrOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchKeystorePtrOutput) Elem() DeploymentElasticsearchKeystoreOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) DeploymentElasticsearchKeystore {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentElasticsearchKeystore
-		return ret
-	}).(DeploymentElasticsearchKeystoreOutput)
-}
-
 type DeploymentElasticsearchKeystoreArrayOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchKeystoreArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentElasticsearchKeystore)(nil))
+	return reflect.TypeOf((*[]*DeploymentElasticsearchKeystore)(nil)).Elem()
 }
 
 func (o DeploymentElasticsearchKeystoreArrayOutput) ToDeploymentElasticsearchKeystoreArrayOutput() DeploymentElasticsearchKeystoreArrayOutput {
@@ -298,15 +215,15 @@ func (o DeploymentElasticsearchKeystoreArrayOutput) ToDeploymentElasticsearchKey
 }
 
 func (o DeploymentElasticsearchKeystoreArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchKeystoreOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentElasticsearchKeystore {
-		return vs[0].([]DeploymentElasticsearchKeystore)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentElasticsearchKeystore {
+		return vs[0].([]*DeploymentElasticsearchKeystore)[vs[1].(int)]
 	}).(DeploymentElasticsearchKeystoreOutput)
 }
 
 type DeploymentElasticsearchKeystoreMapOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchKeystoreMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DeploymentElasticsearchKeystore)(nil))
+	return reflect.TypeOf((*map[string]*DeploymentElasticsearchKeystore)(nil)).Elem()
 }
 
 func (o DeploymentElasticsearchKeystoreMapOutput) ToDeploymentElasticsearchKeystoreMapOutput() DeploymentElasticsearchKeystoreMapOutput {
@@ -318,18 +235,16 @@ func (o DeploymentElasticsearchKeystoreMapOutput) ToDeploymentElasticsearchKeyst
 }
 
 func (o DeploymentElasticsearchKeystoreMapOutput) MapIndex(k pulumi.StringInput) DeploymentElasticsearchKeystoreOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeploymentElasticsearchKeystore {
-		return vs[0].(map[string]DeploymentElasticsearchKeystore)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DeploymentElasticsearchKeystore {
+		return vs[0].(map[string]*DeploymentElasticsearchKeystore)[vs[1].(string)]
 	}).(DeploymentElasticsearchKeystoreOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchKeystoreInput)(nil)).Elem(), &DeploymentElasticsearchKeystore{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchKeystorePtrInput)(nil)).Elem(), &DeploymentElasticsearchKeystore{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchKeystoreArrayInput)(nil)).Elem(), DeploymentElasticsearchKeystoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchKeystoreMapInput)(nil)).Elem(), DeploymentElasticsearchKeystoreMap{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchKeystoreOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchKeystorePtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchKeystoreArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchKeystoreMapOutput{})
 }

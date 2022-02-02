@@ -164,16 +164,16 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeploymentTrafficFilterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeploymentTrafficFilterArgs | DeploymentTrafficFilterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentTrafficFilterState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["includeByDefault"] = state ? state.includeByDefault : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["rules"] = state ? state.rules : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["includeByDefault"] = state ? state.includeByDefault : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as DeploymentTrafficFilterArgs | undefined;
             if ((!args || args.region === undefined) && !opts.urn) {
@@ -185,17 +185,15 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["includeByDefault"] = args ? args.includeByDefault : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["rules"] = args ? args.rules : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["includeByDefault"] = args ? args.includeByDefault : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DeploymentTrafficFilter.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DeploymentTrafficFilter.__pulumiType, name, resourceInputs, opts);
     }
 }
 

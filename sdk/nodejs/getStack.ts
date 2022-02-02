@@ -30,9 +30,7 @@ export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("ec:index/getStack:getStack", {
         "lock": args.lock,
         "region": args.region,
