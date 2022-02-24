@@ -32,7 +32,7 @@ export interface DeploymentApm {
 
 export interface DeploymentApmConfig {
     /**
-     * Enable debug mode for APM servers. Defaults to `false`.
+     * Enable debug mode for the component. Defaults to `false`.
      */
     debugEnabled?: pulumi.Input<boolean>;
     dockerImage?: pulumi.Input<string>;
@@ -382,6 +382,75 @@ export interface DeploymentEnterpriseSearchTopology {
     zoneCount?: pulumi.Input<number>;
 }
 
+export interface DeploymentIntegrationsServer {
+    /**
+     * Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+     */
+    config?: pulumi.Input<inputs.DeploymentIntegrationsServerConfig>;
+    /**
+     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+     */
+    elasticsearchClusterRefId?: pulumi.Input<string>;
+    httpEndpoint?: pulumi.Input<string>;
+    httpsEndpoint?: pulumi.Input<string>;
+    /**
+     * Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+     */
+    refId?: pulumi.Input<string>;
+    /**
+     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     */
+    region?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string>;
+    /**
+     * Can be set multiple times to compose complex topologies.
+     */
+    topologies?: pulumi.Input<pulumi.Input<inputs.DeploymentIntegrationsServerTopology>[]>;
+}
+
+export interface DeploymentIntegrationsServerConfig {
+    /**
+     * Enable debug mode for the component. Defaults to `false`.
+     */
+    debugEnabled?: pulumi.Input<boolean>;
+    dockerImage?: pulumi.Input<string>;
+    /**
+     * JSON-formatted user level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsJson?: pulumi.Input<string>;
+    /**
+     * JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsOverrideJson?: pulumi.Input<string>;
+    /**
+     * YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsOverrideYaml?: pulumi.Input<string>;
+    /**
+     * YAML-formatted user level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsYaml?: pulumi.Input<string>;
+}
+
+export interface DeploymentIntegrationsServerTopology {
+    /**
+     * Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+     */
+    instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+     */
+    size?: pulumi.Input<string>;
+    /**
+     * Type of resource to which the size is assigned. Defaults to `"memory"`.
+     */
+    sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+     */
+    zoneCount?: pulumi.Input<number>;
+}
+
 export interface DeploymentKibana {
     /**
      * Kibana settings applied to all topologies unless overridden in the `topology` element.
@@ -537,13 +606,22 @@ export interface GetDeploymentsEnterpriseSearchArgs {
     version?: pulumi.Input<string>;
 }
 
-export interface GetDeploymentsKibana {
+export interface GetDeploymentsIntegrationsServer {
     /**
      * Overall health status of the deployment.
      */
     healthy?: string;
     status?: string;
     version?: string;
+}
+
+export interface GetDeploymentsIntegrationsServerArgs {
+    /**
+     * Overall health status of the deployment.
+     */
+    healthy?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
+    version?: pulumi.Input<string>;
 }
 
 export interface GetDeploymentsKibanaArgs {
@@ -553,5 +631,14 @@ export interface GetDeploymentsKibanaArgs {
     healthy?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     version?: pulumi.Input<string>;
+}
+
+export interface GetDeploymentsKibana {
+    /**
+     * Overall health status of the deployment.
+     */
+    healthy?: string;
+    status?: string;
+    version?: string;
 }
 

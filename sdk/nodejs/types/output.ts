@@ -32,7 +32,7 @@ export interface DeploymentApm {
 
 export interface DeploymentApmConfig {
     /**
-     * Enable debug mode for APM servers. Defaults to `false`.
+     * Enable debug mode for the component. Defaults to `false`.
      */
     debugEnabled?: boolean;
     dockerImage?: string;
@@ -382,6 +382,75 @@ export interface DeploymentEnterpriseSearchTopology {
     zoneCount: number;
 }
 
+export interface DeploymentIntegrationsServer {
+    /**
+     * Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+     */
+    config?: outputs.DeploymentIntegrationsServerConfig;
+    /**
+     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+     */
+    elasticsearchClusterRefId?: string;
+    httpEndpoint: string;
+    httpsEndpoint: string;
+    /**
+     * Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+     */
+    refId?: string;
+    /**
+     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     */
+    region: string;
+    resourceId: string;
+    /**
+     * Can be set multiple times to compose complex topologies.
+     */
+    topologies: outputs.DeploymentIntegrationsServerTopology[];
+}
+
+export interface DeploymentIntegrationsServerConfig {
+    /**
+     * Enable debug mode for the component. Defaults to `false`.
+     */
+    debugEnabled?: boolean;
+    dockerImage?: string;
+    /**
+     * JSON-formatted user level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsJson?: string;
+    /**
+     * JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsOverrideJson?: string;
+    /**
+     * YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsOverrideYaml?: string;
+    /**
+     * YAML-formatted user level `elasticsearch.yml` setting overrides.
+     */
+    userSettingsYaml?: string;
+}
+
+export interface DeploymentIntegrationsServerTopology {
+    /**
+     * Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+     */
+    instanceConfigurationId: string;
+    /**
+     * Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+     */
+    size: string;
+    /**
+     * Type of resource to which the size is assigned. Defaults to `"memory"`.
+     */
+    sizeResource?: string;
+    /**
+     * Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+     */
+    zoneCount: number;
+}
+
 export interface DeploymentKibana {
     /**
      * Kibana settings applied to all topologies unless overridden in the `topology` element.
@@ -567,6 +636,28 @@ export interface GetDeploymentEnterpriseSearchTopology {
     zoneCount: number;
 }
 
+export interface GetDeploymentIntegrationsServer {
+    elasticsearchClusterRefId: string;
+    /**
+     * Overall health status of the deployment.
+     */
+    healthy: boolean;
+    httpEndpoint: string;
+    httpsEndpoint: string;
+    refId: string;
+    resourceId: string;
+    status: string;
+    topologies: outputs.GetDeploymentIntegrationsServerTopology[];
+    version: string;
+}
+
+export interface GetDeploymentIntegrationsServerTopology {
+    instanceConfigurationId: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
 export interface GetDeploymentKibana {
     elasticsearchClusterRefId: string;
     /**
@@ -614,6 +705,8 @@ export interface GetDeploymentsDeployment {
     elasticsearchResourceId: string;
     enterpriseSearchRefId: string;
     enterpriseSearchResourceId: string;
+    integrationsServerRefId: string;
+    integrationsServerResourceId: string;
     kibanaRefId: string;
     kibanaResourceId: string;
     name: string;
@@ -629,6 +722,15 @@ export interface GetDeploymentsElasticsearch {
 }
 
 export interface GetDeploymentsEnterpriseSearch {
+    /**
+     * Overall health status of the deployment.
+     */
+    healthy?: string;
+    status?: string;
+    version?: string;
+}
+
+export interface GetDeploymentsIntegrationsServer {
     /**
      * Overall health status of the deployment.
      */

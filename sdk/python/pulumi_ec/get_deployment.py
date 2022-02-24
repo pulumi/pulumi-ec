@@ -21,7 +21,7 @@ class GetDeploymentResult:
     """
     A collection of values returned by getDeployment.
     """
-    def __init__(__self__, alias=None, apms=None, deployment_template_id=None, elasticsearches=None, enterprise_searches=None, healthy=None, id=None, kibanas=None, name=None, observabilities=None, region=None, tags=None, traffic_filters=None):
+    def __init__(__self__, alias=None, apms=None, deployment_template_id=None, elasticsearches=None, enterprise_searches=None, healthy=None, id=None, integrations_servers=None, kibanas=None, name=None, observabilities=None, region=None, tags=None, traffic_filters=None):
         if alias and not isinstance(alias, str):
             raise TypeError("Expected argument 'alias' to be a str")
         pulumi.set(__self__, "alias", alias)
@@ -43,6 +43,9 @@ class GetDeploymentResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if integrations_servers and not isinstance(integrations_servers, list):
+            raise TypeError("Expected argument 'integrations_servers' to be a list")
+        pulumi.set(__self__, "integrations_servers", integrations_servers)
         if kibanas and not isinstance(kibanas, list):
             raise TypeError("Expected argument 'kibanas' to be a list")
         pulumi.set(__self__, "kibanas", kibanas)
@@ -169,6 +172,26 @@ class GetDeploymentResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="integrationsServers")
+    def integrations_servers(self) -> Sequence['outputs.GetDeploymentIntegrationsServerResult']:
+        """
+        Instance configuration of the Integrations Server type.
+        * `integrations_server.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
+        * `integrations_server.#.healthy` - Resource kind health status.
+        * `integrations_server.#.http_endpoint` - HTTP endpoint for the resource kind.
+        * `integrations_server.#.https_endpoint` - HTTPS endpoint for the resource kind.
+        * `integrations_server.#.ref_id` - User specified ref_id for the resource kind.
+        * `integrations_server.#.resource_id` - The resource unique identifier.
+        * `integrations_server.#.status` - Resource kind status (for example, "started", "stopped", etc).
+        * `integrations_server.#.version` - Elastic stack version.
+        * `integrations_server.#.topology` - Node topology element definition.
+        * `integrations_server.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+        * `integrations_server.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
+        * `integrations_server.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
+        """
+        return pulumi.get(self, "integrations_servers")
+
+    @property
     @pulumi.getter
     def kibanas(self) -> Sequence['outputs.GetDeploymentKibanaResult']:
         """
@@ -242,6 +265,7 @@ class AwaitableGetDeploymentResult(GetDeploymentResult):
             enterprise_searches=self.enterprise_searches,
             healthy=self.healthy,
             id=self.id,
+            integrations_servers=self.integrations_servers,
             kibanas=self.kibanas,
             name=self.name,
             observabilities=self.observabilities,
@@ -283,6 +307,7 @@ def get_deployment(id: Optional[str] = None,
         enterprise_searches=__ret__.enterprise_searches,
         healthy=__ret__.healthy,
         id=__ret__.id,
+        integrations_servers=__ret__.integrations_servers,
         kibanas=__ret__.kibanas,
         name=__ret__.name,
         observabilities=__ret__.observabilities,

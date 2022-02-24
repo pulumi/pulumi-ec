@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentApmConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentIntegrationsServerConfigGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable debug mode for the component. Defaults to `false`.
@@ -45,7 +45,7 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("userSettingsYaml")]
         public Input<string>? UserSettingsYaml { get; set; }
 
-        public DeploymentApmConfigGetArgs()
+        public DeploymentIntegrationsServerConfigGetArgs()
         {
         }
     }
