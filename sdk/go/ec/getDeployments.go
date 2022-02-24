@@ -28,15 +28,15 @@ import (
 // 		opt1 := "test"
 // 		opt2 := 200
 // 		_, err := ec.GetDeployments(ctx, &GetDeploymentsArgs{
-// 			Apm: GetDeploymentsApm{
-// 				Version: "7.9.1",
-// 			},
 // 			DeploymentTemplateId: &opt0,
 // 			Elasticsearch: GetDeploymentsElasticsearch{
 // 				Healthy: "true",
 // 			},
 // 			EnterpriseSearch: GetDeploymentsEnterpriseSearch{
 // 				Healthy: "true",
+// 			},
+// 			IntegrationsServer: GetDeploymentsIntegrationsServer{
+// 				Version: "8.0.0",
 // 			},
 // 			Kibana: GetDeploymentsKibana{
 // 				Status: "started",
@@ -65,7 +65,7 @@ func GetDeployments(ctx *pulumi.Context, args *GetDeploymentsArgs, opts ...pulum
 
 // A collection of arguments for invoking getDeployments.
 type GetDeploymentsArgs struct {
-	// Filter by APM resource kind status or configuration.
+	// **DEPRECATED** Filter by APM resource kind status or configuration.
 	// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
 	// * `apm.#.version` - Elastic stack version.
 	// * `apm.#.healthy` - Overall health status of the APM instances.
@@ -84,6 +84,11 @@ type GetDeploymentsArgs struct {
 	EnterpriseSearch *GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearch"`
 	// Overall health status of the deployment.
 	Healthy *string `pulumi:"healthy"`
+	// Filter by Integrations Server resource kind status or configuration.
+	// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+	// * `integrations_server.#.version` - Elastic stack version.
+	// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+	IntegrationsServer *GetDeploymentsIntegrationsServer `pulumi:"integrationsServer"`
 	// Filter by Kibana resource kind status or configuration.
 	// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
 	// * `kibana.#.version` - Elastic stack version.
@@ -109,6 +114,8 @@ type GetDeploymentsResult struct {
 	// * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
 	// * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
 	// * `deployments.#.kibana_ref_id` - The Kibana resource reference.
+	// * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
+	// * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
 	// * `deployments.#.apm_resource_id` - The APM resource unique ID.
 	// * `deployments.#.apm_ref_id` - The APM resource reference.
 	// * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
@@ -118,12 +125,13 @@ type GetDeploymentsResult struct {
 	EnterpriseSearch *GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearch"`
 	Healthy          *string                         `pulumi:"healthy"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string                `pulumi:"id"`
-	Kibana      *GetDeploymentsKibana `pulumi:"kibana"`
-	NamePrefix  *string               `pulumi:"namePrefix"`
-	ReturnCount int                   `pulumi:"returnCount"`
-	Size        *int                  `pulumi:"size"`
-	Tags        map[string]string     `pulumi:"tags"`
+	Id                 string                            `pulumi:"id"`
+	IntegrationsServer *GetDeploymentsIntegrationsServer `pulumi:"integrationsServer"`
+	Kibana             *GetDeploymentsKibana             `pulumi:"kibana"`
+	NamePrefix         *string                           `pulumi:"namePrefix"`
+	ReturnCount        int                               `pulumi:"returnCount"`
+	Size               *int                              `pulumi:"size"`
+	Tags               map[string]string                 `pulumi:"tags"`
 }
 
 func GetDeploymentsOutput(ctx *pulumi.Context, args GetDeploymentsOutputArgs, opts ...pulumi.InvokeOption) GetDeploymentsResultOutput {
@@ -137,7 +145,7 @@ func GetDeploymentsOutput(ctx *pulumi.Context, args GetDeploymentsOutputArgs, op
 
 // A collection of arguments for invoking getDeployments.
 type GetDeploymentsOutputArgs struct {
-	// Filter by APM resource kind status or configuration.
+	// **DEPRECATED** Filter by APM resource kind status or configuration.
 	// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
 	// * `apm.#.version` - Elastic stack version.
 	// * `apm.#.healthy` - Overall health status of the APM instances.
@@ -156,6 +164,11 @@ type GetDeploymentsOutputArgs struct {
 	EnterpriseSearch GetDeploymentsEnterpriseSearchPtrInput `pulumi:"enterpriseSearch"`
 	// Overall health status of the deployment.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
+	// Filter by Integrations Server resource kind status or configuration.
+	// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+	// * `integrations_server.#.version` - Elastic stack version.
+	// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+	IntegrationsServer GetDeploymentsIntegrationsServerPtrInput `pulumi:"integrationsServer"`
 	// Filter by Kibana resource kind status or configuration.
 	// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
 	// * `kibana.#.version` - Elastic stack version.
@@ -204,6 +217,8 @@ func (o GetDeploymentsResultOutput) DeploymentTemplateId() pulumi.StringPtrOutpu
 // * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
 // * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
 // * `deployments.#.kibana_ref_id` - The Kibana resource reference.
+// * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
+// * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
 // * `deployments.#.apm_resource_id` - The APM resource unique ID.
 // * `deployments.#.apm_ref_id` - The APM resource reference.
 // * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
@@ -227,6 +242,10 @@ func (o GetDeploymentsResultOutput) Healthy() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetDeploymentsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsResultOutput) IntegrationsServer() GetDeploymentsIntegrationsServerPtrOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) *GetDeploymentsIntegrationsServer { return v.IntegrationsServer }).(GetDeploymentsIntegrationsServerPtrOutput)
 }
 
 func (o GetDeploymentsResultOutput) Kibana() GetDeploymentsKibanaPtrOutput {

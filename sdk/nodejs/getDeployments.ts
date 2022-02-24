@@ -15,15 +15,15 @@ import * as utilities from "./utilities";
  * import * as ec from "@pulumi/ec";
  *
  * const example = pulumi.output(ec.getDeployments({
- *     apm: {
- *         version: "7.9.1",
- *     },
  *     deploymentTemplateId: "azure-compute-optimized",
  *     elasticsearch: {
  *         healthy: "true",
  *     },
  *     enterpriseSearch: {
  *         healthy: "true",
+ *     },
+ *     integrationsServer: {
+ *         version: "8.0.0",
  *     },
  *     kibana: {
  *         status: "started",
@@ -49,6 +49,7 @@ export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOp
         "elasticsearch": args.elasticsearch,
         "enterpriseSearch": args.enterpriseSearch,
         "healthy": args.healthy,
+        "integrationsServer": args.integrationsServer,
         "kibana": args.kibana,
         "namePrefix": args.namePrefix,
         "size": args.size,
@@ -61,7 +62,7 @@ export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOp
  */
 export interface GetDeploymentsArgs {
     /**
-     * Filter by APM resource kind status or configuration.
+     * **DEPRECATED** Filter by APM resource kind status or configuration.
      * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
      * * `apm.#.version` - Elastic stack version.
      * * `apm.#.healthy` - Overall health status of the APM instances.
@@ -89,6 +90,13 @@ export interface GetDeploymentsArgs {
      * Overall health status of the deployment.
      */
     healthy?: string;
+    /**
+     * Filter by Integrations Server resource kind status or configuration.
+     * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+     * * `integrations_server.#.version` - Elastic stack version.
+     * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+     */
+    integrationsServer?: inputs.GetDeploymentsIntegrationsServer;
     /**
      * Filter by Kibana resource kind status or configuration.
      * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
@@ -125,6 +133,8 @@ export interface GetDeploymentsResult {
      * * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
      * * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
      * * `deployments.#.kibana_ref_id` - The Kibana resource reference.
+     * * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
+     * * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
      * * `deployments.#.apm_resource_id` - The APM resource unique ID.
      * * `deployments.#.apm_ref_id` - The APM resource reference.
      * * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
@@ -138,6 +148,7 @@ export interface GetDeploymentsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly integrationsServer?: outputs.GetDeploymentsIntegrationsServer;
     readonly kibana?: outputs.GetDeploymentsKibana;
     readonly namePrefix?: string;
     readonly returnCount: number;
@@ -154,7 +165,7 @@ export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pul
  */
 export interface GetDeploymentsOutputArgs {
     /**
-     * Filter by APM resource kind status or configuration.
+     * **DEPRECATED** Filter by APM resource kind status or configuration.
      * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
      * * `apm.#.version` - Elastic stack version.
      * * `apm.#.healthy` - Overall health status of the APM instances.
@@ -182,6 +193,13 @@ export interface GetDeploymentsOutputArgs {
      * Overall health status of the deployment.
      */
     healthy?: pulumi.Input<string>;
+    /**
+     * Filter by Integrations Server resource kind status or configuration.
+     * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+     * * `integrations_server.#.version` - Elastic stack version.
+     * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+     */
+    integrationsServer?: pulumi.Input<inputs.GetDeploymentsIntegrationsServerArgs>;
     /**
      * Filter by Kibana resource kind status or configuration.
      * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).

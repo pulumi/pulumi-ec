@@ -21,6 +21,8 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string ElasticsearchResourceId;
         public readonly string EnterpriseSearchRefId;
         public readonly string EnterpriseSearchResourceId;
+        public readonly string IntegrationsServerRefId;
+        public readonly string IntegrationsServerResourceId;
         public readonly string KibanaRefId;
         public readonly string KibanaResourceId;
         public readonly string Name;
@@ -43,6 +45,10 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string enterpriseSearchResourceId,
 
+            string integrationsServerRefId,
+
+            string integrationsServerResourceId,
+
             string kibanaRefId,
 
             string kibanaResourceId,
@@ -57,6 +63,8 @@ namespace Pulumi.ElasticCloud.Outputs
             ElasticsearchResourceId = elasticsearchResourceId;
             EnterpriseSearchRefId = enterpriseSearchRefId;
             EnterpriseSearchResourceId = enterpriseSearchResourceId;
+            IntegrationsServerRefId = integrationsServerRefId;
+            IntegrationsServerResourceId = integrationsServerResourceId;
             KibanaRefId = kibanaRefId;
             KibanaResourceId = kibanaResourceId;
             Name = name;

@@ -11,7 +11,7 @@ namespace Pulumi.ElasticCloud.Outputs
 {
 
     [OutputType]
-    public sealed class DeploymentApmConfig
+    public sealed class DeploymentIntegrationsServerConfig
     {
         /// <summary>
         /// Enable debug mode for the component. Defaults to `false`.
@@ -36,7 +36,7 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string? UserSettingsYaml;
 
         [OutputConstructor]
-        private DeploymentApmConfig(
+        private DeploymentIntegrationsServerConfig(
             bool? debugEnabled,
 
             string? dockerImage,

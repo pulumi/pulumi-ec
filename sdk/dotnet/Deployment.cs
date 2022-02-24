@@ -28,7 +28,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
-        /// APM instance definition, can only be specified once.
+        /// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         /// </summary>
         [Output("apm")]
         public Output<Outputs.DeploymentApm?> Apm { get; private set; } = null!;
@@ -53,6 +53,10 @@ namespace Pulumi.ElasticCloud
         /// * `kibana.#.region` - Kibana region.
         /// * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
         /// * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+        /// * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+        /// * `integrations_server.#.region` - Integrations Server region.
+        /// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+        /// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
         /// * `apm.#.resource_id` - APM resource unique identifier.
         /// * `apm.#.region` - APM region.
         /// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -101,6 +105,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Output("enterpriseSearch")]
         public Output<Outputs.DeploymentEnterpriseSearch?> EnterpriseSearch { get; private set; } = null!;
+
+        /// <summary>
+        /// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+        /// </summary>
+        [Output("integrationsServer")]
+        public Output<Outputs.DeploymentIntegrationsServer?> IntegrationsServer { get; private set; } = null!;
 
         /// <summary>
         /// Kibana instance definition, can only be specified once.
@@ -203,7 +213,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Alias { get; set; }
 
         /// <summary>
-        /// APM instance definition, can only be specified once.
+        /// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         /// </summary>
         [Input("apm")]
         public Input<Inputs.DeploymentApmArgs>? Apm { get; set; }
@@ -225,6 +235,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("enterpriseSearch")]
         public Input<Inputs.DeploymentEnterpriseSearchArgs>? EnterpriseSearch { get; set; }
+
+        /// <summary>
+        /// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+        /// </summary>
+        [Input("integrationsServer")]
+        public Input<Inputs.DeploymentIntegrationsServerArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
         /// Kibana instance definition, can only be specified once.
@@ -300,7 +316,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Alias { get; set; }
 
         /// <summary>
-        /// APM instance definition, can only be specified once.
+        /// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         /// </summary>
         [Input("apm")]
         public Input<Inputs.DeploymentApmGetArgs>? Apm { get; set; }
@@ -325,6 +341,10 @@ namespace Pulumi.ElasticCloud
         /// * `kibana.#.region` - Kibana region.
         /// * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
         /// * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+        /// * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+        /// * `integrations_server.#.region` - Integrations Server region.
+        /// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+        /// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
         /// * `apm.#.resource_id` - APM resource unique identifier.
         /// * `apm.#.region` - APM region.
         /// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -373,6 +393,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("enterpriseSearch")]
         public Input<Inputs.DeploymentEnterpriseSearchGetArgs>? EnterpriseSearch { get; set; }
+
+        /// <summary>
+        /// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+        /// </summary>
+        [Input("integrationsServer")]
+        public Input<Inputs.DeploymentIntegrationsServerGetArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
         /// Kibana instance definition, can only be specified once.

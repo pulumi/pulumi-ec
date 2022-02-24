@@ -28,10 +28,6 @@ namespace Pulumi.ElasticCloud
         ///     {
         ///         var example = Output.Create(ElasticCloud.GetDeployments.InvokeAsync(new ElasticCloud.GetDeploymentsArgs
         ///         {
-        ///             Apm = new ElasticCloud.Inputs.GetDeploymentsApmArgs
-        ///             {
-        ///                 Version = "7.9.1",
-        ///             },
         ///             DeploymentTemplateId = "azure-compute-optimized",
         ///             Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchArgs
         ///             {
@@ -40,6 +36,10 @@ namespace Pulumi.ElasticCloud
         ///             EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchArgs
         ///             {
         ///                 Healthy = "true",
+        ///             },
+        ///             IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerArgs
+        ///             {
+        ///                 Version = "8.0.0",
         ///             },
         ///             Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaArgs
         ///             {
@@ -79,10 +79,6 @@ namespace Pulumi.ElasticCloud
         ///     {
         ///         var example = Output.Create(ElasticCloud.GetDeployments.InvokeAsync(new ElasticCloud.GetDeploymentsArgs
         ///         {
-        ///             Apm = new ElasticCloud.Inputs.GetDeploymentsApmArgs
-        ///             {
-        ///                 Version = "7.9.1",
-        ///             },
         ///             DeploymentTemplateId = "azure-compute-optimized",
         ///             Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchArgs
         ///             {
@@ -91,6 +87,10 @@ namespace Pulumi.ElasticCloud
         ///             EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchArgs
         ///             {
         ///                 Healthy = "true",
+        ///             },
+        ///             IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerArgs
+        ///             {
+        ///                 Version = "8.0.0",
         ///             },
         ///             Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaArgs
         ///             {
@@ -118,7 +118,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetDeploymentsArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Filter by APM resource kind status or configuration.
+        /// **DEPRECATED** Filter by APM resource kind status or configuration.
         /// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
         /// * `apm.#.version` - Elastic stack version.
         /// * `apm.#.healthy` - Overall health status of the APM instances.
@@ -155,6 +155,15 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("healthy")]
         public string? Healthy { get; set; }
+
+        /// <summary>
+        /// Filter by Integrations Server resource kind status or configuration.
+        /// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+        /// * `integrations_server.#.version` - Elastic stack version.
+        /// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+        /// </summary>
+        [Input("integrationsServer")]
+        public Inputs.GetDeploymentsIntegrationsServerArgs? IntegrationsServer { get; set; }
 
         /// <summary>
         /// Filter by Kibana resource kind status or configuration.
@@ -197,7 +206,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetDeploymentsInvokeArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Filter by APM resource kind status or configuration.
+        /// **DEPRECATED** Filter by APM resource kind status or configuration.
         /// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
         /// * `apm.#.version` - Elastic stack version.
         /// * `apm.#.healthy` - Overall health status of the APM instances.
@@ -234,6 +243,15 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("healthy")]
         public Input<string>? Healthy { get; set; }
+
+        /// <summary>
+        /// Filter by Integrations Server resource kind status or configuration.
+        /// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
+        /// * `integrations_server.#.version` - Elastic stack version.
+        /// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+        /// </summary>
+        [Input("integrationsServer")]
+        public Input<Inputs.GetDeploymentsIntegrationsServerInputArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
         /// Filter by Kibana resource kind status or configuration.
@@ -288,6 +306,8 @@ namespace Pulumi.ElasticCloud
         /// * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
         /// * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
         /// * `deployments.#.kibana_ref_id` - The Kibana resource reference.
+        /// * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
+        /// * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
         /// * `deployments.#.apm_resource_id` - The APM resource unique ID.
         /// * `deployments.#.apm_ref_id` - The APM resource reference.
         /// * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
@@ -301,6 +321,7 @@ namespace Pulumi.ElasticCloud
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly Outputs.GetDeploymentsIntegrationsServerResult? IntegrationsServer;
         public readonly Outputs.GetDeploymentsKibanaResult? Kibana;
         public readonly string? NamePrefix;
         public readonly int ReturnCount;
@@ -323,6 +344,8 @@ namespace Pulumi.ElasticCloud
 
             string id,
 
+            Outputs.GetDeploymentsIntegrationsServerResult? integrationsServer,
+
             Outputs.GetDeploymentsKibanaResult? kibana,
 
             string? namePrefix,
@@ -340,6 +363,7 @@ namespace Pulumi.ElasticCloud
             EnterpriseSearch = enterpriseSearch;
             Healthy = healthy;
             Id = id;
+            IntegrationsServer = integrationsServer;
             Kibana = kibana;
             NamePrefix = namePrefix;
             ReturnCount = returnCount;

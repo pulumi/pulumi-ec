@@ -13,7 +13,7 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentApmConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable debug mode for APM servers. Defaults to `false`.
+        /// Enable debug mode for the component. Defaults to `false`.
         /// </summary>
         [Input("debugEnabled")]
         public Input<bool>? DebugEnabled { get; set; }

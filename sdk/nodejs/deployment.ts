@@ -47,7 +47,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly alias!: pulumi.Output<string>;
     /**
-     * APM instance definition, can only be specified once.
+     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
      */
     public readonly apm!: pulumi.Output<outputs.DeploymentApm | undefined>;
     /**
@@ -70,6 +70,10 @@ export class Deployment extends pulumi.CustomResource {
      * * `kibana.#.region` - Kibana region.
      * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
      * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+     * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+     * * `integrations_server.#.region` - Integrations Server region.
+     * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+     * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -107,6 +111,10 @@ export class Deployment extends pulumi.CustomResource {
      * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
      */
     public readonly enterpriseSearch!: pulumi.Output<outputs.DeploymentEnterpriseSearch | undefined>;
+    /**
+     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     */
+    public readonly integrationsServer!: pulumi.Output<outputs.DeploymentIntegrationsServer | undefined>;
     /**
      * Kibana instance definition, can only be specified once.
      */
@@ -161,6 +169,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["elasticsearchPassword"] = state ? state.elasticsearchPassword : undefined;
             resourceInputs["elasticsearchUsername"] = state ? state.elasticsearchUsername : undefined;
             resourceInputs["enterpriseSearch"] = state ? state.enterpriseSearch : undefined;
+            resourceInputs["integrationsServer"] = state ? state.integrationsServer : undefined;
             resourceInputs["kibana"] = state ? state.kibana : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["observability"] = state ? state.observability : undefined;
@@ -188,6 +197,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["deploymentTemplateId"] = args ? args.deploymentTemplateId : undefined;
             resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
             resourceInputs["enterpriseSearch"] = args ? args.enterpriseSearch : undefined;
+            resourceInputs["integrationsServer"] = args ? args.integrationsServer : undefined;
             resourceInputs["kibana"] = args ? args.kibana : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["observability"] = args ? args.observability : undefined;
@@ -214,7 +224,7 @@ export interface DeploymentState {
      */
     alias?: pulumi.Input<string>;
     /**
-     * APM instance definition, can only be specified once.
+     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
      */
     apm?: pulumi.Input<inputs.DeploymentApm>;
     /**
@@ -237,6 +247,10 @@ export interface DeploymentState {
      * * `kibana.#.region` - Kibana region.
      * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
      * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+     * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+     * * `integrations_server.#.region` - Integrations Server region.
+     * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+     * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -274,6 +288,10 @@ export interface DeploymentState {
      * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
      */
     enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch>;
+    /**
+     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     */
+    integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
      * Kibana instance definition, can only be specified once.
      */
@@ -317,7 +335,7 @@ export interface DeploymentArgs {
      */
     alias?: pulumi.Input<string>;
     /**
-     * APM instance definition, can only be specified once.
+     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
      */
     apm?: pulumi.Input<inputs.DeploymentApm>;
     /**
@@ -332,6 +350,10 @@ export interface DeploymentArgs {
      * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
      */
     enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch>;
+    /**
+     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     */
+    integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
      * Kibana instance definition, can only be specified once.
      */
