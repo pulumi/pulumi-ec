@@ -8,7 +8,8 @@ replace (
 )
 
 require (
-	github.com/elastic/terraform-provider-ec v0.3.0
+	cloud.google.com/go/kms v1.3.0 // indirect
+	github.com/elastic/terraform-provider-ec v0.4.0
 	github.com/hashicorp/terraform-plugin-sdk v1.9.1 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.18.0
 	github.com/pulumi/pulumi/sdk/v3 v3.23.2

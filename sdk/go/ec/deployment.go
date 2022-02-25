@@ -23,7 +23,7 @@ type Deployment struct {
 
 	// Deployment alias, affects the format of the resource URLs.
 	Alias pulumi.StringOutput `pulumi:"alias"`
-	// APM instance definition, can only be specified once.
+	// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
 	Apm DeploymentApmPtrOutput `pulumi:"apm"`
 	// Auto-generated APM secret_token, empty unless an `apm` resource is specified.
 	// * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
@@ -44,6 +44,10 @@ type Deployment struct {
 	// * `kibana.#.region` - Kibana region.
 	// * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
 	// * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+	// * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+	// * `integrations_server.#.region` - Integrations Server region.
+	// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+	// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
 	// * `apm.#.resource_id` - APM resource unique identifier.
 	// * `apm.#.region` - APM region.
 	// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -70,6 +74,8 @@ type Deployment struct {
 	ElasticsearchUsername pulumi.StringOutput `pulumi:"elasticsearchUsername"`
 	// Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
 	EnterpriseSearch DeploymentEnterpriseSearchPtrOutput `pulumi:"enterpriseSearch"`
+	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+	IntegrationsServer DeploymentIntegrationsServerPtrOutput `pulumi:"integrationsServer"`
 	// Kibana instance definition, can only be specified once.
 	Kibana DeploymentKibanaPtrOutput `pulumi:"kibana"`
 	// Name of the deployment.
@@ -131,7 +137,7 @@ func GetDeployment(ctx *pulumi.Context,
 type deploymentState struct {
 	// Deployment alias, affects the format of the resource URLs.
 	Alias *string `pulumi:"alias"`
-	// APM instance definition, can only be specified once.
+	// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
 	Apm *DeploymentApm `pulumi:"apm"`
 	// Auto-generated APM secret_token, empty unless an `apm` resource is specified.
 	// * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
@@ -152,6 +158,10 @@ type deploymentState struct {
 	// * `kibana.#.region` - Kibana region.
 	// * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
 	// * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+	// * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+	// * `integrations_server.#.region` - Integrations Server region.
+	// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+	// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
 	// * `apm.#.resource_id` - APM resource unique identifier.
 	// * `apm.#.region` - APM region.
 	// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -178,6 +188,8 @@ type deploymentState struct {
 	ElasticsearchUsername *string `pulumi:"elasticsearchUsername"`
 	// Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
 	EnterpriseSearch *DeploymentEnterpriseSearch `pulumi:"enterpriseSearch"`
+	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+	IntegrationsServer *DeploymentIntegrationsServer `pulumi:"integrationsServer"`
 	// Kibana instance definition, can only be specified once.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
 	// Name of the deployment.
@@ -199,7 +211,7 @@ type deploymentState struct {
 type DeploymentState struct {
 	// Deployment alias, affects the format of the resource URLs.
 	Alias pulumi.StringPtrInput
-	// APM instance definition, can only be specified once.
+	// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
 	Apm DeploymentApmPtrInput
 	// Auto-generated APM secret_token, empty unless an `apm` resource is specified.
 	// * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
@@ -220,6 +232,10 @@ type DeploymentState struct {
 	// * `kibana.#.region` - Kibana region.
 	// * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
 	// * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+	// * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+	// * `integrations_server.#.region` - Integrations Server region.
+	// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+	// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
 	// * `apm.#.resource_id` - APM resource unique identifier.
 	// * `apm.#.region` - APM region.
 	// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -246,6 +262,8 @@ type DeploymentState struct {
 	ElasticsearchUsername pulumi.StringPtrInput
 	// Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
 	EnterpriseSearch DeploymentEnterpriseSearchPtrInput
+	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+	IntegrationsServer DeploymentIntegrationsServerPtrInput
 	// Kibana instance definition, can only be specified once.
 	Kibana DeploymentKibanaPtrInput
 	// Name of the deployment.
@@ -271,7 +289,7 @@ func (DeploymentState) ElementType() reflect.Type {
 type deploymentArgs struct {
 	// Deployment alias, affects the format of the resource URLs.
 	Alias *string `pulumi:"alias"`
-	// APM instance definition, can only be specified once.
+	// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
 	Apm *DeploymentApm `pulumi:"apm"`
 	// Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	DeploymentTemplateId string `pulumi:"deploymentTemplateId"`
@@ -279,6 +297,8 @@ type deploymentArgs struct {
 	Elasticsearch DeploymentElasticsearch `pulumi:"elasticsearch"`
 	// Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
 	EnterpriseSearch *DeploymentEnterpriseSearch `pulumi:"enterpriseSearch"`
+	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+	IntegrationsServer *DeploymentIntegrationsServer `pulumi:"integrationsServer"`
 	// Kibana instance definition, can only be specified once.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
 	// Name of the deployment.
@@ -301,7 +321,7 @@ type deploymentArgs struct {
 type DeploymentArgs struct {
 	// Deployment alias, affects the format of the resource URLs.
 	Alias pulumi.StringPtrInput
-	// APM instance definition, can only be specified once.
+	// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
 	Apm DeploymentApmPtrInput
 	// Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	DeploymentTemplateId pulumi.StringInput
@@ -309,6 +329,8 @@ type DeploymentArgs struct {
 	Elasticsearch DeploymentElasticsearchInput
 	// Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
 	EnterpriseSearch DeploymentEnterpriseSearchPtrInput
+	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+	IntegrationsServer DeploymentIntegrationsServerPtrInput
 	// Kibana instance definition, can only be specified once.
 	Kibana DeploymentKibanaPtrInput
 	// Name of the deployment.

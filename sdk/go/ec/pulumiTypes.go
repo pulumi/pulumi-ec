@@ -269,7 +269,7 @@ func (o DeploymentApmPtrOutput) Topologies() DeploymentApmTopologyArrayOutput {
 }
 
 type DeploymentApmConfig struct {
-	// Enable debug mode for APM servers. Defaults to `false`.
+	// Enable debug mode for the component. Defaults to `false`.
 	DebugEnabled *bool   `pulumi:"debugEnabled"`
 	DockerImage  *string `pulumi:"dockerImage"`
 	// JSON-formatted user level `elasticsearch.yml` setting overrides.
@@ -294,7 +294,7 @@ type DeploymentApmConfigInput interface {
 }
 
 type DeploymentApmConfigArgs struct {
-	// Enable debug mode for APM servers. Defaults to `false`.
+	// Enable debug mode for the component. Defaults to `false`.
 	DebugEnabled pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
 	DockerImage  pulumi.StringPtrInput `pulumi:"dockerImage"`
 	// JSON-formatted user level `elasticsearch.yml` setting overrides.
@@ -384,7 +384,7 @@ func (o DeploymentApmConfigOutput) ToDeploymentApmConfigPtrOutputWithContext(ctx
 	}).(DeploymentApmConfigPtrOutput)
 }
 
-// Enable debug mode for APM servers. Defaults to `false`.
+// Enable debug mode for the component. Defaults to `false`.
 func (o DeploymentApmConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -437,7 +437,7 @@ func (o DeploymentApmConfigPtrOutput) Elem() DeploymentApmConfigOutput {
 	}).(DeploymentApmConfigOutput)
 }
 
-// Enable debug mode for APM servers. Defaults to `false`.
+// Enable debug mode for the component. Defaults to `false`.
 func (o DeploymentApmConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *bool {
 		if v == nil {
@@ -2996,6 +2996,616 @@ func (o DeploymentEnterpriseSearchTopologyArrayOutput) Index(i pulumi.IntInput) 
 	}).(DeploymentEnterpriseSearchTopologyOutput)
 }
 
+type DeploymentIntegrationsServer struct {
+	// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+	Config *DeploymentIntegrationsServerConfig `pulumi:"config"`
+	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+	ElasticsearchClusterRefId *string `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              *string `pulumi:"httpEndpoint"`
+	HttpsEndpoint             *string `pulumi:"httpsEndpoint"`
+	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+	RefId *string `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	Region     *string `pulumi:"region"`
+	ResourceId *string `pulumi:"resourceId"`
+	// Can be set multiple times to compose complex topologies.
+	Topologies []DeploymentIntegrationsServerTopology `pulumi:"topologies"`
+}
+
+// DeploymentIntegrationsServerInput is an input type that accepts DeploymentIntegrationsServerArgs and DeploymentIntegrationsServerOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerInput` via:
+//
+//          DeploymentIntegrationsServerArgs{...}
+type DeploymentIntegrationsServerInput interface {
+	pulumi.Input
+
+	ToDeploymentIntegrationsServerOutput() DeploymentIntegrationsServerOutput
+	ToDeploymentIntegrationsServerOutputWithContext(context.Context) DeploymentIntegrationsServerOutput
+}
+
+type DeploymentIntegrationsServerArgs struct {
+	// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+	Config DeploymentIntegrationsServerConfigPtrInput `pulumi:"config"`
+	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+	ElasticsearchClusterRefId pulumi.StringPtrInput `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              pulumi.StringPtrInput `pulumi:"httpEndpoint"`
+	HttpsEndpoint             pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
+	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+	RefId pulumi.StringPtrInput `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	Region     pulumi.StringPtrInput `pulumi:"region"`
+	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
+	// Can be set multiple times to compose complex topologies.
+	Topologies DeploymentIntegrationsServerTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (DeploymentIntegrationsServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerOutput() DeploymentIntegrationsServerOutput {
+	return i.ToDeploymentIntegrationsServerOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerOutputWithContext(ctx context.Context) DeploymentIntegrationsServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerOutput)
+}
+
+func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerPtrOutput() DeploymentIntegrationsServerPtrOutput {
+	return i.ToDeploymentIntegrationsServerPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerOutput).ToDeploymentIntegrationsServerPtrOutputWithContext(ctx)
+}
+
+// DeploymentIntegrationsServerPtrInput is an input type that accepts DeploymentIntegrationsServerArgs, DeploymentIntegrationsServerPtr and DeploymentIntegrationsServerPtrOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerPtrInput` via:
+//
+//          DeploymentIntegrationsServerArgs{...}
+//
+//  or:
+//
+//          nil
+type DeploymentIntegrationsServerPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentIntegrationsServerPtrOutput() DeploymentIntegrationsServerPtrOutput
+	ToDeploymentIntegrationsServerPtrOutputWithContext(context.Context) DeploymentIntegrationsServerPtrOutput
+}
+
+type deploymentIntegrationsServerPtrType DeploymentIntegrationsServerArgs
+
+func DeploymentIntegrationsServerPtr(v *DeploymentIntegrationsServerArgs) DeploymentIntegrationsServerPtrInput {
+	return (*deploymentIntegrationsServerPtrType)(v)
+}
+
+func (*deploymentIntegrationsServerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (i *deploymentIntegrationsServerPtrType) ToDeploymentIntegrationsServerPtrOutput() DeploymentIntegrationsServerPtrOutput {
+	return i.ToDeploymentIntegrationsServerPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentIntegrationsServerPtrType) ToDeploymentIntegrationsServerPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerPtrOutput)
+}
+
+type DeploymentIntegrationsServerOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerOutput() DeploymentIntegrationsServerOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerOutputWithContext(ctx context.Context) DeploymentIntegrationsServerOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerPtrOutput() DeploymentIntegrationsServerPtrOutput {
+	return o.ToDeploymentIntegrationsServerPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServer) *DeploymentIntegrationsServer {
+		return &v
+	}).(DeploymentIntegrationsServerPtrOutput)
+}
+
+// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+func (o DeploymentIntegrationsServerOutput) Config() DeploymentIntegrationsServerConfigPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *DeploymentIntegrationsServerConfig { return v.Config }).(DeploymentIntegrationsServerConfigPtrOutput)
+}
+
+// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+func (o DeploymentIntegrationsServerOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ElasticsearchClusterRefId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerOutput) HttpEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.HttpEndpoint }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerOutput) HttpsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+func (o DeploymentIntegrationsServerOutput) RefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.RefId }).(pulumi.StringPtrOutput)
+}
+
+// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+func (o DeploymentIntegrationsServerOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerOutput) ResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
+}
+
+// Can be set multiple times to compose complex topologies.
+func (o DeploymentIntegrationsServerOutput) Topologies() DeploymentIntegrationsServerTopologyArrayOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) []DeploymentIntegrationsServerTopology { return v.Topologies }).(DeploymentIntegrationsServerTopologyArrayOutput)
+}
+
+type DeploymentIntegrationsServerPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) ToDeploymentIntegrationsServerPtrOutput() DeploymentIntegrationsServerPtrOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) ToDeploymentIntegrationsServerPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerPtrOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) Elem() DeploymentIntegrationsServerOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) DeploymentIntegrationsServer {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentIntegrationsServer
+		return ret
+	}).(DeploymentIntegrationsServerOutput)
+}
+
+// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+func (o DeploymentIntegrationsServerPtrOutput) Config() DeploymentIntegrationsServerConfigPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *DeploymentIntegrationsServerConfig {
+		if v == nil {
+			return nil
+		}
+		return v.Config
+	}).(DeploymentIntegrationsServerConfigPtrOutput)
+}
+
+// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+func (o DeploymentIntegrationsServerPtrOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ElasticsearchClusterRefId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) HttpEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpsEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+func (o DeploymentIntegrationsServerPtrOutput) RefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RefId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+func (o DeploymentIntegrationsServerPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) ResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ResourceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Can be set multiple times to compose complex topologies.
+func (o DeploymentIntegrationsServerPtrOutput) Topologies() DeploymentIntegrationsServerTopologyArrayOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) []DeploymentIntegrationsServerTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(DeploymentIntegrationsServerTopologyArrayOutput)
+}
+
+type DeploymentIntegrationsServerConfig struct {
+	// Enable debug mode for the component. Defaults to `false`.
+	DebugEnabled *bool   `pulumi:"debugEnabled"`
+	DockerImage  *string `pulumi:"dockerImage"`
+	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	UserSettingsJson *string `pulumi:"userSettingsJson"`
+	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
+	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
+	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
+}
+
+// DeploymentIntegrationsServerConfigInput is an input type that accepts DeploymentIntegrationsServerConfigArgs and DeploymentIntegrationsServerConfigOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerConfigInput` via:
+//
+//          DeploymentIntegrationsServerConfigArgs{...}
+type DeploymentIntegrationsServerConfigInput interface {
+	pulumi.Input
+
+	ToDeploymentIntegrationsServerConfigOutput() DeploymentIntegrationsServerConfigOutput
+	ToDeploymentIntegrationsServerConfigOutputWithContext(context.Context) DeploymentIntegrationsServerConfigOutput
+}
+
+type DeploymentIntegrationsServerConfigArgs struct {
+	// Enable debug mode for the component. Defaults to `false`.
+	DebugEnabled pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
+	DockerImage  pulumi.StringPtrInput `pulumi:"dockerImage"`
+	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
+	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
+	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+}
+
+func (DeploymentIntegrationsServerConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServerConfig)(nil)).Elem()
+}
+
+func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerConfigOutput() DeploymentIntegrationsServerConfigOutput {
+	return i.ToDeploymentIntegrationsServerConfigOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerConfigOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerConfigOutput)
+}
+
+func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerConfigPtrOutput() DeploymentIntegrationsServerConfigPtrOutput {
+	return i.ToDeploymentIntegrationsServerConfigPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerConfigOutput).ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx)
+}
+
+// DeploymentIntegrationsServerConfigPtrInput is an input type that accepts DeploymentIntegrationsServerConfigArgs, DeploymentIntegrationsServerConfigPtr and DeploymentIntegrationsServerConfigPtrOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerConfigPtrInput` via:
+//
+//          DeploymentIntegrationsServerConfigArgs{...}
+//
+//  or:
+//
+//          nil
+type DeploymentIntegrationsServerConfigPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentIntegrationsServerConfigPtrOutput() DeploymentIntegrationsServerConfigPtrOutput
+	ToDeploymentIntegrationsServerConfigPtrOutputWithContext(context.Context) DeploymentIntegrationsServerConfigPtrOutput
+}
+
+type deploymentIntegrationsServerConfigPtrType DeploymentIntegrationsServerConfigArgs
+
+func DeploymentIntegrationsServerConfigPtr(v *DeploymentIntegrationsServerConfigArgs) DeploymentIntegrationsServerConfigPtrInput {
+	return (*deploymentIntegrationsServerConfigPtrType)(v)
+}
+
+func (*deploymentIntegrationsServerConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServerConfig)(nil)).Elem()
+}
+
+func (i *deploymentIntegrationsServerConfigPtrType) ToDeploymentIntegrationsServerConfigPtrOutput() DeploymentIntegrationsServerConfigPtrOutput {
+	return i.ToDeploymentIntegrationsServerConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentIntegrationsServerConfigPtrType) ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerConfigPtrOutput)
+}
+
+type DeploymentIntegrationsServerConfigOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServerConfig)(nil)).Elem()
+}
+
+func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServerConfigOutput() DeploymentIntegrationsServerConfigOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServerConfigOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServerConfigPtrOutput() DeploymentIntegrationsServerConfigPtrOutput {
+	return o.ToDeploymentIntegrationsServerConfigPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServerConfig) *DeploymentIntegrationsServerConfig {
+		return &v
+	}).(DeploymentIntegrationsServerConfigPtrOutput)
+}
+
+// Enable debug mode for the component. Defaults to `false`.
+func (o DeploymentIntegrationsServerConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerConfigOutput) DockerImage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
+}
+
+// JSON-formatted user level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
+}
+
+// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
+}
+
+// YAML-formatted user level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentIntegrationsServerConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServerConfig)(nil)).Elem()
+}
+
+func (o DeploymentIntegrationsServerConfigPtrOutput) ToDeploymentIntegrationsServerConfigPtrOutput() DeploymentIntegrationsServerConfigPtrOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerConfigPtrOutput) ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigPtrOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerConfigPtrOutput) Elem() DeploymentIntegrationsServerConfigOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) DeploymentIntegrationsServerConfig {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentIntegrationsServerConfig
+		return ret
+	}).(DeploymentIntegrationsServerConfigOutput)
+}
+
+// Enable debug mode for the component. Defaults to `false`.
+func (o DeploymentIntegrationsServerConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DebugEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerImage
+	}).(pulumi.StringPtrOutput)
+}
+
+// JSON-formatted user level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserSettingsJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserSettingsOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserSettingsOverrideYaml
+	}).(pulumi.StringPtrOutput)
+}
+
+// YAML-formatted user level `elasticsearch.yml` setting overrides.
+func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserSettingsYaml
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentIntegrationsServerTopology struct {
+	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
+	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	Size *string `pulumi:"size"`
+	// Type of resource to which the size is assigned. Defaults to `"memory"`.
+	SizeResource *string `pulumi:"sizeResource"`
+	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	ZoneCount *int `pulumi:"zoneCount"`
+}
+
+// DeploymentIntegrationsServerTopologyInput is an input type that accepts DeploymentIntegrationsServerTopologyArgs and DeploymentIntegrationsServerTopologyOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerTopologyInput` via:
+//
+//          DeploymentIntegrationsServerTopologyArgs{...}
+type DeploymentIntegrationsServerTopologyInput interface {
+	pulumi.Input
+
+	ToDeploymentIntegrationsServerTopologyOutput() DeploymentIntegrationsServerTopologyOutput
+	ToDeploymentIntegrationsServerTopologyOutputWithContext(context.Context) DeploymentIntegrationsServerTopologyOutput
+}
+
+type DeploymentIntegrationsServerTopologyArgs struct {
+	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
+	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	Size pulumi.StringPtrInput `pulumi:"size"`
+	// Type of resource to which the size is assigned. Defaults to `"memory"`.
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
+}
+
+func (DeploymentIntegrationsServerTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyOutput() DeploymentIntegrationsServerTopologyOutput {
+	return i.ToDeploymentIntegrationsServerTopologyOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyOutput)
+}
+
+// DeploymentIntegrationsServerTopologyArrayInput is an input type that accepts DeploymentIntegrationsServerTopologyArray and DeploymentIntegrationsServerTopologyArrayOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerTopologyArrayInput` via:
+//
+//          DeploymentIntegrationsServerTopologyArray{ DeploymentIntegrationsServerTopologyArgs{...} }
+type DeploymentIntegrationsServerTopologyArrayInput interface {
+	pulumi.Input
+
+	ToDeploymentIntegrationsServerTopologyArrayOutput() DeploymentIntegrationsServerTopologyArrayOutput
+	ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(context.Context) DeploymentIntegrationsServerTopologyArrayOutput
+}
+
+type DeploymentIntegrationsServerTopologyArray []DeploymentIntegrationsServerTopologyInput
+
+func (DeploymentIntegrationsServerTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (i DeploymentIntegrationsServerTopologyArray) ToDeploymentIntegrationsServerTopologyArrayOutput() DeploymentIntegrationsServerTopologyArrayOutput {
+	return i.ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerTopologyArray) ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyArrayOutput)
+}
+
+type DeploymentIntegrationsServerTopologyOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyOutput() DeploymentIntegrationsServerTopologyOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyOutput {
+	return o
+}
+
+// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+func (o DeploymentIntegrationsServerTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+func (o DeploymentIntegrationsServerTopologyOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+// Type of resource to which the size is assigned. Defaults to `"memory"`.
+func (o DeploymentIntegrationsServerTopologyOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+func (o DeploymentIntegrationsServerTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentIntegrationsServerTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (o DeploymentIntegrationsServerTopologyArrayOutput) ToDeploymentIntegrationsServerTopologyArrayOutput() DeploymentIntegrationsServerTopologyArrayOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerTopologyArrayOutput) ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyArrayOutput {
+	return o
+}
+
+func (o DeploymentIntegrationsServerTopologyArrayOutput) Index(i pulumi.IntInput) DeploymentIntegrationsServerTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentIntegrationsServerTopology {
+		return vs[0].([]DeploymentIntegrationsServerTopology)[vs[1].(int)]
+	}).(DeploymentIntegrationsServerTopologyOutput)
+}
+
 type DeploymentKibana struct {
 	// Kibana settings applied to all topologies unless overridden in the `topology` element.
 	Config *DeploymentKibanaConfig `pulumi:"config"`
@@ -4857,6 +5467,263 @@ func (o GetDeploymentEnterpriseSearchTopologyArrayOutput) Index(i pulumi.IntInpu
 	}).(GetDeploymentEnterpriseSearchTopologyOutput)
 }
 
+type GetDeploymentIntegrationsServer struct {
+	ElasticsearchClusterRefId string `pulumi:"elasticsearchClusterRefId"`
+	// Overall health status of the deployment.
+	Healthy       bool                                      `pulumi:"healthy"`
+	HttpEndpoint  string                                    `pulumi:"httpEndpoint"`
+	HttpsEndpoint string                                    `pulumi:"httpsEndpoint"`
+	RefId         string                                    `pulumi:"refId"`
+	ResourceId    string                                    `pulumi:"resourceId"`
+	Status        string                                    `pulumi:"status"`
+	Topologies    []GetDeploymentIntegrationsServerTopology `pulumi:"topologies"`
+	Version       string                                    `pulumi:"version"`
+}
+
+// GetDeploymentIntegrationsServerInput is an input type that accepts GetDeploymentIntegrationsServerArgs and GetDeploymentIntegrationsServerOutput values.
+// You can construct a concrete instance of `GetDeploymentIntegrationsServerInput` via:
+//
+//          GetDeploymentIntegrationsServerArgs{...}
+type GetDeploymentIntegrationsServerInput interface {
+	pulumi.Input
+
+	ToGetDeploymentIntegrationsServerOutput() GetDeploymentIntegrationsServerOutput
+	ToGetDeploymentIntegrationsServerOutputWithContext(context.Context) GetDeploymentIntegrationsServerOutput
+}
+
+type GetDeploymentIntegrationsServerArgs struct {
+	ElasticsearchClusterRefId pulumi.StringInput `pulumi:"elasticsearchClusterRefId"`
+	// Overall health status of the deployment.
+	Healthy       pulumi.BoolInput                                  `pulumi:"healthy"`
+	HttpEndpoint  pulumi.StringInput                                `pulumi:"httpEndpoint"`
+	HttpsEndpoint pulumi.StringInput                                `pulumi:"httpsEndpoint"`
+	RefId         pulumi.StringInput                                `pulumi:"refId"`
+	ResourceId    pulumi.StringInput                                `pulumi:"resourceId"`
+	Status        pulumi.StringInput                                `pulumi:"status"`
+	Topologies    GetDeploymentIntegrationsServerTopologyArrayInput `pulumi:"topologies"`
+	Version       pulumi.StringInput                                `pulumi:"version"`
+}
+
+func (GetDeploymentIntegrationsServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (i GetDeploymentIntegrationsServerArgs) ToGetDeploymentIntegrationsServerOutput() GetDeploymentIntegrationsServerOutput {
+	return i.ToGetDeploymentIntegrationsServerOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentIntegrationsServerArgs) ToGetDeploymentIntegrationsServerOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerOutput)
+}
+
+// GetDeploymentIntegrationsServerArrayInput is an input type that accepts GetDeploymentIntegrationsServerArray and GetDeploymentIntegrationsServerArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentIntegrationsServerArrayInput` via:
+//
+//          GetDeploymentIntegrationsServerArray{ GetDeploymentIntegrationsServerArgs{...} }
+type GetDeploymentIntegrationsServerArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentIntegrationsServerArrayOutput() GetDeploymentIntegrationsServerArrayOutput
+	ToGetDeploymentIntegrationsServerArrayOutputWithContext(context.Context) GetDeploymentIntegrationsServerArrayOutput
+}
+
+type GetDeploymentIntegrationsServerArray []GetDeploymentIntegrationsServerInput
+
+func (GetDeploymentIntegrationsServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (i GetDeploymentIntegrationsServerArray) ToGetDeploymentIntegrationsServerArrayOutput() GetDeploymentIntegrationsServerArrayOutput {
+	return i.ToGetDeploymentIntegrationsServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentIntegrationsServerArray) ToGetDeploymentIntegrationsServerArrayOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerArrayOutput)
+}
+
+type GetDeploymentIntegrationsServerOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentIntegrationsServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (o GetDeploymentIntegrationsServerOutput) ToGetDeploymentIntegrationsServerOutput() GetDeploymentIntegrationsServerOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerOutput) ToGetDeploymentIntegrationsServerOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerOutput) ElasticsearchClusterRefId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.ElasticsearchClusterRefId }).(pulumi.StringOutput)
+}
+
+// Overall health status of the deployment.
+func (o GetDeploymentIntegrationsServerOutput) Healthy() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) bool { return v.Healthy }).(pulumi.BoolOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) HttpEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.HttpEndpoint }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) HttpsEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.HttpsEndpoint }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) RefId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.RefId }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) Topologies() GetDeploymentIntegrationsServerTopologyArrayOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) []GetDeploymentIntegrationsServerTopology { return v.Topologies }).(GetDeploymentIntegrationsServerTopologyArrayOutput)
+}
+
+func (o GetDeploymentIntegrationsServerOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetDeploymentIntegrationsServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentIntegrationsServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentIntegrationsServer)(nil)).Elem()
+}
+
+func (o GetDeploymentIntegrationsServerArrayOutput) ToGetDeploymentIntegrationsServerArrayOutput() GetDeploymentIntegrationsServerArrayOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerArrayOutput) ToGetDeploymentIntegrationsServerArrayOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerArrayOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerArrayOutput) Index(i pulumi.IntInput) GetDeploymentIntegrationsServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentIntegrationsServer {
+		return vs[0].([]GetDeploymentIntegrationsServer)[vs[1].(int)]
+	}).(GetDeploymentIntegrationsServerOutput)
+}
+
+type GetDeploymentIntegrationsServerTopology struct {
+	InstanceConfigurationId string `pulumi:"instanceConfigurationId"`
+	Size                    string `pulumi:"size"`
+	SizeResource            string `pulumi:"sizeResource"`
+	ZoneCount               int    `pulumi:"zoneCount"`
+}
+
+// GetDeploymentIntegrationsServerTopologyInput is an input type that accepts GetDeploymentIntegrationsServerTopologyArgs and GetDeploymentIntegrationsServerTopologyOutput values.
+// You can construct a concrete instance of `GetDeploymentIntegrationsServerTopologyInput` via:
+//
+//          GetDeploymentIntegrationsServerTopologyArgs{...}
+type GetDeploymentIntegrationsServerTopologyInput interface {
+	pulumi.Input
+
+	ToGetDeploymentIntegrationsServerTopologyOutput() GetDeploymentIntegrationsServerTopologyOutput
+	ToGetDeploymentIntegrationsServerTopologyOutputWithContext(context.Context) GetDeploymentIntegrationsServerTopologyOutput
+}
+
+type GetDeploymentIntegrationsServerTopologyArgs struct {
+	InstanceConfigurationId pulumi.StringInput `pulumi:"instanceConfigurationId"`
+	Size                    pulumi.StringInput `pulumi:"size"`
+	SizeResource            pulumi.StringInput `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntInput    `pulumi:"zoneCount"`
+}
+
+func (GetDeploymentIntegrationsServerTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (i GetDeploymentIntegrationsServerTopologyArgs) ToGetDeploymentIntegrationsServerTopologyOutput() GetDeploymentIntegrationsServerTopologyOutput {
+	return i.ToGetDeploymentIntegrationsServerTopologyOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentIntegrationsServerTopologyArgs) ToGetDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerTopologyOutput)
+}
+
+// GetDeploymentIntegrationsServerTopologyArrayInput is an input type that accepts GetDeploymentIntegrationsServerTopologyArray and GetDeploymentIntegrationsServerTopologyArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentIntegrationsServerTopologyArrayInput` via:
+//
+//          GetDeploymentIntegrationsServerTopologyArray{ GetDeploymentIntegrationsServerTopologyArgs{...} }
+type GetDeploymentIntegrationsServerTopologyArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentIntegrationsServerTopologyArrayOutput() GetDeploymentIntegrationsServerTopologyArrayOutput
+	ToGetDeploymentIntegrationsServerTopologyArrayOutputWithContext(context.Context) GetDeploymentIntegrationsServerTopologyArrayOutput
+}
+
+type GetDeploymentIntegrationsServerTopologyArray []GetDeploymentIntegrationsServerTopologyInput
+
+func (GetDeploymentIntegrationsServerTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (i GetDeploymentIntegrationsServerTopologyArray) ToGetDeploymentIntegrationsServerTopologyArrayOutput() GetDeploymentIntegrationsServerTopologyArrayOutput {
+	return i.ToGetDeploymentIntegrationsServerTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentIntegrationsServerTopologyArray) ToGetDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerTopologyArrayOutput)
+}
+
+type GetDeploymentIntegrationsServerTopologyOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentIntegrationsServerTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) ToGetDeploymentIntegrationsServerTopologyOutput() GetDeploymentIntegrationsServerTopologyOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) ToGetDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerTopologyOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) string { return v.InstanceConfigurationId }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) string { return v.Size }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) SizeResource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) string { return v.SizeResource }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) ZoneCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) int { return v.ZoneCount }).(pulumi.IntOutput)
+}
+
+type GetDeploymentIntegrationsServerTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentIntegrationsServerTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentIntegrationsServerTopology)(nil)).Elem()
+}
+
+func (o GetDeploymentIntegrationsServerTopologyArrayOutput) ToGetDeploymentIntegrationsServerTopologyArrayOutput() GetDeploymentIntegrationsServerTopologyArrayOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerTopologyArrayOutput) ToGetDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerTopologyArrayOutput {
+	return o
+}
+
+func (o GetDeploymentIntegrationsServerTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploymentIntegrationsServerTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentIntegrationsServerTopology {
+		return vs[0].([]GetDeploymentIntegrationsServerTopology)[vs[1].(int)]
+	}).(GetDeploymentIntegrationsServerTopologyOutput)
+}
+
 type GetDeploymentKibana struct {
 	ElasticsearchClusterRefId string `pulumi:"elasticsearchClusterRefId"`
 	// Overall health status of the deployment.
@@ -5394,17 +6261,19 @@ func (o GetDeploymentsApmPtrOutput) Version() pulumi.StringPtrOutput {
 }
 
 type GetDeploymentsDeployment struct {
-	Alias                      string `pulumi:"alias"`
-	ApmRefId                   string `pulumi:"apmRefId"`
-	ApmResourceId              string `pulumi:"apmResourceId"`
-	DeploymentId               string `pulumi:"deploymentId"`
-	ElasticsearchRefId         string `pulumi:"elasticsearchRefId"`
-	ElasticsearchResourceId    string `pulumi:"elasticsearchResourceId"`
-	EnterpriseSearchRefId      string `pulumi:"enterpriseSearchRefId"`
-	EnterpriseSearchResourceId string `pulumi:"enterpriseSearchResourceId"`
-	KibanaRefId                string `pulumi:"kibanaRefId"`
-	KibanaResourceId           string `pulumi:"kibanaResourceId"`
-	Name                       string `pulumi:"name"`
+	Alias                        string `pulumi:"alias"`
+	ApmRefId                     string `pulumi:"apmRefId"`
+	ApmResourceId                string `pulumi:"apmResourceId"`
+	DeploymentId                 string `pulumi:"deploymentId"`
+	ElasticsearchRefId           string `pulumi:"elasticsearchRefId"`
+	ElasticsearchResourceId      string `pulumi:"elasticsearchResourceId"`
+	EnterpriseSearchRefId        string `pulumi:"enterpriseSearchRefId"`
+	EnterpriseSearchResourceId   string `pulumi:"enterpriseSearchResourceId"`
+	IntegrationsServerRefId      string `pulumi:"integrationsServerRefId"`
+	IntegrationsServerResourceId string `pulumi:"integrationsServerResourceId"`
+	KibanaRefId                  string `pulumi:"kibanaRefId"`
+	KibanaResourceId             string `pulumi:"kibanaResourceId"`
+	Name                         string `pulumi:"name"`
 }
 
 // GetDeploymentsDeploymentInput is an input type that accepts GetDeploymentsDeploymentArgs and GetDeploymentsDeploymentOutput values.
@@ -5419,17 +6288,19 @@ type GetDeploymentsDeploymentInput interface {
 }
 
 type GetDeploymentsDeploymentArgs struct {
-	Alias                      pulumi.StringInput `pulumi:"alias"`
-	ApmRefId                   pulumi.StringInput `pulumi:"apmRefId"`
-	ApmResourceId              pulumi.StringInput `pulumi:"apmResourceId"`
-	DeploymentId               pulumi.StringInput `pulumi:"deploymentId"`
-	ElasticsearchRefId         pulumi.StringInput `pulumi:"elasticsearchRefId"`
-	ElasticsearchResourceId    pulumi.StringInput `pulumi:"elasticsearchResourceId"`
-	EnterpriseSearchRefId      pulumi.StringInput `pulumi:"enterpriseSearchRefId"`
-	EnterpriseSearchResourceId pulumi.StringInput `pulumi:"enterpriseSearchResourceId"`
-	KibanaRefId                pulumi.StringInput `pulumi:"kibanaRefId"`
-	KibanaResourceId           pulumi.StringInput `pulumi:"kibanaResourceId"`
-	Name                       pulumi.StringInput `pulumi:"name"`
+	Alias                        pulumi.StringInput `pulumi:"alias"`
+	ApmRefId                     pulumi.StringInput `pulumi:"apmRefId"`
+	ApmResourceId                pulumi.StringInput `pulumi:"apmResourceId"`
+	DeploymentId                 pulumi.StringInput `pulumi:"deploymentId"`
+	ElasticsearchRefId           pulumi.StringInput `pulumi:"elasticsearchRefId"`
+	ElasticsearchResourceId      pulumi.StringInput `pulumi:"elasticsearchResourceId"`
+	EnterpriseSearchRefId        pulumi.StringInput `pulumi:"enterpriseSearchRefId"`
+	EnterpriseSearchResourceId   pulumi.StringInput `pulumi:"enterpriseSearchResourceId"`
+	IntegrationsServerRefId      pulumi.StringInput `pulumi:"integrationsServerRefId"`
+	IntegrationsServerResourceId pulumi.StringInput `pulumi:"integrationsServerResourceId"`
+	KibanaRefId                  pulumi.StringInput `pulumi:"kibanaRefId"`
+	KibanaResourceId             pulumi.StringInput `pulumi:"kibanaResourceId"`
+	Name                         pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetDeploymentsDeploymentArgs) ElementType() reflect.Type {
@@ -5513,6 +6384,14 @@ func (o GetDeploymentsDeploymentOutput) EnterpriseSearchRefId() pulumi.StringOut
 
 func (o GetDeploymentsDeploymentOutput) EnterpriseSearchResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.EnterpriseSearchResourceId }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentOutput) IntegrationsServerRefId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.IntegrationsServerRefId }).(pulumi.StringOutput)
+}
+
+func (o GetDeploymentsDeploymentOutput) IntegrationsServerResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.IntegrationsServerResourceId }).(pulumi.StringOutput)
 }
 
 func (o GetDeploymentsDeploymentOutput) KibanaRefId() pulumi.StringOutput {
@@ -5874,6 +6753,173 @@ func (o GetDeploymentsEnterpriseSearchPtrOutput) Status() pulumi.StringPtrOutput
 
 func (o GetDeploymentsEnterpriseSearchPtrOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetDeploymentsEnterpriseSearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetDeploymentsIntegrationsServer struct {
+	// Overall health status of the deployment.
+	Healthy *string `pulumi:"healthy"`
+	Status  *string `pulumi:"status"`
+	Version *string `pulumi:"version"`
+}
+
+// GetDeploymentsIntegrationsServerInput is an input type that accepts GetDeploymentsIntegrationsServerArgs and GetDeploymentsIntegrationsServerOutput values.
+// You can construct a concrete instance of `GetDeploymentsIntegrationsServerInput` via:
+//
+//          GetDeploymentsIntegrationsServerArgs{...}
+type GetDeploymentsIntegrationsServerInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsIntegrationsServerOutput() GetDeploymentsIntegrationsServerOutput
+	ToGetDeploymentsIntegrationsServerOutputWithContext(context.Context) GetDeploymentsIntegrationsServerOutput
+}
+
+type GetDeploymentsIntegrationsServerArgs struct {
+	// Overall health status of the deployment.
+	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
+	Status  pulumi.StringPtrInput `pulumi:"status"`
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (GetDeploymentsIntegrationsServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsIntegrationsServer)(nil)).Elem()
+}
+
+func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServerOutput() GetDeploymentsIntegrationsServerOutput {
+	return i.ToGetDeploymentsIntegrationsServerOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServerOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerOutput)
+}
+
+func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
+	return i.ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerOutput).ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx)
+}
+
+// GetDeploymentsIntegrationsServerPtrInput is an input type that accepts GetDeploymentsIntegrationsServerArgs, GetDeploymentsIntegrationsServerPtr and GetDeploymentsIntegrationsServerPtrOutput values.
+// You can construct a concrete instance of `GetDeploymentsIntegrationsServerPtrInput` via:
+//
+//          GetDeploymentsIntegrationsServerArgs{...}
+//
+//  or:
+//
+//          nil
+type GetDeploymentsIntegrationsServerPtrInput interface {
+	pulumi.Input
+
+	ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput
+	ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Context) GetDeploymentsIntegrationsServerPtrOutput
+}
+
+type getDeploymentsIntegrationsServerPtrType GetDeploymentsIntegrationsServerArgs
+
+func GetDeploymentsIntegrationsServerPtr(v *GetDeploymentsIntegrationsServerArgs) GetDeploymentsIntegrationsServerPtrInput {
+	return (*getDeploymentsIntegrationsServerPtrType)(v)
+}
+
+func (*getDeploymentsIntegrationsServerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetDeploymentsIntegrationsServer)(nil)).Elem()
+}
+
+func (i *getDeploymentsIntegrationsServerPtrType) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
+	return i.ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Background())
+}
+
+func (i *getDeploymentsIntegrationsServerPtrType) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerPtrOutput)
+}
+
+type GetDeploymentsIntegrationsServerOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsIntegrationsServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsIntegrationsServer)(nil)).Elem()
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerOutput() GetDeploymentsIntegrationsServerOutput {
+	return o
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerOutput {
+	return o
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
+	return o.ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Background())
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeploymentsIntegrationsServer) *GetDeploymentsIntegrationsServer {
+		return &v
+	}).(GetDeploymentsIntegrationsServerPtrOutput)
+}
+
+// Overall health status of the deployment.
+func (o GetDeploymentsIntegrationsServerOutput) Healthy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDeploymentsIntegrationsServer) *string { return v.Healthy }).(pulumi.StringPtrOutput)
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDeploymentsIntegrationsServer) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDeploymentsIntegrationsServer) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type GetDeploymentsIntegrationsServerPtrOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsIntegrationsServerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetDeploymentsIntegrationsServer)(nil)).Elem()
+}
+
+func (o GetDeploymentsIntegrationsServerPtrOutput) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
+	return o
+}
+
+func (o GetDeploymentsIntegrationsServerPtrOutput) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
+	return o
+}
+
+func (o GetDeploymentsIntegrationsServerPtrOutput) Elem() GetDeploymentsIntegrationsServerOutput {
+	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) GetDeploymentsIntegrationsServer {
+		if v != nil {
+			return *v
+		}
+		var ret GetDeploymentsIntegrationsServer
+		return ret
+	}).(GetDeploymentsIntegrationsServerOutput)
+}
+
+// Overall health status of the deployment.
+func (o GetDeploymentsIntegrationsServerPtrOutput) Healthy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Healthy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetDeploymentsIntegrationsServerPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetDeploymentsIntegrationsServerPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) *string {
 		if v == nil {
 			return nil
 		}
@@ -6601,6 +7647,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchConfigPtrInput)(nil)).Elem(), DeploymentEnterpriseSearchConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyArrayInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerInput)(nil)).Elem(), DeploymentIntegrationsServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerPtrInput)(nil)).Elem(), DeploymentIntegrationsServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerConfigInput)(nil)).Elem(), DeploymentIntegrationsServerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerConfigPtrInput)(nil)).Elem(), DeploymentIntegrationsServerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyArrayInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaInput)(nil)).Elem(), DeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaPtrInput)(nil)).Elem(), DeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaConfigInput)(nil)).Elem(), DeploymentKibanaConfigArgs{})
@@ -6625,6 +7677,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnterpriseSearchArrayInput)(nil)).Elem(), GetDeploymentEnterpriseSearchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnterpriseSearchTopologyInput)(nil)).Elem(), GetDeploymentEnterpriseSearchTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEnterpriseSearchTopologyArrayInput)(nil)).Elem(), GetDeploymentEnterpriseSearchTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentIntegrationsServerInput)(nil)).Elem(), GetDeploymentIntegrationsServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentIntegrationsServerArrayInput)(nil)).Elem(), GetDeploymentIntegrationsServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentIntegrationsServerTopologyInput)(nil)).Elem(), GetDeploymentIntegrationsServerTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentIntegrationsServerTopologyArrayInput)(nil)).Elem(), GetDeploymentIntegrationsServerTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentKibanaInput)(nil)).Elem(), GetDeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentKibanaArrayInput)(nil)).Elem(), GetDeploymentKibanaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentKibanaTopologyInput)(nil)).Elem(), GetDeploymentKibanaTopologyArgs{})
@@ -6639,6 +7695,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsElasticsearchPtrInput)(nil)).Elem(), GetDeploymentsElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsEnterpriseSearchInput)(nil)).Elem(), GetDeploymentsEnterpriseSearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsEnterpriseSearchPtrInput)(nil)).Elem(), GetDeploymentsEnterpriseSearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsIntegrationsServerInput)(nil)).Elem(), GetDeploymentsIntegrationsServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsIntegrationsServerPtrInput)(nil)).Elem(), GetDeploymentsIntegrationsServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsKibanaInput)(nil)).Elem(), GetDeploymentsKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsKibanaPtrInput)(nil)).Elem(), GetDeploymentsKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackApmInput)(nil)).Elem(), GetStackApmArgs{})
@@ -6681,6 +7739,12 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchConfigPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerConfigOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerConfigPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaConfigOutput{})
@@ -6705,6 +7769,10 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentEnterpriseSearchArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentEnterpriseSearchTopologyOutput{})
 	pulumi.RegisterOutputType(GetDeploymentEnterpriseSearchTopologyArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentIntegrationsServerOutput{})
+	pulumi.RegisterOutputType(GetDeploymentIntegrationsServerArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentIntegrationsServerTopologyOutput{})
+	pulumi.RegisterOutputType(GetDeploymentIntegrationsServerTopologyArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentKibanaOutput{})
 	pulumi.RegisterOutputType(GetDeploymentKibanaArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentKibanaTopologyOutput{})
@@ -6719,6 +7787,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentsElasticsearchPtrOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsEnterpriseSearchOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsEnterpriseSearchPtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsIntegrationsServerOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsIntegrationsServerPtrOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsKibanaOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsKibanaPtrOutput{})
 	pulumi.RegisterOutputType(GetStackApmOutput{})

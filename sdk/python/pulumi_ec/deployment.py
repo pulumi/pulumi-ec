@@ -22,6 +22,7 @@ class DeploymentArgs:
                  alias: Optional[pulumi.Input[str]] = None,
                  apm: Optional[pulumi.Input['DeploymentApmArgs']] = None,
                  enterprise_search: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']] = None,
+                 integrations_server: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']] = None,
                  kibana: Optional[pulumi.Input['DeploymentKibanaArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input['DeploymentObservabilityArgs']] = None,
@@ -35,8 +36,9 @@ class DeploymentArgs:
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
         :param pulumi.Input[str] version: Elastic Stack version to use for all the deployment resources.
         :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
-        :param pulumi.Input['DeploymentApmArgs'] apm: APM instance definition, can only be specified once.
+        :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+        :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana instance definition, can only be specified once.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a separate deployment.
@@ -54,6 +56,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "apm", apm)
         if enterprise_search is not None:
             pulumi.set(__self__, "enterprise_search", enterprise_search)
+        if integrations_server is not None:
+            pulumi.set(__self__, "integrations_server", integrations_server)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
         if name is not None:
@@ -131,7 +135,7 @@ class DeploymentArgs:
     @pulumi.getter
     def apm(self) -> Optional[pulumi.Input['DeploymentApmArgs']]:
         """
-        APM instance definition, can only be specified once.
+        **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         """
         return pulumi.get(self, "apm")
 
@@ -150,6 +154,18 @@ class DeploymentArgs:
     @enterprise_search.setter
     def enterprise_search(self, value: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']]):
         pulumi.set(self, "enterprise_search", value)
+
+    @property
+    @pulumi.getter(name="integrationsServer")
+    def integrations_server(self) -> Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]:
+        """
+        Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+        """
+        return pulumi.get(self, "integrations_server")
+
+    @integrations_server.setter
+    def integrations_server(self, value: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]):
+        pulumi.set(self, "integrations_server", value)
 
     @property
     @pulumi.getter
@@ -235,6 +251,7 @@ class _DeploymentState:
                  elasticsearch_password: Optional[pulumi.Input[str]] = None,
                  elasticsearch_username: Optional[pulumi.Input[str]] = None,
                  enterprise_search: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']] = None,
+                 integrations_server: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']] = None,
                  kibana: Optional[pulumi.Input['DeploymentKibanaArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input['DeploymentObservabilityArgs']] = None,
@@ -246,7 +263,7 @@ class _DeploymentState:
         """
         Input properties used for looking up and filtering Deployment resources.
         :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
-        :param pulumi.Input['DeploymentApmArgs'] apm: APM instance definition, can only be specified once.
+        :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         :param pulumi.Input[str] apm_secret_token: Auto-generated APM secret_token, empty unless an `apm` resource is specified.
                * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
                * `elasticsearch.#.region` - Elasticsearch region.
@@ -266,6 +283,10 @@ class _DeploymentState:
                * `kibana.#.region` - Kibana region.
                * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
                * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+               * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+               * `integrations_server.#.region` - Integrations Server region.
+               * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+               * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
                * `apm.#.resource_id` - APM resource unique identifier.
                * `apm.#.region` - APM region.
                * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -286,6 +307,7 @@ class _DeploymentState:
         :param pulumi.Input[str] elasticsearch_password: Auto-generated Elasticsearch password.
         :param pulumi.Input[str] elasticsearch_username: Auto-generated Elasticsearch username.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+        :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana instance definition, can only be specified once.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a separate deployment.
@@ -311,6 +333,8 @@ class _DeploymentState:
             pulumi.set(__self__, "elasticsearch_username", elasticsearch_username)
         if enterprise_search is not None:
             pulumi.set(__self__, "enterprise_search", enterprise_search)
+        if integrations_server is not None:
+            pulumi.set(__self__, "integrations_server", integrations_server)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
         if name is not None:
@@ -344,7 +368,7 @@ class _DeploymentState:
     @pulumi.getter
     def apm(self) -> Optional[pulumi.Input['DeploymentApmArgs']]:
         """
-        APM instance definition, can only be specified once.
+        **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         """
         return pulumi.get(self, "apm")
 
@@ -375,6 +399,10 @@ class _DeploymentState:
         * `kibana.#.region` - Kibana region.
         * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
         * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+        * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+        * `integrations_server.#.region` - Integrations Server region.
+        * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+        * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
         * `apm.#.resource_id` - APM resource unique identifier.
         * `apm.#.region` - APM region.
         * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -456,6 +484,18 @@ class _DeploymentState:
     @enterprise_search.setter
     def enterprise_search(self, value: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']]):
         pulumi.set(self, "enterprise_search", value)
+
+    @property
+    @pulumi.getter(name="integrationsServer")
+    def integrations_server(self) -> Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]:
+        """
+        Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+        """
+        return pulumi.get(self, "integrations_server")
+
+    @integrations_server.setter
+    def integrations_server(self, value: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]):
+        pulumi.set(self, "integrations_server", value)
 
     @property
     @pulumi.getter
@@ -564,6 +604,7 @@ class Deployment(pulumi.CustomResource):
                  deployment_template_id: Optional[pulumi.Input[str]] = None,
                  elasticsearch: Optional[pulumi.Input[pulumi.InputType['DeploymentElasticsearchArgs']]] = None,
                  enterprise_search: Optional[pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']]] = None,
+                 integrations_server: Optional[pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']]] = None,
                  kibana: Optional[pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']]] = None,
@@ -585,10 +626,11 @@ class Deployment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
-        :param pulumi.Input[pulumi.InputType['DeploymentApmArgs']] apm: APM instance definition, can only be specified once.
+        :param pulumi.Input[pulumi.InputType['DeploymentApmArgs']] apm: **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[pulumi.InputType['DeploymentElasticsearchArgs']] elasticsearch: Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
         :param pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+        :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana instance definition, can only be specified once.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a separate deployment.
@@ -633,6 +675,7 @@ class Deployment(pulumi.CustomResource):
                  deployment_template_id: Optional[pulumi.Input[str]] = None,
                  elasticsearch: Optional[pulumi.Input[pulumi.InputType['DeploymentElasticsearchArgs']]] = None,
                  enterprise_search: Optional[pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']]] = None,
+                 integrations_server: Optional[pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']]] = None,
                  kibana: Optional[pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']]] = None,
@@ -662,6 +705,7 @@ class Deployment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'elasticsearch'")
             __props__.__dict__["elasticsearch"] = elasticsearch
             __props__.__dict__["enterprise_search"] = enterprise_search
+            __props__.__dict__["integrations_server"] = integrations_server
             __props__.__dict__["kibana"] = kibana
             __props__.__dict__["name"] = name
             __props__.__dict__["observability"] = observability
@@ -695,6 +739,7 @@ class Deployment(pulumi.CustomResource):
             elasticsearch_password: Optional[pulumi.Input[str]] = None,
             elasticsearch_username: Optional[pulumi.Input[str]] = None,
             enterprise_search: Optional[pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']]] = None,
+            integrations_server: Optional[pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']]] = None,
             kibana: Optional[pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             observability: Optional[pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']]] = None,
@@ -711,7 +756,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
-        :param pulumi.Input[pulumi.InputType['DeploymentApmArgs']] apm: APM instance definition, can only be specified once.
+        :param pulumi.Input[pulumi.InputType['DeploymentApmArgs']] apm: **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         :param pulumi.Input[str] apm_secret_token: Auto-generated APM secret_token, empty unless an `apm` resource is specified.
                * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
                * `elasticsearch.#.region` - Elasticsearch region.
@@ -731,6 +776,10 @@ class Deployment(pulumi.CustomResource):
                * `kibana.#.region` - Kibana region.
                * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
                * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+               * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+               * `integrations_server.#.region` - Integrations Server region.
+               * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+               * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
                * `apm.#.resource_id` - APM resource unique identifier.
                * `apm.#.region` - APM region.
                * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -751,6 +800,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] elasticsearch_password: Auto-generated Elasticsearch password.
         :param pulumi.Input[str] elasticsearch_username: Auto-generated Elasticsearch username.
         :param pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+        :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana instance definition, can only be specified once.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a separate deployment.
@@ -772,6 +822,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["elasticsearch_password"] = elasticsearch_password
         __props__.__dict__["elasticsearch_username"] = elasticsearch_username
         __props__.__dict__["enterprise_search"] = enterprise_search
+        __props__.__dict__["integrations_server"] = integrations_server
         __props__.__dict__["kibana"] = kibana
         __props__.__dict__["name"] = name
         __props__.__dict__["observability"] = observability
@@ -794,7 +845,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def apm(self) -> pulumi.Output[Optional['outputs.DeploymentApm']]:
         """
-        APM instance definition, can only be specified once.
+        **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         """
         return pulumi.get(self, "apm")
 
@@ -821,6 +872,10 @@ class Deployment(pulumi.CustomResource):
         * `kibana.#.region` - Kibana region.
         * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
         * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+        * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+        * `integrations_server.#.region` - Integrations Server region.
+        * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+        * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
         * `apm.#.resource_id` - APM resource unique identifier.
         * `apm.#.region` - APM region.
         * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -878,6 +933,14 @@ class Deployment(pulumi.CustomResource):
         Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
         """
         return pulumi.get(self, "enterprise_search")
+
+    @property
+    @pulumi.getter(name="integrationsServer")
+    def integrations_server(self) -> pulumi.Output[Optional['outputs.DeploymentIntegrationsServer']]:
+        """
+        Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+        """
+        return pulumi.get(self, "integrations_server")
 
     @property
     @pulumi.getter
