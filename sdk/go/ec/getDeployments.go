@@ -24,25 +24,22 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "azure-compute-optimized"
-// 		opt1 := "test"
-// 		opt2 := 200
 // 		_, err := ec.GetDeployments(ctx, &GetDeploymentsArgs{
-// 			DeploymentTemplateId: &opt0,
+// 			DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
 // 			Elasticsearch: GetDeploymentsElasticsearch{
-// 				Healthy: "true",
+// 				Healthy: pulumi.StringRef("true"),
 // 			},
 // 			EnterpriseSearch: GetDeploymentsEnterpriseSearch{
-// 				Healthy: "true",
+// 				Healthy: pulumi.StringRef("true"),
 // 			},
 // 			IntegrationsServer: GetDeploymentsIntegrationsServer{
-// 				Version: "8.0.0",
+// 				Version: pulumi.StringRef("8.0.0"),
 // 			},
 // 			Kibana: GetDeploymentsKibana{
-// 				Status: "started",
+// 				Status: pulumi.StringRef("started"),
 // 			},
-// 			NamePrefix: &opt1,
-// 			Size:       &opt2,
+// 			NamePrefix: pulumi.StringRef("test"),
+// 			Size:       pulumi.IntRef(200),
 // 			Tags: map[string]interface{}{
 // 				"foo": "bar",
 // 			},

@@ -162,6 +162,56 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
+        ### Adding a new keystore setting to your deployment
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        # Create an Elastic Cloud deployment
+        example_keystore = ec.Deployment("exampleKeystore",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs())
+        # Create the keystore secret entry
+        secure_url = ec.DeploymentElasticsearchKeystore("secureUrl",
+            deployment_id=example_keystore.id,
+            setting_name="xpack.notification.slack.account.hello.secure_url",
+            value="http://my-secure-url.com")
+        ```
+        ### Adding credentials to use GCS as a snapshot repository
+
+        For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        # Create an Elastic Cloud deployment
+        example_keystore = ec.Deployment("exampleKeystore",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs())
+        # Create the keystore secret entry
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+            deployment_id=example_keystore.id,
+            setting_name="gcs.client.default.credentials_file",
+            value=(lambda path: open(path).read())("service-account-key.json"),
+            as_file=True)
+        ```
+        ## Attributes reference
+
+        There are no additional attributes exported by this resource other than the referenced arguments.
+
         ## Import
 
         This resource cannot be imported.
@@ -180,6 +230,56 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                  args: DeploymentElasticsearchKeystoreArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
+        ### Adding a new keystore setting to your deployment
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        # Create an Elastic Cloud deployment
+        example_keystore = ec.Deployment("exampleKeystore",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs())
+        # Create the keystore secret entry
+        secure_url = ec.DeploymentElasticsearchKeystore("secureUrl",
+            deployment_id=example_keystore.id,
+            setting_name="xpack.notification.slack.account.hello.secure_url",
+            value="http://my-secure-url.com")
+        ```
+        ### Adding credentials to use GCS as a snapshot repository
+
+        For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        # Create an Elastic Cloud deployment
+        example_keystore = ec.Deployment("exampleKeystore",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs())
+        # Create the keystore secret entry
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+            deployment_id=example_keystore.id,
+            setting_name="gcs.client.default.credentials_file",
+            value=(lambda path: open(path).read())("service-account-key.json"),
+            as_file=True)
+        ```
+        ## Attributes reference
+
+        There are no additional attributes exported by this resource other than the referenced arguments.
+
         ## Import
 
         This resource cannot be imported.

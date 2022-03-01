@@ -615,6 +615,126 @@ class Deployment(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        example_minimal = ec.Deployment("exampleMinimal",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            kibana=ec.DeploymentKibanaArgs(),
+            integrations_server=ec.DeploymentIntegrationsServerArgs(),
+            enterprise_search=ec.DeploymentEnterpriseSearchArgs())
+        ```
+        ### Tiered deployment with Autoscaling enabled
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        example_minimal = ec.Deployment("exampleMinimal",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                autoscale="true",
+                topologies=[
+                    ec.DeploymentElasticsearchTopologyArgs(
+                        id="cold",
+                        size="8g",
+                    ),
+                    ec.DeploymentElasticsearchTopologyArgs(
+                        id="hot_content",
+                        size="8g",
+                        autoscaling=ec.DeploymentElasticsearchTopologyAutoscalingArgs(),
+                    ),
+                    ec.DeploymentElasticsearchTopologyArgs(
+                        id="warm",
+                        size="16g",
+                    ),
+                ],
+            ),
+            kibana=ec.DeploymentKibanaArgs(),
+            integrations_server=ec.DeploymentIntegrationsServerArgs(),
+            enterprise_search=ec.DeploymentEnterpriseSearchArgs())
+        ```
+        ### With observability settings
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        example_observability = ec.Deployment("exampleObservability",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            kibana=ec.DeploymentKibanaArgs(),
+            observability=ec.DeploymentObservabilityArgs(
+                deployment_id=ec_deployment["example_minimal"]["id"],
+            ))
+        ```
+        ### With Cross Cluster Search settings
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        source_deployment = ec.Deployment("sourceDeployment",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                topologies=[ec.DeploymentElasticsearchTopologyArgs(
+                    id="hot_content",
+                    size="1g",
+                )],
+            ))
+        ccs = ec.Deployment("ccs",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-cross-cluster-search-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                remote_clusters=[ec.DeploymentElasticsearchRemoteClusterArgs(
+                    deployment_id=source_deployment.id,
+                    alias=source_deployment.name,
+                    ref_id=source_deployment.elasticsearch.ref_id,
+                )],
+            ),
+            kibana=ec.DeploymentKibanaArgs())
+        ```
+        ### With tags
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        with_tags = ec.Deployment("withTags",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            tags={
+                "owner": "elastic cloud",
+                "component": "search",
+            })
+        ```
+
         ## Import
 
         ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example
@@ -647,6 +767,126 @@ class Deployment(pulumi.CustomResource):
                  args: DeploymentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        example_minimal = ec.Deployment("exampleMinimal",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            kibana=ec.DeploymentKibanaArgs(),
+            integrations_server=ec.DeploymentIntegrationsServerArgs(),
+            enterprise_search=ec.DeploymentEnterpriseSearchArgs())
+        ```
+        ### Tiered deployment with Autoscaling enabled
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        example_minimal = ec.Deployment("exampleMinimal",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                autoscale="true",
+                topologies=[
+                    ec.DeploymentElasticsearchTopologyArgs(
+                        id="cold",
+                        size="8g",
+                    ),
+                    ec.DeploymentElasticsearchTopologyArgs(
+                        id="hot_content",
+                        size="8g",
+                        autoscaling=ec.DeploymentElasticsearchTopologyAutoscalingArgs(),
+                    ),
+                    ec.DeploymentElasticsearchTopologyArgs(
+                        id="warm",
+                        size="16g",
+                    ),
+                ],
+            ),
+            kibana=ec.DeploymentKibanaArgs(),
+            integrations_server=ec.DeploymentIntegrationsServerArgs(),
+            enterprise_search=ec.DeploymentEnterpriseSearchArgs())
+        ```
+        ### With observability settings
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        example_observability = ec.Deployment("exampleObservability",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            kibana=ec.DeploymentKibanaArgs(),
+            observability=ec.DeploymentObservabilityArgs(
+                deployment_id=ec_deployment["example_minimal"]["id"],
+            ))
+        ```
+        ### With Cross Cluster Search settings
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        source_deployment = ec.Deployment("sourceDeployment",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                topologies=[ec.DeploymentElasticsearchTopologyArgs(
+                    id="hot_content",
+                    size="1g",
+                )],
+            ))
+        ccs = ec.Deployment("ccs",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-cross-cluster-search-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                remote_clusters=[ec.DeploymentElasticsearchRemoteClusterArgs(
+                    deployment_id=source_deployment.id,
+                    alias=source_deployment.name,
+                    ref_id=source_deployment.elasticsearch.ref_id,
+                )],
+            ),
+            kibana=ec.DeploymentKibanaArgs())
+        ```
+        ### With tags
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        with_tags = ec.Deployment("withTags",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            tags={
+                "owner": "elastic cloud",
+                "component": "search",
+            })
+        ```
+
         ## Import
 
         ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example

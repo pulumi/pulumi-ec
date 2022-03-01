@@ -10,6 +10,205 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = ,
+    ///             Kibana = ,
+    ///             IntegrationsServer = ,
+    ///             EnterpriseSearch = ,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Tiered deployment with Autoscaling enabled
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///             {
+    ///                 Autoscale = "true",
+    ///                 Topologies = 
+    ///                 {
+    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                     {
+    ///                         Id = "cold",
+    ///                         Size = "8g",
+    ///                     },
+    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                     {
+    ///                         Id = "hot_content",
+    ///                         Size = "8g",
+    ///                         Autoscaling = ,
+    ///                     },
+    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                     {
+    ///                         Id = "warm",
+    ///                         Size = "16g",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Kibana = ,
+    ///             IntegrationsServer = ,
+    ///             EnterpriseSearch = ,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### With observability settings
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         var exampleObservability = new ElasticCloud.Deployment("exampleObservability", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = ,
+    ///             Kibana = ,
+    ///             Observability = new ElasticCloud.Inputs.DeploymentObservabilityArgs
+    ///             {
+    ///                 DeploymentId = ec_deployment.Example_minimal.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### With Cross Cluster Search settings
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         var sourceDeployment = new ElasticCloud.Deployment("sourceDeployment", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///             {
+    ///                 Topologies = 
+    ///                 {
+    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                     {
+    ///                         Id = "hot_content",
+    ///                         Size = "1g",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///         var ccs = new ElasticCloud.Deployment("ccs", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-cross-cluster-search-v2",
+    ///             Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///             {
+    ///                 RemoteClusters = 
+    ///                 {
+    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchRemoteClusterArgs
+    ///                     {
+    ///                         DeploymentId = sourceDeployment.Id,
+    ///                         Alias = sourceDeployment.Name,
+    ///                         RefId = sourceDeployment.Elasticsearch.Apply(elasticsearch =&gt; elasticsearch.RefId),
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Kibana = ,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### With tags
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         var withTags = new ElasticCloud.Deployment("withTags", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = ,
+    ///             Tags = 
+    ///             {
+    ///                 { "owner", "elastic cloud" },
+    ///                 { "component", "search" },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ~&gt; **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~&gt; **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~&gt; **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example

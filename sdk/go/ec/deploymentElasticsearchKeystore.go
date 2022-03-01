@@ -11,6 +11,106 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
+// ### Adding a new keystore setting to your deployment
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
+// 			VersionRegex: "latest",
+// 			Region:       "us-east-1",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+// 			Region:               pulumi.String("us-east-1"),
+// 			Version:              pulumi.String(latest.Version),
+// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+// 			Elasticsearch:        nil,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "secureUrl", &ec.DeploymentElasticsearchKeystoreArgs{
+// 			DeploymentId: exampleKeystore.ID(),
+// 			SettingName:  pulumi.String("xpack.notification.slack.account.hello.secure_url"),
+// 			Value:        pulumi.String("http://my-secure-url.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Adding credentials to use GCS as a snapshot repository
+//
+// For up-to-date documentation on the `settingName`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+//
+// ```go
+// package main
+//
+// import (
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
+// 			VersionRegex: "latest",
+// 			Region:       "us-east-1",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+// 			Region:               pulumi.String("us-east-1"),
+// 			Version:              pulumi.String(latest.Version),
+// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+// 			Elasticsearch:        nil,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
+// 			DeploymentId: exampleKeystore.ID(),
+// 			SettingName:  pulumi.String("gcs.client.default.credentials_file"),
+// 			Value:        readFileOrPanic("service-account-key.json"),
+// 			AsFile:       pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Attributes reference
+//
+// There are no additional attributes exported by this resource other than the referenced arguments.
+//
 // ## Import
 //
 // This resource cannot be imported.

@@ -5,6 +5,65 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
+ * ### Adding a new keystore setting to your deployment
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * // Create an Elastic Cloud deployment
+ * const exampleKeystore = new ec.Deployment("exampleKeystore", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {},
+ * });
+ * // Create the keystore secret entry
+ * const secureUrl = new ec.DeploymentElasticsearchKeystore("secureUrl", {
+ *     deploymentId: exampleKeystore.id,
+ *     settingName: "xpack.notification.slack.account.hello.secure_url",
+ *     value: "http://my-secure-url.com",
+ * });
+ * ```
+ * ### Adding credentials to use GCS as a snapshot repository
+ *
+ * For up-to-date documentation on the `settingName`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ * import * from "fs";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * // Create an Elastic Cloud deployment
+ * const exampleKeystore = new ec.Deployment("exampleKeystore", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {},
+ * });
+ * // Create the keystore secret entry
+ * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
+ *     deploymentId: exampleKeystore.id,
+ *     settingName: "gcs.client.default.credentials_file",
+ *     value: fs.readFileSync("service-account-key.json"),
+ *     asFile: true,
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * There are no additional attributes exported by this resource other than the referenced arguments.
+ *
  * ## Import
  *
  * This resource cannot be imported.
