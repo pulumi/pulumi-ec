@@ -97,6 +97,24 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
                  traffic_filter_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        example_deployment = ec.get_deployment(id="320b7b540dfc967a7a649c18e2fce4ed")
+        example_deployment_traffic_filter = ec.DeploymentTrafficFilter("exampleDeploymentTrafficFilter",
+            region="us-east-1",
+            type="ip",
+            rules=[ec.DeploymentTrafficFilterRuleArgs(
+                source="0.0.0.0/0",
+            )])
+        example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation",
+            traffic_filter_id=example_deployment_traffic_filter.id,
+            deployment_id=ec_deployment["example"]["id"])
+        ```
+
         ## Import
 
         Import is not supported on this resource.
@@ -113,6 +131,24 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
                  args: DeploymentTrafficFilterAssociationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        example_deployment = ec.get_deployment(id="320b7b540dfc967a7a649c18e2fce4ed")
+        example_deployment_traffic_filter = ec.DeploymentTrafficFilter("exampleDeploymentTrafficFilter",
+            region="us-east-1",
+            type="ip",
+            rules=[ec.DeploymentTrafficFilterRuleArgs(
+                source="0.0.0.0/0",
+            )])
+        example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation",
+            traffic_filter_id=example_deployment_traffic_filter.id,
+            deployment_id=ec_deployment["example"]["id"])
+        ```
+
         ## Import
 
         Import is not supported on this resource.

@@ -6,6 +6,142 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const exampleMinimal = new ec.Deployment("exampleMinimal", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {},
+ *     kibana: {},
+ *     integrationsServer: {},
+ *     enterpriseSearch: {},
+ * });
+ * ```
+ * ### Tiered deployment with Autoscaling enabled
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const exampleMinimal = new ec.Deployment("exampleMinimal", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         autoscale: "true",
+ *         topologies: [
+ *             {
+ *                 id: "cold",
+ *                 size: "8g",
+ *             },
+ *             {
+ *                 id: "hot_content",
+ *                 size: "8g",
+ *                 autoscaling: {},
+ *             },
+ *             {
+ *                 id: "warm",
+ *                 size: "16g",
+ *             },
+ *         ],
+ *     },
+ *     kibana: {},
+ *     integrationsServer: {},
+ *     enterpriseSearch: {},
+ * });
+ * ```
+ * ### With observability settings
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const exampleObservability = new ec.Deployment("exampleObservability", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {},
+ *     kibana: {},
+ *     observability: {
+ *         deploymentId: ec_deployment.example_minimal.id,
+ *     },
+ * });
+ * ```
+ * ### With Cross Cluster Search settings
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const sourceDeployment = new ec.Deployment("sourceDeployment", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         topologies: [{
+ *             id: "hot_content",
+ *             size: "1g",
+ *         }],
+ *     },
+ * });
+ * const ccs = new ec.Deployment("ccs", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-cross-cluster-search-v2",
+ *     elasticsearch: {
+ *         remoteClusters: [{
+ *             deploymentId: sourceDeployment.id,
+ *             alias: sourceDeployment.name,
+ *             refId: sourceDeployment.elasticsearch.apply(elasticsearch => elasticsearch.refId),
+ *         }],
+ *     },
+ *     kibana: {},
+ * });
+ * ```
+ * ### With tags
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const withTags = new ec.Deployment("withTags", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {},
+ *     tags: {
+ *         owner: "elastic cloud",
+ *         component: "search",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example

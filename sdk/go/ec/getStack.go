@@ -24,9 +24,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := true
 // 		_, err := ec.GetStack(ctx, &GetStackArgs{
-// 			Lock:         &opt0,
+// 			Lock:         pulumi.BoolRef(true),
 // 			Region:       "us-east-1",
 // 			VersionRegex: "latest",
 // 		}, nil)

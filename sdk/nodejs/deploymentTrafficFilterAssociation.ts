@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const exampleDeployment = ec.getDeployment({
+ *     id: "320b7b540dfc967a7a649c18e2fce4ed",
+ * });
+ * const exampleDeploymentTrafficFilter = new ec.DeploymentTrafficFilter("exampleDeploymentTrafficFilter", {
+ *     region: "us-east-1",
+ *     type: "ip",
+ *     rules: [{
+ *         source: "0.0.0.0/0",
+ *     }],
+ * });
+ * const exampleDeploymentTrafficFilterAssociation = new ec.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", {
+ *     trafficFilterId: exampleDeploymentTrafficFilter.id,
+ *     deploymentId: ec_deployment.example.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Import is not supported on this resource.

@@ -10,6 +10,85 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
+    /// ### Adding a new keystore setting to your deployment
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         // Create an Elastic Cloud deployment
+    ///         var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = ,
+    ///         });
+    ///         // Create the keystore secret entry
+    ///         var secureUrl = new ElasticCloud.DeploymentElasticsearchKeystore("secureUrl", new ElasticCloud.DeploymentElasticsearchKeystoreArgs
+    ///         {
+    ///             DeploymentId = exampleKeystore.Id,
+    ///             SettingName = "xpack.notification.slack.account.hello.secure_url",
+    ///             Value = "http://my-secure-url.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Adding credentials to use GCS as a snapshot repository
+    /// 
+    /// For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         {
+    ///             VersionRegex = "latest",
+    ///             Region = "us-east-1",
+    ///         }));
+    ///         // Create an Elastic Cloud deployment
+    ///         var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new ElasticCloud.DeploymentArgs
+    ///         {
+    ///             Region = "us-east-1",
+    ///             Version = latest.Apply(latest =&gt; latest.Version),
+    ///             DeploymentTemplateId = "aws-io-optimized-v2",
+    ///             Elasticsearch = ,
+    ///         });
+    ///         // Create the keystore secret entry
+    ///         var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcsCredential", new ElasticCloud.DeploymentElasticsearchKeystoreArgs
+    ///         {
+    ///             DeploymentId = exampleKeystore.Id,
+    ///             SettingName = "gcs.client.default.credentials_file",
+    ///             Value = File.ReadAllText("service-account-key.json"),
+    ///             AsFile = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ## Attributes reference
+    /// 
+    /// There are no additional attributes exported by this resource other than the referenced arguments.
+    /// 
     /// ## Import
     /// 
     /// This resource cannot be imported.
