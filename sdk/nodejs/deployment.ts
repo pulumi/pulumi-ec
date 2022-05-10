@@ -144,7 +144,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example
+ * ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes. ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example
  *
  * ```sh
  *  $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
