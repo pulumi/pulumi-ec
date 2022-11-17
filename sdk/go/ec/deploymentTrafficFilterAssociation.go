@@ -17,40 +17,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ec.LookupDeployment(ctx, &GetDeploymentArgs{
-// 			Id: "320b7b540dfc967a7a649c18e2fce4ed",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleDeploymentTrafficFilter, err := ec.NewDeploymentTrafficFilter(ctx, "exampleDeploymentTrafficFilter", &ec.DeploymentTrafficFilterArgs{
-// 			Region: pulumi.String("us-east-1"),
-// 			Type:   pulumi.String("ip"),
-// 			Rules: DeploymentTrafficFilterRuleArray{
-// 				&DeploymentTrafficFilterRuleArgs{
-// 					Source: pulumi.String("0.0.0.0/0"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeploymentTrafficFilterAssociation(ctx, "exampleDeploymentTrafficFilterAssociation", &ec.DeploymentTrafficFilterAssociationArgs{
-// 			TrafficFilterId: exampleDeploymentTrafficFilter.ID(),
-// 			DeploymentId:    pulumi.Any(ec_deployment.Example.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.LookupDeployment(ctx, &GetDeploymentArgs{
+//				Id: "320b7b540dfc967a7a649c18e2fce4ed",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDeploymentTrafficFilter, err := ec.NewDeploymentTrafficFilter(ctx, "exampleDeploymentTrafficFilter", &ec.DeploymentTrafficFilterArgs{
+//				Region: pulumi.String("us-east-1"),
+//				Type:   pulumi.String("ip"),
+//				Rules: DeploymentTrafficFilterRuleArray{
+//					&DeploymentTrafficFilterRuleArgs{
+//						Source: pulumi.String("0.0.0.0/0"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeploymentTrafficFilterAssociation(ctx, "exampleDeploymentTrafficFilterAssociation", &ec.DeploymentTrafficFilterAssociationArgs{
+//				TrafficFilterId: exampleDeploymentTrafficFilter.ID(),
+//				DeploymentId:    pulumi.Any(ec_deployment.Example.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -158,7 +161,7 @@ func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociatio
 // DeploymentTrafficFilterAssociationArrayInput is an input type that accepts DeploymentTrafficFilterAssociationArray and DeploymentTrafficFilterAssociationArrayOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterAssociationArrayInput` via:
 //
-//          DeploymentTrafficFilterAssociationArray{ DeploymentTrafficFilterAssociationArgs{...} }
+//	DeploymentTrafficFilterAssociationArray{ DeploymentTrafficFilterAssociationArgs{...} }
 type DeploymentTrafficFilterAssociationArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +186,7 @@ func (i DeploymentTrafficFilterAssociationArray) ToDeploymentTrafficFilterAssoci
 // DeploymentTrafficFilterAssociationMapInput is an input type that accepts DeploymentTrafficFilterAssociationMap and DeploymentTrafficFilterAssociationMapOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterAssociationMapInput` via:
 //
-//          DeploymentTrafficFilterAssociationMap{ "key": DeploymentTrafficFilterAssociationArgs{...} }
+//	DeploymentTrafficFilterAssociationMap{ "key": DeploymentTrafficFilterAssociationArgs{...} }
 type DeploymentTrafficFilterAssociationMapInput interface {
 	pulumi.Input
 

@@ -18,34 +18,37 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch:        nil,
-// 			Kibana:               nil,
-// 			IntegrationsServer:   nil,
-// 			EnterpriseSearch:     nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch:        nil,
+//				Kibana:               nil,
+//				IntegrationsServer:   nil,
+//				EnterpriseSearch:     nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Tiered deployment with Autoscaling enabled
 //
@@ -53,51 +56,54 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch: &DeploymentElasticsearchArgs{
-// 				Autoscale: pulumi.String("true"),
-// 				Topologies: DeploymentElasticsearchTopologyArray{
-// 					&DeploymentElasticsearchTopologyArgs{
-// 						Id:   pulumi.String("cold"),
-// 						Size: pulumi.String("8g"),
-// 					},
-// 					&DeploymentElasticsearchTopologyArgs{
-// 						Id:          pulumi.String("hot_content"),
-// 						Size:        pulumi.String("8g"),
-// 						Autoscaling: nil,
-// 					},
-// 					&DeploymentElasticsearchTopologyArgs{
-// 						Id:   pulumi.String("warm"),
-// 						Size: pulumi.String("16g"),
-// 					},
-// 				},
-// 			},
-// 			Kibana:             nil,
-// 			IntegrationsServer: nil,
-// 			EnterpriseSearch:   nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &DeploymentElasticsearchArgs{
+//					Autoscale: pulumi.String("true"),
+//					Topologies: DeploymentElasticsearchTopologyArray{
+//						&DeploymentElasticsearchTopologyArgs{
+//							Id:   pulumi.String("cold"),
+//							Size: pulumi.String("8g"),
+//						},
+//						&DeploymentElasticsearchTopologyArgs{
+//							Id:          pulumi.String("hot_content"),
+//							Size:        pulumi.String("8g"),
+//							Autoscaling: nil,
+//						},
+//						&DeploymentElasticsearchTopologyArgs{
+//							Id:   pulumi.String("warm"),
+//							Size: pulumi.String("16g"),
+//						},
+//					},
+//				},
+//				Kibana:             nil,
+//				IntegrationsServer: nil,
+//				EnterpriseSearch:   nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### With observability settings
 //
@@ -105,35 +111,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "exampleObservability", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch:        nil,
-// 			Kibana:               nil,
-// 			Observability: &DeploymentObservabilityArgs{
-// 				DeploymentId: pulumi.Any(ec_deployment.Example_minimal.Id),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "exampleObservability", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch:        nil,
+//				Kibana:               nil,
+//				Observability: &DeploymentObservabilityArgs{
+//					DeploymentId: pulumi.Any(ec_deployment.Example_minimal.Id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### With Cross Cluster Search settings
 //
@@ -141,58 +150,61 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		sourceDeployment, err := ec.NewDeployment(ctx, "sourceDeployment", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch: &DeploymentElasticsearchArgs{
-// 				Topologies: DeploymentElasticsearchTopologyArray{
-// 					&DeploymentElasticsearchTopologyArgs{
-// 						Id:   pulumi.String("hot_content"),
-// 						Size: pulumi.String("1g"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "ccs", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-cross-cluster-search-v2"),
-// 			Elasticsearch: &DeploymentElasticsearchArgs{
-// 				RemoteClusters: DeploymentElasticsearchRemoteClusterArray{
-// 					&DeploymentElasticsearchRemoteClusterArgs{
-// 						DeploymentId: sourceDeployment.ID(),
-// 						Alias:        sourceDeployment.Name,
-// 						RefId: sourceDeployment.Elasticsearch.ApplyT(func(elasticsearch DeploymentElasticsearch) (string, error) {
-// 							return elasticsearch.RefId, nil
-// 						}).(pulumi.StringOutput),
-// 					},
-// 				},
-// 			},
-// 			Kibana: nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			sourceDeployment, err := ec.NewDeployment(ctx, "sourceDeployment", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &DeploymentElasticsearchArgs{
+//					Topologies: DeploymentElasticsearchTopologyArray{
+//						&DeploymentElasticsearchTopologyArgs{
+//							Id:   pulumi.String("hot_content"),
+//							Size: pulumi.String("1g"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "ccs", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-cross-cluster-search-v2"),
+//				Elasticsearch: &DeploymentElasticsearchArgs{
+//					RemoteClusters: DeploymentElasticsearchRemoteClusterArray{
+//						&DeploymentElasticsearchRemoteClusterArgs{
+//							DeploymentId: sourceDeployment.ID(),
+//							Alias:        sourceDeployment.Name,
+//							RefId: sourceDeployment.Elasticsearch.ApplyT(func(elasticsearch DeploymentElasticsearch) (string, error) {
+//								return elasticsearch.RefId, nil
+//							}).(pulumi.StringOutput),
+//						},
+//					},
+//				},
+//				Kibana: nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### With tags
 //
@@ -200,35 +212,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "withTags", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch:        nil,
-// 			Tags: pulumi.StringMap{
-// 				"owner":     pulumi.String("elastic cloud"),
-// 				"component": pulumi.String("search"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "withTags", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch:        nil,
+//				Tags: pulumi.StringMap{
+//					"owner":     pulumi.String("elastic cloud"),
+//					"component": pulumi.String("search"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -236,7 +251,9 @@ import (
 // ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes. ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example
 //
 // ```sh
-//  $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
+//
+//	$ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
+//
 // ```
 type Deployment struct {
 	pulumi.CustomResourceState
@@ -595,7 +612,7 @@ func (i *Deployment) ToDeploymentOutputWithContext(ctx context.Context) Deployme
 // DeploymentArrayInput is an input type that accepts DeploymentArray and DeploymentArrayOutput values.
 // You can construct a concrete instance of `DeploymentArrayInput` via:
 //
-//          DeploymentArray{ DeploymentArgs{...} }
+//	DeploymentArray{ DeploymentArgs{...} }
 type DeploymentArrayInput interface {
 	pulumi.Input
 
@@ -620,7 +637,7 @@ func (i DeploymentArray) ToDeploymentArrayOutputWithContext(ctx context.Context)
 // DeploymentMapInput is an input type that accepts DeploymentMap and DeploymentMapOutput values.
 // You can construct a concrete instance of `DeploymentMapInput` via:
 //
-//          DeploymentMap{ "key": DeploymentArgs{...} }
+//	DeploymentMap{ "key": DeploymentArgs{...} }
 type DeploymentMapInput interface {
 	pulumi.Input
 

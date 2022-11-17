@@ -624,15 +624,6 @@ export interface GetDeploymentsIntegrationsServerArgs {
     version?: pulumi.Input<string>;
 }
 
-export interface GetDeploymentsKibanaArgs {
-    /**
-     * Overall health status of the deployment.
-     */
-    healthy?: pulumi.Input<string>;
-    status?: pulumi.Input<string>;
-    version?: pulumi.Input<string>;
-}
-
 export interface GetDeploymentsKibana {
     /**
      * Overall health status of the deployment.
@@ -640,5 +631,14 @@ export interface GetDeploymentsKibana {
     healthy?: string;
     status?: string;
     version?: string;
+}
+
+export interface GetDeploymentsKibanaArgs {
+    /**
+     * Overall health status of the deployment.
+     */
+    healthy?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
+    version?: pulumi.Input<string>;
 }
 

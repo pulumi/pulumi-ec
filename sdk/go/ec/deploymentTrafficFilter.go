@@ -20,47 +20,50 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		example, err := ec.NewDeploymentTrafficFilter(ctx, "example", &ec.DeploymentTrafficFilterArgs{
-// 			Region: pulumi.String("us-east-1"),
-// 			Type:   pulumi.String("ip"),
-// 			Rules: DeploymentTrafficFilterRuleArray{
-// 				&DeploymentTrafficFilterRuleArgs{
-// 					Source: pulumi.String("0.0.0.0/0"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			TrafficFilters: pulumi.StringArray{
-// 				example.ID(),
-// 			},
-// 			Elasticsearch: nil,
-// 			Kibana:        nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			example, err := ec.NewDeploymentTrafficFilter(ctx, "example", &ec.DeploymentTrafficFilterArgs{
+//				Region: pulumi.String("us-east-1"),
+//				Type:   pulumi.String("ip"),
+//				Rules: DeploymentTrafficFilterRuleArray{
+//					&DeploymentTrafficFilterRuleArgs{
+//						Source: pulumi.String("0.0.0.0/0"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				TrafficFilters: pulumi.StringArray{
+//					example.ID(),
+//				},
+//				Elasticsearch: nil,
+//				Kibana:        nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Azure Private Link type
 //
@@ -68,49 +71,52 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		region := azure_australiaeast
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       region,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		azure, err := ec.NewDeploymentTrafficFilter(ctx, "azure", &ec.DeploymentTrafficFilterArgs{
-// 			Region: pulumi.Any(region),
-// 			Type:   pulumi.String("azure_private_endpoint"),
-// 			Rules: DeploymentTrafficFilterRuleArray{
-// 				&DeploymentTrafficFilterRuleArgs{
-// 					AzureEndpointName: pulumi.String("my-azure-pl"),
-// 					AzureEndpointGuid: pulumi.String("78c64959-fd88-41cc-81ac-1cfcdb1ac32e"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
-// 			Region:               pulumi.Any(region),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("azure-io-optimized-v3"),
-// 			TrafficFilters: pulumi.StringArray{
-// 				azure.ID(),
-// 			},
-// 			Elasticsearch: nil,
-// 			Kibana:        nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			region := azure_australiaeast
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       region,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			azure, err := ec.NewDeploymentTrafficFilter(ctx, "azure", &ec.DeploymentTrafficFilterArgs{
+//				Region: pulumi.Any(region),
+//				Type:   pulumi.String("azure_private_endpoint"),
+//				Rules: DeploymentTrafficFilterRuleArray{
+//					&DeploymentTrafficFilterRuleArgs{
+//						AzureEndpointName: pulumi.String("my-azure-pl"),
+//						AzureEndpointGuid: pulumi.String("78c64959-fd88-41cc-81ac-1cfcdb1ac32e"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//				Region:               pulumi.Any(region),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("azure-io-optimized-v3"),
+//				TrafficFilters: pulumi.StringArray{
+//					azure.ID(),
+//				},
+//				Elasticsearch: nil,
+//				Kibana:        nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### GCP Private Service Connect type
 //
@@ -118,56 +124,61 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		region := asia_east1
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       region,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		gcpPsc, err := ec.NewDeploymentTrafficFilter(ctx, "gcpPsc", &ec.DeploymentTrafficFilterArgs{
-// 			Region: pulumi.Any(region),
-// 			Type:   pulumi.String("gcp_private_service_connect_endpoint"),
-// 			Rules: DeploymentTrafficFilterRuleArray{
-// 				&DeploymentTrafficFilterRuleArgs{
-// 					Source: pulumi.String("18446744072646845332"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
-// 			Region:               pulumi.Any(region),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("gcp-storage-optimized"),
-// 			TrafficFilters: pulumi.StringArray{
-// 				gcpPsc.ID(),
-// 			},
-// 			Elasticsearch: nil,
-// 			Kibana:        nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			region := asia_east1
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       region,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			gcpPsc, err := ec.NewDeploymentTrafficFilter(ctx, "gcpPsc", &ec.DeploymentTrafficFilterArgs{
+//				Region: pulumi.Any(region),
+//				Type:   pulumi.String("gcp_private_service_connect_endpoint"),
+//				Rules: DeploymentTrafficFilterRuleArray{
+//					&DeploymentTrafficFilterRuleArgs{
+//						Source: pulumi.String("18446744072646845332"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//				Region:               pulumi.Any(region),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("gcp-storage-optimized"),
+//				TrafficFilters: pulumi.StringArray{
+//					gcpPsc.ID(),
+//				},
+//				Elasticsearch: nil,
+//				Kibana:        nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// You can import traffic filters using the `id`, for example
+// # You can import traffic filters using the `id`, for example
 //
 // ```sh
-//  $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
+//
+//	$ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
+//
 // ```
 type DeploymentTrafficFilter struct {
 	pulumi.CustomResourceState
@@ -314,7 +325,7 @@ func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterOutputWithContext(ctx
 // DeploymentTrafficFilterArrayInput is an input type that accepts DeploymentTrafficFilterArray and DeploymentTrafficFilterArrayOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterArrayInput` via:
 //
-//          DeploymentTrafficFilterArray{ DeploymentTrafficFilterArgs{...} }
+//	DeploymentTrafficFilterArray{ DeploymentTrafficFilterArgs{...} }
 type DeploymentTrafficFilterArrayInput interface {
 	pulumi.Input
 
@@ -339,7 +350,7 @@ func (i DeploymentTrafficFilterArray) ToDeploymentTrafficFilterArrayOutputWithCo
 // DeploymentTrafficFilterMapInput is an input type that accepts DeploymentTrafficFilterMap and DeploymentTrafficFilterMapOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterMapInput` via:
 //
-//          DeploymentTrafficFilterMap{ "key": DeploymentTrafficFilterArgs{...} }
+//	DeploymentTrafficFilterMap{ "key": DeploymentTrafficFilterArgs{...} }
 type DeploymentTrafficFilterMapInput interface {
 	pulumi.Input
 
