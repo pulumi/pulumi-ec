@@ -18,30 +18,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ec.GetStack(ctx, &GetStackArgs{
-// 			Lock:         pulumi.BoolRef(true),
-// 			Region:       "us-east-1",
-// 			VersionRegex: "latest",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.GetStack(ctx, &GetStackArgs{
-// 			Region:       "us-east-1",
-// 			VersionRegex: "7.9.?",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.GetStack(ctx, &GetStackArgs{
+//				Lock:         pulumi.BoolRef(true),
+//				Region:       "us-east-1",
+//				VersionRegex: "latest",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.GetStack(ctx, &GetStackArgs{
+//				Region:       "us-east-1",
+//				VersionRegex: "7.9.?",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetStack(ctx *pulumi.Context, args *GetStackArgs, opts ...pulumi.InvokeOption) (*GetStackResult, error) {
 	var rv GetStackResult

@@ -29,7 +29,7 @@ type DeploymentApm struct {
 // DeploymentApmInput is an input type that accepts DeploymentApmArgs and DeploymentApmOutput values.
 // You can construct a concrete instance of `DeploymentApmInput` via:
 //
-//          DeploymentApmArgs{...}
+//	DeploymentApmArgs{...}
 type DeploymentApmInput interface {
 	pulumi.Input
 
@@ -76,11 +76,11 @@ func (i DeploymentApmArgs) ToDeploymentApmPtrOutputWithContext(ctx context.Conte
 // DeploymentApmPtrInput is an input type that accepts DeploymentApmArgs, DeploymentApmPtr and DeploymentApmPtrOutput values.
 // You can construct a concrete instance of `DeploymentApmPtrInput` via:
 //
-//          DeploymentApmArgs{...}
+//	        DeploymentApmArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentApmPtrInput interface {
 	pulumi.Input
 
@@ -285,7 +285,7 @@ type DeploymentApmConfig struct {
 // DeploymentApmConfigInput is an input type that accepts DeploymentApmConfigArgs and DeploymentApmConfigOutput values.
 // You can construct a concrete instance of `DeploymentApmConfigInput` via:
 //
-//          DeploymentApmConfigArgs{...}
+//	DeploymentApmConfigArgs{...}
 type DeploymentApmConfigInput interface {
 	pulumi.Input
 
@@ -330,11 +330,11 @@ func (i DeploymentApmConfigArgs) ToDeploymentApmConfigPtrOutputWithContext(ctx c
 // DeploymentApmConfigPtrInput is an input type that accepts DeploymentApmConfigArgs, DeploymentApmConfigPtr and DeploymentApmConfigPtrOutput values.
 // You can construct a concrete instance of `DeploymentApmConfigPtrInput` via:
 //
-//          DeploymentApmConfigArgs{...}
+//	        DeploymentApmConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentApmConfigPtrInput interface {
 	pulumi.Input
 
@@ -510,7 +510,7 @@ type DeploymentApmTopology struct {
 // DeploymentApmTopologyInput is an input type that accepts DeploymentApmTopologyArgs and DeploymentApmTopologyOutput values.
 // You can construct a concrete instance of `DeploymentApmTopologyInput` via:
 //
-//          DeploymentApmTopologyArgs{...}
+//	DeploymentApmTopologyArgs{...}
 type DeploymentApmTopologyInput interface {
 	pulumi.Input
 
@@ -544,7 +544,7 @@ func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyOutputWithContext(ctx 
 // DeploymentApmTopologyArrayInput is an input type that accepts DeploymentApmTopologyArray and DeploymentApmTopologyArrayOutput values.
 // You can construct a concrete instance of `DeploymentApmTopologyArrayInput` via:
 //
-//          DeploymentApmTopologyArray{ DeploymentApmTopologyArgs{...} }
+//	DeploymentApmTopologyArray{ DeploymentApmTopologyArgs{...} }
 type DeploymentApmTopologyArrayInput interface {
 	pulumi.Input
 
@@ -650,7 +650,7 @@ type DeploymentElasticsearch struct {
 // DeploymentElasticsearchInput is an input type that accepts DeploymentElasticsearchArgs and DeploymentElasticsearchOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchInput` via:
 //
-//          DeploymentElasticsearchArgs{...}
+//	DeploymentElasticsearchArgs{...}
 type DeploymentElasticsearchInput interface {
 	pulumi.Input
 
@@ -708,11 +708,11 @@ func (i DeploymentElasticsearchArgs) ToDeploymentElasticsearchPtrOutputWithConte
 // DeploymentElasticsearchPtrInput is an input type that accepts DeploymentElasticsearchArgs, DeploymentElasticsearchPtr and DeploymentElasticsearchPtrOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchPtrInput` via:
 //
-//          DeploymentElasticsearchArgs{...}
+//	        DeploymentElasticsearchArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentElasticsearchPtrInput interface {
 	pulumi.Input
 
@@ -1005,7 +1005,7 @@ type DeploymentElasticsearchConfig struct {
 // DeploymentElasticsearchConfigInput is an input type that accepts DeploymentElasticsearchConfigArgs and DeploymentElasticsearchConfigOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchConfigInput` via:
 //
-//          DeploymentElasticsearchConfigArgs{...}
+//	DeploymentElasticsearchConfigArgs{...}
 type DeploymentElasticsearchConfigInput interface {
 	pulumi.Input
 
@@ -1050,11 +1050,11 @@ func (i DeploymentElasticsearchConfigArgs) ToDeploymentElasticsearchConfigPtrOut
 // DeploymentElasticsearchConfigPtrInput is an input type that accepts DeploymentElasticsearchConfigArgs, DeploymentElasticsearchConfigPtr and DeploymentElasticsearchConfigPtrOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchConfigPtrInput` via:
 //
-//          DeploymentElasticsearchConfigArgs{...}
+//	        DeploymentElasticsearchConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentElasticsearchConfigPtrInput interface {
 	pulumi.Input
 
@@ -1230,7 +1230,7 @@ type DeploymentElasticsearchExtension struct {
 // DeploymentElasticsearchExtensionInput is an input type that accepts DeploymentElasticsearchExtensionArgs and DeploymentElasticsearchExtensionOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchExtensionInput` via:
 //
-//          DeploymentElasticsearchExtensionArgs{...}
+//	DeploymentElasticsearchExtensionArgs{...}
 type DeploymentElasticsearchExtensionInput interface {
 	pulumi.Input
 
@@ -1264,7 +1264,7 @@ func (i DeploymentElasticsearchExtensionArgs) ToDeploymentElasticsearchExtension
 // DeploymentElasticsearchExtensionArrayInput is an input type that accepts DeploymentElasticsearchExtensionArray and DeploymentElasticsearchExtensionArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchExtensionArrayInput` via:
 //
-//          DeploymentElasticsearchExtensionArray{ DeploymentElasticsearchExtensionArgs{...} }
+//	DeploymentElasticsearchExtensionArray{ DeploymentElasticsearchExtensionArgs{...} }
 type DeploymentElasticsearchExtensionArrayInput interface {
 	pulumi.Input
 
@@ -1354,7 +1354,7 @@ type DeploymentElasticsearchRemoteCluster struct {
 // DeploymentElasticsearchRemoteClusterInput is an input type that accepts DeploymentElasticsearchRemoteClusterArgs and DeploymentElasticsearchRemoteClusterOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchRemoteClusterInput` via:
 //
-//          DeploymentElasticsearchRemoteClusterArgs{...}
+//	DeploymentElasticsearchRemoteClusterArgs{...}
 type DeploymentElasticsearchRemoteClusterInput interface {
 	pulumi.Input
 
@@ -1388,7 +1388,7 @@ func (i DeploymentElasticsearchRemoteClusterArgs) ToDeploymentElasticsearchRemot
 // DeploymentElasticsearchRemoteClusterArrayInput is an input type that accepts DeploymentElasticsearchRemoteClusterArray and DeploymentElasticsearchRemoteClusterArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchRemoteClusterArrayInput` via:
 //
-//          DeploymentElasticsearchRemoteClusterArray{ DeploymentElasticsearchRemoteClusterArgs{...} }
+//	DeploymentElasticsearchRemoteClusterArray{ DeploymentElasticsearchRemoteClusterArgs{...} }
 type DeploymentElasticsearchRemoteClusterArrayInput interface {
 	pulumi.Input
 
@@ -1474,7 +1474,7 @@ type DeploymentElasticsearchSnapshotSource struct {
 // DeploymentElasticsearchSnapshotSourceInput is an input type that accepts DeploymentElasticsearchSnapshotSourceArgs and DeploymentElasticsearchSnapshotSourceOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchSnapshotSourceInput` via:
 //
-//          DeploymentElasticsearchSnapshotSourceArgs{...}
+//	DeploymentElasticsearchSnapshotSourceArgs{...}
 type DeploymentElasticsearchSnapshotSourceInput interface {
 	pulumi.Input
 
@@ -1512,11 +1512,11 @@ func (i DeploymentElasticsearchSnapshotSourceArgs) ToDeploymentElasticsearchSnap
 // DeploymentElasticsearchSnapshotSourcePtrInput is an input type that accepts DeploymentElasticsearchSnapshotSourceArgs, DeploymentElasticsearchSnapshotSourcePtr and DeploymentElasticsearchSnapshotSourcePtrOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchSnapshotSourcePtrInput` via:
 //
-//          DeploymentElasticsearchSnapshotSourceArgs{...}
+//	        DeploymentElasticsearchSnapshotSourceArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentElasticsearchSnapshotSourcePtrInput interface {
 	pulumi.Input
 
@@ -1649,7 +1649,7 @@ type DeploymentElasticsearchTopology struct {
 // DeploymentElasticsearchTopologyInput is an input type that accepts DeploymentElasticsearchTopologyArgs and DeploymentElasticsearchTopologyOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTopologyInput` via:
 //
-//          DeploymentElasticsearchTopologyArgs{...}
+//	DeploymentElasticsearchTopologyArgs{...}
 type DeploymentElasticsearchTopologyInput interface {
 	pulumi.Input
 
@@ -1698,7 +1698,7 @@ func (i DeploymentElasticsearchTopologyArgs) ToDeploymentElasticsearchTopologyOu
 // DeploymentElasticsearchTopologyArrayInput is an input type that accepts DeploymentElasticsearchTopologyArray and DeploymentElasticsearchTopologyArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTopologyArrayInput` via:
 //
-//          DeploymentElasticsearchTopologyArray{ DeploymentElasticsearchTopologyArgs{...} }
+//	DeploymentElasticsearchTopologyArray{ DeploymentElasticsearchTopologyArgs{...} }
 type DeploymentElasticsearchTopologyArrayInput interface {
 	pulumi.Input
 
@@ -1830,7 +1830,7 @@ type DeploymentElasticsearchTopologyAutoscaling struct {
 // DeploymentElasticsearchTopologyAutoscalingInput is an input type that accepts DeploymentElasticsearchTopologyAutoscalingArgs and DeploymentElasticsearchTopologyAutoscalingOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTopologyAutoscalingInput` via:
 //
-//          DeploymentElasticsearchTopologyAutoscalingArgs{...}
+//	DeploymentElasticsearchTopologyAutoscalingArgs{...}
 type DeploymentElasticsearchTopologyAutoscalingInput interface {
 	pulumi.Input
 
@@ -1873,11 +1873,11 @@ func (i DeploymentElasticsearchTopologyAutoscalingArgs) ToDeploymentElasticsearc
 // DeploymentElasticsearchTopologyAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchTopologyAutoscalingArgs, DeploymentElasticsearchTopologyAutoscalingPtr and DeploymentElasticsearchTopologyAutoscalingPtrOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTopologyAutoscalingPtrInput` via:
 //
-//          DeploymentElasticsearchTopologyAutoscalingArgs{...}
+//	        DeploymentElasticsearchTopologyAutoscalingArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentElasticsearchTopologyAutoscalingPtrInput interface {
 	pulumi.Input
 
@@ -2040,7 +2040,7 @@ type DeploymentElasticsearchTopologyConfig struct {
 // DeploymentElasticsearchTopologyConfigInput is an input type that accepts DeploymentElasticsearchTopologyConfigArgs and DeploymentElasticsearchTopologyConfigOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTopologyConfigInput` via:
 //
-//          DeploymentElasticsearchTopologyConfigArgs{...}
+//	DeploymentElasticsearchTopologyConfigArgs{...}
 type DeploymentElasticsearchTopologyConfigInput interface {
 	pulumi.Input
 
@@ -2076,7 +2076,7 @@ func (i DeploymentElasticsearchTopologyConfigArgs) ToDeploymentElasticsearchTopo
 // DeploymentElasticsearchTopologyConfigArrayInput is an input type that accepts DeploymentElasticsearchTopologyConfigArray and DeploymentElasticsearchTopologyConfigArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTopologyConfigArrayInput` via:
 //
-//          DeploymentElasticsearchTopologyConfigArray{ DeploymentElasticsearchTopologyConfigArgs{...} }
+//	DeploymentElasticsearchTopologyConfigArray{ DeploymentElasticsearchTopologyConfigArgs{...} }
 type DeploymentElasticsearchTopologyConfigArrayInput interface {
 	pulumi.Input
 
@@ -2169,7 +2169,7 @@ type DeploymentElasticsearchTrustAccount struct {
 // DeploymentElasticsearchTrustAccountInput is an input type that accepts DeploymentElasticsearchTrustAccountArgs and DeploymentElasticsearchTrustAccountOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTrustAccountInput` via:
 //
-//          DeploymentElasticsearchTrustAccountArgs{...}
+//	DeploymentElasticsearchTrustAccountArgs{...}
 type DeploymentElasticsearchTrustAccountInput interface {
 	pulumi.Input
 
@@ -2201,7 +2201,7 @@ func (i DeploymentElasticsearchTrustAccountArgs) ToDeploymentElasticsearchTrustA
 // DeploymentElasticsearchTrustAccountArrayInput is an input type that accepts DeploymentElasticsearchTrustAccountArray and DeploymentElasticsearchTrustAccountArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTrustAccountArrayInput` via:
 //
-//          DeploymentElasticsearchTrustAccountArray{ DeploymentElasticsearchTrustAccountArgs{...} }
+//	DeploymentElasticsearchTrustAccountArray{ DeploymentElasticsearchTrustAccountArgs{...} }
 type DeploymentElasticsearchTrustAccountArrayInput interface {
 	pulumi.Input
 
@@ -2284,7 +2284,7 @@ type DeploymentElasticsearchTrustExternal struct {
 // DeploymentElasticsearchTrustExternalInput is an input type that accepts DeploymentElasticsearchTrustExternalArgs and DeploymentElasticsearchTrustExternalOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTrustExternalInput` via:
 //
-//          DeploymentElasticsearchTrustExternalArgs{...}
+//	DeploymentElasticsearchTrustExternalArgs{...}
 type DeploymentElasticsearchTrustExternalInput interface {
 	pulumi.Input
 
@@ -2316,7 +2316,7 @@ func (i DeploymentElasticsearchTrustExternalArgs) ToDeploymentElasticsearchTrust
 // DeploymentElasticsearchTrustExternalArrayInput is an input type that accepts DeploymentElasticsearchTrustExternalArray and DeploymentElasticsearchTrustExternalArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTrustExternalArrayInput` via:
 //
-//          DeploymentElasticsearchTrustExternalArray{ DeploymentElasticsearchTrustExternalArgs{...} }
+//	DeploymentElasticsearchTrustExternalArray{ DeploymentElasticsearchTrustExternalArgs{...} }
 type DeploymentElasticsearchTrustExternalArrayInput interface {
 	pulumi.Input
 
@@ -2406,7 +2406,7 @@ type DeploymentEnterpriseSearch struct {
 // DeploymentEnterpriseSearchInput is an input type that accepts DeploymentEnterpriseSearchArgs and DeploymentEnterpriseSearchOutput values.
 // You can construct a concrete instance of `DeploymentEnterpriseSearchInput` via:
 //
-//          DeploymentEnterpriseSearchArgs{...}
+//	DeploymentEnterpriseSearchArgs{...}
 type DeploymentEnterpriseSearchInput interface {
 	pulumi.Input
 
@@ -2453,11 +2453,11 @@ func (i DeploymentEnterpriseSearchArgs) ToDeploymentEnterpriseSearchPtrOutputWit
 // DeploymentEnterpriseSearchPtrInput is an input type that accepts DeploymentEnterpriseSearchArgs, DeploymentEnterpriseSearchPtr and DeploymentEnterpriseSearchPtrOutput values.
 // You can construct a concrete instance of `DeploymentEnterpriseSearchPtrInput` via:
 //
-//          DeploymentEnterpriseSearchArgs{...}
+//	        DeploymentEnterpriseSearchArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentEnterpriseSearchPtrInput interface {
 	pulumi.Input
 
@@ -2660,7 +2660,7 @@ type DeploymentEnterpriseSearchConfig struct {
 // DeploymentEnterpriseSearchConfigInput is an input type that accepts DeploymentEnterpriseSearchConfigArgs and DeploymentEnterpriseSearchConfigOutput values.
 // You can construct a concrete instance of `DeploymentEnterpriseSearchConfigInput` via:
 //
-//          DeploymentEnterpriseSearchConfigArgs{...}
+//	DeploymentEnterpriseSearchConfigArgs{...}
 type DeploymentEnterpriseSearchConfigInput interface {
 	pulumi.Input
 
@@ -2703,11 +2703,11 @@ func (i DeploymentEnterpriseSearchConfigArgs) ToDeploymentEnterpriseSearchConfig
 // DeploymentEnterpriseSearchConfigPtrInput is an input type that accepts DeploymentEnterpriseSearchConfigArgs, DeploymentEnterpriseSearchConfigPtr and DeploymentEnterpriseSearchConfigPtrOutput values.
 // You can construct a concrete instance of `DeploymentEnterpriseSearchConfigPtrInput` via:
 //
-//          DeploymentEnterpriseSearchConfigArgs{...}
+//	        DeploymentEnterpriseSearchConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentEnterpriseSearchConfigPtrInput interface {
 	pulumi.Input
 
@@ -2871,7 +2871,7 @@ type DeploymentEnterpriseSearchTopology struct {
 // DeploymentEnterpriseSearchTopologyInput is an input type that accepts DeploymentEnterpriseSearchTopologyArgs and DeploymentEnterpriseSearchTopologyOutput values.
 // You can construct a concrete instance of `DeploymentEnterpriseSearchTopologyInput` via:
 //
-//          DeploymentEnterpriseSearchTopologyArgs{...}
+//	DeploymentEnterpriseSearchTopologyArgs{...}
 type DeploymentEnterpriseSearchTopologyInput interface {
 	pulumi.Input
 
@@ -2908,7 +2908,7 @@ func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopo
 // DeploymentEnterpriseSearchTopologyArrayInput is an input type that accepts DeploymentEnterpriseSearchTopologyArray and DeploymentEnterpriseSearchTopologyArrayOutput values.
 // You can construct a concrete instance of `DeploymentEnterpriseSearchTopologyArrayInput` via:
 //
-//          DeploymentEnterpriseSearchTopologyArray{ DeploymentEnterpriseSearchTopologyArgs{...} }
+//	DeploymentEnterpriseSearchTopologyArray{ DeploymentEnterpriseSearchTopologyArgs{...} }
 type DeploymentEnterpriseSearchTopologyArrayInput interface {
 	pulumi.Input
 
@@ -3015,7 +3015,7 @@ type DeploymentIntegrationsServer struct {
 // DeploymentIntegrationsServerInput is an input type that accepts DeploymentIntegrationsServerArgs and DeploymentIntegrationsServerOutput values.
 // You can construct a concrete instance of `DeploymentIntegrationsServerInput` via:
 //
-//          DeploymentIntegrationsServerArgs{...}
+//	DeploymentIntegrationsServerArgs{...}
 type DeploymentIntegrationsServerInput interface {
 	pulumi.Input
 
@@ -3062,11 +3062,11 @@ func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerPtrOutpu
 // DeploymentIntegrationsServerPtrInput is an input type that accepts DeploymentIntegrationsServerArgs, DeploymentIntegrationsServerPtr and DeploymentIntegrationsServerPtrOutput values.
 // You can construct a concrete instance of `DeploymentIntegrationsServerPtrInput` via:
 //
-//          DeploymentIntegrationsServerArgs{...}
+//	        DeploymentIntegrationsServerArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentIntegrationsServerPtrInput interface {
 	pulumi.Input
 
@@ -3271,7 +3271,7 @@ type DeploymentIntegrationsServerConfig struct {
 // DeploymentIntegrationsServerConfigInput is an input type that accepts DeploymentIntegrationsServerConfigArgs and DeploymentIntegrationsServerConfigOutput values.
 // You can construct a concrete instance of `DeploymentIntegrationsServerConfigInput` via:
 //
-//          DeploymentIntegrationsServerConfigArgs{...}
+//	DeploymentIntegrationsServerConfigArgs{...}
 type DeploymentIntegrationsServerConfigInput interface {
 	pulumi.Input
 
@@ -3316,11 +3316,11 @@ func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerCo
 // DeploymentIntegrationsServerConfigPtrInput is an input type that accepts DeploymentIntegrationsServerConfigArgs, DeploymentIntegrationsServerConfigPtr and DeploymentIntegrationsServerConfigPtrOutput values.
 // You can construct a concrete instance of `DeploymentIntegrationsServerConfigPtrInput` via:
 //
-//          DeploymentIntegrationsServerConfigArgs{...}
+//	        DeploymentIntegrationsServerConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentIntegrationsServerConfigPtrInput interface {
 	pulumi.Input
 
@@ -3496,7 +3496,7 @@ type DeploymentIntegrationsServerTopology struct {
 // DeploymentIntegrationsServerTopologyInput is an input type that accepts DeploymentIntegrationsServerTopologyArgs and DeploymentIntegrationsServerTopologyOutput values.
 // You can construct a concrete instance of `DeploymentIntegrationsServerTopologyInput` via:
 //
-//          DeploymentIntegrationsServerTopologyArgs{...}
+//	DeploymentIntegrationsServerTopologyArgs{...}
 type DeploymentIntegrationsServerTopologyInput interface {
 	pulumi.Input
 
@@ -3530,7 +3530,7 @@ func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServer
 // DeploymentIntegrationsServerTopologyArrayInput is an input type that accepts DeploymentIntegrationsServerTopologyArray and DeploymentIntegrationsServerTopologyArrayOutput values.
 // You can construct a concrete instance of `DeploymentIntegrationsServerTopologyArrayInput` via:
 //
-//          DeploymentIntegrationsServerTopologyArray{ DeploymentIntegrationsServerTopologyArgs{...} }
+//	DeploymentIntegrationsServerTopologyArray{ DeploymentIntegrationsServerTopologyArgs{...} }
 type DeploymentIntegrationsServerTopologyArrayInput interface {
 	pulumi.Input
 
@@ -3625,7 +3625,7 @@ type DeploymentKibana struct {
 // DeploymentKibanaInput is an input type that accepts DeploymentKibanaArgs and DeploymentKibanaOutput values.
 // You can construct a concrete instance of `DeploymentKibanaInput` via:
 //
-//          DeploymentKibanaArgs{...}
+//	DeploymentKibanaArgs{...}
 type DeploymentKibanaInput interface {
 	pulumi.Input
 
@@ -3672,11 +3672,11 @@ func (i DeploymentKibanaArgs) ToDeploymentKibanaPtrOutputWithContext(ctx context
 // DeploymentKibanaPtrInput is an input type that accepts DeploymentKibanaArgs, DeploymentKibanaPtr and DeploymentKibanaPtrOutput values.
 // You can construct a concrete instance of `DeploymentKibanaPtrInput` via:
 //
-//          DeploymentKibanaArgs{...}
+//	        DeploymentKibanaArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentKibanaPtrInput interface {
 	pulumi.Input
 
@@ -3879,7 +3879,7 @@ type DeploymentKibanaConfig struct {
 // DeploymentKibanaConfigInput is an input type that accepts DeploymentKibanaConfigArgs and DeploymentKibanaConfigOutput values.
 // You can construct a concrete instance of `DeploymentKibanaConfigInput` via:
 //
-//          DeploymentKibanaConfigArgs{...}
+//	DeploymentKibanaConfigArgs{...}
 type DeploymentKibanaConfigInput interface {
 	pulumi.Input
 
@@ -3922,11 +3922,11 @@ func (i DeploymentKibanaConfigArgs) ToDeploymentKibanaConfigPtrOutputWithContext
 // DeploymentKibanaConfigPtrInput is an input type that accepts DeploymentKibanaConfigArgs, DeploymentKibanaConfigPtr and DeploymentKibanaConfigPtrOutput values.
 // You can construct a concrete instance of `DeploymentKibanaConfigPtrInput` via:
 //
-//          DeploymentKibanaConfigArgs{...}
+//	        DeploymentKibanaConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentKibanaConfigPtrInput interface {
 	pulumi.Input
 
@@ -4087,7 +4087,7 @@ type DeploymentKibanaTopology struct {
 // DeploymentKibanaTopologyInput is an input type that accepts DeploymentKibanaTopologyArgs and DeploymentKibanaTopologyOutput values.
 // You can construct a concrete instance of `DeploymentKibanaTopologyInput` via:
 //
-//          DeploymentKibanaTopologyArgs{...}
+//	DeploymentKibanaTopologyArgs{...}
 type DeploymentKibanaTopologyInput interface {
 	pulumi.Input
 
@@ -4121,7 +4121,7 @@ func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyOutputWithContex
 // DeploymentKibanaTopologyArrayInput is an input type that accepts DeploymentKibanaTopologyArray and DeploymentKibanaTopologyArrayOutput values.
 // You can construct a concrete instance of `DeploymentKibanaTopologyArrayInput` via:
 //
-//          DeploymentKibanaTopologyArray{ DeploymentKibanaTopologyArgs{...} }
+//	DeploymentKibanaTopologyArray{ DeploymentKibanaTopologyArgs{...} }
 type DeploymentKibanaTopologyArrayInput interface {
 	pulumi.Input
 
@@ -4209,7 +4209,7 @@ type DeploymentObservability struct {
 // DeploymentObservabilityInput is an input type that accepts DeploymentObservabilityArgs and DeploymentObservabilityOutput values.
 // You can construct a concrete instance of `DeploymentObservabilityInput` via:
 //
-//          DeploymentObservabilityArgs{...}
+//	DeploymentObservabilityArgs{...}
 type DeploymentObservabilityInput interface {
 	pulumi.Input
 
@@ -4249,11 +4249,11 @@ func (i DeploymentObservabilityArgs) ToDeploymentObservabilityPtrOutputWithConte
 // DeploymentObservabilityPtrInput is an input type that accepts DeploymentObservabilityArgs, DeploymentObservabilityPtr and DeploymentObservabilityPtrOutput values.
 // You can construct a concrete instance of `DeploymentObservabilityPtrInput` via:
 //
-//          DeploymentObservabilityArgs{...}
+//	        DeploymentObservabilityArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DeploymentObservabilityPtrInput interface {
 	pulumi.Input
 
@@ -4399,7 +4399,7 @@ type DeploymentTrafficFilterRule struct {
 // DeploymentTrafficFilterRuleInput is an input type that accepts DeploymentTrafficFilterRuleArgs and DeploymentTrafficFilterRuleOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterRuleInput` via:
 //
-//          DeploymentTrafficFilterRuleArgs{...}
+//	DeploymentTrafficFilterRuleArgs{...}
 type DeploymentTrafficFilterRuleInput interface {
 	pulumi.Input
 
@@ -4435,7 +4435,7 @@ func (i DeploymentTrafficFilterRuleArgs) ToDeploymentTrafficFilterRuleOutputWith
 // DeploymentTrafficFilterRuleArrayInput is an input type that accepts DeploymentTrafficFilterRuleArray and DeploymentTrafficFilterRuleArrayOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterRuleArrayInput` via:
 //
-//          DeploymentTrafficFilterRuleArray{ DeploymentTrafficFilterRuleArgs{...} }
+//	DeploymentTrafficFilterRuleArray{ DeploymentTrafficFilterRuleArgs{...} }
 type DeploymentTrafficFilterRuleArrayInput interface {
 	pulumi.Input
 
@@ -4532,7 +4532,7 @@ type GetDeploymentApm struct {
 // GetDeploymentApmInput is an input type that accepts GetDeploymentApmArgs and GetDeploymentApmOutput values.
 // You can construct a concrete instance of `GetDeploymentApmInput` via:
 //
-//          GetDeploymentApmArgs{...}
+//	GetDeploymentApmArgs{...}
 type GetDeploymentApmInput interface {
 	pulumi.Input
 
@@ -4568,7 +4568,7 @@ func (i GetDeploymentApmArgs) ToGetDeploymentApmOutputWithContext(ctx context.Co
 // GetDeploymentApmArrayInput is an input type that accepts GetDeploymentApmArray and GetDeploymentApmArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentApmArrayInput` via:
 //
-//          GetDeploymentApmArray{ GetDeploymentApmArgs{...} }
+//	GetDeploymentApmArray{ GetDeploymentApmArgs{...} }
 type GetDeploymentApmArrayInput interface {
 	pulumi.Input
 
@@ -4671,7 +4671,7 @@ type GetDeploymentApmTopology struct {
 // GetDeploymentApmTopologyInput is an input type that accepts GetDeploymentApmTopologyArgs and GetDeploymentApmTopologyOutput values.
 // You can construct a concrete instance of `GetDeploymentApmTopologyInput` via:
 //
-//          GetDeploymentApmTopologyArgs{...}
+//	GetDeploymentApmTopologyArgs{...}
 type GetDeploymentApmTopologyInput interface {
 	pulumi.Input
 
@@ -4701,7 +4701,7 @@ func (i GetDeploymentApmTopologyArgs) ToGetDeploymentApmTopologyOutputWithContex
 // GetDeploymentApmTopologyArrayInput is an input type that accepts GetDeploymentApmTopologyArray and GetDeploymentApmTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentApmTopologyArrayInput` via:
 //
-//          GetDeploymentApmTopologyArray{ GetDeploymentApmTopologyArgs{...} }
+//	GetDeploymentApmTopologyArray{ GetDeploymentApmTopologyArgs{...} }
 type GetDeploymentApmTopologyArrayInput interface {
 	pulumi.Input
 
@@ -4790,7 +4790,7 @@ type GetDeploymentElasticsearch struct {
 // GetDeploymentElasticsearchInput is an input type that accepts GetDeploymentElasticsearchArgs and GetDeploymentElasticsearchOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchInput` via:
 //
-//          GetDeploymentElasticsearchArgs{...}
+//	GetDeploymentElasticsearchArgs{...}
 type GetDeploymentElasticsearchInput interface {
 	pulumi.Input
 
@@ -4827,7 +4827,7 @@ func (i GetDeploymentElasticsearchArgs) ToGetDeploymentElasticsearchOutputWithCo
 // GetDeploymentElasticsearchArrayInput is an input type that accepts GetDeploymentElasticsearchArray and GetDeploymentElasticsearchArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchArrayInput` via:
 //
-//          GetDeploymentElasticsearchArray{ GetDeploymentElasticsearchArgs{...} }
+//	GetDeploymentElasticsearchArray{ GetDeploymentElasticsearchArgs{...} }
 type GetDeploymentElasticsearchArrayInput interface {
 	pulumi.Input
 
@@ -4940,7 +4940,7 @@ type GetDeploymentElasticsearchTopology struct {
 // GetDeploymentElasticsearchTopologyInput is an input type that accepts GetDeploymentElasticsearchTopologyArgs and GetDeploymentElasticsearchTopologyOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchTopologyInput` via:
 //
-//          GetDeploymentElasticsearchTopologyArgs{...}
+//	GetDeploymentElasticsearchTopologyArgs{...}
 type GetDeploymentElasticsearchTopologyInput interface {
 	pulumi.Input
 
@@ -4976,7 +4976,7 @@ func (i GetDeploymentElasticsearchTopologyArgs) ToGetDeploymentElasticsearchTopo
 // GetDeploymentElasticsearchTopologyArrayInput is an input type that accepts GetDeploymentElasticsearchTopologyArray and GetDeploymentElasticsearchTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchTopologyArrayInput` via:
 //
-//          GetDeploymentElasticsearchTopologyArray{ GetDeploymentElasticsearchTopologyArgs{...} }
+//	GetDeploymentElasticsearchTopologyArray{ GetDeploymentElasticsearchTopologyArgs{...} }
 type GetDeploymentElasticsearchTopologyArrayInput interface {
 	pulumi.Input
 
@@ -5085,7 +5085,7 @@ type GetDeploymentElasticsearchTopologyAutoscaling struct {
 // GetDeploymentElasticsearchTopologyAutoscalingInput is an input type that accepts GetDeploymentElasticsearchTopologyAutoscalingArgs and GetDeploymentElasticsearchTopologyAutoscalingOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchTopologyAutoscalingInput` via:
 //
-//          GetDeploymentElasticsearchTopologyAutoscalingArgs{...}
+//	GetDeploymentElasticsearchTopologyAutoscalingArgs{...}
 type GetDeploymentElasticsearchTopologyAutoscalingInput interface {
 	pulumi.Input
 
@@ -5116,7 +5116,7 @@ func (i GetDeploymentElasticsearchTopologyAutoscalingArgs) ToGetDeploymentElasti
 // GetDeploymentElasticsearchTopologyAutoscalingArrayInput is an input type that accepts GetDeploymentElasticsearchTopologyAutoscalingArray and GetDeploymentElasticsearchTopologyAutoscalingArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchTopologyAutoscalingArrayInput` via:
 //
-//          GetDeploymentElasticsearchTopologyAutoscalingArray{ GetDeploymentElasticsearchTopologyAutoscalingArgs{...} }
+//	GetDeploymentElasticsearchTopologyAutoscalingArray{ GetDeploymentElasticsearchTopologyAutoscalingArgs{...} }
 type GetDeploymentElasticsearchTopologyAutoscalingArrayInput interface {
 	pulumi.Input
 
@@ -5208,7 +5208,7 @@ type GetDeploymentEnterpriseSearch struct {
 // GetDeploymentEnterpriseSearchInput is an input type that accepts GetDeploymentEnterpriseSearchArgs and GetDeploymentEnterpriseSearchOutput values.
 // You can construct a concrete instance of `GetDeploymentEnterpriseSearchInput` via:
 //
-//          GetDeploymentEnterpriseSearchArgs{...}
+//	GetDeploymentEnterpriseSearchArgs{...}
 type GetDeploymentEnterpriseSearchInput interface {
 	pulumi.Input
 
@@ -5244,7 +5244,7 @@ func (i GetDeploymentEnterpriseSearchArgs) ToGetDeploymentEnterpriseSearchOutput
 // GetDeploymentEnterpriseSearchArrayInput is an input type that accepts GetDeploymentEnterpriseSearchArray and GetDeploymentEnterpriseSearchArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentEnterpriseSearchArrayInput` via:
 //
-//          GetDeploymentEnterpriseSearchArray{ GetDeploymentEnterpriseSearchArgs{...} }
+//	GetDeploymentEnterpriseSearchArray{ GetDeploymentEnterpriseSearchArgs{...} }
 type GetDeploymentEnterpriseSearchArrayInput interface {
 	pulumi.Input
 
@@ -5350,7 +5350,7 @@ type GetDeploymentEnterpriseSearchTopology struct {
 // GetDeploymentEnterpriseSearchTopologyInput is an input type that accepts GetDeploymentEnterpriseSearchTopologyArgs and GetDeploymentEnterpriseSearchTopologyOutput values.
 // You can construct a concrete instance of `GetDeploymentEnterpriseSearchTopologyInput` via:
 //
-//          GetDeploymentEnterpriseSearchTopologyArgs{...}
+//	GetDeploymentEnterpriseSearchTopologyArgs{...}
 type GetDeploymentEnterpriseSearchTopologyInput interface {
 	pulumi.Input
 
@@ -5383,7 +5383,7 @@ func (i GetDeploymentEnterpriseSearchTopologyArgs) ToGetDeploymentEnterpriseSear
 // GetDeploymentEnterpriseSearchTopologyArrayInput is an input type that accepts GetDeploymentEnterpriseSearchTopologyArray and GetDeploymentEnterpriseSearchTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentEnterpriseSearchTopologyArrayInput` via:
 //
-//          GetDeploymentEnterpriseSearchTopologyArray{ GetDeploymentEnterpriseSearchTopologyArgs{...} }
+//	GetDeploymentEnterpriseSearchTopologyArray{ GetDeploymentEnterpriseSearchTopologyArgs{...} }
 type GetDeploymentEnterpriseSearchTopologyArrayInput interface {
 	pulumi.Input
 
@@ -5483,7 +5483,7 @@ type GetDeploymentIntegrationsServer struct {
 // GetDeploymentIntegrationsServerInput is an input type that accepts GetDeploymentIntegrationsServerArgs and GetDeploymentIntegrationsServerOutput values.
 // You can construct a concrete instance of `GetDeploymentIntegrationsServerInput` via:
 //
-//          GetDeploymentIntegrationsServerArgs{...}
+//	GetDeploymentIntegrationsServerArgs{...}
 type GetDeploymentIntegrationsServerInput interface {
 	pulumi.Input
 
@@ -5519,7 +5519,7 @@ func (i GetDeploymentIntegrationsServerArgs) ToGetDeploymentIntegrationsServerOu
 // GetDeploymentIntegrationsServerArrayInput is an input type that accepts GetDeploymentIntegrationsServerArray and GetDeploymentIntegrationsServerArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentIntegrationsServerArrayInput` via:
 //
-//          GetDeploymentIntegrationsServerArray{ GetDeploymentIntegrationsServerArgs{...} }
+//	GetDeploymentIntegrationsServerArray{ GetDeploymentIntegrationsServerArgs{...} }
 type GetDeploymentIntegrationsServerArrayInput interface {
 	pulumi.Input
 
@@ -5622,7 +5622,7 @@ type GetDeploymentIntegrationsServerTopology struct {
 // GetDeploymentIntegrationsServerTopologyInput is an input type that accepts GetDeploymentIntegrationsServerTopologyArgs and GetDeploymentIntegrationsServerTopologyOutput values.
 // You can construct a concrete instance of `GetDeploymentIntegrationsServerTopologyInput` via:
 //
-//          GetDeploymentIntegrationsServerTopologyArgs{...}
+//	GetDeploymentIntegrationsServerTopologyArgs{...}
 type GetDeploymentIntegrationsServerTopologyInput interface {
 	pulumi.Input
 
@@ -5652,7 +5652,7 @@ func (i GetDeploymentIntegrationsServerTopologyArgs) ToGetDeploymentIntegrations
 // GetDeploymentIntegrationsServerTopologyArrayInput is an input type that accepts GetDeploymentIntegrationsServerTopologyArray and GetDeploymentIntegrationsServerTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentIntegrationsServerTopologyArrayInput` via:
 //
-//          GetDeploymentIntegrationsServerTopologyArray{ GetDeploymentIntegrationsServerTopologyArgs{...} }
+//	GetDeploymentIntegrationsServerTopologyArray{ GetDeploymentIntegrationsServerTopologyArgs{...} }
 type GetDeploymentIntegrationsServerTopologyArrayInput interface {
 	pulumi.Input
 
@@ -5740,7 +5740,7 @@ type GetDeploymentKibana struct {
 // GetDeploymentKibanaInput is an input type that accepts GetDeploymentKibanaArgs and GetDeploymentKibanaOutput values.
 // You can construct a concrete instance of `GetDeploymentKibanaInput` via:
 //
-//          GetDeploymentKibanaArgs{...}
+//	GetDeploymentKibanaArgs{...}
 type GetDeploymentKibanaInput interface {
 	pulumi.Input
 
@@ -5776,7 +5776,7 @@ func (i GetDeploymentKibanaArgs) ToGetDeploymentKibanaOutputWithContext(ctx cont
 // GetDeploymentKibanaArrayInput is an input type that accepts GetDeploymentKibanaArray and GetDeploymentKibanaArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentKibanaArrayInput` via:
 //
-//          GetDeploymentKibanaArray{ GetDeploymentKibanaArgs{...} }
+//	GetDeploymentKibanaArray{ GetDeploymentKibanaArgs{...} }
 type GetDeploymentKibanaArrayInput interface {
 	pulumi.Input
 
@@ -5879,7 +5879,7 @@ type GetDeploymentKibanaTopology struct {
 // GetDeploymentKibanaTopologyInput is an input type that accepts GetDeploymentKibanaTopologyArgs and GetDeploymentKibanaTopologyOutput values.
 // You can construct a concrete instance of `GetDeploymentKibanaTopologyInput` via:
 //
-//          GetDeploymentKibanaTopologyArgs{...}
+//	GetDeploymentKibanaTopologyArgs{...}
 type GetDeploymentKibanaTopologyInput interface {
 	pulumi.Input
 
@@ -5909,7 +5909,7 @@ func (i GetDeploymentKibanaTopologyArgs) ToGetDeploymentKibanaTopologyOutputWith
 // GetDeploymentKibanaTopologyArrayInput is an input type that accepts GetDeploymentKibanaTopologyArray and GetDeploymentKibanaTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentKibanaTopologyArrayInput` via:
 //
-//          GetDeploymentKibanaTopologyArray{ GetDeploymentKibanaTopologyArgs{...} }
+//	GetDeploymentKibanaTopologyArray{ GetDeploymentKibanaTopologyArgs{...} }
 type GetDeploymentKibanaTopologyArrayInput interface {
 	pulumi.Input
 
@@ -5991,7 +5991,7 @@ type GetDeploymentObservability struct {
 // GetDeploymentObservabilityInput is an input type that accepts GetDeploymentObservabilityArgs and GetDeploymentObservabilityOutput values.
 // You can construct a concrete instance of `GetDeploymentObservabilityInput` via:
 //
-//          GetDeploymentObservabilityArgs{...}
+//	GetDeploymentObservabilityArgs{...}
 type GetDeploymentObservabilityInput interface {
 	pulumi.Input
 
@@ -6021,7 +6021,7 @@ func (i GetDeploymentObservabilityArgs) ToGetDeploymentObservabilityOutputWithCo
 // GetDeploymentObservabilityArrayInput is an input type that accepts GetDeploymentObservabilityArray and GetDeploymentObservabilityArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentObservabilityArrayInput` via:
 //
-//          GetDeploymentObservabilityArray{ GetDeploymentObservabilityArgs{...} }
+//	GetDeploymentObservabilityArray{ GetDeploymentObservabilityArgs{...} }
 type GetDeploymentObservabilityArrayInput interface {
 	pulumi.Input
 
@@ -6103,7 +6103,7 @@ type GetDeploymentsApm struct {
 // GetDeploymentsApmInput is an input type that accepts GetDeploymentsApmArgs and GetDeploymentsApmOutput values.
 // You can construct a concrete instance of `GetDeploymentsApmInput` via:
 //
-//          GetDeploymentsApmArgs{...}
+//	GetDeploymentsApmArgs{...}
 type GetDeploymentsApmInput interface {
 	pulumi.Input
 
@@ -6141,11 +6141,11 @@ func (i GetDeploymentsApmArgs) ToGetDeploymentsApmPtrOutputWithContext(ctx conte
 // GetDeploymentsApmPtrInput is an input type that accepts GetDeploymentsApmArgs, GetDeploymentsApmPtr and GetDeploymentsApmPtrOutput values.
 // You can construct a concrete instance of `GetDeploymentsApmPtrInput` via:
 //
-//          GetDeploymentsApmArgs{...}
+//	        GetDeploymentsApmArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetDeploymentsApmPtrInput interface {
 	pulumi.Input
 
@@ -6279,7 +6279,7 @@ type GetDeploymentsDeployment struct {
 // GetDeploymentsDeploymentInput is an input type that accepts GetDeploymentsDeploymentArgs and GetDeploymentsDeploymentOutput values.
 // You can construct a concrete instance of `GetDeploymentsDeploymentInput` via:
 //
-//          GetDeploymentsDeploymentArgs{...}
+//	GetDeploymentsDeploymentArgs{...}
 type GetDeploymentsDeploymentInput interface {
 	pulumi.Input
 
@@ -6318,7 +6318,7 @@ func (i GetDeploymentsDeploymentArgs) ToGetDeploymentsDeploymentOutputWithContex
 // GetDeploymentsDeploymentArrayInput is an input type that accepts GetDeploymentsDeploymentArray and GetDeploymentsDeploymentArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsDeploymentArrayInput` via:
 //
-//          GetDeploymentsDeploymentArray{ GetDeploymentsDeploymentArgs{...} }
+//	GetDeploymentsDeploymentArray{ GetDeploymentsDeploymentArgs{...} }
 type GetDeploymentsDeploymentArrayInput interface {
 	pulumi.Input
 
@@ -6436,7 +6436,7 @@ type GetDeploymentsElasticsearch struct {
 // GetDeploymentsElasticsearchInput is an input type that accepts GetDeploymentsElasticsearchArgs and GetDeploymentsElasticsearchOutput values.
 // You can construct a concrete instance of `GetDeploymentsElasticsearchInput` via:
 //
-//          GetDeploymentsElasticsearchArgs{...}
+//	GetDeploymentsElasticsearchArgs{...}
 type GetDeploymentsElasticsearchInput interface {
 	pulumi.Input
 
@@ -6474,11 +6474,11 @@ func (i GetDeploymentsElasticsearchArgs) ToGetDeploymentsElasticsearchPtrOutputW
 // GetDeploymentsElasticsearchPtrInput is an input type that accepts GetDeploymentsElasticsearchArgs, GetDeploymentsElasticsearchPtr and GetDeploymentsElasticsearchPtrOutput values.
 // You can construct a concrete instance of `GetDeploymentsElasticsearchPtrInput` via:
 //
-//          GetDeploymentsElasticsearchArgs{...}
+//	        GetDeploymentsElasticsearchArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetDeploymentsElasticsearchPtrInput interface {
 	pulumi.Input
 
@@ -6603,7 +6603,7 @@ type GetDeploymentsEnterpriseSearch struct {
 // GetDeploymentsEnterpriseSearchInput is an input type that accepts GetDeploymentsEnterpriseSearchArgs and GetDeploymentsEnterpriseSearchOutput values.
 // You can construct a concrete instance of `GetDeploymentsEnterpriseSearchInput` via:
 //
-//          GetDeploymentsEnterpriseSearchArgs{...}
+//	GetDeploymentsEnterpriseSearchArgs{...}
 type GetDeploymentsEnterpriseSearchInput interface {
 	pulumi.Input
 
@@ -6641,11 +6641,11 @@ func (i GetDeploymentsEnterpriseSearchArgs) ToGetDeploymentsEnterpriseSearchPtrO
 // GetDeploymentsEnterpriseSearchPtrInput is an input type that accepts GetDeploymentsEnterpriseSearchArgs, GetDeploymentsEnterpriseSearchPtr and GetDeploymentsEnterpriseSearchPtrOutput values.
 // You can construct a concrete instance of `GetDeploymentsEnterpriseSearchPtrInput` via:
 //
-//          GetDeploymentsEnterpriseSearchArgs{...}
+//	        GetDeploymentsEnterpriseSearchArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetDeploymentsEnterpriseSearchPtrInput interface {
 	pulumi.Input
 
@@ -6770,7 +6770,7 @@ type GetDeploymentsIntegrationsServer struct {
 // GetDeploymentsIntegrationsServerInput is an input type that accepts GetDeploymentsIntegrationsServerArgs and GetDeploymentsIntegrationsServerOutput values.
 // You can construct a concrete instance of `GetDeploymentsIntegrationsServerInput` via:
 //
-//          GetDeploymentsIntegrationsServerArgs{...}
+//	GetDeploymentsIntegrationsServerArgs{...}
 type GetDeploymentsIntegrationsServerInput interface {
 	pulumi.Input
 
@@ -6808,11 +6808,11 @@ func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServer
 // GetDeploymentsIntegrationsServerPtrInput is an input type that accepts GetDeploymentsIntegrationsServerArgs, GetDeploymentsIntegrationsServerPtr and GetDeploymentsIntegrationsServerPtrOutput values.
 // You can construct a concrete instance of `GetDeploymentsIntegrationsServerPtrInput` via:
 //
-//          GetDeploymentsIntegrationsServerArgs{...}
+//	        GetDeploymentsIntegrationsServerArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetDeploymentsIntegrationsServerPtrInput interface {
 	pulumi.Input
 
@@ -6937,7 +6937,7 @@ type GetDeploymentsKibana struct {
 // GetDeploymentsKibanaInput is an input type that accepts GetDeploymentsKibanaArgs and GetDeploymentsKibanaOutput values.
 // You can construct a concrete instance of `GetDeploymentsKibanaInput` via:
 //
-//          GetDeploymentsKibanaArgs{...}
+//	GetDeploymentsKibanaArgs{...}
 type GetDeploymentsKibanaInput interface {
 	pulumi.Input
 
@@ -6975,11 +6975,11 @@ func (i GetDeploymentsKibanaArgs) ToGetDeploymentsKibanaPtrOutputWithContext(ctx
 // GetDeploymentsKibanaPtrInput is an input type that accepts GetDeploymentsKibanaArgs, GetDeploymentsKibanaPtr and GetDeploymentsKibanaPtrOutput values.
 // You can construct a concrete instance of `GetDeploymentsKibanaPtrInput` via:
 //
-//          GetDeploymentsKibanaArgs{...}
+//	        GetDeploymentsKibanaArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetDeploymentsKibanaPtrInput interface {
 	pulumi.Input
 
@@ -7107,7 +7107,7 @@ type GetStackApm struct {
 // GetStackApmInput is an input type that accepts GetStackApmArgs and GetStackApmOutput values.
 // You can construct a concrete instance of `GetStackApmInput` via:
 //
-//          GetStackApmArgs{...}
+//	GetStackApmArgs{...}
 type GetStackApmInput interface {
 	pulumi.Input
 
@@ -7140,7 +7140,7 @@ func (i GetStackApmArgs) ToGetStackApmOutputWithContext(ctx context.Context) Get
 // GetStackApmArrayInput is an input type that accepts GetStackApmArray and GetStackApmArrayOutput values.
 // You can construct a concrete instance of `GetStackApmArrayInput` via:
 //
-//          GetStackApmArray{ GetStackApmArgs{...} }
+//	GetStackApmArray{ GetStackApmArgs{...} }
 type GetStackApmArrayInput interface {
 	pulumi.Input
 
@@ -7237,7 +7237,7 @@ type GetStackElasticsearch struct {
 // GetStackElasticsearchInput is an input type that accepts GetStackElasticsearchArgs and GetStackElasticsearchOutput values.
 // You can construct a concrete instance of `GetStackElasticsearchInput` via:
 //
-//          GetStackElasticsearchArgs{...}
+//	GetStackElasticsearchArgs{...}
 type GetStackElasticsearchInput interface {
 	pulumi.Input
 
@@ -7270,7 +7270,7 @@ func (i GetStackElasticsearchArgs) ToGetStackElasticsearchOutputWithContext(ctx 
 // GetStackElasticsearchArrayInput is an input type that accepts GetStackElasticsearchArray and GetStackElasticsearchArrayOutput values.
 // You can construct a concrete instance of `GetStackElasticsearchArrayInput` via:
 //
-//          GetStackElasticsearchArray{ GetStackElasticsearchArgs{...} }
+//	GetStackElasticsearchArray{ GetStackElasticsearchArgs{...} }
 type GetStackElasticsearchArrayInput interface {
 	pulumi.Input
 
@@ -7367,7 +7367,7 @@ type GetStackEnterpriseSearch struct {
 // GetStackEnterpriseSearchInput is an input type that accepts GetStackEnterpriseSearchArgs and GetStackEnterpriseSearchOutput values.
 // You can construct a concrete instance of `GetStackEnterpriseSearchInput` via:
 //
-//          GetStackEnterpriseSearchArgs{...}
+//	GetStackEnterpriseSearchArgs{...}
 type GetStackEnterpriseSearchInput interface {
 	pulumi.Input
 
@@ -7400,7 +7400,7 @@ func (i GetStackEnterpriseSearchArgs) ToGetStackEnterpriseSearchOutputWithContex
 // GetStackEnterpriseSearchArrayInput is an input type that accepts GetStackEnterpriseSearchArray and GetStackEnterpriseSearchArrayOutput values.
 // You can construct a concrete instance of `GetStackEnterpriseSearchArrayInput` via:
 //
-//          GetStackEnterpriseSearchArray{ GetStackEnterpriseSearchArgs{...} }
+//	GetStackEnterpriseSearchArray{ GetStackEnterpriseSearchArgs{...} }
 type GetStackEnterpriseSearchArrayInput interface {
 	pulumi.Input
 
@@ -7497,7 +7497,7 @@ type GetStackKibana struct {
 // GetStackKibanaInput is an input type that accepts GetStackKibanaArgs and GetStackKibanaOutput values.
 // You can construct a concrete instance of `GetStackKibanaInput` via:
 //
-//          GetStackKibanaArgs{...}
+//	GetStackKibanaArgs{...}
 type GetStackKibanaInput interface {
 	pulumi.Input
 
@@ -7530,7 +7530,7 @@ func (i GetStackKibanaArgs) ToGetStackKibanaOutputWithContext(ctx context.Contex
 // GetStackKibanaArrayInput is an input type that accepts GetStackKibanaArray and GetStackKibanaArrayOutput values.
 // You can construct a concrete instance of `GetStackKibanaArrayInput` via:
 //
-//          GetStackKibanaArray{ GetStackKibanaArgs{...} }
+//	GetStackKibanaArray{ GetStackKibanaArgs{...} }
 type GetStackKibanaArrayInput interface {
 	pulumi.Input
 

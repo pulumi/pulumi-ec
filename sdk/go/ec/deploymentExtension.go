@@ -22,120 +22,131 @@ import (
 // package main
 //
 // import (
-// 	"crypto/sha256"
-// 	"fmt"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"crypto/sha256"
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func filebase64sha256OrPanic(path string) pulumi.StringPtrInput {
-// 	if fileData, err := ioutil.ReadFile(path); err == nil {
-// 		hashedData := sha256.Sum256([]byte(fileData))
-// 		return pulumi.String(base64.StdEncoding.EncodeToString(hashedData[:]))
-// 	} else {
-// 		panic(err.Error())
-// 	}
-// }
+//	func filebase64sha256OrPanic(path string) pulumi.StringPtrInput {
+//		if fileData, err := ioutil.ReadFile(path); err == nil {
+//			hashedData := sha256.Sum256([]byte(fileData))
+//			return pulumi.String(base64.StdEncoding.EncodeToString(hashedData[:]))
+//		} else {
+//			panic(err.Error())
+//		}
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		filePath := "/path/to/plugin.zip"
-// 		_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
-// 			Description:   pulumi.String("my extension"),
-// 			Version:       pulumi.String("*"),
-// 			ExtensionType: pulumi.String("bundle"),
-// 			FilePath:      pulumi.String(filePath),
-// 			FileHash:      filebase64sha256OrPanic(filePath),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			filePath := "/path/to/plugin.zip"
+//			_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
+//				Description:   pulumi.String("my extension"),
+//				Version:       pulumi.String("*"),
+//				ExtensionType: pulumi.String("bundle"),
+//				FilePath:      pulumi.String(filePath),
+//				FileHash:      filebase64sha256OrPanic(filePath),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### With download URL
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
-// 			Description:   pulumi.String("my extension"),
-// 			DownloadUrl:   pulumi.String("https://example.net"),
-// 			ExtensionType: pulumi.String("bundle"),
-// 			Version:       pulumi.String("*"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
+//				Description:   pulumi.String("my extension"),
+//				DownloadUrl:   pulumi.String("https://example.net"),
+//				ExtensionType: pulumi.String("bundle"),
+//				Version:       pulumi.String("*"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Using extension in Deployment
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleExtension, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
-// 			Description:   pulumi.String("my extension"),
-// 			Version:       pulumi.String("*"),
-// 			ExtensionType: pulumi.String("bundle"),
-// 			DownloadUrl:   pulumi.String("https://example.net"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeployment(ctx, "withExtension", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch: &DeploymentElasticsearchArgs{
-// 				Extensions: DeploymentElasticsearchExtensionArray{
-// 					&DeploymentElasticsearchExtensionArgs{
-// 						Name:    exampleExtension.Name,
-// 						Type:    pulumi.String("bundle"),
-// 						Version: pulumi.String(latest.Version),
-// 						Url:     exampleExtension.Url,
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleExtension, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
+//				Description:   pulumi.String("my extension"),
+//				Version:       pulumi.String("*"),
+//				ExtensionType: pulumi.String("bundle"),
+//				DownloadUrl:   pulumi.String("https://example.net"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "withExtension", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &DeploymentElasticsearchArgs{
+//					Extensions: DeploymentElasticsearchExtensionArray{
+//						&DeploymentElasticsearchExtensionArgs{
+//							Name:    exampleExtension.Name,
+//							Type:    pulumi.String("bundle"),
+//							Version: pulumi.String(latest.Version),
+//							Url:     exampleExtension.Url,
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// You can import extensions using the `id`, for example
+// # You can import extensions using the `id`, for example
 //
 // ```sh
-//  $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
+//
+//	$ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
+//
 // ```
 type DeploymentExtension struct {
 	pulumi.CustomResourceState
@@ -307,7 +318,7 @@ func (i *DeploymentExtension) ToDeploymentExtensionOutputWithContext(ctx context
 // DeploymentExtensionArrayInput is an input type that accepts DeploymentExtensionArray and DeploymentExtensionArrayOutput values.
 // You can construct a concrete instance of `DeploymentExtensionArrayInput` via:
 //
-//          DeploymentExtensionArray{ DeploymentExtensionArgs{...} }
+//	DeploymentExtensionArray{ DeploymentExtensionArgs{...} }
 type DeploymentExtensionArrayInput interface {
 	pulumi.Input
 
@@ -332,7 +343,7 @@ func (i DeploymentExtensionArray) ToDeploymentExtensionArrayOutputWithContext(ct
 // DeploymentExtensionMapInput is an input type that accepts DeploymentExtensionMap and DeploymentExtensionMapOutput values.
 // You can construct a concrete instance of `DeploymentExtensionMapInput` via:
 //
-//          DeploymentExtensionMap{ "key": DeploymentExtensionArgs{...} }
+//	DeploymentExtensionMap{ "key": DeploymentExtensionArgs{...} }
 type DeploymentExtensionMapInput interface {
 	pulumi.Input
 

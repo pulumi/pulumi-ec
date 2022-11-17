@@ -18,38 +18,41 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ec.GetDeployments(ctx, &GetDeploymentsArgs{
-// 			DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
-// 			Elasticsearch: GetDeploymentsElasticsearch{
-// 				Healthy: pulumi.StringRef("true"),
-// 			},
-// 			EnterpriseSearch: GetDeploymentsEnterpriseSearch{
-// 				Healthy: pulumi.StringRef("true"),
-// 			},
-// 			IntegrationsServer: GetDeploymentsIntegrationsServer{
-// 				Version: pulumi.StringRef("8.0.0"),
-// 			},
-// 			Kibana: GetDeploymentsKibana{
-// 				Status: pulumi.StringRef("started"),
-// 			},
-// 			NamePrefix: pulumi.StringRef("test"),
-// 			Size:       pulumi.IntRef(200),
-// 			Tags: map[string]interface{}{
-// 				"foo": "bar",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.GetDeployments(ctx, &GetDeploymentsArgs{
+//				DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
+//				Elasticsearch: GetDeploymentsElasticsearch{
+//					Healthy: pulumi.StringRef("true"),
+//				},
+//				EnterpriseSearch: GetDeploymentsEnterpriseSearch{
+//					Healthy: pulumi.StringRef("true"),
+//				},
+//				IntegrationsServer: GetDeploymentsIntegrationsServer{
+//					Version: pulumi.StringRef("8.0.0"),
+//				},
+//				Kibana: GetDeploymentsKibana{
+//					Status: pulumi.StringRef("started"),
+//				},
+//				NamePrefix: pulumi.StringRef("test"),
+//				Size:       pulumi.IntRef(200),
+//				Tags: map[string]interface{}{
+//					"foo": "bar",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetDeployments(ctx *pulumi.Context, args *GetDeploymentsArgs, opts ...pulumi.InvokeOption) (*GetDeploymentsResult, error) {
 	var rv GetDeploymentsResult

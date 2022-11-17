@@ -20,39 +20,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch:        nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "secureUrl", &ec.DeploymentElasticsearchKeystoreArgs{
-// 			DeploymentId: exampleKeystore.ID(),
-// 			SettingName:  pulumi.String("xpack.notification.slack.account.hello.secure_url"),
-// 			Value:        pulumi.String("http://my-secure-url.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch:        nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "secureUrl", &ec.DeploymentElasticsearchKeystoreArgs{
+//				DeploymentId: exampleKeystore.ID(),
+//				SettingName:  pulumi.String("xpack.notification.slack.account.hello.secure_url"),
+//				Value:        pulumi.String("http://my-secure-url.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Adding credentials to use GCS as a snapshot repository
 //
@@ -62,50 +65,53 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		latest, err := ec.GetStack(ctx, &GetStackArgs{
-// 			VersionRegex: "latest",
-// 			Region:       "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
-// 			Region:               pulumi.String("us-east-1"),
-// 			Version:              pulumi.String(latest.Version),
-// 			DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-// 			Elasticsearch:        nil,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
-// 			DeploymentId: exampleKeystore.ID(),
-// 			SettingName:  pulumi.String("gcs.client.default.credentials_file"),
-// 			Value:        readFileOrPanic("service-account-key.json"),
-// 			AsFile:       pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch:        nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
+//				DeploymentId: exampleKeystore.ID(),
+//				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
+//				Value:        readFileOrPanic("service-account-key.json"),
+//				AsFile:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Attributes reference
 //
@@ -239,7 +245,7 @@ func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystoreOutpu
 // DeploymentElasticsearchKeystoreArrayInput is an input type that accepts DeploymentElasticsearchKeystoreArray and DeploymentElasticsearchKeystoreArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchKeystoreArrayInput` via:
 //
-//          DeploymentElasticsearchKeystoreArray{ DeploymentElasticsearchKeystoreArgs{...} }
+//	DeploymentElasticsearchKeystoreArray{ DeploymentElasticsearchKeystoreArgs{...} }
 type DeploymentElasticsearchKeystoreArrayInput interface {
 	pulumi.Input
 
@@ -264,7 +270,7 @@ func (i DeploymentElasticsearchKeystoreArray) ToDeploymentElasticsearchKeystoreA
 // DeploymentElasticsearchKeystoreMapInput is an input type that accepts DeploymentElasticsearchKeystoreMap and DeploymentElasticsearchKeystoreMapOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchKeystoreMapInput` via:
 //
-//          DeploymentElasticsearchKeystoreMap{ "key": DeploymentElasticsearchKeystoreArgs{...} }
+//	DeploymentElasticsearchKeystoreMap{ "key": DeploymentElasticsearchKeystoreArgs{...} }
 type DeploymentElasticsearchKeystoreMapInput interface {
 	pulumi.Input
 
