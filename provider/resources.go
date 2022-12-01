@@ -79,7 +79,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:                    p,
 		Name:                 "ec",
-		DisplayName:		  "ElasticCloud (EC)",
+		DisplayName:          "ElasticCloud (EC)",
 		GitHubOrg:            "elastic",
 		Description:          "A Pulumi package for creating and managing ElasticCloud resources.",
 		Keywords:             []string{"pulumi", "ec", "elasticsearch", "es", "elastic", "elasticcloud"},
