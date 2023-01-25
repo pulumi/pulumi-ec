@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentEnterpriseSearchTopology {
     /**
-     * @return Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+     * @return Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      * 
      */
     private @Nullable String instanceConfigurationId;
@@ -22,7 +22,7 @@ public final class DeploymentEnterpriseSearchTopology {
     private @Nullable Boolean nodeTypeConnector;
     private @Nullable Boolean nodeTypeWorker;
     /**
-     * @return Amount in Gigabytes per topology element in the `&#34;&lt;size in GB&gt;g&#34;` notation. When omitted, it defaults to the deployment template value.
+     * @return Amount of memory (RAM) per `topology` element in the &#34;&lt;size in GB&gt;g&#34; notation. When omitted, it defaults to the deployment template value.
      * 
      */
     private @Nullable String size;
@@ -32,14 +32,14 @@ public final class DeploymentEnterpriseSearchTopology {
      */
     private @Nullable String sizeResource;
     /**
-     * @return Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+     * @return Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
      * 
      */
     private @Nullable Integer zoneCount;
 
     private DeploymentEnterpriseSearchTopology() {}
     /**
-     * @return Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+     * @return Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      * 
      */
     public Optional<String> instanceConfigurationId() {
@@ -55,7 +55,7 @@ public final class DeploymentEnterpriseSearchTopology {
         return Optional.ofNullable(this.nodeTypeWorker);
     }
     /**
-     * @return Amount in Gigabytes per topology element in the `&#34;&lt;size in GB&gt;g&#34;` notation. When omitted, it defaults to the deployment template value.
+     * @return Amount of memory (RAM) per `topology` element in the &#34;&lt;size in GB&gt;g&#34; notation. When omitted, it defaults to the deployment template value.
      * 
      */
     public Optional<String> size() {
@@ -69,7 +69,7 @@ public final class DeploymentEnterpriseSearchTopology {
         return Optional.ofNullable(this.sizeResource);
     }
     /**
-     * @return Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+     * @return Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
      * 
      */
     public Optional<Integer> zoneCount() {

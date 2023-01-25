@@ -40,6 +40,17 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.Apikey != nil {
+		args.Apikey = pulumi.ToSecret(args.Apikey).(pulumi.StringPtrInput)
+	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apikey",
+		"password",
+	})
+	opts = append(opts, secrets)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:ec", name, args, &resource, opts...)
 	if err != nil {
@@ -130,6 +141,38 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
+func (o ProviderOutput) Apikey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Apikey }).(pulumi.StringPtrOutput)
+}
+
+// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
+func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
+// Private.
+func (o ProviderOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Timeout used for individual HTTP calls. Defaults to "1m".
+func (o ProviderOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
+// Private.
+func (o ProviderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Timeout used for individual HTTP calls. Defaults to "1m".
+func (o ProviderOutput) VerboseFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.VerboseFile }).(pulumi.StringPtrOutput)
 }
 
 func init() {

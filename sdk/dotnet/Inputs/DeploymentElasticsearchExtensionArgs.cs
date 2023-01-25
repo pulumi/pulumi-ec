@@ -10,10 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchExtensionArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchExtensionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the deployment.
+        /// Extension name.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -31,7 +31,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// Elastic Stack version to use for all the deployment resources.
+        /// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -39,5 +39,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchExtensionArgs()
         {
         }
+        public static new DeploymentElasticsearchExtensionArgs Empty => new DeploymentElasticsearchExtensionArgs();
     }
 }

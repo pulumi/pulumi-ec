@@ -10,7 +10,7 @@ import java.util.Objects;
 @CustomType
 public final class DeploymentElasticsearchExtension {
     /**
-     * @return Name of the deployment.
+     * @return Extension name.
      * 
      */
     private String name;
@@ -25,14 +25,14 @@ public final class DeploymentElasticsearchExtension {
      */
     private String url;
     /**
-     * @return Elastic Stack version to use for all the deployment resources.
+     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     private String version;
 
     private DeploymentElasticsearchExtension() {}
     /**
-     * @return Name of the deployment.
+     * @return Extension name.
      * 
      */
     public String name() {
@@ -53,7 +53,7 @@ public final class DeploymentElasticsearchExtension {
         return this.url;
     }
     /**
-     * @return Elastic Stack version to use for all the deployment resources.
+     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     public String version() {

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -46,16 +47,23 @@ import * as utilities from "./utilities";
  *         topologies: [
  *             {
  *                 id: "cold",
- *                 size: "8g",
+ *             },
+ *             {
+ *                 id: "frozen",
  *             },
  *             {
  *                 id: "hot_content",
  *                 size: "8g",
- *                 autoscaling: {},
+ *                 autoscaling: {
+ *                     maxSize: "128g",
+ *                     maxSizeResource: "memory",
+ *                 },
+ *             },
+ *             {
+ *                 id: "ml",
  *             },
  *             {
  *                 id: "warm",
- *                 size: "16g",
  *             },
  *         ],
  *     },
@@ -84,6 +92,11 @@ import * as utilities from "./utilities";
  *         deploymentId: ec_deployment.example_minimal.id,
  *     },
  * });
+ * ```
+ *
+ * It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deploymentId` to `self`.
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
  * ```
  * ### With Cross Cluster Search settings
  *
@@ -135,6 +148,31 @@ import * as utilities from "./utilities";
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "aws-io-optimized-v2",
  *     elasticsearch: {},
+ *     tags: {
+ *         owner: "elastic cloud",
+ *         component: "search",
+ *     },
+ * });
+ * ```
+ * ### With configuration strategy
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const withTags = new ec.Deployment("withTags", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         strategy: {
+ *             type: "rolling_all",
+ *         },
+ *     },
  *     tags: {
  *         owner: "elastic cloud",
  *         component: "search",
@@ -210,6 +248,8 @@ export class Deployment extends pulumi.CustomResource {
      * * `integrations_server.#.region` - Integrations Server region.
      * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
      * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -221,7 +261,7 @@ export class Deployment extends pulumi.CustomResource {
      * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
      * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
      * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
      * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -260,7 +300,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      */
     public readonly observability!: pulumi.Output<outputs.DeploymentObservability | undefined>;
     /**
@@ -347,6 +387,8 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["elasticsearchUsername"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["apmSecretToken", "elasticsearchPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Deployment.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -387,6 +429,8 @@ export interface DeploymentState {
      * * `integrations_server.#.region` - Integrations Server region.
      * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
      * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -398,7 +442,7 @@ export interface DeploymentState {
      * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
      * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
      * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
      * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -437,7 +481,7 @@ export interface DeploymentState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
@@ -499,7 +543,7 @@ export interface DeploymentArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**

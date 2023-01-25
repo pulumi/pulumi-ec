@@ -10,8 +10,11 @@ from .deployment_elasticsearch_keystore import *
 from .deployment_extension import *
 from .deployment_traffic_filter import *
 from .deployment_traffic_filter_association import *
+from .get_aws_privatelink_endpoint import *
+from .get_azure_privatelink_endpoint import *
 from .get_deployment import *
 from .get_deployments import *
+from .get_gcp_private_service_connect_endpoint import *
 from .get_stack import *
 from .provider import *
 from ._inputs import *

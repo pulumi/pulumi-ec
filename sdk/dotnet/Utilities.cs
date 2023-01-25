@@ -74,7 +74,7 @@ namespace Pulumi.ElasticCloud
         }
     }
 
-    internal sealed class ElasticCloudResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class ElasticCloudResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public ElasticCloudResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

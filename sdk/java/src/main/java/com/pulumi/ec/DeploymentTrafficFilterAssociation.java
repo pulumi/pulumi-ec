@@ -15,6 +15,52 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetDeploymentArgs;
+ * import com.pulumi.ec.DeploymentTrafficFilter;
+ * import com.pulumi.ec.DeploymentTrafficFilterArgs;
+ * import com.pulumi.ec.inputs.DeploymentTrafficFilterRuleArgs;
+ * import com.pulumi.ec.DeploymentTrafficFilterAssociation;
+ * import com.pulumi.ec.DeploymentTrafficFilterAssociationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var exampleDeployment = EcFunctions.getDeployment(GetDeploymentArgs.builder()
+ *             .id(&#34;320b7b540dfc967a7a649c18e2fce4ed&#34;)
+ *             .build());
+ * 
+ *         var exampleDeploymentTrafficFilter = new DeploymentTrafficFilter(&#34;exampleDeploymentTrafficFilter&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .type(&#34;ip&#34;)
+ *             .rules(DeploymentTrafficFilterRuleArgs.builder()
+ *                 .source(&#34;0.0.0.0/0&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation(&#34;exampleDeploymentTrafficFilterAssociation&#34;, DeploymentTrafficFilterAssociationArgs.builder()        
+ *             .trafficFilterId(exampleDeploymentTrafficFilter.id())
+ *             .deploymentId(ec_deployment.example().id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  * ## Import
  * 

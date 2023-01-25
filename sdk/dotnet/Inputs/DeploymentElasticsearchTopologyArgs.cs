@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchTopologyArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchTopologyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
@@ -37,7 +37,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string> Id { get; set; } = null!;
 
         /// <summary>
-        /// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+        /// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         /// </summary>
         [Input("instanceConfigurationId")]
         public Input<string>? InstanceConfigurationId { get; set; }
@@ -75,7 +75,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? NodeTypeMl { get; set; }
 
         /// <summary>
-        /// Amount in Gigabytes per topology element in the `"&lt;size in GB&gt;g"` notation. When omitted, it defaults to the deployment template value.
+        /// Amount of memory (RAM) per `topology` element in the "&lt;size in GB&gt;g" notation. When omitted, it defaults to the deployment template value.
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
@@ -87,7 +87,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? SizeResource { get; set; }
 
         /// <summary>
-        /// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+        /// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
         /// </summary>
         [Input("zoneCount")]
         public Input<int>? ZoneCount { get; set; }
@@ -95,5 +95,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchTopologyArgs()
         {
         }
+        public static new DeploymentElasticsearchTopologyArgs Empty => new DeploymentElasticsearchTopologyArgs();
     }
 }

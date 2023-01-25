@@ -19,26 +19,24 @@ namespace Pulumi.ElasticCloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = ElasticCloud.GetDeployment.Invoke(new()
         ///     {
-        ///         var example = Output.Create(ElasticCloud.GetDeployment.InvokeAsync(new ElasticCloud.GetDeploymentArgs
-        ///         {
-        ///             Id = "f759065e5e64e9f3546f6c44f2743893",
-        ///         }));
-        ///     }
+        ///         Id = "f759065e5e64e9f3546f6c44f2743893",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeploymentResult> InvokeAsync(GetDeploymentArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an existing Elastic Cloud deployment.
@@ -48,30 +46,28 @@ namespace Pulumi.ElasticCloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = ElasticCloud.GetDeployment.Invoke(new()
         ///     {
-        ///         var example = Output.Create(ElasticCloud.GetDeployment.InvokeAsync(new ElasticCloud.GetDeploymentArgs
-        ///         {
-        ///             Id = "f759065e5e64e9f3546f6c44f2743893",
-        ///         }));
-        ///     }
+        ///         Id = "f759065e5e64e9f3546f6c44f2743893",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetDeploymentArgs : Pulumi.InvokeArgs
+    public sealed class GetDeploymentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of an existing Elastic Cloud deployment.
@@ -82,9 +78,10 @@ namespace Pulumi.ElasticCloud
         public GetDeploymentArgs()
         {
         }
+        public static new GetDeploymentArgs Empty => new GetDeploymentArgs();
     }
 
-    public sealed class GetDeploymentInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDeploymentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of an existing Elastic Cloud deployment.
@@ -95,6 +92,7 @@ namespace Pulumi.ElasticCloud
         public GetDeploymentInvokeArgs()
         {
         }
+        public static new GetDeploymentInvokeArgs Empty => new GetDeploymentInvokeArgs();
     }
 
 
@@ -215,20 +213,24 @@ namespace Pulumi.ElasticCloud
         /// The name of the deployment.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Observability settings. Information about logs and metrics shipped to a dedicated deployment.
+        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+        /// * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
+        /// * `observability.#.logs` - Defines whether logs are enabled or disabled.
+        /// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentObservabilityResult> Observabilities;
         /// <summary>
         /// Region where the deployment can be found.
         /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// Key value map of arbitrary string tags.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Tags;
         /// <summary>
         /// Traffic filter block, which contains a list of traffic filter rule identifiers.
-        /// * `tags` Key value map of arbitrary string tags.
-        /// * `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-        /// * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
-        /// * `observability.#.logs` - Defines whether logs are enabled or disabled.
-        /// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
         /// </summary>
         public readonly ImmutableArray<string> TrafficFilters;
 

@@ -7,13 +7,13 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.DeploymentIntegrationsServerConfig;
 import com.pulumi.ec.outputs.DeploymentIntegrationsServerTopology;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentIntegrationsServer {
+    private @Nullable String apmHttpsEndpoint;
     /**
      * @return Integrations Server settings applied to all topologies unless overridden in the `topology` element.
      * 
@@ -24,6 +24,7 @@ public final class DeploymentIntegrationsServer {
      * 
      */
     private @Nullable String elasticsearchClusterRefId;
+    private @Nullable String fleetHttpsEndpoint;
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
     /**
@@ -41,9 +42,12 @@ public final class DeploymentIntegrationsServer {
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    private @Nullable List<DeploymentIntegrationsServerTopology> topologies;
+    private @Nullable DeploymentIntegrationsServerTopology topology;
 
     private DeploymentIntegrationsServer() {}
+    public Optional<String> apmHttpsEndpoint() {
+        return Optional.ofNullable(this.apmHttpsEndpoint);
+    }
     /**
      * @return Integrations Server settings applied to all topologies unless overridden in the `topology` element.
      * 
@@ -57,6 +61,9 @@ public final class DeploymentIntegrationsServer {
      */
     public Optional<String> elasticsearchClusterRefId() {
         return Optional.ofNullable(this.elasticsearchClusterRefId);
+    }
+    public Optional<String> fleetHttpsEndpoint() {
+        return Optional.ofNullable(this.fleetHttpsEndpoint);
     }
     public Optional<String> httpEndpoint() {
         return Optional.ofNullable(this.httpEndpoint);
@@ -85,8 +92,8 @@ public final class DeploymentIntegrationsServer {
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public List<DeploymentIntegrationsServerTopology> topologies() {
-        return this.topologies == null ? List.of() : this.topologies;
+    public Optional<DeploymentIntegrationsServerTopology> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     public static Builder builder() {
@@ -98,27 +105,36 @@ public final class DeploymentIntegrationsServer {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String apmHttpsEndpoint;
         private @Nullable DeploymentIntegrationsServerConfig config;
         private @Nullable String elasticsearchClusterRefId;
+        private @Nullable String fleetHttpsEndpoint;
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable String resourceId;
-        private @Nullable List<DeploymentIntegrationsServerTopology> topologies;
+        private @Nullable DeploymentIntegrationsServerTopology topology;
         public Builder() {}
         public Builder(DeploymentIntegrationsServer defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apmHttpsEndpoint = defaults.apmHttpsEndpoint;
     	      this.config = defaults.config;
     	      this.elasticsearchClusterRefId = defaults.elasticsearchClusterRefId;
+    	      this.fleetHttpsEndpoint = defaults.fleetHttpsEndpoint;
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.resourceId = defaults.resourceId;
-    	      this.topologies = defaults.topologies;
+    	      this.topology = defaults.topology;
         }
 
+        @CustomType.Setter
+        public Builder apmHttpsEndpoint(@Nullable String apmHttpsEndpoint) {
+            this.apmHttpsEndpoint = apmHttpsEndpoint;
+            return this;
+        }
         @CustomType.Setter
         public Builder config(@Nullable DeploymentIntegrationsServerConfig config) {
             this.config = config;
@@ -127,6 +143,11 @@ public final class DeploymentIntegrationsServer {
         @CustomType.Setter
         public Builder elasticsearchClusterRefId(@Nullable String elasticsearchClusterRefId) {
             this.elasticsearchClusterRefId = elasticsearchClusterRefId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder fleetHttpsEndpoint(@Nullable String fleetHttpsEndpoint) {
+            this.fleetHttpsEndpoint = fleetHttpsEndpoint;
             return this;
         }
         @CustomType.Setter
@@ -155,23 +176,22 @@ public final class DeploymentIntegrationsServer {
             return this;
         }
         @CustomType.Setter
-        public Builder topologies(@Nullable List<DeploymentIntegrationsServerTopology> topologies) {
-            this.topologies = topologies;
+        public Builder topology(@Nullable DeploymentIntegrationsServerTopology topology) {
+            this.topology = topology;
             return this;
-        }
-        public Builder topologies(DeploymentIntegrationsServerTopology... topologies) {
-            return topologies(List.of(topologies));
         }
         public DeploymentIntegrationsServer build() {
             final var o = new DeploymentIntegrationsServer();
+            o.apmHttpsEndpoint = apmHttpsEndpoint;
             o.config = config;
             o.elasticsearchClusterRefId = elasticsearchClusterRefId;
+            o.fleetHttpsEndpoint = fleetHttpsEndpoint;
             o.httpEndpoint = httpEndpoint;
             o.httpsEndpoint = httpsEndpoint;
             o.refId = refId;
             o.region = region;
             o.resourceId = resourceId;
-            o.topologies = topologies;
+            o.topology = topology;
             return o;
         }
     }

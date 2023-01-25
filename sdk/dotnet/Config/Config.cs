@@ -30,7 +30,7 @@ namespace Pulumi.ElasticCloud
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("ec");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("ec");
 
         private static readonly __Value<string?> _apikey = new __Value<string?>(() => __config.Get("apikey"));
         /// <summary>

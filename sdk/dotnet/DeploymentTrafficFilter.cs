@@ -16,137 +16,139 @@ namespace Pulumi.ElasticCloud
     /// ### IP type
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         var example = new ElasticCloud.DeploymentTrafficFilter("example", new ElasticCloud.DeploymentTrafficFilterArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Type = "ip",
-    ///             Rules = 
-    ///             {
-    ///                 new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
-    ///                 {
-    ///                     Source = "0.0.0.0/0",
-    ///                 },
-    ///             },
-    ///         });
-    ///         // Create an Elastic Cloud deployment
-    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             TrafficFilters = 
-    ///             {
-    ///                 example.Id,
-    ///             },
-    ///             Elasticsearch = ,
-    ///             Kibana = ,
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     var example = new ElasticCloud.DeploymentTrafficFilter("example", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Type = "ip",
+    ///         Rules = new[]
+    ///         {
+    ///             new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
+    ///             {
+    ///                 Source = "0.0.0.0/0",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         TrafficFilters = new[]
+    ///         {
+    ///             example.Id,
+    ///         },
+    ///         Elasticsearch = null,
+    ///         Kibana = null,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Azure Private Link type
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var region = azure_australiaeast;
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = region,
-    ///         }));
-    ///         var azure = new ElasticCloud.DeploymentTrafficFilter("azure", new ElasticCloud.DeploymentTrafficFilterArgs
-    ///         {
-    ///             Region = region,
-    ///             Type = "azure_private_endpoint",
-    ///             Rules = 
-    ///             {
-    ///                 new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
-    ///                 {
-    ///                     AzureEndpointName = "my-azure-pl",
-    ///                     AzureEndpointGuid = "78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
-    ///                 },
-    ///             },
-    ///         });
-    ///         // Create an Elastic Cloud deployment
-    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = region,
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "azure-io-optimized-v3",
-    ///             TrafficFilters = 
-    ///             {
-    ///                 azure.Id,
-    ///             },
-    ///             Elasticsearch = ,
-    ///             Kibana = ,
-    ///         });
-    ///     }
+    ///     var region = azure_australiaeast;
     /// 
-    /// }
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = region,
+    ///     });
+    /// 
+    ///     var azure = new ElasticCloud.DeploymentTrafficFilter("azure", new()
+    ///     {
+    ///         Region = region,
+    ///         Type = "azure_private_endpoint",
+    ///         Rules = new[]
+    ///         {
+    ///             new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
+    ///             {
+    ///                 AzureEndpointName = "my-azure-pl",
+    ///                 AzureEndpointGuid = "78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     {
+    ///         Region = region,
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "azure-io-optimized-v3",
+    ///         TrafficFilters = new[]
+    ///         {
+    ///             azure.Id,
+    ///         },
+    ///         Elasticsearch = null,
+    ///         Kibana = null,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### GCP Private Service Connect type
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var region = asia_east1;
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = region,
-    ///         }));
-    ///         var gcpPsc = new ElasticCloud.DeploymentTrafficFilter("gcpPsc", new ElasticCloud.DeploymentTrafficFilterArgs
-    ///         {
-    ///             Region = region,
-    ///             Type = "gcp_private_service_connect_endpoint",
-    ///             Rules = 
-    ///             {
-    ///                 new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
-    ///                 {
-    ///                     Source = "18446744072646845332",
-    ///                 },
-    ///             },
-    ///         });
-    ///         // Create an Elastic Cloud deployment
-    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = region,
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "gcp-storage-optimized",
-    ///             TrafficFilters = 
-    ///             {
-    ///                 gcpPsc.Id,
-    ///             },
-    ///             Elasticsearch = ,
-    ///             Kibana = ,
-    ///         });
-    ///     }
+    ///     var region = asia_east1;
     /// 
-    /// }
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = region,
+    ///     });
+    /// 
+    ///     var gcpPsc = new ElasticCloud.DeploymentTrafficFilter("gcpPsc", new()
+    ///     {
+    ///         Region = region,
+    ///         Type = "gcp_private_service_connect_endpoint",
+    ///         Rules = new[]
+    ///         {
+    ///             new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
+    ///             {
+    ///                 Source = "18446744072646845332",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     {
+    ///         Region = region,
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "gcp-storage-optimized",
+    ///         TrafficFilters = new[]
+    ///         {
+    ///             gcpPsc.Id,
+    ///         },
+    ///         Elasticsearch = null,
+    ///         Kibana = null,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -158,7 +160,7 @@ namespace Pulumi.ElasticCloud
     /// ```
     /// </summary>
     [ElasticCloudResourceType("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter")]
-    public partial class DeploymentTrafficFilter : Pulumi.CustomResource
+    public partial class DeploymentTrafficFilter : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Description of the ruleset.
@@ -240,7 +242,7 @@ namespace Pulumi.ElasticCloud
         }
     }
 
-    public sealed class DeploymentTrafficFilterArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentTrafficFilterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of the ruleset.
@@ -287,9 +289,10 @@ namespace Pulumi.ElasticCloud
         public DeploymentTrafficFilterArgs()
         {
         }
+        public static new DeploymentTrafficFilterArgs Empty => new DeploymentTrafficFilterArgs();
     }
 
-    public sealed class DeploymentTrafficFilterState : Pulumi.ResourceArgs
+    public sealed class DeploymentTrafficFilterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of the ruleset.
@@ -336,5 +339,6 @@ namespace Pulumi.ElasticCloud
         public DeploymentTrafficFilterState()
         {
         }
+        public static new DeploymentTrafficFilterState Empty => new DeploymentTrafficFilterState();
     }
 }

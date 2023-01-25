@@ -14,14 +14,14 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
     public static final DeploymentElasticsearchExtensionArgs Empty = new DeploymentElasticsearchExtensionArgs();
 
     /**
-     * Name of the deployment.
+     * Extension name.
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return Name of the deployment.
+     * @return Extension name.
      * 
      */
     public Output<String> name() {
@@ -59,14 +59,14 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
     }
 
     /**
-     * Elastic Stack version to use for all the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     @Import(name="version", required=true)
     private Output<String> version;
 
     /**
-     * @return Elastic Stack version to use for all the deployment resources.
+     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     public Output<String> version() {
@@ -101,7 +101,7 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
         }
 
         /**
-         * @param name Name of the deployment.
+         * @param name Extension name.
          * 
          * @return builder
          * 
@@ -112,7 +112,7 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
         }
 
         /**
-         * @param name Name of the deployment.
+         * @param name Extension name.
          * 
          * @return builder
          * 
@@ -164,7 +164,7 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
         }
 
         /**
-         * @param version Elastic Stack version to use for all the deployment resources.
+         * @param version Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
          * 
          * @return builder
          * 
@@ -175,7 +175,7 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
         }
 
         /**
-         * @param version Elastic Stack version to use for all the deployment resources.
+         * @param version Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
          * 
          * @return builder
          * 

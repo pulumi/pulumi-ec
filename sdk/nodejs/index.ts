@@ -5,15 +5,66 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./deployment";
-export * from "./deploymentElasticsearchKeystore";
-export * from "./deploymentExtension";
-export * from "./deploymentTrafficFilter";
-export * from "./deploymentTrafficFilterAssociation";
-export * from "./getDeployment";
-export * from "./getDeployments";
-export * from "./getStack";
-export * from "./provider";
+export { DeploymentArgs, DeploymentState } from "./deployment";
+export type Deployment = import("./deployment").Deployment;
+export const Deployment: typeof import("./deployment").Deployment = null as any;
+utilities.lazyLoad(exports, ["Deployment"], () => require("./deployment"));
+
+export { DeploymentElasticsearchKeystoreArgs, DeploymentElasticsearchKeystoreState } from "./deploymentElasticsearchKeystore";
+export type DeploymentElasticsearchKeystore = import("./deploymentElasticsearchKeystore").DeploymentElasticsearchKeystore;
+export const DeploymentElasticsearchKeystore: typeof import("./deploymentElasticsearchKeystore").DeploymentElasticsearchKeystore = null as any;
+utilities.lazyLoad(exports, ["DeploymentElasticsearchKeystore"], () => require("./deploymentElasticsearchKeystore"));
+
+export { DeploymentExtensionArgs, DeploymentExtensionState } from "./deploymentExtension";
+export type DeploymentExtension = import("./deploymentExtension").DeploymentExtension;
+export const DeploymentExtension: typeof import("./deploymentExtension").DeploymentExtension = null as any;
+utilities.lazyLoad(exports, ["DeploymentExtension"], () => require("./deploymentExtension"));
+
+export { DeploymentTrafficFilterArgs, DeploymentTrafficFilterState } from "./deploymentTrafficFilter";
+export type DeploymentTrafficFilter = import("./deploymentTrafficFilter").DeploymentTrafficFilter;
+export const DeploymentTrafficFilter: typeof import("./deploymentTrafficFilter").DeploymentTrafficFilter = null as any;
+utilities.lazyLoad(exports, ["DeploymentTrafficFilter"], () => require("./deploymentTrafficFilter"));
+
+export { DeploymentTrafficFilterAssociationArgs, DeploymentTrafficFilterAssociationState } from "./deploymentTrafficFilterAssociation";
+export type DeploymentTrafficFilterAssociation = import("./deploymentTrafficFilterAssociation").DeploymentTrafficFilterAssociation;
+export const DeploymentTrafficFilterAssociation: typeof import("./deploymentTrafficFilterAssociation").DeploymentTrafficFilterAssociation = null as any;
+utilities.lazyLoad(exports, ["DeploymentTrafficFilterAssociation"], () => require("./deploymentTrafficFilterAssociation"));
+
+export { GetAwsPrivatelinkEndpointArgs, GetAwsPrivatelinkEndpointResult, GetAwsPrivatelinkEndpointOutputArgs } from "./getAwsPrivatelinkEndpoint";
+export const getAwsPrivatelinkEndpoint: typeof import("./getAwsPrivatelinkEndpoint").getAwsPrivatelinkEndpoint = null as any;
+export const getAwsPrivatelinkEndpointOutput: typeof import("./getAwsPrivatelinkEndpoint").getAwsPrivatelinkEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getAwsPrivatelinkEndpoint","getAwsPrivatelinkEndpointOutput"], () => require("./getAwsPrivatelinkEndpoint"));
+
+export { GetAzurePrivatelinkEndpointArgs, GetAzurePrivatelinkEndpointResult, GetAzurePrivatelinkEndpointOutputArgs } from "./getAzurePrivatelinkEndpoint";
+export const getAzurePrivatelinkEndpoint: typeof import("./getAzurePrivatelinkEndpoint").getAzurePrivatelinkEndpoint = null as any;
+export const getAzurePrivatelinkEndpointOutput: typeof import("./getAzurePrivatelinkEndpoint").getAzurePrivatelinkEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getAzurePrivatelinkEndpoint","getAzurePrivatelinkEndpointOutput"], () => require("./getAzurePrivatelinkEndpoint"));
+
+export { GetDeploymentArgs, GetDeploymentResult, GetDeploymentOutputArgs } from "./getDeployment";
+export const getDeployment: typeof import("./getDeployment").getDeployment = null as any;
+export const getDeploymentOutput: typeof import("./getDeployment").getDeploymentOutput = null as any;
+utilities.lazyLoad(exports, ["getDeployment","getDeploymentOutput"], () => require("./getDeployment"));
+
+export { GetDeploymentsArgs, GetDeploymentsResult, GetDeploymentsOutputArgs } from "./getDeployments";
+export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
+export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
+utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
+
+export { GetGcpPrivateServiceConnectEndpointArgs, GetGcpPrivateServiceConnectEndpointResult, GetGcpPrivateServiceConnectEndpointOutputArgs } from "./getGcpPrivateServiceConnectEndpoint";
+export const getGcpPrivateServiceConnectEndpoint: typeof import("./getGcpPrivateServiceConnectEndpoint").getGcpPrivateServiceConnectEndpoint = null as any;
+export const getGcpPrivateServiceConnectEndpointOutput: typeof import("./getGcpPrivateServiceConnectEndpoint").getGcpPrivateServiceConnectEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getGcpPrivateServiceConnectEndpoint","getGcpPrivateServiceConnectEndpointOutput"], () => require("./getGcpPrivateServiceConnectEndpoint"));
+
+export { GetStackArgs, GetStackResult, GetStackOutputArgs } from "./getStack";
+export const getStack: typeof import("./getStack").getStack = null as any;
+export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
+utilities.lazyLoad(exports, ["getStack","getStackOutput"], () => require("./getStack"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -23,13 +74,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { Deployment } from "./deployment";
-import { DeploymentElasticsearchKeystore } from "./deploymentElasticsearchKeystore";
-import { DeploymentExtension } from "./deploymentExtension";
-import { DeploymentTrafficFilter } from "./deploymentTrafficFilter";
-import { DeploymentTrafficFilterAssociation } from "./deploymentTrafficFilterAssociation";
 
 const _module = {
     version: utilities.getVersion(),
@@ -55,9 +99,6 @@ pulumi.runtime.registerResourceModule("ec", "index/deploymentElasticsearchKeysto
 pulumi.runtime.registerResourceModule("ec", "index/deploymentExtension", _module)
 pulumi.runtime.registerResourceModule("ec", "index/deploymentTrafficFilter", _module)
 pulumi.runtime.registerResourceModule("ec", "index/deploymentTrafficFilterAssociation", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("ec", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

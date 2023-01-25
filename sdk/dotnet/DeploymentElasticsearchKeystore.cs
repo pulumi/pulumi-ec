@@ -16,74 +16,74 @@ namespace Pulumi.ElasticCloud
     /// ### Adding a new keystore setting to your deployment
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         // Create an Elastic Cloud deployment
-    ///         var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = ,
-    ///         });
-    ///         // Create the keystore secret entry
-    ///         var secureUrl = new ElasticCloud.DeploymentElasticsearchKeystore("secureUrl", new ElasticCloud.DeploymentElasticsearchKeystoreArgs
-    ///         {
-    ///             DeploymentId = exampleKeystore.Id,
-    ///             SettingName = "xpack.notification.slack.account.hello.secure_url",
-    ///             Value = "http://my-secure-url.com",
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = null,
+    ///     });
+    /// 
+    ///     // Create the keystore secret entry
+    ///     var secureUrl = new ElasticCloud.DeploymentElasticsearchKeystore("secureUrl", new()
+    ///     {
+    ///         DeploymentId = exampleKeystore.Id,
+    ///         SettingName = "xpack.notification.slack.account.hello.secure_url",
+    ///         Value = "http://my-secure-url.com",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Adding credentials to use GCS as a snapshot repository
     /// 
     /// For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         // Create an Elastic Cloud deployment
-    ///         var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = ,
-    ///         });
-    ///         // Create the keystore secret entry
-    ///         var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcsCredential", new ElasticCloud.DeploymentElasticsearchKeystoreArgs
-    ///         {
-    ///             DeploymentId = exampleKeystore.Id,
-    ///             SettingName = "gcs.client.default.credentials_file",
-    ///             Value = File.ReadAllText("service-account-key.json"),
-    ///             AsFile = true,
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = null,
+    ///     });
+    /// 
+    ///     // Create the keystore secret entry
+    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcsCredential", new()
+    ///     {
+    ///         DeploymentId = exampleKeystore.Id,
+    ///         SettingName = "gcs.client.default.credentials_file",
+    ///         Value = File.ReadAllText("service-account-key.json"),
+    ///         AsFile = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ## Attributes reference
     /// 
@@ -94,7 +94,7 @@ namespace Pulumi.ElasticCloud
     /// This resource cannot be imported.
     /// </summary>
     [ElasticCloudResourceType("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore")]
-    public partial class DeploymentElasticsearchKeystore : Pulumi.CustomResource
+    public partial class DeploymentElasticsearchKeystore : global::Pulumi.CustomResource
     {
         /// <summary>
         /// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
@@ -143,6 +143,10 @@ namespace Pulumi.ElasticCloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "value",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -164,7 +168,7 @@ namespace Pulumi.ElasticCloud
         }
     }
 
-    public sealed class DeploymentElasticsearchKeystoreArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchKeystoreArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
@@ -184,18 +188,29 @@ namespace Pulumi.ElasticCloud
         [Input("settingName", required: true)]
         public Input<string> SettingName { get; set; } = null!;
 
+        [Input("value", required: true)]
+        private Input<string>? _value;
+
         /// <summary>
         /// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         /// </summary>
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
+        public Input<string>? Value
+        {
+            get => _value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public DeploymentElasticsearchKeystoreArgs()
         {
         }
+        public static new DeploymentElasticsearchKeystoreArgs Empty => new DeploymentElasticsearchKeystoreArgs();
     }
 
-    public sealed class DeploymentElasticsearchKeystoreState : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchKeystoreState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
@@ -215,14 +230,25 @@ namespace Pulumi.ElasticCloud
         [Input("settingName")]
         public Input<string>? SettingName { get; set; }
 
+        [Input("value")]
+        private Input<string>? _value;
+
         /// <summary>
         /// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         /// </summary>
-        [Input("value")]
-        public Input<string>? Value { get; set; }
+        public Input<string>? Value
+        {
+            get => _value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public DeploymentElasticsearchKeystoreState()
         {
         }
+        public static new DeploymentElasticsearchKeystoreState Empty => new DeploymentElasticsearchKeystoreState();
     }
 }

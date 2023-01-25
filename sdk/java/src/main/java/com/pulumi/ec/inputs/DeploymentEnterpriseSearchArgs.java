@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.DeploymentEnterpriseSearchConfigArgs;
 import com.pulumi.ec.inputs.DeploymentEnterpriseSearchTopologyArgs;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -103,15 +102,15 @@ public final class DeploymentEnterpriseSearchArgs extends com.pulumi.resources.R
      * Can be set multiple times to compose complex topologies.
      * 
      */
-    @Import(name="topologies")
-    private @Nullable Output<List<DeploymentEnterpriseSearchTopologyArgs>> topologies;
+    @Import(name="topology")
+    private @Nullable Output<DeploymentEnterpriseSearchTopologyArgs> topology;
 
     /**
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public Optional<Output<List<DeploymentEnterpriseSearchTopologyArgs>>> topologies() {
-        return Optional.ofNullable(this.topologies);
+    public Optional<Output<DeploymentEnterpriseSearchTopologyArgs>> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     private DeploymentEnterpriseSearchArgs() {}
@@ -124,7 +123,7 @@ public final class DeploymentEnterpriseSearchArgs extends com.pulumi.resources.R
         this.refId = $.refId;
         this.region = $.region;
         this.resourceId = $.resourceId;
-        this.topologies = $.topologies;
+        this.topology = $.topology;
     }
 
     public static Builder builder() {
@@ -257,34 +256,24 @@ public final class DeploymentEnterpriseSearchArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(@Nullable Output<List<DeploymentEnterpriseSearchTopologyArgs>> topologies) {
-            $.topologies = topologies;
+        public Builder topology(@Nullable Output<DeploymentEnterpriseSearchTopologyArgs> topology) {
+            $.topology = topology;
             return this;
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(List<DeploymentEnterpriseSearchTopologyArgs> topologies) {
-            return topologies(Output.of(topologies));
-        }
-
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(DeploymentEnterpriseSearchTopologyArgs... topologies) {
-            return topologies(List.of(topologies));
+        public Builder topology(DeploymentEnterpriseSearchTopologyArgs topology) {
+            return topology(Output.of(topology));
         }
 
         public DeploymentEnterpriseSearchArgs build() {

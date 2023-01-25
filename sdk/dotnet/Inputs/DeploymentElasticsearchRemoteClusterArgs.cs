@@ -10,10 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchRemoteClusterArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchRemoteClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Alias for the Cross Cluster Search binding.
         /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
@@ -25,7 +25,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string> DeploymentId { get; set; } = null!;
 
         /// <summary>
-        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+        /// Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
         /// </summary>
         [Input("refId")]
         public Input<string>? RefId { get; set; }
@@ -39,5 +39,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchRemoteClusterArgs()
         {
         }
+        public static new DeploymentElasticsearchRemoteClusterArgs Empty => new DeploymentElasticsearchRemoteClusterArgs();
     }
 }

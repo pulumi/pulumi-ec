@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentObservabilityArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentObservabilityArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Remote deployment ID.
@@ -33,5 +33,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentObservabilityArgs()
         {
         }
+        public static new DeploymentObservabilityArgs Empty => new DeploymentObservabilityArgs();
     }
 }

@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -38,8 +38,8 @@ import (
 //			example, err := ec.NewDeploymentTrafficFilter(ctx, "example", &ec.DeploymentTrafficFilterArgs{
 //				Region: pulumi.String("us-east-1"),
 //				Type:   pulumi.String("ip"),
-//				Rules: DeploymentTrafficFilterRuleArray{
-//					&DeploymentTrafficFilterRuleArgs{
+//				Rules: ec.DeploymentTrafficFilterRuleArray{
+//					&ec.DeploymentTrafficFilterRuleArgs{
 //						Source: pulumi.String("0.0.0.0/0"),
 //					},
 //				},
@@ -49,7 +49,7 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				TrafficFilters: pulumi.StringArray{
 //					example.ID(),
@@ -80,7 +80,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			region := azure_australiaeast
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       region,
 //			}, nil)
@@ -90,8 +90,8 @@ import (
 //			azure, err := ec.NewDeploymentTrafficFilter(ctx, "azure", &ec.DeploymentTrafficFilterArgs{
 //				Region: pulumi.Any(region),
 //				Type:   pulumi.String("azure_private_endpoint"),
-//				Rules: DeploymentTrafficFilterRuleArray{
-//					&DeploymentTrafficFilterRuleArgs{
+//				Rules: ec.DeploymentTrafficFilterRuleArray{
+//					&ec.DeploymentTrafficFilterRuleArgs{
 //						AzureEndpointName: pulumi.String("my-azure-pl"),
 //						AzureEndpointGuid: pulumi.String("78c64959-fd88-41cc-81ac-1cfcdb1ac32e"),
 //					},
@@ -102,7 +102,7 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.Any(region),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("azure-io-optimized-v3"),
 //				TrafficFilters: pulumi.StringArray{
 //					azure.ID(),
@@ -133,7 +133,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			region := asia_east1
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       region,
 //			}, nil)
@@ -143,8 +143,8 @@ import (
 //			gcpPsc, err := ec.NewDeploymentTrafficFilter(ctx, "gcpPsc", &ec.DeploymentTrafficFilterArgs{
 //				Region: pulumi.Any(region),
 //				Type:   pulumi.String("gcp_private_service_connect_endpoint"),
-//				Rules: DeploymentTrafficFilterRuleArray{
-//					&DeploymentTrafficFilterRuleArgs{
+//				Rules: ec.DeploymentTrafficFilterRuleArray{
+//					&ec.DeploymentTrafficFilterRuleArgs{
 //						Source: pulumi.String("18446744072646845332"),
 //					},
 //				},
@@ -154,7 +154,7 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.Any(region),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("gcp-storage-optimized"),
 //				TrafficFilters: pulumi.StringArray{
 //					gcpPsc.ID(),
@@ -384,6 +384,36 @@ func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutput() Deploym
 
 func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutputWithContext(ctx context.Context) DeploymentTrafficFilterOutput {
 	return o
+}
+
+// Description of the ruleset.
+func (o DeploymentTrafficFilterOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// To automatically include the ruleset in the new deployments. Defaults to `false`.
+func (o DeploymentTrafficFilterOutput) IncludeByDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.BoolPtrOutput { return v.IncludeByDefault }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the ruleset.
+func (o DeploymentTrafficFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Filter region, the ruleset can only be attached to deployments in the specific region.
+func (o DeploymentTrafficFilterOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// Rule block, which can be specified multiple times for multiple rules.
+func (o DeploymentTrafficFilterOutput) Rules() DeploymentTrafficFilterRuleArrayOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) DeploymentTrafficFilterRuleArrayOutput { return v.Rules }).(DeploymentTrafficFilterRuleArrayOutput)
+}
+
+// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+func (o DeploymentTrafficFilterOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type DeploymentTrafficFilterArrayOutput struct{ *pulumi.OutputState }

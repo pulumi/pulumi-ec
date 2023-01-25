@@ -17,14 +17,14 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
     public static final DeploymentElasticsearchRemoteClusterArgs Empty = new DeploymentElasticsearchRemoteClusterArgs();
 
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Alias for the Cross Cluster Search binding.
      * 
      */
     @Import(name="alias", required=true)
     private Output<String> alias;
 
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Alias for the Cross Cluster Search binding.
      * 
      */
     public Output<String> alias() {
@@ -47,14 +47,14 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
     }
 
     /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
      * 
      */
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
     /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
      * 
      */
     public Optional<Output<String>> refId() {
@@ -104,7 +104,7 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         /**
-         * @param alias Deployment alias, affects the format of the resource URLs.
+         * @param alias Alias for the Cross Cluster Search binding.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         /**
-         * @param alias Deployment alias, affects the format of the resource URLs.
+         * @param alias Alias for the Cross Cluster Search binding.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         /**
-         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+         * @param refId Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         /**
-         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+         * @param refId Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
          * 
          * @return builder
          * 

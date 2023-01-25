@@ -23,14 +23,14 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * JSON-formatted user level `elasticsearch.yml` setting overrides.
+     * JSON-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsJson")
     private @Nullable Output<String> userSettingsJson;
 
     /**
-     * @return JSON-formatted user level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsJson() {
@@ -38,14 +38,14 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsOverrideJson")
     private @Nullable Output<String> userSettingsOverrideJson;
 
     /**
-     * @return JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsOverrideJson() {
@@ -53,14 +53,14 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsOverrideYaml")
     private @Nullable Output<String> userSettingsOverrideYaml;
 
     /**
-     * @return YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsOverrideYaml() {
@@ -68,14 +68,14 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * YAML-formatted user level `elasticsearch.yml` setting overrides.
+     * YAML-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsYaml")
     private @Nullable Output<String> userSettingsYaml;
 
     /**
-     * @return YAML-formatted user level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsYaml() {
@@ -120,7 +120,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsJson JSON-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsJson JSON-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsJson JSON-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsJson JSON-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -152,7 +152,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -162,7 +162,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -173,7 +173,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -183,7 +183,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsYaml YAML-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsYaml YAML-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -194,7 +194,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param userSettingsYaml YAML-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsYaml YAML-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 

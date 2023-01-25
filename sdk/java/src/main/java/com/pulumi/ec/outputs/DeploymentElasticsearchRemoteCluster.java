@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentElasticsearchRemoteCluster {
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Alias for the Cross Cluster Search binding.
      * 
      */
     private String alias;
@@ -23,7 +23,7 @@ public final class DeploymentElasticsearchRemoteCluster {
      */
     private String deploymentId;
     /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
      * 
      */
     private @Nullable String refId;
@@ -35,7 +35,7 @@ public final class DeploymentElasticsearchRemoteCluster {
 
     private DeploymentElasticsearchRemoteCluster() {}
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Alias for the Cross Cluster Search binding.
      * 
      */
     public String alias() {
@@ -49,7 +49,7 @@ public final class DeploymentElasticsearchRemoteCluster {
         return this.deploymentId;
     }
     /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
      * 
      */
     public Optional<String> refId() {

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -35,7 +35,7 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch:        nil,
 //				Kibana:               nil,
@@ -64,7 +64,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -73,23 +73,30 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-//				Elasticsearch: &DeploymentElasticsearchArgs{
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Autoscale: pulumi.String("true"),
-//					Topologies: DeploymentElasticsearchTopologyArray{
-//						&DeploymentElasticsearchTopologyArgs{
-//							Id:   pulumi.String("cold"),
+//					Topologies: ec.DeploymentElasticsearchTopologyArray{
+//						&ec.DeploymentElasticsearchTopologyArgs{
+//							Id: pulumi.String("cold"),
+//						},
+//						&ec.DeploymentElasticsearchTopologyArgs{
+//							Id: pulumi.String("frozen"),
+//						},
+//						&ec.DeploymentElasticsearchTopologyArgs{
+//							Id:   pulumi.String("hot_content"),
 //							Size: pulumi.String("8g"),
+//							Autoscaling: &ec.DeploymentElasticsearchTopologyAutoscalingArgs{
+//								MaxSize:         pulumi.String("128g"),
+//								MaxSizeResource: pulumi.String("memory"),
+//							},
 //						},
-//						&DeploymentElasticsearchTopologyArgs{
-//							Id:          pulumi.String("hot_content"),
-//							Size:        pulumi.String("8g"),
-//							Autoscaling: nil,
+//						&ec.DeploymentElasticsearchTopologyArgs{
+//							Id: pulumi.String("ml"),
 //						},
-//						&DeploymentElasticsearchTopologyArgs{
-//							Id:   pulumi.String("warm"),
-//							Size: pulumi.String("16g"),
+//						&ec.DeploymentElasticsearchTopologyArgs{
+//							Id: pulumi.String("warm"),
 //						},
 //					},
 //				},
@@ -119,7 +126,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -128,17 +135,35 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "exampleObservability", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch:        nil,
 //				Kibana:               nil,
-//				Observability: &DeploymentObservabilityArgs{
+//				Observability: &ec.DeploymentObservabilityArgs{
 //					DeploymentId: pulumi.Any(ec_deployment.Example_minimal.Id),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deploymentId` to `self`.
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
 //			return nil
 //		})
 //	}
@@ -158,7 +183,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -167,11 +192,11 @@ import (
 //			}
 //			sourceDeployment, err := ec.NewDeployment(ctx, "sourceDeployment", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-//				Elasticsearch: &DeploymentElasticsearchArgs{
-//					Topologies: DeploymentElasticsearchTopologyArray{
-//						&DeploymentElasticsearchTopologyArgs{
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Topologies: ec.DeploymentElasticsearchTopologyArray{
+//						&ec.DeploymentElasticsearchTopologyArgs{
 //							Id:   pulumi.String("hot_content"),
 //							Size: pulumi.String("1g"),
 //						},
@@ -183,16 +208,16 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "ccs", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-cross-cluster-search-v2"),
-//				Elasticsearch: &DeploymentElasticsearchArgs{
-//					RemoteClusters: DeploymentElasticsearchRemoteClusterArray{
-//						&DeploymentElasticsearchRemoteClusterArgs{
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					RemoteClusters: ec.DeploymentElasticsearchRemoteClusterArray{
+//						&ec.DeploymentElasticsearchRemoteClusterArgs{
 //							DeploymentId: sourceDeployment.ID(),
 //							Alias:        sourceDeployment.Name,
-//							RefId: sourceDeployment.Elasticsearch.ApplyT(func(elasticsearch DeploymentElasticsearch) (string, error) {
-//								return elasticsearch.RefId, nil
-//							}).(pulumi.StringOutput),
+//							RefId: sourceDeployment.Elasticsearch.ApplyT(func(elasticsearch ec.DeploymentElasticsearch) (*string, error) {
+//								return &elasticsearch.RefId, nil
+//							}).(pulumi.StringPtrOutput),
 //						},
 //					},
 //				},
@@ -220,7 +245,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -229,9 +254,52 @@ import (
 //			}
 //			_, err = ec.NewDeployment(ctx, "withTags", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch:        nil,
+//				Tags: pulumi.StringMap{
+//					"owner":     pulumi.String("elastic cloud"),
+//					"component": pulumi.String("search"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### With configuration strategy
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "withTags", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              *pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Strategy: &ec.DeploymentElasticsearchStrategyArgs{
+//						Type: pulumi.String("rolling_all"),
+//					},
+//				},
 //				Tags: pulumi.StringMap{
 //					"owner":     pulumi.String("elastic cloud"),
 //					"component": pulumi.String("search"),
@@ -285,6 +353,8 @@ type Deployment struct {
 	// * `integrations_server.#.region` - Integrations Server region.
 	// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
 	// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+	// * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+	// * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
 	// * `apm.#.resource_id` - APM resource unique identifier.
 	// * `apm.#.region` - APM region.
 	// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -296,7 +366,7 @@ type Deployment struct {
 	// * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
 	// * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
 	// * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
 	// * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
 	// * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
 	// * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -317,7 +387,7 @@ type Deployment struct {
 	Kibana DeploymentKibanaPtrOutput `pulumi:"kibana"`
 	// Name of the deployment.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Observability settings that you can set to ship logs and metrics to a separate deployment.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability DeploymentObservabilityPtrOutput `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -350,6 +420,11 @@ func NewDeployment(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apmSecretToken",
+		"elasticsearchPassword",
+	})
+	opts = append(opts, secrets)
 	var resource Deployment
 	err := ctx.RegisterResource("ec:index/deployment:Deployment", name, args, &resource, opts...)
 	if err != nil {
@@ -399,6 +474,8 @@ type deploymentState struct {
 	// * `integrations_server.#.region` - Integrations Server region.
 	// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
 	// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+	// * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+	// * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
 	// * `apm.#.resource_id` - APM resource unique identifier.
 	// * `apm.#.region` - APM region.
 	// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -410,7 +487,7 @@ type deploymentState struct {
 	// * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
 	// * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
 	// * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
 	// * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
 	// * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
 	// * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -431,7 +508,7 @@ type deploymentState struct {
 	Kibana *DeploymentKibana `pulumi:"kibana"`
 	// Name of the deployment.
 	Name *string `pulumi:"name"`
-	// Observability settings that you can set to ship logs and metrics to a separate deployment.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability *DeploymentObservability `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region *string `pulumi:"region"`
@@ -473,6 +550,8 @@ type DeploymentState struct {
 	// * `integrations_server.#.region` - Integrations Server region.
 	// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
 	// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+	// * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+	// * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
 	// * `apm.#.resource_id` - APM resource unique identifier.
 	// * `apm.#.region` - APM region.
 	// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -484,7 +563,7 @@ type DeploymentState struct {
 	// * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
 	// * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
 	// * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
 	// * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
 	// * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
 	// * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -505,7 +584,7 @@ type DeploymentState struct {
 	Kibana DeploymentKibanaPtrInput
 	// Name of the deployment.
 	Name pulumi.StringPtrInput
-	// Observability settings that you can set to ship logs and metrics to a separate deployment.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability DeploymentObservabilityPtrInput
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region pulumi.StringPtrInput
@@ -540,7 +619,7 @@ type deploymentArgs struct {
 	Kibana *DeploymentKibana `pulumi:"kibana"`
 	// Name of the deployment.
 	Name *string `pulumi:"name"`
-	// Observability settings that you can set to ship logs and metrics to a separate deployment.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability *DeploymentObservability `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region string `pulumi:"region"`
@@ -572,7 +651,7 @@ type DeploymentArgs struct {
 	Kibana DeploymentKibanaPtrInput
 	// Name of the deployment.
 	Name pulumi.StringPtrInput
-	// Observability settings that you can set to ship logs and metrics to a separate deployment.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability DeploymentObservabilityPtrInput
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region pulumi.StringInput
@@ -671,6 +750,130 @@ func (o DeploymentOutput) ToDeploymentOutput() DeploymentOutput {
 
 func (o DeploymentOutput) ToDeploymentOutputWithContext(ctx context.Context) DeploymentOutput {
 	return o
+}
+
+// Deployment alias, affects the format of the resource URLs.
+func (o DeploymentOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+func (o DeploymentOutput) Apm() DeploymentApmPtrOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentApmPtrOutput { return v.Apm }).(DeploymentApmPtrOutput)
+}
+
+// Auto-generated APM secret_token, empty unless an `apm` resource is specified.
+// * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
+// * `elasticsearch.#.region` - Elasticsearch region.
+// * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
+// * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
+// * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
+// * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
+// * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
+// * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
+// * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
+// * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
+// * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
+// * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
+// * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
+// * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
+// * `kibana.#.resource_id` - Kibana resource unique identifier.
+// * `kibana.#.region` - Kibana region.
+// * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
+// * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
+// * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
+// * `integrations_server.#.region` - Integrations Server region.
+// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
+// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+// * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+// * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
+// * `apm.#.resource_id` - APM resource unique identifier.
+// * `apm.#.region` - APM region.
+// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
+// * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
+// * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
+// * `enterprise_search.#.region` - Enterprise Search region.
+// * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
+// * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
+// * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
+// * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
+// * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
+// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
+// * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
+// * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
+// * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
+func (o DeploymentOutput) ApmSecretToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ApmSecretToken }).(pulumi.StringOutput)
+}
+
+// Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+func (o DeploymentOutput) DeploymentTemplateId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.DeploymentTemplateId }).(pulumi.StringOutput)
+}
+
+// Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+func (o DeploymentOutput) Elasticsearch() DeploymentElasticsearchOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentElasticsearchOutput { return v.Elasticsearch }).(DeploymentElasticsearchOutput)
+}
+
+// Auto-generated Elasticsearch password.
+func (o DeploymentOutput) ElasticsearchPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ElasticsearchPassword }).(pulumi.StringOutput)
+}
+
+// Auto-generated Elasticsearch username.
+func (o DeploymentOutput) ElasticsearchUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ElasticsearchUsername }).(pulumi.StringOutput)
+}
+
+// Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+func (o DeploymentOutput) EnterpriseSearch() DeploymentEnterpriseSearchPtrOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentEnterpriseSearchPtrOutput { return v.EnterpriseSearch }).(DeploymentEnterpriseSearchPtrOutput)
+}
+
+// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+func (o DeploymentOutput) IntegrationsServer() DeploymentIntegrationsServerPtrOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentIntegrationsServerPtrOutput { return v.IntegrationsServer }).(DeploymentIntegrationsServerPtrOutput)
+}
+
+// Kibana instance definition, can only be specified once.
+func (o DeploymentOutput) Kibana() DeploymentKibanaPtrOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentKibanaPtrOutput { return v.Kibana }).(DeploymentKibanaPtrOutput)
+}
+
+// Name of the deployment.
+func (o DeploymentOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+func (o DeploymentOutput) Observability() DeploymentObservabilityPtrOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentObservabilityPtrOutput { return v.Observability }).(DeploymentObservabilityPtrOutput)
+}
+
+// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+func (o DeploymentOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
+func (o DeploymentOutput) RequestId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.RequestId }).(pulumi.StringPtrOutput)
+}
+
+// Key value map of arbitrary string tags.
+func (o DeploymentOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+// List of traffic filter rule identifiers that will be applied to the deployment.
+func (o DeploymentOutput) TrafficFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringArrayOutput { return v.TrafficFilters }).(pulumi.StringArrayOutput)
+}
+
+// Elastic Stack version to use for all the deployment resources.
+func (o DeploymentOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
 type DeploymentArrayOutput struct{ *pulumi.OutputState }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -14,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const example = pulumi.output(ec.getDeployments({
+ * const example = ec.getDeployments({
  *     deploymentTemplateId: "azure-compute-optimized",
  *     elasticsearch: {
  *         healthy: "true",
@@ -33,16 +34,13 @@ import * as utilities from "./utilities";
  *     tags: {
  *         foo: "bar",
  *     },
- * }));
+ * });
  * ```
  */
 export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getDeployments:getDeployments", {
         "apm": args.apm,
         "deploymentTemplateId": args.deploymentTemplateId,
@@ -155,9 +153,39 @@ export interface GetDeploymentsResult {
     readonly size?: number;
     readonly tags?: {[key: string]: string};
 }
-
+/**
+ * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const example = ec.getDeployments({
+ *     deploymentTemplateId: "azure-compute-optimized",
+ *     elasticsearch: {
+ *         healthy: "true",
+ *     },
+ *     enterpriseSearch: {
+ *         healthy: "true",
+ *     },
+ *     integrationsServer: {
+ *         version: "8.0.0",
+ *     },
+ *     kibana: {
+ *         status: "started",
+ *     },
+ *     namePrefix: "test",
+ *     size: 200,
+ *     tags: {
+ *         foo: "bar",
+ *     },
+ * });
+ * ```
+ */
 export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
-    return pulumi.output(args).apply(a => getDeployments(a, opts))
+    return pulumi.output(args).apply((a: any) => getDeployments(a, opts))
 }
 
 /**

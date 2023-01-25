@@ -12,6 +12,7 @@ import com.pulumi.ec.Utilities;
 import com.pulumi.ec.inputs.DeploymentElasticsearchKeystoreState;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -19,6 +20,105 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
+ * ### Adding a new keystore setting to your deployment
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystore;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch()
+ *             .build());
+ * 
+ *         var secureUrl = new DeploymentElasticsearchKeystore(&#34;secureUrl&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
+ *             .deploymentId(exampleKeystore.id())
+ *             .settingName(&#34;xpack.notification.slack.account.hello.secure_url&#34;)
+ *             .value(&#34;http://my-secure-url.com&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Adding credentials to use GCS as a snapshot repository
+ * 
+ * For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystore;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch()
+ *             .build());
+ * 
+ *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
+ *             .deploymentId(exampleKeystore.id())
+ *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
+ *             .value(Files.readString(Paths.get(&#34;service-account-key.json&#34;)))
+ *             .asFile(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * ## Attributes reference
  * 
  * There are no additional attributes exported by this resource other than the referenced arguments.
@@ -119,6 +219,9 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "value"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

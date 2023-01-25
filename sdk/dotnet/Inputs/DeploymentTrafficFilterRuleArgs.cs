@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentTrafficFilterRuleArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentTrafficFilterRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Azure endpoint GUID. Only applicable when the ruleset type is set to `"azure_private_endpoint"`.
@@ -45,5 +45,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentTrafficFilterRuleArgs()
         {
         }
+        public static new DeploymentTrafficFilterRuleArgs Empty => new DeploymentTrafficFilterRuleArgs();
     }
 }

@@ -14,199 +14,251 @@ namespace Pulumi.ElasticCloud
     /// ### Basic
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = ,
-    ///             Kibana = ,
-    ///             IntegrationsServer = ,
-    ///             EnterpriseSearch = ,
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = null,
+    ///         Kibana = null,
+    ///         IntegrationsServer = null,
+    ///         EnterpriseSearch = null,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Tiered deployment with Autoscaling enabled
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
+    /// 
+    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
     ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///             Autoscale = "true",
+    ///             Topologies = new[]
     ///             {
-    ///                 Autoscale = "true",
-    ///                 Topologies = 
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
     ///                 {
-    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                     Id = "cold",
+    ///                 },
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                 {
+    ///                     Id = "frozen",
+    ///                 },
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                 {
+    ///                     Id = "hot_content",
+    ///                     Size = "8g",
+    ///                     Autoscaling = new ElasticCloud.Inputs.DeploymentElasticsearchTopologyAutoscalingArgs
     ///                     {
-    ///                         Id = "cold",
-    ///                         Size = "8g",
-    ///                     },
-    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
-    ///                     {
-    ///                         Id = "hot_content",
-    ///                         Size = "8g",
-    ///                         Autoscaling = ,
-    ///                     },
-    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
-    ///                     {
-    ///                         Id = "warm",
-    ///                         Size = "16g",
+    ///                         MaxSize = "128g",
+    ///                         MaxSizeResource = "memory",
     ///                     },
     ///                 },
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                 {
+    ///                     Id = "ml",
+    ///                 },
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                 {
+    ///                     Id = "warm",
+    ///                 },
     ///             },
-    ///             Kibana = ,
-    ///             IntegrationsServer = ,
-    ///             EnterpriseSearch = ,
-    ///         });
-    ///     }
+    ///         },
+    ///         Kibana = null,
+    ///         IntegrationsServer = null,
+    ///         EnterpriseSearch = null,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### With observability settings
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         var exampleObservability = new ElasticCloud.Deployment("exampleObservability", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = ,
-    ///             Kibana = ,
-    ///             Observability = new ElasticCloud.Inputs.DeploymentObservabilityArgs
-    ///             {
-    ///                 DeploymentId = ec_deployment.Example_minimal.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     var exampleObservability = new ElasticCloud.Deployment("exampleObservability", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = null,
+    ///         Kibana = null,
+    ///         Observability = new ElasticCloud.Inputs.DeploymentObservabilityArgs
+    ///         {
+    ///             DeploymentId = ec_deployment.Example_minimal.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    /// });
     /// ```
     /// ### With Cross Cluster Search settings
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         var sourceDeployment = new ElasticCloud.Deployment("sourceDeployment", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
-    ///             {
-    ///                 Topologies = 
-    ///                 {
-    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
-    ///                     {
-    ///                         Id = "hot_content",
-    ///                         Size = "1g",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         });
-    ///         var ccs = new ElasticCloud.Deployment("ccs", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-cross-cluster-search-v2",
-    ///             Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
-    ///             {
-    ///                 RemoteClusters = 
-    ///                 {
-    ///                     new ElasticCloud.Inputs.DeploymentElasticsearchRemoteClusterArgs
-    ///                     {
-    ///                         DeploymentId = sourceDeployment.Id,
-    ///                         Alias = sourceDeployment.Name,
-    ///                         RefId = sourceDeployment.Elasticsearch.Apply(elasticsearch =&gt; elasticsearch.RefId),
-    ///                     },
-    ///                 },
-    ///             },
-    ///             Kibana = ,
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     var sourceDeployment = new ElasticCloud.Deployment("sourceDeployment", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Topologies = new[]
+    ///             {
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchTopologyArgs
+    ///                 {
+    ///                     Id = "hot_content",
+    ///                     Size = "1g",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var ccs = new ElasticCloud.Deployment("ccs", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-cross-cluster-search-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             RemoteClusters = new[]
+    ///             {
+    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchRemoteClusterArgs
+    ///                 {
+    ///                     DeploymentId = sourceDeployment.Id,
+    ///                     Alias = sourceDeployment.Name,
+    ///                     RefId = sourceDeployment.Elasticsearch.Apply(elasticsearch =&gt; elasticsearch.RefId),
+    ///                 },
+    ///             },
+    ///         },
+    ///         Kibana = null,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### With tags
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
     ///     {
-    ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-    ///         {
-    ///             VersionRegex = "latest",
-    ///             Region = "us-east-1",
-    ///         }));
-    ///         var withTags = new ElasticCloud.Deployment("withTags", new ElasticCloud.DeploymentArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Version = latest.Apply(latest =&gt; latest.Version),
-    ///             DeploymentTemplateId = "aws-io-optimized-v2",
-    ///             Elasticsearch = ,
-    ///             Tags = 
-    ///             {
-    ///                 { "owner", "elastic cloud" },
-    ///                 { "component", "search" },
-    ///             },
-    ///         });
-    ///     }
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
     /// 
-    /// }
+    ///     var withTags = new ElasticCloud.Deployment("withTags", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = null,
+    ///         Tags = 
+    ///         {
+    ///             { "owner", "elastic cloud" },
+    ///             { "component", "search" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### With configuration strategy
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
+    /// 
+    ///     var withTags = new ElasticCloud.Deployment("withTags", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Strategy = new ElasticCloud.Inputs.DeploymentElasticsearchStrategyArgs
+    ///             {
+    ///                 Type = "rolling_all",
+    ///             },
+    ///         },
+    ///         Tags = 
+    ///         {
+    ///             { "owner", "elastic cloud" },
+    ///             { "component", "search" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -218,7 +270,7 @@ namespace Pulumi.ElasticCloud
     /// ```
     /// </summary>
     [ElasticCloudResourceType("ec:index/deployment:Deployment")]
-    public partial class Deployment : Pulumi.CustomResource
+    public partial class Deployment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Deployment alias, affects the format of the resource URLs.
@@ -256,6 +308,8 @@ namespace Pulumi.ElasticCloud
         /// * `integrations_server.#.region` - Integrations Server region.
         /// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
         /// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+        /// * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+        /// * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
         /// * `apm.#.resource_id` - APM resource unique identifier.
         /// * `apm.#.region` - APM region.
         /// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -267,7 +321,7 @@ namespace Pulumi.ElasticCloud
         /// * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
         /// * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
         /// * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
         /// * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
         /// * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
         /// * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -324,7 +378,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a separate deployment.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         /// </summary>
         [Output("observability")]
         public Output<Outputs.DeploymentObservability?> Observability { get; private set; } = null!;
@@ -382,6 +436,11 @@ namespace Pulumi.ElasticCloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "apmSecretToken",
+                    "elasticsearchPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -403,7 +462,7 @@ namespace Pulumi.ElasticCloud
         }
     }
 
-    public sealed class DeploymentArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Deployment alias, affects the format of the resource URLs.
@@ -454,7 +513,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a separate deployment.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         /// </summary>
         [Input("observability")]
         public Input<Inputs.DeploymentObservabilityArgs>? Observability { get; set; }
@@ -504,9 +563,10 @@ namespace Pulumi.ElasticCloud
         public DeploymentArgs()
         {
         }
+        public static new DeploymentArgs Empty => new DeploymentArgs();
     }
 
-    public sealed class DeploymentState : Pulumi.ResourceArgs
+    public sealed class DeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Deployment alias, affects the format of the resource URLs.
@@ -519,6 +579,9 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("apm")]
         public Input<Inputs.DeploymentApmGetArgs>? Apm { get; set; }
+
+        [Input("apmSecretToken")]
+        private Input<string>? _apmSecretToken;
 
         /// <summary>
         /// Auto-generated APM secret_token, empty unless an `apm` resource is specified.
@@ -544,6 +607,8 @@ namespace Pulumi.ElasticCloud
         /// * `integrations_server.#.region` - Integrations Server region.
         /// * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
         /// * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+        /// * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+        /// * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
         /// * `apm.#.resource_id` - APM resource unique identifier.
         /// * `apm.#.region` - APM region.
         /// * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -555,13 +620,20 @@ namespace Pulumi.ElasticCloud
         /// * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
         /// * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
         /// * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
         /// * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
         /// * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
         /// * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
         /// </summary>
-        [Input("apmSecretToken")]
-        public Input<string>? ApmSecretToken { get; set; }
+        public Input<string>? ApmSecretToken
+        {
+            get => _apmSecretToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apmSecretToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
@@ -575,11 +647,21 @@ namespace Pulumi.ElasticCloud
         [Input("elasticsearch")]
         public Input<Inputs.DeploymentElasticsearchGetArgs>? Elasticsearch { get; set; }
 
+        [Input("elasticsearchPassword")]
+        private Input<string>? _elasticsearchPassword;
+
         /// <summary>
         /// Auto-generated Elasticsearch password.
         /// </summary>
-        [Input("elasticsearchPassword")]
-        public Input<string>? ElasticsearchPassword { get; set; }
+        public Input<string>? ElasticsearchPassword
+        {
+            get => _elasticsearchPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _elasticsearchPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Auto-generated Elasticsearch username.
@@ -612,7 +694,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a separate deployment.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         /// </summary>
         [Input("observability")]
         public Input<Inputs.DeploymentObservabilityGetArgs>? Observability { get; set; }
@@ -662,5 +744,6 @@ namespace Pulumi.ElasticCloud
         public DeploymentState()
         {
         }
+        public static new DeploymentState Empty => new DeploymentState();
     }
 }

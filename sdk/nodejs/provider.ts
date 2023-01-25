@@ -63,10 +63,10 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["apikey"] = args ? args.apikey : undefined;
+            resourceInputs["apikey"] = args?.apikey ? pulumi.secret(args.apikey) : undefined;
             resourceInputs["endpoint"] = args ? args.endpoint : undefined;
             resourceInputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["verbose"] = pulumi.output(args ? args.verbose : undefined).apply(JSON.stringify);
@@ -74,6 +74,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["verboseFile"] = args ? args.verboseFile : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["apikey", "password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchSnapshotSourceArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchSnapshotSourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
@@ -27,5 +27,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchSnapshotSourceArgs()
         {
         }
+        public static new DeploymentElasticsearchSnapshotSourceArgs Empty => new DeploymentElasticsearchSnapshotSourceArgs();
     }
 }

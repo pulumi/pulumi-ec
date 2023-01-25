@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
- * import * from "fs";
+ * import * as fs from "fs";
  *
  * const latest = ec.getStack({
  *     versionRegex: "latest",
@@ -144,9 +144,11 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
             resourceInputs["asFile"] = args ? args.asFile : undefined;
             resourceInputs["deploymentId"] = args ? args.deploymentId : undefined;
             resourceInputs["settingName"] = args ? args.settingName : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["value"] = args?.value ? pulumi.secret(args.value) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["value"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(DeploymentElasticsearchKeystore.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -16,7 +16,7 @@ namespace Pulumi.ElasticCloud
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [ElasticCloudResourceType("pulumi:providers:ec")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
@@ -74,6 +74,11 @@ namespace Pulumi.ElasticCloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "apikey",
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -82,13 +87,23 @@ namespace Pulumi.ElasticCloud
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        [Input("apikey")]
+        private Input<string>? _apikey;
+
         /// <summary>
         /// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
         /// </summary>
-        [Input("apikey")]
-        public Input<string>? Apikey { get; set; }
+        public Input<string>? Apikey
+        {
+            get => _apikey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apikey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
@@ -102,12 +117,22 @@ namespace Pulumi.ElasticCloud
         [Input("insecure", json: true)]
         public Input<bool>? Insecure { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
         /// Private.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Timeout used for individual HTTP calls. Defaults to "1m".
@@ -143,5 +168,6 @@ namespace Pulumi.ElasticCloud
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

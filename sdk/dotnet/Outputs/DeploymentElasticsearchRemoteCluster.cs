@@ -14,7 +14,7 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearchRemoteCluster
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Alias for the Cross Cluster Search binding.
         /// </summary>
         public readonly string Alias;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string DeploymentId;
         /// <summary>
-        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+        /// Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
         /// </summary>
         public readonly string? RefId;
         /// <summary>

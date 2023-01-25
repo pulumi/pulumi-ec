@@ -9,6 +9,7 @@ import com.pulumi.ec.inputs.DeploymentElasticsearchConfigArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchExtensionArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchRemoteClusterArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchSnapshotSourceArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchStrategyArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTopologyArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTrustAccountArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTrustExternalArgs;
@@ -90,14 +91,14 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
     /**
-     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     public Optional<Output<String>> refId() {
@@ -154,6 +155,21 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
      */
     public Optional<Output<DeploymentElasticsearchSnapshotSourceArgs>> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
+    }
+
+    /**
+     * Choose the configuration strategy used to apply the changes.
+     * 
+     */
+    @Import(name="strategy")
+    private @Nullable Output<DeploymentElasticsearchStrategyArgs> strategy;
+
+    /**
+     * @return Choose the configuration strategy used to apply the changes.
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchStrategyArgs>> strategy() {
+        return Optional.ofNullable(this.strategy);
     }
 
     /**
@@ -215,6 +231,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         this.remoteClusters = $.remoteClusters;
         this.resourceId = $.resourceId;
         this.snapshotSource = $.snapshotSource;
+        this.strategy = $.strategy;
         this.topologies = $.topologies;
         this.trustAccounts = $.trustAccounts;
         this.trustExternals = $.trustExternals;
@@ -339,7 +356,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param refId Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
          * 
          * @return builder
          * 
@@ -350,7 +367,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param refId Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
          * 
          * @return builder
          * 
@@ -439,6 +456,27 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
          */
         public Builder snapshotSource(DeploymentElasticsearchSnapshotSourceArgs snapshotSource) {
             return snapshotSource(Output.of(snapshotSource));
+        }
+
+        /**
+         * @param strategy Choose the configuration strategy used to apply the changes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder strategy(@Nullable Output<DeploymentElasticsearchStrategyArgs> strategy) {
+            $.strategy = strategy;
+            return this;
+        }
+
+        /**
+         * @param strategy Choose the configuration strategy used to apply the changes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder strategy(DeploymentElasticsearchStrategyArgs strategy) {
+            return strategy(Output.of(strategy));
         }
 
         /**

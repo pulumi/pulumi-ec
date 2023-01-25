@@ -24,6 +24,344 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * ### Basic
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import com.pulumi.ec.inputs.DeploymentIntegrationsServerArgs;
+ * import com.pulumi.ec.inputs.DeploymentEnterpriseSearchArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch()
+ *             .kibana()
+ *             .integrationsServer()
+ *             .enterpriseSearch()
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Tiered deployment with Autoscaling enabled
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import com.pulumi.ec.inputs.DeploymentIntegrationsServerArgs;
+ * import com.pulumi.ec.inputs.DeploymentEnterpriseSearchArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .autoscale(&#34;true&#34;)
+ *                 .topologies(                
+ *                     DeploymentElasticsearchTopologyArgs.builder()
+ *                         .id(&#34;cold&#34;)
+ *                         .build(),
+ *                     DeploymentElasticsearchTopologyArgs.builder()
+ *                         .id(&#34;frozen&#34;)
+ *                         .build(),
+ *                     DeploymentElasticsearchTopologyArgs.builder()
+ *                         .id(&#34;hot_content&#34;)
+ *                         .size(&#34;8g&#34;)
+ *                         .autoscaling(DeploymentElasticsearchTopologyAutoscalingArgs.builder()
+ *                             .maxSize(&#34;128g&#34;)
+ *                             .maxSizeResource(&#34;memory&#34;)
+ *                             .build())
+ *                         .build(),
+ *                     DeploymentElasticsearchTopologyArgs.builder()
+ *                         .id(&#34;ml&#34;)
+ *                         .build(),
+ *                     DeploymentElasticsearchTopologyArgs.builder()
+ *                         .id(&#34;warm&#34;)
+ *                         .build())
+ *                 .build())
+ *             .kibana()
+ *             .integrationsServer()
+ *             .enterpriseSearch()
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### With observability settings
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import com.pulumi.ec.inputs.DeploymentObservabilityArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var exampleObservability = new Deployment(&#34;exampleObservability&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch()
+ *             .kibana()
+ *             .observability(DeploymentObservabilityArgs.builder()
+ *                 .deploymentId(ec_deployment.example_minimal().id())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *     }
+ * }
+ * ```
+ * ### With Cross Cluster Search settings
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var sourceDeployment = new Deployment(&#34;sourceDeployment&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .topologies(DeploymentElasticsearchTopologyArgs.builder()
+ *                     .id(&#34;hot_content&#34;)
+ *                     .size(&#34;1g&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var ccs = new Deployment(&#34;ccs&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-cross-cluster-search-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .remoteClusters(DeploymentElasticsearchRemoteClusterArgs.builder()
+ *                     .deploymentId(sourceDeployment.id())
+ *                     .alias(sourceDeployment.name())
+ *                     .refId(sourceDeployment.elasticsearch().applyValue(elasticsearch -&gt; elasticsearch.refId()))
+ *                     .build())
+ *                 .build())
+ *             .kibana()
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### With tags
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var withTags = new Deployment(&#34;withTags&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch()
+ *             .tags(Map.ofEntries(
+ *                 Map.entry(&#34;owner&#34;, &#34;elastic cloud&#34;),
+ *                 Map.entry(&#34;component&#34;, &#34;search&#34;)
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### With configuration strategy
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchStrategyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var withTags = new Deployment(&#34;withTags&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .strategy(DeploymentElasticsearchStrategyArgs.builder()
+ *                     .type(&#34;rolling_all&#34;)
+ *                     .build())
+ *                 .build())
+ *             .tags(Map.ofEntries(
+ *                 Map.entry(&#34;owner&#34;, &#34;elastic cloud&#34;),
+ *                 Map.entry(&#34;component&#34;, &#34;search&#34;)
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  * ## Import
  * 
@@ -88,6 +426,8 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * * `integrations_server.#.region` - Integrations Server region.
      * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
      * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -99,7 +439,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
      * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
      * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
      * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -132,6 +472,8 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * * `integrations_server.#.region` - Integrations Server region.
      * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
      * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -143,7 +485,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
      * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
      * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
      * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -265,14 +607,14 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      * 
      */
     @Export(name="observability", type=DeploymentObservability.class, parameters={})
     private Output</* @Nullable */ DeploymentObservability> observability;
 
     /**
-     * @return Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      * 
      */
     public Output<Optional<DeploymentObservability>> observability() {
@@ -381,6 +723,10 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "apmSecretToken",
+                "elasticsearchPassword"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

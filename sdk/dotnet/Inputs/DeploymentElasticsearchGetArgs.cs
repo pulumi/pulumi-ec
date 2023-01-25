@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchGetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
@@ -46,7 +46,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? HttpsEndpoint { get; set; }
 
         /// <summary>
-        /// Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         /// </summary>
         [Input("refId")]
         public Input<string>? RefId { get; set; }
@@ -77,6 +77,12 @@ namespace Pulumi.ElasticCloud.Inputs
         /// </summary>
         [Input("snapshotSource")]
         public Input<Inputs.DeploymentElasticsearchSnapshotSourceGetArgs>? SnapshotSource { get; set; }
+
+        /// <summary>
+        /// Choose the configuration strategy used to apply the changes.
+        /// </summary>
+        [Input("strategy")]
+        public Input<Inputs.DeploymentElasticsearchStrategyGetArgs>? Strategy { get; set; }
 
         [Input("topologies")]
         private InputList<Inputs.DeploymentElasticsearchTopologyGetArgs>? _topologies;
@@ -117,5 +123,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchGetArgs()
         {
         }
+        public static new DeploymentElasticsearchGetArgs Empty => new DeploymentElasticsearchGetArgs();
     }
 }

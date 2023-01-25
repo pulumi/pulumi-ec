@@ -19,48 +19,46 @@ namespace Pulumi.ElasticCloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = ElasticCloud.GetDeployments.Invoke(new()
         ///     {
-        ///         var example = Output.Create(ElasticCloud.GetDeployments.InvokeAsync(new ElasticCloud.GetDeploymentsArgs
+        ///         DeploymentTemplateId = "azure-compute-optimized",
+        ///         Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
         ///         {
-        ///             DeploymentTemplateId = "azure-compute-optimized",
-        ///             Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchArgs
-        ///             {
-        ///                 Healthy = "true",
-        ///             },
-        ///             EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchArgs
-        ///             {
-        ///                 Healthy = "true",
-        ///             },
-        ///             IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerArgs
-        ///             {
-        ///                 Version = "8.0.0",
-        ///             },
-        ///             Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaArgs
-        ///             {
-        ///                 Status = "started",
-        ///             },
-        ///             NamePrefix = "test",
-        ///             Size = 200,
-        ///             Tags = 
-        ///             {
-        ///                 { "foo", "bar" },
-        ///             },
-        ///         }));
-        ///     }
+        ///             Healthy = "true",
+        ///         },
+        ///         EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///         {
+        ///             Healthy = "true",
+        ///         },
+        ///         IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///         {
+        ///             Version = "8.0.0",
+        ///         },
+        ///         Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///         {
+        ///             Status = "started",
+        ///         },
+        ///         NamePrefix = "test",
+        ///         Size = 200,
+        ///         Tags = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeploymentsResult> InvokeAsync(GetDeploymentsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
@@ -70,52 +68,50 @@ namespace Pulumi.ElasticCloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = ElasticCloud.GetDeployments.Invoke(new()
         ///     {
-        ///         var example = Output.Create(ElasticCloud.GetDeployments.InvokeAsync(new ElasticCloud.GetDeploymentsArgs
+        ///         DeploymentTemplateId = "azure-compute-optimized",
+        ///         Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
         ///         {
-        ///             DeploymentTemplateId = "azure-compute-optimized",
-        ///             Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchArgs
-        ///             {
-        ///                 Healthy = "true",
-        ///             },
-        ///             EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchArgs
-        ///             {
-        ///                 Healthy = "true",
-        ///             },
-        ///             IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerArgs
-        ///             {
-        ///                 Version = "8.0.0",
-        ///             },
-        ///             Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaArgs
-        ///             {
-        ///                 Status = "started",
-        ///             },
-        ///             NamePrefix = "test",
-        ///             Size = 200,
-        ///             Tags = 
-        ///             {
-        ///                 { "foo", "bar" },
-        ///             },
-        ///         }));
-        ///     }
+        ///             Healthy = "true",
+        ///         },
+        ///         EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///         {
+        ///             Healthy = "true",
+        ///         },
+        ///         IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///         {
+        ///             Version = "8.0.0",
+        ///         },
+        ///         Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///         {
+        ///             Status = "started",
+        ///         },
+        ///         NamePrefix = "test",
+        ///         Size = 200,
+        ///         Tags = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetDeploymentsArgs : Pulumi.InvokeArgs
+    public sealed class GetDeploymentsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// **DEPRECATED** Filter by APM resource kind status or configuration.
@@ -201,9 +197,10 @@ namespace Pulumi.ElasticCloud
         public GetDeploymentsArgs()
         {
         }
+        public static new GetDeploymentsArgs Empty => new GetDeploymentsArgs();
     }
 
-    public sealed class GetDeploymentsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDeploymentsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// **DEPRECATED** Filter by APM resource kind status or configuration.
@@ -289,6 +286,7 @@ namespace Pulumi.ElasticCloud
         public GetDeploymentsInvokeArgs()
         {
         }
+        public static new GetDeploymentsInvokeArgs Empty => new GetDeploymentsInvokeArgs();
     }
 
 

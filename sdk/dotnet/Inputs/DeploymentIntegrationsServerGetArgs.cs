@@ -10,8 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentIntegrationsServerGetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentIntegrationsServerGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("apmHttpsEndpoint")]
+        public Input<string>? ApmHttpsEndpoint { get; set; }
+
         /// <summary>
         /// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
         /// </summary>
@@ -23,6 +26,9 @@ namespace Pulumi.ElasticCloud.Inputs
         /// </summary>
         [Input("elasticsearchClusterRefId")]
         public Input<string>? ElasticsearchClusterRefId { get; set; }
+
+        [Input("fleetHttpsEndpoint")]
+        public Input<string>? FleetHttpsEndpoint { get; set; }
 
         [Input("httpEndpoint")]
         public Input<string>? HttpEndpoint { get; set; }
@@ -45,20 +51,15 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
-        [Input("topologies")]
-        private InputList<Inputs.DeploymentIntegrationsServerTopologyGetArgs>? _topologies;
-
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
-        public InputList<Inputs.DeploymentIntegrationsServerTopologyGetArgs> Topologies
-        {
-            get => _topologies ?? (_topologies = new InputList<Inputs.DeploymentIntegrationsServerTopologyGetArgs>());
-            set => _topologies = value;
-        }
+        [Input("topology")]
+        public Input<Inputs.DeploymentIntegrationsServerTopologyGetArgs>? Topology { get; set; }
 
         public DeploymentIntegrationsServerGetArgs()
         {
         }
+        public static new DeploymentIntegrationsServerGetArgs Empty => new DeploymentIntegrationsServerGetArgs();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentKibanaGetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentKibanaGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Kibana settings applied to all topologies unless overridden in the `topology` element.
@@ -45,20 +45,15 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
-        [Input("topologies")]
-        private InputList<Inputs.DeploymentKibanaTopologyGetArgs>? _topologies;
-
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
-        public InputList<Inputs.DeploymentKibanaTopologyGetArgs> Topologies
-        {
-            get => _topologies ?? (_topologies = new InputList<Inputs.DeploymentKibanaTopologyGetArgs>());
-            set => _topologies = value;
-        }
+        [Input("topology")]
+        public Input<Inputs.DeploymentKibanaTopologyGetArgs>? Topology { get; set; }
 
         public DeploymentKibanaGetArgs()
         {
         }
+        public static new DeploymentKibanaGetArgs Empty => new DeploymentKibanaGetArgs();
     }
 }
