@@ -29,7 +29,7 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
         /// <summary>
-        /// Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         /// </summary>
         public readonly string? RefId;
         /// <summary>
@@ -45,6 +45,10 @@ namespace Pulumi.ElasticCloud.Outputs
         /// Restores data from a snapshot of another deployment.
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshotSource? SnapshotSource;
+        /// <summary>
+        /// Choose the configuration strategy used to apply the changes.
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchStrategy? Strategy;
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
@@ -82,6 +86,8 @@ namespace Pulumi.ElasticCloud.Outputs
 
             Outputs.DeploymentElasticsearchSnapshotSource? snapshotSource,
 
+            Outputs.DeploymentElasticsearchStrategy? strategy,
+
             ImmutableArray<Outputs.DeploymentElasticsearchTopology> topologies,
 
             ImmutableArray<Outputs.DeploymentElasticsearchTrustAccount> trustAccounts,
@@ -99,6 +105,7 @@ namespace Pulumi.ElasticCloud.Outputs
             RemoteClusters = remoteClusters;
             ResourceId = resourceId;
             SnapshotSource = snapshotSource;
+            Strategy = strategy;
             Topologies = topologies;
             TrustAccounts = trustAccounts;
             TrustExternals = trustExternals;

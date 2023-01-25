@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentApmGetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentApmGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// APM settings applied to all topologies unless overridden in the `topology` element.
@@ -45,20 +45,15 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
-        [Input("topologies")]
-        private InputList<Inputs.DeploymentApmTopologyGetArgs>? _topologies;
-
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
-        public InputList<Inputs.DeploymentApmTopologyGetArgs> Topologies
-        {
-            get => _topologies ?? (_topologies = new InputList<Inputs.DeploymentApmTopologyGetArgs>());
-            set => _topologies = value;
-        }
+        [Input("topology")]
+        public Input<Inputs.DeploymentApmTopologyGetArgs>? Topology { get; set; }
 
         public DeploymentApmGetArgs()
         {
         }
+        public static new DeploymentApmGetArgs Empty => new DeploymentApmGetArgs();
     }
 }

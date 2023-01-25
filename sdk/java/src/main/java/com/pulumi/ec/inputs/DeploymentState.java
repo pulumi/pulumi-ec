@@ -77,6 +77,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
      * * `integrations_server.#.region` - Integrations Server region.
      * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
      * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -88,7 +90,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
      * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
      * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
      * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
      * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -121,6 +123,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
      * * `integrations_server.#.region` - Integrations Server region.
      * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
      * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
      * * `apm.#.resource_id` - APM resource unique identifier.
      * * `apm.#.region` - APM region.
      * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -132,7 +136,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
      * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
      * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
      * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
      * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
      * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -263,14 +267,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      * 
      */
     @Import(name="observability")
     private @Nullable Output<DeploymentObservabilityArgs> observability;
 
     /**
-     * @return Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      * 
      */
     public Optional<Output<DeploymentObservabilityArgs>> observability() {
@@ -458,6 +462,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
          * * `integrations_server.#.region` - Integrations Server region.
          * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
          * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+         * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+         * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
          * * `apm.#.resource_id` - APM resource unique identifier.
          * * `apm.#.region` - APM region.
          * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -469,7 +475,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
          * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
          * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
          * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-         * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+         * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
          * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
          * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
          * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -506,6 +512,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
          * * `integrations_server.#.region` - Integrations Server region.
          * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
          * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
+         * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
+         * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
          * * `apm.#.resource_id` - APM resource unique identifier.
          * * `apm.#.region` - APM region.
          * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
@@ -517,7 +525,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
          * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
          * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
          * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-         * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+         * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
          * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
          * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
          * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
@@ -698,7 +706,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a separate deployment.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
          * 
          * @return builder
          * 
@@ -709,7 +717,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a separate deployment.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
          * 
          * @return builder
          * 

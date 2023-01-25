@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentEnterpriseSearchArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentEnterpriseSearchArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
@@ -45,20 +45,15 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
-        [Input("topologies")]
-        private InputList<Inputs.DeploymentEnterpriseSearchTopologyArgs>? _topologies;
-
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
-        public InputList<Inputs.DeploymentEnterpriseSearchTopologyArgs> Topologies
-        {
-            get => _topologies ?? (_topologies = new InputList<Inputs.DeploymentEnterpriseSearchTopologyArgs>());
-            set => _topologies = value;
-        }
+        [Input("topology")]
+        public Input<Inputs.DeploymentEnterpriseSearchTopologyArgs>? Topology { get; set; }
 
         public DeploymentEnterpriseSearchArgs()
         {
         }
+        public static new DeploymentEnterpriseSearchArgs Empty => new DeploymentEnterpriseSearchArgs();
     }
 }

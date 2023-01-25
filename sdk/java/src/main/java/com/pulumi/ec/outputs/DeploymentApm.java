@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.DeploymentApmConfig;
 import com.pulumi.ec.outputs.DeploymentApmTopology;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -41,7 +40,7 @@ public final class DeploymentApm {
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    private @Nullable List<DeploymentApmTopology> topologies;
+    private @Nullable DeploymentApmTopology topology;
 
     private DeploymentApm() {}
     /**
@@ -85,8 +84,8 @@ public final class DeploymentApm {
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public List<DeploymentApmTopology> topologies() {
-        return this.topologies == null ? List.of() : this.topologies;
+    public Optional<DeploymentApmTopology> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     public static Builder builder() {
@@ -105,7 +104,7 @@ public final class DeploymentApm {
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable String resourceId;
-        private @Nullable List<DeploymentApmTopology> topologies;
+        private @Nullable DeploymentApmTopology topology;
         public Builder() {}
         public Builder(DeploymentApm defaults) {
     	      Objects.requireNonNull(defaults);
@@ -116,7 +115,7 @@ public final class DeploymentApm {
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.resourceId = defaults.resourceId;
-    	      this.topologies = defaults.topologies;
+    	      this.topology = defaults.topology;
         }
 
         @CustomType.Setter
@@ -155,12 +154,9 @@ public final class DeploymentApm {
             return this;
         }
         @CustomType.Setter
-        public Builder topologies(@Nullable List<DeploymentApmTopology> topologies) {
-            this.topologies = topologies;
+        public Builder topology(@Nullable DeploymentApmTopology topology) {
+            this.topology = topology;
             return this;
-        }
-        public Builder topologies(DeploymentApmTopology... topologies) {
-            return topologies(List.of(topologies));
         }
         public DeploymentApm build() {
             final var o = new DeploymentApm();
@@ -171,7 +167,7 @@ public final class DeploymentApm {
             o.refId = refId;
             o.region = region;
             o.resourceId = resourceId;
-            o.topologies = topologies;
+            o.topology = topology;
             return o;
         }
     }

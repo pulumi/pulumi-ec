@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class GetDeploymentsEnterpriseSearchArgs : Pulumi.InvokeArgs
+    public sealed class GetDeploymentsEnterpriseSearchArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Overall health status of the deployment.
@@ -27,5 +27,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public GetDeploymentsEnterpriseSearchArgs()
         {
         }
+        public static new GetDeploymentsEnterpriseSearchArgs Empty => new GetDeploymentsEnterpriseSearchArgs();
     }
 }

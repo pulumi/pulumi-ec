@@ -18,7 +18,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string RelationshipId;
         /// <summary>
-        /// If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        /// If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
         /// </summary>
         public readonly bool TrustAll;
         /// <summary>

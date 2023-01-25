@@ -33,14 +33,14 @@ public final class DeploymentElasticsearchTrustExternalArgs extends com.pulumi.r
     }
 
     /**
-     * If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
      * 
      */
     @Import(name="trustAll", required=true)
     private Output<Boolean> trustAll;
 
     /**
-     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * @return If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
      * 
      */
     public Output<Boolean> trustAll() {
@@ -110,7 +110,7 @@ public final class DeploymentElasticsearchTrustExternalArgs extends com.pulumi.r
         }
 
         /**
-         * @param trustAll If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+         * @param trustAll If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
          * 
          * @return builder
          * 
@@ -121,7 +121,7 @@ public final class DeploymentElasticsearchTrustExternalArgs extends com.pulumi.r
         }
 
         /**
-         * @param trustAll If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+         * @param trustAll If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
          * 
          * @return builder
          * 

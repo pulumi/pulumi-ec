@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchTrustAccountArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchTrustAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account identifier to establish the new trust with.
@@ -39,5 +39,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchTrustAccountArgs()
         {
         }
+        public static new DeploymentElasticsearchTrustAccountArgs Empty => new DeploymentElasticsearchTrustAccountArgs();
     }
 }

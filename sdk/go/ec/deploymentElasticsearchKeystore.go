@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -37,7 +37,7 @@ import (
 //			}
 //			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch:        nil,
 //			})
@@ -83,7 +83,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &GetStackArgs{
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
 //				VersionRegex: "latest",
 //				Region:       "us-east-1",
 //			}, nil)
@@ -92,7 +92,7 @@ import (
 //			}
 //			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch:        nil,
 //			})
@@ -149,6 +149,13 @@ func NewDeploymentElasticsearchKeystore(ctx *pulumi.Context,
 	if args.Value == nil {
 		return nil, errors.New("invalid value for required argument 'Value'")
 	}
+	if args.Value != nil {
+		args.Value = pulumi.ToSecret(args.Value).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"value",
+	})
+	opts = append(opts, secrets)
 	var resource DeploymentElasticsearchKeystore
 	err := ctx.RegisterResource("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", name, args, &resource, opts...)
 	if err != nil {
@@ -304,6 +311,26 @@ func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystore
 
 func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystoreOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreOutput {
 	return o
+}
+
+// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+func (o DeploymentElasticsearchKeystoreOutput) AsFile() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.BoolPtrOutput { return v.AsFile }).(pulumi.BoolPtrOutput)
+}
+
+// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+func (o DeploymentElasticsearchKeystoreOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.StringOutput { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+func (o DeploymentElasticsearchKeystoreOutput) SettingName() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.StringOutput { return v.SettingName }).(pulumi.StringOutput)
+}
+
+// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+func (o DeploymentElasticsearchKeystoreOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
 }
 
 type DeploymentElasticsearchKeystoreArrayOutput struct{ *pulumi.OutputState }

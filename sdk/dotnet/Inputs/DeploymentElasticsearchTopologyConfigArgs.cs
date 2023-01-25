@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchTopologyConfigArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchTopologyConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("plugins")]
         private InputList<string>? _plugins;
@@ -25,25 +25,25 @@ namespace Pulumi.ElasticCloud.Inputs
         }
 
         /// <summary>
-        /// JSON-formatted user level `elasticsearch.yml` setting overrides.
+        /// JSON-formatted user level `enterprise_search.yml` setting overrides.
         /// </summary>
         [Input("userSettingsJson")]
         public Input<string>? UserSettingsJson { get; set; }
 
         /// <summary>
-        /// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+        /// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
         /// </summary>
         [Input("userSettingsOverrideJson")]
         public Input<string>? UserSettingsOverrideJson { get; set; }
 
         /// <summary>
-        /// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+        /// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
         /// </summary>
         [Input("userSettingsOverrideYaml")]
         public Input<string>? UserSettingsOverrideYaml { get; set; }
 
         /// <summary>
-        /// YAML-formatted user level `elasticsearch.yml` setting overrides.
+        /// YAML-formatted user level `enterprise_search.yml` setting overrides.
         /// </summary>
         [Input("userSettingsYaml")]
         public Input<string>? UserSettingsYaml { get; set; }
@@ -51,5 +51,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchTopologyConfigArgs()
         {
         }
+        public static new DeploymentElasticsearchTopologyConfigArgs Empty => new DeploymentElasticsearchTopologyConfigArgs();
     }
 }

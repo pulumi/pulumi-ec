@@ -13,37 +13,37 @@ namespace Pulumi.ElasticCloud
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exampleDeployment = ElasticCloud.GetDeployment.Invoke(new()
     ///     {
-    ///         var exampleDeployment = Output.Create(ElasticCloud.GetDeployment.InvokeAsync(new ElasticCloud.GetDeploymentArgs
-    ///         {
-    ///             Id = "320b7b540dfc967a7a649c18e2fce4ed",
-    ///         }));
-    ///         var exampleDeploymentTrafficFilter = new ElasticCloud.DeploymentTrafficFilter("exampleDeploymentTrafficFilter", new ElasticCloud.DeploymentTrafficFilterArgs
-    ///         {
-    ///             Region = "us-east-1",
-    ///             Type = "ip",
-    ///             Rules = 
-    ///             {
-    ///                 new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
-    ///                 {
-    ///                     Source = "0.0.0.0/0",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var exampleDeploymentTrafficFilterAssociation = new ElasticCloud.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", new ElasticCloud.DeploymentTrafficFilterAssociationArgs
-    ///         {
-    ///             TrafficFilterId = exampleDeploymentTrafficFilter.Id,
-    ///             DeploymentId = ec_deployment.Example.Id,
-    ///         });
-    ///     }
+    ///         Id = "320b7b540dfc967a7a649c18e2fce4ed",
+    ///     });
     /// 
-    /// }
+    ///     var exampleDeploymentTrafficFilter = new ElasticCloud.DeploymentTrafficFilter("exampleDeploymentTrafficFilter", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Type = "ip",
+    ///         Rules = new[]
+    ///         {
+    ///             new ElasticCloud.Inputs.DeploymentTrafficFilterRuleArgs
+    ///             {
+    ///                 Source = "0.0.0.0/0",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleDeploymentTrafficFilterAssociation = new ElasticCloud.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", new()
+    ///     {
+    ///         TrafficFilterId = exampleDeploymentTrafficFilter.Id,
+    ///         DeploymentId = ec_deployment.Example.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -51,7 +51,7 @@ namespace Pulumi.ElasticCloud
     /// Import is not supported on this resource.
     /// </summary>
     [ElasticCloudResourceType("ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation")]
-    public partial class DeploymentTrafficFilterAssociation : Pulumi.CustomResource
+    public partial class DeploymentTrafficFilterAssociation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Deployment ID of the deployment to which the traffic filter rule is attached.
@@ -109,7 +109,7 @@ namespace Pulumi.ElasticCloud
         }
     }
 
-    public sealed class DeploymentTrafficFilterAssociationArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentTrafficFilterAssociationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Deployment ID of the deployment to which the traffic filter rule is attached.
@@ -126,9 +126,10 @@ namespace Pulumi.ElasticCloud
         public DeploymentTrafficFilterAssociationArgs()
         {
         }
+        public static new DeploymentTrafficFilterAssociationArgs Empty => new DeploymentTrafficFilterAssociationArgs();
     }
 
-    public sealed class DeploymentTrafficFilterAssociationState : Pulumi.ResourceArgs
+    public sealed class DeploymentTrafficFilterAssociationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Deployment ID of the deployment to which the traffic filter rule is attached.
@@ -145,5 +146,6 @@ namespace Pulumi.ElasticCloud
         public DeploymentTrafficFilterAssociationState()
         {
         }
+        public static new DeploymentTrafficFilterAssociationState Empty => new DeploymentTrafficFilterAssociationState();
     }
 }

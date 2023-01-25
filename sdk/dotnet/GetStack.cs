@@ -19,33 +19,32 @@ namespace Pulumi.ElasticCloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var latest = ElasticCloud.GetStack.Invoke(new()
         ///     {
-        ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-        ///         {
-        ///             Lock = true,
-        ///             Region = "us-east-1",
-        ///             VersionRegex = "latest",
-        ///         }));
-        ///         var latestPatch = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-        ///         {
-        ///             Region = "us-east-1",
-        ///             VersionRegex = "7.9.?",
-        ///         }));
-        ///     }
+        ///         Lock = true,
+        ///         Region = "us-east-1",
+        ///         VersionRegex = "latest",
+        ///     });
         /// 
-        /// }
+        ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
+        ///     {
+        ///         Region = "us-east-1",
+        ///         VersionRegex = "7.9.?",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetStackResult> InvokeAsync(GetStackArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an existing Elastic Cloud stack.
@@ -55,37 +54,36 @@ namespace Pulumi.ElasticCloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var latest = ElasticCloud.GetStack.Invoke(new()
         ///     {
-        ///         var latest = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-        ///         {
-        ///             Lock = true,
-        ///             Region = "us-east-1",
-        ///             VersionRegex = "latest",
-        ///         }));
-        ///         var latestPatch = Output.Create(ElasticCloud.GetStack.InvokeAsync(new ElasticCloud.GetStackArgs
-        ///         {
-        ///             Region = "us-east-1",
-        ///             VersionRegex = "7.9.?",
-        ///         }));
-        ///     }
+        ///         Lock = true,
+        ///         Region = "us-east-1",
+        ///         VersionRegex = "latest",
+        ///     });
         /// 
-        /// }
+        ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
+        ///     {
+        ///         Region = "us-east-1",
+        ///         VersionRegex = "7.9.?",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetStackArgs : Pulumi.InvokeArgs
+    public sealed class GetStackArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Lock the `"latest"` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
@@ -108,9 +106,10 @@ namespace Pulumi.ElasticCloud
         public GetStackArgs()
         {
         }
+        public static new GetStackArgs Empty => new GetStackArgs();
     }
 
-    public sealed class GetStackInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetStackInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Lock the `"latest"` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
@@ -133,6 +132,7 @@ namespace Pulumi.ElasticCloud
         public GetStackInvokeArgs()
         {
         }
+        public static new GetStackInvokeArgs Empty => new GetStackInvokeArgs();
     }
 
 

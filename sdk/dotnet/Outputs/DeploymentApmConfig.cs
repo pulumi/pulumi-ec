@@ -14,24 +14,24 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentApmConfig
     {
         /// <summary>
-        /// Enable debug mode for the component. Defaults to `false`.
+        /// Enable debug mode for APM servers. Defaults to `false`.
         /// </summary>
         public readonly bool? DebugEnabled;
         public readonly string? DockerImage;
         /// <summary>
-        /// JSON-formatted user level `elasticsearch.yml` setting overrides.
+        /// JSON-formatted user level `enterprise_search.yml` setting overrides.
         /// </summary>
         public readonly string? UserSettingsJson;
         /// <summary>
-        /// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+        /// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
         /// </summary>
         public readonly string? UserSettingsOverrideJson;
         /// <summary>
-        /// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+        /// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
         /// </summary>
         public readonly string? UserSettingsOverrideYaml;
         /// <summary>
-        /// YAML-formatted user level `elasticsearch.yml` setting overrides.
+        /// YAML-formatted user level `enterprise_search.yml` setting overrides.
         /// </summary>
         public readonly string? UserSettingsYaml;
 

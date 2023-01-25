@@ -26,7 +26,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+        /// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         /// </summary>
         public readonly string? InstanceConfigurationId;
         public readonly ImmutableArray<string> NodeRoles;
@@ -47,7 +47,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? NodeTypeMl;
         /// <summary>
-        /// Amount in Gigabytes per topology element in the `"&lt;size in GB&gt;g"` notation. When omitted, it defaults to the deployment template value.
+        /// Amount of memory (RAM) per `topology` element in the "&lt;size in GB&gt;g" notation. When omitted, it defaults to the deployment template value.
         /// </summary>
         public readonly string? Size;
         /// <summary>
@@ -55,7 +55,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? SizeResource;
         /// <summary>
-        /// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+        /// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
         /// </summary>
         public readonly int? ZoneCount;
 

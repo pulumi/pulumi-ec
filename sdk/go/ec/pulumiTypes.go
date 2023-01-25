@@ -23,7 +23,7 @@ type DeploymentApm struct {
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies []DeploymentApmTopology `pulumi:"topologies"`
+	Topology *DeploymentApmTopology `pulumi:"topology"`
 }
 
 // DeploymentApmInput is an input type that accepts DeploymentApmArgs and DeploymentApmOutput values.
@@ -50,7 +50,7 @@ type DeploymentApmArgs struct {
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies DeploymentApmTopologyArrayInput `pulumi:"topologies"`
+	Topology DeploymentApmTopologyPtrInput `pulumi:"topology"`
 }
 
 func (DeploymentApmArgs) ElementType() reflect.Type {
@@ -163,8 +163,8 @@ func (o DeploymentApmOutput) ResourceId() pulumi.StringPtrOutput {
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentApmOutput) Topologies() DeploymentApmTopologyArrayOutput {
-	return o.ApplyT(func(v DeploymentApm) []DeploymentApmTopology { return v.Topologies }).(DeploymentApmTopologyArrayOutput)
+func (o DeploymentApmOutput) Topology() DeploymentApmTopologyPtrOutput {
+	return o.ApplyT(func(v DeploymentApm) *DeploymentApmTopology { return v.Topology }).(DeploymentApmTopologyPtrOutput)
 }
 
 type DeploymentApmPtrOutput struct{ *pulumi.OutputState }
@@ -259,26 +259,26 @@ func (o DeploymentApmPtrOutput) ResourceId() pulumi.StringPtrOutput {
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentApmPtrOutput) Topologies() DeploymentApmTopologyArrayOutput {
-	return o.ApplyT(func(v *DeploymentApm) []DeploymentApmTopology {
+func (o DeploymentApmPtrOutput) Topology() DeploymentApmTopologyPtrOutput {
+	return o.ApplyT(func(v *DeploymentApm) *DeploymentApmTopology {
 		if v == nil {
 			return nil
 		}
-		return v.Topologies
-	}).(DeploymentApmTopologyArrayOutput)
+		return v.Topology
+	}).(DeploymentApmTopologyPtrOutput)
 }
 
 type DeploymentApmConfig struct {
-	// Enable debug mode for the component. Defaults to `false`.
+	// Enable debug mode for APM servers. Defaults to `false`.
 	DebugEnabled *bool   `pulumi:"debugEnabled"`
 	DockerImage  *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
@@ -294,16 +294,16 @@ type DeploymentApmConfigInput interface {
 }
 
 type DeploymentApmConfigArgs struct {
-	// Enable debug mode for the component. Defaults to `false`.
+	// Enable debug mode for APM servers. Defaults to `false`.
 	DebugEnabled pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
 	DockerImage  pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
@@ -384,7 +384,7 @@ func (o DeploymentApmConfigOutput) ToDeploymentApmConfigPtrOutputWithContext(ctx
 	}).(DeploymentApmConfigPtrOutput)
 }
 
-// Enable debug mode for the component. Defaults to `false`.
+// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentApmConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -393,22 +393,22 @@ func (o DeploymentApmConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -437,7 +437,7 @@ func (o DeploymentApmConfigPtrOutput) Elem() DeploymentApmConfigOutput {
 	}).(DeploymentApmConfigOutput)
 }
 
-// Enable debug mode for the component. Defaults to `false`.
+// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentApmConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *bool {
 		if v == nil {
@@ -456,7 +456,7 @@ func (o DeploymentApmConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -466,7 +466,7 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -476,7 +476,7 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -486,7 +486,7 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -497,13 +497,13 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput 
 }
 
 type DeploymentApmTopology struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size *string `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount *int `pulumi:"zoneCount"`
 }
 
@@ -519,13 +519,13 @@ type DeploymentApmTopologyInput interface {
 }
 
 type DeploymentApmTopologyArgs struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
@@ -541,29 +541,45 @@ func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyOutput)
 }
 
-// DeploymentApmTopologyArrayInput is an input type that accepts DeploymentApmTopologyArray and DeploymentApmTopologyArrayOutput values.
-// You can construct a concrete instance of `DeploymentApmTopologyArrayInput` via:
+func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
+	return i.ToDeploymentApmTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyOutput).ToDeploymentApmTopologyPtrOutputWithContext(ctx)
+}
+
+// DeploymentApmTopologyPtrInput is an input type that accepts DeploymentApmTopologyArgs, DeploymentApmTopologyPtr and DeploymentApmTopologyPtrOutput values.
+// You can construct a concrete instance of `DeploymentApmTopologyPtrInput` via:
 //
-//	DeploymentApmTopologyArray{ DeploymentApmTopologyArgs{...} }
-type DeploymentApmTopologyArrayInput interface {
+//	        DeploymentApmTopologyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentApmTopologyPtrInput interface {
 	pulumi.Input
 
-	ToDeploymentApmTopologyArrayOutput() DeploymentApmTopologyArrayOutput
-	ToDeploymentApmTopologyArrayOutputWithContext(context.Context) DeploymentApmTopologyArrayOutput
+	ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput
+	ToDeploymentApmTopologyPtrOutputWithContext(context.Context) DeploymentApmTopologyPtrOutput
 }
 
-type DeploymentApmTopologyArray []DeploymentApmTopologyInput
+type deploymentApmTopologyPtrType DeploymentApmTopologyArgs
 
-func (DeploymentApmTopologyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentApmTopology)(nil)).Elem()
+func DeploymentApmTopologyPtr(v *DeploymentApmTopologyArgs) DeploymentApmTopologyPtrInput {
+	return (*deploymentApmTopologyPtrType)(v)
 }
 
-func (i DeploymentApmTopologyArray) ToDeploymentApmTopologyArrayOutput() DeploymentApmTopologyArrayOutput {
-	return i.ToDeploymentApmTopologyArrayOutputWithContext(context.Background())
+func (*deploymentApmTopologyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentApmTopology)(nil)).Elem()
 }
 
-func (i DeploymentApmTopologyArray) ToDeploymentApmTopologyArrayOutputWithContext(ctx context.Context) DeploymentApmTopologyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyArrayOutput)
+func (i *deploymentApmTopologyPtrType) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
+	return i.ToDeploymentApmTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentApmTopologyPtrType) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyPtrOutput)
 }
 
 type DeploymentApmTopologyOutput struct{ *pulumi.OutputState }
@@ -580,12 +596,22 @@ func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyOutputWithContext(ct
 	return o
 }
 
-// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
+	return o.ToDeploymentApmTopologyPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentApmTopology) *DeploymentApmTopology {
+		return &v
+	}).(DeploymentApmTopologyPtrOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 func (o DeploymentApmTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
-// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 func (o DeploymentApmTopologyOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -595,29 +621,73 @@ func (o DeploymentApmTopologyOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 func (o DeploymentApmTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentApmTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
-type DeploymentApmTopologyArrayOutput struct{ *pulumi.OutputState }
+type DeploymentApmTopologyPtrOutput struct{ *pulumi.OutputState }
 
-func (DeploymentApmTopologyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentApmTopology)(nil)).Elem()
+func (DeploymentApmTopologyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentApmTopology)(nil)).Elem()
 }
 
-func (o DeploymentApmTopologyArrayOutput) ToDeploymentApmTopologyArrayOutput() DeploymentApmTopologyArrayOutput {
+func (o DeploymentApmTopologyPtrOutput) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentApmTopologyArrayOutput) ToDeploymentApmTopologyArrayOutputWithContext(ctx context.Context) DeploymentApmTopologyArrayOutput {
+func (o DeploymentApmTopologyPtrOutput) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentApmTopologyArrayOutput) Index(i pulumi.IntInput) DeploymentApmTopologyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentApmTopology {
-		return vs[0].([]DeploymentApmTopology)[vs[1].(int)]
+func (o DeploymentApmTopologyPtrOutput) Elem() DeploymentApmTopologyOutput {
+	return o.ApplyT(func(v *DeploymentApmTopology) DeploymentApmTopology {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentApmTopology
+		return ret
 	}).(DeploymentApmTopologyOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+func (o DeploymentApmTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentApmTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
+func (o DeploymentApmTopologyPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentApmTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of resource to which the size is assigned. Defaults to `"memory"`.
+func (o DeploymentApmTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentApmTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
+func (o DeploymentApmTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentApmTopology) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentElasticsearch struct {
@@ -630,7 +700,7 @@ type DeploymentElasticsearch struct {
 	Extensions    []DeploymentElasticsearchExtension `pulumi:"extensions"`
 	HttpEndpoint  *string                            `pulumi:"httpEndpoint"`
 	HttpsEndpoint *string                            `pulumi:"httpsEndpoint"`
-	// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
+	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 	RefId *string `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region *string `pulumi:"region"`
@@ -639,6 +709,8 @@ type DeploymentElasticsearch struct {
 	ResourceId     *string                                `pulumi:"resourceId"`
 	// Restores data from a snapshot of another deployment.
 	SnapshotSource *DeploymentElasticsearchSnapshotSource `pulumi:"snapshotSource"`
+	// Choose the configuration strategy used to apply the changes.
+	Strategy *DeploymentElasticsearchStrategy `pulumi:"strategy"`
 	// Can be set multiple times to compose complex topologies.
 	Topologies []DeploymentElasticsearchTopology `pulumi:"topologies"`
 	// The trust relationships with other ESS accounts.
@@ -668,7 +740,7 @@ type DeploymentElasticsearchArgs struct {
 	Extensions    DeploymentElasticsearchExtensionArrayInput `pulumi:"extensions"`
 	HttpEndpoint  pulumi.StringPtrInput                      `pulumi:"httpEndpoint"`
 	HttpsEndpoint pulumi.StringPtrInput                      `pulumi:"httpsEndpoint"`
-	// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
+	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -677,6 +749,8 @@ type DeploymentElasticsearchArgs struct {
 	ResourceId     pulumi.StringPtrInput                          `pulumi:"resourceId"`
 	// Restores data from a snapshot of another deployment.
 	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput `pulumi:"snapshotSource"`
+	// Choose the configuration strategy used to apply the changes.
+	Strategy DeploymentElasticsearchStrategyPtrInput `pulumi:"strategy"`
 	// Can be set multiple times to compose complex topologies.
 	Topologies DeploymentElasticsearchTopologyArrayInput `pulumi:"topologies"`
 	// The trust relationships with other ESS accounts.
@@ -789,7 +863,7 @@ func (o DeploymentElasticsearchOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
-// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
+// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 func (o DeploymentElasticsearchOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
@@ -811,6 +885,11 @@ func (o DeploymentElasticsearchOutput) ResourceId() pulumi.StringPtrOutput {
 // Restores data from a snapshot of another deployment.
 func (o DeploymentElasticsearchOutput) SnapshotSource() DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource { return v.SnapshotSource }).(DeploymentElasticsearchSnapshotSourcePtrOutput)
+}
+
+// Choose the configuration strategy used to apply the changes.
+func (o DeploymentElasticsearchOutput) Strategy() DeploymentElasticsearchStrategyPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchStrategy { return v.Strategy }).(DeploymentElasticsearchStrategyPtrOutput)
 }
 
 // Can be set multiple times to compose complex topologies.
@@ -909,7 +988,7 @@ func (o DeploymentElasticsearchPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
+// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 func (o DeploymentElasticsearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -958,6 +1037,16 @@ func (o DeploymentElasticsearchPtrOutput) SnapshotSource() DeploymentElasticsear
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
+// Choose the configuration strategy used to apply the changes.
+func (o DeploymentElasticsearchPtrOutput) Strategy() DeploymentElasticsearchStrategyPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchStrategy {
+		if v == nil {
+			return nil
+		}
+		return v.Strategy
+	}).(DeploymentElasticsearchStrategyPtrOutput)
+}
+
 // Can be set multiple times to compose complex topologies.
 func (o DeploymentElasticsearchPtrOutput) Topologies() DeploymentElasticsearchTopologyArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchTopology {
@@ -992,13 +1081,13 @@ type DeploymentElasticsearchConfig struct {
 	DockerImage *string `pulumi:"dockerImage"`
 	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
 	Plugins []string `pulumi:"plugins"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
@@ -1017,13 +1106,13 @@ type DeploymentElasticsearchConfigArgs struct {
 	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
 	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
 	Plugins pulumi.StringArrayInput `pulumi:"plugins"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
@@ -1113,22 +1202,22 @@ func (o DeploymentElasticsearchConfigOutput) Plugins() pulumi.StringArrayOutput 
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -1176,7 +1265,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) Plugins() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1186,7 +1275,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsJson() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1196,7 +1285,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideJson() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1206,7 +1295,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideYaml() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1217,13 +1306,13 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.String
 }
 
 type DeploymentElasticsearchExtension struct {
-	// Name of the deployment.
+	// Extension name.
 	Name string `pulumi:"name"`
 	// Extension type, only `bundle` or `plugin` are supported.
 	Type string `pulumi:"type"`
 	// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
 	Url string `pulumi:"url"`
-	// Elastic Stack version to use for all the deployment resources.
+	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
 	Version string `pulumi:"version"`
 }
 
@@ -1239,13 +1328,13 @@ type DeploymentElasticsearchExtensionInput interface {
 }
 
 type DeploymentElasticsearchExtensionArgs struct {
-	// Name of the deployment.
+	// Extension name.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Extension type, only `bundle` or `plugin` are supported.
 	Type pulumi.StringInput `pulumi:"type"`
 	// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
 	Url pulumi.StringInput `pulumi:"url"`
-	// Elastic Stack version to use for all the deployment resources.
+	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
 	Version pulumi.StringInput `pulumi:"version"`
 }
 
@@ -1300,7 +1389,7 @@ func (o DeploymentElasticsearchExtensionOutput) ToDeploymentElasticsearchExtensi
 	return o
 }
 
-// Name of the deployment.
+// Extension name.
 func (o DeploymentElasticsearchExtensionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1315,7 +1404,7 @@ func (o DeploymentElasticsearchExtensionOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// Elastic Stack version to use for all the deployment resources.
+// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
 func (o DeploymentElasticsearchExtensionOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -1341,11 +1430,11 @@ func (o DeploymentElasticsearchExtensionArrayOutput) Index(i pulumi.IntInput) De
 }
 
 type DeploymentElasticsearchRemoteCluster struct {
-	// Deployment alias, affects the format of the resource URLs.
+	// Alias for the Cross Cluster Search binding.
 	Alias string `pulumi:"alias"`
 	// Remote deployment ID.
 	DeploymentId string `pulumi:"deploymentId"`
-	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+	// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
 	RefId *string `pulumi:"refId"`
 	// If true, skip the cluster during search when disconnected. Defaults to `false`.
 	SkipUnavailable *bool `pulumi:"skipUnavailable"`
@@ -1363,11 +1452,11 @@ type DeploymentElasticsearchRemoteClusterInput interface {
 }
 
 type DeploymentElasticsearchRemoteClusterArgs struct {
-	// Deployment alias, affects the format of the resource URLs.
+	// Alias for the Cross Cluster Search binding.
 	Alias pulumi.StringInput `pulumi:"alias"`
 	// Remote deployment ID.
 	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
-	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+	// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// If true, skip the cluster during search when disconnected. Defaults to `false`.
 	SkipUnavailable pulumi.BoolPtrInput `pulumi:"skipUnavailable"`
@@ -1424,7 +1513,7 @@ func (o DeploymentElasticsearchRemoteClusterOutput) ToDeploymentElasticsearchRem
 	return o
 }
 
-// Deployment alias, affects the format of the resource URLs.
+// Alias for the Cross Cluster Search binding.
 func (o DeploymentElasticsearchRemoteClusterOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.Alias }).(pulumi.StringOutput)
 }
@@ -1434,7 +1523,7 @@ func (o DeploymentElasticsearchRemoteClusterOutput) DeploymentId() pulumi.String
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
-// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
 func (o DeploymentElasticsearchRemoteClusterOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
@@ -1620,6 +1709,143 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SourceElasticsearchClust
 	}).(pulumi.StringPtrOutput)
 }
 
+type DeploymentElasticsearchStrategy struct {
+	// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
+	Type string `pulumi:"type"`
+}
+
+// DeploymentElasticsearchStrategyInput is an input type that accepts DeploymentElasticsearchStrategyArgs and DeploymentElasticsearchStrategyOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchStrategyInput` via:
+//
+//	DeploymentElasticsearchStrategyArgs{...}
+type DeploymentElasticsearchStrategyInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchStrategyOutput() DeploymentElasticsearchStrategyOutput
+	ToDeploymentElasticsearchStrategyOutputWithContext(context.Context) DeploymentElasticsearchStrategyOutput
+}
+
+type DeploymentElasticsearchStrategyArgs struct {
+	// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (DeploymentElasticsearchStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchStrategy)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyOutput() DeploymentElasticsearchStrategyOutput {
+	return i.ToDeploymentElasticsearchStrategyOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchStrategyOutput)
+}
+
+func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
+	return i.ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchStrategyOutput).ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchStrategyPtrInput is an input type that accepts DeploymentElasticsearchStrategyArgs, DeploymentElasticsearchStrategyPtr and DeploymentElasticsearchStrategyPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchStrategyPtrInput` via:
+//
+//	        DeploymentElasticsearchStrategyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchStrategyPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput
+	ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Context) DeploymentElasticsearchStrategyPtrOutput
+}
+
+type deploymentElasticsearchStrategyPtrType DeploymentElasticsearchStrategyArgs
+
+func DeploymentElasticsearchStrategyPtr(v *DeploymentElasticsearchStrategyArgs) DeploymentElasticsearchStrategyPtrInput {
+	return (*deploymentElasticsearchStrategyPtrType)(v)
+}
+
+func (*deploymentElasticsearchStrategyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchStrategy)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchStrategyPtrType) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
+	return i.ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchStrategyPtrType) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchStrategyPtrOutput)
+}
+
+type DeploymentElasticsearchStrategyOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchStrategy)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyOutput() DeploymentElasticsearchStrategyOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
+	return o.ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchStrategy) *DeploymentElasticsearchStrategy {
+		return &v
+	}).(DeploymentElasticsearchStrategyPtrOutput)
+}
+
+// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
+func (o DeploymentElasticsearchStrategyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchStrategy) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type DeploymentElasticsearchStrategyPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchStrategyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchStrategy)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchStrategyPtrOutput) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchStrategyPtrOutput) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchStrategyPtrOutput) Elem() DeploymentElasticsearchStrategyOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchStrategy) DeploymentElasticsearchStrategy {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchStrategy
+		return ret
+	}).(DeploymentElasticsearchStrategyOutput)
+}
+
+// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
+func (o DeploymentElasticsearchStrategyPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchStrategy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentElasticsearchTopology struct {
 	// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
 	Autoscaling *DeploymentElasticsearchTopologyAutoscaling `pulumi:"autoscaling"`
@@ -1627,7 +1853,7 @@ type DeploymentElasticsearchTopology struct {
 	Configs []DeploymentElasticsearchTopologyConfig `pulumi:"configs"`
 	// Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
 	Id string `pulumi:"id"`
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId *string  `pulumi:"instanceConfigurationId"`
 	NodeRoles               []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch cluster (data node).
@@ -1638,11 +1864,11 @@ type DeploymentElasticsearchTopology struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch cluster (machine learning node).
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size *string `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount *int `pulumi:"zoneCount"`
 }
 
@@ -1664,7 +1890,7 @@ type DeploymentElasticsearchTopologyArgs struct {
 	Configs DeploymentElasticsearchTopologyConfigArrayInput `pulumi:"configs"`
 	// Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId pulumi.StringPtrInput   `pulumi:"instanceConfigurationId"`
 	NodeRoles               pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch cluster (data node).
@@ -1675,11 +1901,11 @@ type DeploymentElasticsearchTopologyArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch cluster (machine learning node).
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
@@ -1751,7 +1977,7 @@ func (o DeploymentElasticsearchTopologyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 func (o DeploymentElasticsearchTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -1780,7 +2006,7 @@ func (o DeploymentElasticsearchTopologyOutput) NodeTypeMl() pulumi.StringPtrOutp
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
-// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 func (o DeploymentElasticsearchTopologyOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -1790,7 +2016,7 @@ func (o DeploymentElasticsearchTopologyOutput) SizeResource() pulumi.StringPtrOu
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 func (o DeploymentElasticsearchTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -2027,13 +2253,13 @@ func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) PolicyOverrideJson(
 type DeploymentElasticsearchTopologyConfig struct {
 	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
 	Plugins []string `pulumi:"plugins"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
@@ -2051,13 +2277,13 @@ type DeploymentElasticsearchTopologyConfigInput interface {
 type DeploymentElasticsearchTopologyConfigArgs struct {
 	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
 	Plugins pulumi.StringArrayInput `pulumi:"plugins"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
@@ -2117,22 +2343,22 @@ func (o DeploymentElasticsearchTopologyConfigOutput) Plugins() pulumi.StringArra
 	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -2275,7 +2501,7 @@ func (o DeploymentElasticsearchTrustAccountArrayOutput) Index(i pulumi.IntInput)
 type DeploymentElasticsearchTrustExternal struct {
 	// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
 	RelationshipId string `pulumi:"relationshipId"`
-	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+	// If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
 	TrustAll bool `pulumi:"trustAll"`
 	// The list of clusters to trust. Only used when `trustAll` is `false`.
 	TrustAllowlists []string `pulumi:"trustAllowlists"`
@@ -2295,7 +2521,7 @@ type DeploymentElasticsearchTrustExternalInput interface {
 type DeploymentElasticsearchTrustExternalArgs struct {
 	// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
 	RelationshipId pulumi.StringInput `pulumi:"relationshipId"`
-	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+	// If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
 	TrustAll pulumi.BoolInput `pulumi:"trustAll"`
 	// The list of clusters to trust. Only used when `trustAll` is `false`.
 	TrustAllowlists pulumi.StringArrayInput `pulumi:"trustAllowlists"`
@@ -2357,7 +2583,7 @@ func (o DeploymentElasticsearchTrustExternalOutput) RelationshipId() pulumi.Stri
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) string { return v.RelationshipId }).(pulumi.StringOutput)
 }
 
-// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+// If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
 func (o DeploymentElasticsearchTrustExternalOutput) TrustAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) bool { return v.TrustAll }).(pulumi.BoolOutput)
 }
@@ -2400,7 +2626,7 @@ type DeploymentEnterpriseSearch struct {
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies []DeploymentEnterpriseSearchTopology `pulumi:"topologies"`
+	Topology *DeploymentEnterpriseSearchTopology `pulumi:"topology"`
 }
 
 // DeploymentEnterpriseSearchInput is an input type that accepts DeploymentEnterpriseSearchArgs and DeploymentEnterpriseSearchOutput values.
@@ -2427,7 +2653,7 @@ type DeploymentEnterpriseSearchArgs struct {
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies DeploymentEnterpriseSearchTopologyArrayInput `pulumi:"topologies"`
+	Topology DeploymentEnterpriseSearchTopologyPtrInput `pulumi:"topology"`
 }
 
 func (DeploymentEnterpriseSearchArgs) ElementType() reflect.Type {
@@ -2540,8 +2766,8 @@ func (o DeploymentEnterpriseSearchOutput) ResourceId() pulumi.StringPtrOutput {
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentEnterpriseSearchOutput) Topologies() DeploymentEnterpriseSearchTopologyArrayOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearch) []DeploymentEnterpriseSearchTopology { return v.Topologies }).(DeploymentEnterpriseSearchTopologyArrayOutput)
+func (o DeploymentEnterpriseSearchOutput) Topology() DeploymentEnterpriseSearchTopologyPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *DeploymentEnterpriseSearchTopology { return v.Topology }).(DeploymentEnterpriseSearchTopologyPtrOutput)
 }
 
 type DeploymentEnterpriseSearchPtrOutput struct{ *pulumi.OutputState }
@@ -2636,24 +2862,24 @@ func (o DeploymentEnterpriseSearchPtrOutput) ResourceId() pulumi.StringPtrOutput
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentEnterpriseSearchPtrOutput) Topologies() DeploymentEnterpriseSearchTopologyArrayOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearch) []DeploymentEnterpriseSearchTopology {
+func (o DeploymentEnterpriseSearchPtrOutput) Topology() DeploymentEnterpriseSearchTopologyPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *DeploymentEnterpriseSearchTopology {
 		if v == nil {
 			return nil
 		}
-		return v.Topologies
-	}).(DeploymentEnterpriseSearchTopologyArrayOutput)
+		return v.Topology
+	}).(DeploymentEnterpriseSearchTopologyPtrOutput)
 }
 
 type DeploymentEnterpriseSearchConfig struct {
 	DockerImage *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
@@ -2670,13 +2896,13 @@ type DeploymentEnterpriseSearchConfigInput interface {
 
 type DeploymentEnterpriseSearchConfigArgs struct {
 	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
@@ -2761,22 +2987,22 @@ func (o DeploymentEnterpriseSearchConfigOutput) DockerImage() pulumi.StringPtrOu
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -2814,7 +3040,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) DockerImage() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -2824,7 +3050,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsJson() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -2834,7 +3060,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideJson() pu
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -2844,7 +3070,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideYaml() pu
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -2855,16 +3081,16 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsYaml() pulumi.Str
 }
 
 type DeploymentEnterpriseSearchTopology struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	NodeTypeAppserver       *bool   `pulumi:"nodeTypeAppserver"`
 	NodeTypeConnector       *bool   `pulumi:"nodeTypeConnector"`
 	NodeTypeWorker          *bool   `pulumi:"nodeTypeWorker"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size *string `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount *int `pulumi:"zoneCount"`
 }
 
@@ -2880,16 +3106,16 @@ type DeploymentEnterpriseSearchTopologyInput interface {
 }
 
 type DeploymentEnterpriseSearchTopologyArgs struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	NodeTypeAppserver       pulumi.BoolPtrInput   `pulumi:"nodeTypeAppserver"`
 	NodeTypeConnector       pulumi.BoolPtrInput   `pulumi:"nodeTypeConnector"`
 	NodeTypeWorker          pulumi.BoolPtrInput   `pulumi:"nodeTypeWorker"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
@@ -2905,29 +3131,45 @@ func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyOutput)
 }
 
-// DeploymentEnterpriseSearchTopologyArrayInput is an input type that accepts DeploymentEnterpriseSearchTopologyArray and DeploymentEnterpriseSearchTopologyArrayOutput values.
-// You can construct a concrete instance of `DeploymentEnterpriseSearchTopologyArrayInput` via:
+func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
+	return i.ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyOutput).ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx)
+}
+
+// DeploymentEnterpriseSearchTopologyPtrInput is an input type that accepts DeploymentEnterpriseSearchTopologyArgs, DeploymentEnterpriseSearchTopologyPtr and DeploymentEnterpriseSearchTopologyPtrOutput values.
+// You can construct a concrete instance of `DeploymentEnterpriseSearchTopologyPtrInput` via:
 //
-//	DeploymentEnterpriseSearchTopologyArray{ DeploymentEnterpriseSearchTopologyArgs{...} }
-type DeploymentEnterpriseSearchTopologyArrayInput interface {
+//	        DeploymentEnterpriseSearchTopologyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentEnterpriseSearchTopologyPtrInput interface {
 	pulumi.Input
 
-	ToDeploymentEnterpriseSearchTopologyArrayOutput() DeploymentEnterpriseSearchTopologyArrayOutput
-	ToDeploymentEnterpriseSearchTopologyArrayOutputWithContext(context.Context) DeploymentEnterpriseSearchTopologyArrayOutput
+	ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput
+	ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Context) DeploymentEnterpriseSearchTopologyPtrOutput
 }
 
-type DeploymentEnterpriseSearchTopologyArray []DeploymentEnterpriseSearchTopologyInput
+type deploymentEnterpriseSearchTopologyPtrType DeploymentEnterpriseSearchTopologyArgs
 
-func (DeploymentEnterpriseSearchTopologyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentEnterpriseSearchTopology)(nil)).Elem()
+func DeploymentEnterpriseSearchTopologyPtr(v *DeploymentEnterpriseSearchTopologyArgs) DeploymentEnterpriseSearchTopologyPtrInput {
+	return (*deploymentEnterpriseSearchTopologyPtrType)(v)
 }
 
-func (i DeploymentEnterpriseSearchTopologyArray) ToDeploymentEnterpriseSearchTopologyArrayOutput() DeploymentEnterpriseSearchTopologyArrayOutput {
-	return i.ToDeploymentEnterpriseSearchTopologyArrayOutputWithContext(context.Background())
+func (*deploymentEnterpriseSearchTopologyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentEnterpriseSearchTopology)(nil)).Elem()
 }
 
-func (i DeploymentEnterpriseSearchTopologyArray) ToDeploymentEnterpriseSearchTopologyArrayOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyArrayOutput)
+func (i *deploymentEnterpriseSearchTopologyPtrType) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
+	return i.ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentEnterpriseSearchTopologyPtrType) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyPtrOutput)
 }
 
 type DeploymentEnterpriseSearchTopologyOutput struct{ *pulumi.OutputState }
@@ -2944,7 +3186,17 @@ func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTo
 	return o
 }
 
-// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
+	return o.ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentEnterpriseSearchTopology) *DeploymentEnterpriseSearchTopology {
+		return &v
+	}).(DeploymentEnterpriseSearchTopologyPtrOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 func (o DeploymentEnterpriseSearchTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -2961,7 +3213,7 @@ func (o DeploymentEnterpriseSearchTopologyOutput) NodeTypeWorker() pulumi.BoolPt
 	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *bool { return v.NodeTypeWorker }).(pulumi.BoolPtrOutput)
 }
 
-// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 func (o DeploymentEnterpriseSearchTopologyOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -2971,36 +3223,109 @@ func (o DeploymentEnterpriseSearchTopologyOutput) SizeResource() pulumi.StringPt
 	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 func (o DeploymentEnterpriseSearchTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
-type DeploymentEnterpriseSearchTopologyArrayOutput struct{ *pulumi.OutputState }
+type DeploymentEnterpriseSearchTopologyPtrOutput struct{ *pulumi.OutputState }
 
-func (DeploymentEnterpriseSearchTopologyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentEnterpriseSearchTopology)(nil)).Elem()
+func (DeploymentEnterpriseSearchTopologyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentEnterpriseSearchTopology)(nil)).Elem()
 }
 
-func (o DeploymentEnterpriseSearchTopologyArrayOutput) ToDeploymentEnterpriseSearchTopologyArrayOutput() DeploymentEnterpriseSearchTopologyArrayOutput {
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentEnterpriseSearchTopologyArrayOutput) ToDeploymentEnterpriseSearchTopologyArrayOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyArrayOutput {
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentEnterpriseSearchTopologyArrayOutput) Index(i pulumi.IntInput) DeploymentEnterpriseSearchTopologyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentEnterpriseSearchTopology {
-		return vs[0].([]DeploymentEnterpriseSearchTopology)[vs[1].(int)]
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) Elem() DeploymentEnterpriseSearchTopologyOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) DeploymentEnterpriseSearchTopology {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentEnterpriseSearchTopology
+		return ret
 	}).(DeploymentEnterpriseSearchTopologyOutput)
 }
 
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) NodeTypeAppserver() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeAppserver
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) NodeTypeConnector() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeConnector
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) NodeTypeWorker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeWorker
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of resource to which the size is assigned. Defaults to `"memory"`.
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
+func (o DeploymentEnterpriseSearchTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
 type DeploymentIntegrationsServer struct {
+	ApmHttpsEndpoint *string `pulumi:"apmHttpsEndpoint"`
 	// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
 	Config *DeploymentIntegrationsServerConfig `pulumi:"config"`
 	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 	ElasticsearchClusterRefId *string `pulumi:"elasticsearchClusterRefId"`
+	FleetHttpsEndpoint        *string `pulumi:"fleetHttpsEndpoint"`
 	HttpEndpoint              *string `pulumi:"httpEndpoint"`
 	HttpsEndpoint             *string `pulumi:"httpsEndpoint"`
 	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
@@ -3009,7 +3334,7 @@ type DeploymentIntegrationsServer struct {
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies []DeploymentIntegrationsServerTopology `pulumi:"topologies"`
+	Topology *DeploymentIntegrationsServerTopology `pulumi:"topology"`
 }
 
 // DeploymentIntegrationsServerInput is an input type that accepts DeploymentIntegrationsServerArgs and DeploymentIntegrationsServerOutput values.
@@ -3024,10 +3349,12 @@ type DeploymentIntegrationsServerInput interface {
 }
 
 type DeploymentIntegrationsServerArgs struct {
+	ApmHttpsEndpoint pulumi.StringPtrInput `pulumi:"apmHttpsEndpoint"`
 	// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
 	Config DeploymentIntegrationsServerConfigPtrInput `pulumi:"config"`
 	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 	ElasticsearchClusterRefId pulumi.StringPtrInput `pulumi:"elasticsearchClusterRefId"`
+	FleetHttpsEndpoint        pulumi.StringPtrInput `pulumi:"fleetHttpsEndpoint"`
 	HttpEndpoint              pulumi.StringPtrInput `pulumi:"httpEndpoint"`
 	HttpsEndpoint             pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
 	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
@@ -3036,7 +3363,7 @@ type DeploymentIntegrationsServerArgs struct {
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies DeploymentIntegrationsServerTopologyArrayInput `pulumi:"topologies"`
+	Topology DeploymentIntegrationsServerTopologyPtrInput `pulumi:"topology"`
 }
 
 func (DeploymentIntegrationsServerArgs) ElementType() reflect.Type {
@@ -3116,6 +3443,10 @@ func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerPtrOut
 	}).(DeploymentIntegrationsServerPtrOutput)
 }
 
+func (o DeploymentIntegrationsServerOutput) ApmHttpsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ApmHttpsEndpoint }).(pulumi.StringPtrOutput)
+}
+
 // Integrations Server settings applied to all topologies unless overridden in the `topology` element.
 func (o DeploymentIntegrationsServerOutput) Config() DeploymentIntegrationsServerConfigPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *DeploymentIntegrationsServerConfig { return v.Config }).(DeploymentIntegrationsServerConfigPtrOutput)
@@ -3124,6 +3455,10 @@ func (o DeploymentIntegrationsServerOutput) Config() DeploymentIntegrationsServe
 // This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentIntegrationsServerOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ElasticsearchClusterRefId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerOutput) FleetHttpsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.FleetHttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
 func (o DeploymentIntegrationsServerOutput) HttpEndpoint() pulumi.StringPtrOutput {
@@ -3149,8 +3484,8 @@ func (o DeploymentIntegrationsServerOutput) ResourceId() pulumi.StringPtrOutput 
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentIntegrationsServerOutput) Topologies() DeploymentIntegrationsServerTopologyArrayOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServer) []DeploymentIntegrationsServerTopology { return v.Topologies }).(DeploymentIntegrationsServerTopologyArrayOutput)
+func (o DeploymentIntegrationsServerOutput) Topology() DeploymentIntegrationsServerTopologyPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *DeploymentIntegrationsServerTopology { return v.Topology }).(DeploymentIntegrationsServerTopologyPtrOutput)
 }
 
 type DeploymentIntegrationsServerPtrOutput struct{ *pulumi.OutputState }
@@ -3177,6 +3512,15 @@ func (o DeploymentIntegrationsServerPtrOutput) Elem() DeploymentIntegrationsServ
 	}).(DeploymentIntegrationsServerOutput)
 }
 
+func (o DeploymentIntegrationsServerPtrOutput) ApmHttpsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApmHttpsEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
 // Integrations Server settings applied to all topologies unless overridden in the `topology` element.
 func (o DeploymentIntegrationsServerPtrOutput) Config() DeploymentIntegrationsServerConfigPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *DeploymentIntegrationsServerConfig {
@@ -3194,6 +3538,15 @@ func (o DeploymentIntegrationsServerPtrOutput) ElasticsearchClusterRefId() pulum
 			return nil
 		}
 		return v.ElasticsearchClusterRefId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) FleetHttpsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FleetHttpsEndpoint
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3245,26 +3598,26 @@ func (o DeploymentIntegrationsServerPtrOutput) ResourceId() pulumi.StringPtrOutp
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentIntegrationsServerPtrOutput) Topologies() DeploymentIntegrationsServerTopologyArrayOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServer) []DeploymentIntegrationsServerTopology {
+func (o DeploymentIntegrationsServerPtrOutput) Topology() DeploymentIntegrationsServerTopologyPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *DeploymentIntegrationsServerTopology {
 		if v == nil {
 			return nil
 		}
-		return v.Topologies
-	}).(DeploymentIntegrationsServerTopologyArrayOutput)
+		return v.Topology
+	}).(DeploymentIntegrationsServerTopologyPtrOutput)
 }
 
 type DeploymentIntegrationsServerConfig struct {
-	// Enable debug mode for the component. Defaults to `false`.
+	// Enable debug mode for APM servers. Defaults to `false`.
 	DebugEnabled *bool   `pulumi:"debugEnabled"`
 	DockerImage  *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
@@ -3280,16 +3633,16 @@ type DeploymentIntegrationsServerConfigInput interface {
 }
 
 type DeploymentIntegrationsServerConfigArgs struct {
-	// Enable debug mode for the component. Defaults to `false`.
+	// Enable debug mode for APM servers. Defaults to `false`.
 	DebugEnabled pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
 	DockerImage  pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
@@ -3370,7 +3723,7 @@ func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServer
 	}).(DeploymentIntegrationsServerConfigPtrOutput)
 }
 
-// Enable debug mode for the component. Defaults to `false`.
+// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentIntegrationsServerConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -3379,22 +3732,22 @@ func (o DeploymentIntegrationsServerConfigOutput) DockerImage() pulumi.StringPtr
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -3423,7 +3776,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) Elem() DeploymentIntegratio
 	}).(DeploymentIntegrationsServerConfigOutput)
 }
 
-// Enable debug mode for the component. Defaults to `false`.
+// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentIntegrationsServerConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *bool {
 		if v == nil {
@@ -3442,7 +3795,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) DockerImage() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3452,7 +3805,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3462,7 +3815,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() 
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3472,7 +3825,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() 
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3483,13 +3836,13 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsYaml() pulumi.S
 }
 
 type DeploymentIntegrationsServerTopology struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size *string `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount *int `pulumi:"zoneCount"`
 }
 
@@ -3505,13 +3858,13 @@ type DeploymentIntegrationsServerTopologyInput interface {
 }
 
 type DeploymentIntegrationsServerTopologyArgs struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
@@ -3527,29 +3880,45 @@ func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServer
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyOutput)
 }
 
-// DeploymentIntegrationsServerTopologyArrayInput is an input type that accepts DeploymentIntegrationsServerTopologyArray and DeploymentIntegrationsServerTopologyArrayOutput values.
-// You can construct a concrete instance of `DeploymentIntegrationsServerTopologyArrayInput` via:
+func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
+	return i.ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyOutput).ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx)
+}
+
+// DeploymentIntegrationsServerTopologyPtrInput is an input type that accepts DeploymentIntegrationsServerTopologyArgs, DeploymentIntegrationsServerTopologyPtr and DeploymentIntegrationsServerTopologyPtrOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerTopologyPtrInput` via:
 //
-//	DeploymentIntegrationsServerTopologyArray{ DeploymentIntegrationsServerTopologyArgs{...} }
-type DeploymentIntegrationsServerTopologyArrayInput interface {
+//	        DeploymentIntegrationsServerTopologyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentIntegrationsServerTopologyPtrInput interface {
 	pulumi.Input
 
-	ToDeploymentIntegrationsServerTopologyArrayOutput() DeploymentIntegrationsServerTopologyArrayOutput
-	ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(context.Context) DeploymentIntegrationsServerTopologyArrayOutput
+	ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput
+	ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Context) DeploymentIntegrationsServerTopologyPtrOutput
 }
 
-type DeploymentIntegrationsServerTopologyArray []DeploymentIntegrationsServerTopologyInput
+type deploymentIntegrationsServerTopologyPtrType DeploymentIntegrationsServerTopologyArgs
 
-func (DeploymentIntegrationsServerTopologyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentIntegrationsServerTopology)(nil)).Elem()
+func DeploymentIntegrationsServerTopologyPtr(v *DeploymentIntegrationsServerTopologyArgs) DeploymentIntegrationsServerTopologyPtrInput {
+	return (*deploymentIntegrationsServerTopologyPtrType)(v)
 }
 
-func (i DeploymentIntegrationsServerTopologyArray) ToDeploymentIntegrationsServerTopologyArrayOutput() DeploymentIntegrationsServerTopologyArrayOutput {
-	return i.ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(context.Background())
+func (*deploymentIntegrationsServerTopologyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServerTopology)(nil)).Elem()
 }
 
-func (i DeploymentIntegrationsServerTopologyArray) ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyArrayOutput)
+func (i *deploymentIntegrationsServerTopologyPtrType) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
+	return i.ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentIntegrationsServerTopologyPtrType) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyPtrOutput)
 }
 
 type DeploymentIntegrationsServerTopologyOutput struct{ *pulumi.OutputState }
@@ -3566,12 +3935,22 @@ func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServ
 	return o
 }
 
-// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
+	return o.ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServerTopology) *DeploymentIntegrationsServerTopology {
+		return &v
+	}).(DeploymentIntegrationsServerTopologyPtrOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 func (o DeploymentIntegrationsServerTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
-// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 func (o DeploymentIntegrationsServerTopologyOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -3581,29 +3960,73 @@ func (o DeploymentIntegrationsServerTopologyOutput) SizeResource() pulumi.String
 	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 func (o DeploymentIntegrationsServerTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
-type DeploymentIntegrationsServerTopologyArrayOutput struct{ *pulumi.OutputState }
+type DeploymentIntegrationsServerTopologyPtrOutput struct{ *pulumi.OutputState }
 
-func (DeploymentIntegrationsServerTopologyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentIntegrationsServerTopology)(nil)).Elem()
+func (DeploymentIntegrationsServerTopologyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServerTopology)(nil)).Elem()
 }
 
-func (o DeploymentIntegrationsServerTopologyArrayOutput) ToDeploymentIntegrationsServerTopologyArrayOutput() DeploymentIntegrationsServerTopologyArrayOutput {
+func (o DeploymentIntegrationsServerTopologyPtrOutput) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentIntegrationsServerTopologyArrayOutput) ToDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyArrayOutput {
+func (o DeploymentIntegrationsServerTopologyPtrOutput) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentIntegrationsServerTopologyArrayOutput) Index(i pulumi.IntInput) DeploymentIntegrationsServerTopologyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentIntegrationsServerTopology {
-		return vs[0].([]DeploymentIntegrationsServerTopology)[vs[1].(int)]
+func (o DeploymentIntegrationsServerTopologyPtrOutput) Elem() DeploymentIntegrationsServerTopologyOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) DeploymentIntegrationsServerTopology {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentIntegrationsServerTopology
+		return ret
 	}).(DeploymentIntegrationsServerTopologyOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+func (o DeploymentIntegrationsServerTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
+func (o DeploymentIntegrationsServerTopologyPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of resource to which the size is assigned. Defaults to `"memory"`.
+func (o DeploymentIntegrationsServerTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
+func (o DeploymentIntegrationsServerTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentKibana struct {
@@ -3619,7 +4042,7 @@ type DeploymentKibana struct {
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies []DeploymentKibanaTopology `pulumi:"topologies"`
+	Topology *DeploymentKibanaTopology `pulumi:"topology"`
 }
 
 // DeploymentKibanaInput is an input type that accepts DeploymentKibanaArgs and DeploymentKibanaOutput values.
@@ -3646,7 +4069,7 @@ type DeploymentKibanaArgs struct {
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
-	Topologies DeploymentKibanaTopologyArrayInput `pulumi:"topologies"`
+	Topology DeploymentKibanaTopologyPtrInput `pulumi:"topology"`
 }
 
 func (DeploymentKibanaArgs) ElementType() reflect.Type {
@@ -3759,8 +4182,8 @@ func (o DeploymentKibanaOutput) ResourceId() pulumi.StringPtrOutput {
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentKibanaOutput) Topologies() DeploymentKibanaTopologyArrayOutput {
-	return o.ApplyT(func(v DeploymentKibana) []DeploymentKibanaTopology { return v.Topologies }).(DeploymentKibanaTopologyArrayOutput)
+func (o DeploymentKibanaOutput) Topology() DeploymentKibanaTopologyPtrOutput {
+	return o.ApplyT(func(v DeploymentKibana) *DeploymentKibanaTopology { return v.Topology }).(DeploymentKibanaTopologyPtrOutput)
 }
 
 type DeploymentKibanaPtrOutput struct{ *pulumi.OutputState }
@@ -3855,24 +4278,24 @@ func (o DeploymentKibanaPtrOutput) ResourceId() pulumi.StringPtrOutput {
 }
 
 // Can be set multiple times to compose complex topologies.
-func (o DeploymentKibanaPtrOutput) Topologies() DeploymentKibanaTopologyArrayOutput {
-	return o.ApplyT(func(v *DeploymentKibana) []DeploymentKibanaTopology {
+func (o DeploymentKibanaPtrOutput) Topology() DeploymentKibanaTopologyPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibana) *DeploymentKibanaTopology {
 		if v == nil {
 			return nil
 		}
-		return v.Topologies
-	}).(DeploymentKibanaTopologyArrayOutput)
+		return v.Topology
+	}).(DeploymentKibanaTopologyPtrOutput)
 }
 
 type DeploymentKibanaConfig struct {
 	DockerImage *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
@@ -3889,13 +4312,13 @@ type DeploymentKibanaConfigInput interface {
 
 type DeploymentKibanaConfigArgs struct {
 	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `elasticsearch.yml` setting overrides.
+	// JSON-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `elasticsearch.yml` setting overrides.
+	// YAML-formatted user level `enterprise_search.yml` setting overrides.
 	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
@@ -3980,22 +4403,22 @@ func (o DeploymentKibanaConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -4033,7 +4456,7 @@ func (o DeploymentKibanaConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `elasticsearch.yml` setting overrides.
+// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4043,7 +4466,7 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4053,7 +4476,7 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideJson() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4063,7 +4486,7 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideYaml() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `elasticsearch.yml` setting overrides.
+// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4074,13 +4497,13 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutp
 }
 
 type DeploymentKibanaTopology struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size *string `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount *int `pulumi:"zoneCount"`
 }
 
@@ -4096,13 +4519,13 @@ type DeploymentKibanaTopologyInput interface {
 }
 
 type DeploymentKibanaTopologyArgs struct {
-	// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Type of resource to which the size is assigned. Defaults to `"memory"`.
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
@@ -4118,29 +4541,45 @@ func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyOutput)
 }
 
-// DeploymentKibanaTopologyArrayInput is an input type that accepts DeploymentKibanaTopologyArray and DeploymentKibanaTopologyArrayOutput values.
-// You can construct a concrete instance of `DeploymentKibanaTopologyArrayInput` via:
+func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
+	return i.ToDeploymentKibanaTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyOutput).ToDeploymentKibanaTopologyPtrOutputWithContext(ctx)
+}
+
+// DeploymentKibanaTopologyPtrInput is an input type that accepts DeploymentKibanaTopologyArgs, DeploymentKibanaTopologyPtr and DeploymentKibanaTopologyPtrOutput values.
+// You can construct a concrete instance of `DeploymentKibanaTopologyPtrInput` via:
 //
-//	DeploymentKibanaTopologyArray{ DeploymentKibanaTopologyArgs{...} }
-type DeploymentKibanaTopologyArrayInput interface {
+//	        DeploymentKibanaTopologyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentKibanaTopologyPtrInput interface {
 	pulumi.Input
 
-	ToDeploymentKibanaTopologyArrayOutput() DeploymentKibanaTopologyArrayOutput
-	ToDeploymentKibanaTopologyArrayOutputWithContext(context.Context) DeploymentKibanaTopologyArrayOutput
+	ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput
+	ToDeploymentKibanaTopologyPtrOutputWithContext(context.Context) DeploymentKibanaTopologyPtrOutput
 }
 
-type DeploymentKibanaTopologyArray []DeploymentKibanaTopologyInput
+type deploymentKibanaTopologyPtrType DeploymentKibanaTopologyArgs
 
-func (DeploymentKibanaTopologyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentKibanaTopology)(nil)).Elem()
+func DeploymentKibanaTopologyPtr(v *DeploymentKibanaTopologyArgs) DeploymentKibanaTopologyPtrInput {
+	return (*deploymentKibanaTopologyPtrType)(v)
 }
 
-func (i DeploymentKibanaTopologyArray) ToDeploymentKibanaTopologyArrayOutput() DeploymentKibanaTopologyArrayOutput {
-	return i.ToDeploymentKibanaTopologyArrayOutputWithContext(context.Background())
+func (*deploymentKibanaTopologyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentKibanaTopology)(nil)).Elem()
 }
 
-func (i DeploymentKibanaTopologyArray) ToDeploymentKibanaTopologyArrayOutputWithContext(ctx context.Context) DeploymentKibanaTopologyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyArrayOutput)
+func (i *deploymentKibanaTopologyPtrType) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
+	return i.ToDeploymentKibanaTopologyPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentKibanaTopologyPtrType) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyPtrOutput)
 }
 
 type DeploymentKibanaTopologyOutput struct{ *pulumi.OutputState }
@@ -4157,12 +4596,22 @@ func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyOutputWithCont
 	return o
 }
 
-// Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
+	return o.ToDeploymentKibanaTopologyPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentKibanaTopology) *DeploymentKibanaTopology {
+		return &v
+	}).(DeploymentKibanaTopologyPtrOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
 func (o DeploymentKibanaTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
-// Amount in Gigabytes per topology element in the `"<size in GB>g"` notation. When omitted, it defaults to the deployment template value.
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
 func (o DeploymentKibanaTopologyOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -4172,29 +4621,73 @@ func (o DeploymentKibanaTopologyOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
 func (o DeploymentKibanaTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
-type DeploymentKibanaTopologyArrayOutput struct{ *pulumi.OutputState }
+type DeploymentKibanaTopologyPtrOutput struct{ *pulumi.OutputState }
 
-func (DeploymentKibanaTopologyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentKibanaTopology)(nil)).Elem()
+func (DeploymentKibanaTopologyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentKibanaTopology)(nil)).Elem()
 }
 
-func (o DeploymentKibanaTopologyArrayOutput) ToDeploymentKibanaTopologyArrayOutput() DeploymentKibanaTopologyArrayOutput {
+func (o DeploymentKibanaTopologyPtrOutput) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentKibanaTopologyArrayOutput) ToDeploymentKibanaTopologyArrayOutputWithContext(ctx context.Context) DeploymentKibanaTopologyArrayOutput {
+func (o DeploymentKibanaTopologyPtrOutput) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
 	return o
 }
 
-func (o DeploymentKibanaTopologyArrayOutput) Index(i pulumi.IntInput) DeploymentKibanaTopologyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentKibanaTopology {
-		return vs[0].([]DeploymentKibanaTopology)[vs[1].(int)]
+func (o DeploymentKibanaTopologyPtrOutput) Elem() DeploymentKibanaTopologyOutput {
+	return o.ApplyT(func(v *DeploymentKibanaTopology) DeploymentKibanaTopology {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentKibanaTopology
+		return ret
 	}).(DeploymentKibanaTopologyOutput)
+}
+
+// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+func (o DeploymentKibanaTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibanaTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
+func (o DeploymentKibanaTopologyPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibanaTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of resource to which the size is assigned. Defaults to `"memory"`.
+func (o DeploymentKibanaTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibanaTopology) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
+func (o DeploymentKibanaTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibanaTopology) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentObservability struct {
@@ -7620,7 +8113,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmConfigInput)(nil)).Elem(), DeploymentApmConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmConfigPtrInput)(nil)).Elem(), DeploymentApmConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmTopologyInput)(nil)).Elem(), DeploymentApmTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmTopologyArrayInput)(nil)).Elem(), DeploymentApmTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmTopologyPtrInput)(nil)).Elem(), DeploymentApmTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchInput)(nil)).Elem(), DeploymentElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchPtrInput)(nil)).Elem(), DeploymentElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchConfigInput)(nil)).Elem(), DeploymentElasticsearchConfigArgs{})
@@ -7631,6 +8124,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchRemoteClusterArrayInput)(nil)).Elem(), DeploymentElasticsearchRemoteClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotSourceInput)(nil)).Elem(), DeploymentElasticsearchSnapshotSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotSourcePtrInput)(nil)).Elem(), DeploymentElasticsearchSnapshotSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchStrategyInput)(nil)).Elem(), DeploymentElasticsearchStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchStrategyPtrInput)(nil)).Elem(), DeploymentElasticsearchStrategyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyInput)(nil)).Elem(), DeploymentElasticsearchTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyArrayInput)(nil)).Elem(), DeploymentElasticsearchTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchTopologyAutoscalingArgs{})
@@ -7646,19 +8141,19 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchConfigInput)(nil)).Elem(), DeploymentEnterpriseSearchConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchConfigPtrInput)(nil)).Elem(), DeploymentEnterpriseSearchConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyArrayInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyPtrInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerInput)(nil)).Elem(), DeploymentIntegrationsServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerPtrInput)(nil)).Elem(), DeploymentIntegrationsServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerConfigInput)(nil)).Elem(), DeploymentIntegrationsServerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerConfigPtrInput)(nil)).Elem(), DeploymentIntegrationsServerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyArrayInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyPtrInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaInput)(nil)).Elem(), DeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaPtrInput)(nil)).Elem(), DeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaConfigInput)(nil)).Elem(), DeploymentKibanaConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaConfigPtrInput)(nil)).Elem(), DeploymentKibanaConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaTopologyInput)(nil)).Elem(), DeploymentKibanaTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaTopologyArrayInput)(nil)).Elem(), DeploymentKibanaTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaTopologyPtrInput)(nil)).Elem(), DeploymentKibanaTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentObservabilityInput)(nil)).Elem(), DeploymentObservabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentObservabilityPtrInput)(nil)).Elem(), DeploymentObservabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterRuleInput)(nil)).Elem(), DeploymentTrafficFilterRuleArgs{})
@@ -7712,7 +8207,7 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentApmConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentApmConfigPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentApmTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentApmTopologyArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentApmTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchConfigOutput{})
@@ -7723,6 +8218,8 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentElasticsearchRemoteClusterArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotSourceOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotSourcePtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchStrategyOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchStrategyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyAutoscalingOutput{})
@@ -7738,19 +8235,19 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchConfigPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerConfigPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaConfigPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentKibanaTopologyArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentKibanaTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentObservabilityOutput{})
 	pulumi.RegisterOutputType(DeploymentObservabilityPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterRuleOutput{})

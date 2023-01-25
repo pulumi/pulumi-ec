@@ -142,21 +142,27 @@ public final class GetDeploymentResult {
      * 
      */
     private String name;
+    /**
+     * @return Observability settings. Information about logs and metrics shipped to a dedicated deployment.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
+     * * `observability.#.logs` - Defines whether logs are enabled or disabled.
+     * * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
+     * 
+     */
     private List<GetDeploymentObservability> observabilities;
     /**
      * @return Region where the deployment can be found.
      * 
      */
     private String region;
+    /**
+     * @return Key value map of arbitrary string tags.
+     * 
+     */
     private Map<String,String> tags;
     /**
      * @return Traffic filter block, which contains a list of traffic filter rule identifiers.
-     * * `tags` Key value map of arbitrary string tags.
-     * * `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-     * * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
-     * * `observability.#.logs` - Defines whether logs are enabled or disabled.
-     * * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
      * 
      */
     private List<String> trafficFilters;
@@ -306,6 +312,14 @@ public final class GetDeploymentResult {
     public String name() {
         return this.name;
     }
+    /**
+     * @return Observability settings. Information about logs and metrics shipped to a dedicated deployment.
+     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+     * * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
+     * * `observability.#.logs` - Defines whether logs are enabled or disabled.
+     * * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
+     * 
+     */
     public List<GetDeploymentObservability> observabilities() {
         return this.observabilities;
     }
@@ -316,17 +330,15 @@ public final class GetDeploymentResult {
     public String region() {
         return this.region;
     }
+    /**
+     * @return Key value map of arbitrary string tags.
+     * 
+     */
     public Map<String,String> tags() {
         return this.tags;
     }
     /**
      * @return Traffic filter block, which contains a list of traffic filter rule identifiers.
-     * * `tags` Key value map of arbitrary string tags.
-     * * `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-     * * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
-     * * `observability.#.logs` - Defines whether logs are enabled or disabled.
-     * * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
      * 
      */
     public List<String> trafficFilters() {

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -14,17 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const example = pulumi.output(ec.getDeployment({
+ * const example = ec.getDeployment({
  *     id: "f759065e5e64e9f3546f6c44f2743893",
- * }));
+ * });
  * ```
  */
 export function getDeployment(args: GetDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getDeployment:getDeployment", {
         "id": args.id,
     }, opts);
@@ -158,26 +156,43 @@ export interface GetDeploymentResult {
      * The name of the deployment.
      */
     readonly name: string;
-    readonly observabilities: outputs.GetDeploymentObservability[];
     /**
-     * Region where the deployment can be found.
-     */
-    readonly region: string;
-    readonly tags: {[key: string]: string};
-    /**
-     * Traffic filter block, which contains a list of traffic filter rule identifiers.
-     * * `tags` Key value map of arbitrary string tags.
-     * * `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.
+     * Observability settings. Information about logs and metrics shipped to a dedicated deployment.
      * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
      * * `observability.#.ref_id` - Elasticsearch resource kind refId of the destination deployment.
      * * `observability.#.logs` - Defines whether logs are enabled or disabled.
      * * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
      */
+    readonly observabilities: outputs.GetDeploymentObservability[];
+    /**
+     * Region where the deployment can be found.
+     */
+    readonly region: string;
+    /**
+     * Key value map of arbitrary string tags.
+     */
+    readonly tags: {[key: string]: string};
+    /**
+     * Traffic filter block, which contains a list of traffic filter rule identifiers.
+     */
     readonly trafficFilters: string[];
 }
-
+/**
+ * Use this data source to retrieve information about an existing Elastic Cloud deployment.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const example = ec.getDeployment({
+ *     id: "f759065e5e64e9f3546f6c44f2743893",
+ * });
+ * ```
+ */
 export function getDeploymentOutput(args: GetDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentResult> {
-    return pulumi.output(args).apply(a => getDeployment(a, opts))
+    return pulumi.output(args).apply((a: any) => getDeployment(a, opts))
 }
 
 /**

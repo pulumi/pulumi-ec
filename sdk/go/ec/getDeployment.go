@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.LookupDeployment(ctx, &GetDeploymentArgs{
+//			_, err := ec.LookupDeployment(ctx, &ec.LookupDeploymentArgs{
 //				Id: "f759065e5e64e9f3546f6c44f2743893",
 //			}, nil)
 //			if err != nil {
@@ -147,18 +147,18 @@ type LookupDeploymentResult struct {
 	// * `kibana.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 	Kibanas []GetDeploymentKibana `pulumi:"kibanas"`
 	// The name of the deployment.
-	Name            string                       `pulumi:"name"`
-	Observabilities []GetDeploymentObservability `pulumi:"observabilities"`
-	// Region where the deployment can be found.
-	Region string            `pulumi:"region"`
-	Tags   map[string]string `pulumi:"tags"`
-	// Traffic filter block, which contains a list of traffic filter rule identifiers.
-	// * `tags` Key value map of arbitrary string tags.
-	// * `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.
+	Name string `pulumi:"name"`
+	// Observability settings. Information about logs and metrics shipped to a dedicated deployment.
 	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
 	// * `observability.#.ref_id` - Elasticsearch resource kind refId of the destination deployment.
 	// * `observability.#.logs` - Defines whether logs are enabled or disabled.
 	// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
+	Observabilities []GetDeploymentObservability `pulumi:"observabilities"`
+	// Region where the deployment can be found.
+	Region string `pulumi:"region"`
+	// Key value map of arbitrary string tags.
+	Tags map[string]string `pulumi:"tags"`
+	// Traffic filter block, which contains a list of traffic filter rule identifiers.
 	TrafficFilters []string `pulumi:"trafficFilters"`
 }
 
@@ -324,6 +324,11 @@ func (o LookupDeploymentResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Observability settings. Information about logs and metrics shipped to a dedicated deployment.
+// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
+// * `observability.#.ref_id` - Elasticsearch resource kind refId of the destination deployment.
+// * `observability.#.logs` - Defines whether logs are enabled or disabled.
+// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
 func (o LookupDeploymentResultOutput) Observabilities() GetDeploymentObservabilityArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentObservability { return v.Observabilities }).(GetDeploymentObservabilityArrayOutput)
 }
@@ -333,17 +338,12 @@ func (o LookupDeploymentResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Key value map of arbitrary string tags.
 func (o LookupDeploymentResultOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 // Traffic filter block, which contains a list of traffic filter rule identifiers.
-// * `tags` Key value map of arbitrary string tags.
-// * `observability` Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-// * `observability.#.ref_id` - Elasticsearch resource kind refId of the destination deployment.
-// * `observability.#.logs` - Defines whether logs are enabled or disabled.
-// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
 func (o LookupDeploymentResultOutput) TrafficFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []string { return v.TrafficFilters }).(pulumi.StringArrayOutput)
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -14,23 +15,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const latest = pulumi.output(ec.getStack({
+ * const latest = ec.getStack({
  *     lock: true,
  *     region: "us-east-1",
  *     versionRegex: "latest",
- * }));
- * const latestPatch = pulumi.output(ec.getStack({
+ * });
+ * const latestPatch = ec.getStack({
  *     region: "us-east-1",
  *     versionRegex: "7.9.?",
- * }));
+ * });
  * ```
  */
 export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promise<GetStackResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getStack:getStack", {
         "lock": args.lock,
         "region": args.region,
@@ -126,9 +124,28 @@ export interface GetStackResult {
     readonly version: string;
     readonly versionRegex: string;
 }
-
+/**
+ * Use this data source to retrieve information about an existing Elastic Cloud stack.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const latest = ec.getStack({
+ *     lock: true,
+ *     region: "us-east-1",
+ *     versionRegex: "latest",
+ * });
+ * const latestPatch = ec.getStack({
+ *     region: "us-east-1",
+ *     versionRegex: "7.9.?",
+ * });
+ * ```
+ */
 export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStackResult> {
-    return pulumi.output(args).apply(a => getStack(a, opts))
+    return pulumi.output(args).apply((a: any) => getStack(a, opts))
 }
 
 /**

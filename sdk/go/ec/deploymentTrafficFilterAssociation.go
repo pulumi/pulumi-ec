@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.LookupDeployment(ctx, &GetDeploymentArgs{
+//			_, err := ec.LookupDeployment(ctx, &ec.LookupDeploymentArgs{
 //				Id: "320b7b540dfc967a7a649c18e2fce4ed",
 //			}, nil)
 //			if err != nil {
@@ -34,8 +34,8 @@ import (
 //			exampleDeploymentTrafficFilter, err := ec.NewDeploymentTrafficFilter(ctx, "exampleDeploymentTrafficFilter", &ec.DeploymentTrafficFilterArgs{
 //				Region: pulumi.String("us-east-1"),
 //				Type:   pulumi.String("ip"),
-//				Rules: DeploymentTrafficFilterRuleArray{
-//					&DeploymentTrafficFilterRuleArgs{
+//				Rules: ec.DeploymentTrafficFilterRuleArray{
+//					&ec.DeploymentTrafficFilterRuleArgs{
 //						Source: pulumi.String("0.0.0.0/0"),
 //					},
 //				},
@@ -220,6 +220,16 @@ func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssoc
 
 func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssociationOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationOutput {
 	return o
+}
+
+// Deployment ID of the deployment to which the traffic filter rule is attached.
+func (o DeploymentTrafficFilterAssociationOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilterAssociation) pulumi.StringOutput { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// Traffic filter ID of the rule to use for the attachment.
+func (o DeploymentTrafficFilterAssociationOutput) TrafficFilterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilterAssociation) pulumi.StringOutput { return v.TrafficFilterId }).(pulumi.StringOutput)
 }
 
 type DeploymentTrafficFilterAssociationArrayOutput struct{ *pulumi.OutputState }

@@ -17,14 +17,14 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
     public static final DeploymentApmTopologyArgs Empty = new DeploymentApmTopologyArgs();
 
     /**
-     * Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      * 
      */
     @Import(name="instanceConfigurationId")
     private @Nullable Output<String> instanceConfigurationId;
 
     /**
-     * @return Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+     * @return Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      * 
      */
     public Optional<Output<String>> instanceConfigurationId() {
@@ -32,14 +32,14 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Amount in Gigabytes per topology element in the `&#34;&lt;size in GB&gt;g&#34;` notation. When omitted, it defaults to the deployment template value.
+     * Amount of memory (RAM) per `topology` element in the &#34;&lt;size in GB&gt;g&#34; notation. When omitted, it defaults to the deployment template value.
      * 
      */
     @Import(name="size")
     private @Nullable Output<String> size;
 
     /**
-     * @return Amount in Gigabytes per topology element in the `&#34;&lt;size in GB&gt;g&#34;` notation. When omitted, it defaults to the deployment template value.
+     * @return Amount of memory (RAM) per `topology` element in the &#34;&lt;size in GB&gt;g&#34; notation. When omitted, it defaults to the deployment template value.
      * 
      */
     public Optional<Output<String>> size() {
@@ -62,14 +62,14 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
      * 
      */
     @Import(name="zoneCount")
     private @Nullable Output<Integer> zoneCount;
 
     /**
-     * @return Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+     * @return Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
      * 
      */
     public Optional<Output<Integer>> zoneCount() {
@@ -104,7 +104,7 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param instanceConfigurationId Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+         * @param instanceConfigurationId Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param instanceConfigurationId Default instance configuration of the deployment template. No need to change this value since Kibana has only one _instance type_.
+         * @param instanceConfigurationId Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
          * 
          * @return builder
          * 
@@ -125,7 +125,7 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param size Amount in Gigabytes per topology element in the `&#34;&lt;size in GB&gt;g&#34;` notation. When omitted, it defaults to the deployment template value.
+         * @param size Amount of memory (RAM) per `topology` element in the &#34;&lt;size in GB&gt;g&#34; notation. When omitted, it defaults to the deployment template value.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param size Amount in Gigabytes per topology element in the `&#34;&lt;size in GB&gt;g&#34;` notation. When omitted, it defaults to the deployment template value.
+         * @param size Amount of memory (RAM) per `topology` element in the &#34;&lt;size in GB&gt;g&#34; notation. When omitted, it defaults to the deployment template value.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param zoneCount Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+         * @param zoneCount Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class DeploymentApmTopologyArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param zoneCount Number of zones the instance type of the Elasticsearch cluster will span. This is used to set or unset HA on an Elasticsearch node type. When omitted, it defaults to the deployment template value.
+         * @param zoneCount Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
          * 
          * @return builder
          * 

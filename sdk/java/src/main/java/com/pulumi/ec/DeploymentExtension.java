@@ -16,11 +16,130 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
- * 
- * Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
- * 
  * ## Example Usage
+ * ### With extension file
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.DeploymentExtension;
+ * import com.pulumi.ec.DeploymentExtensionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var filePath = &#34;/path/to/plugin.zip&#34;;
+ * 
+ *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
+ *             .description(&#34;my extension&#34;)
+ *             .version(&#34;*&#34;)
+ *             .extensionType(&#34;bundle&#34;)
+ *             .filePath(filePath)
+ *             .fileHash(computeFileBase64Sha256(filePath))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### With download URL
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.DeploymentExtension;
+ * import com.pulumi.ec.DeploymentExtensionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
+ *             .description(&#34;my extension&#34;)
+ *             .downloadUrl(&#34;https://example.net&#34;)
+ *             .extensionType(&#34;bundle&#34;)
+ *             .version(&#34;*&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Using extension in ec.Deployment
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.DeploymentExtension;
+ * import com.pulumi.ec.DeploymentExtensionArgs;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
+ *             .description(&#34;my extension&#34;)
+ *             .version(&#34;*&#34;)
+ *             .extensionType(&#34;bundle&#34;)
+ *             .downloadUrl(&#34;https://example.net&#34;)
+ *             .build());
+ * 
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var withExtension = new Deployment(&#34;withExtension&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .extensions(DeploymentElasticsearchExtensionArgs.builder()
+ *                     .name(exampleExtension.name())
+ *                     .type(&#34;bundle&#34;)
+ *                     .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *                     .url(exampleExtension.url())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  * ## Import
  * 

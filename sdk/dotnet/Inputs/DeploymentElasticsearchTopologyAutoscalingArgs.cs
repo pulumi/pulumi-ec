@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchTopologyAutoscalingArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchTopologyAutoscalingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
@@ -42,5 +42,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchTopologyAutoscalingArgs()
         {
         }
+        public static new DeploymentElasticsearchTopologyAutoscalingArgs Empty => new DeploymentElasticsearchTopologyAutoscalingArgs();
     }
 }

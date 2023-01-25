@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.DeploymentKibanaConfigArgs;
 import com.pulumi.ec.inputs.DeploymentKibanaTopologyArgs;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -103,15 +102,15 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
      * Can be set multiple times to compose complex topologies.
      * 
      */
-    @Import(name="topologies")
-    private @Nullable Output<List<DeploymentKibanaTopologyArgs>> topologies;
+    @Import(name="topology")
+    private @Nullable Output<DeploymentKibanaTopologyArgs> topology;
 
     /**
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public Optional<Output<List<DeploymentKibanaTopologyArgs>>> topologies() {
-        return Optional.ofNullable(this.topologies);
+    public Optional<Output<DeploymentKibanaTopologyArgs>> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     private DeploymentKibanaArgs() {}
@@ -124,7 +123,7 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
         this.refId = $.refId;
         this.region = $.region;
         this.resourceId = $.resourceId;
-        this.topologies = $.topologies;
+        this.topology = $.topology;
     }
 
     public static Builder builder() {
@@ -257,34 +256,24 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(@Nullable Output<List<DeploymentKibanaTopologyArgs>> topologies) {
-            $.topologies = topologies;
+        public Builder topology(@Nullable Output<DeploymentKibanaTopologyArgs> topology) {
+            $.topology = topology;
             return this;
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(List<DeploymentKibanaTopologyArgs> topologies) {
-            return topologies(Output.of(topologies));
-        }
-
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(DeploymentKibanaTopologyArgs... topologies) {
-            return topologies(List.of(topologies));
+        public Builder topology(DeploymentKibanaTopologyArgs topology) {
+            return topology(Output.of(topology));
         }
 
         public DeploymentKibanaArgs build() {

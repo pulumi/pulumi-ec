@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.DeploymentApmConfigArgs;
 import com.pulumi.ec.inputs.DeploymentApmTopologyArgs;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -103,15 +102,15 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
      * Can be set multiple times to compose complex topologies.
      * 
      */
-    @Import(name="topologies")
-    private @Nullable Output<List<DeploymentApmTopologyArgs>> topologies;
+    @Import(name="topology")
+    private @Nullable Output<DeploymentApmTopologyArgs> topology;
 
     /**
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public Optional<Output<List<DeploymentApmTopologyArgs>>> topologies() {
-        return Optional.ofNullable(this.topologies);
+    public Optional<Output<DeploymentApmTopologyArgs>> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     private DeploymentApmArgs() {}
@@ -124,7 +123,7 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         this.refId = $.refId;
         this.region = $.region;
         this.resourceId = $.resourceId;
-        this.topologies = $.topologies;
+        this.topology = $.topology;
     }
 
     public static Builder builder() {
@@ -257,34 +256,24 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(@Nullable Output<List<DeploymentApmTopologyArgs>> topologies) {
-            $.topologies = topologies;
+        public Builder topology(@Nullable Output<DeploymentApmTopologyArgs> topology) {
+            $.topology = topology;
             return this;
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(List<DeploymentApmTopologyArgs> topologies) {
-            return topologies(Output.of(topologies));
-        }
-
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(DeploymentApmTopologyArgs... topologies) {
-            return topologies(List.of(topologies));
+        public Builder topology(DeploymentApmTopologyArgs topology) {
+            return topology(Output.of(topology));
         }
 
         public DeploymentApmArgs build() {

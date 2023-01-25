@@ -17,14 +17,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     public static final DeploymentIntegrationsServerConfigArgs Empty = new DeploymentIntegrationsServerConfigArgs();
 
     /**
-     * Enable debug mode for the component. Defaults to `false`.
+     * Enable debug mode for APM servers. Defaults to `false`.
      * 
      */
     @Import(name="debugEnabled")
     private @Nullable Output<Boolean> debugEnabled;
 
     /**
-     * @return Enable debug mode for the component. Defaults to `false`.
+     * @return Enable debug mode for APM servers. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> debugEnabled() {
@@ -39,14 +39,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     }
 
     /**
-     * JSON-formatted user level `elasticsearch.yml` setting overrides.
+     * JSON-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsJson")
     private @Nullable Output<String> userSettingsJson;
 
     /**
-     * @return JSON-formatted user level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsJson() {
@@ -54,14 +54,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     }
 
     /**
-     * JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsOverrideJson")
     private @Nullable Output<String> userSettingsOverrideJson;
 
     /**
-     * @return JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsOverrideJson() {
@@ -69,14 +69,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     }
 
     /**
-     * YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsOverrideYaml")
     private @Nullable Output<String> userSettingsOverrideYaml;
 
     /**
-     * @return YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsOverrideYaml() {
@@ -84,14 +84,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     }
 
     /**
-     * YAML-formatted user level `elasticsearch.yml` setting overrides.
+     * YAML-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     @Import(name="userSettingsYaml")
     private @Nullable Output<String> userSettingsYaml;
 
     /**
-     * @return YAML-formatted user level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<Output<String>> userSettingsYaml() {
@@ -128,7 +128,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param debugEnabled Enable debug mode for the component. Defaults to `false`.
+         * @param debugEnabled Enable debug mode for APM servers. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param debugEnabled Enable debug mode for the component. Defaults to `false`.
+         * @param debugEnabled Enable debug mode for APM servers. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsJson JSON-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsJson JSON-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -169,7 +169,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsJson JSON-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsJson JSON-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -190,7 +190,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -200,7 +200,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -211,7 +211,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -221,7 +221,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsYaml YAML-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsYaml YAML-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 
@@ -232,7 +232,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param userSettingsYaml YAML-formatted user level `elasticsearch.yml` setting overrides.
+         * @param userSettingsYaml YAML-formatted user level `enterprise_search.yml` setting overrides.
          * 
          * @return builder
          * 

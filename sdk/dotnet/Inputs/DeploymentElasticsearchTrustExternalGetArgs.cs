@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud.Inputs
 {
 
-    public sealed class DeploymentElasticsearchTrustExternalGetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentElasticsearchTrustExternalGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
@@ -19,7 +19,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string> RelationshipId { get; set; } = null!;
 
         /// <summary>
-        /// If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        /// If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
         /// </summary>
         [Input("trustAll", required: true)]
         public Input<bool> TrustAll { get; set; } = null!;
@@ -39,5 +39,6 @@ namespace Pulumi.ElasticCloud.Inputs
         public DeploymentElasticsearchTrustExternalGetArgs()
         {
         }
+        public static new DeploymentElasticsearchTrustExternalGetArgs Empty => new DeploymentElasticsearchTrustExternalGetArgs();
     }
 }

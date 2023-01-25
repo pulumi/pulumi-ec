@@ -13,6 +13,7 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentIntegrationsServer
     {
+        public readonly string? ApmHttpsEndpoint;
         /// <summary>
         /// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
         /// </summary>
@@ -21,6 +22,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
         /// </summary>
         public readonly string? ElasticsearchClusterRefId;
+        public readonly string? FleetHttpsEndpoint;
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
         /// <summary>
@@ -35,13 +37,17 @@ namespace Pulumi.ElasticCloud.Outputs
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
-        public readonly ImmutableArray<Outputs.DeploymentIntegrationsServerTopology> Topologies;
+        public readonly Outputs.DeploymentIntegrationsServerTopology? Topology;
 
         [OutputConstructor]
         private DeploymentIntegrationsServer(
+            string? apmHttpsEndpoint,
+
             Outputs.DeploymentIntegrationsServerConfig? config,
 
             string? elasticsearchClusterRefId,
+
+            string? fleetHttpsEndpoint,
 
             string? httpEndpoint,
 
@@ -53,16 +59,18 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? resourceId,
 
-            ImmutableArray<Outputs.DeploymentIntegrationsServerTopology> topologies)
+            Outputs.DeploymentIntegrationsServerTopology? topology)
         {
+            ApmHttpsEndpoint = apmHttpsEndpoint;
             Config = config;
             ElasticsearchClusterRefId = elasticsearchClusterRefId;
+            FleetHttpsEndpoint = fleetHttpsEndpoint;
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
             RefId = refId;
             Region = region;
             ResourceId = resourceId;
-            Topologies = topologies;
+            Topology = topology;
         }
     }
 }

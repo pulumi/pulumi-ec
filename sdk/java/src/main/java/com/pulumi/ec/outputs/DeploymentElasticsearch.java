@@ -8,6 +8,7 @@ import com.pulumi.ec.outputs.DeploymentElasticsearchConfig;
 import com.pulumi.ec.outputs.DeploymentElasticsearchExtension;
 import com.pulumi.ec.outputs.DeploymentElasticsearchRemoteCluster;
 import com.pulumi.ec.outputs.DeploymentElasticsearchSnapshotSource;
+import com.pulumi.ec.outputs.DeploymentElasticsearchStrategy;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTopology;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTrustAccount;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTrustExternal;
@@ -38,7 +39,7 @@ public final class DeploymentElasticsearch {
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
     /**
-     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     private @Nullable String refId;
@@ -58,6 +59,11 @@ public final class DeploymentElasticsearch {
      * 
      */
     private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
+    /**
+     * @return Choose the configuration strategy used to apply the changes.
+     * 
+     */
+    private @Nullable DeploymentElasticsearchStrategy strategy;
     /**
      * @return Can be set multiple times to compose complex topologies.
      * 
@@ -106,7 +112,7 @@ public final class DeploymentElasticsearch {
         return Optional.ofNullable(this.httpsEndpoint);
     }
     /**
-     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
+     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     public Optional<String> refId() {
@@ -135,6 +141,13 @@ public final class DeploymentElasticsearch {
      */
     public Optional<DeploymentElasticsearchSnapshotSource> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
+    }
+    /**
+     * @return Choose the configuration strategy used to apply the changes.
+     * 
+     */
+    public Optional<DeploymentElasticsearchStrategy> strategy() {
+        return Optional.ofNullable(this.strategy);
     }
     /**
      * @return Can be set multiple times to compose complex topologies.
@@ -178,6 +191,7 @@ public final class DeploymentElasticsearch {
         private @Nullable List<DeploymentElasticsearchRemoteCluster> remoteClusters;
         private @Nullable String resourceId;
         private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
+        private @Nullable DeploymentElasticsearchStrategy strategy;
         private @Nullable List<DeploymentElasticsearchTopology> topologies;
         private @Nullable List<DeploymentElasticsearchTrustAccount> trustAccounts;
         private @Nullable List<DeploymentElasticsearchTrustExternal> trustExternals;
@@ -195,6 +209,7 @@ public final class DeploymentElasticsearch {
     	      this.remoteClusters = defaults.remoteClusters;
     	      this.resourceId = defaults.resourceId;
     	      this.snapshotSource = defaults.snapshotSource;
+    	      this.strategy = defaults.strategy;
     	      this.topologies = defaults.topologies;
     	      this.trustAccounts = defaults.trustAccounts;
     	      this.trustExternals = defaults.trustExternals;
@@ -262,6 +277,11 @@ public final class DeploymentElasticsearch {
             return this;
         }
         @CustomType.Setter
+        public Builder strategy(@Nullable DeploymentElasticsearchStrategy strategy) {
+            this.strategy = strategy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder topologies(@Nullable List<DeploymentElasticsearchTopology> topologies) {
             this.topologies = topologies;
             return this;
@@ -298,6 +318,7 @@ public final class DeploymentElasticsearch {
             o.remoteClusters = remoteClusters;
             o.resourceId = resourceId;
             o.snapshotSource = snapshotSource;
+            o.strategy = strategy;
             o.topologies = topologies;
             o.trustAccounts = trustAccounts;
             o.trustExternals = trustExternals;

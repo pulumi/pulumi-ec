@@ -35,7 +35,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// <summary>
         /// Can be set multiple times to compose complex topologies.
         /// </summary>
-        public readonly ImmutableArray<Outputs.DeploymentKibanaTopology> Topologies;
+        public readonly Outputs.DeploymentKibanaTopology? Topology;
 
         [OutputConstructor]
         private DeploymentKibana(
@@ -53,7 +53,7 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? resourceId,
 
-            ImmutableArray<Outputs.DeploymentKibanaTopology> topologies)
+            Outputs.DeploymentKibanaTopology? topology)
         {
             Config = config;
             ElasticsearchClusterRefId = elasticsearchClusterRefId;
@@ -62,7 +62,7 @@ namespace Pulumi.ElasticCloud.Outputs
             RefId = refId;
             Region = region;
             ResourceId = resourceId;
-            Topologies = topologies;
+            Topology = topology;
         }
     }
 }

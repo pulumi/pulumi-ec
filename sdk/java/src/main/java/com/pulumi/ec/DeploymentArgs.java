@@ -144,14 +144,14 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      * 
      */
     @Import(name="observability")
     private @Nullable Output<DeploymentObservabilityArgs> observability;
 
     /**
-     * @return Observability settings that you can set to ship logs and metrics to a separate deployment.
+     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
      * 
      */
     public Optional<Output<DeploymentObservabilityArgs>> observability() {
@@ -439,7 +439,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a separate deployment.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
          * 
          * @return builder
          * 
@@ -450,7 +450,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a separate deployment.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
          * 
          * @return builder
          * 

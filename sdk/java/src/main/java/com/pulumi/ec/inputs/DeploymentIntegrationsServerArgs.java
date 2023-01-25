@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.DeploymentIntegrationsServerConfigArgs;
 import com.pulumi.ec.inputs.DeploymentIntegrationsServerTopologyArgs;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,6 +16,13 @@ import javax.annotation.Nullable;
 public final class DeploymentIntegrationsServerArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DeploymentIntegrationsServerArgs Empty = new DeploymentIntegrationsServerArgs();
+
+    @Import(name="apmHttpsEndpoint")
+    private @Nullable Output<String> apmHttpsEndpoint;
+
+    public Optional<Output<String>> apmHttpsEndpoint() {
+        return Optional.ofNullable(this.apmHttpsEndpoint);
+    }
 
     /**
      * Integrations Server settings applied to all topologies unless overridden in the `topology` element.
@@ -46,6 +52,13 @@ public final class DeploymentIntegrationsServerArgs extends com.pulumi.resources
      */
     public Optional<Output<String>> elasticsearchClusterRefId() {
         return Optional.ofNullable(this.elasticsearchClusterRefId);
+    }
+
+    @Import(name="fleetHttpsEndpoint")
+    private @Nullable Output<String> fleetHttpsEndpoint;
+
+    public Optional<Output<String>> fleetHttpsEndpoint() {
+        return Optional.ofNullable(this.fleetHttpsEndpoint);
     }
 
     @Import(name="httpEndpoint")
@@ -103,28 +116,30 @@ public final class DeploymentIntegrationsServerArgs extends com.pulumi.resources
      * Can be set multiple times to compose complex topologies.
      * 
      */
-    @Import(name="topologies")
-    private @Nullable Output<List<DeploymentIntegrationsServerTopologyArgs>> topologies;
+    @Import(name="topology")
+    private @Nullable Output<DeploymentIntegrationsServerTopologyArgs> topology;
 
     /**
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public Optional<Output<List<DeploymentIntegrationsServerTopologyArgs>>> topologies() {
-        return Optional.ofNullable(this.topologies);
+    public Optional<Output<DeploymentIntegrationsServerTopologyArgs>> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     private DeploymentIntegrationsServerArgs() {}
 
     private DeploymentIntegrationsServerArgs(DeploymentIntegrationsServerArgs $) {
+        this.apmHttpsEndpoint = $.apmHttpsEndpoint;
         this.config = $.config;
         this.elasticsearchClusterRefId = $.elasticsearchClusterRefId;
+        this.fleetHttpsEndpoint = $.fleetHttpsEndpoint;
         this.httpEndpoint = $.httpEndpoint;
         this.httpsEndpoint = $.httpsEndpoint;
         this.refId = $.refId;
         this.region = $.region;
         this.resourceId = $.resourceId;
-        this.topologies = $.topologies;
+        this.topology = $.topology;
     }
 
     public static Builder builder() {
@@ -143,6 +158,15 @@ public final class DeploymentIntegrationsServerArgs extends com.pulumi.resources
 
         public Builder(DeploymentIntegrationsServerArgs defaults) {
             $ = new DeploymentIntegrationsServerArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder apmHttpsEndpoint(@Nullable Output<String> apmHttpsEndpoint) {
+            $.apmHttpsEndpoint = apmHttpsEndpoint;
+            return this;
+        }
+
+        public Builder apmHttpsEndpoint(String apmHttpsEndpoint) {
+            return apmHttpsEndpoint(Output.of(apmHttpsEndpoint));
         }
 
         /**
@@ -185,6 +209,15 @@ public final class DeploymentIntegrationsServerArgs extends com.pulumi.resources
          */
         public Builder elasticsearchClusterRefId(String elasticsearchClusterRefId) {
             return elasticsearchClusterRefId(Output.of(elasticsearchClusterRefId));
+        }
+
+        public Builder fleetHttpsEndpoint(@Nullable Output<String> fleetHttpsEndpoint) {
+            $.fleetHttpsEndpoint = fleetHttpsEndpoint;
+            return this;
+        }
+
+        public Builder fleetHttpsEndpoint(String fleetHttpsEndpoint) {
+            return fleetHttpsEndpoint(Output.of(fleetHttpsEndpoint));
         }
 
         public Builder httpEndpoint(@Nullable Output<String> httpEndpoint) {
@@ -257,34 +290,24 @@ public final class DeploymentIntegrationsServerArgs extends com.pulumi.resources
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(@Nullable Output<List<DeploymentIntegrationsServerTopologyArgs>> topologies) {
-            $.topologies = topologies;
+        public Builder topology(@Nullable Output<DeploymentIntegrationsServerTopologyArgs> topology) {
+            $.topology = topology;
             return this;
         }
 
         /**
-         * @param topologies Can be set multiple times to compose complex topologies.
+         * @param topology Can be set multiple times to compose complex topologies.
          * 
          * @return builder
          * 
          */
-        public Builder topologies(List<DeploymentIntegrationsServerTopologyArgs> topologies) {
-            return topologies(Output.of(topologies));
-        }
-
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(DeploymentIntegrationsServerTopologyArgs... topologies) {
-            return topologies(List.of(topologies));
+        public Builder topology(DeploymentIntegrationsServerTopologyArgs topology) {
+            return topology(Output.of(topology));
         }
 
         public DeploymentIntegrationsServerArgs build() {

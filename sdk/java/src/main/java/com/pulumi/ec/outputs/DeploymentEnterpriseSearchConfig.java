@@ -13,22 +13,22 @@ import javax.annotation.Nullable;
 public final class DeploymentEnterpriseSearchConfig {
     private @Nullable String dockerImage;
     /**
-     * @return JSON-formatted user level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     private @Nullable String userSettingsJson;
     /**
-     * @return JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     private @Nullable String userSettingsOverrideJson;
     /**
-     * @return YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     private @Nullable String userSettingsOverrideYaml;
     /**
-     * @return YAML-formatted user level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     private @Nullable String userSettingsYaml;
@@ -38,28 +38,28 @@ public final class DeploymentEnterpriseSearchConfig {
         return Optional.ofNullable(this.dockerImage);
     }
     /**
-     * @return JSON-formatted user level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<String> userSettingsJson() {
         return Optional.ofNullable(this.userSettingsJson);
     }
     /**
-     * @return JSON-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<String> userSettingsOverrideJson() {
         return Optional.ofNullable(this.userSettingsOverrideJson);
     }
     /**
-     * @return YAML-formatted admin (ECE) level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<String> userSettingsOverrideYaml() {
         return Optional.ofNullable(this.userSettingsOverrideYaml);
     }
     /**
-     * @return YAML-formatted user level `elasticsearch.yml` setting overrides.
+     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
      * 
      */
     public Optional<String> userSettingsYaml() {

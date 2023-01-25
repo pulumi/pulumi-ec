@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.DeploymentEnterpriseSearchConfig;
 import com.pulumi.ec.outputs.DeploymentEnterpriseSearchTopology;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -41,7 +40,7 @@ public final class DeploymentEnterpriseSearch {
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    private @Nullable List<DeploymentEnterpriseSearchTopology> topologies;
+    private @Nullable DeploymentEnterpriseSearchTopology topology;
 
     private DeploymentEnterpriseSearch() {}
     /**
@@ -85,8 +84,8 @@ public final class DeploymentEnterpriseSearch {
      * @return Can be set multiple times to compose complex topologies.
      * 
      */
-    public List<DeploymentEnterpriseSearchTopology> topologies() {
-        return this.topologies == null ? List.of() : this.topologies;
+    public Optional<DeploymentEnterpriseSearchTopology> topology() {
+        return Optional.ofNullable(this.topology);
     }
 
     public static Builder builder() {
@@ -105,7 +104,7 @@ public final class DeploymentEnterpriseSearch {
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable String resourceId;
-        private @Nullable List<DeploymentEnterpriseSearchTopology> topologies;
+        private @Nullable DeploymentEnterpriseSearchTopology topology;
         public Builder() {}
         public Builder(DeploymentEnterpriseSearch defaults) {
     	      Objects.requireNonNull(defaults);
@@ -116,7 +115,7 @@ public final class DeploymentEnterpriseSearch {
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.resourceId = defaults.resourceId;
-    	      this.topologies = defaults.topologies;
+    	      this.topology = defaults.topology;
         }
 
         @CustomType.Setter
@@ -155,12 +154,9 @@ public final class DeploymentEnterpriseSearch {
             return this;
         }
         @CustomType.Setter
-        public Builder topologies(@Nullable List<DeploymentEnterpriseSearchTopology> topologies) {
-            this.topologies = topologies;
+        public Builder topology(@Nullable DeploymentEnterpriseSearchTopology topology) {
+            this.topology = topology;
             return this;
-        }
-        public Builder topologies(DeploymentEnterpriseSearchTopology... topologies) {
-            return topologies(List.of(topologies));
         }
         public DeploymentEnterpriseSearch build() {
             final var o = new DeploymentEnterpriseSearch();
@@ -171,7 +167,7 @@ public final class DeploymentEnterpriseSearch {
             o.refId = refId;
             o.region = region;
             o.resourceId = resourceId;
-            o.topologies = topologies;
+            o.topology = topology;
             return o;
         }
     }

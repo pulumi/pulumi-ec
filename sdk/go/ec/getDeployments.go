@@ -26,18 +26,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.GetDeployments(ctx, &GetDeploymentsArgs{
+//			_, err := ec.GetDeployments(ctx, &ec.GetDeploymentsArgs{
 //				DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
-//				Elasticsearch: GetDeploymentsElasticsearch{
+//				Elasticsearch: ec.GetDeploymentsElasticsearch{
 //					Healthy: pulumi.StringRef("true"),
 //				},
-//				EnterpriseSearch: GetDeploymentsEnterpriseSearch{
+//				EnterpriseSearch: ec.GetDeploymentsEnterpriseSearch{
 //					Healthy: pulumi.StringRef("true"),
 //				},
-//				IntegrationsServer: GetDeploymentsIntegrationsServer{
+//				IntegrationsServer: ec.GetDeploymentsIntegrationsServer{
 //					Version: pulumi.StringRef("8.0.0"),
 //				},
-//				Kibana: GetDeploymentsKibana{
+//				Kibana: ec.GetDeploymentsKibana{
 //					Status: pulumi.StringRef("started"),
 //				},
 //				NamePrefix: pulumi.StringRef("test"),

@@ -21,6 +21,173 @@ import javax.annotation.Nullable;
  * Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
  * 
  * ## Example Usage
+ * ### IP type
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.DeploymentTrafficFilter;
+ * import com.pulumi.ec.DeploymentTrafficFilterArgs;
+ * import com.pulumi.ec.inputs.DeploymentTrafficFilterRuleArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var example = new DeploymentTrafficFilter(&#34;example&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .type(&#34;ip&#34;)
+ *             .rules(DeploymentTrafficFilterRuleArgs.builder()
+ *                 .source(&#34;0.0.0.0/0&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .trafficFilters(example.id())
+ *             .elasticsearch()
+ *             .kibana()
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Azure Private Link type
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.DeploymentTrafficFilter;
+ * import com.pulumi.ec.DeploymentTrafficFilterArgs;
+ * import com.pulumi.ec.inputs.DeploymentTrafficFilterRuleArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var region = azure_australiaeast;
+ * 
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(region)
+ *             .build());
+ * 
+ *         var azure = new DeploymentTrafficFilter(&#34;azure&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .region(region)
+ *             .type(&#34;azure_private_endpoint&#34;)
+ *             .rules(DeploymentTrafficFilterRuleArgs.builder()
+ *                 .azureEndpointName(&#34;my-azure-pl&#34;)
+ *                 .azureEndpointGuid(&#34;78c64959-fd88-41cc-81ac-1cfcdb1ac32e&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .region(region)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;azure-io-optimized-v3&#34;)
+ *             .trafficFilters(azure.id())
+ *             .elasticsearch()
+ *             .kibana()
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### GCP Private Service Connect type
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.DeploymentTrafficFilter;
+ * import com.pulumi.ec.DeploymentTrafficFilterArgs;
+ * import com.pulumi.ec.inputs.DeploymentTrafficFilterRuleArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var region = asia_east1;
+ * 
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(region)
+ *             .build());
+ * 
+ *         var gcpPsc = new DeploymentTrafficFilter(&#34;gcpPsc&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .region(region)
+ *             .type(&#34;gcp_private_service_connect_endpoint&#34;)
+ *             .rules(DeploymentTrafficFilterRuleArgs.builder()
+ *                 .source(&#34;18446744072646845332&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .region(region)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;gcp-storage-optimized&#34;)
+ *             .trafficFilters(gcpPsc.id())
+ *             .elasticsearch()
+ *             .kibana()
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  * ## Import
  * 
