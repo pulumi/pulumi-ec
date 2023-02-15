@@ -80,7 +80,7 @@ class AwaitableGetGcpPrivateServiceConnectEndpointResult(GetGcpPrivateServiceCon
 def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGcpPrivateServiceConnectEndpointResult:
     """
-    Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
+    Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
 
     > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
 
@@ -112,7 +112,7 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
 def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGcpPrivateServiceConnectEndpointResult]:
     """
-    Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
+    Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
 
     > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
 
