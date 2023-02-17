@@ -193,7 +193,7 @@ type DeploymentTrafficFilter struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Rule block, which can be specified multiple times for multiple rules.
 	Rules DeploymentTrafficFilterRuleArrayOutput `pulumi:"rules"`
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -245,7 +245,7 @@ type deploymentTrafficFilterState struct {
 	Region *string `pulumi:"region"`
 	// Rule block, which can be specified multiple times for multiple rules.
 	Rules []DeploymentTrafficFilterRule `pulumi:"rules"`
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
 	Type *string `pulumi:"type"`
 }
 
@@ -260,7 +260,7 @@ type DeploymentTrafficFilterState struct {
 	Region pulumi.StringPtrInput
 	// Rule block, which can be specified multiple times for multiple rules.
 	Rules DeploymentTrafficFilterRuleArrayInput
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
 	Type pulumi.StringPtrInput
 }
 
@@ -279,7 +279,7 @@ type deploymentTrafficFilterArgs struct {
 	Region string `pulumi:"region"`
 	// Rule block, which can be specified multiple times for multiple rules.
 	Rules []DeploymentTrafficFilterRule `pulumi:"rules"`
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
 	Type string `pulumi:"type"`
 }
 
@@ -295,7 +295,7 @@ type DeploymentTrafficFilterArgs struct {
 	Region pulumi.StringInput
 	// Rule block, which can be specified multiple times for multiple rules.
 	Rules DeploymentTrafficFilterRuleArrayInput
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
 	Type pulumi.StringInput
 }
 
@@ -411,7 +411,7 @@ func (o DeploymentTrafficFilterOutput) Rules() DeploymentTrafficFilterRuleArrayO
 	return o.ApplyT(func(v *DeploymentTrafficFilter) DeploymentTrafficFilterRuleArrayOutput { return v.Rules }).(DeploymentTrafficFilterRuleArrayOutput)
 }
 
-// Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
 func (o DeploymentTrafficFilterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

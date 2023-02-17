@@ -271,14 +271,14 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
         return this.rules;
     }
     /**
-     * Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;` or `&#34;azure_private_endpoint&#34;`.
+     * Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 
     /**
-     * @return Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;` or `&#34;azure_private_endpoint&#34;`.
+     * @return Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
      * 
      */
     public Output<String> type() {

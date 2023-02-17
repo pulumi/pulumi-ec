@@ -21,7 +21,7 @@ import (
 //
 //	"crypto/sha256"
 //	"fmt"
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-ec/sdk/go/ec"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -29,7 +29,7 @@ import (
 // )
 //
 //	func filebase64sha256OrPanic(path string) pulumi.StringPtrInput {
-//		if fileData, err := ioutil.ReadFile(path); err == nil {
+//		if fileData, err := os.ReadFile(path); err == nil {
 //			hashedData := sha256.Sum256([]byte(fileData))
 //			return pulumi.String(base64.StdEncoding.EncodeToString(hashedData[:]))
 //		} else {
