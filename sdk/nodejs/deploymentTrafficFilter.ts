@@ -152,7 +152,7 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
      */
     public readonly rules!: pulumi.Output<outputs.DeploymentTrafficFilterRule[]>;
     /**
-     * Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+     * Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -223,7 +223,7 @@ export interface DeploymentTrafficFilterState {
      */
     rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
     /**
-     * Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+     * Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
      */
     type?: pulumi.Input<string>;
 }
@@ -253,7 +253,7 @@ export interface DeploymentTrafficFilterArgs {
      */
     rules: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
     /**
-     * Type of the ruleset.  It can be `"ip"`, `"vpce"` or `"azurePrivateEndpoint"`.
+     * Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
      */
     type: pulumi.Input<string>;
 }
