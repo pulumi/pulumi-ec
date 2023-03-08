@@ -22,6 +22,7 @@ import (
 	"github.com/elastic/terraform-provider-ec/ec"
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -133,10 +134,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := prov.ComputeDefaults(tfbridge.TokensSingleModule("ec_", mainMod,
-		func(mod, name string) (string, error) {
-			return string(makeMember(mod, name)), nil
-		}))
+	err := x.ComputeDefaults(&prov, x.TokensSingleModule("ec_", mainMod,
+		x.MakeStandardToken(mainPkg)))
 	contract.AssertNoError(err)
 
 	prov.SetAutonaming(255, "-")
