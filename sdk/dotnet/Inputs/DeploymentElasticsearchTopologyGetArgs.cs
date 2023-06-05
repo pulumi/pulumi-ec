@@ -12,9 +12,6 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchTopologyGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-        /// </summary>
         [Input("autoscaling")]
         public Input<Inputs.DeploymentElasticsearchTopologyAutoscalingGetArgs>? Autoscaling { get; set; }
 

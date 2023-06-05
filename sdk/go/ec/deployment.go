@@ -384,12 +384,16 @@ type Deployment struct {
 	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
 	IntegrationsServer DeploymentIntegrationsServerPtrOutput `pulumi:"integrationsServer"`
 	// Kibana instance definition, can only be specified once.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrOutput `pulumi:"kibana"`
 	// Name of the deployment.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability DeploymentObservabilityPtrOutput `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId pulumi.StringPtrOutput `pulumi:"requestId"`
@@ -398,6 +402,8 @@ type Deployment struct {
 	// List of traffic filter rule identifiers that will be applied to the deployment.
 	TrafficFilters pulumi.StringArrayOutput `pulumi:"trafficFilters"`
 	// Elastic Stack version to use for all the deployment resources.
+	//
+	// > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -505,12 +511,16 @@ type deploymentState struct {
 	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
 	IntegrationsServer *DeploymentIntegrationsServer `pulumi:"integrationsServer"`
 	// Kibana instance definition, can only be specified once.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
 	// Name of the deployment.
 	Name *string `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability *DeploymentObservability `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region *string `pulumi:"region"`
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId *string `pulumi:"requestId"`
@@ -519,6 +529,8 @@ type deploymentState struct {
 	// List of traffic filter rule identifiers that will be applied to the deployment.
 	TrafficFilters []string `pulumi:"trafficFilters"`
 	// Elastic Stack version to use for all the deployment resources.
+	//
+	// > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
 	Version *string `pulumi:"version"`
 }
 
@@ -581,12 +593,16 @@ type DeploymentState struct {
 	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
 	IntegrationsServer DeploymentIntegrationsServerPtrInput
 	// Kibana instance definition, can only be specified once.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrInput
 	// Name of the deployment.
 	Name pulumi.StringPtrInput
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability DeploymentObservabilityPtrInput
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region pulumi.StringPtrInput
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId pulumi.StringPtrInput
@@ -595,6 +611,8 @@ type DeploymentState struct {
 	// List of traffic filter rule identifiers that will be applied to the deployment.
 	TrafficFilters pulumi.StringArrayInput
 	// Elastic Stack version to use for all the deployment resources.
+	//
+	// > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
 	Version pulumi.StringPtrInput
 }
 
@@ -616,12 +634,16 @@ type deploymentArgs struct {
 	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
 	IntegrationsServer *DeploymentIntegrationsServer `pulumi:"integrationsServer"`
 	// Kibana instance definition, can only be specified once.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
 	// Name of the deployment.
 	Name *string `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability *DeploymentObservability `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region string `pulumi:"region"`
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId *string `pulumi:"requestId"`
@@ -630,6 +652,8 @@ type deploymentArgs struct {
 	// List of traffic filter rule identifiers that will be applied to the deployment.
 	TrafficFilters []string `pulumi:"trafficFilters"`
 	// Elastic Stack version to use for all the deployment resources.
+	//
+	// > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
 	Version string `pulumi:"version"`
 }
 
@@ -648,12 +672,16 @@ type DeploymentArgs struct {
 	// Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
 	IntegrationsServer DeploymentIntegrationsServerPtrInput
 	// Kibana instance definition, can only be specified once.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrInput
 	// Name of the deployment.
 	Name pulumi.StringPtrInput
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
 	Observability DeploymentObservabilityPtrInput
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region pulumi.StringInput
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId pulumi.StringPtrInput
@@ -662,6 +690,8 @@ type DeploymentArgs struct {
 	// List of traffic filter rule identifiers that will be applied to the deployment.
 	TrafficFilters pulumi.StringArrayInput
 	// Elastic Stack version to use for all the deployment resources.
+	//
+	// > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
 	Version pulumi.StringInput
 }
 
@@ -837,6 +867,8 @@ func (o DeploymentOutput) IntegrationsServer() DeploymentIntegrationsServerPtrOu
 }
 
 // Kibana instance definition, can only be specified once.
+//
+// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 func (o DeploymentOutput) Kibana() DeploymentKibanaPtrOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentKibanaPtrOutput { return v.Kibana }).(DeploymentKibanaPtrOutput)
 }
@@ -852,6 +884,8 @@ func (o DeploymentOutput) Observability() DeploymentObservabilityPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -872,6 +906,8 @@ func (o DeploymentOutput) TrafficFilters() pulumi.StringArrayOutput {
 }
 
 // Elastic Stack version to use for all the deployment resources.
+//
+// > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
 func (o DeploymentOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

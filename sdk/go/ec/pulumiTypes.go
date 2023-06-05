@@ -20,6 +20,8 @@ type DeploymentApm struct {
 	// Can be set on the APM resource. The default value `main-apm` is recommended.
 	RefId *string `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -47,6 +49,8 @@ type DeploymentApmArgs struct {
 	// Can be set on the APM resource. The default value `main-apm` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -154,6 +158,8 @@ func (o DeploymentApmOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentApmOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -240,6 +246,8 @@ func (o DeploymentApmPtrOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentApmPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApm) *string {
 		if v == nil {
@@ -703,6 +711,8 @@ type DeploymentElasticsearch struct {
 	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 	RefId *string `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region *string `pulumi:"region"`
 	// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
 	RemoteClusters []DeploymentElasticsearchRemoteCluster `pulumi:"remoteClusters"`
@@ -743,6 +753,8 @@ type DeploymentElasticsearchArgs struct {
 	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
 	RemoteClusters DeploymentElasticsearchRemoteClusterArrayInput `pulumi:"remoteClusters"`
@@ -869,6 +881,8 @@ func (o DeploymentElasticsearchOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentElasticsearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -999,6 +1013,8 @@ func (o DeploymentElasticsearchPtrOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentElasticsearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -1554,7 +1570,6 @@ func (o DeploymentElasticsearchRemoteClusterArrayOutput) Index(i pulumi.IntInput
 }
 
 type DeploymentElasticsearchSnapshotSource struct {
-	// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
 	SnapshotName *string `pulumi:"snapshotName"`
 	// ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
 	SourceElasticsearchClusterId string `pulumi:"sourceElasticsearchClusterId"`
@@ -1572,7 +1587,6 @@ type DeploymentElasticsearchSnapshotSourceInput interface {
 }
 
 type DeploymentElasticsearchSnapshotSourceArgs struct {
-	// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
 	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
 	// ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
 	SourceElasticsearchClusterId pulumi.StringInput `pulumi:"sourceElasticsearchClusterId"`
@@ -1655,7 +1669,6 @@ func (o DeploymentElasticsearchSnapshotSourceOutput) ToDeploymentElasticsearchSn
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
-// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
 func (o DeploymentElasticsearchSnapshotSourceOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotSource) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
 }
@@ -1689,7 +1702,6 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) Elem() DeploymentElastic
 	}).(DeploymentElasticsearchSnapshotSourceOutput)
 }
 
-// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotSource) *string {
 		if v == nil {
@@ -1847,7 +1859,6 @@ func (o DeploymentElasticsearchStrategyPtrOutput) Type() pulumi.StringPtrOutput 
 }
 
 type DeploymentElasticsearchTopology struct {
-	// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
 	Autoscaling *DeploymentElasticsearchTopologyAutoscaling `pulumi:"autoscaling"`
 	// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
 	Configs []DeploymentElasticsearchTopologyConfig `pulumi:"configs"`
@@ -1884,7 +1895,6 @@ type DeploymentElasticsearchTopologyInput interface {
 }
 
 type DeploymentElasticsearchTopologyArgs struct {
-	// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
 	Autoscaling DeploymentElasticsearchTopologyAutoscalingPtrInput `pulumi:"autoscaling"`
 	// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
 	Configs DeploymentElasticsearchTopologyConfigArrayInput `pulumi:"configs"`
@@ -1960,7 +1970,6 @@ func (o DeploymentElasticsearchTopologyOutput) ToDeploymentElasticsearchTopology
 	return o
 }
 
-// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
 func (o DeploymentElasticsearchTopologyOutput) Autoscaling() DeploymentElasticsearchTopologyAutoscalingPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopology) *DeploymentElasticsearchTopologyAutoscaling {
 		return v.Autoscaling
@@ -2045,6 +2054,10 @@ type DeploymentElasticsearchTopologyAutoscaling struct {
 	// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
 	MaxSize *string `pulumi:"maxSize"`
 	// Defines the resource type the scale up will use (Defaults to `"memory"`).
+	//
+	// > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+	//
+	// Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
 	// Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
 	MinSize *string `pulumi:"minSize"`
@@ -2068,6 +2081,10 @@ type DeploymentElasticsearchTopologyAutoscalingArgs struct {
 	// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Defines the resource type the scale up will use (Defaults to `"memory"`).
+	//
+	// > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+	//
+	// Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
 	// Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
@@ -2159,6 +2176,10 @@ func (o DeploymentElasticsearchTopologyAutoscalingOutput) MaxSize() pulumi.Strin
 }
 
 // Defines the resource type the scale up will use (Defaults to `"memory"`).
+//
+// > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+//
+// Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
 func (o DeploymentElasticsearchTopologyAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTopologyAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
@@ -2212,6 +2233,10 @@ func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) MaxSize() pulumi.St
 }
 
 // Defines the resource type the scale up will use (Defaults to `"memory"`).
+//
+// > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+//
+// Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
 func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) *string {
 		if v == nil {
@@ -2623,6 +2648,8 @@ type DeploymentEnterpriseSearch struct {
 	// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
 	RefId *string `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -2650,6 +2677,8 @@ type DeploymentEnterpriseSearchArgs struct {
 	// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -2757,6 +2786,8 @@ func (o DeploymentEnterpriseSearchOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentEnterpriseSearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -2843,6 +2874,8 @@ func (o DeploymentEnterpriseSearchPtrOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentEnterpriseSearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
 		if v == nil {
@@ -3331,6 +3364,8 @@ type DeploymentIntegrationsServer struct {
 	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
 	RefId *string `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -3360,6 +3395,8 @@ type DeploymentIntegrationsServerArgs struct {
 	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -3475,6 +3512,8 @@ func (o DeploymentIntegrationsServerOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentIntegrationsServerOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -3579,6 +3618,8 @@ func (o DeploymentIntegrationsServerPtrOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentIntegrationsServerPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
 		if v == nil {
@@ -4039,6 +4080,8 @@ type DeploymentKibana struct {
 	// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
 	RefId *string `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -4066,6 +4109,8 @@ type DeploymentKibanaArgs struct {
 	// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	//
+	// > If you change the `region`, the resource will be destroyed and re-created.
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// Can be set multiple times to compose complex topologies.
@@ -4173,6 +4218,8 @@ func (o DeploymentKibanaOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentKibanaOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -4259,6 +4306,8 @@ func (o DeploymentKibanaPtrOutput) RefId() pulumi.StringPtrOutput {
 }
 
 // Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+//
+// > If you change the `region`, the resource will be destroyed and re-created.
 func (o DeploymentKibanaPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibana) *string {
 		if v == nil {

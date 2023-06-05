@@ -20,6 +20,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -69,6 +70,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -142,6 +144,8 @@ namespace Pulumi.ElasticCloud
         /// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
         /// * `enterprise_search.#.version` - Elastic stack version.
         /// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+        /// 
+        /// &gt; **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
         /// </summary>
         [Input("enterpriseSearch")]
         public Inputs.GetDeploymentsEnterpriseSearchArgs? EnterpriseSearch { get; set; }
@@ -231,6 +235,8 @@ namespace Pulumi.ElasticCloud
         /// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
         /// * `enterprise_search.#.version` - Elastic stack version.
         /// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+        /// 
+        /// &gt; **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
         /// </summary>
         [Input("enterpriseSearch")]
         public Input<Inputs.GetDeploymentsEnterpriseSearchInputArgs>? EnterpriseSearch { get; set; }

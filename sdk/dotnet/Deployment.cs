@@ -15,6 +15,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -43,6 +44,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -103,6 +105,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -133,6 +136,7 @@ namespace Pulumi.ElasticCloud
     /// It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -143,6 +147,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -198,6 +203,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -228,6 +234,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -367,6 +374,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Kibana instance definition, can only be specified once.
+        /// 
+        /// &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Output("kibana")]
         public Output<Outputs.DeploymentKibana?> Kibana { get; private set; } = null!;
@@ -385,6 +394,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// 
+        /// &gt; If you change the `region`, the resource will be destroyed and re-created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -409,6 +420,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Elastic Stack version to use for all the deployment resources.
+        /// 
+        /// &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -502,6 +515,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Kibana instance definition, can only be specified once.
+        /// 
+        /// &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Input("kibana")]
         public Input<Inputs.DeploymentKibanaArgs>? Kibana { get; set; }
@@ -520,6 +535,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// 
+        /// &gt; If you change the `region`, the resource will be destroyed and re-created.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -556,6 +573,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Elastic Stack version to use for all the deployment resources.
+        /// 
+        /// &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -683,6 +702,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Kibana instance definition, can only be specified once.
+        /// 
+        /// &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Input("kibana")]
         public Input<Inputs.DeploymentKibanaGetArgs>? Kibana { get; set; }
@@ -701,6 +722,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// 
+        /// &gt; If you change the `region`, the resource will be destroyed and re-created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -737,6 +760,8 @@ namespace Pulumi.ElasticCloud
 
         /// <summary>
         /// Elastic Stack version to use for all the deployment resources.
+        /// 
+        /// &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

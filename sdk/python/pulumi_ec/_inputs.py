@@ -58,6 +58,8 @@ class DeploymentApmArgs:
         :param pulumi.Input[str] elasticsearch_cluster_ref_id: This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
         :param pulumi.Input[str] ref_id: Can be set on the APM resource. The default value `main-apm` is recommended.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input['DeploymentApmTopologyArgs'] topology: Can be set multiple times to compose complex topologies.
         """
         if config is not None:
@@ -136,6 +138,8 @@ class DeploymentApmArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -359,6 +363,8 @@ class DeploymentElasticsearchArgs:
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]] extensions: Custom Elasticsearch bundles or plugins. Can be set multiple times.
         :param pulumi.Input[str] ref_id: Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]] remote_clusters: Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
         :param pulumi.Input['DeploymentElasticsearchSnapshotSourceArgs'] snapshot_source: Restores data from a snapshot of another deployment.
         :param pulumi.Input['DeploymentElasticsearchStrategyArgs'] strategy: Choose the configuration strategy used to apply the changes.
@@ -477,6 +483,8 @@ class DeploymentElasticsearchArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -808,7 +816,6 @@ class DeploymentElasticsearchSnapshotSourceArgs:
                  snapshot_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] source_elasticsearch_cluster_id: ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-        :param pulumi.Input[str] snapshot_name: Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
         """
         pulumi.set(__self__, "source_elasticsearch_cluster_id", source_elasticsearch_cluster_id)
         if snapshot_name is not None:
@@ -829,9 +836,6 @@ class DeploymentElasticsearchSnapshotSourceArgs:
     @property
     @pulumi.getter(name="snapshotName")
     def snapshot_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-        """
         return pulumi.get(self, "snapshot_name")
 
     @snapshot_name.setter
@@ -878,7 +882,6 @@ class DeploymentElasticsearchTopologyArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] id: Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hot_content`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
-        :param pulumi.Input['DeploymentElasticsearchTopologyAutoscalingArgs'] autoscaling: Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTopologyConfigArgs']]] configs: Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
         :param pulumi.Input[str] instance_configuration_id: Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch cluster (data node).
@@ -928,9 +931,6 @@ class DeploymentElasticsearchTopologyArgs:
     @property
     @pulumi.getter
     def autoscaling(self) -> Optional[pulumi.Input['DeploymentElasticsearchTopologyAutoscalingArgs']]:
-        """
-        Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -1066,6 +1066,10 @@ class DeploymentElasticsearchTopologyAutoscalingArgs:
         """
         :param pulumi.Input[str] max_size: Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
         :param pulumi.Input[str] max_size_resource: Defines the resource type the scale up will use (Defaults to `"memory"`).
+               
+               > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+               
+               Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
         :param pulumi.Input[str] min_size: Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
         :param pulumi.Input[str] min_size_resource: Defines the resource type the scale down will use (Defaults to `"memory"`).
         """
@@ -1097,6 +1101,10 @@ class DeploymentElasticsearchTopologyAutoscalingArgs:
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
         """
         Defines the resource type the scale up will use (Defaults to `"memory"`).
+
+        > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+
+        Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
         """
         return pulumi.get(self, "max_size_resource")
 
@@ -1347,6 +1355,8 @@ class DeploymentEnterpriseSearchArgs:
         :param pulumi.Input[str] elasticsearch_cluster_ref_id: This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
         :param pulumi.Input[str] ref_id: Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input['DeploymentEnterpriseSearchTopologyArgs'] topology: Can be set multiple times to compose complex topologies.
         """
         if config is not None:
@@ -1425,6 +1435,8 @@ class DeploymentEnterpriseSearchArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -1662,6 +1674,8 @@ class DeploymentIntegrationsServerArgs:
         :param pulumi.Input[str] elasticsearch_cluster_ref_id: This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
         :param pulumi.Input[str] ref_id: Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input['DeploymentIntegrationsServerTopologyArgs'] topology: Can be set multiple times to compose complex topologies.
         """
         if apm_https_endpoint is not None:
@@ -1762,6 +1776,8 @@ class DeploymentIntegrationsServerArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -1977,6 +1993,8 @@ class DeploymentKibanaArgs:
         :param pulumi.Input[str] elasticsearch_cluster_ref_id: This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
         :param pulumi.Input[str] ref_id: Can be set on the Kibana resource. The default value `main-kibana` is recommended.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input['DeploymentKibanaTopologyArgs'] topology: Can be set multiple times to compose complex topologies.
         """
         if config is not None:
@@ -2055,6 +2073,8 @@ class DeploymentKibanaArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 

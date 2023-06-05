@@ -293,6 +293,8 @@ export class Deployment extends pulumi.CustomResource {
     public readonly integrationsServer!: pulumi.Output<outputs.DeploymentIntegrationsServer | undefined>;
     /**
      * Kibana instance definition, can only be specified once.
+     *
+     * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     public readonly kibana!: pulumi.Output<outputs.DeploymentKibana | undefined>;
     /**
@@ -305,6 +307,8 @@ export class Deployment extends pulumi.CustomResource {
     public readonly observability!: pulumi.Output<outputs.DeploymentObservability | undefined>;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -321,6 +325,8 @@ export class Deployment extends pulumi.CustomResource {
     public readonly trafficFilters!: pulumi.Output<string[] | undefined>;
     /**
      * Elastic Stack version to use for all the deployment resources.
+     *
+     * > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -474,6 +480,8 @@ export interface DeploymentState {
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
      * Kibana instance definition, can only be specified once.
+     *
+     * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
@@ -486,6 +494,8 @@ export interface DeploymentState {
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -502,6 +512,8 @@ export interface DeploymentState {
     trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Elastic Stack version to use for all the deployment resources.
+     *
+     * > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
      */
     version?: pulumi.Input<string>;
 }
@@ -536,6 +548,8 @@ export interface DeploymentArgs {
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
      * Kibana instance definition, can only be specified once.
+     *
+     * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
@@ -548,6 +562,8 @@ export interface DeploymentArgs {
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region: pulumi.Input<string>;
     /**
@@ -564,6 +580,8 @@ export interface DeploymentArgs {
     trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Elastic Stack version to use for all the deployment resources.
+     *
+     * > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
      */
     version: pulumi.Input<string>;
 }

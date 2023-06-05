@@ -22,6 +22,8 @@ export interface DeploymentApm {
     refId?: string;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region: string;
     resourceId: string;
@@ -96,6 +98,8 @@ export interface DeploymentElasticsearch {
     refId?: string;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region: string;
     /**
@@ -188,9 +192,6 @@ export interface DeploymentElasticsearchRemoteCluster {
 }
 
 export interface DeploymentElasticsearchSnapshotSource {
-    /**
-     * Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     */
     snapshotName?: string;
     /**
      * ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
@@ -206,9 +207,6 @@ export interface DeploymentElasticsearchStrategy {
 }
 
 export interface DeploymentElasticsearchTopology {
-    /**
-     * Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     */
     autoscaling: outputs.DeploymentElasticsearchTopologyAutoscaling;
     /**
      * Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
@@ -260,6 +258,10 @@ export interface DeploymentElasticsearchTopologyAutoscaling {
     maxSize: string;
     /**
      * Defines the resource type the scale up will use (Defaults to `"memory"`).
+     *
+     * > Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+     *
+     * Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
      */
     maxSizeResource: string;
     /**
@@ -343,6 +345,8 @@ export interface DeploymentEnterpriseSearch {
     refId?: string;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region: string;
     resourceId: string;
@@ -413,6 +417,8 @@ export interface DeploymentIntegrationsServer {
     refId?: string;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region: string;
     resourceId: string;
@@ -482,6 +488,8 @@ export interface DeploymentKibana {
     refId?: string;
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     *
+     * > If you change the `region`, the resource will be destroyed and re-created.
      */
     region: string;
     resourceId: string;

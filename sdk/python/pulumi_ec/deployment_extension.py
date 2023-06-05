@@ -311,6 +311,12 @@ class DeploymentExtension(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+
+        Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+
+        **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+
         ## Example Usage
         ### With extension file
 
@@ -395,6 +401,12 @@ class DeploymentExtension(pulumi.CustomResource):
                  args: DeploymentExtensionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+
+        Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+
+        **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+
         ## Example Usage
         ### With extension file
 

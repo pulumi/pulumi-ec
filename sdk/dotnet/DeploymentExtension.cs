@@ -10,6 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
+    /// Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+    /// 
+    /// Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+    /// 
+    /// **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+    /// 
     /// ## Example Usage
     /// ### With extension file
     /// 
@@ -17,13 +23,14 @@ namespace Pulumi.ElasticCloud
     /// using System;
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using System.Security.Cryptography;
     /// using System.Text;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
     /// 	private static string ComputeFileBase64Sha256(string path) {
-    /// 		var fileData = Encoding.UTF8.GetBytes(File.ReadAllText(path));
+    /// 		var fileData = System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(path));
     /// 		var hashData = SHA256.Create().ComputeHash(fileData);
     /// 		return Convert.ToBase64String(hashData);
     /// 	}
@@ -46,6 +53,7 @@ namespace Pulumi.ElasticCloud
     /// ### With download URL
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -64,6 +72,7 @@ namespace Pulumi.ElasticCloud
     /// ### Using extension in ec.Deployment
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 

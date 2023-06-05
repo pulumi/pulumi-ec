@@ -85,6 +85,8 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
      * * `enterprise_search.#.version` - Elastic stack version.
      * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
      * 
+     * &gt; **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
+     * 
      */
     @Import(name="enterpriseSearch")
     private @Nullable Output<GetDeploymentsEnterpriseSearchArgs> enterpriseSearch;
@@ -94,6 +96,8 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
      * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
      * * `enterprise_search.#.version` - Elastic stack version.
      * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+     * 
+     * &gt; **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
      * 
      */
     public Optional<Output<GetDeploymentsEnterpriseSearchArgs>> enterpriseSearch() {
@@ -316,6 +320,8 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
          * * `enterprise_search.#.version` - Elastic stack version.
          * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
          * 
+         * &gt; **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
+         * 
          * @return builder
          * 
          */
@@ -329,6 +335,8 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
          * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
          * * `enterprise_search.#.version` - Elastic stack version.
          * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+         * 
+         * &gt; **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
          * 
          * @return builder
          * 

@@ -20,6 +20,10 @@ namespace Pulumi.ElasticCloud.Inputs
 
         /// <summary>
         /// Defines the resource type the scale up will use (Defaults to `"memory"`).
+        /// 
+        /// &gt; Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `"true"`.
+        /// 
+        /// Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
         /// </summary>
         [Input("maxSizeResource")]
         public Input<string>? MaxSizeResource { get; set; }

@@ -224,6 +224,8 @@ def get_deployments(apm: Optional[pulumi.InputType['GetDeploymentsApmArgs']] = N
            * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
            * `enterprise_search.#.version` - Elastic stack version.
            * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+           
+           > **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
     :param str healthy: Overall health status of the deployment.
     :param pulumi.InputType['GetDeploymentsIntegrationsServerArgs'] integrations_server: Filter by Integrations Server resource kind status or configuration.
            * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
@@ -322,6 +324,8 @@ def get_deployments_output(apm: Optional[pulumi.Input[Optional[pulumi.InputType[
            * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
            * `enterprise_search.#.version` - Elastic stack version.
            * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+           
+           > **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrations_server` instead.
     :param str healthy: Overall health status of the deployment.
     :param pulumi.InputType['GetDeploymentsIntegrationsServerArgs'] integrations_server: Filter by Integrations Server resource kind status or configuration.
            * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).

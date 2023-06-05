@@ -34,6 +34,8 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string? RefId;
         /// <summary>
         /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// 
+        /// &gt; If you change the `region`, the resource will be destroyed and re-created.
         /// </summary>
         public readonly string? Region;
         /// <summary>

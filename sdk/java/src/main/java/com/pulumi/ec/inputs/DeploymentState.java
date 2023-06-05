@@ -239,12 +239,16 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     /**
      * Kibana instance definition, can only be specified once.
      * 
+     * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
+     * 
      */
     @Import(name="kibana")
     private @Nullable Output<DeploymentKibanaArgs> kibana;
 
     /**
      * @return Kibana instance definition, can only be specified once.
+     * 
+     * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
     public Optional<Output<DeploymentKibanaArgs>> kibana() {
@@ -284,12 +288,16 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
      * 
+     * &gt; If you change the `region`, the resource will be destroyed and re-created.
+     * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
      * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * 
+     * &gt; If you change the `region`, the resource will be destroyed and re-created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -344,12 +352,16 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     /**
      * Elastic Stack version to use for all the deployment resources.
      * 
+     * &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
+     * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
      * @return Elastic Stack version to use for all the deployment resources.
+     * 
+     * &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
      * 
      */
     public Optional<Output<String>> version() {
@@ -666,6 +678,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param kibana Kibana instance definition, can only be specified once.
          * 
+         * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
+         * 
          * @return builder
          * 
          */
@@ -676,6 +690,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param kibana Kibana instance definition, can only be specified once.
+         * 
+         * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
          * 
@@ -729,6 +745,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
          * 
+         * &gt; If you change the `region`, the resource will be destroyed and re-created.
+         * 
          * @return builder
          * 
          */
@@ -739,6 +757,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * 
+         * &gt; If you change the `region`, the resource will be destroyed and re-created.
          * 
          * @return builder
          * 
@@ -823,6 +843,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param version Elastic Stack version to use for all the deployment resources.
          * 
+         * &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
+         * 
          * @return builder
          * 
          */
@@ -833,6 +855,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param version Elastic Stack version to use for all the deployment resources.
+         * 
+         * &gt; Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
          * 
          * @return builder
          * 

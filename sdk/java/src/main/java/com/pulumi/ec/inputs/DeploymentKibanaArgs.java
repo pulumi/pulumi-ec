@@ -79,12 +79,16 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
     /**
      * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
      * 
+     * &gt; If you change the `region`, the resource will be destroyed and re-created.
+     * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
      * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * 
+     * &gt; If you change the `region`, the resource will be destroyed and re-created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -228,6 +232,8 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
          * 
+         * &gt; If you change the `region`, the resource will be destroyed and re-created.
+         * 
          * @return builder
          * 
          */
@@ -238,6 +244,8 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * 
+         * &gt; If you change the `region`, the resource will be destroyed and re-created.
          * 
          * @return builder
          * 

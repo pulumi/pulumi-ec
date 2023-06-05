@@ -13,9 +13,6 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchTopology
     {
-        /// <summary>
-        /// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-        /// </summary>
         public readonly Outputs.DeploymentElasticsearchTopologyAutoscaling? Autoscaling;
         /// <summary>
         /// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.

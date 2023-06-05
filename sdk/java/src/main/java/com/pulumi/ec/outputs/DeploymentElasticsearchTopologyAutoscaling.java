@@ -19,6 +19,10 @@ public final class DeploymentElasticsearchTopologyAutoscaling {
     /**
      * @return Defines the resource type the scale up will use (Defaults to `&#34;memory&#34;`).
      * 
+     * &gt; Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `&#34;true&#34;`.
+     * 
+     * Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
+     * 
      */
     private @Nullable String maxSizeResource;
     /**
@@ -43,6 +47,10 @@ public final class DeploymentElasticsearchTopologyAutoscaling {
     }
     /**
      * @return Defines the resource type the scale up will use (Defaults to `&#34;memory&#34;`).
+     * 
+     * &gt; Note that none of these settings will take effect unless `elasticsearch.autoscale` is set to `&#34;true&#34;`.
+     * 
+     * Please refer to the [Deployment Autoscaling](https://www.elastic.co/guide/en/cloud/current/ec-autoscaling.html) documentation for an updated list of the Elasticsearch tiers supporting scale up and scale down.
      * 
      */
     public Optional<String> maxSizeResource() {

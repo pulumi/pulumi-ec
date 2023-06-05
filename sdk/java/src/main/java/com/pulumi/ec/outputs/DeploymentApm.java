@@ -33,6 +33,8 @@ public final class DeploymentApm {
     /**
      * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
      * 
+     * &gt; If you change the `region`, the resource will be destroyed and re-created.
+     * 
      */
     private @Nullable String region;
     private @Nullable String resourceId;
@@ -72,6 +74,8 @@ public final class DeploymentApm {
     }
     /**
      * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * 
+     * &gt; If you change the `region`, the resource will be destroyed and re-created.
      * 
      */
     public Optional<String> region() {

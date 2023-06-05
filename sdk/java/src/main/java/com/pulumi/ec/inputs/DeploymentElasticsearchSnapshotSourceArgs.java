@@ -15,17 +15,9 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
 
     public static final DeploymentElasticsearchSnapshotSourceArgs Empty = new DeploymentElasticsearchSnapshotSourceArgs();
 
-    /**
-     * Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     * 
-     */
     @Import(name="snapshotName")
     private @Nullable Output<String> snapshotName;
 
-    /**
-     * @return Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     * 
-     */
     public Optional<Output<String>> snapshotName() {
         return Optional.ofNullable(this.snapshotName);
     }
@@ -70,23 +62,11 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
             $ = new DeploymentElasticsearchSnapshotSourceArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param snapshotName Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-         * 
-         * @return builder
-         * 
-         */
         public Builder snapshotName(@Nullable Output<String> snapshotName) {
             $.snapshotName = snapshotName;
             return this;
         }
 
-        /**
-         * @param snapshotName Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-         * 
-         * @return builder
-         * 
-         */
         public Builder snapshotName(String snapshotName) {
             return snapshotName(Output.of(snapshotName));
         }

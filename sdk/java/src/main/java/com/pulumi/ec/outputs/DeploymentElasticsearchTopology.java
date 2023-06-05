@@ -15,10 +15,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchTopology {
-    /**
-     * @return Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     * 
-     */
     private @Nullable DeploymentElasticsearchTopologyAutoscaling autoscaling;
     /**
      * @return Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
@@ -73,10 +69,6 @@ public final class DeploymentElasticsearchTopology {
     private @Nullable Integer zoneCount;
 
     private DeploymentElasticsearchTopology() {}
-    /**
-     * @return Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     * 
-     */
     public Optional<DeploymentElasticsearchTopologyAutoscaling> autoscaling() {
         return Optional.ofNullable(this.autoscaling);
     }

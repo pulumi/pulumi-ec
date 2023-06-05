@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+ *
+ * Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+ *
+ * **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+ *
  * ## Example Usage
  * ### With extension file
  *
@@ -14,7 +20,7 @@ import * as utilities from "./utilities";
  * import * as ec from "@pulumi/ec";
  * import * as fs from "fs";
  *
- * func computeFilebase64sha256(path string) string {
+ * function computeFilebase64sha256(path string) string {
  * 	const fileData = Buffer.from(fs.readFileSync(path), 'binary')
  * 	return crypto.createHash('sha256').update(fileData).digest('hex')
  * }

@@ -81,6 +81,8 @@ type GetDeploymentsArgs struct {
 	// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
 	// * `enterprise_search.#.version` - Elastic stack version.
 	// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+	//
+	// > **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrationsServer` instead.
 	EnterpriseSearch *GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearch"`
 	// Overall health status of the deployment.
 	Healthy *string `pulumi:"healthy"`
@@ -165,6 +167,8 @@ type GetDeploymentsOutputArgs struct {
 	// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
 	// * `enterprise_search.#.version` - Elastic stack version.
 	// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+	//
+	// > **NOTE:** The `apm` resource has been deprecated starting on the Elastic Stack Version 8.0.0. New deployments  should use `integrationsServer` instead.
 	EnterpriseSearch GetDeploymentsEnterpriseSearchPtrInput `pulumi:"enterpriseSearch"`
 	// Overall health status of the deployment.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`

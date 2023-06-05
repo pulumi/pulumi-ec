@@ -35,12 +35,18 @@ class DeploymentArgs:
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input[str] version: Elastic Stack version to use for all the deployment resources.
+               
+               > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana instance definition, can only be specified once.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
@@ -101,6 +107,8 @@ class DeploymentArgs:
     def region(self) -> pulumi.Input[str]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -113,6 +121,8 @@ class DeploymentArgs:
     def version(self) -> pulumi.Input[str]:
         """
         Elastic Stack version to use for all the deployment resources.
+
+        > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         """
         return pulumi.get(self, "version")
 
@@ -173,6 +183,8 @@ class DeploymentArgs:
     def kibana(self) -> Optional[pulumi.Input['DeploymentKibanaArgs']]:
         """
         Kibana instance definition, can only be specified once.
+
+        > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
 
@@ -312,13 +324,19 @@ class _DeploymentState:
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana instance definition, can only be specified once.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key value map of arbitrary string tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] traffic_filters: List of traffic filter rule identifiers that will be applied to the deployment.
         :param pulumi.Input[str] version: Elastic Stack version to use for all the deployment resources.
+               
+               > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -507,6 +525,8 @@ class _DeploymentState:
     def kibana(self) -> Optional[pulumi.Input['DeploymentKibanaArgs']]:
         """
         Kibana instance definition, can only be specified once.
+
+        > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
 
@@ -543,6 +563,8 @@ class _DeploymentState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -591,6 +613,8 @@ class _DeploymentState:
     def version(self) -> Optional[pulumi.Input[str]]:
         """
         Elastic Stack version to use for all the deployment resources.
+
+        > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         """
         return pulumi.get(self, "version")
 
@@ -694,7 +718,7 @@ class Deployment(pulumi.CustomResource):
             elasticsearch=ec.DeploymentElasticsearchArgs(),
             kibana=ec.DeploymentKibanaArgs(),
             observability=ec.DeploymentObservabilityArgs(
-                deployment_id=ec_deployment["example_minimal"]["id"],
+                deployment_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
             ))
         ```
 
@@ -791,13 +815,19 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
         :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana instance definition, can only be specified once.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key value map of arbitrary string tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] traffic_filters: List of traffic filter rule identifiers that will be applied to the deployment.
         :param pulumi.Input[str] version: Elastic Stack version to use for all the deployment resources.
+               
+               > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         """
         ...
     @overload
@@ -880,7 +910,7 @@ class Deployment(pulumi.CustomResource):
             elasticsearch=ec.DeploymentElasticsearchArgs(),
             kibana=ec.DeploymentKibanaArgs(),
             observability=ec.DeploymentObservabilityArgs(
-                deployment_id=ec_deployment["example_minimal"]["id"],
+                deployment_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
             ))
         ```
 
@@ -1116,13 +1146,19 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']] enterprise_search: Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
         :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana instance definition, can only be specified once.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         :param pulumi.Input[str] name: Name of the deployment.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+               
+               > If you change the `region`, the resource will be destroyed and re-created.
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key value map of arbitrary string tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] traffic_filters: List of traffic filter rule identifiers that will be applied to the deployment.
         :param pulumi.Input[str] version: Elastic Stack version to use for all the deployment resources.
+               
+               > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1263,6 +1299,8 @@ class Deployment(pulumi.CustomResource):
     def kibana(self) -> pulumi.Output[Optional['outputs.DeploymentKibana']]:
         """
         Kibana instance definition, can only be specified once.
+
+        > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
 
@@ -1287,6 +1325,8 @@ class Deployment(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+
+        > If you change the `region`, the resource will be destroyed and re-created.
         """
         return pulumi.get(self, "region")
 
@@ -1319,6 +1359,8 @@ class Deployment(pulumi.CustomResource):
     def version(self) -> pulumi.Output[str]:
         """
         Elastic Stack version to use for all the deployment resources.
+
+        > Read the [ESS stack version policy](https://www.elastic.co/guide/en/cloud/current/ec-version-policy.html#ec-version-policy-available) to understand which versions are available.
         """
         return pulumi.get(self, "version")
 

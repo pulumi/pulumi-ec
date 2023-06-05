@@ -19,17 +19,9 @@ public final class DeploymentElasticsearchTopologyArgs extends com.pulumi.resour
 
     public static final DeploymentElasticsearchTopologyArgs Empty = new DeploymentElasticsearchTopologyArgs();
 
-    /**
-     * Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     * 
-     */
     @Import(name="autoscaling")
     private @Nullable Output<DeploymentElasticsearchTopologyAutoscalingArgs> autoscaling;
 
-    /**
-     * @return Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     * 
-     */
     public Optional<Output<DeploymentElasticsearchTopologyAutoscalingArgs>> autoscaling() {
         return Optional.ofNullable(this.autoscaling);
     }
@@ -226,23 +218,11 @@ public final class DeploymentElasticsearchTopologyArgs extends com.pulumi.resour
             $ = new DeploymentElasticsearchTopologyArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param autoscaling Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoscaling(@Nullable Output<DeploymentElasticsearchTopologyAutoscalingArgs> autoscaling) {
             $.autoscaling = autoscaling;
             return this;
         }
 
-        /**
-         * @param autoscaling Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoscaling(DeploymentElasticsearchTopologyAutoscalingArgs autoscaling) {
             return autoscaling(Output.of(autoscaling));
         }
