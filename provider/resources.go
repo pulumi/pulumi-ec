@@ -15,17 +15,18 @@
 package ec
 
 import (
+	// Allow us to embed metadata
+	_ "embed"
+
 	"fmt"
 	"path/filepath"
 	"unicode"
 
 	"github.com/elastic/terraform-provider-ec/ec"
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
@@ -57,32 +58,28 @@ func makeResource(mod, res string) tokens.Type {
 	return tokens.Type(makeMember(mod, res))
 }
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
+//go:embed  cmd/pulumi-resource-ec/bridge-metadata.json
+var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(ec.Provider())
+	p := pf.ShimProvider(ec.New(version.Version))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                    p,
-		Name:                 "ec",
-		DisplayName:          "ElasticCloud (EC)",
-		GitHubOrg:            "elastic",
-		Description:          "A Pulumi package for creating and managing ElasticCloud resources.",
-		Keywords:             []string{"pulumi", "ec", "elasticsearch", "es", "elastic", "elasticcloud"},
-		License:              "Apache-2.0",
-		Homepage:             "https://pulumi.io",
-		Repository:           "https://github.com/pulumi/pulumi-ec",
-		Config:               map[string]*tfbridge.SchemaInfo{},
-		PreConfigureCallback: preConfigureCallback,
+		P:            p,
+		Name:         "ec",
+		DisplayName:  "ElasticCloud (EC)",
+		GitHubOrg:    "elastic",
+		Description:  "A Pulumi package for creating and managing ElasticCloud resources.",
+		Keywords:     []string{"pulumi", "ec", "elasticsearch", "es", "elastic", "elasticcloud"},
+		License:      "Apache-2.0",
+		Homepage:     "https://pulumi.io",
+		Repository:   "https://github.com/pulumi/pulumi-ec",
+		Config:       map[string]*tfbridge.SchemaInfo{},
+		Version:      version.Version,
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"ec_deployment":                            {Tok: makeResource(mainMod, "Deployment")},
 			"ec_deployment_elasticsearch_keystore":     {Tok: makeResource(mainMod, "DeploymentElasticsearchKeystore")},
