@@ -8,4 +8,5 @@ latest_version = ec.get_stack(
     region=REGION, version_regex="latest").version
 
 deployment = ec.Deployment('my-deployment', region=REGION, version=latest_version,
-                     deployment_template_id="aws-io-optimized-v2", elasticsearch={})
+                           deployment_template_id="aws-io-optimized-v2",
+                           elasticsearch={ "hot": { "autoscaling": {} } })
