@@ -221,7 +221,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * Ruleset description
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -235,7 +235,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      * 
      */
-    @Export(name="includeByDefault", type=Boolean.class, parameters={})
+    @Export(name="includeByDefault", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> includeByDefault;
 
     /**
@@ -249,7 +249,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * Name of the ruleset
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -263,7 +263,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * Filter region, the ruleset can only be attached to deployments in the specific region
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -277,7 +277,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * Set of rules, which the ruleset is made of.
      * 
      */
-    @Export(name="rules", type=List.class, parameters={DeploymentTrafficFilterRule.class})
+    @Export(name="rules", refs={List.class,DeploymentTrafficFilterRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DeploymentTrafficFilterRule>> rules;
 
     /**
@@ -291,7 +291,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

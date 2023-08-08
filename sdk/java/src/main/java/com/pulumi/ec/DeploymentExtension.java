@@ -156,7 +156,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * Description for the extension
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -170,7 +170,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * The URL to download the extension archive.
      * 
      */
-    @Export(name="downloadUrl", type=String.class, parameters={})
+    @Export(name="downloadUrl", refs={String.class}, tree="[0]")
     private Output<String> downloadUrl;
 
     /**
@@ -184,7 +184,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
-    @Export(name="extensionType", type=String.class, parameters={})
+    @Export(name="extensionType", refs={String.class}, tree="[0]")
     private Output<String> extensionType;
 
     /**
@@ -198,7 +198,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
-    @Export(name="fileHash", type=String.class, parameters={})
+    @Export(name="fileHash", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fileHash;
 
     /**
@@ -212,7 +212,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * Local file path to upload as the extension.
      * 
      */
-    @Export(name="filePath", type=String.class, parameters={})
+    @Export(name="filePath", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> filePath;
 
     /**
@@ -226,7 +226,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * The datatime the extension was last modified.
      * 
      */
-    @Export(name="lastModified", type=String.class, parameters={})
+    @Export(name="lastModified", refs={String.class}, tree="[0]")
     private Output<String> lastModified;
 
     /**
@@ -240,7 +240,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * Name of the extension
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -254,7 +254,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * The size of the extension file in bytes.
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
@@ -268,7 +268,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * The extension URL which will be used in the Elastic Cloud deployment plan.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -282,7 +282,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**

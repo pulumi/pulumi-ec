@@ -53,7 +53,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Deployment alias, affects the format of the resource URLs.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -67,7 +67,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      * 
      */
-    @Export(name="apm", type=DeploymentApm.class, parameters={})
+    @Export(name="apm", refs={DeploymentApm.class}, tree="[0]")
     private Output</* @Nullable */ DeploymentApm> apm;
 
     /**
@@ -77,7 +77,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     public Output<Optional<DeploymentApm>> apm() {
         return Codegen.optional(this.apm);
     }
-    @Export(name="apmSecretToken", type=String.class, parameters={})
+    @Export(name="apmSecretToken", refs={String.class}, tree="[0]")
     private Output<String> apmSecretToken;
 
     public Output<String> apmSecretToken() {
@@ -87,7 +87,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      * 
      */
-    @Export(name="deploymentTemplateId", type=String.class, parameters={})
+    @Export(name="deploymentTemplateId", refs={String.class}, tree="[0]")
     private Output<String> deploymentTemplateId;
 
     /**
@@ -101,7 +101,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Elasticsearch cluster definition
      * 
      */
-    @Export(name="elasticsearch", type=DeploymentElasticsearch.class, parameters={})
+    @Export(name="elasticsearch", refs={DeploymentElasticsearch.class}, tree="[0]")
     private Output<DeploymentElasticsearch> elasticsearch;
 
     /**
@@ -117,7 +117,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
      * 
      */
-    @Export(name="elasticsearchPassword", type=String.class, parameters={})
+    @Export(name="elasticsearchPassword", refs={String.class}, tree="[0]")
     private Output<String> elasticsearchPassword;
 
     /**
@@ -133,7 +133,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Username for authenticating to the Elasticsearch resource.
      * 
      */
-    @Export(name="elasticsearchUsername", type=String.class, parameters={})
+    @Export(name="elasticsearchUsername", refs={String.class}, tree="[0]")
     private Output<String> elasticsearchUsername;
 
     /**
@@ -147,7 +147,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Enterprise Search cluster definition.
      * 
      */
-    @Export(name="enterpriseSearch", type=DeploymentEnterpriseSearch.class, parameters={})
+    @Export(name="enterpriseSearch", refs={DeploymentEnterpriseSearch.class}, tree="[0]")
     private Output</* @Nullable */ DeploymentEnterpriseSearch> enterpriseSearch;
 
     /**
@@ -161,7 +161,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
      * 
      */
-    @Export(name="integrationsServer", type=DeploymentIntegrationsServer.class, parameters={})
+    @Export(name="integrationsServer", refs={DeploymentIntegrationsServer.class}, tree="[0]")
     private Output</* @Nullable */ DeploymentIntegrationsServer> integrationsServer;
 
     /**
@@ -176,7 +176,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
-    @Export(name="kibana", type=DeploymentKibana.class, parameters={})
+    @Export(name="kibana", refs={DeploymentKibana.class}, tree="[0]")
     private Output</* @Nullable */ DeploymentKibana> kibana;
 
     /**
@@ -191,7 +191,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Name for the deployment
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -206,7 +206,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * current deployment itself by setting observability.deployment_id to `self`.
      * 
      */
-    @Export(name="observability", type=DeploymentObservability.class, parameters={})
+    @Export(name="observability", refs={DeploymentObservability.class}, tree="[0]")
     private Output</* @Nullable */ DeploymentObservability> observability;
 
     /**
@@ -221,7 +221,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -236,7 +236,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * returned as part of the error.
      * 
      */
-    @Export(name="requestId", type=String.class, parameters={})
+    @Export(name="requestId", refs={String.class}, tree="[0]")
     private Output<String> requestId;
 
     /**
@@ -251,7 +251,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Explicitly resets the elasticsearch_password when true
      * 
      */
-    @Export(name="resetElasticsearchPassword", type=Boolean.class, parameters={})
+    @Export(name="resetElasticsearchPassword", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> resetElasticsearchPassword;
 
     /**
@@ -265,7 +265,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Optional map of deployment tags
      * 
      */
-    @Export(name="tags", type=Map.class, parameters={String.class, String.class})
+    @Export(name="tags", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> tags;
 
     /**
@@ -279,7 +279,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * List of traffic filters rule identifiers that will be applied to the deployment.
      * 
      */
-    @Export(name="trafficFilters", type=List.class, parameters={String.class})
+    @Export(name="trafficFilters", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> trafficFilters;
 
     /**
@@ -293,7 +293,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      * Elastic Stack version to use for all of the deployment resources.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**

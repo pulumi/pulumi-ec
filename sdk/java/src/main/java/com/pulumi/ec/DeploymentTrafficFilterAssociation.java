@@ -73,7 +73,7 @@ public class DeploymentTrafficFilterAssociation extends com.pulumi.resources.Cus
      * Required deployment ID where the traffic filter will be associated
      * 
      */
-    @Export(name="deploymentId", type=String.class, parameters={})
+    @Export(name="deploymentId", refs={String.class}, tree="[0]")
     private Output<String> deploymentId;
 
     /**
@@ -87,7 +87,7 @@ public class DeploymentTrafficFilterAssociation extends com.pulumi.resources.Cus
      * Required traffic filter ruleset ID to tie to a deployment
      * 
      */
-    @Export(name="trafficFilterId", type=String.class, parameters={})
+    @Export(name="trafficFilterId", refs={String.class}, tree="[0]")
     private Output<String> trafficFilterId;
 
     /**

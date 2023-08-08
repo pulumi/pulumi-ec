@@ -139,7 +139,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      * 
      */
-    @Export(name="asFile", type=Boolean.class, parameters={})
+    @Export(name="asFile", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> asFile;
 
     /**
@@ -153,7 +153,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      * 
      */
-    @Export(name="deploymentId", type=String.class, parameters={})
+    @Export(name="deploymentId", refs={String.class}, tree="[0]")
     private Output<String> deploymentId;
 
     /**
@@ -167,7 +167,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      * 
      */
-    @Export(name="settingName", type=String.class, parameters={})
+    @Export(name="settingName", refs={String.class}, tree="[0]")
     private Output<String> settingName;
 
     /**
@@ -181,7 +181,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      * 
      */
-    @Export(name="value", type=String.class, parameters={})
+    @Export(name="value", refs={String.class}, tree="[0]")
     private Output<String> value;
 
     /**

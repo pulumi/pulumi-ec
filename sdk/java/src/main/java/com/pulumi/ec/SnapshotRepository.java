@@ -72,7 +72,7 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      * Generic repository settings.
      * 
      */
-    @Export(name="generic", type=SnapshotRepositoryGeneric.class, parameters={})
+    @Export(name="generic", refs={SnapshotRepositoryGeneric.class}, tree="[0]")
     private Output</* @Nullable */ SnapshotRepositoryGeneric> generic;
 
     /**
@@ -86,7 +86,7 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      * The name of the snapshot repository configuration.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -100,7 +100,7 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      * S3 repository settings.
      * 
      */
-    @Export(name="s3", type=SnapshotRepositoryS3.class, parameters={})
+    @Export(name="s3", refs={SnapshotRepositoryS3.class}, tree="[0]")
     private Output</* @Nullable */ SnapshotRepositoryS3> s3;
 
     /**

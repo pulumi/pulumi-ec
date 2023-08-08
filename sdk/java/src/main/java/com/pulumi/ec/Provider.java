@@ -27,7 +27,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
      * 
      */
-    @Export(name="apikey", type=String.class, parameters={})
+    @Export(name="apikey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apikey;
 
     /**
@@ -41,7 +41,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> endpoint;
 
     /**
@@ -56,7 +56,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Private.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
@@ -71,7 +71,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Timeout used for individual HTTP calls. Defaults to &#34;1m&#34;.
      * 
      */
-    @Export(name="timeout", type=String.class, parameters={})
+    @Export(name="timeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeout;
 
     /**
@@ -86,7 +86,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Private.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     /**
@@ -101,7 +101,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Timeout used for individual HTTP calls. Defaults to &#34;1m&#34;.
      * 
      */
-    @Export(name="verboseFile", type=String.class, parameters={})
+    @Export(name="verboseFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> verboseFile;
 
     /**
