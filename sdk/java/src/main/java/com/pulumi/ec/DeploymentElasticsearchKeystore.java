@@ -13,14 +13,11 @@ import com.pulumi.ec.inputs.DeploymentElasticsearchKeystoreState;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
- * 
- * These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
- * ### Adding a new keystore setting to your deployment
+ * ### Basic
  * ```java
  * package generated_program;
  * 
@@ -32,6 +29,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.Deployment;
  * import com.pulumi.ec.DeploymentArgs;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import com.pulumi.ec.DeploymentElasticsearchKeystore;
  * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
  * import java.util.List;
@@ -56,57 +55,11 @@ import javax.annotation.Nullable;
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
- *             .elasticsearch()
- *             .build());
- * 
- *         var secureUrl = new DeploymentElasticsearchKeystore(&#34;secureUrl&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
- *             .deploymentId(exampleKeystore.id())
- *             .settingName(&#34;xpack.notification.slack.account.hello.secure_url&#34;)
- *             .value(&#34;http://my-secure-url.com&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Adding credentials to use GCS as a snapshot repository
- * 
- * For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.ec.EcFunctions;
- * import com.pulumi.ec.inputs.GetStackArgs;
- * import com.pulumi.ec.Deployment;
- * import com.pulumi.ec.DeploymentArgs;
- * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
- * import com.pulumi.ec.DeploymentElasticsearchKeystore;
- * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
- *             .versionRegex(&#34;latest&#34;)
- *             .region(&#34;us-east-1&#34;)
- *             .build());
- * 
- *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
- *             .region(&#34;us-east-1&#34;)
- *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
- *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
- *             .elasticsearch()
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
  *             .build());
  * 
  *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
@@ -119,54 +72,106 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ## Attributes reference
+ * ### Adding credentials to use GCS as a snapshot repository
+ * ```java
+ * package generated_program;
  * 
- * There are no additional attributes exported by this resource other than the referenced arguments.
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystore;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
+ *             .deploymentId(exampleKeystore.id())
+ *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
+ *             .value(Files.readString(Paths.get(&#34;service-account-key.json&#34;)))
+ *             .asFile(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  * ## Import
  * 
- * This resource cannot be imported.
+ * This resource cannot be imported
  * 
  */
 @ResourceType(type="ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore")
 public class DeploymentElasticsearchKeystore extends com.pulumi.resources.CustomResource {
     /**
-     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      * 
      */
     @Export(name="asFile", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> asFile;
+    private Output<Boolean> asFile;
 
     /**
-     * @return if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * @return Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      * 
      */
-    public Output<Optional<Boolean>> asFile() {
-        return Codegen.optional(this.asFile);
+    public Output<Boolean> asFile() {
+        return this.asFile;
     }
     /**
-     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      * 
      */
     @Export(name="deploymentId", type=String.class, parameters={})
     private Output<String> deploymentId;
 
     /**
-     * @return Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * @return Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      * 
      */
     public Output<String> deploymentId() {
         return this.deploymentId;
     }
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      * 
      */
     @Export(name="settingName", type=String.class, parameters={})
     private Output<String> settingName;
 
     /**
-     * @return Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * @return Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      * 
      */
     public Output<String> settingName() {

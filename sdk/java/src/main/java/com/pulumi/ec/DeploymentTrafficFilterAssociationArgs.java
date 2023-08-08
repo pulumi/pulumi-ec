@@ -14,14 +14,14 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
     public static final DeploymentTrafficFilterAssociationArgs Empty = new DeploymentTrafficFilterAssociationArgs();
 
     /**
-     * Deployment ID of the deployment to which the traffic filter rule is attached.
+     * Required deployment ID where the traffic filter will be associated
      * 
      */
     @Import(name="deploymentId", required=true)
     private Output<String> deploymentId;
 
     /**
-     * @return Deployment ID of the deployment to which the traffic filter rule is attached.
+     * @return Required deployment ID where the traffic filter will be associated
      * 
      */
     public Output<String> deploymentId() {
@@ -29,14 +29,14 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
     }
 
     /**
-     * Traffic filter ID of the rule to use for the attachment.
+     * Required traffic filter ruleset ID to tie to a deployment
      * 
      */
     @Import(name="trafficFilterId", required=true)
     private Output<String> trafficFilterId;
 
     /**
-     * @return Traffic filter ID of the rule to use for the attachment.
+     * @return Required traffic filter ruleset ID to tie to a deployment
      * 
      */
     public Output<String> trafficFilterId() {
@@ -69,7 +69,7 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
         }
 
         /**
-         * @param deploymentId Deployment ID of the deployment to which the traffic filter rule is attached.
+         * @param deploymentId Required deployment ID where the traffic filter will be associated
          * 
          * @return builder
          * 
@@ -80,7 +80,7 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
         }
 
         /**
-         * @param deploymentId Deployment ID of the deployment to which the traffic filter rule is attached.
+         * @param deploymentId Required deployment ID where the traffic filter will be associated
          * 
          * @return builder
          * 
@@ -90,7 +90,7 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
         }
 
         /**
-         * @param trafficFilterId Traffic filter ID of the rule to use for the attachment.
+         * @param trafficFilterId Required traffic filter ruleset ID to tie to a deployment
          * 
          * @return builder
          * 
@@ -101,7 +101,7 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
         }
 
         /**
-         * @param trafficFilterId Traffic filter ID of the rule to use for the attachment.
+         * @param trafficFilterId Required traffic filter ruleset ID to tie to a deployment
          * 
          * @return builder
          * 

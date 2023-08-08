@@ -18,10 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
- * 
  * ## Example Usage
- * ### IP type
+ * ### IP based traffic filter
  * ```java
  * package generated_program;
  * 
@@ -36,6 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.Deployment;
  * import com.pulumi.ec.DeploymentArgs;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -68,14 +68,18 @@ import javax.annotation.Nullable;
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
  *             .trafficFilters(example.id())
- *             .elasticsearch()
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
  *             .kibana()
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Azure Private Link type
+ * ### Azure Private Link traffic filter
  * ```java
  * package generated_program;
  * 
@@ -90,6 +94,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.Deployment;
  * import com.pulumi.ec.DeploymentArgs;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -125,14 +131,19 @@ import javax.annotation.Nullable;
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;azure-io-optimized-v3&#34;)
  *             .trafficFilters(azure.id())
- *             .elasticsearch()
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
  *             .kibana()
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### GCP Private Service Connect type
+ * 
+ * ###GCP Private Service Connect traffic filter
  * ```java
  * package generated_program;
  * 
@@ -147,6 +158,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.Deployment;
  * import com.pulumi.ec.DeploymentArgs;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -181,7 +194,11 @@ import javax.annotation.Nullable;
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;gcp-storage-optimized&#34;)
  *             .trafficFilters(gcpPsc.id())
- *             .elasticsearch()
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
  *             .kibana()
  *             .build());
  * 
@@ -191,7 +208,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * You can import traffic filters using the `id`, for example
+ * Traffic filters can be imported using the `id`, for example
  * 
  * ```sh
  *  $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
@@ -201,84 +218,84 @@ import javax.annotation.Nullable;
 @ResourceType(type="ec:index/deploymentTrafficFilter:DeploymentTrafficFilter")
 public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource {
     /**
-     * Description of the ruleset.
+     * Ruleset description
      * 
      */
     @Export(name="description", type=String.class, parameters={})
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return Description of the ruleset.
+     * @return Ruleset description
      * 
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
     /**
-     * To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      * 
      */
     @Export(name="includeByDefault", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> includeByDefault;
+    private Output<Boolean> includeByDefault;
 
     /**
-     * @return To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * @return Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      * 
      */
-    public Output<Optional<Boolean>> includeByDefault() {
-        return Codegen.optional(this.includeByDefault);
+    public Output<Boolean> includeByDefault() {
+        return this.includeByDefault;
     }
     /**
-     * Name of the ruleset.
+     * Name of the ruleset
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return Name of the ruleset.
+     * @return Name of the ruleset
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Filter region, the ruleset can only be attached to deployments in the specific region.
+     * Filter region, the ruleset can only be attached to deployments in the specific region
      * 
      */
     @Export(name="region", type=String.class, parameters={})
     private Output<String> region;
 
     /**
-     * @return Filter region, the ruleset can only be attached to deployments in the specific region.
+     * @return Filter region, the ruleset can only be attached to deployments in the specific region
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * Rule block, which can be specified multiple times for multiple rules.
+     * Set of rules, which the ruleset is made of.
      * 
      */
     @Export(name="rules", type=List.class, parameters={DeploymentTrafficFilterRule.class})
-    private Output<List<DeploymentTrafficFilterRule>> rules;
+    private Output</* @Nullable */ List<DeploymentTrafficFilterRule>> rules;
 
     /**
-     * @return Rule block, which can be specified multiple times for multiple rules.
+     * @return Set of rules, which the ruleset is made of.
      * 
      */
-    public Output<List<DeploymentTrafficFilterRule>> rules() {
-        return this.rules;
+    public Output<Optional<List<DeploymentTrafficFilterRule>>> rules() {
+        return Codegen.optional(this.rules);
     }
     /**
-     * Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
+     * Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 
     /**
-     * @return Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
+     * @return Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
      * 
      */
     public Output<String> type() {

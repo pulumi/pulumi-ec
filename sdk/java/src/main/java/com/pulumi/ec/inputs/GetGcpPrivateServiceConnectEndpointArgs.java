@@ -14,14 +14,14 @@ public final class GetGcpPrivateServiceConnectEndpointArgs extends com.pulumi.re
     public static final GetGcpPrivateServiceConnectEndpointArgs Empty = new GetGcpPrivateServiceConnectEndpointArgs();
 
     /**
-     * Region to retrieve the Private Link configuration for.
+     * Region to retrieve the Prive Link configuration for.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return Region to retrieve the Private Link configuration for.
+     * @return Region to retrieve the Prive Link configuration for.
      * 
      */
     public Output<String> region() {
@@ -53,7 +53,7 @@ public final class GetGcpPrivateServiceConnectEndpointArgs extends com.pulumi.re
         }
 
         /**
-         * @param region Region to retrieve the Private Link configuration for.
+         * @param region Region to retrieve the Prive Link configuration for.
          * 
          * @return builder
          * 
@@ -64,7 +64,7 @@ public final class GetGcpPrivateServiceConnectEndpointArgs extends com.pulumi.re
         }
 
         /**
-         * @param region Region to retrieve the Private Link configuration for.
+         * @param region Region to retrieve the Prive Link configuration for.
          * 
          * @return builder
          * 

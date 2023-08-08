@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,13 +59,13 @@ import (
 //
 // ## Import
 //
-// Import is not supported on this resource.
+// Import is not supported on this resource
 type DeploymentTrafficFilterAssociation struct {
 	pulumi.CustomResourceState
 
-	// Deployment ID of the deployment to which the traffic filter rule is attached.
+	// Required deployment ID where the traffic filter will be associated
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
-	// Traffic filter ID of the rule to use for the attachment.
+	// Required traffic filter ruleset ID to tie to a deployment
 	TrafficFilterId pulumi.StringOutput `pulumi:"trafficFilterId"`
 }
 
@@ -81,6 +82,7 @@ func NewDeploymentTrafficFilterAssociation(ctx *pulumi.Context,
 	if args.TrafficFilterId == nil {
 		return nil, errors.New("invalid value for required argument 'TrafficFilterId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeploymentTrafficFilterAssociation
 	err := ctx.RegisterResource("ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation", name, args, &resource, opts...)
 	if err != nil {
@@ -103,16 +105,16 @@ func GetDeploymentTrafficFilterAssociation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentTrafficFilterAssociation resources.
 type deploymentTrafficFilterAssociationState struct {
-	// Deployment ID of the deployment to which the traffic filter rule is attached.
+	// Required deployment ID where the traffic filter will be associated
 	DeploymentId *string `pulumi:"deploymentId"`
-	// Traffic filter ID of the rule to use for the attachment.
+	// Required traffic filter ruleset ID to tie to a deployment
 	TrafficFilterId *string `pulumi:"trafficFilterId"`
 }
 
 type DeploymentTrafficFilterAssociationState struct {
-	// Deployment ID of the deployment to which the traffic filter rule is attached.
+	// Required deployment ID where the traffic filter will be associated
 	DeploymentId pulumi.StringPtrInput
-	// Traffic filter ID of the rule to use for the attachment.
+	// Required traffic filter ruleset ID to tie to a deployment
 	TrafficFilterId pulumi.StringPtrInput
 }
 
@@ -121,17 +123,17 @@ func (DeploymentTrafficFilterAssociationState) ElementType() reflect.Type {
 }
 
 type deploymentTrafficFilterAssociationArgs struct {
-	// Deployment ID of the deployment to which the traffic filter rule is attached.
+	// Required deployment ID where the traffic filter will be associated
 	DeploymentId string `pulumi:"deploymentId"`
-	// Traffic filter ID of the rule to use for the attachment.
+	// Required traffic filter ruleset ID to tie to a deployment
 	TrafficFilterId string `pulumi:"trafficFilterId"`
 }
 
 // The set of arguments for constructing a DeploymentTrafficFilterAssociation resource.
 type DeploymentTrafficFilterAssociationArgs struct {
-	// Deployment ID of the deployment to which the traffic filter rule is attached.
+	// Required deployment ID where the traffic filter will be associated
 	DeploymentId pulumi.StringInput
-	// Traffic filter ID of the rule to use for the attachment.
+	// Required traffic filter ruleset ID to tie to a deployment
 	TrafficFilterId pulumi.StringInput
 }
 
@@ -222,12 +224,12 @@ func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssoc
 	return o
 }
 
-// Deployment ID of the deployment to which the traffic filter rule is attached.
+// Required deployment ID where the traffic filter will be associated
 func (o DeploymentTrafficFilterAssociationOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilterAssociation) pulumi.StringOutput { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
-// Traffic filter ID of the rule to use for the attachment.
+// Required traffic filter ruleset ID to tie to a deployment
 func (o DeploymentTrafficFilterAssociationOutput) TrafficFilterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilterAssociation) pulumi.StringOutput { return v.TrafficFilterId }).(pulumi.StringOutput)
 }

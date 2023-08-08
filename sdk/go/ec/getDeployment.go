@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,6 +39,7 @@ import (
 //
 // ```
 func LookupDeployment(ctx *pulumi.Context, args *LookupDeploymentArgs, opts ...pulumi.InvokeOption) (*LookupDeploymentResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDeploymentResult
 	err := ctx.Invoke("ec:index/getDeployment:getDeployment", args, &rv, opts...)
 	if err != nil {
@@ -48,7 +50,7 @@ func LookupDeployment(ctx *pulumi.Context, args *LookupDeploymentArgs, opts ...p
 
 // A collection of arguments for invoking getDeployment.
 type LookupDeploymentArgs struct {
-	// The ID of an existing Elastic Cloud deployment.
+	// The unique ID of the deployment.
 	Id string `pulumi:"id"`
 }
 
@@ -57,104 +59,26 @@ type LookupDeploymentResult struct {
 	// Deployment alias.
 	Alias string `pulumi:"alias"`
 	// Instance configuration of the APM type.
-	// * `apm.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-	// * `apm.#.healthy` - Resource kind health status.
-	// * `apm.#.http_endpoint` - HTTP endpoint for the resource kind.
-	// * `apm.#.https_endpoint` - HTTPS endpoint for the resource kind.
-	// * `apm.#.ref_id` - User specified refId for the resource kind.
-	// * `apm.#.resource_id` - The resource unique identifier.
-	// * `apm.#.status` - Resource kind status (for example, "started", "stopped", etc).
-	// * `apm.#.version` - Elastic stack version.
-	// * `apm.#.topology` - Node topology element definition.
-	// * `apm.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-	// * `apm.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-	// * `apm.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 	Apms []GetDeploymentApm `pulumi:"apms"`
-	// ID of the deployment template used to create the deployment.
+	// ID of the deployment template this deployment is based off.
 	DeploymentTemplateId string `pulumi:"deploymentTemplateId"`
-	// Instance configuration of the Elasticsearch resource kind.
-	// * `elasticsearch.#.autoscale` - Whether or not Elasticsearch autoscaling is enabled.
-	// * `elasticsearch.#.healthy` - Resource kind health status.
-	// * `elasticsearch.#.cloud_id` - The encoded Elasticsearch credentials to use in Beats or Logstash. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
-	// * `elasticsearch.#.http_endpoint` - HTTP endpoint for the resource kind.
-	// * `elasticsearch.#.https_endpoint` - HTTPS endpoint for the resource kind.
-	// * `elasticsearch.#.ref_id` - User specified refId for the resource kind.
-	// * `elasticsearch.#.resource_id` - The resource unique identifier.
-	// * `elasticsearch.#.status` - Resource kind status (for example, "started", "stopped", etc).
-	// * `elasticsearch.#.version` - Elastic stack version.
-	// * `elasticsearch.#.topology` - Topology element definition.
-	// * `elasticsearch.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-	// * `elasticsearch.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-	// * `elasticsearch.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
-	// * `elasticsearch.#.topology.#.node_roles` - Defines the list of Elasticsearch node roles assigned to the topology element (>=7.10.0).
-	// * `elasticsearch.#.topology.#.node_type_data` - Defines whether this node can hold data (<7.10.0).
-	// * `elasticsearch.#.topology.#.node_type_master` - Defines whether this node can be elected master (<7.10.0).
-	// * `elasticsearch.#.topology.#.node_type_ingest` - Defines whether this node can run an ingest pipeline (<7.10.0).
-	// * `elasticsearch.#.topology.#.node_type_ml` - Defines whether this node can run ML jobs (<7.10.0).
-	// * `elasticsearch.#.topology.#.autoscaling.#.max_size` - The maximum size for the scale up policy.
-	// * `elasticsearch.#.topology.#.autoscaling.#.max_size_resource` - The maximum size resource for the scale up policy.
-	// * `elasticsearch.#.topology.#.autoscaling.#.min_size` - The minimum size for the scale down policy.
-	// * `elasticsearch.#.topology.#.autoscaling.#.min_size_resource` - The minimum size for the scale down policy.
-	// * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - The advanced policy overrides for the autoscaling policy.
+	// Instance configuration of the Elasticsearch Elasticsearch resource.
 	Elasticsearches []GetDeploymentElasticsearch `pulumi:"elasticsearches"`
 	// Instance configuration of the Enterprise Search type.
-	// * `enterprise_search.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-	// * `enterprise_search.#.healthy` - Resource kind health status.
-	// * `enterprise_search.#.http_endpoint` - HTTP endpoint for the resource kind.
-	// * `enterprise_search.#.https_endpoint` - HTTPS endpoint for the resource kind.
-	// * `enterprise_search.#.ref_id` - User specified refId for the resource kind.
-	// * `enterprise_search.#.resource_id` - The resource unique identifier.
-	// * `enterprise_search.#.status` - Resource kind status (for example, "started", "stopped", etc).
-	// * `enterprise_search.#.version` - Elastic stack version.
-	// * `enterprise_search.#.topology` - Node topology element definition.
-	// * `enterprise_search.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-	// * `enterprise_search.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-	// * `enterprise_search.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
-	// * `enterprise_search.#.topology.#.node_type_appserver` - Defines whether this instance should run as application/API server.
-	// * `enterprise_search.#.topology.#.node_type_connector` - Defines whether this instance should run as connector.
-	// * `enterprise_search.#.topology.#.node_type_worker` - Defines whether this instance should run as background worker.
 	EnterpriseSearches []GetDeploymentEnterpriseSearch `pulumi:"enterpriseSearches"`
 	// Overall health status of the deployment.
 	Healthy bool `pulumi:"healthy"`
 	// The unique ID of the deployment.
 	Id string `pulumi:"id"`
 	// Instance configuration of the Integrations Server type.
-	// * `integrations_server.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-	// * `integrations_server.#.healthy` - Resource kind health status.
-	// * `integrations_server.#.http_endpoint` - HTTP endpoint for the resource kind.
-	// * `integrations_server.#.https_endpoint` - HTTPS endpoint for the resource kind.
-	// * `integrations_server.#.ref_id` - User specified refId for the resource kind.
-	// * `integrations_server.#.resource_id` - The resource unique identifier.
-	// * `integrations_server.#.status` - Resource kind status (for example, "started", "stopped", etc).
-	// * `integrations_server.#.version` - Elastic stack version.
-	// * `integrations_server.#.topology` - Node topology element definition.
-	// * `integrations_server.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-	// * `integrations_server.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-	// * `integrations_server.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 	IntegrationsServers []GetDeploymentIntegrationsServer `pulumi:"integrationsServers"`
 	// Instance configuration of the Kibana type.
-	// * `kibana.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-	// * `kibana.#.healthy` - Resource kind health status.
-	// * `kibana.#.http_endpoint` - HTTP endpoint for the resource kind.
-	// * `kibana.#.https_endpoint` - HTTPS endpoint for the resource kind.
-	// * `kibana.#.ref_id` - User specified refId for the resource kind.
-	// * `kibana.#.resource_id` - The resource unique identifier.
-	// * `kibana.#.status` - Resource kind status (for example, "started", "stopped", etc).
-	// * `kibana.#.version` - Elastic stack version.
-	// * `kibana.#.topology` - Node topology element definition.
-	// * `kibana.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-	// * `kibana.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-	// * `kibana.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 	Kibanas []GetDeploymentKibana `pulumi:"kibanas"`
 	// The name of the deployment.
 	Name string `pulumi:"name"`
 	// Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-	// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-	// * `observability.#.ref_id` - Elasticsearch resource kind refId of the destination deployment.
-	// * `observability.#.logs` - Defines whether logs are enabled or disabled.
-	// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
 	Observabilities []GetDeploymentObservability `pulumi:"observabilities"`
-	// Region where the deployment can be found.
+	// Region where the deployment is hosted.
 	Region string `pulumi:"region"`
 	// Key value map of arbitrary string tags.
 	Tags map[string]string `pulumi:"tags"`
@@ -177,7 +101,7 @@ func LookupDeploymentOutput(ctx *pulumi.Context, args LookupDeploymentOutputArgs
 
 // A collection of arguments for invoking getDeployment.
 type LookupDeploymentOutputArgs struct {
-	// The ID of an existing Elastic Cloud deployment.
+	// The unique ID of the deployment.
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -206,71 +130,21 @@ func (o LookupDeploymentResultOutput) Alias() pulumi.StringOutput {
 }
 
 // Instance configuration of the APM type.
-// * `apm.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-// * `apm.#.healthy` - Resource kind health status.
-// * `apm.#.http_endpoint` - HTTP endpoint for the resource kind.
-// * `apm.#.https_endpoint` - HTTPS endpoint for the resource kind.
-// * `apm.#.ref_id` - User specified refId for the resource kind.
-// * `apm.#.resource_id` - The resource unique identifier.
-// * `apm.#.status` - Resource kind status (for example, "started", "stopped", etc).
-// * `apm.#.version` - Elastic stack version.
-// * `apm.#.topology` - Node topology element definition.
-// * `apm.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-// * `apm.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-// * `apm.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 func (o LookupDeploymentResultOutput) Apms() GetDeploymentApmArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentApm { return v.Apms }).(GetDeploymentApmArrayOutput)
 }
 
-// ID of the deployment template used to create the deployment.
+// ID of the deployment template this deployment is based off.
 func (o LookupDeploymentResultOutput) DeploymentTemplateId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.DeploymentTemplateId }).(pulumi.StringOutput)
 }
 
-// Instance configuration of the Elasticsearch resource kind.
-// * `elasticsearch.#.autoscale` - Whether or not Elasticsearch autoscaling is enabled.
-// * `elasticsearch.#.healthy` - Resource kind health status.
-// * `elasticsearch.#.cloud_id` - The encoded Elasticsearch credentials to use in Beats or Logstash. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
-// * `elasticsearch.#.http_endpoint` - HTTP endpoint for the resource kind.
-// * `elasticsearch.#.https_endpoint` - HTTPS endpoint for the resource kind.
-// * `elasticsearch.#.ref_id` - User specified refId for the resource kind.
-// * `elasticsearch.#.resource_id` - The resource unique identifier.
-// * `elasticsearch.#.status` - Resource kind status (for example, "started", "stopped", etc).
-// * `elasticsearch.#.version` - Elastic stack version.
-// * `elasticsearch.#.topology` - Topology element definition.
-// * `elasticsearch.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-// * `elasticsearch.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-// * `elasticsearch.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
-// * `elasticsearch.#.topology.#.node_roles` - Defines the list of Elasticsearch node roles assigned to the topology element (>=7.10.0).
-// * `elasticsearch.#.topology.#.node_type_data` - Defines whether this node can hold data (<7.10.0).
-// * `elasticsearch.#.topology.#.node_type_master` - Defines whether this node can be elected master (<7.10.0).
-// * `elasticsearch.#.topology.#.node_type_ingest` - Defines whether this node can run an ingest pipeline (<7.10.0).
-// * `elasticsearch.#.topology.#.node_type_ml` - Defines whether this node can run ML jobs (<7.10.0).
-// * `elasticsearch.#.topology.#.autoscaling.#.max_size` - The maximum size for the scale up policy.
-// * `elasticsearch.#.topology.#.autoscaling.#.max_size_resource` - The maximum size resource for the scale up policy.
-// * `elasticsearch.#.topology.#.autoscaling.#.min_size` - The minimum size for the scale down policy.
-// * `elasticsearch.#.topology.#.autoscaling.#.min_size_resource` - The minimum size for the scale down policy.
-// * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - The advanced policy overrides for the autoscaling policy.
+// Instance configuration of the Elasticsearch Elasticsearch resource.
 func (o LookupDeploymentResultOutput) Elasticsearches() GetDeploymentElasticsearchArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentElasticsearch { return v.Elasticsearches }).(GetDeploymentElasticsearchArrayOutput)
 }
 
 // Instance configuration of the Enterprise Search type.
-// * `enterprise_search.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-// * `enterprise_search.#.healthy` - Resource kind health status.
-// * `enterprise_search.#.http_endpoint` - HTTP endpoint for the resource kind.
-// * `enterprise_search.#.https_endpoint` - HTTPS endpoint for the resource kind.
-// * `enterprise_search.#.ref_id` - User specified refId for the resource kind.
-// * `enterprise_search.#.resource_id` - The resource unique identifier.
-// * `enterprise_search.#.status` - Resource kind status (for example, "started", "stopped", etc).
-// * `enterprise_search.#.version` - Elastic stack version.
-// * `enterprise_search.#.topology` - Node topology element definition.
-// * `enterprise_search.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-// * `enterprise_search.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-// * `enterprise_search.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
-// * `enterprise_search.#.topology.#.node_type_appserver` - Defines whether this instance should run as application/API server.
-// * `enterprise_search.#.topology.#.node_type_connector` - Defines whether this instance should run as connector.
-// * `enterprise_search.#.topology.#.node_type_worker` - Defines whether this instance should run as background worker.
 func (o LookupDeploymentResultOutput) EnterpriseSearches() GetDeploymentEnterpriseSearchArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentEnterpriseSearch { return v.EnterpriseSearches }).(GetDeploymentEnterpriseSearchArrayOutput)
 }
@@ -286,35 +160,11 @@ func (o LookupDeploymentResultOutput) Id() pulumi.StringOutput {
 }
 
 // Instance configuration of the Integrations Server type.
-// * `integrations_server.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-// * `integrations_server.#.healthy` - Resource kind health status.
-// * `integrations_server.#.http_endpoint` - HTTP endpoint for the resource kind.
-// * `integrations_server.#.https_endpoint` - HTTPS endpoint for the resource kind.
-// * `integrations_server.#.ref_id` - User specified refId for the resource kind.
-// * `integrations_server.#.resource_id` - The resource unique identifier.
-// * `integrations_server.#.status` - Resource kind status (for example, "started", "stopped", etc).
-// * `integrations_server.#.version` - Elastic stack version.
-// * `integrations_server.#.topology` - Node topology element definition.
-// * `integrations_server.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-// * `integrations_server.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-// * `integrations_server.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 func (o LookupDeploymentResultOutput) IntegrationsServers() GetDeploymentIntegrationsServerArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentIntegrationsServer { return v.IntegrationsServers }).(GetDeploymentIntegrationsServerArrayOutput)
 }
 
 // Instance configuration of the Kibana type.
-// * `kibana.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-// * `kibana.#.healthy` - Resource kind health status.
-// * `kibana.#.http_endpoint` - HTTP endpoint for the resource kind.
-// * `kibana.#.https_endpoint` - HTTPS endpoint for the resource kind.
-// * `kibana.#.ref_id` - User specified refId for the resource kind.
-// * `kibana.#.resource_id` - The resource unique identifier.
-// * `kibana.#.status` - Resource kind status (for example, "started", "stopped", etc).
-// * `kibana.#.version` - Elastic stack version.
-// * `kibana.#.topology` - Node topology element definition.
-// * `kibana.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-// * `kibana.#.topology.#.size` - Amount of memory (RAM) per topology element in the "<size in GB>g" notation.
-// * `kibana.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
 func (o LookupDeploymentResultOutput) Kibanas() GetDeploymentKibanaArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentKibana { return v.Kibanas }).(GetDeploymentKibanaArrayOutput)
 }
@@ -325,15 +175,11 @@ func (o LookupDeploymentResultOutput) Name() pulumi.StringOutput {
 }
 
 // Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-// * `observability.#.ref_id` - Elasticsearch resource kind refId of the destination deployment.
-// * `observability.#.logs` - Defines whether logs are enabled or disabled.
-// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
 func (o LookupDeploymentResultOutput) Observabilities() GetDeploymentObservabilityArrayOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) []GetDeploymentObservability { return v.Observabilities }).(GetDeploymentObservabilityArrayOutput)
 }
 
-// Region where the deployment can be found.
+// Region where the deployment is hosted.
 func (o LookupDeploymentResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) string { return v.Region }).(pulumi.StringOutput)
 }

@@ -16,14 +16,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     public static final DeploymentTrafficFilterRuleArgs Empty = new DeploymentTrafficFilterRuleArgs();
 
     /**
-     * Azure endpoint GUID. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     @Import(name="azureEndpointGuid")
     private @Nullable Output<String> azureEndpointGuid;
 
     /**
-     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     public Optional<Output<String>> azureEndpointGuid() {
@@ -31,14 +31,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
-     * Azure endpoint name. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     @Import(name="azureEndpointName")
     private @Nullable Output<String> azureEndpointName;
 
     /**
-     * @return Azure endpoint name. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     public Optional<Output<String>> azureEndpointName() {
@@ -46,14 +46,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
-     * Description of this individual rule.
+     * Description of this individual rule
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of this individual rule.
+     * @return Description of this individual rule
      * 
      */
     public Optional<Output<String>> description() {
@@ -61,14 +61,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
-     * The ruleset ID.
+     * Computed rule ID
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return The ruleset ID.
+     * @return Computed rule ID
      * 
      */
     public Optional<Output<String>> id() {
@@ -76,14 +76,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
-     * traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `&#34;azure_private_endpoint&#34;`.
+     * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
      * 
      */
     @Import(name="source")
     private @Nullable Output<String> source;
 
     /**
-     * @return traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `&#34;azure_private_endpoint&#34;`.
+     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
      * 
      */
     public Optional<Output<String>> source() {
@@ -119,7 +119,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
          * 
          * @return builder
          * 
@@ -151,7 +151,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
          * 
          * @return builder
          * 
@@ -161,7 +161,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param description Description of this individual rule.
+         * @param description Description of this individual rule
          * 
          * @return builder
          * 
@@ -172,7 +172,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param description Description of this individual rule.
+         * @param description Description of this individual rule
          * 
          * @return builder
          * 
@@ -182,7 +182,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param id The ruleset ID.
+         * @param id Computed rule ID
          * 
          * @return builder
          * 
@@ -193,7 +193,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param id The ruleset ID.
+         * @param id Computed rule ID
          * 
          * @return builder
          * 
@@ -203,7 +203,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param source traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `&#34;azure_private_endpoint&#34;`.
+         * @param source Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
          * 
          * @return builder
          * 
@@ -214,7 +214,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param source traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `&#34;azure_private_endpoint&#34;`.
+         * @param source Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
          * 
          * @return builder
          * 

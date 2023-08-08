@@ -8,136 +8,21 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+//
+//	Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+//
+//	**Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+//
 // ## Example Usage
-// ### With extension file
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"crypto/sha256"
-//	"fmt"
-//	"os"
-//
-//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func filebase64sha256OrPanic(path string) pulumi.StringPtrInput {
-//		if fileData, err := os.ReadFile(path); err == nil {
-//			hashedData := sha256.Sum256([]byte(fileData))
-//			return pulumi.String(base64.StdEncoding.EncodeToString(hashedData[:]))
-//		} else {
-//			panic(err.Error())
-//		}
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			filePath := "/path/to/plugin.zip"
-//			_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
-//				Description:   pulumi.String("my extension"),
-//				Version:       pulumi.String("*"),
-//				ExtensionType: pulumi.String("bundle"),
-//				FilePath:      pulumi.String(filePath),
-//				FileHash:      filebase64sha256OrPanic(filePath),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// ### With download URL
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
-//				Description:   pulumi.String("my extension"),
-//				DownloadUrl:   pulumi.String("https://example.net"),
-//				ExtensionType: pulumi.String("bundle"),
-//				Version:       pulumi.String("*"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// ### Using extension in Deployment
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleExtension, err := ec.NewDeploymentExtension(ctx, "exampleExtension", &ec.DeploymentExtensionArgs{
-//				Description:   pulumi.String("my extension"),
-//				Version:       pulumi.String("*"),
-//				ExtensionType: pulumi.String("bundle"),
-//				DownloadUrl:   pulumi.String("https://example.net"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
-//				VersionRegex: "latest",
-//				Region:       "us-east-1",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ec.NewDeployment(ctx, "withExtension", &ec.DeploymentArgs{
-//				Region:               pulumi.String("us-east-1"),
-//				Version:              *pulumi.String(latest.Version),
-//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
-//					Extensions: ec.DeploymentElasticsearchExtensionArray{
-//						&ec.DeploymentElasticsearchExtensionArgs{
-//							Name:    exampleExtension.Name,
-//							Type:    pulumi.String("bundle"),
-//							Version: *pulumi.String(latest.Version),
-//							Url:     exampleExtension.Url,
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 //
 // ## Import
 //
-// # You can import extensions using the `id`, for example
+// # Extensions can be imported using the `id`, for example
 //
 // ```sh
 //
@@ -147,25 +32,25 @@ import (
 type DeploymentExtension struct {
 	pulumi.CustomResourceState
 
-	// Description of the extension.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Description for the extension
+	Description pulumi.StringOutput `pulumi:"description"`
 	// The URL to download the extension archive.
-	DownloadUrl pulumi.StringPtrOutput `pulumi:"downloadUrl"`
-	// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+	DownloadUrl pulumi.StringOutput `pulumi:"downloadUrl"`
+	// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
 	ExtensionType pulumi.StringOutput `pulumi:"extensionType"`
-	// Hash value of the file. If it is changed, the file is reuploaded.
+	// Hash value of the file. Triggers re-uploading the file on change.
 	FileHash pulumi.StringPtrOutput `pulumi:"fileHash"`
-	// File path of the extension uploaded.
+	// Local file path to upload as the extension.
 	FilePath pulumi.StringPtrOutput `pulumi:"filePath"`
-	// The datetime the extension was last modified.
+	// The datatime the extension was last modified.
 	LastModified pulumi.StringOutput `pulumi:"lastModified"`
-	// Name of the extension.
+	// Name of the extension
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The extension file size in bytes.
+	// The size of the extension file in bytes.
 	Size pulumi.IntOutput `pulumi:"size"`
-	// The extension URL to be used in the plan.
+	// The extension URL which will be used in the Elastic Cloud deployment plan.
 	Url pulumi.StringOutput `pulumi:"url"`
-	// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+	// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -182,6 +67,7 @@ func NewDeploymentExtension(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeploymentExtension
 	err := ctx.RegisterResource("ec:index/deploymentExtension:DeploymentExtension", name, args, &resource, opts...)
 	if err != nil {
@@ -204,48 +90,48 @@ func GetDeploymentExtension(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentExtension resources.
 type deploymentExtensionState struct {
-	// Description of the extension.
+	// Description for the extension
 	Description *string `pulumi:"description"`
 	// The URL to download the extension archive.
 	DownloadUrl *string `pulumi:"downloadUrl"`
-	// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+	// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
 	ExtensionType *string `pulumi:"extensionType"`
-	// Hash value of the file. If it is changed, the file is reuploaded.
+	// Hash value of the file. Triggers re-uploading the file on change.
 	FileHash *string `pulumi:"fileHash"`
-	// File path of the extension uploaded.
+	// Local file path to upload as the extension.
 	FilePath *string `pulumi:"filePath"`
-	// The datetime the extension was last modified.
+	// The datatime the extension was last modified.
 	LastModified *string `pulumi:"lastModified"`
-	// Name of the extension.
+	// Name of the extension
 	Name *string `pulumi:"name"`
-	// The extension file size in bytes.
+	// The size of the extension file in bytes.
 	Size *int `pulumi:"size"`
-	// The extension URL to be used in the plan.
+	// The extension URL which will be used in the Elastic Cloud deployment plan.
 	Url *string `pulumi:"url"`
-	// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+	// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
 	Version *string `pulumi:"version"`
 }
 
 type DeploymentExtensionState struct {
-	// Description of the extension.
+	// Description for the extension
 	Description pulumi.StringPtrInput
 	// The URL to download the extension archive.
 	DownloadUrl pulumi.StringPtrInput
-	// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+	// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
 	ExtensionType pulumi.StringPtrInput
-	// Hash value of the file. If it is changed, the file is reuploaded.
+	// Hash value of the file. Triggers re-uploading the file on change.
 	FileHash pulumi.StringPtrInput
-	// File path of the extension uploaded.
+	// Local file path to upload as the extension.
 	FilePath pulumi.StringPtrInput
-	// The datetime the extension was last modified.
+	// The datatime the extension was last modified.
 	LastModified pulumi.StringPtrInput
-	// Name of the extension.
+	// Name of the extension
 	Name pulumi.StringPtrInput
-	// The extension file size in bytes.
+	// The size of the extension file in bytes.
 	Size pulumi.IntPtrInput
-	// The extension URL to be used in the plan.
+	// The extension URL which will be used in the Elastic Cloud deployment plan.
 	Url pulumi.StringPtrInput
-	// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+	// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
 	Version pulumi.StringPtrInput
 }
 
@@ -254,37 +140,37 @@ func (DeploymentExtensionState) ElementType() reflect.Type {
 }
 
 type deploymentExtensionArgs struct {
-	// Description of the extension.
+	// Description for the extension
 	Description *string `pulumi:"description"`
 	// The URL to download the extension archive.
 	DownloadUrl *string `pulumi:"downloadUrl"`
-	// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+	// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
 	ExtensionType string `pulumi:"extensionType"`
-	// Hash value of the file. If it is changed, the file is reuploaded.
+	// Hash value of the file. Triggers re-uploading the file on change.
 	FileHash *string `pulumi:"fileHash"`
-	// File path of the extension uploaded.
+	// Local file path to upload as the extension.
 	FilePath *string `pulumi:"filePath"`
-	// Name of the extension.
+	// Name of the extension
 	Name *string `pulumi:"name"`
-	// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+	// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
 	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a DeploymentExtension resource.
 type DeploymentExtensionArgs struct {
-	// Description of the extension.
+	// Description for the extension
 	Description pulumi.StringPtrInput
 	// The URL to download the extension archive.
 	DownloadUrl pulumi.StringPtrInput
-	// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+	// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
 	ExtensionType pulumi.StringInput
-	// Hash value of the file. If it is changed, the file is reuploaded.
+	// Hash value of the file. Triggers re-uploading the file on change.
 	FileHash pulumi.StringPtrInput
-	// File path of the extension uploaded.
+	// Local file path to upload as the extension.
 	FilePath pulumi.StringPtrInput
-	// Name of the extension.
+	// Name of the extension
 	Name pulumi.StringPtrInput
-	// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+	// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
 	Version pulumi.StringInput
 }
 
@@ -375,52 +261,52 @@ func (o DeploymentExtensionOutput) ToDeploymentExtensionOutputWithContext(ctx co
 	return o
 }
 
-// Description of the extension.
-func (o DeploymentExtensionOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+// Description for the extension
+func (o DeploymentExtensionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // The URL to download the extension archive.
-func (o DeploymentExtensionOutput) DownloadUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringPtrOutput { return v.DownloadUrl }).(pulumi.StringPtrOutput)
+func (o DeploymentExtensionOutput) DownloadUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.DownloadUrl }).(pulumi.StringOutput)
 }
 
-// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
 func (o DeploymentExtensionOutput) ExtensionType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.ExtensionType }).(pulumi.StringOutput)
 }
 
-// Hash value of the file. If it is changed, the file is reuploaded.
+// Hash value of the file. Triggers re-uploading the file on change.
 func (o DeploymentExtensionOutput) FileHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringPtrOutput { return v.FileHash }).(pulumi.StringPtrOutput)
 }
 
-// File path of the extension uploaded.
+// Local file path to upload as the extension.
 func (o DeploymentExtensionOutput) FilePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringPtrOutput { return v.FilePath }).(pulumi.StringPtrOutput)
 }
 
-// The datetime the extension was last modified.
+// The datatime the extension was last modified.
 func (o DeploymentExtensionOutput) LastModified() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.LastModified }).(pulumi.StringOutput)
 }
 
-// Name of the extension.
+// Name of the extension
 func (o DeploymentExtensionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The extension file size in bytes.
+// The size of the extension file in bytes.
 func (o DeploymentExtensionOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
-// The extension URL to be used in the plan.
+// The extension URL which will be used in the Elastic Cloud deployment plan.
 func (o DeploymentExtensionOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }
 
-// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
 func (o DeploymentExtensionOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentExtension) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

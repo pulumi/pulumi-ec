@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import is not supported on this resource.
+ * Import is not supported on this resource
  */
 export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
     /**
@@ -60,11 +60,11 @@ export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
     }
 
     /**
-     * Deployment ID of the deployment to which the traffic filter rule is attached.
+     * Required deployment ID where the traffic filter will be associated
      */
     public readonly deploymentId!: pulumi.Output<string>;
     /**
-     * Traffic filter ID of the rule to use for the attachment.
+     * Required traffic filter ruleset ID to tie to a deployment
      */
     public readonly trafficFilterId!: pulumi.Output<string>;
 
@@ -104,11 +104,11 @@ export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
  */
 export interface DeploymentTrafficFilterAssociationState {
     /**
-     * Deployment ID of the deployment to which the traffic filter rule is attached.
+     * Required deployment ID where the traffic filter will be associated
      */
     deploymentId?: pulumi.Input<string>;
     /**
-     * Traffic filter ID of the rule to use for the attachment.
+     * Required traffic filter ruleset ID to tie to a deployment
      */
     trafficFilterId?: pulumi.Input<string>;
 }
@@ -118,11 +118,11 @@ export interface DeploymentTrafficFilterAssociationState {
  */
 export interface DeploymentTrafficFilterAssociationArgs {
     /**
-     * Deployment ID of the deployment to which the traffic filter rule is attached.
+     * Required deployment ID where the traffic filter will be associated
      */
     deploymentId: pulumi.Input<string>;
     /**
-     * Traffic filter ID of the rule to use for the attachment.
+     * Required traffic filter ruleset ID to tie to a deployment
      */
     trafficFilterId: pulumi.Input<string>;
 }

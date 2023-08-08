@@ -13,21 +13,9 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchRemoteCluster
     {
-        /// <summary>
-        /// Alias for the Cross Cluster Search binding.
-        /// </summary>
         public readonly string Alias;
-        /// <summary>
-        /// Remote deployment ID.
-        /// </summary>
         public readonly string DeploymentId;
-        /// <summary>
-        /// Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         public readonly string? RefId;
-        /// <summary>
-        /// If true, skip the cluster during search when disconnected. Defaults to `false`.
-        /// </summary>
         public readonly bool? SkipUnavailable;
 
         [OutputConstructor]

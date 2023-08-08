@@ -7,23 +7,27 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+var _ = internal.GetEnvOrDefault
+
 type DeploymentApm struct {
-	// APM settings applied to all topologies unless overridden in the `topology` element.
-	Config *DeploymentApmConfig `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId *string `pulumi:"elasticsearchClusterRefId"`
-	HttpEndpoint              *string `pulumi:"httpEndpoint"`
-	HttpsEndpoint             *string `pulumi:"httpsEndpoint"`
-	// Can be set on the APM resource. The default value `main-apm` is recommended.
-	RefId *string `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Apm configuration options for the APM Server
+	Config                    *DeploymentApmConfig `pulumi:"config"`
+	ElasticsearchClusterRefId *string              `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              *string              `pulumi:"httpEndpoint"`
+	HttpsEndpoint             *string              `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId   *string              `pulumi:"instanceConfigurationId"`
+	RefId                     *string              `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology *DeploymentApmTopology `pulumi:"topology"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentApmInput is an input type that accepts DeploymentApmArgs and DeploymentApmOutput values.
@@ -38,19 +42,20 @@ type DeploymentApmInput interface {
 }
 
 type DeploymentApmArgs struct {
-	// APM settings applied to all topologies unless overridden in the `topology` element.
-	Config DeploymentApmConfigPtrInput `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId pulumi.StringPtrInput `pulumi:"elasticsearchClusterRefId"`
-	HttpEndpoint              pulumi.StringPtrInput `pulumi:"httpEndpoint"`
-	HttpsEndpoint             pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
-	// Can be set on the APM resource. The default value `main-apm` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Apm configuration options for the APM Server
+	Config                    DeploymentApmConfigPtrInput `pulumi:"config"`
+	ElasticsearchClusterRefId pulumi.StringPtrInput       `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              pulumi.StringPtrInput       `pulumi:"httpEndpoint"`
+	HttpsEndpoint             pulumi.StringPtrInput       `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId   pulumi.StringPtrInput       `pulumi:"instanceConfigurationId"`
+	RefId                     pulumi.StringPtrInput       `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology DeploymentApmTopologyPtrInput `pulumi:"topology"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentApmArgs) ElementType() reflect.Type {
@@ -130,12 +135,11 @@ func (o DeploymentApmOutput) ToDeploymentApmPtrOutputWithContext(ctx context.Con
 	}).(DeploymentApmPtrOutput)
 }
 
-// APM settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Apm configuration options for the APM Server
 func (o DeploymentApmOutput) Config() DeploymentApmConfigPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *DeploymentApmConfig { return v.Config }).(DeploymentApmConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentApmOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.ElasticsearchClusterRefId }).(pulumi.StringPtrOutput)
 }
@@ -148,12 +152,15 @@ func (o DeploymentApmOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the APM resource. The default value `main-apm` is recommended.
+func (o DeploymentApmOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentApm) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
 func (o DeploymentApmOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentApmOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -162,9 +169,17 @@ func (o DeploymentApmOutput) ResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentApmOutput) Topology() DeploymentApmTopologyPtrOutput {
-	return o.ApplyT(func(v DeploymentApm) *DeploymentApmTopology { return v.Topology }).(DeploymentApmTopologyPtrOutput)
+func (o DeploymentApmOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentApm) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentApmOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentApm) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentApmOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentApm) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
 type DeploymentApmPtrOutput struct{ *pulumi.OutputState }
@@ -191,7 +206,7 @@ func (o DeploymentApmPtrOutput) Elem() DeploymentApmOutput {
 	}).(DeploymentApmOutput)
 }
 
-// APM settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Apm configuration options for the APM Server
 func (o DeploymentApmPtrOutput) Config() DeploymentApmConfigPtrOutput {
 	return o.ApplyT(func(v *DeploymentApm) *DeploymentApmConfig {
 		if v == nil {
@@ -201,7 +216,6 @@ func (o DeploymentApmPtrOutput) Config() DeploymentApmConfigPtrOutput {
 	}).(DeploymentApmConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentApmPtrOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApm) *string {
 		if v == nil {
@@ -229,7 +243,15 @@ func (o DeploymentApmPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the APM resource. The default value `main-apm` is recommended.
+func (o DeploymentApmPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentApm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o DeploymentApmPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApm) *string {
 		if v == nil {
@@ -239,7 +261,7 @@ func (o DeploymentApmPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentApmPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApm) *string {
 		if v == nil {
@@ -258,28 +280,41 @@ func (o DeploymentApmPtrOutput) ResourceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentApmPtrOutput) Topology() DeploymentApmTopologyPtrOutput {
-	return o.ApplyT(func(v *DeploymentApm) *DeploymentApmTopology {
+func (o DeploymentApmPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentApm) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Topology
-	}).(DeploymentApmTopologyPtrOutput)
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentApmPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentApm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentApmPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentApm) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentApmConfig struct {
-	// Enable debug mode for APM servers. Defaults to `false`.
-	DebugEnabled *bool   `pulumi:"debugEnabled"`
-	DockerImage  *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DebugEnabled             *bool   `pulumi:"debugEnabled"`
+	DockerImage              *string `pulumi:"dockerImage"`
+	UserSettingsJson         *string `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentApmConfigInput is an input type that accepts DeploymentApmConfigArgs and DeploymentApmConfigOutput values.
@@ -294,17 +329,12 @@ type DeploymentApmConfigInput interface {
 }
 
 type DeploymentApmConfigArgs struct {
-	// Enable debug mode for APM servers. Defaults to `false`.
-	DebugEnabled pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
-	DockerImage  pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DebugEnabled             pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
+	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
+	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentApmConfigArgs) ElementType() reflect.Type {
@@ -384,7 +414,6 @@ func (o DeploymentApmConfigOutput) ToDeploymentApmConfigPtrOutputWithContext(ctx
 	}).(DeploymentApmConfigPtrOutput)
 }
 
-// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentApmConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -393,22 +422,18 @@ func (o DeploymentApmConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -437,7 +462,6 @@ func (o DeploymentApmConfigPtrOutput) Elem() DeploymentApmConfigOutput {
 	}).(DeploymentApmConfigOutput)
 }
 
-// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentApmConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *bool {
 		if v == nil {
@@ -456,7 +480,6 @@ func (o DeploymentApmConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -466,7 +489,6 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -476,7 +498,6 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -486,7 +507,6 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentApmConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -496,227 +516,42 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-type DeploymentApmTopology struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size *string `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount *int `pulumi:"zoneCount"`
-}
-
-// DeploymentApmTopologyInput is an input type that accepts DeploymentApmTopologyArgs and DeploymentApmTopologyOutput values.
-// You can construct a concrete instance of `DeploymentApmTopologyInput` via:
-//
-//	DeploymentApmTopologyArgs{...}
-type DeploymentApmTopologyInput interface {
-	pulumi.Input
-
-	ToDeploymentApmTopologyOutput() DeploymentApmTopologyOutput
-	ToDeploymentApmTopologyOutputWithContext(context.Context) DeploymentApmTopologyOutput
-}
-
-type DeploymentApmTopologyArgs struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size pulumi.StringPtrInput `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
-}
-
-func (DeploymentApmTopologyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentApmTopology)(nil)).Elem()
-}
-
-func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyOutput() DeploymentApmTopologyOutput {
-	return i.ToDeploymentApmTopologyOutputWithContext(context.Background())
-}
-
-func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyOutputWithContext(ctx context.Context) DeploymentApmTopologyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyOutput)
-}
-
-func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
-	return i.ToDeploymentApmTopologyPtrOutputWithContext(context.Background())
-}
-
-func (i DeploymentApmTopologyArgs) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyOutput).ToDeploymentApmTopologyPtrOutputWithContext(ctx)
-}
-
-// DeploymentApmTopologyPtrInput is an input type that accepts DeploymentApmTopologyArgs, DeploymentApmTopologyPtr and DeploymentApmTopologyPtrOutput values.
-// You can construct a concrete instance of `DeploymentApmTopologyPtrInput` via:
-//
-//	        DeploymentApmTopologyArgs{...}
-//
-//	or:
-//
-//	        nil
-type DeploymentApmTopologyPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput
-	ToDeploymentApmTopologyPtrOutputWithContext(context.Context) DeploymentApmTopologyPtrOutput
-}
-
-type deploymentApmTopologyPtrType DeploymentApmTopologyArgs
-
-func DeploymentApmTopologyPtr(v *DeploymentApmTopologyArgs) DeploymentApmTopologyPtrInput {
-	return (*deploymentApmTopologyPtrType)(v)
-}
-
-func (*deploymentApmTopologyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentApmTopology)(nil)).Elem()
-}
-
-func (i *deploymentApmTopologyPtrType) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
-	return i.ToDeploymentApmTopologyPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentApmTopologyPtrType) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmTopologyPtrOutput)
-}
-
-type DeploymentApmTopologyOutput struct{ *pulumi.OutputState }
-
-func (DeploymentApmTopologyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentApmTopology)(nil)).Elem()
-}
-
-func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyOutput() DeploymentApmTopologyOutput {
-	return o
-}
-
-func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyOutputWithContext(ctx context.Context) DeploymentApmTopologyOutput {
-	return o
-}
-
-func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
-	return o.ToDeploymentApmTopologyPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentApmTopologyOutput) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentApmTopology) *DeploymentApmTopology {
-		return &v
-	}).(DeploymentApmTopologyPtrOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentApmTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentApmTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentApmTopologyOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentApmTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentApmTopologyOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentApmTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentApmTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DeploymentApmTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
-}
-
-type DeploymentApmTopologyPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentApmTopologyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentApmTopology)(nil)).Elem()
-}
-
-func (o DeploymentApmTopologyPtrOutput) ToDeploymentApmTopologyPtrOutput() DeploymentApmTopologyPtrOutput {
-	return o
-}
-
-func (o DeploymentApmTopologyPtrOutput) ToDeploymentApmTopologyPtrOutputWithContext(ctx context.Context) DeploymentApmTopologyPtrOutput {
-	return o
-}
-
-func (o DeploymentApmTopologyPtrOutput) Elem() DeploymentApmTopologyOutput {
-	return o.ApplyT(func(v *DeploymentApmTopology) DeploymentApmTopology {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentApmTopology
-		return ret
-	}).(DeploymentApmTopologyOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentApmTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentApmTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.InstanceConfigurationId
-	}).(pulumi.StringPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentApmTopologyPtrOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentApmTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Size
-	}).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentApmTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentApmTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SizeResource
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentApmTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DeploymentApmTopology) *int {
-		if v == nil {
-			return nil
-		}
-		return v.ZoneCount
-	}).(pulumi.IntPtrOutput)
-}
-
 type DeploymentElasticsearch struct {
-	// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
-	Autoscale *string `pulumi:"autoscale"`
+	// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+	Autoscale *bool   `pulumi:"autoscale"`
 	CloudId   *string `pulumi:"cloudId"`
-	// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+	// 'cold' topology element
+	Cold *DeploymentElasticsearchCold `pulumi:"cold"`
+	// Elasticsearch settings which will be applied to all topologies
 	Config *DeploymentElasticsearchConfig `pulumi:"config"`
-	// Custom Elasticsearch bundles or plugins. Can be set multiple times.
-	Extensions    []DeploymentElasticsearchExtension `pulumi:"extensions"`
-	HttpEndpoint  *string                            `pulumi:"httpEndpoint"`
-	HttpsEndpoint *string                            `pulumi:"httpsEndpoint"`
-	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+	// 'coordinating' topology element
+	Coordinating *DeploymentElasticsearchCoordinating `pulumi:"coordinating"`
+	// Optional Elasticsearch extensions such as custom bundles or plugins.
+	Extensions []DeploymentElasticsearchExtension `pulumi:"extensions"`
+	// 'frozen' topology element
+	Frozen *DeploymentElasticsearchFrozen `pulumi:"frozen"`
+	// 'hot' topology element
+	Hot           DeploymentElasticsearchHot `pulumi:"hot"`
+	HttpEndpoint  *string                    `pulumi:"httpEndpoint"`
+	HttpsEndpoint *string                    `pulumi:"httpsEndpoint"`
+	// 'master' topology element
+	Master *DeploymentElasticsearchMaster `pulumi:"master"`
+	// 'ml' topology element
+	Ml *DeploymentElasticsearchMl `pulumi:"ml"`
+	// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 	RefId *string `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region *string `pulumi:"region"`
-	// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+	// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 	RemoteClusters []DeploymentElasticsearchRemoteCluster `pulumi:"remoteClusters"`
 	ResourceId     *string                                `pulumi:"resourceId"`
-	// Restores data from a snapshot of another deployment.
+	// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+	Snapshot       *DeploymentElasticsearchSnapshot       `pulumi:"snapshot"`
 	SnapshotSource *DeploymentElasticsearchSnapshotSource `pulumi:"snapshotSource"`
-	// Choose the configuration strategy used to apply the changes.
-	Strategy *DeploymentElasticsearchStrategy `pulumi:"strategy"`
-	// Can be set multiple times to compose complex topologies.
-	Topologies []DeploymentElasticsearchTopology `pulumi:"topologies"`
-	// The trust relationships with other ESS accounts.
-	TrustAccounts []DeploymentElasticsearchTrustAccount `pulumi:"trustAccounts"`
-	// The trust relationship with external entities (remote environments, remote accounts...).
+	Strategy       *string                                `pulumi:"strategy"`
+	TrustAccounts  []DeploymentElasticsearchTrustAccount  `pulumi:"trustAccounts"`
 	TrustExternals []DeploymentElasticsearchTrustExternal `pulumi:"trustExternals"`
+	Warm           *DeploymentElasticsearchWarm           `pulumi:"warm"`
 }
 
 // DeploymentElasticsearchInput is an input type that accepts DeploymentElasticsearchArgs and DeploymentElasticsearchOutput values.
@@ -731,32 +566,41 @@ type DeploymentElasticsearchInput interface {
 }
 
 type DeploymentElasticsearchArgs struct {
-	// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
-	Autoscale pulumi.StringPtrInput `pulumi:"autoscale"`
+	// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+	Autoscale pulumi.BoolPtrInput   `pulumi:"autoscale"`
 	CloudId   pulumi.StringPtrInput `pulumi:"cloudId"`
-	// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+	// 'cold' topology element
+	Cold DeploymentElasticsearchColdPtrInput `pulumi:"cold"`
+	// Elasticsearch settings which will be applied to all topologies
 	Config DeploymentElasticsearchConfigPtrInput `pulumi:"config"`
-	// Custom Elasticsearch bundles or plugins. Can be set multiple times.
-	Extensions    DeploymentElasticsearchExtensionArrayInput `pulumi:"extensions"`
-	HttpEndpoint  pulumi.StringPtrInput                      `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringPtrInput                      `pulumi:"httpsEndpoint"`
-	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+	// 'coordinating' topology element
+	Coordinating DeploymentElasticsearchCoordinatingPtrInput `pulumi:"coordinating"`
+	// Optional Elasticsearch extensions such as custom bundles or plugins.
+	Extensions DeploymentElasticsearchExtensionArrayInput `pulumi:"extensions"`
+	// 'frozen' topology element
+	Frozen DeploymentElasticsearchFrozenPtrInput `pulumi:"frozen"`
+	// 'hot' topology element
+	Hot           DeploymentElasticsearchHotInput `pulumi:"hot"`
+	HttpEndpoint  pulumi.StringPtrInput           `pulumi:"httpEndpoint"`
+	HttpsEndpoint pulumi.StringPtrInput           `pulumi:"httpsEndpoint"`
+	// 'master' topology element
+	Master DeploymentElasticsearchMasterPtrInput `pulumi:"master"`
+	// 'ml' topology element
+	Ml DeploymentElasticsearchMlPtrInput `pulumi:"ml"`
+	// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+	// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 	RemoteClusters DeploymentElasticsearchRemoteClusterArrayInput `pulumi:"remoteClusters"`
 	ResourceId     pulumi.StringPtrInput                          `pulumi:"resourceId"`
-	// Restores data from a snapshot of another deployment.
-	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput `pulumi:"snapshotSource"`
-	// Choose the configuration strategy used to apply the changes.
-	Strategy DeploymentElasticsearchStrategyPtrInput `pulumi:"strategy"`
-	// Can be set multiple times to compose complex topologies.
-	Topologies DeploymentElasticsearchTopologyArrayInput `pulumi:"topologies"`
-	// The trust relationships with other ESS accounts.
-	TrustAccounts DeploymentElasticsearchTrustAccountArrayInput `pulumi:"trustAccounts"`
-	// The trust relationship with external entities (remote environments, remote accounts...).
+	// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+	Snapshot       DeploymentElasticsearchSnapshotPtrInput        `pulumi:"snapshot"`
+	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput  `pulumi:"snapshotSource"`
+	Strategy       pulumi.StringPtrInput                          `pulumi:"strategy"`
+	TrustAccounts  DeploymentElasticsearchTrustAccountArrayInput  `pulumi:"trustAccounts"`
 	TrustExternals DeploymentElasticsearchTrustExternalArrayInput `pulumi:"trustExternals"`
+	Warm           DeploymentElasticsearchWarmPtrInput            `pulumi:"warm"`
 }
 
 func (DeploymentElasticsearchArgs) ElementType() reflect.Type {
@@ -836,23 +680,43 @@ func (o DeploymentElasticsearchOutput) ToDeploymentElasticsearchPtrOutputWithCon
 	}).(DeploymentElasticsearchPtrOutput)
 }
 
-// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
-func (o DeploymentElasticsearchOutput) Autoscale() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Autoscale }).(pulumi.StringPtrOutput)
+// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+func (o DeploymentElasticsearchOutput) Autoscale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
 func (o DeploymentElasticsearchOutput) CloudId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.CloudId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+// 'cold' topology element
+func (o DeploymentElasticsearchOutput) Cold() DeploymentElasticsearchColdPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchCold { return v.Cold }).(DeploymentElasticsearchColdPtrOutput)
+}
+
+// Elasticsearch settings which will be applied to all topologies
 func (o DeploymentElasticsearchOutput) Config() DeploymentElasticsearchConfigPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchConfig { return v.Config }).(DeploymentElasticsearchConfigPtrOutput)
 }
 
-// Custom Elasticsearch bundles or plugins. Can be set multiple times.
+// 'coordinating' topology element
+func (o DeploymentElasticsearchOutput) Coordinating() DeploymentElasticsearchCoordinatingPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchCoordinating { return v.Coordinating }).(DeploymentElasticsearchCoordinatingPtrOutput)
+}
+
+// Optional Elasticsearch extensions such as custom bundles or plugins.
 func (o DeploymentElasticsearchOutput) Extensions() DeploymentElasticsearchExtensionArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchExtension { return v.Extensions }).(DeploymentElasticsearchExtensionArrayOutput)
+}
+
+// 'frozen' topology element
+func (o DeploymentElasticsearchOutput) Frozen() DeploymentElasticsearchFrozenPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchFrozen { return v.Frozen }).(DeploymentElasticsearchFrozenPtrOutput)
+}
+
+// 'hot' topology element
+func (o DeploymentElasticsearchOutput) Hot() DeploymentElasticsearchHotOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) DeploymentElasticsearchHot { return v.Hot }).(DeploymentElasticsearchHotOutput)
 }
 
 func (o DeploymentElasticsearchOutput) HttpEndpoint() pulumi.StringPtrOutput {
@@ -863,17 +727,27 @@ func (o DeploymentElasticsearchOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+// 'master' topology element
+func (o DeploymentElasticsearchOutput) Master() DeploymentElasticsearchMasterPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchMaster { return v.Master }).(DeploymentElasticsearchMasterPtrOutput)
+}
+
+// 'ml' topology element
+func (o DeploymentElasticsearchOutput) Ml() DeploymentElasticsearchMlPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchMl { return v.Ml }).(DeploymentElasticsearchMlPtrOutput)
+}
+
+// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 func (o DeploymentElasticsearchOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentElasticsearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 func (o DeploymentElasticsearchOutput) RemoteClusters() DeploymentElasticsearchRemoteClusterArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchRemoteCluster { return v.RemoteClusters }).(DeploymentElasticsearchRemoteClusterArrayOutput)
 }
@@ -882,29 +756,29 @@ func (o DeploymentElasticsearchOutput) ResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
 }
 
-// Restores data from a snapshot of another deployment.
+// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+func (o DeploymentElasticsearchOutput) Snapshot() DeploymentElasticsearchSnapshotPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshot { return v.Snapshot }).(DeploymentElasticsearchSnapshotPtrOutput)
+}
+
 func (o DeploymentElasticsearchOutput) SnapshotSource() DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource { return v.SnapshotSource }).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
-// Choose the configuration strategy used to apply the changes.
-func (o DeploymentElasticsearchOutput) Strategy() DeploymentElasticsearchStrategyPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchStrategy { return v.Strategy }).(DeploymentElasticsearchStrategyPtrOutput)
+func (o DeploymentElasticsearchOutput) Strategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Strategy }).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentElasticsearchOutput) Topologies() DeploymentElasticsearchTopologyArrayOutput {
-	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchTopology { return v.Topologies }).(DeploymentElasticsearchTopologyArrayOutput)
-}
-
-// The trust relationships with other ESS accounts.
 func (o DeploymentElasticsearchOutput) TrustAccounts() DeploymentElasticsearchTrustAccountArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchTrustAccount { return v.TrustAccounts }).(DeploymentElasticsearchTrustAccountArrayOutput)
 }
 
-// The trust relationship with external entities (remote environments, remote accounts...).
 func (o DeploymentElasticsearchOutput) TrustExternals() DeploymentElasticsearchTrustExternalArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchTrustExternal { return v.TrustExternals }).(DeploymentElasticsearchTrustExternalArrayOutput)
+}
+
+func (o DeploymentElasticsearchOutput) Warm() DeploymentElasticsearchWarmPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchWarm { return v.Warm }).(DeploymentElasticsearchWarmPtrOutput)
 }
 
 type DeploymentElasticsearchPtrOutput struct{ *pulumi.OutputState }
@@ -931,14 +805,14 @@ func (o DeploymentElasticsearchPtrOutput) Elem() DeploymentElasticsearchOutput {
 	}).(DeploymentElasticsearchOutput)
 }
 
-// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
-func (o DeploymentElasticsearchPtrOutput) Autoscale() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
+// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+func (o DeploymentElasticsearchPtrOutput) Autoscale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *bool {
 		if v == nil {
 			return nil
 		}
 		return v.Autoscale
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.BoolPtrOutput)
 }
 
 func (o DeploymentElasticsearchPtrOutput) CloudId() pulumi.StringPtrOutput {
@@ -950,7 +824,17 @@ func (o DeploymentElasticsearchPtrOutput) CloudId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+// 'cold' topology element
+func (o DeploymentElasticsearchPtrOutput) Cold() DeploymentElasticsearchColdPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchCold {
+		if v == nil {
+			return nil
+		}
+		return v.Cold
+	}).(DeploymentElasticsearchColdPtrOutput)
+}
+
+// Elasticsearch settings which will be applied to all topologies
 func (o DeploymentElasticsearchPtrOutput) Config() DeploymentElasticsearchConfigPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchConfig {
 		if v == nil {
@@ -960,7 +844,17 @@ func (o DeploymentElasticsearchPtrOutput) Config() DeploymentElasticsearchConfig
 	}).(DeploymentElasticsearchConfigPtrOutput)
 }
 
-// Custom Elasticsearch bundles or plugins. Can be set multiple times.
+// 'coordinating' topology element
+func (o DeploymentElasticsearchPtrOutput) Coordinating() DeploymentElasticsearchCoordinatingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchCoordinating {
+		if v == nil {
+			return nil
+		}
+		return v.Coordinating
+	}).(DeploymentElasticsearchCoordinatingPtrOutput)
+}
+
+// Optional Elasticsearch extensions such as custom bundles or plugins.
 func (o DeploymentElasticsearchPtrOutput) Extensions() DeploymentElasticsearchExtensionArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchExtension {
 		if v == nil {
@@ -968,6 +862,26 @@ func (o DeploymentElasticsearchPtrOutput) Extensions() DeploymentElasticsearchEx
 		}
 		return v.Extensions
 	}).(DeploymentElasticsearchExtensionArrayOutput)
+}
+
+// 'frozen' topology element
+func (o DeploymentElasticsearchPtrOutput) Frozen() DeploymentElasticsearchFrozenPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchFrozen {
+		if v == nil {
+			return nil
+		}
+		return v.Frozen
+	}).(DeploymentElasticsearchFrozenPtrOutput)
+}
+
+// 'hot' topology element
+func (o DeploymentElasticsearchPtrOutput) Hot() DeploymentElasticsearchHotPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchHot {
+		if v == nil {
+			return nil
+		}
+		return &v.Hot
+	}).(DeploymentElasticsearchHotPtrOutput)
 }
 
 func (o DeploymentElasticsearchPtrOutput) HttpEndpoint() pulumi.StringPtrOutput {
@@ -988,7 +902,27 @@ func (o DeploymentElasticsearchPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+// 'master' topology element
+func (o DeploymentElasticsearchPtrOutput) Master() DeploymentElasticsearchMasterPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchMaster {
+		if v == nil {
+			return nil
+		}
+		return v.Master
+	}).(DeploymentElasticsearchMasterPtrOutput)
+}
+
+// 'ml' topology element
+func (o DeploymentElasticsearchPtrOutput) Ml() DeploymentElasticsearchMlPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchMl {
+		if v == nil {
+			return nil
+		}
+		return v.Ml
+	}).(DeploymentElasticsearchMlPtrOutput)
+}
+
+// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 func (o DeploymentElasticsearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -998,7 +932,7 @@ func (o DeploymentElasticsearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentElasticsearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -1008,7 +942,7 @@ func (o DeploymentElasticsearchPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 func (o DeploymentElasticsearchPtrOutput) RemoteClusters() DeploymentElasticsearchRemoteClusterArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchRemoteCluster {
 		if v == nil {
@@ -1027,7 +961,16 @@ func (o DeploymentElasticsearchPtrOutput) ResourceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Restores data from a snapshot of another deployment.
+// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+func (o DeploymentElasticsearchPtrOutput) Snapshot() DeploymentElasticsearchSnapshotPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchSnapshot {
+		if v == nil {
+			return nil
+		}
+		return v.Snapshot
+	}).(DeploymentElasticsearchSnapshotPtrOutput)
+}
+
 func (o DeploymentElasticsearchPtrOutput) SnapshotSource() DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource {
 		if v == nil {
@@ -1037,27 +980,15 @@ func (o DeploymentElasticsearchPtrOutput) SnapshotSource() DeploymentElasticsear
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
-// Choose the configuration strategy used to apply the changes.
-func (o DeploymentElasticsearchPtrOutput) Strategy() DeploymentElasticsearchStrategyPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchStrategy {
+func (o DeploymentElasticsearchPtrOutput) Strategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
 			return nil
 		}
 		return v.Strategy
-	}).(DeploymentElasticsearchStrategyPtrOutput)
+	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentElasticsearchPtrOutput) Topologies() DeploymentElasticsearchTopologyArrayOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchTopology {
-		if v == nil {
-			return nil
-		}
-		return v.Topologies
-	}).(DeploymentElasticsearchTopologyArrayOutput)
-}
-
-// The trust relationships with other ESS accounts.
 func (o DeploymentElasticsearchPtrOutput) TrustAccounts() DeploymentElasticsearchTrustAccountArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchTrustAccount {
 		if v == nil {
@@ -1067,7 +998,6 @@ func (o DeploymentElasticsearchPtrOutput) TrustAccounts() DeploymentElasticsearc
 	}).(DeploymentElasticsearchTrustAccountArrayOutput)
 }
 
-// The trust relationship with external entities (remote environments, remote accounts...).
 func (o DeploymentElasticsearchPtrOutput) TrustExternals() DeploymentElasticsearchTrustExternalArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchTrustExternal {
 		if v == nil {
@@ -1077,18 +1007,483 @@ func (o DeploymentElasticsearchPtrOutput) TrustExternals() DeploymentElasticsear
 	}).(DeploymentElasticsearchTrustExternalArrayOutput)
 }
 
+func (o DeploymentElasticsearchPtrOutput) Warm() DeploymentElasticsearchWarmPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchWarm {
+		if v == nil {
+			return nil
+		}
+		return v.Warm
+	}).(DeploymentElasticsearchWarmPtrOutput)
+}
+
+type DeploymentElasticsearchCold struct {
+	Autoscaling             DeploymentElasticsearchColdAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                               `pulumi:"nodeRoles"`
+	NodeTypeData            *string                                `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                                `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                                `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                                `pulumi:"nodeTypeMl"`
+	Size                    *string                                `pulumi:"size"`
+	SizeResource            *string                                `pulumi:"sizeResource"`
+	ZoneCount               *int                                   `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchColdInput is an input type that accepts DeploymentElasticsearchColdArgs and DeploymentElasticsearchColdOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchColdInput` via:
+//
+//	DeploymentElasticsearchColdArgs{...}
+type DeploymentElasticsearchColdInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchColdOutput() DeploymentElasticsearchColdOutput
+	ToDeploymentElasticsearchColdOutputWithContext(context.Context) DeploymentElasticsearchColdOutput
+}
+
+type DeploymentElasticsearchColdArgs struct {
+	Autoscaling             DeploymentElasticsearchColdAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                       `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                     `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                       `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                       `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                       `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                       `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                       `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                       `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                          `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchColdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchCold)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchColdArgs) ToDeploymentElasticsearchColdOutput() DeploymentElasticsearchColdOutput {
+	return i.ToDeploymentElasticsearchColdOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchColdArgs) ToDeploymentElasticsearchColdOutputWithContext(ctx context.Context) DeploymentElasticsearchColdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdOutput)
+}
+
+func (i DeploymentElasticsearchColdArgs) ToDeploymentElasticsearchColdPtrOutput() DeploymentElasticsearchColdPtrOutput {
+	return i.ToDeploymentElasticsearchColdPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchColdArgs) ToDeploymentElasticsearchColdPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdOutput).ToDeploymentElasticsearchColdPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchColdPtrInput is an input type that accepts DeploymentElasticsearchColdArgs, DeploymentElasticsearchColdPtr and DeploymentElasticsearchColdPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchColdPtrInput` via:
+//
+//	        DeploymentElasticsearchColdArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchColdPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchColdPtrOutput() DeploymentElasticsearchColdPtrOutput
+	ToDeploymentElasticsearchColdPtrOutputWithContext(context.Context) DeploymentElasticsearchColdPtrOutput
+}
+
+type deploymentElasticsearchColdPtrType DeploymentElasticsearchColdArgs
+
+func DeploymentElasticsearchColdPtr(v *DeploymentElasticsearchColdArgs) DeploymentElasticsearchColdPtrInput {
+	return (*deploymentElasticsearchColdPtrType)(v)
+}
+
+func (*deploymentElasticsearchColdPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchCold)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchColdPtrType) ToDeploymentElasticsearchColdPtrOutput() DeploymentElasticsearchColdPtrOutput {
+	return i.ToDeploymentElasticsearchColdPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchColdPtrType) ToDeploymentElasticsearchColdPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdPtrOutput)
+}
+
+type DeploymentElasticsearchColdOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchColdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchCold)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchColdOutput) ToDeploymentElasticsearchColdOutput() DeploymentElasticsearchColdOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdOutput) ToDeploymentElasticsearchColdOutputWithContext(ctx context.Context) DeploymentElasticsearchColdOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdOutput) ToDeploymentElasticsearchColdPtrOutput() DeploymentElasticsearchColdPtrOutput {
+	return o.ToDeploymentElasticsearchColdPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchColdOutput) ToDeploymentElasticsearchColdPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchCold) *DeploymentElasticsearchCold {
+		return &v
+	}).(DeploymentElasticsearchColdPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) Autoscaling() DeploymentElasticsearchColdAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) DeploymentElasticsearchColdAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchColdAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCold) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchColdPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchColdPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchCold)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) ToDeploymentElasticsearchColdPtrOutput() DeploymentElasticsearchColdPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) ToDeploymentElasticsearchColdPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) Elem() DeploymentElasticsearchColdOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) DeploymentElasticsearchCold {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchCold
+		return ret
+	}).(DeploymentElasticsearchColdOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) Autoscaling() DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *DeploymentElasticsearchColdAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchColdAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCold) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchColdAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchColdAutoscalingInput is an input type that accepts DeploymentElasticsearchColdAutoscalingArgs and DeploymentElasticsearchColdAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchColdAutoscalingInput` via:
+//
+//	DeploymentElasticsearchColdAutoscalingArgs{...}
+type DeploymentElasticsearchColdAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchColdAutoscalingOutput() DeploymentElasticsearchColdAutoscalingOutput
+	ToDeploymentElasticsearchColdAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchColdAutoscalingOutput
+}
+
+type DeploymentElasticsearchColdAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchColdAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchColdAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchColdAutoscalingArgs) ToDeploymentElasticsearchColdAutoscalingOutput() DeploymentElasticsearchColdAutoscalingOutput {
+	return i.ToDeploymentElasticsearchColdAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchColdAutoscalingArgs) ToDeploymentElasticsearchColdAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchColdAutoscalingArgs) ToDeploymentElasticsearchColdAutoscalingPtrOutput() DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchColdAutoscalingArgs) ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdAutoscalingOutput).ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchColdAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchColdAutoscalingArgs, DeploymentElasticsearchColdAutoscalingPtr and DeploymentElasticsearchColdAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchColdAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchColdAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchColdAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchColdAutoscalingPtrOutput() DeploymentElasticsearchColdAutoscalingPtrOutput
+	ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchColdAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchColdAutoscalingPtrType DeploymentElasticsearchColdAutoscalingArgs
+
+func DeploymentElasticsearchColdAutoscalingPtr(v *DeploymentElasticsearchColdAutoscalingArgs) DeploymentElasticsearchColdAutoscalingPtrInput {
+	return (*deploymentElasticsearchColdAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchColdAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchColdAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchColdAutoscalingPtrType) ToDeploymentElasticsearchColdAutoscalingPtrOutput() DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchColdAutoscalingPtrType) ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchColdAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchColdAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchColdAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) ToDeploymentElasticsearchColdAutoscalingOutput() DeploymentElasticsearchColdAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) ToDeploymentElasticsearchColdAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) ToDeploymentElasticsearchColdAutoscalingPtrOutput() DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchColdAutoscaling) *DeploymentElasticsearchColdAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchColdAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchColdAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchColdAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchColdAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) ToDeploymentElasticsearchColdAutoscalingPtrOutput() DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) Elem() DeploymentElasticsearchColdAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) DeploymentElasticsearchColdAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchColdAutoscaling
+		return ret
+	}).(DeploymentElasticsearchColdAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentElasticsearchConfig struct {
-	DockerImage *string `pulumi:"dockerImage"`
-	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-	Plugins []string `pulumi:"plugins"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
+	DockerImage              *string  `pulumi:"dockerImage"`
+	Plugins                  []string `pulumi:"plugins"`
+	UserSettingsJson         *string  `pulumi:"userSettingsJson"`
+	UserSettingsOverrideJson *string  `pulumi:"userSettingsOverrideJson"`
+	UserSettingsOverrideYaml *string  `pulumi:"userSettingsOverrideYaml"`
+	UserSettingsYaml         *string  `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentElasticsearchConfigInput is an input type that accepts DeploymentElasticsearchConfigArgs and DeploymentElasticsearchConfigOutput values.
@@ -1103,17 +1498,12 @@ type DeploymentElasticsearchConfigInput interface {
 }
 
 type DeploymentElasticsearchConfigArgs struct {
-	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-	Plugins pulumi.StringArrayInput `pulumi:"plugins"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	DockerImage              pulumi.StringPtrInput   `pulumi:"dockerImage"`
+	Plugins                  pulumi.StringArrayInput `pulumi:"plugins"`
+	UserSettingsJson         pulumi.StringPtrInput   `pulumi:"userSettingsJson"`
+	UserSettingsOverrideJson pulumi.StringPtrInput   `pulumi:"userSettingsOverrideJson"`
+	UserSettingsOverrideYaml pulumi.StringPtrInput   `pulumi:"userSettingsOverrideYaml"`
+	UserSettingsYaml         pulumi.StringPtrInput   `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentElasticsearchConfigArgs) ElementType() reflect.Type {
@@ -1197,27 +1587,22 @@ func (o DeploymentElasticsearchConfigOutput) DockerImage() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
 func (o DeploymentElasticsearchConfigOutput) Plugins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -1255,7 +1640,6 @@ func (o DeploymentElasticsearchConfigPtrOutput) DockerImage() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
 func (o DeploymentElasticsearchConfigPtrOutput) Plugins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) []string {
 		if v == nil {
@@ -1265,7 +1649,6 @@ func (o DeploymentElasticsearchConfigPtrOutput) Plugins() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1275,7 +1658,6 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsJson() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1285,7 +1667,6 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideJson() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1295,7 +1676,6 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideYaml() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1305,14 +1685,474 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+type DeploymentElasticsearchCoordinating struct {
+	Autoscaling             DeploymentElasticsearchCoordinatingAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                                        `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                                       `pulumi:"nodeRoles"`
+	NodeTypeData            *string                                        `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                                        `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                                        `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                                        `pulumi:"nodeTypeMl"`
+	Size                    *string                                        `pulumi:"size"`
+	SizeResource            *string                                        `pulumi:"sizeResource"`
+	ZoneCount               *int                                           `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchCoordinatingInput is an input type that accepts DeploymentElasticsearchCoordinatingArgs and DeploymentElasticsearchCoordinatingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchCoordinatingInput` via:
+//
+//	DeploymentElasticsearchCoordinatingArgs{...}
+type DeploymentElasticsearchCoordinatingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchCoordinatingOutput() DeploymentElasticsearchCoordinatingOutput
+	ToDeploymentElasticsearchCoordinatingOutputWithContext(context.Context) DeploymentElasticsearchCoordinatingOutput
+}
+
+type DeploymentElasticsearchCoordinatingArgs struct {
+	Autoscaling             DeploymentElasticsearchCoordinatingAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                               `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                             `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                               `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                               `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                               `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                               `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                               `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                               `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                                  `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchCoordinatingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchCoordinating)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchCoordinatingArgs) ToDeploymentElasticsearchCoordinatingOutput() DeploymentElasticsearchCoordinatingOutput {
+	return i.ToDeploymentElasticsearchCoordinatingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchCoordinatingArgs) ToDeploymentElasticsearchCoordinatingOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingOutput)
+}
+
+func (i DeploymentElasticsearchCoordinatingArgs) ToDeploymentElasticsearchCoordinatingPtrOutput() DeploymentElasticsearchCoordinatingPtrOutput {
+	return i.ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchCoordinatingArgs) ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingOutput).ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchCoordinatingPtrInput is an input type that accepts DeploymentElasticsearchCoordinatingArgs, DeploymentElasticsearchCoordinatingPtr and DeploymentElasticsearchCoordinatingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchCoordinatingPtrInput` via:
+//
+//	        DeploymentElasticsearchCoordinatingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchCoordinatingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchCoordinatingPtrOutput() DeploymentElasticsearchCoordinatingPtrOutput
+	ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(context.Context) DeploymentElasticsearchCoordinatingPtrOutput
+}
+
+type deploymentElasticsearchCoordinatingPtrType DeploymentElasticsearchCoordinatingArgs
+
+func DeploymentElasticsearchCoordinatingPtr(v *DeploymentElasticsearchCoordinatingArgs) DeploymentElasticsearchCoordinatingPtrInput {
+	return (*deploymentElasticsearchCoordinatingPtrType)(v)
+}
+
+func (*deploymentElasticsearchCoordinatingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchCoordinating)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchCoordinatingPtrType) ToDeploymentElasticsearchCoordinatingPtrOutput() DeploymentElasticsearchCoordinatingPtrOutput {
+	return i.ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchCoordinatingPtrType) ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingPtrOutput)
+}
+
+type DeploymentElasticsearchCoordinatingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchCoordinatingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchCoordinating)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) ToDeploymentElasticsearchCoordinatingOutput() DeploymentElasticsearchCoordinatingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) ToDeploymentElasticsearchCoordinatingOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) ToDeploymentElasticsearchCoordinatingPtrOutput() DeploymentElasticsearchCoordinatingPtrOutput {
+	return o.ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchCoordinating) *DeploymentElasticsearchCoordinating {
+		return &v
+	}).(DeploymentElasticsearchCoordinatingPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) Autoscaling() DeploymentElasticsearchCoordinatingAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) DeploymentElasticsearchCoordinatingAutoscaling {
+		return v.Autoscaling
+	}).(DeploymentElasticsearchCoordinatingAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchCoordinatingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchCoordinatingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchCoordinating)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) ToDeploymentElasticsearchCoordinatingPtrOutput() DeploymentElasticsearchCoordinatingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) Elem() DeploymentElasticsearchCoordinatingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) DeploymentElasticsearchCoordinating {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchCoordinating
+		return ret
+	}).(DeploymentElasticsearchCoordinatingOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) Autoscaling() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *DeploymentElasticsearchCoordinatingAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchCoordinatingAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchCoordinatingAutoscalingInput is an input type that accepts DeploymentElasticsearchCoordinatingAutoscalingArgs and DeploymentElasticsearchCoordinatingAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchCoordinatingAutoscalingInput` via:
+//
+//	DeploymentElasticsearchCoordinatingAutoscalingArgs{...}
+type DeploymentElasticsearchCoordinatingAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchCoordinatingAutoscalingOutput() DeploymentElasticsearchCoordinatingAutoscalingOutput
+	ToDeploymentElasticsearchCoordinatingAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchCoordinatingAutoscalingOutput
+}
+
+type DeploymentElasticsearchCoordinatingAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchCoordinatingAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchCoordinatingAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToDeploymentElasticsearchCoordinatingAutoscalingOutput() DeploymentElasticsearchCoordinatingAutoscalingOutput {
+	return i.ToDeploymentElasticsearchCoordinatingAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToDeploymentElasticsearchCoordinatingAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutput() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingAutoscalingOutput).ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchCoordinatingAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchCoordinatingAutoscalingArgs, DeploymentElasticsearchCoordinatingAutoscalingPtr and DeploymentElasticsearchCoordinatingAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchCoordinatingAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchCoordinatingAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchCoordinatingAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutput() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput
+	ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchCoordinatingAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchCoordinatingAutoscalingPtrType DeploymentElasticsearchCoordinatingAutoscalingArgs
+
+func DeploymentElasticsearchCoordinatingAutoscalingPtr(v *DeploymentElasticsearchCoordinatingAutoscalingArgs) DeploymentElasticsearchCoordinatingAutoscalingPtrInput {
+	return (*deploymentElasticsearchCoordinatingAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchCoordinatingAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchCoordinatingAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchCoordinatingAutoscalingPtrType) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutput() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchCoordinatingAutoscalingPtrType) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchCoordinatingAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchCoordinatingAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchCoordinatingAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToDeploymentElasticsearchCoordinatingAutoscalingOutput() DeploymentElasticsearchCoordinatingAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToDeploymentElasticsearchCoordinatingAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutput() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchCoordinatingAutoscaling) *DeploymentElasticsearchCoordinatingAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchCoordinatingAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchCoordinatingAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutput() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) Elem() DeploymentElasticsearchCoordinatingAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) DeploymentElasticsearchCoordinatingAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchCoordinatingAutoscaling
+		return ret
+	}).(DeploymentElasticsearchCoordinatingAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentElasticsearchExtension struct {
-	// Extension name.
 	Name string `pulumi:"name"`
-	// Extension type, only `bundle` or `plugin` are supported.
 	Type string `pulumi:"type"`
-	// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-	Url string `pulumi:"url"`
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	Url  string `pulumi:"url"`
+	// Elastic Stack version to use for all of the deployment resources.
 	Version string `pulumi:"version"`
 }
 
@@ -1328,13 +2168,10 @@ type DeploymentElasticsearchExtensionInput interface {
 }
 
 type DeploymentElasticsearchExtensionArgs struct {
-	// Extension name.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Extension type, only `bundle` or `plugin` are supported.
 	Type pulumi.StringInput `pulumi:"type"`
-	// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-	Url pulumi.StringInput `pulumi:"url"`
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	Url  pulumi.StringInput `pulumi:"url"`
+	// Elastic Stack version to use for all of the deployment resources.
 	Version pulumi.StringInput `pulumi:"version"`
 }
 
@@ -1389,22 +2226,19 @@ func (o DeploymentElasticsearchExtensionOutput) ToDeploymentElasticsearchExtensi
 	return o
 }
 
-// Extension name.
 func (o DeploymentElasticsearchExtensionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Extension type, only `bundle` or `plugin` are supported.
 func (o DeploymentElasticsearchExtensionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
 func (o DeploymentElasticsearchExtensionOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+// Elastic Stack version to use for all of the deployment resources.
 func (o DeploymentElasticsearchExtensionOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -1429,15 +2263,1855 @@ func (o DeploymentElasticsearchExtensionArrayOutput) Index(i pulumi.IntInput) De
 	}).(DeploymentElasticsearchExtensionOutput)
 }
 
+type DeploymentElasticsearchFrozen struct {
+	Autoscaling             DeploymentElasticsearchFrozenAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                                  `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                                 `pulumi:"nodeRoles"`
+	NodeTypeData            *string                                  `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                                  `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                                  `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                                  `pulumi:"nodeTypeMl"`
+	Size                    *string                                  `pulumi:"size"`
+	SizeResource            *string                                  `pulumi:"sizeResource"`
+	ZoneCount               *int                                     `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchFrozenInput is an input type that accepts DeploymentElasticsearchFrozenArgs and DeploymentElasticsearchFrozenOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchFrozenInput` via:
+//
+//	DeploymentElasticsearchFrozenArgs{...}
+type DeploymentElasticsearchFrozenInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchFrozenOutput() DeploymentElasticsearchFrozenOutput
+	ToDeploymentElasticsearchFrozenOutputWithContext(context.Context) DeploymentElasticsearchFrozenOutput
+}
+
+type DeploymentElasticsearchFrozenArgs struct {
+	Autoscaling             DeploymentElasticsearchFrozenAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                       `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                         `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                         `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                         `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                         `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                         `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                         `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                            `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchFrozenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchFrozen)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchFrozenArgs) ToDeploymentElasticsearchFrozenOutput() DeploymentElasticsearchFrozenOutput {
+	return i.ToDeploymentElasticsearchFrozenOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchFrozenArgs) ToDeploymentElasticsearchFrozenOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenOutput)
+}
+
+func (i DeploymentElasticsearchFrozenArgs) ToDeploymentElasticsearchFrozenPtrOutput() DeploymentElasticsearchFrozenPtrOutput {
+	return i.ToDeploymentElasticsearchFrozenPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchFrozenArgs) ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenOutput).ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchFrozenPtrInput is an input type that accepts DeploymentElasticsearchFrozenArgs, DeploymentElasticsearchFrozenPtr and DeploymentElasticsearchFrozenPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchFrozenPtrInput` via:
+//
+//	        DeploymentElasticsearchFrozenArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchFrozenPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchFrozenPtrOutput() DeploymentElasticsearchFrozenPtrOutput
+	ToDeploymentElasticsearchFrozenPtrOutputWithContext(context.Context) DeploymentElasticsearchFrozenPtrOutput
+}
+
+type deploymentElasticsearchFrozenPtrType DeploymentElasticsearchFrozenArgs
+
+func DeploymentElasticsearchFrozenPtr(v *DeploymentElasticsearchFrozenArgs) DeploymentElasticsearchFrozenPtrInput {
+	return (*deploymentElasticsearchFrozenPtrType)(v)
+}
+
+func (*deploymentElasticsearchFrozenPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchFrozen)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchFrozenPtrType) ToDeploymentElasticsearchFrozenPtrOutput() DeploymentElasticsearchFrozenPtrOutput {
+	return i.ToDeploymentElasticsearchFrozenPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchFrozenPtrType) ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenPtrOutput)
+}
+
+type DeploymentElasticsearchFrozenOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchFrozenOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchFrozen)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchFrozenOutput) ToDeploymentElasticsearchFrozenOutput() DeploymentElasticsearchFrozenOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenOutput) ToDeploymentElasticsearchFrozenOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenOutput) ToDeploymentElasticsearchFrozenPtrOutput() DeploymentElasticsearchFrozenPtrOutput {
+	return o.ToDeploymentElasticsearchFrozenPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchFrozenOutput) ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchFrozen) *DeploymentElasticsearchFrozen {
+		return &v
+	}).(DeploymentElasticsearchFrozenPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) Autoscaling() DeploymentElasticsearchFrozenAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) DeploymentElasticsearchFrozenAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchFrozenAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchFrozenPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchFrozenPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchFrozen)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) ToDeploymentElasticsearchFrozenPtrOutput() DeploymentElasticsearchFrozenPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) Elem() DeploymentElasticsearchFrozenOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) DeploymentElasticsearchFrozen {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchFrozen
+		return ret
+	}).(DeploymentElasticsearchFrozenOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) Autoscaling() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *DeploymentElasticsearchFrozenAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchFrozenAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchFrozenAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchFrozenAutoscalingInput is an input type that accepts DeploymentElasticsearchFrozenAutoscalingArgs and DeploymentElasticsearchFrozenAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchFrozenAutoscalingInput` via:
+//
+//	DeploymentElasticsearchFrozenAutoscalingArgs{...}
+type DeploymentElasticsearchFrozenAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchFrozenAutoscalingOutput() DeploymentElasticsearchFrozenAutoscalingOutput
+	ToDeploymentElasticsearchFrozenAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchFrozenAutoscalingOutput
+}
+
+type DeploymentElasticsearchFrozenAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchFrozenAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchFrozenAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToDeploymentElasticsearchFrozenAutoscalingOutput() DeploymentElasticsearchFrozenAutoscalingOutput {
+	return i.ToDeploymentElasticsearchFrozenAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToDeploymentElasticsearchFrozenAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToDeploymentElasticsearchFrozenAutoscalingPtrOutput() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenAutoscalingOutput).ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchFrozenAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchFrozenAutoscalingArgs, DeploymentElasticsearchFrozenAutoscalingPtr and DeploymentElasticsearchFrozenAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchFrozenAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchFrozenAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchFrozenAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchFrozenAutoscalingPtrOutput() DeploymentElasticsearchFrozenAutoscalingPtrOutput
+	ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchFrozenAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchFrozenAutoscalingPtrType DeploymentElasticsearchFrozenAutoscalingArgs
+
+func DeploymentElasticsearchFrozenAutoscalingPtr(v *DeploymentElasticsearchFrozenAutoscalingArgs) DeploymentElasticsearchFrozenAutoscalingPtrInput {
+	return (*deploymentElasticsearchFrozenAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchFrozenAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchFrozenAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchFrozenAutoscalingPtrType) ToDeploymentElasticsearchFrozenAutoscalingPtrOutput() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchFrozenAutoscalingPtrType) ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchFrozenAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchFrozenAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchFrozenAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToDeploymentElasticsearchFrozenAutoscalingOutput() DeploymentElasticsearchFrozenAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToDeploymentElasticsearchFrozenAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToDeploymentElasticsearchFrozenAutoscalingPtrOutput() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchFrozenAutoscaling) *DeploymentElasticsearchFrozenAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchFrozenAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchFrozenAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchFrozenAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchFrozenAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) ToDeploymentElasticsearchFrozenAutoscalingPtrOutput() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) Elem() DeploymentElasticsearchFrozenAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) DeploymentElasticsearchFrozenAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchFrozenAutoscaling
+		return ret
+	}).(DeploymentElasticsearchFrozenAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchHot struct {
+	Autoscaling             DeploymentElasticsearchHotAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                               `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                              `pulumi:"nodeRoles"`
+	NodeTypeData            *string                               `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                               `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                               `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                               `pulumi:"nodeTypeMl"`
+	Size                    *string                               `pulumi:"size"`
+	SizeResource            *string                               `pulumi:"sizeResource"`
+	ZoneCount               *int                                  `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchHotInput is an input type that accepts DeploymentElasticsearchHotArgs and DeploymentElasticsearchHotOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchHotInput` via:
+//
+//	DeploymentElasticsearchHotArgs{...}
+type DeploymentElasticsearchHotInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchHotOutput() DeploymentElasticsearchHotOutput
+	ToDeploymentElasticsearchHotOutputWithContext(context.Context) DeploymentElasticsearchHotOutput
+}
+
+type DeploymentElasticsearchHotArgs struct {
+	Autoscaling             DeploymentElasticsearchHotAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                      `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                    `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                      `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                      `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                      `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                      `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                      `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                      `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                         `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchHotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchHot)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchHotArgs) ToDeploymentElasticsearchHotOutput() DeploymentElasticsearchHotOutput {
+	return i.ToDeploymentElasticsearchHotOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchHotArgs) ToDeploymentElasticsearchHotOutputWithContext(ctx context.Context) DeploymentElasticsearchHotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotOutput)
+}
+
+func (i DeploymentElasticsearchHotArgs) ToDeploymentElasticsearchHotPtrOutput() DeploymentElasticsearchHotPtrOutput {
+	return i.ToDeploymentElasticsearchHotPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchHotArgs) ToDeploymentElasticsearchHotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotOutput).ToDeploymentElasticsearchHotPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchHotPtrInput is an input type that accepts DeploymentElasticsearchHotArgs, DeploymentElasticsearchHotPtr and DeploymentElasticsearchHotPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchHotPtrInput` via:
+//
+//	        DeploymentElasticsearchHotArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchHotPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchHotPtrOutput() DeploymentElasticsearchHotPtrOutput
+	ToDeploymentElasticsearchHotPtrOutputWithContext(context.Context) DeploymentElasticsearchHotPtrOutput
+}
+
+type deploymentElasticsearchHotPtrType DeploymentElasticsearchHotArgs
+
+func DeploymentElasticsearchHotPtr(v *DeploymentElasticsearchHotArgs) DeploymentElasticsearchHotPtrInput {
+	return (*deploymentElasticsearchHotPtrType)(v)
+}
+
+func (*deploymentElasticsearchHotPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchHot)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchHotPtrType) ToDeploymentElasticsearchHotPtrOutput() DeploymentElasticsearchHotPtrOutput {
+	return i.ToDeploymentElasticsearchHotPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchHotPtrType) ToDeploymentElasticsearchHotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotPtrOutput)
+}
+
+type DeploymentElasticsearchHotOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchHotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchHot)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchHotOutput) ToDeploymentElasticsearchHotOutput() DeploymentElasticsearchHotOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotOutput) ToDeploymentElasticsearchHotOutputWithContext(ctx context.Context) DeploymentElasticsearchHotOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotOutput) ToDeploymentElasticsearchHotPtrOutput() DeploymentElasticsearchHotPtrOutput {
+	return o.ToDeploymentElasticsearchHotPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchHotOutput) ToDeploymentElasticsearchHotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchHot) *DeploymentElasticsearchHot {
+		return &v
+	}).(DeploymentElasticsearchHotPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) Autoscaling() DeploymentElasticsearchHotAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) DeploymentElasticsearchHotAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchHotAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHot) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchHotPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchHotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchHot)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) ToDeploymentElasticsearchHotPtrOutput() DeploymentElasticsearchHotPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) ToDeploymentElasticsearchHotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) Elem() DeploymentElasticsearchHotOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) DeploymentElasticsearchHot {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchHot
+		return ret
+	}).(DeploymentElasticsearchHotOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) Autoscaling() DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *DeploymentElasticsearchHotAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchHotAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHot) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchHotAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchHotAutoscalingInput is an input type that accepts DeploymentElasticsearchHotAutoscalingArgs and DeploymentElasticsearchHotAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchHotAutoscalingInput` via:
+//
+//	DeploymentElasticsearchHotAutoscalingArgs{...}
+type DeploymentElasticsearchHotAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchHotAutoscalingOutput() DeploymentElasticsearchHotAutoscalingOutput
+	ToDeploymentElasticsearchHotAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchHotAutoscalingOutput
+}
+
+type DeploymentElasticsearchHotAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchHotAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchHotAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchHotAutoscalingArgs) ToDeploymentElasticsearchHotAutoscalingOutput() DeploymentElasticsearchHotAutoscalingOutput {
+	return i.ToDeploymentElasticsearchHotAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchHotAutoscalingArgs) ToDeploymentElasticsearchHotAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchHotAutoscalingArgs) ToDeploymentElasticsearchHotAutoscalingPtrOutput() DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchHotAutoscalingArgs) ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotAutoscalingOutput).ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchHotAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchHotAutoscalingArgs, DeploymentElasticsearchHotAutoscalingPtr and DeploymentElasticsearchHotAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchHotAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchHotAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchHotAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchHotAutoscalingPtrOutput() DeploymentElasticsearchHotAutoscalingPtrOutput
+	ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchHotAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchHotAutoscalingPtrType DeploymentElasticsearchHotAutoscalingArgs
+
+func DeploymentElasticsearchHotAutoscalingPtr(v *DeploymentElasticsearchHotAutoscalingArgs) DeploymentElasticsearchHotAutoscalingPtrInput {
+	return (*deploymentElasticsearchHotAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchHotAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchHotAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchHotAutoscalingPtrType) ToDeploymentElasticsearchHotAutoscalingPtrOutput() DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchHotAutoscalingPtrType) ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchHotAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchHotAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchHotAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) ToDeploymentElasticsearchHotAutoscalingOutput() DeploymentElasticsearchHotAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) ToDeploymentElasticsearchHotAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) ToDeploymentElasticsearchHotAutoscalingPtrOutput() DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchHotAutoscaling) *DeploymentElasticsearchHotAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchHotAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchHotAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchHotAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchHotAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) ToDeploymentElasticsearchHotAutoscalingPtrOutput() DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) Elem() DeploymentElasticsearchHotAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) DeploymentElasticsearchHotAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchHotAutoscaling
+		return ret
+	}).(DeploymentElasticsearchHotAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchMaster struct {
+	Autoscaling             DeploymentElasticsearchMasterAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                                  `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                                 `pulumi:"nodeRoles"`
+	NodeTypeData            *string                                  `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                                  `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                                  `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                                  `pulumi:"nodeTypeMl"`
+	Size                    *string                                  `pulumi:"size"`
+	SizeResource            *string                                  `pulumi:"sizeResource"`
+	ZoneCount               *int                                     `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchMasterInput is an input type that accepts DeploymentElasticsearchMasterArgs and DeploymentElasticsearchMasterOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMasterInput` via:
+//
+//	DeploymentElasticsearchMasterArgs{...}
+type DeploymentElasticsearchMasterInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMasterOutput() DeploymentElasticsearchMasterOutput
+	ToDeploymentElasticsearchMasterOutputWithContext(context.Context) DeploymentElasticsearchMasterOutput
+}
+
+type DeploymentElasticsearchMasterArgs struct {
+	Autoscaling             DeploymentElasticsearchMasterAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                       `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                         `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                         `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                         `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                         `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                         `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                         `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                            `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchMasterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMaster)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchMasterArgs) ToDeploymentElasticsearchMasterOutput() DeploymentElasticsearchMasterOutput {
+	return i.ToDeploymentElasticsearchMasterOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMasterArgs) ToDeploymentElasticsearchMasterOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterOutput)
+}
+
+func (i DeploymentElasticsearchMasterArgs) ToDeploymentElasticsearchMasterPtrOutput() DeploymentElasticsearchMasterPtrOutput {
+	return i.ToDeploymentElasticsearchMasterPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMasterArgs) ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterOutput).ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchMasterPtrInput is an input type that accepts DeploymentElasticsearchMasterArgs, DeploymentElasticsearchMasterPtr and DeploymentElasticsearchMasterPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMasterPtrInput` via:
+//
+//	        DeploymentElasticsearchMasterArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchMasterPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMasterPtrOutput() DeploymentElasticsearchMasterPtrOutput
+	ToDeploymentElasticsearchMasterPtrOutputWithContext(context.Context) DeploymentElasticsearchMasterPtrOutput
+}
+
+type deploymentElasticsearchMasterPtrType DeploymentElasticsearchMasterArgs
+
+func DeploymentElasticsearchMasterPtr(v *DeploymentElasticsearchMasterArgs) DeploymentElasticsearchMasterPtrInput {
+	return (*deploymentElasticsearchMasterPtrType)(v)
+}
+
+func (*deploymentElasticsearchMasterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMaster)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchMasterPtrType) ToDeploymentElasticsearchMasterPtrOutput() DeploymentElasticsearchMasterPtrOutput {
+	return i.ToDeploymentElasticsearchMasterPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchMasterPtrType) ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterPtrOutput)
+}
+
+type DeploymentElasticsearchMasterOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMasterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMaster)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMasterOutput) ToDeploymentElasticsearchMasterOutput() DeploymentElasticsearchMasterOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterOutput) ToDeploymentElasticsearchMasterOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterOutput) ToDeploymentElasticsearchMasterPtrOutput() DeploymentElasticsearchMasterPtrOutput {
+	return o.ToDeploymentElasticsearchMasterPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchMasterOutput) ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMaster) *DeploymentElasticsearchMaster {
+		return &v
+	}).(DeploymentElasticsearchMasterPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) Autoscaling() DeploymentElasticsearchMasterAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) DeploymentElasticsearchMasterAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchMasterAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMaster) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchMasterPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMasterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMaster)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) ToDeploymentElasticsearchMasterPtrOutput() DeploymentElasticsearchMasterPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) Elem() DeploymentElasticsearchMasterOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) DeploymentElasticsearchMaster {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchMaster
+		return ret
+	}).(DeploymentElasticsearchMasterOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) Autoscaling() DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *DeploymentElasticsearchMasterAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchMasterAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchMasterAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchMasterAutoscalingInput is an input type that accepts DeploymentElasticsearchMasterAutoscalingArgs and DeploymentElasticsearchMasterAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMasterAutoscalingInput` via:
+//
+//	DeploymentElasticsearchMasterAutoscalingArgs{...}
+type DeploymentElasticsearchMasterAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMasterAutoscalingOutput() DeploymentElasticsearchMasterAutoscalingOutput
+	ToDeploymentElasticsearchMasterAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchMasterAutoscalingOutput
+}
+
+type DeploymentElasticsearchMasterAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchMasterAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMasterAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchMasterAutoscalingArgs) ToDeploymentElasticsearchMasterAutoscalingOutput() DeploymentElasticsearchMasterAutoscalingOutput {
+	return i.ToDeploymentElasticsearchMasterAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMasterAutoscalingArgs) ToDeploymentElasticsearchMasterAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchMasterAutoscalingArgs) ToDeploymentElasticsearchMasterAutoscalingPtrOutput() DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMasterAutoscalingArgs) ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterAutoscalingOutput).ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchMasterAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchMasterAutoscalingArgs, DeploymentElasticsearchMasterAutoscalingPtr and DeploymentElasticsearchMasterAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMasterAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchMasterAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchMasterAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMasterAutoscalingPtrOutput() DeploymentElasticsearchMasterAutoscalingPtrOutput
+	ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchMasterAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchMasterAutoscalingPtrType DeploymentElasticsearchMasterAutoscalingArgs
+
+func DeploymentElasticsearchMasterAutoscalingPtr(v *DeploymentElasticsearchMasterAutoscalingArgs) DeploymentElasticsearchMasterAutoscalingPtrInput {
+	return (*deploymentElasticsearchMasterAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchMasterAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMasterAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchMasterAutoscalingPtrType) ToDeploymentElasticsearchMasterAutoscalingPtrOutput() DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchMasterAutoscalingPtrType) ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchMasterAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMasterAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMasterAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) ToDeploymentElasticsearchMasterAutoscalingOutput() DeploymentElasticsearchMasterAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) ToDeploymentElasticsearchMasterAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) ToDeploymentElasticsearchMasterAutoscalingPtrOutput() DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMasterAutoscaling) *DeploymentElasticsearchMasterAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchMasterAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchMasterAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMasterAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMasterAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) ToDeploymentElasticsearchMasterAutoscalingPtrOutput() DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) Elem() DeploymentElasticsearchMasterAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) DeploymentElasticsearchMasterAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchMasterAutoscaling
+		return ret
+	}).(DeploymentElasticsearchMasterAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchMl struct {
+	Autoscaling             DeploymentElasticsearchMlAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                              `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                             `pulumi:"nodeRoles"`
+	NodeTypeData            *string                              `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                              `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                              `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                              `pulumi:"nodeTypeMl"`
+	Size                    *string                              `pulumi:"size"`
+	SizeResource            *string                              `pulumi:"sizeResource"`
+	ZoneCount               *int                                 `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchMlInput is an input type that accepts DeploymentElasticsearchMlArgs and DeploymentElasticsearchMlOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMlInput` via:
+//
+//	DeploymentElasticsearchMlArgs{...}
+type DeploymentElasticsearchMlInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMlOutput() DeploymentElasticsearchMlOutput
+	ToDeploymentElasticsearchMlOutputWithContext(context.Context) DeploymentElasticsearchMlOutput
+}
+
+type DeploymentElasticsearchMlArgs struct {
+	Autoscaling             DeploymentElasticsearchMlAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                     `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                   `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                     `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                     `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                     `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                     `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                     `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                     `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                        `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchMlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMl)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchMlArgs) ToDeploymentElasticsearchMlOutput() DeploymentElasticsearchMlOutput {
+	return i.ToDeploymentElasticsearchMlOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMlArgs) ToDeploymentElasticsearchMlOutputWithContext(ctx context.Context) DeploymentElasticsearchMlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlOutput)
+}
+
+func (i DeploymentElasticsearchMlArgs) ToDeploymentElasticsearchMlPtrOutput() DeploymentElasticsearchMlPtrOutput {
+	return i.ToDeploymentElasticsearchMlPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMlArgs) ToDeploymentElasticsearchMlPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlOutput).ToDeploymentElasticsearchMlPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchMlPtrInput is an input type that accepts DeploymentElasticsearchMlArgs, DeploymentElasticsearchMlPtr and DeploymentElasticsearchMlPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMlPtrInput` via:
+//
+//	        DeploymentElasticsearchMlArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchMlPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMlPtrOutput() DeploymentElasticsearchMlPtrOutput
+	ToDeploymentElasticsearchMlPtrOutputWithContext(context.Context) DeploymentElasticsearchMlPtrOutput
+}
+
+type deploymentElasticsearchMlPtrType DeploymentElasticsearchMlArgs
+
+func DeploymentElasticsearchMlPtr(v *DeploymentElasticsearchMlArgs) DeploymentElasticsearchMlPtrInput {
+	return (*deploymentElasticsearchMlPtrType)(v)
+}
+
+func (*deploymentElasticsearchMlPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMl)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchMlPtrType) ToDeploymentElasticsearchMlPtrOutput() DeploymentElasticsearchMlPtrOutput {
+	return i.ToDeploymentElasticsearchMlPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchMlPtrType) ToDeploymentElasticsearchMlPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlPtrOutput)
+}
+
+type DeploymentElasticsearchMlOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMl)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMlOutput) ToDeploymentElasticsearchMlOutput() DeploymentElasticsearchMlOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlOutput) ToDeploymentElasticsearchMlOutputWithContext(ctx context.Context) DeploymentElasticsearchMlOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlOutput) ToDeploymentElasticsearchMlPtrOutput() DeploymentElasticsearchMlPtrOutput {
+	return o.ToDeploymentElasticsearchMlPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchMlOutput) ToDeploymentElasticsearchMlPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMl) *DeploymentElasticsearchMl {
+		return &v
+	}).(DeploymentElasticsearchMlPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) Autoscaling() DeploymentElasticsearchMlAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) DeploymentElasticsearchMlAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchMlAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMl) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchMlPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMlPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMl)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) ToDeploymentElasticsearchMlPtrOutput() DeploymentElasticsearchMlPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) ToDeploymentElasticsearchMlPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) Elem() DeploymentElasticsearchMlOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) DeploymentElasticsearchMl {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchMl
+		return ret
+	}).(DeploymentElasticsearchMlOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) Autoscaling() DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *DeploymentElasticsearchMlAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchMlAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMl) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchMlAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchMlAutoscalingInput is an input type that accepts DeploymentElasticsearchMlAutoscalingArgs and DeploymentElasticsearchMlAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMlAutoscalingInput` via:
+//
+//	DeploymentElasticsearchMlAutoscalingArgs{...}
+type DeploymentElasticsearchMlAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMlAutoscalingOutput() DeploymentElasticsearchMlAutoscalingOutput
+	ToDeploymentElasticsearchMlAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchMlAutoscalingOutput
+}
+
+type DeploymentElasticsearchMlAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchMlAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMlAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchMlAutoscalingArgs) ToDeploymentElasticsearchMlAutoscalingOutput() DeploymentElasticsearchMlAutoscalingOutput {
+	return i.ToDeploymentElasticsearchMlAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMlAutoscalingArgs) ToDeploymentElasticsearchMlAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchMlAutoscalingArgs) ToDeploymentElasticsearchMlAutoscalingPtrOutput() DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchMlAutoscalingArgs) ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlAutoscalingOutput).ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchMlAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchMlAutoscalingArgs, DeploymentElasticsearchMlAutoscalingPtr and DeploymentElasticsearchMlAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchMlAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchMlAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchMlAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchMlAutoscalingPtrOutput() DeploymentElasticsearchMlAutoscalingPtrOutput
+	ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchMlAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchMlAutoscalingPtrType DeploymentElasticsearchMlAutoscalingArgs
+
+func DeploymentElasticsearchMlAutoscalingPtr(v *DeploymentElasticsearchMlAutoscalingArgs) DeploymentElasticsearchMlAutoscalingPtrInput {
+	return (*deploymentElasticsearchMlAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchMlAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMlAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchMlAutoscalingPtrType) ToDeploymentElasticsearchMlAutoscalingPtrOutput() DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchMlAutoscalingPtrType) ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchMlAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMlAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchMlAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) ToDeploymentElasticsearchMlAutoscalingOutput() DeploymentElasticsearchMlAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) ToDeploymentElasticsearchMlAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) ToDeploymentElasticsearchMlAutoscalingPtrOutput() DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMlAutoscaling) *DeploymentElasticsearchMlAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchMlAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchMlAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchMlAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchMlAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) ToDeploymentElasticsearchMlAutoscalingPtrOutput() DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) Elem() DeploymentElasticsearchMlAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) DeploymentElasticsearchMlAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchMlAutoscaling
+		return ret
+	}).(DeploymentElasticsearchMlAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentElasticsearchRemoteCluster struct {
-	// Alias for the Cross Cluster Search binding.
-	Alias string `pulumi:"alias"`
-	// Remote deployment ID.
-	DeploymentId string `pulumi:"deploymentId"`
-	// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
-	RefId *string `pulumi:"refId"`
-	// If true, skip the cluster during search when disconnected. Defaults to `false`.
-	SkipUnavailable *bool `pulumi:"skipUnavailable"`
+	Alias           string  `pulumi:"alias"`
+	DeploymentId    string  `pulumi:"deploymentId"`
+	RefId           *string `pulumi:"refId"`
+	SkipUnavailable *bool   `pulumi:"skipUnavailable"`
 }
 
 // DeploymentElasticsearchRemoteClusterInput is an input type that accepts DeploymentElasticsearchRemoteClusterArgs and DeploymentElasticsearchRemoteClusterOutput values.
@@ -1452,14 +4126,10 @@ type DeploymentElasticsearchRemoteClusterInput interface {
 }
 
 type DeploymentElasticsearchRemoteClusterArgs struct {
-	// Alias for the Cross Cluster Search binding.
-	Alias pulumi.StringInput `pulumi:"alias"`
-	// Remote deployment ID.
-	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
-	// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// If true, skip the cluster during search when disconnected. Defaults to `false`.
-	SkipUnavailable pulumi.BoolPtrInput `pulumi:"skipUnavailable"`
+	Alias           pulumi.StringInput    `pulumi:"alias"`
+	DeploymentId    pulumi.StringInput    `pulumi:"deploymentId"`
+	RefId           pulumi.StringPtrInput `pulumi:"refId"`
+	SkipUnavailable pulumi.BoolPtrInput   `pulumi:"skipUnavailable"`
 }
 
 func (DeploymentElasticsearchRemoteClusterArgs) ElementType() reflect.Type {
@@ -1513,22 +4183,18 @@ func (o DeploymentElasticsearchRemoteClusterOutput) ToDeploymentElasticsearchRem
 	return o
 }
 
-// Alias for the Cross Cluster Search binding.
 func (o DeploymentElasticsearchRemoteClusterOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.Alias }).(pulumi.StringOutput)
 }
 
-// Remote deployment ID.
 func (o DeploymentElasticsearchRemoteClusterOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
-// Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
 func (o DeploymentElasticsearchRemoteClusterOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// If true, skip the cluster during search when disconnected. Defaults to `false`.
 func (o DeploymentElasticsearchRemoteClusterOutput) SkipUnavailable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) *bool { return v.SkipUnavailable }).(pulumi.BoolPtrOutput)
 }
@@ -1553,11 +4219,427 @@ func (o DeploymentElasticsearchRemoteClusterArrayOutput) Index(i pulumi.IntInput
 	}).(DeploymentElasticsearchRemoteClusterOutput)
 }
 
+type DeploymentElasticsearchSnapshot struct {
+	Enabled    bool                                       `pulumi:"enabled"`
+	Repository *DeploymentElasticsearchSnapshotRepository `pulumi:"repository"`
+}
+
+// DeploymentElasticsearchSnapshotInput is an input type that accepts DeploymentElasticsearchSnapshotArgs and DeploymentElasticsearchSnapshotOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchSnapshotInput` via:
+//
+//	DeploymentElasticsearchSnapshotArgs{...}
+type DeploymentElasticsearchSnapshotInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchSnapshotOutput() DeploymentElasticsearchSnapshotOutput
+	ToDeploymentElasticsearchSnapshotOutputWithContext(context.Context) DeploymentElasticsearchSnapshotOutput
+}
+
+type DeploymentElasticsearchSnapshotArgs struct {
+	Enabled    pulumi.BoolInput                                  `pulumi:"enabled"`
+	Repository DeploymentElasticsearchSnapshotRepositoryPtrInput `pulumi:"repository"`
+}
+
+func (DeploymentElasticsearchSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchSnapshot)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotOutput() DeploymentElasticsearchSnapshotOutput {
+	return i.ToDeploymentElasticsearchSnapshotOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotOutput)
+}
+
+func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotPtrOutput() DeploymentElasticsearchSnapshotPtrOutput {
+	return i.ToDeploymentElasticsearchSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotOutput).ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchSnapshotPtrInput is an input type that accepts DeploymentElasticsearchSnapshotArgs, DeploymentElasticsearchSnapshotPtr and DeploymentElasticsearchSnapshotPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchSnapshotPtrInput` via:
+//
+//	        DeploymentElasticsearchSnapshotArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchSnapshotPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchSnapshotPtrOutput() DeploymentElasticsearchSnapshotPtrOutput
+	ToDeploymentElasticsearchSnapshotPtrOutputWithContext(context.Context) DeploymentElasticsearchSnapshotPtrOutput
+}
+
+type deploymentElasticsearchSnapshotPtrType DeploymentElasticsearchSnapshotArgs
+
+func DeploymentElasticsearchSnapshotPtr(v *DeploymentElasticsearchSnapshotArgs) DeploymentElasticsearchSnapshotPtrInput {
+	return (*deploymentElasticsearchSnapshotPtrType)(v)
+}
+
+func (*deploymentElasticsearchSnapshotPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchSnapshot)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchSnapshotPtrType) ToDeploymentElasticsearchSnapshotPtrOutput() DeploymentElasticsearchSnapshotPtrOutput {
+	return i.ToDeploymentElasticsearchSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchSnapshotPtrType) ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotPtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchSnapshot)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchSnapshotOutput) ToDeploymentElasticsearchSnapshotOutput() DeploymentElasticsearchSnapshotOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotOutput) ToDeploymentElasticsearchSnapshotOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotOutput) ToDeploymentElasticsearchSnapshotPtrOutput() DeploymentElasticsearchSnapshotPtrOutput {
+	return o.ToDeploymentElasticsearchSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchSnapshotOutput) ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchSnapshot) *DeploymentElasticsearchSnapshot {
+		return &v
+	}).(DeploymentElasticsearchSnapshotPtrOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchSnapshot) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotOutput) Repository() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchSnapshot) *DeploymentElasticsearchSnapshotRepository {
+		return v.Repository
+	}).(DeploymentElasticsearchSnapshotRepositoryPtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchSnapshotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchSnapshot)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchSnapshotPtrOutput) ToDeploymentElasticsearchSnapshotPtrOutput() DeploymentElasticsearchSnapshotPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotPtrOutput) ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotPtrOutput) Elem() DeploymentElasticsearchSnapshotOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshot) DeploymentElasticsearchSnapshot {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchSnapshot
+		return ret
+	}).(DeploymentElasticsearchSnapshotOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshot) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotPtrOutput) Repository() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshot) *DeploymentElasticsearchSnapshotRepository {
+		if v == nil {
+			return nil
+		}
+		return v.Repository
+	}).(DeploymentElasticsearchSnapshotRepositoryPtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotRepository struct {
+	Reference *DeploymentElasticsearchSnapshotRepositoryReference `pulumi:"reference"`
+}
+
+// DeploymentElasticsearchSnapshotRepositoryInput is an input type that accepts DeploymentElasticsearchSnapshotRepositoryArgs and DeploymentElasticsearchSnapshotRepositoryOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchSnapshotRepositoryInput` via:
+//
+//	DeploymentElasticsearchSnapshotRepositoryArgs{...}
+type DeploymentElasticsearchSnapshotRepositoryInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchSnapshotRepositoryOutput() DeploymentElasticsearchSnapshotRepositoryOutput
+	ToDeploymentElasticsearchSnapshotRepositoryOutputWithContext(context.Context) DeploymentElasticsearchSnapshotRepositoryOutput
+}
+
+type DeploymentElasticsearchSnapshotRepositoryArgs struct {
+	Reference DeploymentElasticsearchSnapshotRepositoryReferencePtrInput `pulumi:"reference"`
+}
+
+func (DeploymentElasticsearchSnapshotRepositoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchSnapshotRepository)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToDeploymentElasticsearchSnapshotRepositoryOutput() DeploymentElasticsearchSnapshotRepositoryOutput {
+	return i.ToDeploymentElasticsearchSnapshotRepositoryOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToDeploymentElasticsearchSnapshotRepositoryOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryOutput)
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToDeploymentElasticsearchSnapshotRepositoryPtrOutput() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return i.ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryOutput).ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchSnapshotRepositoryPtrInput is an input type that accepts DeploymentElasticsearchSnapshotRepositoryArgs, DeploymentElasticsearchSnapshotRepositoryPtr and DeploymentElasticsearchSnapshotRepositoryPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchSnapshotRepositoryPtrInput` via:
+//
+//	        DeploymentElasticsearchSnapshotRepositoryArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchSnapshotRepositoryPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchSnapshotRepositoryPtrOutput() DeploymentElasticsearchSnapshotRepositoryPtrOutput
+	ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(context.Context) DeploymentElasticsearchSnapshotRepositoryPtrOutput
+}
+
+type deploymentElasticsearchSnapshotRepositoryPtrType DeploymentElasticsearchSnapshotRepositoryArgs
+
+func DeploymentElasticsearchSnapshotRepositoryPtr(v *DeploymentElasticsearchSnapshotRepositoryArgs) DeploymentElasticsearchSnapshotRepositoryPtrInput {
+	return (*deploymentElasticsearchSnapshotRepositoryPtrType)(v)
+}
+
+func (*deploymentElasticsearchSnapshotRepositoryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchSnapshotRepository)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchSnapshotRepositoryPtrType) ToDeploymentElasticsearchSnapshotRepositoryPtrOutput() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return i.ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchSnapshotRepositoryPtrType) ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryPtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotRepositoryOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchSnapshotRepositoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchSnapshotRepository)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToDeploymentElasticsearchSnapshotRepositoryOutput() DeploymentElasticsearchSnapshotRepositoryOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToDeploymentElasticsearchSnapshotRepositoryOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToDeploymentElasticsearchSnapshotRepositoryPtrOutput() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return o.ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchSnapshotRepository) *DeploymentElasticsearchSnapshotRepository {
+		return &v
+	}).(DeploymentElasticsearchSnapshotRepositoryPtrOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryOutput) Reference() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchSnapshotRepository) *DeploymentElasticsearchSnapshotRepositoryReference {
+		return v.Reference
+	}).(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotRepositoryPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchSnapshotRepositoryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchSnapshotRepository)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) ToDeploymentElasticsearchSnapshotRepositoryPtrOutput() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) Elem() DeploymentElasticsearchSnapshotRepositoryOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotRepository) DeploymentElasticsearchSnapshotRepository {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchSnapshotRepository
+		return ret
+	}).(DeploymentElasticsearchSnapshotRepositoryOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) Reference() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotRepository) *DeploymentElasticsearchSnapshotRepositoryReference {
+		if v == nil {
+			return nil
+		}
+		return v.Reference
+	}).(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotRepositoryReference struct {
+	RepositoryName string `pulumi:"repositoryName"`
+}
+
+// DeploymentElasticsearchSnapshotRepositoryReferenceInput is an input type that accepts DeploymentElasticsearchSnapshotRepositoryReferenceArgs and DeploymentElasticsearchSnapshotRepositoryReferenceOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchSnapshotRepositoryReferenceInput` via:
+//
+//	DeploymentElasticsearchSnapshotRepositoryReferenceArgs{...}
+type DeploymentElasticsearchSnapshotRepositoryReferenceInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchSnapshotRepositoryReferenceOutput() DeploymentElasticsearchSnapshotRepositoryReferenceOutput
+	ToDeploymentElasticsearchSnapshotRepositoryReferenceOutputWithContext(context.Context) DeploymentElasticsearchSnapshotRepositoryReferenceOutput
+}
+
+type DeploymentElasticsearchSnapshotRepositoryReferenceArgs struct {
+	RepositoryName pulumi.StringInput `pulumi:"repositoryName"`
+}
+
+func (DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchSnapshotRepositoryReference)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToDeploymentElasticsearchSnapshotRepositoryReferenceOutput() DeploymentElasticsearchSnapshotRepositoryReferenceOutput {
+	return i.ToDeploymentElasticsearchSnapshotRepositoryReferenceOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToDeploymentElasticsearchSnapshotRepositoryReferenceOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferenceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryReferenceOutput)
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutput() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return i.ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryReferenceOutput).ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchSnapshotRepositoryReferencePtrInput is an input type that accepts DeploymentElasticsearchSnapshotRepositoryReferenceArgs, DeploymentElasticsearchSnapshotRepositoryReferencePtr and DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchSnapshotRepositoryReferencePtrInput` via:
+//
+//	        DeploymentElasticsearchSnapshotRepositoryReferenceArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchSnapshotRepositoryReferencePtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutput() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput
+	ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(context.Context) DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput
+}
+
+type deploymentElasticsearchSnapshotRepositoryReferencePtrType DeploymentElasticsearchSnapshotRepositoryReferenceArgs
+
+func DeploymentElasticsearchSnapshotRepositoryReferencePtr(v *DeploymentElasticsearchSnapshotRepositoryReferenceArgs) DeploymentElasticsearchSnapshotRepositoryReferencePtrInput {
+	return (*deploymentElasticsearchSnapshotRepositoryReferencePtrType)(v)
+}
+
+func (*deploymentElasticsearchSnapshotRepositoryReferencePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchSnapshotRepositoryReference)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchSnapshotRepositoryReferencePtrType) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutput() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return i.ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchSnapshotRepositoryReferencePtrType) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput)
+}
+
+type DeploymentElasticsearchSnapshotRepositoryReferenceOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchSnapshotRepositoryReference)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToDeploymentElasticsearchSnapshotRepositoryReferenceOutput() DeploymentElasticsearchSnapshotRepositoryReferenceOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToDeploymentElasticsearchSnapshotRepositoryReferenceOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferenceOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutput() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return o.ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchSnapshotRepositoryReference) *DeploymentElasticsearchSnapshotRepositoryReference {
+		return &v
+	}).(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) RepositoryName() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchSnapshotRepositoryReference) string { return v.RepositoryName }).(pulumi.StringOutput)
+}
+
+type DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchSnapshotRepositoryReference)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutput() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) Elem() DeploymentElasticsearchSnapshotRepositoryReferenceOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotRepositoryReference) DeploymentElasticsearchSnapshotRepositoryReference {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchSnapshotRepositoryReference
+		return ret
+	}).(DeploymentElasticsearchSnapshotRepositoryReferenceOutput)
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) RepositoryName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotRepositoryReference) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RepositoryName
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentElasticsearchSnapshotSource struct {
-	// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-	SnapshotName *string `pulumi:"snapshotName"`
-	// ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-	SourceElasticsearchClusterId string `pulumi:"sourceElasticsearchClusterId"`
+	SnapshotName                 *string `pulumi:"snapshotName"`
+	SourceElasticsearchClusterId string  `pulumi:"sourceElasticsearchClusterId"`
 }
 
 // DeploymentElasticsearchSnapshotSourceInput is an input type that accepts DeploymentElasticsearchSnapshotSourceArgs and DeploymentElasticsearchSnapshotSourceOutput values.
@@ -1572,10 +4654,8 @@ type DeploymentElasticsearchSnapshotSourceInput interface {
 }
 
 type DeploymentElasticsearchSnapshotSourceArgs struct {
-	// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
-	// ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-	SourceElasticsearchClusterId pulumi.StringInput `pulumi:"sourceElasticsearchClusterId"`
+	SnapshotName                 pulumi.StringPtrInput `pulumi:"snapshotName"`
+	SourceElasticsearchClusterId pulumi.StringInput    `pulumi:"sourceElasticsearchClusterId"`
 }
 
 func (DeploymentElasticsearchSnapshotSourceArgs) ElementType() reflect.Type {
@@ -1655,12 +4735,10 @@ func (o DeploymentElasticsearchSnapshotSourceOutput) ToDeploymentElasticsearchSn
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
-// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
 func (o DeploymentElasticsearchSnapshotSourceOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotSource) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
 }
 
-// ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
 func (o DeploymentElasticsearchSnapshotSourceOutput) SourceElasticsearchClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotSource) string { return v.SourceElasticsearchClusterId }).(pulumi.StringOutput)
 }
@@ -1689,7 +4767,6 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) Elem() DeploymentElastic
 	}).(DeploymentElasticsearchSnapshotSourceOutput)
 }
 
-// Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotSource) *string {
 		if v == nil {
@@ -1699,7 +4776,6 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SnapshotName() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SourceElasticsearchClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotSource) *string {
 		if v == nil {
@@ -1709,686 +4785,9 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SourceElasticsearchClust
 	}).(pulumi.StringPtrOutput)
 }
 
-type DeploymentElasticsearchStrategy struct {
-	// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
-	Type string `pulumi:"type"`
-}
-
-// DeploymentElasticsearchStrategyInput is an input type that accepts DeploymentElasticsearchStrategyArgs and DeploymentElasticsearchStrategyOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchStrategyInput` via:
-//
-//	DeploymentElasticsearchStrategyArgs{...}
-type DeploymentElasticsearchStrategyInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchStrategyOutput() DeploymentElasticsearchStrategyOutput
-	ToDeploymentElasticsearchStrategyOutputWithContext(context.Context) DeploymentElasticsearchStrategyOutput
-}
-
-type DeploymentElasticsearchStrategyArgs struct {
-	// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (DeploymentElasticsearchStrategyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchStrategy)(nil)).Elem()
-}
-
-func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyOutput() DeploymentElasticsearchStrategyOutput {
-	return i.ToDeploymentElasticsearchStrategyOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchStrategyOutput)
-}
-
-func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
-	return i.ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchStrategyArgs) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchStrategyOutput).ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx)
-}
-
-// DeploymentElasticsearchStrategyPtrInput is an input type that accepts DeploymentElasticsearchStrategyArgs, DeploymentElasticsearchStrategyPtr and DeploymentElasticsearchStrategyPtrOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchStrategyPtrInput` via:
-//
-//	        DeploymentElasticsearchStrategyArgs{...}
-//
-//	or:
-//
-//	        nil
-type DeploymentElasticsearchStrategyPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput
-	ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Context) DeploymentElasticsearchStrategyPtrOutput
-}
-
-type deploymentElasticsearchStrategyPtrType DeploymentElasticsearchStrategyArgs
-
-func DeploymentElasticsearchStrategyPtr(v *DeploymentElasticsearchStrategyArgs) DeploymentElasticsearchStrategyPtrInput {
-	return (*deploymentElasticsearchStrategyPtrType)(v)
-}
-
-func (*deploymentElasticsearchStrategyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentElasticsearchStrategy)(nil)).Elem()
-}
-
-func (i *deploymentElasticsearchStrategyPtrType) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
-	return i.ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentElasticsearchStrategyPtrType) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchStrategyPtrOutput)
-}
-
-type DeploymentElasticsearchStrategyOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchStrategyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchStrategy)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyOutput() DeploymentElasticsearchStrategyOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
-	return o.ToDeploymentElasticsearchStrategyPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentElasticsearchStrategyOutput) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchStrategy) *DeploymentElasticsearchStrategy {
-		return &v
-	}).(DeploymentElasticsearchStrategyPtrOutput)
-}
-
-// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
-func (o DeploymentElasticsearchStrategyOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchStrategy) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type DeploymentElasticsearchStrategyPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchStrategyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentElasticsearchStrategy)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchStrategyPtrOutput) ToDeploymentElasticsearchStrategyPtrOutput() DeploymentElasticsearchStrategyPtrOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchStrategyPtrOutput) ToDeploymentElasticsearchStrategyPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchStrategyPtrOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchStrategyPtrOutput) Elem() DeploymentElasticsearchStrategyOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchStrategy) DeploymentElasticsearchStrategy {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentElasticsearchStrategy
-		return ret
-	}).(DeploymentElasticsearchStrategyOutput)
-}
-
-// Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
-func (o DeploymentElasticsearchStrategyPtrOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchStrategy) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Type
-	}).(pulumi.StringPtrOutput)
-}
-
-type DeploymentElasticsearchTopology struct {
-	// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-	Autoscaling *DeploymentElasticsearchTopologyAutoscaling `pulumi:"autoscaling"`
-	// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
-	Configs []DeploymentElasticsearchTopologyConfig `pulumi:"configs"`
-	// Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
-	Id string `pulumi:"id"`
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId *string  `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string `pulumi:"nodeRoles"`
-	// The node type for the Elasticsearch cluster (data node).
-	NodeTypeData *string `pulumi:"nodeTypeData"`
-	// The node type for the Elasticsearch cluster (ingest node).
-	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
-	// The node type for the Elasticsearch cluster (master node).
-	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
-	// The node type for the Elasticsearch cluster (machine learning node).
-	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size *string `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount *int `pulumi:"zoneCount"`
-}
-
-// DeploymentElasticsearchTopologyInput is an input type that accepts DeploymentElasticsearchTopologyArgs and DeploymentElasticsearchTopologyOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchTopologyInput` via:
-//
-//	DeploymentElasticsearchTopologyArgs{...}
-type DeploymentElasticsearchTopologyInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchTopologyOutput() DeploymentElasticsearchTopologyOutput
-	ToDeploymentElasticsearchTopologyOutputWithContext(context.Context) DeploymentElasticsearchTopologyOutput
-}
-
-type DeploymentElasticsearchTopologyArgs struct {
-	// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-	Autoscaling DeploymentElasticsearchTopologyAutoscalingPtrInput `pulumi:"autoscaling"`
-	// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
-	Configs DeploymentElasticsearchTopologyConfigArrayInput `pulumi:"configs"`
-	// Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId pulumi.StringPtrInput   `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput `pulumi:"nodeRoles"`
-	// The node type for the Elasticsearch cluster (data node).
-	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
-	// The node type for the Elasticsearch cluster (ingest node).
-	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
-	// The node type for the Elasticsearch cluster (master node).
-	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
-	// The node type for the Elasticsearch cluster (machine learning node).
-	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size pulumi.StringPtrInput `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
-}
-
-func (DeploymentElasticsearchTopologyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchTopology)(nil)).Elem()
-}
-
-func (i DeploymentElasticsearchTopologyArgs) ToDeploymentElasticsearchTopologyOutput() DeploymentElasticsearchTopologyOutput {
-	return i.ToDeploymentElasticsearchTopologyOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchTopologyArgs) ToDeploymentElasticsearchTopologyOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyOutput)
-}
-
-// DeploymentElasticsearchTopologyArrayInput is an input type that accepts DeploymentElasticsearchTopologyArray and DeploymentElasticsearchTopologyArrayOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchTopologyArrayInput` via:
-//
-//	DeploymentElasticsearchTopologyArray{ DeploymentElasticsearchTopologyArgs{...} }
-type DeploymentElasticsearchTopologyArrayInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchTopologyArrayOutput() DeploymentElasticsearchTopologyArrayOutput
-	ToDeploymentElasticsearchTopologyArrayOutputWithContext(context.Context) DeploymentElasticsearchTopologyArrayOutput
-}
-
-type DeploymentElasticsearchTopologyArray []DeploymentElasticsearchTopologyInput
-
-func (DeploymentElasticsearchTopologyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentElasticsearchTopology)(nil)).Elem()
-}
-
-func (i DeploymentElasticsearchTopologyArray) ToDeploymentElasticsearchTopologyArrayOutput() DeploymentElasticsearchTopologyArrayOutput {
-	return i.ToDeploymentElasticsearchTopologyArrayOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchTopologyArray) ToDeploymentElasticsearchTopologyArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyArrayOutput)
-}
-
-type DeploymentElasticsearchTopologyOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchTopologyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchTopology)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchTopologyOutput) ToDeploymentElasticsearchTopologyOutput() DeploymentElasticsearchTopologyOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyOutput) ToDeploymentElasticsearchTopologyOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyOutput {
-	return o
-}
-
-// Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-func (o DeploymentElasticsearchTopologyOutput) Autoscaling() DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *DeploymentElasticsearchTopologyAutoscaling {
-		return v.Autoscaling
-	}).(DeploymentElasticsearchTopologyAutoscalingPtrOutput)
-}
-
-// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
-func (o DeploymentElasticsearchTopologyOutput) Configs() DeploymentElasticsearchTopologyConfigArrayOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) []DeploymentElasticsearchTopologyConfig { return v.Configs }).(DeploymentElasticsearchTopologyConfigArrayOutput)
-}
-
-// Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
-func (o DeploymentElasticsearchTopologyOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentElasticsearchTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
-}
-
-func (o DeploymentElasticsearchTopologyOutput) NodeRoles() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
-}
-
-// The node type for the Elasticsearch cluster (data node).
-func (o DeploymentElasticsearchTopologyOutput) NodeTypeData() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
-}
-
-// The node type for the Elasticsearch cluster (ingest node).
-func (o DeploymentElasticsearchTopologyOutput) NodeTypeIngest() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
-}
-
-// The node type for the Elasticsearch cluster (master node).
-func (o DeploymentElasticsearchTopologyOutput) NodeTypeMaster() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
-}
-
-// The node type for the Elasticsearch cluster (machine learning node).
-func (o DeploymentElasticsearchTopologyOutput) NodeTypeMl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentElasticsearchTopologyOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentElasticsearchTopologyOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentElasticsearchTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
-}
-
-type DeploymentElasticsearchTopologyArrayOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchTopologyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentElasticsearchTopology)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchTopologyArrayOutput) ToDeploymentElasticsearchTopologyArrayOutput() DeploymentElasticsearchTopologyArrayOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyArrayOutput) ToDeploymentElasticsearchTopologyArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyArrayOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchTopologyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentElasticsearchTopology {
-		return vs[0].([]DeploymentElasticsearchTopology)[vs[1].(int)]
-	}).(DeploymentElasticsearchTopologyOutput)
-}
-
-type DeploymentElasticsearchTopologyAutoscaling struct {
-	// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
-	MaxSize *string `pulumi:"maxSize"`
-	// Defines the resource type the scale up will use (Defaults to `"memory"`).
-	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
-	MinSize *string `pulumi:"minSize"`
-	// Defines the resource type the scale down will use (Defaults to `"memory"`).
-	MinSizeResource    *string `pulumi:"minSizeResource"`
-	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
-}
-
-// DeploymentElasticsearchTopologyAutoscalingInput is an input type that accepts DeploymentElasticsearchTopologyAutoscalingArgs and DeploymentElasticsearchTopologyAutoscalingOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchTopologyAutoscalingInput` via:
-//
-//	DeploymentElasticsearchTopologyAutoscalingArgs{...}
-type DeploymentElasticsearchTopologyAutoscalingInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchTopologyAutoscalingOutput() DeploymentElasticsearchTopologyAutoscalingOutput
-	ToDeploymentElasticsearchTopologyAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchTopologyAutoscalingOutput
-}
-
-type DeploymentElasticsearchTopologyAutoscalingArgs struct {
-	// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
-	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
-	// Defines the resource type the scale up will use (Defaults to `"memory"`).
-	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
-	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
-	// Defines the resource type the scale down will use (Defaults to `"memory"`).
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
-	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
-}
-
-func (DeploymentElasticsearchTopologyAutoscalingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchTopologyAutoscaling)(nil)).Elem()
-}
-
-func (i DeploymentElasticsearchTopologyAutoscalingArgs) ToDeploymentElasticsearchTopologyAutoscalingOutput() DeploymentElasticsearchTopologyAutoscalingOutput {
-	return i.ToDeploymentElasticsearchTopologyAutoscalingOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchTopologyAutoscalingArgs) ToDeploymentElasticsearchTopologyAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyAutoscalingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyAutoscalingOutput)
-}
-
-func (i DeploymentElasticsearchTopologyAutoscalingArgs) ToDeploymentElasticsearchTopologyAutoscalingPtrOutput() DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return i.ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchTopologyAutoscalingArgs) ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyAutoscalingOutput).ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(ctx)
-}
-
-// DeploymentElasticsearchTopologyAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchTopologyAutoscalingArgs, DeploymentElasticsearchTopologyAutoscalingPtr and DeploymentElasticsearchTopologyAutoscalingPtrOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchTopologyAutoscalingPtrInput` via:
-//
-//	        DeploymentElasticsearchTopologyAutoscalingArgs{...}
-//
-//	or:
-//
-//	        nil
-type DeploymentElasticsearchTopologyAutoscalingPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchTopologyAutoscalingPtrOutput() DeploymentElasticsearchTopologyAutoscalingPtrOutput
-	ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchTopologyAutoscalingPtrOutput
-}
-
-type deploymentElasticsearchTopologyAutoscalingPtrType DeploymentElasticsearchTopologyAutoscalingArgs
-
-func DeploymentElasticsearchTopologyAutoscalingPtr(v *DeploymentElasticsearchTopologyAutoscalingArgs) DeploymentElasticsearchTopologyAutoscalingPtrInput {
-	return (*deploymentElasticsearchTopologyAutoscalingPtrType)(v)
-}
-
-func (*deploymentElasticsearchTopologyAutoscalingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentElasticsearchTopologyAutoscaling)(nil)).Elem()
-}
-
-func (i *deploymentElasticsearchTopologyAutoscalingPtrType) ToDeploymentElasticsearchTopologyAutoscalingPtrOutput() DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return i.ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentElasticsearchTopologyAutoscalingPtrType) ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyAutoscalingPtrOutput)
-}
-
-type DeploymentElasticsearchTopologyAutoscalingOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchTopologyAutoscalingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchTopologyAutoscaling)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) ToDeploymentElasticsearchTopologyAutoscalingOutput() DeploymentElasticsearchTopologyAutoscalingOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) ToDeploymentElasticsearchTopologyAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyAutoscalingOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) ToDeploymentElasticsearchTopologyAutoscalingPtrOutput() DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return o.ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchTopologyAutoscaling) *DeploymentElasticsearchTopologyAutoscaling {
-		return &v
-	}).(DeploymentElasticsearchTopologyAutoscalingPtrOutput)
-}
-
-// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
-}
-
-// Defines the resource type the scale up will use (Defaults to `"memory"`).
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
-}
-
-// Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
-}
-
-// Defines the resource type the scale down will use (Defaults to `"memory"`).
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
-}
-
-type DeploymentElasticsearchTopologyAutoscalingPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchTopologyAutoscalingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentElasticsearchTopologyAutoscaling)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) ToDeploymentElasticsearchTopologyAutoscalingPtrOutput() DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) ToDeploymentElasticsearchTopologyAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyAutoscalingPtrOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) Elem() DeploymentElasticsearchTopologyAutoscalingOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) DeploymentElasticsearchTopologyAutoscaling {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentElasticsearchTopologyAutoscaling
-		return ret
-	}).(DeploymentElasticsearchTopologyAutoscalingOutput)
-}
-
-// Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) *string {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Defines the resource type the scale up will use (Defaults to `"memory"`).
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) *string {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSizeResource
-	}).(pulumi.StringPtrOutput)
-}
-
-// Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) *string {
-		if v == nil {
-			return nil
-		}
-		return v.MinSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Defines the resource type the scale down will use (Defaults to `"memory"`).
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) *string {
-		if v == nil {
-			return nil
-		}
-		return v.MinSizeResource
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DeploymentElasticsearchTopologyAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchTopologyAutoscaling) *string {
-		if v == nil {
-			return nil
-		}
-		return v.PolicyOverrideJson
-	}).(pulumi.StringPtrOutput)
-}
-
-type DeploymentElasticsearchTopologyConfig struct {
-	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-	Plugins []string `pulumi:"plugins"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
-}
-
-// DeploymentElasticsearchTopologyConfigInput is an input type that accepts DeploymentElasticsearchTopologyConfigArgs and DeploymentElasticsearchTopologyConfigOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchTopologyConfigInput` via:
-//
-//	DeploymentElasticsearchTopologyConfigArgs{...}
-type DeploymentElasticsearchTopologyConfigInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchTopologyConfigOutput() DeploymentElasticsearchTopologyConfigOutput
-	ToDeploymentElasticsearchTopologyConfigOutputWithContext(context.Context) DeploymentElasticsearchTopologyConfigOutput
-}
-
-type DeploymentElasticsearchTopologyConfigArgs struct {
-	// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-	Plugins pulumi.StringArrayInput `pulumi:"plugins"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
-}
-
-func (DeploymentElasticsearchTopologyConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchTopologyConfig)(nil)).Elem()
-}
-
-func (i DeploymentElasticsearchTopologyConfigArgs) ToDeploymentElasticsearchTopologyConfigOutput() DeploymentElasticsearchTopologyConfigOutput {
-	return i.ToDeploymentElasticsearchTopologyConfigOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchTopologyConfigArgs) ToDeploymentElasticsearchTopologyConfigOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyConfigOutput)
-}
-
-// DeploymentElasticsearchTopologyConfigArrayInput is an input type that accepts DeploymentElasticsearchTopologyConfigArray and DeploymentElasticsearchTopologyConfigArrayOutput values.
-// You can construct a concrete instance of `DeploymentElasticsearchTopologyConfigArrayInput` via:
-//
-//	DeploymentElasticsearchTopologyConfigArray{ DeploymentElasticsearchTopologyConfigArgs{...} }
-type DeploymentElasticsearchTopologyConfigArrayInput interface {
-	pulumi.Input
-
-	ToDeploymentElasticsearchTopologyConfigArrayOutput() DeploymentElasticsearchTopologyConfigArrayOutput
-	ToDeploymentElasticsearchTopologyConfigArrayOutputWithContext(context.Context) DeploymentElasticsearchTopologyConfigArrayOutput
-}
-
-type DeploymentElasticsearchTopologyConfigArray []DeploymentElasticsearchTopologyConfigInput
-
-func (DeploymentElasticsearchTopologyConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentElasticsearchTopologyConfig)(nil)).Elem()
-}
-
-func (i DeploymentElasticsearchTopologyConfigArray) ToDeploymentElasticsearchTopologyConfigArrayOutput() DeploymentElasticsearchTopologyConfigArrayOutput {
-	return i.ToDeploymentElasticsearchTopologyConfigArrayOutputWithContext(context.Background())
-}
-
-func (i DeploymentElasticsearchTopologyConfigArray) ToDeploymentElasticsearchTopologyConfigArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyConfigArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTopologyConfigArrayOutput)
-}
-
-type DeploymentElasticsearchTopologyConfigOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchTopologyConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentElasticsearchTopologyConfig)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchTopologyConfigOutput) ToDeploymentElasticsearchTopologyConfigOutput() DeploymentElasticsearchTopologyConfigOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyConfigOutput) ToDeploymentElasticsearchTopologyConfigOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyConfigOutput {
-	return o
-}
-
-// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-func (o DeploymentElasticsearchTopologyConfigOutput) Plugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) []string { return v.Plugins }).(pulumi.StringArrayOutput)
-}
-
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
-func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
-}
-
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
-}
-
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
-}
-
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
-func (o DeploymentElasticsearchTopologyConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentElasticsearchTopologyConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
-}
-
-type DeploymentElasticsearchTopologyConfigArrayOutput struct{ *pulumi.OutputState }
-
-func (DeploymentElasticsearchTopologyConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeploymentElasticsearchTopologyConfig)(nil)).Elem()
-}
-
-func (o DeploymentElasticsearchTopologyConfigArrayOutput) ToDeploymentElasticsearchTopologyConfigArrayOutput() DeploymentElasticsearchTopologyConfigArrayOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyConfigArrayOutput) ToDeploymentElasticsearchTopologyConfigArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchTopologyConfigArrayOutput {
-	return o
-}
-
-func (o DeploymentElasticsearchTopologyConfigArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchTopologyConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentElasticsearchTopologyConfig {
-		return vs[0].([]DeploymentElasticsearchTopologyConfig)[vs[1].(int)]
-	}).(DeploymentElasticsearchTopologyConfigOutput)
-}
-
 type DeploymentElasticsearchTrustAccount struct {
-	// The account identifier to establish the new trust with.
-	AccountId string `pulumi:"accountId"`
-	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
-	TrustAll bool `pulumi:"trustAll"`
-	// The list of clusters to trust. Only used when `trustAll` is `false`.
+	AccountId       string   `pulumi:"accountId"`
+	TrustAll        bool     `pulumi:"trustAll"`
 	TrustAllowlists []string `pulumi:"trustAllowlists"`
 }
 
@@ -2404,11 +4803,8 @@ type DeploymentElasticsearchTrustAccountInput interface {
 }
 
 type DeploymentElasticsearchTrustAccountArgs struct {
-	// The account identifier to establish the new trust with.
-	AccountId pulumi.StringInput `pulumi:"accountId"`
-	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
-	TrustAll pulumi.BoolInput `pulumi:"trustAll"`
-	// The list of clusters to trust. Only used when `trustAll` is `false`.
+	AccountId       pulumi.StringInput      `pulumi:"accountId"`
+	TrustAll        pulumi.BoolInput        `pulumi:"trustAll"`
 	TrustAllowlists pulumi.StringArrayInput `pulumi:"trustAllowlists"`
 }
 
@@ -2463,17 +4859,14 @@ func (o DeploymentElasticsearchTrustAccountOutput) ToDeploymentElasticsearchTrus
 	return o
 }
 
-// The account identifier to establish the new trust with.
 func (o DeploymentElasticsearchTrustAccountOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustAccount) string { return v.AccountId }).(pulumi.StringOutput)
 }
 
-// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
 func (o DeploymentElasticsearchTrustAccountOutput) TrustAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustAccount) bool { return v.TrustAll }).(pulumi.BoolOutput)
 }
 
-// The list of clusters to trust. Only used when `trustAll` is `false`.
 func (o DeploymentElasticsearchTrustAccountOutput) TrustAllowlists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustAccount) []string { return v.TrustAllowlists }).(pulumi.StringArrayOutput)
 }
@@ -2499,11 +4892,8 @@ func (o DeploymentElasticsearchTrustAccountArrayOutput) Index(i pulumi.IntInput)
 }
 
 type DeploymentElasticsearchTrustExternal struct {
-	// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-	RelationshipId string `pulumi:"relationshipId"`
-	// If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
-	TrustAll bool `pulumi:"trustAll"`
-	// The list of clusters to trust. Only used when `trustAll` is `false`.
+	RelationshipId  string   `pulumi:"relationshipId"`
+	TrustAll        bool     `pulumi:"trustAll"`
 	TrustAllowlists []string `pulumi:"trustAllowlists"`
 }
 
@@ -2519,11 +4909,8 @@ type DeploymentElasticsearchTrustExternalInput interface {
 }
 
 type DeploymentElasticsearchTrustExternalArgs struct {
-	// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-	RelationshipId pulumi.StringInput `pulumi:"relationshipId"`
-	// If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
-	TrustAll pulumi.BoolInput `pulumi:"trustAll"`
-	// The list of clusters to trust. Only used when `trustAll` is `false`.
+	RelationshipId  pulumi.StringInput      `pulumi:"relationshipId"`
+	TrustAll        pulumi.BoolInput        `pulumi:"trustAll"`
 	TrustAllowlists pulumi.StringArrayInput `pulumi:"trustAllowlists"`
 }
 
@@ -2578,17 +4965,14 @@ func (o DeploymentElasticsearchTrustExternalOutput) ToDeploymentElasticsearchTru
 	return o
 }
 
-// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
 func (o DeploymentElasticsearchTrustExternalOutput) RelationshipId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) string { return v.RelationshipId }).(pulumi.StringOutput)
 }
 
-// If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
 func (o DeploymentElasticsearchTrustExternalOutput) TrustAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) bool { return v.TrustAll }).(pulumi.BoolOutput)
 }
 
-// The list of clusters to trust. Only used when `trustAll` is `false`.
 func (o DeploymentElasticsearchTrustExternalOutput) TrustAllowlists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) []string { return v.TrustAllowlists }).(pulumi.StringArrayOutput)
 }
@@ -2613,20 +4997,485 @@ func (o DeploymentElasticsearchTrustExternalArrayOutput) Index(i pulumi.IntInput
 	}).(DeploymentElasticsearchTrustExternalOutput)
 }
 
+type DeploymentElasticsearchWarm struct {
+	Autoscaling             DeploymentElasticsearchWarmAutoscaling `pulumi:"autoscaling"`
+	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
+	NodeRoles               []string                               `pulumi:"nodeRoles"`
+	NodeTypeData            *string                                `pulumi:"nodeTypeData"`
+	NodeTypeIngest          *string                                `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          *string                                `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              *string                                `pulumi:"nodeTypeMl"`
+	Size                    *string                                `pulumi:"size"`
+	SizeResource            *string                                `pulumi:"sizeResource"`
+	ZoneCount               *int                                   `pulumi:"zoneCount"`
+}
+
+// DeploymentElasticsearchWarmInput is an input type that accepts DeploymentElasticsearchWarmArgs and DeploymentElasticsearchWarmOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchWarmInput` via:
+//
+//	DeploymentElasticsearchWarmArgs{...}
+type DeploymentElasticsearchWarmInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchWarmOutput() DeploymentElasticsearchWarmOutput
+	ToDeploymentElasticsearchWarmOutputWithContext(context.Context) DeploymentElasticsearchWarmOutput
+}
+
+type DeploymentElasticsearchWarmArgs struct {
+	Autoscaling             DeploymentElasticsearchWarmAutoscalingInput `pulumi:"autoscaling"`
+	InstanceConfigurationId pulumi.StringPtrInput                       `pulumi:"instanceConfigurationId"`
+	NodeRoles               pulumi.StringArrayInput                     `pulumi:"nodeRoles"`
+	NodeTypeData            pulumi.StringPtrInput                       `pulumi:"nodeTypeData"`
+	NodeTypeIngest          pulumi.StringPtrInput                       `pulumi:"nodeTypeIngest"`
+	NodeTypeMaster          pulumi.StringPtrInput                       `pulumi:"nodeTypeMaster"`
+	NodeTypeMl              pulumi.StringPtrInput                       `pulumi:"nodeTypeMl"`
+	Size                    pulumi.StringPtrInput                       `pulumi:"size"`
+	SizeResource            pulumi.StringPtrInput                       `pulumi:"sizeResource"`
+	ZoneCount               pulumi.IntPtrInput                          `pulumi:"zoneCount"`
+}
+
+func (DeploymentElasticsearchWarmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchWarm)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchWarmArgs) ToDeploymentElasticsearchWarmOutput() DeploymentElasticsearchWarmOutput {
+	return i.ToDeploymentElasticsearchWarmOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchWarmArgs) ToDeploymentElasticsearchWarmOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmOutput)
+}
+
+func (i DeploymentElasticsearchWarmArgs) ToDeploymentElasticsearchWarmPtrOutput() DeploymentElasticsearchWarmPtrOutput {
+	return i.ToDeploymentElasticsearchWarmPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchWarmArgs) ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmOutput).ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchWarmPtrInput is an input type that accepts DeploymentElasticsearchWarmArgs, DeploymentElasticsearchWarmPtr and DeploymentElasticsearchWarmPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchWarmPtrInput` via:
+//
+//	        DeploymentElasticsearchWarmArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchWarmPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchWarmPtrOutput() DeploymentElasticsearchWarmPtrOutput
+	ToDeploymentElasticsearchWarmPtrOutputWithContext(context.Context) DeploymentElasticsearchWarmPtrOutput
+}
+
+type deploymentElasticsearchWarmPtrType DeploymentElasticsearchWarmArgs
+
+func DeploymentElasticsearchWarmPtr(v *DeploymentElasticsearchWarmArgs) DeploymentElasticsearchWarmPtrInput {
+	return (*deploymentElasticsearchWarmPtrType)(v)
+}
+
+func (*deploymentElasticsearchWarmPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchWarm)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchWarmPtrType) ToDeploymentElasticsearchWarmPtrOutput() DeploymentElasticsearchWarmPtrOutput {
+	return i.ToDeploymentElasticsearchWarmPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchWarmPtrType) ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmPtrOutput)
+}
+
+type DeploymentElasticsearchWarmOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchWarmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchWarm)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchWarmOutput) ToDeploymentElasticsearchWarmOutput() DeploymentElasticsearchWarmOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmOutput) ToDeploymentElasticsearchWarmOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmOutput) ToDeploymentElasticsearchWarmPtrOutput() DeploymentElasticsearchWarmPtrOutput {
+	return o.ToDeploymentElasticsearchWarmPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchWarmOutput) ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchWarm) *DeploymentElasticsearchWarm {
+		return &v
+	}).(DeploymentElasticsearchWarmPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) Autoscaling() DeploymentElasticsearchWarmAutoscalingOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) DeploymentElasticsearchWarmAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchWarmAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarm) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchWarmPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchWarmPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchWarm)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) ToDeploymentElasticsearchWarmPtrOutput() DeploymentElasticsearchWarmPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) Elem() DeploymentElasticsearchWarmOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) DeploymentElasticsearchWarm {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchWarm
+		return ret
+	}).(DeploymentElasticsearchWarmOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) Autoscaling() DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *DeploymentElasticsearchWarmAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return &v.Autoscaling
+	}).(DeploymentElasticsearchWarmAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) NodeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeRoles
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeData
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeIngest
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMaster
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeMl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type DeploymentElasticsearchWarmAutoscaling struct {
+	MaxSize            *string `pulumi:"maxSize"`
+	MaxSizeResource    *string `pulumi:"maxSizeResource"`
+	MinSize            *string `pulumi:"minSize"`
+	MinSizeResource    *string `pulumi:"minSizeResource"`
+	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
+}
+
+// DeploymentElasticsearchWarmAutoscalingInput is an input type that accepts DeploymentElasticsearchWarmAutoscalingArgs and DeploymentElasticsearchWarmAutoscalingOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchWarmAutoscalingInput` via:
+//
+//	DeploymentElasticsearchWarmAutoscalingArgs{...}
+type DeploymentElasticsearchWarmAutoscalingInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchWarmAutoscalingOutput() DeploymentElasticsearchWarmAutoscalingOutput
+	ToDeploymentElasticsearchWarmAutoscalingOutputWithContext(context.Context) DeploymentElasticsearchWarmAutoscalingOutput
+}
+
+type DeploymentElasticsearchWarmAutoscalingArgs struct {
+	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
+	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
+	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
+}
+
+func (DeploymentElasticsearchWarmAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchWarmAutoscaling)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchWarmAutoscalingArgs) ToDeploymentElasticsearchWarmAutoscalingOutput() DeploymentElasticsearchWarmAutoscalingOutput {
+	return i.ToDeploymentElasticsearchWarmAutoscalingOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchWarmAutoscalingArgs) ToDeploymentElasticsearchWarmAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmAutoscalingOutput)
+}
+
+func (i DeploymentElasticsearchWarmAutoscalingArgs) ToDeploymentElasticsearchWarmAutoscalingPtrOutput() DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchWarmAutoscalingArgs) ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmAutoscalingOutput).ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx)
+}
+
+// DeploymentElasticsearchWarmAutoscalingPtrInput is an input type that accepts DeploymentElasticsearchWarmAutoscalingArgs, DeploymentElasticsearchWarmAutoscalingPtr and DeploymentElasticsearchWarmAutoscalingPtrOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchWarmAutoscalingPtrInput` via:
+//
+//	        DeploymentElasticsearchWarmAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentElasticsearchWarmAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchWarmAutoscalingPtrOutput() DeploymentElasticsearchWarmAutoscalingPtrOutput
+	ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(context.Context) DeploymentElasticsearchWarmAutoscalingPtrOutput
+}
+
+type deploymentElasticsearchWarmAutoscalingPtrType DeploymentElasticsearchWarmAutoscalingArgs
+
+func DeploymentElasticsearchWarmAutoscalingPtr(v *DeploymentElasticsearchWarmAutoscalingArgs) DeploymentElasticsearchWarmAutoscalingPtrInput {
+	return (*deploymentElasticsearchWarmAutoscalingPtrType)(v)
+}
+
+func (*deploymentElasticsearchWarmAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchWarmAutoscaling)(nil)).Elem()
+}
+
+func (i *deploymentElasticsearchWarmAutoscalingPtrType) ToDeploymentElasticsearchWarmAutoscalingPtrOutput() DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return i.ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentElasticsearchWarmAutoscalingPtrType) ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmAutoscalingPtrOutput)
+}
+
+type DeploymentElasticsearchWarmAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchWarmAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchWarmAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) ToDeploymentElasticsearchWarmAutoscalingOutput() DeploymentElasticsearchWarmAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) ToDeploymentElasticsearchWarmAutoscalingOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) ToDeploymentElasticsearchWarmAutoscalingPtrOutput() DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return o.ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchWarmAutoscaling) *DeploymentElasticsearchWarmAutoscaling {
+		return &v
+	}).(DeploymentElasticsearchWarmAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchWarmAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchWarmAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentElasticsearchWarmAutoscaling)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) ToDeploymentElasticsearchWarmAutoscalingPtrOutput() DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingPtrOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) Elem() DeploymentElasticsearchWarmAutoscalingOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) DeploymentElasticsearchWarmAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentElasticsearchWarmAutoscaling
+		return ret
+	}).(DeploymentElasticsearchWarmAutoscalingOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyOverrideJson
+	}).(pulumi.StringPtrOutput)
+}
+
 type DeploymentEnterpriseSearch struct {
-	// Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
-	Config *DeploymentEnterpriseSearchConfig `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId *string `pulumi:"elasticsearchClusterRefId"`
-	HttpEndpoint              *string `pulumi:"httpEndpoint"`
-	HttpsEndpoint             *string `pulumi:"httpsEndpoint"`
-	// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-	RefId *string `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Enterprise Search configuration options for the Enterprise Search Server
+	Config                    *DeploymentEnterpriseSearchConfig `pulumi:"config"`
+	ElasticsearchClusterRefId *string                           `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              *string                           `pulumi:"httpEndpoint"`
+	HttpsEndpoint             *string                           `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId   *string                           `pulumi:"instanceConfigurationId"`
+	NodeTypeAppserver         *bool                             `pulumi:"nodeTypeAppserver"`
+	NodeTypeConnector         *bool                             `pulumi:"nodeTypeConnector"`
+	NodeTypeWorker            *bool                             `pulumi:"nodeTypeWorker"`
+	RefId                     *string                           `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology *DeploymentEnterpriseSearchTopology `pulumi:"topology"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentEnterpriseSearchInput is an input type that accepts DeploymentEnterpriseSearchArgs and DeploymentEnterpriseSearchOutput values.
@@ -2641,19 +5490,23 @@ type DeploymentEnterpriseSearchInput interface {
 }
 
 type DeploymentEnterpriseSearchArgs struct {
-	// Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
-	Config DeploymentEnterpriseSearchConfigPtrInput `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId pulumi.StringPtrInput `pulumi:"elasticsearchClusterRefId"`
-	HttpEndpoint              pulumi.StringPtrInput `pulumi:"httpEndpoint"`
-	HttpsEndpoint             pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
-	// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Enterprise Search configuration options for the Enterprise Search Server
+	Config                    DeploymentEnterpriseSearchConfigPtrInput `pulumi:"config"`
+	ElasticsearchClusterRefId pulumi.StringPtrInput                    `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              pulumi.StringPtrInput                    `pulumi:"httpEndpoint"`
+	HttpsEndpoint             pulumi.StringPtrInput                    `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId   pulumi.StringPtrInput                    `pulumi:"instanceConfigurationId"`
+	NodeTypeAppserver         pulumi.BoolPtrInput                      `pulumi:"nodeTypeAppserver"`
+	NodeTypeConnector         pulumi.BoolPtrInput                      `pulumi:"nodeTypeConnector"`
+	NodeTypeWorker            pulumi.BoolPtrInput                      `pulumi:"nodeTypeWorker"`
+	RefId                     pulumi.StringPtrInput                    `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology DeploymentEnterpriseSearchTopologyPtrInput `pulumi:"topology"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentEnterpriseSearchArgs) ElementType() reflect.Type {
@@ -2733,12 +5586,11 @@ func (o DeploymentEnterpriseSearchOutput) ToDeploymentEnterpriseSearchPtrOutputW
 	}).(DeploymentEnterpriseSearchPtrOutput)
 }
 
-// Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Enterprise Search configuration options for the Enterprise Search Server
 func (o DeploymentEnterpriseSearchOutput) Config() DeploymentEnterpriseSearchConfigPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *DeploymentEnterpriseSearchConfig { return v.Config }).(DeploymentEnterpriseSearchConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentEnterpriseSearchOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.ElasticsearchClusterRefId }).(pulumi.StringPtrOutput)
 }
@@ -2751,12 +5603,27 @@ func (o DeploymentEnterpriseSearchOutput) HttpsEndpoint() pulumi.StringPtrOutput
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
+func (o DeploymentEnterpriseSearchOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchOutput) NodeTypeAppserver() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *bool { return v.NodeTypeAppserver }).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchOutput) NodeTypeConnector() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *bool { return v.NodeTypeConnector }).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchOutput) NodeTypeWorker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *bool { return v.NodeTypeWorker }).(pulumi.BoolPtrOutput)
+}
+
 func (o DeploymentEnterpriseSearchOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentEnterpriseSearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -2765,9 +5632,17 @@ func (o DeploymentEnterpriseSearchOutput) ResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentEnterpriseSearchOutput) Topology() DeploymentEnterpriseSearchTopologyPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearch) *DeploymentEnterpriseSearchTopology { return v.Topology }).(DeploymentEnterpriseSearchTopologyPtrOutput)
+func (o DeploymentEnterpriseSearchOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentEnterpriseSearchOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentEnterpriseSearch) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
 type DeploymentEnterpriseSearchPtrOutput struct{ *pulumi.OutputState }
@@ -2794,7 +5669,7 @@ func (o DeploymentEnterpriseSearchPtrOutput) Elem() DeploymentEnterpriseSearchOu
 	}).(DeploymentEnterpriseSearchOutput)
 }
 
-// Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Enterprise Search configuration options for the Enterprise Search Server
 func (o DeploymentEnterpriseSearchPtrOutput) Config() DeploymentEnterpriseSearchConfigPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *DeploymentEnterpriseSearchConfig {
 		if v == nil {
@@ -2804,7 +5679,6 @@ func (o DeploymentEnterpriseSearchPtrOutput) Config() DeploymentEnterpriseSearch
 	}).(DeploymentEnterpriseSearchConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentEnterpriseSearchPtrOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
 		if v == nil {
@@ -2832,7 +5706,42 @@ func (o DeploymentEnterpriseSearchPtrOutput) HttpsEndpoint() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
+func (o DeploymentEnterpriseSearchPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchPtrOutput) NodeTypeAppserver() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeAppserver
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchPtrOutput) NodeTypeConnector() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeConnector
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchPtrOutput) NodeTypeWorker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NodeTypeWorker
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o DeploymentEnterpriseSearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
 		if v == nil {
@@ -2842,7 +5751,7 @@ func (o DeploymentEnterpriseSearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentEnterpriseSearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
 		if v == nil {
@@ -2861,26 +5770,40 @@ func (o DeploymentEnterpriseSearchPtrOutput) ResourceId() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentEnterpriseSearchPtrOutput) Topology() DeploymentEnterpriseSearchTopologyPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *DeploymentEnterpriseSearchTopology {
+func (o DeploymentEnterpriseSearchPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Topology
-	}).(DeploymentEnterpriseSearchTopologyPtrOutput)
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentEnterpriseSearchPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentEnterpriseSearchConfig struct {
-	DockerImage *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DockerImage              *string `pulumi:"dockerImage"`
+	UserSettingsJson         *string `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentEnterpriseSearchConfigInput is an input type that accepts DeploymentEnterpriseSearchConfigArgs and DeploymentEnterpriseSearchConfigOutput values.
@@ -2895,15 +5818,11 @@ type DeploymentEnterpriseSearchConfigInput interface {
 }
 
 type DeploymentEnterpriseSearchConfigArgs struct {
-	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
+	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentEnterpriseSearchConfigArgs) ElementType() reflect.Type {
@@ -2987,22 +5906,18 @@ func (o DeploymentEnterpriseSearchConfigOutput) DockerImage() pulumi.StringPtrOu
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -3040,7 +5955,6 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) DockerImage() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -3050,7 +5964,6 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsJson() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -3060,7 +5973,6 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideJson() pu
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -3070,7 +5982,6 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideYaml() pu
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -3080,261 +5991,23 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsYaml() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-type DeploymentEnterpriseSearchTopology struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	NodeTypeAppserver       *bool   `pulumi:"nodeTypeAppserver"`
-	NodeTypeConnector       *bool   `pulumi:"nodeTypeConnector"`
-	NodeTypeWorker          *bool   `pulumi:"nodeTypeWorker"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size *string `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount *int `pulumi:"zoneCount"`
-}
-
-// DeploymentEnterpriseSearchTopologyInput is an input type that accepts DeploymentEnterpriseSearchTopologyArgs and DeploymentEnterpriseSearchTopologyOutput values.
-// You can construct a concrete instance of `DeploymentEnterpriseSearchTopologyInput` via:
-//
-//	DeploymentEnterpriseSearchTopologyArgs{...}
-type DeploymentEnterpriseSearchTopologyInput interface {
-	pulumi.Input
-
-	ToDeploymentEnterpriseSearchTopologyOutput() DeploymentEnterpriseSearchTopologyOutput
-	ToDeploymentEnterpriseSearchTopologyOutputWithContext(context.Context) DeploymentEnterpriseSearchTopologyOutput
-}
-
-type DeploymentEnterpriseSearchTopologyArgs struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	NodeTypeAppserver       pulumi.BoolPtrInput   `pulumi:"nodeTypeAppserver"`
-	NodeTypeConnector       pulumi.BoolPtrInput   `pulumi:"nodeTypeConnector"`
-	NodeTypeWorker          pulumi.BoolPtrInput   `pulumi:"nodeTypeWorker"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size pulumi.StringPtrInput `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
-}
-
-func (DeploymentEnterpriseSearchTopologyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentEnterpriseSearchTopology)(nil)).Elem()
-}
-
-func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopologyOutput() DeploymentEnterpriseSearchTopologyOutput {
-	return i.ToDeploymentEnterpriseSearchTopologyOutputWithContext(context.Background())
-}
-
-func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopologyOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyOutput)
-}
-
-func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
-	return i.ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Background())
-}
-
-func (i DeploymentEnterpriseSearchTopologyArgs) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyOutput).ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx)
-}
-
-// DeploymentEnterpriseSearchTopologyPtrInput is an input type that accepts DeploymentEnterpriseSearchTopologyArgs, DeploymentEnterpriseSearchTopologyPtr and DeploymentEnterpriseSearchTopologyPtrOutput values.
-// You can construct a concrete instance of `DeploymentEnterpriseSearchTopologyPtrInput` via:
-//
-//	        DeploymentEnterpriseSearchTopologyArgs{...}
-//
-//	or:
-//
-//	        nil
-type DeploymentEnterpriseSearchTopologyPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput
-	ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Context) DeploymentEnterpriseSearchTopologyPtrOutput
-}
-
-type deploymentEnterpriseSearchTopologyPtrType DeploymentEnterpriseSearchTopologyArgs
-
-func DeploymentEnterpriseSearchTopologyPtr(v *DeploymentEnterpriseSearchTopologyArgs) DeploymentEnterpriseSearchTopologyPtrInput {
-	return (*deploymentEnterpriseSearchTopologyPtrType)(v)
-}
-
-func (*deploymentEnterpriseSearchTopologyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentEnterpriseSearchTopology)(nil)).Elem()
-}
-
-func (i *deploymentEnterpriseSearchTopologyPtrType) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
-	return i.ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentEnterpriseSearchTopologyPtrType) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchTopologyPtrOutput)
-}
-
-type DeploymentEnterpriseSearchTopologyOutput struct{ *pulumi.OutputState }
-
-func (DeploymentEnterpriseSearchTopologyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentEnterpriseSearchTopology)(nil)).Elem()
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTopologyOutput() DeploymentEnterpriseSearchTopologyOutput {
-	return o
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTopologyOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyOutput {
-	return o
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
-	return o.ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentEnterpriseSearchTopology) *DeploymentEnterpriseSearchTopology {
-		return &v
-	}).(DeploymentEnterpriseSearchTopologyPtrOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentEnterpriseSearchTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) NodeTypeAppserver() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *bool { return v.NodeTypeAppserver }).(pulumi.BoolPtrOutput)
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) NodeTypeConnector() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *bool { return v.NodeTypeConnector }).(pulumi.BoolPtrOutput)
-}
-
-func (o DeploymentEnterpriseSearchTopologyOutput) NodeTypeWorker() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *bool { return v.NodeTypeWorker }).(pulumi.BoolPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentEnterpriseSearchTopologyOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentEnterpriseSearchTopologyOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentEnterpriseSearchTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DeploymentEnterpriseSearchTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
-}
-
-type DeploymentEnterpriseSearchTopologyPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentEnterpriseSearchTopologyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentEnterpriseSearchTopology)(nil)).Elem()
-}
-
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) ToDeploymentEnterpriseSearchTopologyPtrOutput() DeploymentEnterpriseSearchTopologyPtrOutput {
-	return o
-}
-
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) ToDeploymentEnterpriseSearchTopologyPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchTopologyPtrOutput {
-	return o
-}
-
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) Elem() DeploymentEnterpriseSearchTopologyOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) DeploymentEnterpriseSearchTopology {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentEnterpriseSearchTopology
-		return ret
-	}).(DeploymentEnterpriseSearchTopologyOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.InstanceConfigurationId
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) NodeTypeAppserver() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.NodeTypeAppserver
-	}).(pulumi.BoolPtrOutput)
-}
-
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) NodeTypeConnector() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.NodeTypeConnector
-	}).(pulumi.BoolPtrOutput)
-}
-
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) NodeTypeWorker() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.NodeTypeWorker
-	}).(pulumi.BoolPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Size
-	}).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SizeResource
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentEnterpriseSearchTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DeploymentEnterpriseSearchTopology) *int {
-		if v == nil {
-			return nil
-		}
-		return v.ZoneCount
-	}).(pulumi.IntPtrOutput)
-}
-
 type DeploymentIntegrationsServer struct {
-	ApmHttpsEndpoint *string `pulumi:"apmHttpsEndpoint"`
-	// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
-	Config *DeploymentIntegrationsServerConfig `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId *string `pulumi:"elasticsearchClusterRefId"`
-	FleetHttpsEndpoint        *string `pulumi:"fleetHttpsEndpoint"`
-	HttpEndpoint              *string `pulumi:"httpEndpoint"`
-	HttpsEndpoint             *string `pulumi:"httpsEndpoint"`
-	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-	RefId *string `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Integrations Server configuration options for the IntegrationsServer Server
+	Config                    *DeploymentIntegrationsServerConfig `pulumi:"config"`
+	ElasticsearchClusterRefId *string                             `pulumi:"elasticsearchClusterRefId"`
+	// URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+	Endpoints               *DeploymentIntegrationsServerEndpoints `pulumi:"endpoints"`
+	HttpEndpoint            *string                                `pulumi:"httpEndpoint"`
+	HttpsEndpoint           *string                                `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
+	RefId                   *string                                `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology *DeploymentIntegrationsServerTopology `pulumi:"topology"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentIntegrationsServerInput is an input type that accepts DeploymentIntegrationsServerArgs and DeploymentIntegrationsServerOutput values.
@@ -3349,21 +6022,22 @@ type DeploymentIntegrationsServerInput interface {
 }
 
 type DeploymentIntegrationsServerArgs struct {
-	ApmHttpsEndpoint pulumi.StringPtrInput `pulumi:"apmHttpsEndpoint"`
-	// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
-	Config DeploymentIntegrationsServerConfigPtrInput `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId pulumi.StringPtrInput `pulumi:"elasticsearchClusterRefId"`
-	FleetHttpsEndpoint        pulumi.StringPtrInput `pulumi:"fleetHttpsEndpoint"`
-	HttpEndpoint              pulumi.StringPtrInput `pulumi:"httpEndpoint"`
-	HttpsEndpoint             pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
-	// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Integrations Server configuration options for the IntegrationsServer Server
+	Config                    DeploymentIntegrationsServerConfigPtrInput `pulumi:"config"`
+	ElasticsearchClusterRefId pulumi.StringPtrInput                      `pulumi:"elasticsearchClusterRefId"`
+	// URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+	Endpoints               DeploymentIntegrationsServerEndpointsPtrInput `pulumi:"endpoints"`
+	HttpEndpoint            pulumi.StringPtrInput                         `pulumi:"httpEndpoint"`
+	HttpsEndpoint           pulumi.StringPtrInput                         `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
+	RefId                   pulumi.StringPtrInput                         `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology DeploymentIntegrationsServerTopologyPtrInput `pulumi:"topology"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentIntegrationsServerArgs) ElementType() reflect.Type {
@@ -3443,22 +6117,18 @@ func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerPtrOut
 	}).(DeploymentIntegrationsServerPtrOutput)
 }
 
-func (o DeploymentIntegrationsServerOutput) ApmHttpsEndpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ApmHttpsEndpoint }).(pulumi.StringPtrOutput)
-}
-
-// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Integrations Server configuration options for the IntegrationsServer Server
 func (o DeploymentIntegrationsServerOutput) Config() DeploymentIntegrationsServerConfigPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *DeploymentIntegrationsServerConfig { return v.Config }).(DeploymentIntegrationsServerConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentIntegrationsServerOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ElasticsearchClusterRefId }).(pulumi.StringPtrOutput)
 }
 
-func (o DeploymentIntegrationsServerOutput) FleetHttpsEndpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.FleetHttpsEndpoint }).(pulumi.StringPtrOutput)
+// URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+func (o DeploymentIntegrationsServerOutput) Endpoints() DeploymentIntegrationsServerEndpointsPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *DeploymentIntegrationsServerEndpoints { return v.Endpoints }).(DeploymentIntegrationsServerEndpointsPtrOutput)
 }
 
 func (o DeploymentIntegrationsServerOutput) HttpEndpoint() pulumi.StringPtrOutput {
@@ -3469,12 +6139,15 @@ func (o DeploymentIntegrationsServerOutput) HttpsEndpoint() pulumi.StringPtrOutp
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+func (o DeploymentIntegrationsServerOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
 func (o DeploymentIntegrationsServerOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentIntegrationsServerOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -3483,9 +6156,17 @@ func (o DeploymentIntegrationsServerOutput) ResourceId() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentIntegrationsServerOutput) Topology() DeploymentIntegrationsServerTopologyPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServer) *DeploymentIntegrationsServerTopology { return v.Topology }).(DeploymentIntegrationsServerTopologyPtrOutput)
+func (o DeploymentIntegrationsServerOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentIntegrationsServerOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServer) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
 type DeploymentIntegrationsServerPtrOutput struct{ *pulumi.OutputState }
@@ -3512,16 +6193,7 @@ func (o DeploymentIntegrationsServerPtrOutput) Elem() DeploymentIntegrationsServ
 	}).(DeploymentIntegrationsServerOutput)
 }
 
-func (o DeploymentIntegrationsServerPtrOutput) ApmHttpsEndpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ApmHttpsEndpoint
-	}).(pulumi.StringPtrOutput)
-}
-
-// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Integrations Server configuration options for the IntegrationsServer Server
 func (o DeploymentIntegrationsServerPtrOutput) Config() DeploymentIntegrationsServerConfigPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *DeploymentIntegrationsServerConfig {
 		if v == nil {
@@ -3531,7 +6203,6 @@ func (o DeploymentIntegrationsServerPtrOutput) Config() DeploymentIntegrationsSe
 	}).(DeploymentIntegrationsServerConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentIntegrationsServerPtrOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
 		if v == nil {
@@ -3541,13 +6212,14 @@ func (o DeploymentIntegrationsServerPtrOutput) ElasticsearchClusterRefId() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o DeploymentIntegrationsServerPtrOutput) FleetHttpsEndpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+// URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+func (o DeploymentIntegrationsServerPtrOutput) Endpoints() DeploymentIntegrationsServerEndpointsPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *DeploymentIntegrationsServerEndpoints {
 		if v == nil {
 			return nil
 		}
-		return v.FleetHttpsEndpoint
-	}).(pulumi.StringPtrOutput)
+		return v.Endpoints
+	}).(DeploymentIntegrationsServerEndpointsPtrOutput)
 }
 
 func (o DeploymentIntegrationsServerPtrOutput) HttpEndpoint() pulumi.StringPtrOutput {
@@ -3568,7 +6240,15 @@ func (o DeploymentIntegrationsServerPtrOutput) HttpsEndpoint() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
+func (o DeploymentIntegrationsServerPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o DeploymentIntegrationsServerPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
 		if v == nil {
@@ -3578,7 +6258,7 @@ func (o DeploymentIntegrationsServerPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentIntegrationsServerPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
 		if v == nil {
@@ -3597,28 +6277,41 @@ func (o DeploymentIntegrationsServerPtrOutput) ResourceId() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentIntegrationsServerPtrOutput) Topology() DeploymentIntegrationsServerTopologyPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServer) *DeploymentIntegrationsServerTopology {
+func (o DeploymentIntegrationsServerPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Topology
-	}).(DeploymentIntegrationsServerTopologyPtrOutput)
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentIntegrationsServerPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServer) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentIntegrationsServerConfig struct {
-	// Enable debug mode for APM servers. Defaults to `false`.
-	DebugEnabled *bool   `pulumi:"debugEnabled"`
-	DockerImage  *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DebugEnabled             *bool   `pulumi:"debugEnabled"`
+	DockerImage              *string `pulumi:"dockerImage"`
+	UserSettingsJson         *string `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentIntegrationsServerConfigInput is an input type that accepts DeploymentIntegrationsServerConfigArgs and DeploymentIntegrationsServerConfigOutput values.
@@ -3633,17 +6326,12 @@ type DeploymentIntegrationsServerConfigInput interface {
 }
 
 type DeploymentIntegrationsServerConfigArgs struct {
-	// Enable debug mode for APM servers. Defaults to `false`.
-	DebugEnabled pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
-	DockerImage  pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DebugEnabled             pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
+	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
+	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentIntegrationsServerConfigArgs) ElementType() reflect.Type {
@@ -3723,7 +6411,6 @@ func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServer
 	}).(DeploymentIntegrationsServerConfigPtrOutput)
 }
 
-// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentIntegrationsServerConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -3732,22 +6419,18 @@ func (o DeploymentIntegrationsServerConfigOutput) DockerImage() pulumi.StringPtr
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -3776,7 +6459,6 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) Elem() DeploymentIntegratio
 	}).(DeploymentIntegrationsServerConfigOutput)
 }
 
-// Enable debug mode for APM servers. Defaults to `false`.
 func (o DeploymentIntegrationsServerConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *bool {
 		if v == nil {
@@ -3795,7 +6477,6 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) DockerImage() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3805,7 +6486,6 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3815,7 +6495,6 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() 
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3825,7 +6504,6 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() 
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -3835,214 +6513,169 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsYaml() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-type DeploymentIntegrationsServerTopology struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size *string `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount *int `pulumi:"zoneCount"`
+type DeploymentIntegrationsServerEndpoints struct {
+	Apm   string `pulumi:"apm"`
+	Fleet string `pulumi:"fleet"`
 }
 
-// DeploymentIntegrationsServerTopologyInput is an input type that accepts DeploymentIntegrationsServerTopologyArgs and DeploymentIntegrationsServerTopologyOutput values.
-// You can construct a concrete instance of `DeploymentIntegrationsServerTopologyInput` via:
+// DeploymentIntegrationsServerEndpointsInput is an input type that accepts DeploymentIntegrationsServerEndpointsArgs and DeploymentIntegrationsServerEndpointsOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerEndpointsInput` via:
 //
-//	DeploymentIntegrationsServerTopologyArgs{...}
-type DeploymentIntegrationsServerTopologyInput interface {
+//	DeploymentIntegrationsServerEndpointsArgs{...}
+type DeploymentIntegrationsServerEndpointsInput interface {
 	pulumi.Input
 
-	ToDeploymentIntegrationsServerTopologyOutput() DeploymentIntegrationsServerTopologyOutput
-	ToDeploymentIntegrationsServerTopologyOutputWithContext(context.Context) DeploymentIntegrationsServerTopologyOutput
+	ToDeploymentIntegrationsServerEndpointsOutput() DeploymentIntegrationsServerEndpointsOutput
+	ToDeploymentIntegrationsServerEndpointsOutputWithContext(context.Context) DeploymentIntegrationsServerEndpointsOutput
 }
 
-type DeploymentIntegrationsServerTopologyArgs struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size pulumi.StringPtrInput `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
+type DeploymentIntegrationsServerEndpointsArgs struct {
+	Apm   pulumi.StringInput `pulumi:"apm"`
+	Fleet pulumi.StringInput `pulumi:"fleet"`
 }
 
-func (DeploymentIntegrationsServerTopologyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentIntegrationsServerTopology)(nil)).Elem()
+func (DeploymentIntegrationsServerEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServerEndpoints)(nil)).Elem()
 }
 
-func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyOutput() DeploymentIntegrationsServerTopologyOutput {
-	return i.ToDeploymentIntegrationsServerTopologyOutputWithContext(context.Background())
+func (i DeploymentIntegrationsServerEndpointsArgs) ToDeploymentIntegrationsServerEndpointsOutput() DeploymentIntegrationsServerEndpointsOutput {
+	return i.ToDeploymentIntegrationsServerEndpointsOutputWithContext(context.Background())
 }
 
-func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyOutput)
+func (i DeploymentIntegrationsServerEndpointsArgs) ToDeploymentIntegrationsServerEndpointsOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerEndpointsOutput)
 }
 
-func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
-	return i.ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Background())
+func (i DeploymentIntegrationsServerEndpointsArgs) ToDeploymentIntegrationsServerEndpointsPtrOutput() DeploymentIntegrationsServerEndpointsPtrOutput {
+	return i.ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(context.Background())
 }
 
-func (i DeploymentIntegrationsServerTopologyArgs) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyOutput).ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx)
+func (i DeploymentIntegrationsServerEndpointsArgs) ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerEndpointsOutput).ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx)
 }
 
-// DeploymentIntegrationsServerTopologyPtrInput is an input type that accepts DeploymentIntegrationsServerTopologyArgs, DeploymentIntegrationsServerTopologyPtr and DeploymentIntegrationsServerTopologyPtrOutput values.
-// You can construct a concrete instance of `DeploymentIntegrationsServerTopologyPtrInput` via:
+// DeploymentIntegrationsServerEndpointsPtrInput is an input type that accepts DeploymentIntegrationsServerEndpointsArgs, DeploymentIntegrationsServerEndpointsPtr and DeploymentIntegrationsServerEndpointsPtrOutput values.
+// You can construct a concrete instance of `DeploymentIntegrationsServerEndpointsPtrInput` via:
 //
-//	        DeploymentIntegrationsServerTopologyArgs{...}
+//	        DeploymentIntegrationsServerEndpointsArgs{...}
 //
 //	or:
 //
 //	        nil
-type DeploymentIntegrationsServerTopologyPtrInput interface {
+type DeploymentIntegrationsServerEndpointsPtrInput interface {
 	pulumi.Input
 
-	ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput
-	ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Context) DeploymentIntegrationsServerTopologyPtrOutput
+	ToDeploymentIntegrationsServerEndpointsPtrOutput() DeploymentIntegrationsServerEndpointsPtrOutput
+	ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(context.Context) DeploymentIntegrationsServerEndpointsPtrOutput
 }
 
-type deploymentIntegrationsServerTopologyPtrType DeploymentIntegrationsServerTopologyArgs
+type deploymentIntegrationsServerEndpointsPtrType DeploymentIntegrationsServerEndpointsArgs
 
-func DeploymentIntegrationsServerTopologyPtr(v *DeploymentIntegrationsServerTopologyArgs) DeploymentIntegrationsServerTopologyPtrInput {
-	return (*deploymentIntegrationsServerTopologyPtrType)(v)
+func DeploymentIntegrationsServerEndpointsPtr(v *DeploymentIntegrationsServerEndpointsArgs) DeploymentIntegrationsServerEndpointsPtrInput {
+	return (*deploymentIntegrationsServerEndpointsPtrType)(v)
 }
 
-func (*deploymentIntegrationsServerTopologyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentIntegrationsServerTopology)(nil)).Elem()
+func (*deploymentIntegrationsServerEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServerEndpoints)(nil)).Elem()
 }
 
-func (i *deploymentIntegrationsServerTopologyPtrType) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
-	return i.ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Background())
+func (i *deploymentIntegrationsServerEndpointsPtrType) ToDeploymentIntegrationsServerEndpointsPtrOutput() DeploymentIntegrationsServerEndpointsPtrOutput {
+	return i.ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(context.Background())
 }
 
-func (i *deploymentIntegrationsServerTopologyPtrType) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerTopologyPtrOutput)
+func (i *deploymentIntegrationsServerEndpointsPtrType) ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerEndpointsPtrOutput)
 }
 
-type DeploymentIntegrationsServerTopologyOutput struct{ *pulumi.OutputState }
+type DeploymentIntegrationsServerEndpointsOutput struct{ *pulumi.OutputState }
 
-func (DeploymentIntegrationsServerTopologyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentIntegrationsServerTopology)(nil)).Elem()
+func (DeploymentIntegrationsServerEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentIntegrationsServerEndpoints)(nil)).Elem()
 }
 
-func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyOutput() DeploymentIntegrationsServerTopologyOutput {
+func (o DeploymentIntegrationsServerEndpointsOutput) ToDeploymentIntegrationsServerEndpointsOutput() DeploymentIntegrationsServerEndpointsOutput {
 	return o
 }
 
-func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyOutput {
+func (o DeploymentIntegrationsServerEndpointsOutput) ToDeploymentIntegrationsServerEndpointsOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsOutput {
 	return o
 }
 
-func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
-	return o.ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(context.Background())
+func (o DeploymentIntegrationsServerEndpointsOutput) ToDeploymentIntegrationsServerEndpointsPtrOutput() DeploymentIntegrationsServerEndpointsPtrOutput {
+	return o.ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(context.Background())
 }
 
-func (o DeploymentIntegrationsServerTopologyOutput) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServerTopology) *DeploymentIntegrationsServerTopology {
+func (o DeploymentIntegrationsServerEndpointsOutput) ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServerEndpoints) *DeploymentIntegrationsServerEndpoints {
 		return &v
-	}).(DeploymentIntegrationsServerTopologyPtrOutput)
+	}).(DeploymentIntegrationsServerEndpointsPtrOutput)
 }
 
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentIntegrationsServerTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+func (o DeploymentIntegrationsServerEndpointsOutput) Apm() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerEndpoints) string { return v.Apm }).(pulumi.StringOutput)
 }
 
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentIntegrationsServerTopologyOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
+func (o DeploymentIntegrationsServerEndpointsOutput) Fleet() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentIntegrationsServerEndpoints) string { return v.Fleet }).(pulumi.StringOutput)
 }
 
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentIntegrationsServerTopologyOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+type DeploymentIntegrationsServerEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentIntegrationsServerEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentIntegrationsServerEndpoints)(nil)).Elem()
 }
 
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentIntegrationsServerTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DeploymentIntegrationsServerTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
-}
-
-type DeploymentIntegrationsServerTopologyPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentIntegrationsServerTopologyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentIntegrationsServerTopology)(nil)).Elem()
-}
-
-func (o DeploymentIntegrationsServerTopologyPtrOutput) ToDeploymentIntegrationsServerTopologyPtrOutput() DeploymentIntegrationsServerTopologyPtrOutput {
+func (o DeploymentIntegrationsServerEndpointsPtrOutput) ToDeploymentIntegrationsServerEndpointsPtrOutput() DeploymentIntegrationsServerEndpointsPtrOutput {
 	return o
 }
 
-func (o DeploymentIntegrationsServerTopologyPtrOutput) ToDeploymentIntegrationsServerTopologyPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerTopologyPtrOutput {
+func (o DeploymentIntegrationsServerEndpointsPtrOutput) ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsPtrOutput {
 	return o
 }
 
-func (o DeploymentIntegrationsServerTopologyPtrOutput) Elem() DeploymentIntegrationsServerTopologyOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) DeploymentIntegrationsServerTopology {
+func (o DeploymentIntegrationsServerEndpointsPtrOutput) Elem() DeploymentIntegrationsServerEndpointsOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerEndpoints) DeploymentIntegrationsServerEndpoints {
 		if v != nil {
 			return *v
 		}
-		var ret DeploymentIntegrationsServerTopology
+		var ret DeploymentIntegrationsServerEndpoints
 		return ret
-	}).(DeploymentIntegrationsServerTopologyOutput)
+	}).(DeploymentIntegrationsServerEndpointsOutput)
 }
 
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentIntegrationsServerTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *string {
+func (o DeploymentIntegrationsServerEndpointsPtrOutput) Apm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerEndpoints) *string {
 		if v == nil {
 			return nil
 		}
-		return v.InstanceConfigurationId
+		return &v.Apm
 	}).(pulumi.StringPtrOutput)
 }
 
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentIntegrationsServerTopologyPtrOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *string {
+func (o DeploymentIntegrationsServerEndpointsPtrOutput) Fleet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentIntegrationsServerEndpoints) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Size
+		return &v.Fleet
 	}).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentIntegrationsServerTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SizeResource
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentIntegrationsServerTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DeploymentIntegrationsServerTopology) *int {
-		if v == nil {
-			return nil
-		}
-		return v.ZoneCount
-	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentKibana struct {
-	// Kibana settings applied to all topologies unless overridden in the `topology` element.
-	Config *DeploymentKibanaConfig `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId *string `pulumi:"elasticsearchClusterRefId"`
-	HttpEndpoint              *string `pulumi:"httpEndpoint"`
-	HttpsEndpoint             *string `pulumi:"httpsEndpoint"`
-	// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
-	RefId *string `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Kibana configuration options for the Kibana Server
+	Config                    *DeploymentKibanaConfig `pulumi:"config"`
+	ElasticsearchClusterRefId *string                 `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              *string                 `pulumi:"httpEndpoint"`
+	HttpsEndpoint             *string                 `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId   *string                 `pulumi:"instanceConfigurationId"`
+	RefId                     *string                 `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     *string `pulumi:"region"`
 	ResourceId *string `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology *DeploymentKibanaTopology `pulumi:"topology"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentKibanaInput is an input type that accepts DeploymentKibanaArgs and DeploymentKibanaOutput values.
@@ -4057,19 +6690,20 @@ type DeploymentKibanaInput interface {
 }
 
 type DeploymentKibanaArgs struct {
-	// Kibana settings applied to all topologies unless overridden in the `topology` element.
-	Config DeploymentKibanaConfigPtrInput `pulumi:"config"`
-	// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-	ElasticsearchClusterRefId pulumi.StringPtrInput `pulumi:"elasticsearchClusterRefId"`
-	HttpEndpoint              pulumi.StringPtrInput `pulumi:"httpEndpoint"`
-	HttpsEndpoint             pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
-	// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+	// Optionally define the Kibana configuration options for the Kibana Server
+	Config                    DeploymentKibanaConfigPtrInput `pulumi:"config"`
+	ElasticsearchClusterRefId pulumi.StringPtrInput          `pulumi:"elasticsearchClusterRefId"`
+	HttpEndpoint              pulumi.StringPtrInput          `pulumi:"httpEndpoint"`
+	HttpsEndpoint             pulumi.StringPtrInput          `pulumi:"httpsEndpoint"`
+	InstanceConfigurationId   pulumi.StringPtrInput          `pulumi:"instanceConfigurationId"`
+	RefId                     pulumi.StringPtrInput          `pulumi:"refId"`
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region     pulumi.StringPtrInput `pulumi:"region"`
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	// Can be set multiple times to compose complex topologies.
-	Topology DeploymentKibanaTopologyPtrInput `pulumi:"topology"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentKibanaArgs) ElementType() reflect.Type {
@@ -4149,12 +6783,11 @@ func (o DeploymentKibanaOutput) ToDeploymentKibanaPtrOutputWithContext(ctx conte
 	}).(DeploymentKibanaPtrOutput)
 }
 
-// Kibana settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Kibana configuration options for the Kibana Server
 func (o DeploymentKibanaOutput) Config() DeploymentKibanaConfigPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *DeploymentKibanaConfig { return v.Config }).(DeploymentKibanaConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentKibanaOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.ElasticsearchClusterRefId }).(pulumi.StringPtrOutput)
 }
@@ -4167,12 +6800,15 @@ func (o DeploymentKibanaOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
+func (o DeploymentKibanaOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentKibana) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
+}
+
 func (o DeploymentKibanaOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentKibanaOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -4181,9 +6817,17 @@ func (o DeploymentKibanaOutput) ResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentKibanaOutput) Topology() DeploymentKibanaTopologyPtrOutput {
-	return o.ApplyT(func(v DeploymentKibana) *DeploymentKibanaTopology { return v.Topology }).(DeploymentKibanaTopologyPtrOutput)
+func (o DeploymentKibanaOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentKibana) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentKibanaOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentKibana) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentKibanaOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentKibana) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
 
 type DeploymentKibanaPtrOutput struct{ *pulumi.OutputState }
@@ -4210,7 +6854,7 @@ func (o DeploymentKibanaPtrOutput) Elem() DeploymentKibanaOutput {
 	}).(DeploymentKibanaOutput)
 }
 
-// Kibana settings applied to all topologies unless overridden in the `topology` element.
+// Optionally define the Kibana configuration options for the Kibana Server
 func (o DeploymentKibanaPtrOutput) Config() DeploymentKibanaConfigPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibana) *DeploymentKibanaConfig {
 		if v == nil {
@@ -4220,7 +6864,6 @@ func (o DeploymentKibanaPtrOutput) Config() DeploymentKibanaConfigPtrOutput {
 	}).(DeploymentKibanaConfigPtrOutput)
 }
 
-// This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
 func (o DeploymentKibanaPtrOutput) ElasticsearchClusterRefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibana) *string {
 		if v == nil {
@@ -4248,7 +6891,15 @@ func (o DeploymentKibanaPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
+func (o DeploymentKibanaPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceConfigurationId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o DeploymentKibanaPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibana) *string {
 		if v == nil {
@@ -4258,7 +6909,7 @@ func (o DeploymentKibanaPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentKibanaPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibana) *string {
 		if v == nil {
@@ -4277,26 +6928,40 @@ func (o DeploymentKibanaPtrOutput) ResourceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Can be set multiple times to compose complex topologies.
-func (o DeploymentKibanaPtrOutput) Topology() DeploymentKibanaTopologyPtrOutput {
-	return o.ApplyT(func(v *DeploymentKibana) *DeploymentKibanaTopology {
+func (o DeploymentKibanaPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibana) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Topology
-	}).(DeploymentKibanaTopologyPtrOutput)
+		return v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional size type, defaults to "memory".
+func (o DeploymentKibanaPtrOutput) SizeResource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SizeResource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeploymentKibanaPtrOutput) ZoneCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DeploymentKibana) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ZoneCount
+	}).(pulumi.IntPtrOutput)
 }
 
 type DeploymentKibanaConfig struct {
-	DockerImage *string `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson *string `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DockerImage              *string `pulumi:"dockerImage"`
+	UserSettingsJson         *string `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentKibanaConfigInput is an input type that accepts DeploymentKibanaConfigArgs and DeploymentKibanaConfigOutput values.
@@ -4311,15 +6976,11 @@ type DeploymentKibanaConfigInput interface {
 }
 
 type DeploymentKibanaConfigArgs struct {
-	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
-	// JSON-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
-	// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
+	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
+	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
-	// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	// YAML-formatted user level `enterprise_search.yml` setting overrides.
-	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentKibanaConfigArgs) ElementType() reflect.Type {
@@ -4403,22 +7064,18 @@ func (o DeploymentKibanaConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -4456,7 +7113,6 @@ func (o DeploymentKibanaConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4466,7 +7122,6 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4476,7 +7131,6 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideJson() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4486,7 +7140,6 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideYaml() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// YAML-formatted user level `enterprise_search.yml` setting overrides.
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -4496,207 +7149,11 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-type DeploymentKibanaTopology struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size *string `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource *string `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount *int `pulumi:"zoneCount"`
-}
-
-// DeploymentKibanaTopologyInput is an input type that accepts DeploymentKibanaTopologyArgs and DeploymentKibanaTopologyOutput values.
-// You can construct a concrete instance of `DeploymentKibanaTopologyInput` via:
-//
-//	DeploymentKibanaTopologyArgs{...}
-type DeploymentKibanaTopologyInput interface {
-	pulumi.Input
-
-	ToDeploymentKibanaTopologyOutput() DeploymentKibanaTopologyOutput
-	ToDeploymentKibanaTopologyOutputWithContext(context.Context) DeploymentKibanaTopologyOutput
-}
-
-type DeploymentKibanaTopologyArgs struct {
-	// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
-	// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-	Size pulumi.StringPtrInput `pulumi:"size"`
-	// Type of resource to which the size is assigned. Defaults to `"memory"`.
-	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
-}
-
-func (DeploymentKibanaTopologyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentKibanaTopology)(nil)).Elem()
-}
-
-func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyOutput() DeploymentKibanaTopologyOutput {
-	return i.ToDeploymentKibanaTopologyOutputWithContext(context.Background())
-}
-
-func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyOutputWithContext(ctx context.Context) DeploymentKibanaTopologyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyOutput)
-}
-
-func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
-	return i.ToDeploymentKibanaTopologyPtrOutputWithContext(context.Background())
-}
-
-func (i DeploymentKibanaTopologyArgs) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyOutput).ToDeploymentKibanaTopologyPtrOutputWithContext(ctx)
-}
-
-// DeploymentKibanaTopologyPtrInput is an input type that accepts DeploymentKibanaTopologyArgs, DeploymentKibanaTopologyPtr and DeploymentKibanaTopologyPtrOutput values.
-// You can construct a concrete instance of `DeploymentKibanaTopologyPtrInput` via:
-//
-//	        DeploymentKibanaTopologyArgs{...}
-//
-//	or:
-//
-//	        nil
-type DeploymentKibanaTopologyPtrInput interface {
-	pulumi.Input
-
-	ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput
-	ToDeploymentKibanaTopologyPtrOutputWithContext(context.Context) DeploymentKibanaTopologyPtrOutput
-}
-
-type deploymentKibanaTopologyPtrType DeploymentKibanaTopologyArgs
-
-func DeploymentKibanaTopologyPtr(v *DeploymentKibanaTopologyArgs) DeploymentKibanaTopologyPtrInput {
-	return (*deploymentKibanaTopologyPtrType)(v)
-}
-
-func (*deploymentKibanaTopologyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentKibanaTopology)(nil)).Elem()
-}
-
-func (i *deploymentKibanaTopologyPtrType) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
-	return i.ToDeploymentKibanaTopologyPtrOutputWithContext(context.Background())
-}
-
-func (i *deploymentKibanaTopologyPtrType) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaTopologyPtrOutput)
-}
-
-type DeploymentKibanaTopologyOutput struct{ *pulumi.OutputState }
-
-func (DeploymentKibanaTopologyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentKibanaTopology)(nil)).Elem()
-}
-
-func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyOutput() DeploymentKibanaTopologyOutput {
-	return o
-}
-
-func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyOutputWithContext(ctx context.Context) DeploymentKibanaTopologyOutput {
-	return o
-}
-
-func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
-	return o.ToDeploymentKibanaTopologyPtrOutputWithContext(context.Background())
-}
-
-func (o DeploymentKibanaTopologyOutput) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentKibanaTopology) *DeploymentKibanaTopology {
-		return &v
-	}).(DeploymentKibanaTopologyPtrOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentKibanaTopologyOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentKibanaTopology) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentKibanaTopologyOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentKibanaTopology) *string { return v.Size }).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentKibanaTopologyOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeploymentKibanaTopology) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentKibanaTopologyOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DeploymentKibanaTopology) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
-}
-
-type DeploymentKibanaTopologyPtrOutput struct{ *pulumi.OutputState }
-
-func (DeploymentKibanaTopologyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeploymentKibanaTopology)(nil)).Elem()
-}
-
-func (o DeploymentKibanaTopologyPtrOutput) ToDeploymentKibanaTopologyPtrOutput() DeploymentKibanaTopologyPtrOutput {
-	return o
-}
-
-func (o DeploymentKibanaTopologyPtrOutput) ToDeploymentKibanaTopologyPtrOutputWithContext(ctx context.Context) DeploymentKibanaTopologyPtrOutput {
-	return o
-}
-
-func (o DeploymentKibanaTopologyPtrOutput) Elem() DeploymentKibanaTopologyOutput {
-	return o.ApplyT(func(v *DeploymentKibanaTopology) DeploymentKibanaTopology {
-		if v != nil {
-			return *v
-		}
-		var ret DeploymentKibanaTopology
-		return ret
-	}).(DeploymentKibanaTopologyOutput)
-}
-
-// Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-func (o DeploymentKibanaTopologyPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentKibanaTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.InstanceConfigurationId
-	}).(pulumi.StringPtrOutput)
-}
-
-// Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-func (o DeploymentKibanaTopologyPtrOutput) Size() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentKibanaTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Size
-	}).(pulumi.StringPtrOutput)
-}
-
-// Type of resource to which the size is assigned. Defaults to `"memory"`.
-func (o DeploymentKibanaTopologyPtrOutput) SizeResource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeploymentKibanaTopology) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SizeResource
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-func (o DeploymentKibanaTopologyPtrOutput) ZoneCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DeploymentKibanaTopology) *int {
-		if v == nil {
-			return nil
-		}
-		return v.ZoneCount
-	}).(pulumi.IntPtrOutput)
-}
-
 type DeploymentObservability struct {
-	// Remote deployment ID.
-	DeploymentId string `pulumi:"deploymentId"`
-	Logs         *bool  `pulumi:"logs"`
-	Metrics      *bool  `pulumi:"metrics"`
-	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-	RefId *string `pulumi:"refId"`
+	DeploymentId string  `pulumi:"deploymentId"`
+	Logs         *bool   `pulumi:"logs"`
+	Metrics      *bool   `pulumi:"metrics"`
+	RefId        *string `pulumi:"refId"`
 }
 
 // DeploymentObservabilityInput is an input type that accepts DeploymentObservabilityArgs and DeploymentObservabilityOutput values.
@@ -4711,12 +7168,10 @@ type DeploymentObservabilityInput interface {
 }
 
 type DeploymentObservabilityArgs struct {
-	// Remote deployment ID.
-	DeploymentId pulumi.StringInput  `pulumi:"deploymentId"`
-	Logs         pulumi.BoolPtrInput `pulumi:"logs"`
-	Metrics      pulumi.BoolPtrInput `pulumi:"metrics"`
-	// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
+	DeploymentId pulumi.StringInput    `pulumi:"deploymentId"`
+	Logs         pulumi.BoolPtrInput   `pulumi:"logs"`
+	Metrics      pulumi.BoolPtrInput   `pulumi:"metrics"`
+	RefId        pulumi.StringPtrInput `pulumi:"refId"`
 }
 
 func (DeploymentObservabilityArgs) ElementType() reflect.Type {
@@ -4796,7 +7251,6 @@ func (o DeploymentObservabilityOutput) ToDeploymentObservabilityPtrOutputWithCon
 	}).(DeploymentObservabilityPtrOutput)
 }
 
-// Remote deployment ID.
 func (o DeploymentObservabilityOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentObservability) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
@@ -4809,7 +7263,6 @@ func (o DeploymentObservabilityOutput) Metrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentObservability) *bool { return v.Metrics }).(pulumi.BoolPtrOutput)
 }
 
-// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 func (o DeploymentObservabilityOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentObservability) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
@@ -4838,7 +7291,6 @@ func (o DeploymentObservabilityPtrOutput) Elem() DeploymentObservabilityOutput {
 	}).(DeploymentObservabilityOutput)
 }
 
-// Remote deployment ID.
 func (o DeploymentObservabilityPtrOutput) DeploymentId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentObservability) *string {
 		if v == nil {
@@ -4866,7 +7318,6 @@ func (o DeploymentObservabilityPtrOutput) Metrics() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
 func (o DeploymentObservabilityPtrOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentObservability) *string {
 		if v == nil {
@@ -4877,15 +7328,15 @@ func (o DeploymentObservabilityPtrOutput) RefId() pulumi.StringPtrOutput {
 }
 
 type DeploymentTrafficFilterRule struct {
-	// Azure endpoint GUID. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+	// Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
 	AzureEndpointGuid *string `pulumi:"azureEndpointGuid"`
-	// Azure endpoint name. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+	// Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
 	AzureEndpointName *string `pulumi:"azureEndpointName"`
-	// Description of this individual rule.
+	// Description of this individual rule
 	Description *string `pulumi:"description"`
-	// The ruleset ID.
+	// Computed rule ID
 	Id *string `pulumi:"id"`
-	// traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `"azurePrivateEndpoint"`.
+	// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
 	Source *string `pulumi:"source"`
 }
 
@@ -4901,15 +7352,15 @@ type DeploymentTrafficFilterRuleInput interface {
 }
 
 type DeploymentTrafficFilterRuleArgs struct {
-	// Azure endpoint GUID. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+	// Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
 	AzureEndpointGuid pulumi.StringPtrInput `pulumi:"azureEndpointGuid"`
-	// Azure endpoint name. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+	// Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
 	AzureEndpointName pulumi.StringPtrInput `pulumi:"azureEndpointName"`
-	// Description of this individual rule.
+	// Description of this individual rule
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The ruleset ID.
+	// Computed rule ID
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `"azurePrivateEndpoint"`.
+	// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
 	Source pulumi.StringPtrInput `pulumi:"source"`
 }
 
@@ -4964,27 +7415,27 @@ func (o DeploymentTrafficFilterRuleOutput) ToDeploymentTrafficFilterRuleOutputWi
 	return o
 }
 
-// Azure endpoint GUID. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+// Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
 func (o DeploymentTrafficFilterRuleOutput) AzureEndpointGuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.AzureEndpointGuid }).(pulumi.StringPtrOutput)
 }
 
-// Azure endpoint name. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+// Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
 func (o DeploymentTrafficFilterRuleOutput) AzureEndpointName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.AzureEndpointName }).(pulumi.StringPtrOutput)
 }
 
-// Description of this individual rule.
+// Description of this individual rule
 func (o DeploymentTrafficFilterRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ruleset ID.
+// Computed rule ID
 func (o DeploymentTrafficFilterRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `"azurePrivateEndpoint"`.
+// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
 func (o DeploymentTrafficFilterRuleOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
@@ -5009,17 +7460,432 @@ func (o DeploymentTrafficFilterRuleArrayOutput) Index(i pulumi.IntInput) Deploym
 	}).(DeploymentTrafficFilterRuleOutput)
 }
 
+type SnapshotRepositoryGeneric struct {
+	// An arbitrary JSON object containing the repository settings.
+	Settings string `pulumi:"settings"`
+	// Repository type
+	Type string `pulumi:"type"`
+}
+
+// SnapshotRepositoryGenericInput is an input type that accepts SnapshotRepositoryGenericArgs and SnapshotRepositoryGenericOutput values.
+// You can construct a concrete instance of `SnapshotRepositoryGenericInput` via:
+//
+//	SnapshotRepositoryGenericArgs{...}
+type SnapshotRepositoryGenericInput interface {
+	pulumi.Input
+
+	ToSnapshotRepositoryGenericOutput() SnapshotRepositoryGenericOutput
+	ToSnapshotRepositoryGenericOutputWithContext(context.Context) SnapshotRepositoryGenericOutput
+}
+
+type SnapshotRepositoryGenericArgs struct {
+	// An arbitrary JSON object containing the repository settings.
+	Settings pulumi.StringInput `pulumi:"settings"`
+	// Repository type
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (SnapshotRepositoryGenericArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotRepositoryGeneric)(nil)).Elem()
+}
+
+func (i SnapshotRepositoryGenericArgs) ToSnapshotRepositoryGenericOutput() SnapshotRepositoryGenericOutput {
+	return i.ToSnapshotRepositoryGenericOutputWithContext(context.Background())
+}
+
+func (i SnapshotRepositoryGenericArgs) ToSnapshotRepositoryGenericOutputWithContext(ctx context.Context) SnapshotRepositoryGenericOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryGenericOutput)
+}
+
+func (i SnapshotRepositoryGenericArgs) ToSnapshotRepositoryGenericPtrOutput() SnapshotRepositoryGenericPtrOutput {
+	return i.ToSnapshotRepositoryGenericPtrOutputWithContext(context.Background())
+}
+
+func (i SnapshotRepositoryGenericArgs) ToSnapshotRepositoryGenericPtrOutputWithContext(ctx context.Context) SnapshotRepositoryGenericPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryGenericOutput).ToSnapshotRepositoryGenericPtrOutputWithContext(ctx)
+}
+
+// SnapshotRepositoryGenericPtrInput is an input type that accepts SnapshotRepositoryGenericArgs, SnapshotRepositoryGenericPtr and SnapshotRepositoryGenericPtrOutput values.
+// You can construct a concrete instance of `SnapshotRepositoryGenericPtrInput` via:
+//
+//	        SnapshotRepositoryGenericArgs{...}
+//
+//	or:
+//
+//	        nil
+type SnapshotRepositoryGenericPtrInput interface {
+	pulumi.Input
+
+	ToSnapshotRepositoryGenericPtrOutput() SnapshotRepositoryGenericPtrOutput
+	ToSnapshotRepositoryGenericPtrOutputWithContext(context.Context) SnapshotRepositoryGenericPtrOutput
+}
+
+type snapshotRepositoryGenericPtrType SnapshotRepositoryGenericArgs
+
+func SnapshotRepositoryGenericPtr(v *SnapshotRepositoryGenericArgs) SnapshotRepositoryGenericPtrInput {
+	return (*snapshotRepositoryGenericPtrType)(v)
+}
+
+func (*snapshotRepositoryGenericPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotRepositoryGeneric)(nil)).Elem()
+}
+
+func (i *snapshotRepositoryGenericPtrType) ToSnapshotRepositoryGenericPtrOutput() SnapshotRepositoryGenericPtrOutput {
+	return i.ToSnapshotRepositoryGenericPtrOutputWithContext(context.Background())
+}
+
+func (i *snapshotRepositoryGenericPtrType) ToSnapshotRepositoryGenericPtrOutputWithContext(ctx context.Context) SnapshotRepositoryGenericPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryGenericPtrOutput)
+}
+
+type SnapshotRepositoryGenericOutput struct{ *pulumi.OutputState }
+
+func (SnapshotRepositoryGenericOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotRepositoryGeneric)(nil)).Elem()
+}
+
+func (o SnapshotRepositoryGenericOutput) ToSnapshotRepositoryGenericOutput() SnapshotRepositoryGenericOutput {
+	return o
+}
+
+func (o SnapshotRepositoryGenericOutput) ToSnapshotRepositoryGenericOutputWithContext(ctx context.Context) SnapshotRepositoryGenericOutput {
+	return o
+}
+
+func (o SnapshotRepositoryGenericOutput) ToSnapshotRepositoryGenericPtrOutput() SnapshotRepositoryGenericPtrOutput {
+	return o.ToSnapshotRepositoryGenericPtrOutputWithContext(context.Background())
+}
+
+func (o SnapshotRepositoryGenericOutput) ToSnapshotRepositoryGenericPtrOutputWithContext(ctx context.Context) SnapshotRepositoryGenericPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnapshotRepositoryGeneric) *SnapshotRepositoryGeneric {
+		return &v
+	}).(SnapshotRepositoryGenericPtrOutput)
+}
+
+// An arbitrary JSON object containing the repository settings.
+func (o SnapshotRepositoryGenericOutput) Settings() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotRepositoryGeneric) string { return v.Settings }).(pulumi.StringOutput)
+}
+
+// Repository type
+func (o SnapshotRepositoryGenericOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotRepositoryGeneric) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type SnapshotRepositoryGenericPtrOutput struct{ *pulumi.OutputState }
+
+func (SnapshotRepositoryGenericPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotRepositoryGeneric)(nil)).Elem()
+}
+
+func (o SnapshotRepositoryGenericPtrOutput) ToSnapshotRepositoryGenericPtrOutput() SnapshotRepositoryGenericPtrOutput {
+	return o
+}
+
+func (o SnapshotRepositoryGenericPtrOutput) ToSnapshotRepositoryGenericPtrOutputWithContext(ctx context.Context) SnapshotRepositoryGenericPtrOutput {
+	return o
+}
+
+func (o SnapshotRepositoryGenericPtrOutput) Elem() SnapshotRepositoryGenericOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryGeneric) SnapshotRepositoryGeneric {
+		if v != nil {
+			return *v
+		}
+		var ret SnapshotRepositoryGeneric
+		return ret
+	}).(SnapshotRepositoryGenericOutput)
+}
+
+// An arbitrary JSON object containing the repository settings.
+func (o SnapshotRepositoryGenericPtrOutput) Settings() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryGeneric) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Settings
+	}).(pulumi.StringPtrOutput)
+}
+
+// Repository type
+func (o SnapshotRepositoryGenericPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryGeneric) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type SnapshotRepositoryS3 struct {
+	// An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
+	AccessKey *string `pulumi:"accessKey"`
+	// Name of the S3 bucket to use for snapshots.
+	Bucket string `pulumi:"bucket"`
+	// The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+	Endpoint *string `pulumi:"endpoint"`
+	// Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
+	PathStyleAccess *bool `pulumi:"pathStyleAccess"`
+	// Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
+	Region *string `pulumi:"region"`
+	// An S3 secret key. If set, the accessKey setting must also be specified.
+	SecretKey *string `pulumi:"secretKey"`
+	// When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
+	ServerSideEncryption *bool `pulumi:"serverSideEncryption"`
+}
+
+// SnapshotRepositoryS3Input is an input type that accepts SnapshotRepositoryS3Args and SnapshotRepositoryS3Output values.
+// You can construct a concrete instance of `SnapshotRepositoryS3Input` via:
+//
+//	SnapshotRepositoryS3Args{...}
+type SnapshotRepositoryS3Input interface {
+	pulumi.Input
+
+	ToSnapshotRepositoryS3Output() SnapshotRepositoryS3Output
+	ToSnapshotRepositoryS3OutputWithContext(context.Context) SnapshotRepositoryS3Output
+}
+
+type SnapshotRepositoryS3Args struct {
+	// An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
+	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
+	// Name of the S3 bucket to use for snapshots.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
+	PathStyleAccess pulumi.BoolPtrInput `pulumi:"pathStyleAccess"`
+	// Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// An S3 secret key. If set, the accessKey setting must also be specified.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
+	ServerSideEncryption pulumi.BoolPtrInput `pulumi:"serverSideEncryption"`
+}
+
+func (SnapshotRepositoryS3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotRepositoryS3)(nil)).Elem()
+}
+
+func (i SnapshotRepositoryS3Args) ToSnapshotRepositoryS3Output() SnapshotRepositoryS3Output {
+	return i.ToSnapshotRepositoryS3OutputWithContext(context.Background())
+}
+
+func (i SnapshotRepositoryS3Args) ToSnapshotRepositoryS3OutputWithContext(ctx context.Context) SnapshotRepositoryS3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryS3Output)
+}
+
+func (i SnapshotRepositoryS3Args) ToSnapshotRepositoryS3PtrOutput() SnapshotRepositoryS3PtrOutput {
+	return i.ToSnapshotRepositoryS3PtrOutputWithContext(context.Background())
+}
+
+func (i SnapshotRepositoryS3Args) ToSnapshotRepositoryS3PtrOutputWithContext(ctx context.Context) SnapshotRepositoryS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryS3Output).ToSnapshotRepositoryS3PtrOutputWithContext(ctx)
+}
+
+// SnapshotRepositoryS3PtrInput is an input type that accepts SnapshotRepositoryS3Args, SnapshotRepositoryS3Ptr and SnapshotRepositoryS3PtrOutput values.
+// You can construct a concrete instance of `SnapshotRepositoryS3PtrInput` via:
+//
+//	        SnapshotRepositoryS3Args{...}
+//
+//	or:
+//
+//	        nil
+type SnapshotRepositoryS3PtrInput interface {
+	pulumi.Input
+
+	ToSnapshotRepositoryS3PtrOutput() SnapshotRepositoryS3PtrOutput
+	ToSnapshotRepositoryS3PtrOutputWithContext(context.Context) SnapshotRepositoryS3PtrOutput
+}
+
+type snapshotRepositoryS3PtrType SnapshotRepositoryS3Args
+
+func SnapshotRepositoryS3Ptr(v *SnapshotRepositoryS3Args) SnapshotRepositoryS3PtrInput {
+	return (*snapshotRepositoryS3PtrType)(v)
+}
+
+func (*snapshotRepositoryS3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotRepositoryS3)(nil)).Elem()
+}
+
+func (i *snapshotRepositoryS3PtrType) ToSnapshotRepositoryS3PtrOutput() SnapshotRepositoryS3PtrOutput {
+	return i.ToSnapshotRepositoryS3PtrOutputWithContext(context.Background())
+}
+
+func (i *snapshotRepositoryS3PtrType) ToSnapshotRepositoryS3PtrOutputWithContext(ctx context.Context) SnapshotRepositoryS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryS3PtrOutput)
+}
+
+type SnapshotRepositoryS3Output struct{ *pulumi.OutputState }
+
+func (SnapshotRepositoryS3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotRepositoryS3)(nil)).Elem()
+}
+
+func (o SnapshotRepositoryS3Output) ToSnapshotRepositoryS3Output() SnapshotRepositoryS3Output {
+	return o
+}
+
+func (o SnapshotRepositoryS3Output) ToSnapshotRepositoryS3OutputWithContext(ctx context.Context) SnapshotRepositoryS3Output {
+	return o
+}
+
+func (o SnapshotRepositoryS3Output) ToSnapshotRepositoryS3PtrOutput() SnapshotRepositoryS3PtrOutput {
+	return o.ToSnapshotRepositoryS3PtrOutputWithContext(context.Background())
+}
+
+func (o SnapshotRepositoryS3Output) ToSnapshotRepositoryS3PtrOutputWithContext(ctx context.Context) SnapshotRepositoryS3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnapshotRepositoryS3) *SnapshotRepositoryS3 {
+		return &v
+	}).(SnapshotRepositoryS3PtrOutput)
+}
+
+// An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
+func (o SnapshotRepositoryS3Output) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// Name of the S3 bucket to use for snapshots.
+func (o SnapshotRepositoryS3Output) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+func (o SnapshotRepositoryS3Output) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
+func (o SnapshotRepositoryS3Output) PathStyleAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) *bool { return v.PathStyleAccess }).(pulumi.BoolPtrOutput)
+}
+
+// Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
+func (o SnapshotRepositoryS3Output) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// An S3 secret key. If set, the accessKey setting must also be specified.
+func (o SnapshotRepositoryS3Output) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
+func (o SnapshotRepositoryS3Output) ServerSideEncryption() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SnapshotRepositoryS3) *bool { return v.ServerSideEncryption }).(pulumi.BoolPtrOutput)
+}
+
+type SnapshotRepositoryS3PtrOutput struct{ *pulumi.OutputState }
+
+func (SnapshotRepositoryS3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotRepositoryS3)(nil)).Elem()
+}
+
+func (o SnapshotRepositoryS3PtrOutput) ToSnapshotRepositoryS3PtrOutput() SnapshotRepositoryS3PtrOutput {
+	return o
+}
+
+func (o SnapshotRepositoryS3PtrOutput) ToSnapshotRepositoryS3PtrOutputWithContext(ctx context.Context) SnapshotRepositoryS3PtrOutput {
+	return o
+}
+
+func (o SnapshotRepositoryS3PtrOutput) Elem() SnapshotRepositoryS3Output {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) SnapshotRepositoryS3 {
+		if v != nil {
+			return *v
+		}
+		var ret SnapshotRepositoryS3
+		return ret
+	}).(SnapshotRepositoryS3Output)
+}
+
+// An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
+func (o SnapshotRepositoryS3PtrOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AccessKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the S3 bucket to use for snapshots.
+func (o SnapshotRepositoryS3PtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+func (o SnapshotRepositoryS3PtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
+func (o SnapshotRepositoryS3PtrOutput) PathStyleAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PathStyleAccess
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
+func (o SnapshotRepositoryS3PtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// An S3 secret key. If set, the accessKey setting must also be specified.
+func (o SnapshotRepositoryS3PtrOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SecretKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
+func (o SnapshotRepositoryS3PtrOutput) ServerSideEncryption() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SnapshotRepositoryS3) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ServerSideEncryption
+	}).(pulumi.BoolPtrOutput)
+}
+
 type GetDeploymentApm struct {
+	// The locally-unique user-specified id of an APM Resource.
 	ElasticsearchClusterRefId string `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       bool                       `pulumi:"healthy"`
-	HttpEndpoint  string                     `pulumi:"httpEndpoint"`
-	HttpsEndpoint string                     `pulumi:"httpsEndpoint"`
-	RefId         string                     `pulumi:"refId"`
-	ResourceId    string                     `pulumi:"resourceId"`
-	Status        string                     `pulumi:"status"`
-	Topologies    []GetDeploymentApmTopology `pulumi:"topologies"`
-	Version       string                     `pulumi:"version"`
+	// APM resource health status.
+	Healthy bool `pulumi:"healthy"`
+	// HTTP endpoint for the APM resource.
+	HttpEndpoint string `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the APM resource.
+	HttpsEndpoint string `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this APM resource.
+	RefId string `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId string `pulumi:"resourceId"`
+	// APM resource status (for example, "started", "stopped", etc).
+	Status string `pulumi:"status"`
+	// Node topology element definition.
+	Topologies []GetDeploymentApmTopology `pulumi:"topologies"`
+	// Elastic stack version.
+	Version string `pulumi:"version"`
 }
 
 // GetDeploymentApmInput is an input type that accepts GetDeploymentApmArgs and GetDeploymentApmOutput values.
@@ -5034,16 +7900,24 @@ type GetDeploymentApmInput interface {
 }
 
 type GetDeploymentApmArgs struct {
+	// The locally-unique user-specified id of an APM Resource.
 	ElasticsearchClusterRefId pulumi.StringInput `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       pulumi.BoolInput                   `pulumi:"healthy"`
-	HttpEndpoint  pulumi.StringInput                 `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringInput                 `pulumi:"httpsEndpoint"`
-	RefId         pulumi.StringInput                 `pulumi:"refId"`
-	ResourceId    pulumi.StringInput                 `pulumi:"resourceId"`
-	Status        pulumi.StringInput                 `pulumi:"status"`
-	Topologies    GetDeploymentApmTopologyArrayInput `pulumi:"topologies"`
-	Version       pulumi.StringInput                 `pulumi:"version"`
+	// APM resource health status.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// HTTP endpoint for the APM resource.
+	HttpEndpoint pulumi.StringInput `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the APM resource.
+	HttpsEndpoint pulumi.StringInput `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this APM resource.
+	RefId pulumi.StringInput `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// APM resource status (for example, "started", "stopped", etc).
+	Status pulumi.StringInput `pulumi:"status"`
+	// Node topology element definition.
+	Topologies GetDeploymentApmTopologyArrayInput `pulumi:"topologies"`
+	// Elastic stack version.
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetDeploymentApmArgs) ElementType() reflect.Type {
@@ -5097,39 +7971,47 @@ func (o GetDeploymentApmOutput) ToGetDeploymentApmOutputWithContext(ctx context.
 	return o
 }
 
+// The locally-unique user-specified id of an APM Resource.
 func (o GetDeploymentApmOutput) ElasticsearchClusterRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.ElasticsearchClusterRefId }).(pulumi.StringOutput)
 }
 
-// Overall health status of the deployment.
+// APM resource health status.
 func (o GetDeploymentApmOutput) Healthy() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentApm) bool { return v.Healthy }).(pulumi.BoolOutput)
 }
 
+// HTTP endpoint for the APM resource.
 func (o GetDeploymentApmOutput) HttpEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.HttpEndpoint }).(pulumi.StringOutput)
 }
 
+// HTTPS endpoint for the APM resource.
 func (o GetDeploymentApmOutput) HttpsEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.HttpsEndpoint }).(pulumi.StringOutput)
 }
 
+// A locally-unique friendly alias for this APM resource.
 func (o GetDeploymentApmOutput) RefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.RefId }).(pulumi.StringOutput)
 }
 
+// The resource unique identifier.
 func (o GetDeploymentApmOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.ResourceId }).(pulumi.StringOutput)
 }
 
+// APM resource status (for example, "started", "stopped", etc).
 func (o GetDeploymentApmOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Node topology element definition.
 func (o GetDeploymentApmOutput) Topologies() GetDeploymentApmTopologyArrayOutput {
 	return o.ApplyT(func(v GetDeploymentApm) []GetDeploymentApmTopology { return v.Topologies }).(GetDeploymentApmTopologyArrayOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentApmOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApm) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -5267,17 +8149,26 @@ func (o GetDeploymentApmTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploym
 }
 
 type GetDeploymentElasticsearch struct {
+	// Whether or not Elasticsearch autoscaling is enabled.
 	Autoscale string `pulumi:"autoscale"`
-	CloudId   string `pulumi:"cloudId"`
-	// Overall health status of the deployment.
-	Healthy       bool                                 `pulumi:"healthy"`
-	HttpEndpoint  string                               `pulumi:"httpEndpoint"`
-	HttpsEndpoint string                               `pulumi:"httpsEndpoint"`
-	RefId         string                               `pulumi:"refId"`
-	ResourceId    string                               `pulumi:"resourceId"`
-	Status        string                               `pulumi:"status"`
-	Topologies    []GetDeploymentElasticsearchTopology `pulumi:"topologies"`
-	Version       string                               `pulumi:"version"`
+	// The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
+	CloudId string `pulumi:"cloudId"`
+	// Elasticsearch resource health status.
+	Healthy bool `pulumi:"healthy"`
+	// HTTP endpoint for the Elasticsearch resource.
+	HttpEndpoint string `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the Elasticsearch resource.
+	HttpsEndpoint string `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Elasticsearch cluster.
+	RefId string `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId string `pulumi:"resourceId"`
+	// Elasticsearch resource status (for example, "started", "stopped", etc).
+	Status string `pulumi:"status"`
+	// Node topology element definition.
+	Topologies []GetDeploymentElasticsearchTopology `pulumi:"topologies"`
+	// Elastic stack version.
+	Version string `pulumi:"version"`
 }
 
 // GetDeploymentElasticsearchInput is an input type that accepts GetDeploymentElasticsearchArgs and GetDeploymentElasticsearchOutput values.
@@ -5292,17 +8183,26 @@ type GetDeploymentElasticsearchInput interface {
 }
 
 type GetDeploymentElasticsearchArgs struct {
+	// Whether or not Elasticsearch autoscaling is enabled.
 	Autoscale pulumi.StringInput `pulumi:"autoscale"`
-	CloudId   pulumi.StringInput `pulumi:"cloudId"`
-	// Overall health status of the deployment.
-	Healthy       pulumi.BoolInput                             `pulumi:"healthy"`
-	HttpEndpoint  pulumi.StringInput                           `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringInput                           `pulumi:"httpsEndpoint"`
-	RefId         pulumi.StringInput                           `pulumi:"refId"`
-	ResourceId    pulumi.StringInput                           `pulumi:"resourceId"`
-	Status        pulumi.StringInput                           `pulumi:"status"`
-	Topologies    GetDeploymentElasticsearchTopologyArrayInput `pulumi:"topologies"`
-	Version       pulumi.StringInput                           `pulumi:"version"`
+	// The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
+	CloudId pulumi.StringInput `pulumi:"cloudId"`
+	// Elasticsearch resource health status.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// HTTP endpoint for the Elasticsearch resource.
+	HttpEndpoint pulumi.StringInput `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the Elasticsearch resource.
+	HttpsEndpoint pulumi.StringInput `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Elasticsearch cluster.
+	RefId pulumi.StringInput `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// Elasticsearch resource status (for example, "started", "stopped", etc).
+	Status pulumi.StringInput `pulumi:"status"`
+	// Node topology element definition.
+	Topologies GetDeploymentElasticsearchTopologyArrayInput `pulumi:"topologies"`
+	// Elastic stack version.
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetDeploymentElasticsearchArgs) ElementType() reflect.Type {
@@ -5356,43 +8256,52 @@ func (o GetDeploymentElasticsearchOutput) ToGetDeploymentElasticsearchOutputWith
 	return o
 }
 
+// Whether or not Elasticsearch autoscaling is enabled.
 func (o GetDeploymentElasticsearchOutput) Autoscale() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.Autoscale }).(pulumi.StringOutput)
 }
 
+// The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
 func (o GetDeploymentElasticsearchOutput) CloudId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.CloudId }).(pulumi.StringOutput)
 }
 
-// Overall health status of the deployment.
+// Elasticsearch resource health status.
 func (o GetDeploymentElasticsearchOutput) Healthy() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) bool { return v.Healthy }).(pulumi.BoolOutput)
 }
 
+// HTTP endpoint for the Elasticsearch resource.
 func (o GetDeploymentElasticsearchOutput) HttpEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.HttpEndpoint }).(pulumi.StringOutput)
 }
 
+// HTTPS endpoint for the Elasticsearch resource.
 func (o GetDeploymentElasticsearchOutput) HttpsEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.HttpsEndpoint }).(pulumi.StringOutput)
 }
 
+// A locally-unique friendly alias for this Elasticsearch cluster.
 func (o GetDeploymentElasticsearchOutput) RefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.RefId }).(pulumi.StringOutput)
 }
 
+// The resource unique identifier.
 func (o GetDeploymentElasticsearchOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.ResourceId }).(pulumi.StringOutput)
 }
 
+// Elasticsearch resource status (for example, "started", "stopped", etc).
 func (o GetDeploymentElasticsearchOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Node topology element definition.
 func (o GetDeploymentElasticsearchOutput) Topologies() GetDeploymentElasticsearchTopologyArrayOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) []GetDeploymentElasticsearchTopology { return v.Topologies }).(GetDeploymentElasticsearchTopologyArrayOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentElasticsearchOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearch) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -5424,7 +8333,7 @@ type GetDeploymentElasticsearchTopology struct {
 	NodeTypeData            bool                                            `pulumi:"nodeTypeData"`
 	NodeTypeIngest          bool                                            `pulumi:"nodeTypeIngest"`
 	NodeTypeMaster          bool                                            `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *bool                                           `pulumi:"nodeTypeMl"`
+	NodeTypeMl              bool                                            `pulumi:"nodeTypeMl"`
 	Size                    string                                          `pulumi:"size"`
 	SizeResource            string                                          `pulumi:"sizeResource"`
 	ZoneCount               int                                             `pulumi:"zoneCount"`
@@ -5448,7 +8357,7 @@ type GetDeploymentElasticsearchTopologyArgs struct {
 	NodeTypeData            pulumi.BoolInput                                        `pulumi:"nodeTypeData"`
 	NodeTypeIngest          pulumi.BoolInput                                        `pulumi:"nodeTypeIngest"`
 	NodeTypeMaster          pulumi.BoolInput                                        `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.BoolPtrInput                                     `pulumi:"nodeTypeMl"`
+	NodeTypeMl              pulumi.BoolInput                                        `pulumi:"nodeTypeMl"`
 	Size                    pulumi.StringInput                                      `pulumi:"size"`
 	SizeResource            pulumi.StringInput                                      `pulumi:"sizeResource"`
 	ZoneCount               pulumi.IntInput                                         `pulumi:"zoneCount"`
@@ -5531,8 +8440,8 @@ func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeMaster() pulumi.BoolOu
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) bool { return v.NodeTypeMaster }).(pulumi.BoolOutput)
 }
 
-func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeMl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) *bool { return v.NodeTypeMl }).(pulumi.BoolPtrOutput)
+func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeMl() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) bool { return v.NodeTypeMl }).(pulumi.BoolOutput)
 }
 
 func (o GetDeploymentElasticsearchTopologyOutput) Size() pulumi.StringOutput {
@@ -5686,16 +8595,24 @@ func (o GetDeploymentElasticsearchTopologyAutoscalingArrayOutput) Index(i pulumi
 }
 
 type GetDeploymentEnterpriseSearch struct {
+	// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 	ElasticsearchClusterRefId string `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       bool                                    `pulumi:"healthy"`
-	HttpEndpoint  string                                  `pulumi:"httpEndpoint"`
-	HttpsEndpoint string                                  `pulumi:"httpsEndpoint"`
-	RefId         string                                  `pulumi:"refId"`
-	ResourceId    string                                  `pulumi:"resourceId"`
-	Status        string                                  `pulumi:"status"`
-	Topologies    []GetDeploymentEnterpriseSearchTopology `pulumi:"topologies"`
-	Version       string                                  `pulumi:"version"`
+	// Enterprise Search resource health status.
+	Healthy bool `pulumi:"healthy"`
+	// HTTP endpoint for the Enterprise Search resource.
+	HttpEndpoint string `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the Enterprise Search resource.
+	HttpsEndpoint string `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Enterprise Search resource.
+	RefId string `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId string `pulumi:"resourceId"`
+	// Enterprise Search resource status (for example, "started", "stopped", etc).
+	Status string `pulumi:"status"`
+	// Node topology element definition.
+	Topologies []GetDeploymentEnterpriseSearchTopology `pulumi:"topologies"`
+	// Elastic stack version.
+	Version string `pulumi:"version"`
 }
 
 // GetDeploymentEnterpriseSearchInput is an input type that accepts GetDeploymentEnterpriseSearchArgs and GetDeploymentEnterpriseSearchOutput values.
@@ -5710,16 +8627,24 @@ type GetDeploymentEnterpriseSearchInput interface {
 }
 
 type GetDeploymentEnterpriseSearchArgs struct {
+	// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 	ElasticsearchClusterRefId pulumi.StringInput `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       pulumi.BoolInput                                `pulumi:"healthy"`
-	HttpEndpoint  pulumi.StringInput                              `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringInput                              `pulumi:"httpsEndpoint"`
-	RefId         pulumi.StringInput                              `pulumi:"refId"`
-	ResourceId    pulumi.StringInput                              `pulumi:"resourceId"`
-	Status        pulumi.StringInput                              `pulumi:"status"`
-	Topologies    GetDeploymentEnterpriseSearchTopologyArrayInput `pulumi:"topologies"`
-	Version       pulumi.StringInput                              `pulumi:"version"`
+	// Enterprise Search resource health status.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// HTTP endpoint for the Enterprise Search resource.
+	HttpEndpoint pulumi.StringInput `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the Enterprise Search resource.
+	HttpsEndpoint pulumi.StringInput `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Enterprise Search resource.
+	RefId pulumi.StringInput `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// Enterprise Search resource status (for example, "started", "stopped", etc).
+	Status pulumi.StringInput `pulumi:"status"`
+	// Node topology element definition.
+	Topologies GetDeploymentEnterpriseSearchTopologyArrayInput `pulumi:"topologies"`
+	// Elastic stack version.
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetDeploymentEnterpriseSearchArgs) ElementType() reflect.Type {
@@ -5773,39 +8698,47 @@ func (o GetDeploymentEnterpriseSearchOutput) ToGetDeploymentEnterpriseSearchOutp
 	return o
 }
 
+// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 func (o GetDeploymentEnterpriseSearchOutput) ElasticsearchClusterRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.ElasticsearchClusterRefId }).(pulumi.StringOutput)
 }
 
-// Overall health status of the deployment.
+// Enterprise Search resource health status.
 func (o GetDeploymentEnterpriseSearchOutput) Healthy() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) bool { return v.Healthy }).(pulumi.BoolOutput)
 }
 
+// HTTP endpoint for the Enterprise Search resource.
 func (o GetDeploymentEnterpriseSearchOutput) HttpEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.HttpEndpoint }).(pulumi.StringOutput)
 }
 
+// HTTPS endpoint for the Enterprise Search resource.
 func (o GetDeploymentEnterpriseSearchOutput) HttpsEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.HttpsEndpoint }).(pulumi.StringOutput)
 }
 
+// A locally-unique friendly alias for this Enterprise Search resource.
 func (o GetDeploymentEnterpriseSearchOutput) RefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.RefId }).(pulumi.StringOutput)
 }
 
+// The resource unique identifier.
 func (o GetDeploymentEnterpriseSearchOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.ResourceId }).(pulumi.StringOutput)
 }
 
+// Enterprise Search resource status (for example, "started", "stopped", etc).
 func (o GetDeploymentEnterpriseSearchOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Node topology element definition.
 func (o GetDeploymentEnterpriseSearchOutput) Topologies() GetDeploymentEnterpriseSearchTopologyArrayOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) []GetDeploymentEnterpriseSearchTopology { return v.Topologies }).(GetDeploymentEnterpriseSearchTopologyArrayOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentEnterpriseSearchOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearch) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -5961,16 +8894,24 @@ func (o GetDeploymentEnterpriseSearchTopologyArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetDeploymentIntegrationsServer struct {
+	// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 	ElasticsearchClusterRefId string `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       bool                                      `pulumi:"healthy"`
-	HttpEndpoint  string                                    `pulumi:"httpEndpoint"`
-	HttpsEndpoint string                                    `pulumi:"httpsEndpoint"`
-	RefId         string                                    `pulumi:"refId"`
-	ResourceId    string                                    `pulumi:"resourceId"`
-	Status        string                                    `pulumi:"status"`
-	Topologies    []GetDeploymentIntegrationsServerTopology `pulumi:"topologies"`
-	Version       string                                    `pulumi:"version"`
+	// Resource kind health status.
+	Healthy bool `pulumi:"healthy"`
+	// HTTP endpoint for the resource kind.
+	HttpEndpoint string `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the resource kind.
+	HttpsEndpoint string `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Integrations Server resource.
+	RefId string `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId string `pulumi:"resourceId"`
+	// Resource kind status (for example, "started", "stopped", etc).
+	Status string `pulumi:"status"`
+	// Node topology element definition.
+	Topologies []GetDeploymentIntegrationsServerTopology `pulumi:"topologies"`
+	// Elastic stack version.
+	Version string `pulumi:"version"`
 }
 
 // GetDeploymentIntegrationsServerInput is an input type that accepts GetDeploymentIntegrationsServerArgs and GetDeploymentIntegrationsServerOutput values.
@@ -5985,16 +8926,24 @@ type GetDeploymentIntegrationsServerInput interface {
 }
 
 type GetDeploymentIntegrationsServerArgs struct {
+	// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 	ElasticsearchClusterRefId pulumi.StringInput `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       pulumi.BoolInput                                  `pulumi:"healthy"`
-	HttpEndpoint  pulumi.StringInput                                `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringInput                                `pulumi:"httpsEndpoint"`
-	RefId         pulumi.StringInput                                `pulumi:"refId"`
-	ResourceId    pulumi.StringInput                                `pulumi:"resourceId"`
-	Status        pulumi.StringInput                                `pulumi:"status"`
-	Topologies    GetDeploymentIntegrationsServerTopologyArrayInput `pulumi:"topologies"`
-	Version       pulumi.StringInput                                `pulumi:"version"`
+	// Resource kind health status.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// HTTP endpoint for the resource kind.
+	HttpEndpoint pulumi.StringInput `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the resource kind.
+	HttpsEndpoint pulumi.StringInput `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Integrations Server resource.
+	RefId pulumi.StringInput `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// Resource kind status (for example, "started", "stopped", etc).
+	Status pulumi.StringInput `pulumi:"status"`
+	// Node topology element definition.
+	Topologies GetDeploymentIntegrationsServerTopologyArrayInput `pulumi:"topologies"`
+	// Elastic stack version.
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetDeploymentIntegrationsServerArgs) ElementType() reflect.Type {
@@ -6048,39 +8997,47 @@ func (o GetDeploymentIntegrationsServerOutput) ToGetDeploymentIntegrationsServer
 	return o
 }
 
+// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 func (o GetDeploymentIntegrationsServerOutput) ElasticsearchClusterRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.ElasticsearchClusterRefId }).(pulumi.StringOutput)
 }
 
-// Overall health status of the deployment.
+// Resource kind health status.
 func (o GetDeploymentIntegrationsServerOutput) Healthy() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) bool { return v.Healthy }).(pulumi.BoolOutput)
 }
 
+// HTTP endpoint for the resource kind.
 func (o GetDeploymentIntegrationsServerOutput) HttpEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.HttpEndpoint }).(pulumi.StringOutput)
 }
 
+// HTTPS endpoint for the resource kind.
 func (o GetDeploymentIntegrationsServerOutput) HttpsEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.HttpsEndpoint }).(pulumi.StringOutput)
 }
 
+// A locally-unique friendly alias for this Integrations Server resource.
 func (o GetDeploymentIntegrationsServerOutput) RefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.RefId }).(pulumi.StringOutput)
 }
 
+// The resource unique identifier.
 func (o GetDeploymentIntegrationsServerOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.ResourceId }).(pulumi.StringOutput)
 }
 
+// Resource kind status (for example, "started", "stopped", etc).
 func (o GetDeploymentIntegrationsServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Node topology element definition.
 func (o GetDeploymentIntegrationsServerOutput) Topologies() GetDeploymentIntegrationsServerTopologyArrayOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) []GetDeploymentIntegrationsServerTopology { return v.Topologies }).(GetDeploymentIntegrationsServerTopologyArrayOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentIntegrationsServerOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServer) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -6218,16 +9175,24 @@ func (o GetDeploymentIntegrationsServerTopologyArrayOutput) Index(i pulumi.IntIn
 }
 
 type GetDeploymentKibana struct {
+	// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 	ElasticsearchClusterRefId string `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       bool                          `pulumi:"healthy"`
-	HttpEndpoint  string                        `pulumi:"httpEndpoint"`
-	HttpsEndpoint string                        `pulumi:"httpsEndpoint"`
-	RefId         string                        `pulumi:"refId"`
-	ResourceId    string                        `pulumi:"resourceId"`
-	Status        string                        `pulumi:"status"`
-	Topologies    []GetDeploymentKibanaTopology `pulumi:"topologies"`
-	Version       string                        `pulumi:"version"`
+	// Kibana resource health status.
+	Healthy bool `pulumi:"healthy"`
+	// HTTP endpoint for the Kibana resource.
+	HttpEndpoint string `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the Kibana resource.
+	HttpsEndpoint string `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Kibana resource.
+	RefId string `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId string `pulumi:"resourceId"`
+	// Kibana resource status (for example, "started", "stopped", etc).
+	Status string `pulumi:"status"`
+	// Node topology element definition.
+	Topologies []GetDeploymentKibanaTopology `pulumi:"topologies"`
+	// Elastic stack version.
+	Version string `pulumi:"version"`
 }
 
 // GetDeploymentKibanaInput is an input type that accepts GetDeploymentKibanaArgs and GetDeploymentKibanaOutput values.
@@ -6242,16 +9207,24 @@ type GetDeploymentKibanaInput interface {
 }
 
 type GetDeploymentKibanaArgs struct {
+	// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 	ElasticsearchClusterRefId pulumi.StringInput `pulumi:"elasticsearchClusterRefId"`
-	// Overall health status of the deployment.
-	Healthy       pulumi.BoolInput                      `pulumi:"healthy"`
-	HttpEndpoint  pulumi.StringInput                    `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringInput                    `pulumi:"httpsEndpoint"`
-	RefId         pulumi.StringInput                    `pulumi:"refId"`
-	ResourceId    pulumi.StringInput                    `pulumi:"resourceId"`
-	Status        pulumi.StringInput                    `pulumi:"status"`
-	Topologies    GetDeploymentKibanaTopologyArrayInput `pulumi:"topologies"`
-	Version       pulumi.StringInput                    `pulumi:"version"`
+	// Kibana resource health status.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// HTTP endpoint for the Kibana resource.
+	HttpEndpoint pulumi.StringInput `pulumi:"httpEndpoint"`
+	// HTTPS endpoint for the Kibana resource.
+	HttpsEndpoint pulumi.StringInput `pulumi:"httpsEndpoint"`
+	// A locally-unique friendly alias for this Kibana resource.
+	RefId pulumi.StringInput `pulumi:"refId"`
+	// The resource unique identifier.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// Kibana resource status (for example, "started", "stopped", etc).
+	Status pulumi.StringInput `pulumi:"status"`
+	// Node topology element definition.
+	Topologies GetDeploymentKibanaTopologyArrayInput `pulumi:"topologies"`
+	// Elastic stack version.
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetDeploymentKibanaArgs) ElementType() reflect.Type {
@@ -6305,39 +9278,47 @@ func (o GetDeploymentKibanaOutput) ToGetDeploymentKibanaOutputWithContext(ctx co
 	return o
 }
 
+// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
 func (o GetDeploymentKibanaOutput) ElasticsearchClusterRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.ElasticsearchClusterRefId }).(pulumi.StringOutput)
 }
 
-// Overall health status of the deployment.
+// Kibana resource health status.
 func (o GetDeploymentKibanaOutput) Healthy() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) bool { return v.Healthy }).(pulumi.BoolOutput)
 }
 
+// HTTP endpoint for the Kibana resource.
 func (o GetDeploymentKibanaOutput) HttpEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.HttpEndpoint }).(pulumi.StringOutput)
 }
 
+// HTTPS endpoint for the Kibana resource.
 func (o GetDeploymentKibanaOutput) HttpsEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.HttpsEndpoint }).(pulumi.StringOutput)
 }
 
+// A locally-unique friendly alias for this Kibana resource.
 func (o GetDeploymentKibanaOutput) RefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.RefId }).(pulumi.StringOutput)
 }
 
+// The resource unique identifier.
 func (o GetDeploymentKibanaOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.ResourceId }).(pulumi.StringOutput)
 }
 
+// Kibana resource status (for example, "started", "stopped", etc).
 func (o GetDeploymentKibanaOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Node topology element definition.
 func (o GetDeploymentKibanaOutput) Topologies() GetDeploymentKibanaTopologyArrayOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) []GetDeploymentKibanaTopology { return v.Topologies }).(GetDeploymentKibanaTopologyArrayOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentKibanaOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibana) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -6475,10 +9456,14 @@ func (o GetDeploymentKibanaTopologyArrayOutput) Index(i pulumi.IntInput) GetDepl
 }
 
 type GetDeploymentObservability struct {
+	// Destination deployment ID for the shipped logs and monitoring metrics.
 	DeploymentId string `pulumi:"deploymentId"`
-	Logs         bool   `pulumi:"logs"`
-	Metrics      bool   `pulumi:"metrics"`
-	RefId        string `pulumi:"refId"`
+	// Defines whether logs are shipped to the destination deployment.
+	Logs bool `pulumi:"logs"`
+	// Defines whether metrics are shipped to the destination deployment.
+	Metrics bool `pulumi:"metrics"`
+	// Elasticsearch resource kind refId of the destination deployment.
+	RefId string `pulumi:"refId"`
 }
 
 // GetDeploymentObservabilityInput is an input type that accepts GetDeploymentObservabilityArgs and GetDeploymentObservabilityOutput values.
@@ -6493,10 +9478,14 @@ type GetDeploymentObservabilityInput interface {
 }
 
 type GetDeploymentObservabilityArgs struct {
+	// Destination deployment ID for the shipped logs and monitoring metrics.
 	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
-	Logs         pulumi.BoolInput   `pulumi:"logs"`
-	Metrics      pulumi.BoolInput   `pulumi:"metrics"`
-	RefId        pulumi.StringInput `pulumi:"refId"`
+	// Defines whether logs are shipped to the destination deployment.
+	Logs pulumi.BoolInput `pulumi:"logs"`
+	// Defines whether metrics are shipped to the destination deployment.
+	Metrics pulumi.BoolInput `pulumi:"metrics"`
+	// Elasticsearch resource kind refId of the destination deployment.
+	RefId pulumi.StringInput `pulumi:"refId"`
 }
 
 func (GetDeploymentObservabilityArgs) ElementType() reflect.Type {
@@ -6550,18 +9539,22 @@ func (o GetDeploymentObservabilityOutput) ToGetDeploymentObservabilityOutputWith
 	return o
 }
 
+// Destination deployment ID for the shipped logs and monitoring metrics.
 func (o GetDeploymentObservabilityOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentObservability) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
+// Defines whether logs are shipped to the destination deployment.
 func (o GetDeploymentObservabilityOutput) Logs() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentObservability) bool { return v.Logs }).(pulumi.BoolOutput)
 }
 
+// Defines whether metrics are shipped to the destination deployment.
 func (o GetDeploymentObservabilityOutput) Metrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentObservability) bool { return v.Metrics }).(pulumi.BoolOutput)
 }
 
+// Elasticsearch resource kind refId of the destination deployment.
 func (o GetDeploymentObservabilityOutput) RefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentObservability) string { return v.RefId }).(pulumi.StringOutput)
 }
@@ -6587,9 +9580,11 @@ func (o GetDeploymentObservabilityArrayOutput) Index(i pulumi.IntInput) GetDeplo
 }
 
 type GetDeploymentsApm struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy *string `pulumi:"healthy"`
-	Status  *string `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status *string `pulumi:"status"`
+	// Elastic stack version.
 	Version *string `pulumi:"version"`
 }
 
@@ -6605,9 +9600,11 @@ type GetDeploymentsApmInput interface {
 }
 
 type GetDeploymentsApmArgs struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
-	Status  pulumi.StringPtrInput `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Elastic stack version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -6623,45 +9620,29 @@ func (i GetDeploymentsApmArgs) ToGetDeploymentsApmOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsApmOutput)
 }
 
-func (i GetDeploymentsApmArgs) ToGetDeploymentsApmPtrOutput() GetDeploymentsApmPtrOutput {
-	return i.ToGetDeploymentsApmPtrOutputWithContext(context.Background())
-}
-
-func (i GetDeploymentsApmArgs) ToGetDeploymentsApmPtrOutputWithContext(ctx context.Context) GetDeploymentsApmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsApmOutput).ToGetDeploymentsApmPtrOutputWithContext(ctx)
-}
-
-// GetDeploymentsApmPtrInput is an input type that accepts GetDeploymentsApmArgs, GetDeploymentsApmPtr and GetDeploymentsApmPtrOutput values.
-// You can construct a concrete instance of `GetDeploymentsApmPtrInput` via:
+// GetDeploymentsApmArrayInput is an input type that accepts GetDeploymentsApmArray and GetDeploymentsApmArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsApmArrayInput` via:
 //
-//	        GetDeploymentsApmArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetDeploymentsApmPtrInput interface {
+//	GetDeploymentsApmArray{ GetDeploymentsApmArgs{...} }
+type GetDeploymentsApmArrayInput interface {
 	pulumi.Input
 
-	ToGetDeploymentsApmPtrOutput() GetDeploymentsApmPtrOutput
-	ToGetDeploymentsApmPtrOutputWithContext(context.Context) GetDeploymentsApmPtrOutput
+	ToGetDeploymentsApmArrayOutput() GetDeploymentsApmArrayOutput
+	ToGetDeploymentsApmArrayOutputWithContext(context.Context) GetDeploymentsApmArrayOutput
 }
 
-type getDeploymentsApmPtrType GetDeploymentsApmArgs
+type GetDeploymentsApmArray []GetDeploymentsApmInput
 
-func GetDeploymentsApmPtr(v *GetDeploymentsApmArgs) GetDeploymentsApmPtrInput {
-	return (*getDeploymentsApmPtrType)(v)
+func (GetDeploymentsApmArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsApm)(nil)).Elem()
 }
 
-func (*getDeploymentsApmPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsApm)(nil)).Elem()
+func (i GetDeploymentsApmArray) ToGetDeploymentsApmArrayOutput() GetDeploymentsApmArrayOutput {
+	return i.ToGetDeploymentsApmArrayOutputWithContext(context.Background())
 }
 
-func (i *getDeploymentsApmPtrType) ToGetDeploymentsApmPtrOutput() GetDeploymentsApmPtrOutput {
-	return i.ToGetDeploymentsApmPtrOutputWithContext(context.Background())
-}
-
-func (i *getDeploymentsApmPtrType) ToGetDeploymentsApmPtrOutputWithContext(ctx context.Context) GetDeploymentsApmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsApmPtrOutput)
+func (i GetDeploymentsApmArray) ToGetDeploymentsApmArrayOutputWithContext(ctx context.Context) GetDeploymentsApmArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsApmArrayOutput)
 }
 
 type GetDeploymentsApmOutput struct{ *pulumi.OutputState }
@@ -6678,95 +9659,68 @@ func (o GetDeploymentsApmOutput) ToGetDeploymentsApmOutputWithContext(ctx contex
 	return o
 }
 
-func (o GetDeploymentsApmOutput) ToGetDeploymentsApmPtrOutput() GetDeploymentsApmPtrOutput {
-	return o.ToGetDeploymentsApmPtrOutputWithContext(context.Background())
-}
-
-func (o GetDeploymentsApmOutput) ToGetDeploymentsApmPtrOutputWithContext(ctx context.Context) GetDeploymentsApmPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeploymentsApm) *GetDeploymentsApm {
-		return &v
-	}).(GetDeploymentsApmPtrOutput)
-}
-
-// Overall health status of the deployment.
+// Overall health status of the resource instances.
 func (o GetDeploymentsApmOutput) Healthy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsApm) *string { return v.Healthy }).(pulumi.StringPtrOutput)
 }
 
+// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
 func (o GetDeploymentsApmOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsApm) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentsApmOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsApm) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-type GetDeploymentsApmPtrOutput struct{ *pulumi.OutputState }
+type GetDeploymentsApmArrayOutput struct{ *pulumi.OutputState }
 
-func (GetDeploymentsApmPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsApm)(nil)).Elem()
+func (GetDeploymentsApmArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsApm)(nil)).Elem()
 }
 
-func (o GetDeploymentsApmPtrOutput) ToGetDeploymentsApmPtrOutput() GetDeploymentsApmPtrOutput {
+func (o GetDeploymentsApmArrayOutput) ToGetDeploymentsApmArrayOutput() GetDeploymentsApmArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsApmPtrOutput) ToGetDeploymentsApmPtrOutputWithContext(ctx context.Context) GetDeploymentsApmPtrOutput {
+func (o GetDeploymentsApmArrayOutput) ToGetDeploymentsApmArrayOutputWithContext(ctx context.Context) GetDeploymentsApmArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsApmPtrOutput) Elem() GetDeploymentsApmOutput {
-	return o.ApplyT(func(v *GetDeploymentsApm) GetDeploymentsApm {
-		if v != nil {
-			return *v
-		}
-		var ret GetDeploymentsApm
-		return ret
+func (o GetDeploymentsApmArrayOutput) Index(i pulumi.IntInput) GetDeploymentsApmOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsApm {
+		return vs[0].([]GetDeploymentsApm)[vs[1].(int)]
 	}).(GetDeploymentsApmOutput)
 }
 
-// Overall health status of the deployment.
-func (o GetDeploymentsApmPtrOutput) Healthy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsApm) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Healthy
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsApmPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsApm) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Status
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsApmPtrOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsApm) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Version
-	}).(pulumi.StringPtrOutput)
-}
-
 type GetDeploymentsDeployment struct {
-	Alias                        string `pulumi:"alias"`
-	ApmRefId                     string `pulumi:"apmRefId"`
-	ApmResourceId                string `pulumi:"apmResourceId"`
-	DeploymentId                 string `pulumi:"deploymentId"`
-	ElasticsearchRefId           string `pulumi:"elasticsearchRefId"`
-	ElasticsearchResourceId      string `pulumi:"elasticsearchResourceId"`
-	EnterpriseSearchRefId        string `pulumi:"enterpriseSearchRefId"`
-	EnterpriseSearchResourceId   string `pulumi:"enterpriseSearchResourceId"`
-	IntegrationsServerRefId      string `pulumi:"integrationsServerRefId"`
+	// Deployment alias.
+	Alias string `pulumi:"alias"`
+	// The APM resource reference.
+	ApmRefId string `pulumi:"apmRefId"`
+	// The APM resource unique ID.
+	ApmResourceId string `pulumi:"apmResourceId"`
+	// The deployment unique ID.
+	DeploymentId string `pulumi:"deploymentId"`
+	// The Elasticsearch resource reference.
+	ElasticsearchRefId string `pulumi:"elasticsearchRefId"`
+	// The Elasticsearch resource unique ID.
+	ElasticsearchResourceId string `pulumi:"elasticsearchResourceId"`
+	// The Enterprise Search resource reference.
+	EnterpriseSearchRefId string `pulumi:"enterpriseSearchRefId"`
+	// The Enterprise Search resource unique ID.
+	EnterpriseSearchResourceId string `pulumi:"enterpriseSearchResourceId"`
+	// The Integrations Server resource reference.
+	IntegrationsServerRefId string `pulumi:"integrationsServerRefId"`
+	// The Integrations Server resource unique ID.
 	IntegrationsServerResourceId string `pulumi:"integrationsServerResourceId"`
-	KibanaRefId                  string `pulumi:"kibanaRefId"`
-	KibanaResourceId             string `pulumi:"kibanaResourceId"`
-	Name                         string `pulumi:"name"`
+	// The Kibana resource reference.
+	KibanaRefId string `pulumi:"kibanaRefId"`
+	// The Kibana resource unique ID.
+	KibanaResourceId string `pulumi:"kibanaResourceId"`
+	// The name of the deployment.
+	Name string `pulumi:"name"`
 }
 
 // GetDeploymentsDeploymentInput is an input type that accepts GetDeploymentsDeploymentArgs and GetDeploymentsDeploymentOutput values.
@@ -6781,19 +9735,32 @@ type GetDeploymentsDeploymentInput interface {
 }
 
 type GetDeploymentsDeploymentArgs struct {
-	Alias                        pulumi.StringInput `pulumi:"alias"`
-	ApmRefId                     pulumi.StringInput `pulumi:"apmRefId"`
-	ApmResourceId                pulumi.StringInput `pulumi:"apmResourceId"`
-	DeploymentId                 pulumi.StringInput `pulumi:"deploymentId"`
-	ElasticsearchRefId           pulumi.StringInput `pulumi:"elasticsearchRefId"`
-	ElasticsearchResourceId      pulumi.StringInput `pulumi:"elasticsearchResourceId"`
-	EnterpriseSearchRefId        pulumi.StringInput `pulumi:"enterpriseSearchRefId"`
-	EnterpriseSearchResourceId   pulumi.StringInput `pulumi:"enterpriseSearchResourceId"`
-	IntegrationsServerRefId      pulumi.StringInput `pulumi:"integrationsServerRefId"`
+	// Deployment alias.
+	Alias pulumi.StringInput `pulumi:"alias"`
+	// The APM resource reference.
+	ApmRefId pulumi.StringInput `pulumi:"apmRefId"`
+	// The APM resource unique ID.
+	ApmResourceId pulumi.StringInput `pulumi:"apmResourceId"`
+	// The deployment unique ID.
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// The Elasticsearch resource reference.
+	ElasticsearchRefId pulumi.StringInput `pulumi:"elasticsearchRefId"`
+	// The Elasticsearch resource unique ID.
+	ElasticsearchResourceId pulumi.StringInput `pulumi:"elasticsearchResourceId"`
+	// The Enterprise Search resource reference.
+	EnterpriseSearchRefId pulumi.StringInput `pulumi:"enterpriseSearchRefId"`
+	// The Enterprise Search resource unique ID.
+	EnterpriseSearchResourceId pulumi.StringInput `pulumi:"enterpriseSearchResourceId"`
+	// The Integrations Server resource reference.
+	IntegrationsServerRefId pulumi.StringInput `pulumi:"integrationsServerRefId"`
+	// The Integrations Server resource unique ID.
 	IntegrationsServerResourceId pulumi.StringInput `pulumi:"integrationsServerResourceId"`
-	KibanaRefId                  pulumi.StringInput `pulumi:"kibanaRefId"`
-	KibanaResourceId             pulumi.StringInput `pulumi:"kibanaResourceId"`
-	Name                         pulumi.StringInput `pulumi:"name"`
+	// The Kibana resource reference.
+	KibanaRefId pulumi.StringInput `pulumi:"kibanaRefId"`
+	// The Kibana resource unique ID.
+	KibanaResourceId pulumi.StringInput `pulumi:"kibanaResourceId"`
+	// The name of the deployment.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetDeploymentsDeploymentArgs) ElementType() reflect.Type {
@@ -6847,54 +9814,67 @@ func (o GetDeploymentsDeploymentOutput) ToGetDeploymentsDeploymentOutputWithCont
 	return o
 }
 
+// Deployment alias.
 func (o GetDeploymentsDeploymentOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Alias }).(pulumi.StringOutput)
 }
 
+// The APM resource reference.
 func (o GetDeploymentsDeploymentOutput) ApmRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ApmRefId }).(pulumi.StringOutput)
 }
 
+// The APM resource unique ID.
 func (o GetDeploymentsDeploymentOutput) ApmResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ApmResourceId }).(pulumi.StringOutput)
 }
 
+// The deployment unique ID.
 func (o GetDeploymentsDeploymentOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
+// The Elasticsearch resource reference.
 func (o GetDeploymentsDeploymentOutput) ElasticsearchRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ElasticsearchRefId }).(pulumi.StringOutput)
 }
 
+// The Elasticsearch resource unique ID.
 func (o GetDeploymentsDeploymentOutput) ElasticsearchResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.ElasticsearchResourceId }).(pulumi.StringOutput)
 }
 
+// The Enterprise Search resource reference.
 func (o GetDeploymentsDeploymentOutput) EnterpriseSearchRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.EnterpriseSearchRefId }).(pulumi.StringOutput)
 }
 
+// The Enterprise Search resource unique ID.
 func (o GetDeploymentsDeploymentOutput) EnterpriseSearchResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.EnterpriseSearchResourceId }).(pulumi.StringOutput)
 }
 
+// The Integrations Server resource reference.
 func (o GetDeploymentsDeploymentOutput) IntegrationsServerRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.IntegrationsServerRefId }).(pulumi.StringOutput)
 }
 
+// The Integrations Server resource unique ID.
 func (o GetDeploymentsDeploymentOutput) IntegrationsServerResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.IntegrationsServerResourceId }).(pulumi.StringOutput)
 }
 
+// The Kibana resource reference.
 func (o GetDeploymentsDeploymentOutput) KibanaRefId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.KibanaRefId }).(pulumi.StringOutput)
 }
 
+// The Kibana resource unique ID.
 func (o GetDeploymentsDeploymentOutput) KibanaResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.KibanaResourceId }).(pulumi.StringOutput)
 }
 
+// The name of the deployment.
 func (o GetDeploymentsDeploymentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsDeployment) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6920,9 +9900,11 @@ func (o GetDeploymentsDeploymentArrayOutput) Index(i pulumi.IntInput) GetDeploym
 }
 
 type GetDeploymentsElasticsearch struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy *string `pulumi:"healthy"`
-	Status  *string `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status *string `pulumi:"status"`
+	// Elastic stack version.
 	Version *string `pulumi:"version"`
 }
 
@@ -6938,9 +9920,11 @@ type GetDeploymentsElasticsearchInput interface {
 }
 
 type GetDeploymentsElasticsearchArgs struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
-	Status  pulumi.StringPtrInput `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Elastic stack version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -6956,45 +9940,29 @@ func (i GetDeploymentsElasticsearchArgs) ToGetDeploymentsElasticsearchOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsElasticsearchOutput)
 }
 
-func (i GetDeploymentsElasticsearchArgs) ToGetDeploymentsElasticsearchPtrOutput() GetDeploymentsElasticsearchPtrOutput {
-	return i.ToGetDeploymentsElasticsearchPtrOutputWithContext(context.Background())
-}
-
-func (i GetDeploymentsElasticsearchArgs) ToGetDeploymentsElasticsearchPtrOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsElasticsearchOutput).ToGetDeploymentsElasticsearchPtrOutputWithContext(ctx)
-}
-
-// GetDeploymentsElasticsearchPtrInput is an input type that accepts GetDeploymentsElasticsearchArgs, GetDeploymentsElasticsearchPtr and GetDeploymentsElasticsearchPtrOutput values.
-// You can construct a concrete instance of `GetDeploymentsElasticsearchPtrInput` via:
+// GetDeploymentsElasticsearchArrayInput is an input type that accepts GetDeploymentsElasticsearchArray and GetDeploymentsElasticsearchArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsElasticsearchArrayInput` via:
 //
-//	        GetDeploymentsElasticsearchArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetDeploymentsElasticsearchPtrInput interface {
+//	GetDeploymentsElasticsearchArray{ GetDeploymentsElasticsearchArgs{...} }
+type GetDeploymentsElasticsearchArrayInput interface {
 	pulumi.Input
 
-	ToGetDeploymentsElasticsearchPtrOutput() GetDeploymentsElasticsearchPtrOutput
-	ToGetDeploymentsElasticsearchPtrOutputWithContext(context.Context) GetDeploymentsElasticsearchPtrOutput
+	ToGetDeploymentsElasticsearchArrayOutput() GetDeploymentsElasticsearchArrayOutput
+	ToGetDeploymentsElasticsearchArrayOutputWithContext(context.Context) GetDeploymentsElasticsearchArrayOutput
 }
 
-type getDeploymentsElasticsearchPtrType GetDeploymentsElasticsearchArgs
+type GetDeploymentsElasticsearchArray []GetDeploymentsElasticsearchInput
 
-func GetDeploymentsElasticsearchPtr(v *GetDeploymentsElasticsearchArgs) GetDeploymentsElasticsearchPtrInput {
-	return (*getDeploymentsElasticsearchPtrType)(v)
+func (GetDeploymentsElasticsearchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsElasticsearch)(nil)).Elem()
 }
 
-func (*getDeploymentsElasticsearchPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsElasticsearch)(nil)).Elem()
+func (i GetDeploymentsElasticsearchArray) ToGetDeploymentsElasticsearchArrayOutput() GetDeploymentsElasticsearchArrayOutput {
+	return i.ToGetDeploymentsElasticsearchArrayOutputWithContext(context.Background())
 }
 
-func (i *getDeploymentsElasticsearchPtrType) ToGetDeploymentsElasticsearchPtrOutput() GetDeploymentsElasticsearchPtrOutput {
-	return i.ToGetDeploymentsElasticsearchPtrOutputWithContext(context.Background())
-}
-
-func (i *getDeploymentsElasticsearchPtrType) ToGetDeploymentsElasticsearchPtrOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsElasticsearchPtrOutput)
+func (i GetDeploymentsElasticsearchArray) ToGetDeploymentsElasticsearchArrayOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsElasticsearchArrayOutput)
 }
 
 type GetDeploymentsElasticsearchOutput struct{ *pulumi.OutputState }
@@ -7011,85 +9979,47 @@ func (o GetDeploymentsElasticsearchOutput) ToGetDeploymentsElasticsearchOutputWi
 	return o
 }
 
-func (o GetDeploymentsElasticsearchOutput) ToGetDeploymentsElasticsearchPtrOutput() GetDeploymentsElasticsearchPtrOutput {
-	return o.ToGetDeploymentsElasticsearchPtrOutputWithContext(context.Background())
-}
-
-func (o GetDeploymentsElasticsearchOutput) ToGetDeploymentsElasticsearchPtrOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeploymentsElasticsearch) *GetDeploymentsElasticsearch {
-		return &v
-	}).(GetDeploymentsElasticsearchPtrOutput)
-}
-
-// Overall health status of the deployment.
+// Overall health status of the resource instances.
 func (o GetDeploymentsElasticsearchOutput) Healthy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsElasticsearch) *string { return v.Healthy }).(pulumi.StringPtrOutput)
 }
 
+// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
 func (o GetDeploymentsElasticsearchOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsElasticsearch) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentsElasticsearchOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsElasticsearch) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-type GetDeploymentsElasticsearchPtrOutput struct{ *pulumi.OutputState }
+type GetDeploymentsElasticsearchArrayOutput struct{ *pulumi.OutputState }
 
-func (GetDeploymentsElasticsearchPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsElasticsearch)(nil)).Elem()
+func (GetDeploymentsElasticsearchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsElasticsearch)(nil)).Elem()
 }
 
-func (o GetDeploymentsElasticsearchPtrOutput) ToGetDeploymentsElasticsearchPtrOutput() GetDeploymentsElasticsearchPtrOutput {
+func (o GetDeploymentsElasticsearchArrayOutput) ToGetDeploymentsElasticsearchArrayOutput() GetDeploymentsElasticsearchArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsElasticsearchPtrOutput) ToGetDeploymentsElasticsearchPtrOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchPtrOutput {
+func (o GetDeploymentsElasticsearchArrayOutput) ToGetDeploymentsElasticsearchArrayOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsElasticsearchPtrOutput) Elem() GetDeploymentsElasticsearchOutput {
-	return o.ApplyT(func(v *GetDeploymentsElasticsearch) GetDeploymentsElasticsearch {
-		if v != nil {
-			return *v
-		}
-		var ret GetDeploymentsElasticsearch
-		return ret
+func (o GetDeploymentsElasticsearchArrayOutput) Index(i pulumi.IntInput) GetDeploymentsElasticsearchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsElasticsearch {
+		return vs[0].([]GetDeploymentsElasticsearch)[vs[1].(int)]
 	}).(GetDeploymentsElasticsearchOutput)
 }
 
-// Overall health status of the deployment.
-func (o GetDeploymentsElasticsearchPtrOutput) Healthy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsElasticsearch) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Healthy
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsElasticsearchPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsElasticsearch) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Status
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsElasticsearchPtrOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsElasticsearch) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Version
-	}).(pulumi.StringPtrOutput)
-}
-
 type GetDeploymentsEnterpriseSearch struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy *string `pulumi:"healthy"`
-	Status  *string `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status *string `pulumi:"status"`
+	// Elastic stack version.
 	Version *string `pulumi:"version"`
 }
 
@@ -7105,9 +10035,11 @@ type GetDeploymentsEnterpriseSearchInput interface {
 }
 
 type GetDeploymentsEnterpriseSearchArgs struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
-	Status  pulumi.StringPtrInput `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Elastic stack version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -7123,45 +10055,29 @@ func (i GetDeploymentsEnterpriseSearchArgs) ToGetDeploymentsEnterpriseSearchOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsEnterpriseSearchOutput)
 }
 
-func (i GetDeploymentsEnterpriseSearchArgs) ToGetDeploymentsEnterpriseSearchPtrOutput() GetDeploymentsEnterpriseSearchPtrOutput {
-	return i.ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(context.Background())
-}
-
-func (i GetDeploymentsEnterpriseSearchArgs) ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsEnterpriseSearchOutput).ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(ctx)
-}
-
-// GetDeploymentsEnterpriseSearchPtrInput is an input type that accepts GetDeploymentsEnterpriseSearchArgs, GetDeploymentsEnterpriseSearchPtr and GetDeploymentsEnterpriseSearchPtrOutput values.
-// You can construct a concrete instance of `GetDeploymentsEnterpriseSearchPtrInput` via:
+// GetDeploymentsEnterpriseSearchArrayInput is an input type that accepts GetDeploymentsEnterpriseSearchArray and GetDeploymentsEnterpriseSearchArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsEnterpriseSearchArrayInput` via:
 //
-//	        GetDeploymentsEnterpriseSearchArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetDeploymentsEnterpriseSearchPtrInput interface {
+//	GetDeploymentsEnterpriseSearchArray{ GetDeploymentsEnterpriseSearchArgs{...} }
+type GetDeploymentsEnterpriseSearchArrayInput interface {
 	pulumi.Input
 
-	ToGetDeploymentsEnterpriseSearchPtrOutput() GetDeploymentsEnterpriseSearchPtrOutput
-	ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(context.Context) GetDeploymentsEnterpriseSearchPtrOutput
+	ToGetDeploymentsEnterpriseSearchArrayOutput() GetDeploymentsEnterpriseSearchArrayOutput
+	ToGetDeploymentsEnterpriseSearchArrayOutputWithContext(context.Context) GetDeploymentsEnterpriseSearchArrayOutput
 }
 
-type getDeploymentsEnterpriseSearchPtrType GetDeploymentsEnterpriseSearchArgs
+type GetDeploymentsEnterpriseSearchArray []GetDeploymentsEnterpriseSearchInput
 
-func GetDeploymentsEnterpriseSearchPtr(v *GetDeploymentsEnterpriseSearchArgs) GetDeploymentsEnterpriseSearchPtrInput {
-	return (*getDeploymentsEnterpriseSearchPtrType)(v)
+func (GetDeploymentsEnterpriseSearchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsEnterpriseSearch)(nil)).Elem()
 }
 
-func (*getDeploymentsEnterpriseSearchPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsEnterpriseSearch)(nil)).Elem()
+func (i GetDeploymentsEnterpriseSearchArray) ToGetDeploymentsEnterpriseSearchArrayOutput() GetDeploymentsEnterpriseSearchArrayOutput {
+	return i.ToGetDeploymentsEnterpriseSearchArrayOutputWithContext(context.Background())
 }
 
-func (i *getDeploymentsEnterpriseSearchPtrType) ToGetDeploymentsEnterpriseSearchPtrOutput() GetDeploymentsEnterpriseSearchPtrOutput {
-	return i.ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(context.Background())
-}
-
-func (i *getDeploymentsEnterpriseSearchPtrType) ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsEnterpriseSearchPtrOutput)
+func (i GetDeploymentsEnterpriseSearchArray) ToGetDeploymentsEnterpriseSearchArrayOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsEnterpriseSearchArrayOutput)
 }
 
 type GetDeploymentsEnterpriseSearchOutput struct{ *pulumi.OutputState }
@@ -7178,85 +10094,47 @@ func (o GetDeploymentsEnterpriseSearchOutput) ToGetDeploymentsEnterpriseSearchOu
 	return o
 }
 
-func (o GetDeploymentsEnterpriseSearchOutput) ToGetDeploymentsEnterpriseSearchPtrOutput() GetDeploymentsEnterpriseSearchPtrOutput {
-	return o.ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(context.Background())
-}
-
-func (o GetDeploymentsEnterpriseSearchOutput) ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeploymentsEnterpriseSearch) *GetDeploymentsEnterpriseSearch {
-		return &v
-	}).(GetDeploymentsEnterpriseSearchPtrOutput)
-}
-
-// Overall health status of the deployment.
+// Overall health status of the resource instances.
 func (o GetDeploymentsEnterpriseSearchOutput) Healthy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsEnterpriseSearch) *string { return v.Healthy }).(pulumi.StringPtrOutput)
 }
 
+// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
 func (o GetDeploymentsEnterpriseSearchOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsEnterpriseSearch) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentsEnterpriseSearchOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsEnterpriseSearch) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-type GetDeploymentsEnterpriseSearchPtrOutput struct{ *pulumi.OutputState }
+type GetDeploymentsEnterpriseSearchArrayOutput struct{ *pulumi.OutputState }
 
-func (GetDeploymentsEnterpriseSearchPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsEnterpriseSearch)(nil)).Elem()
+func (GetDeploymentsEnterpriseSearchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsEnterpriseSearch)(nil)).Elem()
 }
 
-func (o GetDeploymentsEnterpriseSearchPtrOutput) ToGetDeploymentsEnterpriseSearchPtrOutput() GetDeploymentsEnterpriseSearchPtrOutput {
+func (o GetDeploymentsEnterpriseSearchArrayOutput) ToGetDeploymentsEnterpriseSearchArrayOutput() GetDeploymentsEnterpriseSearchArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsEnterpriseSearchPtrOutput) ToGetDeploymentsEnterpriseSearchPtrOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchPtrOutput {
+func (o GetDeploymentsEnterpriseSearchArrayOutput) ToGetDeploymentsEnterpriseSearchArrayOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsEnterpriseSearchPtrOutput) Elem() GetDeploymentsEnterpriseSearchOutput {
-	return o.ApplyT(func(v *GetDeploymentsEnterpriseSearch) GetDeploymentsEnterpriseSearch {
-		if v != nil {
-			return *v
-		}
-		var ret GetDeploymentsEnterpriseSearch
-		return ret
+func (o GetDeploymentsEnterpriseSearchArrayOutput) Index(i pulumi.IntInput) GetDeploymentsEnterpriseSearchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsEnterpriseSearch {
+		return vs[0].([]GetDeploymentsEnterpriseSearch)[vs[1].(int)]
 	}).(GetDeploymentsEnterpriseSearchOutput)
 }
 
-// Overall health status of the deployment.
-func (o GetDeploymentsEnterpriseSearchPtrOutput) Healthy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsEnterpriseSearch) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Healthy
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsEnterpriseSearchPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsEnterpriseSearch) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Status
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsEnterpriseSearchPtrOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsEnterpriseSearch) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Version
-	}).(pulumi.StringPtrOutput)
-}
-
 type GetDeploymentsIntegrationsServer struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy *string `pulumi:"healthy"`
-	Status  *string `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status *string `pulumi:"status"`
+	// Elastic stack version.
 	Version *string `pulumi:"version"`
 }
 
@@ -7272,9 +10150,11 @@ type GetDeploymentsIntegrationsServerInput interface {
 }
 
 type GetDeploymentsIntegrationsServerArgs struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
-	Status  pulumi.StringPtrInput `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Elastic stack version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -7290,45 +10170,29 @@ func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServer
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerOutput)
 }
 
-func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
-	return i.ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Background())
-}
-
-func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerOutput).ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx)
-}
-
-// GetDeploymentsIntegrationsServerPtrInput is an input type that accepts GetDeploymentsIntegrationsServerArgs, GetDeploymentsIntegrationsServerPtr and GetDeploymentsIntegrationsServerPtrOutput values.
-// You can construct a concrete instance of `GetDeploymentsIntegrationsServerPtrInput` via:
+// GetDeploymentsIntegrationsServerArrayInput is an input type that accepts GetDeploymentsIntegrationsServerArray and GetDeploymentsIntegrationsServerArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsIntegrationsServerArrayInput` via:
 //
-//	        GetDeploymentsIntegrationsServerArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetDeploymentsIntegrationsServerPtrInput interface {
+//	GetDeploymentsIntegrationsServerArray{ GetDeploymentsIntegrationsServerArgs{...} }
+type GetDeploymentsIntegrationsServerArrayInput interface {
 	pulumi.Input
 
-	ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput
-	ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Context) GetDeploymentsIntegrationsServerPtrOutput
+	ToGetDeploymentsIntegrationsServerArrayOutput() GetDeploymentsIntegrationsServerArrayOutput
+	ToGetDeploymentsIntegrationsServerArrayOutputWithContext(context.Context) GetDeploymentsIntegrationsServerArrayOutput
 }
 
-type getDeploymentsIntegrationsServerPtrType GetDeploymentsIntegrationsServerArgs
+type GetDeploymentsIntegrationsServerArray []GetDeploymentsIntegrationsServerInput
 
-func GetDeploymentsIntegrationsServerPtr(v *GetDeploymentsIntegrationsServerArgs) GetDeploymentsIntegrationsServerPtrInput {
-	return (*getDeploymentsIntegrationsServerPtrType)(v)
+func (GetDeploymentsIntegrationsServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsIntegrationsServer)(nil)).Elem()
 }
 
-func (*getDeploymentsIntegrationsServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsIntegrationsServer)(nil)).Elem()
+func (i GetDeploymentsIntegrationsServerArray) ToGetDeploymentsIntegrationsServerArrayOutput() GetDeploymentsIntegrationsServerArrayOutput {
+	return i.ToGetDeploymentsIntegrationsServerArrayOutputWithContext(context.Background())
 }
 
-func (i *getDeploymentsIntegrationsServerPtrType) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
-	return i.ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Background())
-}
-
-func (i *getDeploymentsIntegrationsServerPtrType) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerPtrOutput)
+func (i GetDeploymentsIntegrationsServerArray) ToGetDeploymentsIntegrationsServerArrayOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerArrayOutput)
 }
 
 type GetDeploymentsIntegrationsServerOutput struct{ *pulumi.OutputState }
@@ -7345,85 +10209,47 @@ func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServ
 	return o
 }
 
-func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
-	return o.ToGetDeploymentsIntegrationsServerPtrOutputWithContext(context.Background())
-}
-
-func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeploymentsIntegrationsServer) *GetDeploymentsIntegrationsServer {
-		return &v
-	}).(GetDeploymentsIntegrationsServerPtrOutput)
-}
-
-// Overall health status of the deployment.
+// Overall health status of the resource instances.
 func (o GetDeploymentsIntegrationsServerOutput) Healthy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsIntegrationsServer) *string { return v.Healthy }).(pulumi.StringPtrOutput)
 }
 
+// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
 func (o GetDeploymentsIntegrationsServerOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsIntegrationsServer) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentsIntegrationsServerOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsIntegrationsServer) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-type GetDeploymentsIntegrationsServerPtrOutput struct{ *pulumi.OutputState }
+type GetDeploymentsIntegrationsServerArrayOutput struct{ *pulumi.OutputState }
 
-func (GetDeploymentsIntegrationsServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsIntegrationsServer)(nil)).Elem()
+func (GetDeploymentsIntegrationsServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsIntegrationsServer)(nil)).Elem()
 }
 
-func (o GetDeploymentsIntegrationsServerPtrOutput) ToGetDeploymentsIntegrationsServerPtrOutput() GetDeploymentsIntegrationsServerPtrOutput {
+func (o GetDeploymentsIntegrationsServerArrayOutput) ToGetDeploymentsIntegrationsServerArrayOutput() GetDeploymentsIntegrationsServerArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsIntegrationsServerPtrOutput) ToGetDeploymentsIntegrationsServerPtrOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerPtrOutput {
+func (o GetDeploymentsIntegrationsServerArrayOutput) ToGetDeploymentsIntegrationsServerArrayOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsIntegrationsServerPtrOutput) Elem() GetDeploymentsIntegrationsServerOutput {
-	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) GetDeploymentsIntegrationsServer {
-		if v != nil {
-			return *v
-		}
-		var ret GetDeploymentsIntegrationsServer
-		return ret
+func (o GetDeploymentsIntegrationsServerArrayOutput) Index(i pulumi.IntInput) GetDeploymentsIntegrationsServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsIntegrationsServer {
+		return vs[0].([]GetDeploymentsIntegrationsServer)[vs[1].(int)]
 	}).(GetDeploymentsIntegrationsServerOutput)
 }
 
-// Overall health status of the deployment.
-func (o GetDeploymentsIntegrationsServerPtrOutput) Healthy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Healthy
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsIntegrationsServerPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Status
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsIntegrationsServerPtrOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsIntegrationsServer) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Version
-	}).(pulumi.StringPtrOutput)
-}
-
 type GetDeploymentsKibana struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy *string `pulumi:"healthy"`
-	Status  *string `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status *string `pulumi:"status"`
+	// Elastic stack version.
 	Version *string `pulumi:"version"`
 }
 
@@ -7439,9 +10265,11 @@ type GetDeploymentsKibanaInput interface {
 }
 
 type GetDeploymentsKibanaArgs struct {
-	// Overall health status of the deployment.
+	// Overall health status of the resource instances.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
-	Status  pulumi.StringPtrInput `pulumi:"status"`
+	// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Elastic stack version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -7457,45 +10285,29 @@ func (i GetDeploymentsKibanaArgs) ToGetDeploymentsKibanaOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsKibanaOutput)
 }
 
-func (i GetDeploymentsKibanaArgs) ToGetDeploymentsKibanaPtrOutput() GetDeploymentsKibanaPtrOutput {
-	return i.ToGetDeploymentsKibanaPtrOutputWithContext(context.Background())
-}
-
-func (i GetDeploymentsKibanaArgs) ToGetDeploymentsKibanaPtrOutputWithContext(ctx context.Context) GetDeploymentsKibanaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsKibanaOutput).ToGetDeploymentsKibanaPtrOutputWithContext(ctx)
-}
-
-// GetDeploymentsKibanaPtrInput is an input type that accepts GetDeploymentsKibanaArgs, GetDeploymentsKibanaPtr and GetDeploymentsKibanaPtrOutput values.
-// You can construct a concrete instance of `GetDeploymentsKibanaPtrInput` via:
+// GetDeploymentsKibanaArrayInput is an input type that accepts GetDeploymentsKibanaArray and GetDeploymentsKibanaArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentsKibanaArrayInput` via:
 //
-//	        GetDeploymentsKibanaArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetDeploymentsKibanaPtrInput interface {
+//	GetDeploymentsKibanaArray{ GetDeploymentsKibanaArgs{...} }
+type GetDeploymentsKibanaArrayInput interface {
 	pulumi.Input
 
-	ToGetDeploymentsKibanaPtrOutput() GetDeploymentsKibanaPtrOutput
-	ToGetDeploymentsKibanaPtrOutputWithContext(context.Context) GetDeploymentsKibanaPtrOutput
+	ToGetDeploymentsKibanaArrayOutput() GetDeploymentsKibanaArrayOutput
+	ToGetDeploymentsKibanaArrayOutputWithContext(context.Context) GetDeploymentsKibanaArrayOutput
 }
 
-type getDeploymentsKibanaPtrType GetDeploymentsKibanaArgs
+type GetDeploymentsKibanaArray []GetDeploymentsKibanaInput
 
-func GetDeploymentsKibanaPtr(v *GetDeploymentsKibanaArgs) GetDeploymentsKibanaPtrInput {
-	return (*getDeploymentsKibanaPtrType)(v)
+func (GetDeploymentsKibanaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsKibana)(nil)).Elem()
 }
 
-func (*getDeploymentsKibanaPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsKibana)(nil)).Elem()
+func (i GetDeploymentsKibanaArray) ToGetDeploymentsKibanaArrayOutput() GetDeploymentsKibanaArrayOutput {
+	return i.ToGetDeploymentsKibanaArrayOutputWithContext(context.Background())
 }
 
-func (i *getDeploymentsKibanaPtrType) ToGetDeploymentsKibanaPtrOutput() GetDeploymentsKibanaPtrOutput {
-	return i.ToGetDeploymentsKibanaPtrOutputWithContext(context.Background())
-}
-
-func (i *getDeploymentsKibanaPtrType) ToGetDeploymentsKibanaPtrOutputWithContext(ctx context.Context) GetDeploymentsKibanaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsKibanaPtrOutput)
+func (i GetDeploymentsKibanaArray) ToGetDeploymentsKibanaArrayOutputWithContext(ctx context.Context) GetDeploymentsKibanaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsKibanaArrayOutput)
 }
 
 type GetDeploymentsKibanaOutput struct{ *pulumi.OutputState }
@@ -7512,89 +10324,52 @@ func (o GetDeploymentsKibanaOutput) ToGetDeploymentsKibanaOutputWithContext(ctx 
 	return o
 }
 
-func (o GetDeploymentsKibanaOutput) ToGetDeploymentsKibanaPtrOutput() GetDeploymentsKibanaPtrOutput {
-	return o.ToGetDeploymentsKibanaPtrOutputWithContext(context.Background())
-}
-
-func (o GetDeploymentsKibanaOutput) ToGetDeploymentsKibanaPtrOutputWithContext(ctx context.Context) GetDeploymentsKibanaPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeploymentsKibana) *GetDeploymentsKibana {
-		return &v
-	}).(GetDeploymentsKibanaPtrOutput)
-}
-
-// Overall health status of the deployment.
+// Overall health status of the resource instances.
 func (o GetDeploymentsKibanaOutput) Healthy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsKibana) *string { return v.Healthy }).(pulumi.StringPtrOutput)
 }
 
+// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
 func (o GetDeploymentsKibanaOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsKibana) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Elastic stack version.
 func (o GetDeploymentsKibanaOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsKibana) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-type GetDeploymentsKibanaPtrOutput struct{ *pulumi.OutputState }
+type GetDeploymentsKibanaArrayOutput struct{ *pulumi.OutputState }
 
-func (GetDeploymentsKibanaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetDeploymentsKibana)(nil)).Elem()
+func (GetDeploymentsKibanaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentsKibana)(nil)).Elem()
 }
 
-func (o GetDeploymentsKibanaPtrOutput) ToGetDeploymentsKibanaPtrOutput() GetDeploymentsKibanaPtrOutput {
+func (o GetDeploymentsKibanaArrayOutput) ToGetDeploymentsKibanaArrayOutput() GetDeploymentsKibanaArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsKibanaPtrOutput) ToGetDeploymentsKibanaPtrOutputWithContext(ctx context.Context) GetDeploymentsKibanaPtrOutput {
+func (o GetDeploymentsKibanaArrayOutput) ToGetDeploymentsKibanaArrayOutputWithContext(ctx context.Context) GetDeploymentsKibanaArrayOutput {
 	return o
 }
 
-func (o GetDeploymentsKibanaPtrOutput) Elem() GetDeploymentsKibanaOutput {
-	return o.ApplyT(func(v *GetDeploymentsKibana) GetDeploymentsKibana {
-		if v != nil {
-			return *v
-		}
-		var ret GetDeploymentsKibana
-		return ret
+func (o GetDeploymentsKibanaArrayOutput) Index(i pulumi.IntInput) GetDeploymentsKibanaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsKibana {
+		return vs[0].([]GetDeploymentsKibana)[vs[1].(int)]
 	}).(GetDeploymentsKibanaOutput)
 }
 
-// Overall health status of the deployment.
-func (o GetDeploymentsKibanaPtrOutput) Healthy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsKibana) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Healthy
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsKibanaPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsKibana) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Status
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o GetDeploymentsKibanaPtrOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetDeploymentsKibana) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Version
-	}).(pulumi.StringPtrOutput)
-}
-
 type GetStackApm struct {
-	CapacityConstraintsMax int      `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin int      `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    []string `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         []string `pulumi:"defaultPlugins"`
-	Denylists              []string `pulumi:"denylists"`
-	DockerImage            string   `pulumi:"dockerImage"`
-	Plugins                []string `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax int `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin int `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes []string `pulumi:"compatibleNodeTypes"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists []string `pulumi:"denylists"`
+	// Docker image to use for the APM instance.
+	DockerImage string `pulumi:"dockerImage"`
 }
 
 // GetStackApmInput is an input type that accepts GetStackApmArgs and GetStackApmOutput values.
@@ -7609,13 +10384,16 @@ type GetStackApmInput interface {
 }
 
 type GetStackApmArgs struct {
-	CapacityConstraintsMax pulumi.IntInput         `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin pulumi.IntInput         `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         pulumi.StringArrayInput `pulumi:"defaultPlugins"`
-	Denylists              pulumi.StringArrayInput `pulumi:"denylists"`
-	DockerImage            pulumi.StringInput      `pulumi:"dockerImage"`
-	Plugins                pulumi.StringArrayInput `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax pulumi.IntInput `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin pulumi.IntInput `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists pulumi.StringArrayInput `pulumi:"denylists"`
+	// Docker image to use for the APM instance.
+	DockerImage pulumi.StringInput `pulumi:"dockerImage"`
 }
 
 func (GetStackApmArgs) ElementType() reflect.Type {
@@ -7669,32 +10447,29 @@ func (o GetStackApmOutput) ToGetStackApmOutputWithContext(ctx context.Context) G
 	return o
 }
 
+// Maximum size of the instances.
 func (o GetStackApmOutput) CapacityConstraintsMax() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackApm) int { return v.CapacityConstraintsMax }).(pulumi.IntOutput)
 }
 
+// Minimum size of the instances.
 func (o GetStackApmOutput) CapacityConstraintsMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackApm) int { return v.CapacityConstraintsMin }).(pulumi.IntOutput)
 }
 
+// List of node types compatible with this one.
 func (o GetStackApmOutput) CompatibleNodeTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackApm) []string { return v.CompatibleNodeTypes }).(pulumi.StringArrayOutput)
 }
 
-func (o GetStackApmOutput) DefaultPlugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStackApm) []string { return v.DefaultPlugins }).(pulumi.StringArrayOutput)
-}
-
+// List of configuration options that cannot be overridden by user settings.
 func (o GetStackApmOutput) Denylists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackApm) []string { return v.Denylists }).(pulumi.StringArrayOutput)
 }
 
+// Docker image to use for the APM instance.
 func (o GetStackApmOutput) DockerImage() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackApm) string { return v.DockerImage }).(pulumi.StringOutput)
-}
-
-func (o GetStackApmOutput) Plugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStackApm) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
 type GetStackApmArrayOutput struct{ *pulumi.OutputState }
@@ -7718,13 +10493,20 @@ func (o GetStackApmArrayOutput) Index(i pulumi.IntInput) GetStackApmOutput {
 }
 
 type GetStackElasticsearch struct {
-	CapacityConstraintsMax int      `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin int      `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    []string `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         []string `pulumi:"defaultPlugins"`
-	Denylists              []string `pulumi:"denylists"`
-	DockerImage            string   `pulumi:"dockerImage"`
-	Plugins                []string `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax int `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin int `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes []string `pulumi:"compatibleNodeTypes"`
+	// List of default plugins.
+	DefaultPlugins []string `pulumi:"defaultPlugins"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists []string `pulumi:"denylists"`
+	// Docker image to use for the Elasticsearch cluster instances.
+	DockerImage string `pulumi:"dockerImage"`
+	// List of available plugins to be specified by users in Elasticsearch cluster instances.
+	Plugins []string `pulumi:"plugins"`
 }
 
 // GetStackElasticsearchInput is an input type that accepts GetStackElasticsearchArgs and GetStackElasticsearchOutput values.
@@ -7739,13 +10521,20 @@ type GetStackElasticsearchInput interface {
 }
 
 type GetStackElasticsearchArgs struct {
-	CapacityConstraintsMax pulumi.IntInput         `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin pulumi.IntInput         `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         pulumi.StringArrayInput `pulumi:"defaultPlugins"`
-	Denylists              pulumi.StringArrayInput `pulumi:"denylists"`
-	DockerImage            pulumi.StringInput      `pulumi:"dockerImage"`
-	Plugins                pulumi.StringArrayInput `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax pulumi.IntInput `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin pulumi.IntInput `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
+	// List of default plugins.
+	DefaultPlugins pulumi.StringArrayInput `pulumi:"defaultPlugins"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists pulumi.StringArrayInput `pulumi:"denylists"`
+	// Docker image to use for the Elasticsearch cluster instances.
+	DockerImage pulumi.StringInput `pulumi:"dockerImage"`
+	// List of available plugins to be specified by users in Elasticsearch cluster instances.
+	Plugins pulumi.StringArrayInput `pulumi:"plugins"`
 }
 
 func (GetStackElasticsearchArgs) ElementType() reflect.Type {
@@ -7799,30 +10588,37 @@ func (o GetStackElasticsearchOutput) ToGetStackElasticsearchOutputWithContext(ct
 	return o
 }
 
+// Maximum size of the instances.
 func (o GetStackElasticsearchOutput) CapacityConstraintsMax() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) int { return v.CapacityConstraintsMax }).(pulumi.IntOutput)
 }
 
+// Minimum size of the instances.
 func (o GetStackElasticsearchOutput) CapacityConstraintsMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) int { return v.CapacityConstraintsMin }).(pulumi.IntOutput)
 }
 
+// List of node types compatible with this one.
 func (o GetStackElasticsearchOutput) CompatibleNodeTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) []string { return v.CompatibleNodeTypes }).(pulumi.StringArrayOutput)
 }
 
+// List of default plugins.
 func (o GetStackElasticsearchOutput) DefaultPlugins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) []string { return v.DefaultPlugins }).(pulumi.StringArrayOutput)
 }
 
+// List of configuration options that cannot be overridden by user settings.
 func (o GetStackElasticsearchOutput) Denylists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) []string { return v.Denylists }).(pulumi.StringArrayOutput)
 }
 
+// Docker image to use for the Elasticsearch cluster instances.
 func (o GetStackElasticsearchOutput) DockerImage() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) string { return v.DockerImage }).(pulumi.StringOutput)
 }
 
+// List of available plugins to be specified by users in Elasticsearch cluster instances.
 func (o GetStackElasticsearchOutput) Plugins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackElasticsearch) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
@@ -7848,13 +10644,16 @@ func (o GetStackElasticsearchArrayOutput) Index(i pulumi.IntInput) GetStackElast
 }
 
 type GetStackEnterpriseSearch struct {
-	CapacityConstraintsMax int      `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin int      `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    []string `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         []string `pulumi:"defaultPlugins"`
-	Denylists              []string `pulumi:"denylists"`
-	DockerImage            string   `pulumi:"dockerImage"`
-	Plugins                []string `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax int `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin int `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes []string `pulumi:"compatibleNodeTypes"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists []string `pulumi:"denylists"`
+	// Docker image to use for the Enterprise Search instance.
+	DockerImage string `pulumi:"dockerImage"`
 }
 
 // GetStackEnterpriseSearchInput is an input type that accepts GetStackEnterpriseSearchArgs and GetStackEnterpriseSearchOutput values.
@@ -7869,13 +10668,16 @@ type GetStackEnterpriseSearchInput interface {
 }
 
 type GetStackEnterpriseSearchArgs struct {
-	CapacityConstraintsMax pulumi.IntInput         `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin pulumi.IntInput         `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         pulumi.StringArrayInput `pulumi:"defaultPlugins"`
-	Denylists              pulumi.StringArrayInput `pulumi:"denylists"`
-	DockerImage            pulumi.StringInput      `pulumi:"dockerImage"`
-	Plugins                pulumi.StringArrayInput `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax pulumi.IntInput `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin pulumi.IntInput `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists pulumi.StringArrayInput `pulumi:"denylists"`
+	// Docker image to use for the Enterprise Search instance.
+	DockerImage pulumi.StringInput `pulumi:"dockerImage"`
 }
 
 func (GetStackEnterpriseSearchArgs) ElementType() reflect.Type {
@@ -7929,32 +10731,29 @@ func (o GetStackEnterpriseSearchOutput) ToGetStackEnterpriseSearchOutputWithCont
 	return o
 }
 
+// Maximum size of the instances.
 func (o GetStackEnterpriseSearchOutput) CapacityConstraintsMax() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackEnterpriseSearch) int { return v.CapacityConstraintsMax }).(pulumi.IntOutput)
 }
 
+// Minimum size of the instances.
 func (o GetStackEnterpriseSearchOutput) CapacityConstraintsMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackEnterpriseSearch) int { return v.CapacityConstraintsMin }).(pulumi.IntOutput)
 }
 
+// List of node types compatible with this one.
 func (o GetStackEnterpriseSearchOutput) CompatibleNodeTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackEnterpriseSearch) []string { return v.CompatibleNodeTypes }).(pulumi.StringArrayOutput)
 }
 
-func (o GetStackEnterpriseSearchOutput) DefaultPlugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStackEnterpriseSearch) []string { return v.DefaultPlugins }).(pulumi.StringArrayOutput)
-}
-
+// List of configuration options that cannot be overridden by user settings.
 func (o GetStackEnterpriseSearchOutput) Denylists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackEnterpriseSearch) []string { return v.Denylists }).(pulumi.StringArrayOutput)
 }
 
+// Docker image to use for the Enterprise Search instance.
 func (o GetStackEnterpriseSearchOutput) DockerImage() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackEnterpriseSearch) string { return v.DockerImage }).(pulumi.StringOutput)
-}
-
-func (o GetStackEnterpriseSearchOutput) Plugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStackEnterpriseSearch) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
 type GetStackEnterpriseSearchArrayOutput struct{ *pulumi.OutputState }
@@ -7978,13 +10777,16 @@ func (o GetStackEnterpriseSearchArrayOutput) Index(i pulumi.IntInput) GetStackEn
 }
 
 type GetStackKibana struct {
-	CapacityConstraintsMax int      `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin int      `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    []string `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         []string `pulumi:"defaultPlugins"`
-	Denylists              []string `pulumi:"denylists"`
-	DockerImage            string   `pulumi:"dockerImage"`
-	Plugins                []string `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax int `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin int `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes []string `pulumi:"compatibleNodeTypes"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists []string `pulumi:"denylists"`
+	// Docker image to use for the Kibana instance.
+	DockerImage string `pulumi:"dockerImage"`
 }
 
 // GetStackKibanaInput is an input type that accepts GetStackKibanaArgs and GetStackKibanaOutput values.
@@ -7999,13 +10801,16 @@ type GetStackKibanaInput interface {
 }
 
 type GetStackKibanaArgs struct {
-	CapacityConstraintsMax pulumi.IntInput         `pulumi:"capacityConstraintsMax"`
-	CapacityConstraintsMin pulumi.IntInput         `pulumi:"capacityConstraintsMin"`
-	CompatibleNodeTypes    pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
-	DefaultPlugins         pulumi.StringArrayInput `pulumi:"defaultPlugins"`
-	Denylists              pulumi.StringArrayInput `pulumi:"denylists"`
-	DockerImage            pulumi.StringInput      `pulumi:"dockerImage"`
-	Plugins                pulumi.StringArrayInput `pulumi:"plugins"`
+	// Maximum size of the instances.
+	CapacityConstraintsMax pulumi.IntInput `pulumi:"capacityConstraintsMax"`
+	// Minimum size of the instances.
+	CapacityConstraintsMin pulumi.IntInput `pulumi:"capacityConstraintsMin"`
+	// List of node types compatible with this one.
+	CompatibleNodeTypes pulumi.StringArrayInput `pulumi:"compatibleNodeTypes"`
+	// List of configuration options that cannot be overridden by user settings.
+	Denylists pulumi.StringArrayInput `pulumi:"denylists"`
+	// Docker image to use for the Kibana instance.
+	DockerImage pulumi.StringInput `pulumi:"dockerImage"`
 }
 
 func (GetStackKibanaArgs) ElementType() reflect.Type {
@@ -8059,32 +10864,29 @@ func (o GetStackKibanaOutput) ToGetStackKibanaOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Maximum size of the instances.
 func (o GetStackKibanaOutput) CapacityConstraintsMax() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackKibana) int { return v.CapacityConstraintsMax }).(pulumi.IntOutput)
 }
 
+// Minimum size of the instances.
 func (o GetStackKibanaOutput) CapacityConstraintsMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetStackKibana) int { return v.CapacityConstraintsMin }).(pulumi.IntOutput)
 }
 
+// List of node types compatible with this one.
 func (o GetStackKibanaOutput) CompatibleNodeTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackKibana) []string { return v.CompatibleNodeTypes }).(pulumi.StringArrayOutput)
 }
 
-func (o GetStackKibanaOutput) DefaultPlugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStackKibana) []string { return v.DefaultPlugins }).(pulumi.StringArrayOutput)
-}
-
+// List of configuration options that cannot be overridden by user settings.
 func (o GetStackKibanaOutput) Denylists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackKibana) []string { return v.Denylists }).(pulumi.StringArrayOutput)
 }
 
+// Docker image to use for the Kibana instance.
 func (o GetStackKibanaOutput) DockerImage() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackKibana) string { return v.DockerImage }).(pulumi.StringOutput)
-}
-
-func (o GetStackKibanaOutput) Plugins() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStackKibana) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
 type GetStackKibanaArrayOutput struct{ *pulumi.OutputState }
@@ -8107,57 +10909,332 @@ func (o GetStackKibanaArrayOutput) Index(i pulumi.IntInput) GetStackKibanaOutput
 	}).(GetStackKibanaOutput)
 }
 
+type GetTrafficFilterRuleset struct {
+	// The description of the ruleset.
+	Description string `pulumi:"description"`
+	// The ID of the ruleset
+	Id string `pulumi:"id"`
+	// Should the ruleset be automatically included in the new deployments.
+	IncludeByDefault bool `pulumi:"includeByDefault"`
+	// The name of the ruleset.
+	Name string `pulumi:"name"`
+	// The ruleset can be attached only to deployments in the specific region.
+	Region string `pulumi:"region"`
+	// An individual rule
+	Rules []GetTrafficFilterRulesetRule `pulumi:"rules"`
+}
+
+// GetTrafficFilterRulesetInput is an input type that accepts GetTrafficFilterRulesetArgs and GetTrafficFilterRulesetOutput values.
+// You can construct a concrete instance of `GetTrafficFilterRulesetInput` via:
+//
+//	GetTrafficFilterRulesetArgs{...}
+type GetTrafficFilterRulesetInput interface {
+	pulumi.Input
+
+	ToGetTrafficFilterRulesetOutput() GetTrafficFilterRulesetOutput
+	ToGetTrafficFilterRulesetOutputWithContext(context.Context) GetTrafficFilterRulesetOutput
+}
+
+type GetTrafficFilterRulesetArgs struct {
+	// The description of the ruleset.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the ruleset
+	Id pulumi.StringInput `pulumi:"id"`
+	// Should the ruleset be automatically included in the new deployments.
+	IncludeByDefault pulumi.BoolInput `pulumi:"includeByDefault"`
+	// The name of the ruleset.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ruleset can be attached only to deployments in the specific region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// An individual rule
+	Rules GetTrafficFilterRulesetRuleArrayInput `pulumi:"rules"`
+}
+
+func (GetTrafficFilterRulesetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficFilterRuleset)(nil)).Elem()
+}
+
+func (i GetTrafficFilterRulesetArgs) ToGetTrafficFilterRulesetOutput() GetTrafficFilterRulesetOutput {
+	return i.ToGetTrafficFilterRulesetOutputWithContext(context.Background())
+}
+
+func (i GetTrafficFilterRulesetArgs) ToGetTrafficFilterRulesetOutputWithContext(ctx context.Context) GetTrafficFilterRulesetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetOutput)
+}
+
+// GetTrafficFilterRulesetArrayInput is an input type that accepts GetTrafficFilterRulesetArray and GetTrafficFilterRulesetArrayOutput values.
+// You can construct a concrete instance of `GetTrafficFilterRulesetArrayInput` via:
+//
+//	GetTrafficFilterRulesetArray{ GetTrafficFilterRulesetArgs{...} }
+type GetTrafficFilterRulesetArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficFilterRulesetArrayOutput() GetTrafficFilterRulesetArrayOutput
+	ToGetTrafficFilterRulesetArrayOutputWithContext(context.Context) GetTrafficFilterRulesetArrayOutput
+}
+
+type GetTrafficFilterRulesetArray []GetTrafficFilterRulesetInput
+
+func (GetTrafficFilterRulesetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficFilterRuleset)(nil)).Elem()
+}
+
+func (i GetTrafficFilterRulesetArray) ToGetTrafficFilterRulesetArrayOutput() GetTrafficFilterRulesetArrayOutput {
+	return i.ToGetTrafficFilterRulesetArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficFilterRulesetArray) ToGetTrafficFilterRulesetArrayOutputWithContext(ctx context.Context) GetTrafficFilterRulesetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetArrayOutput)
+}
+
+type GetTrafficFilterRulesetOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficFilterRulesetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficFilterRuleset)(nil)).Elem()
+}
+
+func (o GetTrafficFilterRulesetOutput) ToGetTrafficFilterRulesetOutput() GetTrafficFilterRulesetOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetOutput) ToGetTrafficFilterRulesetOutputWithContext(ctx context.Context) GetTrafficFilterRulesetOutput {
+	return o
+}
+
+// The description of the ruleset.
+func (o GetTrafficFilterRulesetOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRuleset) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the ruleset
+func (o GetTrafficFilterRulesetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRuleset) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Should the ruleset be automatically included in the new deployments.
+func (o GetTrafficFilterRulesetOutput) IncludeByDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTrafficFilterRuleset) bool { return v.IncludeByDefault }).(pulumi.BoolOutput)
+}
+
+// The name of the ruleset.
+func (o GetTrafficFilterRulesetOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRuleset) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ruleset can be attached only to deployments in the specific region.
+func (o GetTrafficFilterRulesetOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRuleset) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// An individual rule
+func (o GetTrafficFilterRulesetOutput) Rules() GetTrafficFilterRulesetRuleArrayOutput {
+	return o.ApplyT(func(v GetTrafficFilterRuleset) []GetTrafficFilterRulesetRule { return v.Rules }).(GetTrafficFilterRulesetRuleArrayOutput)
+}
+
+type GetTrafficFilterRulesetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficFilterRulesetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficFilterRuleset)(nil)).Elem()
+}
+
+func (o GetTrafficFilterRulesetArrayOutput) ToGetTrafficFilterRulesetArrayOutput() GetTrafficFilterRulesetArrayOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetArrayOutput) ToGetTrafficFilterRulesetArrayOutputWithContext(ctx context.Context) GetTrafficFilterRulesetArrayOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetArrayOutput) Index(i pulumi.IntInput) GetTrafficFilterRulesetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficFilterRuleset {
+		return vs[0].([]GetTrafficFilterRuleset)[vs[1].(int)]
+	}).(GetTrafficFilterRulesetOutput)
+}
+
+type GetTrafficFilterRulesetRule struct {
+	Description string `pulumi:"description"`
+	// The id of the traffic filter to select.
+	Id     string `pulumi:"id"`
+	Source string `pulumi:"source"`
+}
+
+// GetTrafficFilterRulesetRuleInput is an input type that accepts GetTrafficFilterRulesetRuleArgs and GetTrafficFilterRulesetRuleOutput values.
+// You can construct a concrete instance of `GetTrafficFilterRulesetRuleInput` via:
+//
+//	GetTrafficFilterRulesetRuleArgs{...}
+type GetTrafficFilterRulesetRuleInput interface {
+	pulumi.Input
+
+	ToGetTrafficFilterRulesetRuleOutput() GetTrafficFilterRulesetRuleOutput
+	ToGetTrafficFilterRulesetRuleOutputWithContext(context.Context) GetTrafficFilterRulesetRuleOutput
+}
+
+type GetTrafficFilterRulesetRuleArgs struct {
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the traffic filter to select.
+	Id     pulumi.StringInput `pulumi:"id"`
+	Source pulumi.StringInput `pulumi:"source"`
+}
+
+func (GetTrafficFilterRulesetRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficFilterRulesetRule)(nil)).Elem()
+}
+
+func (i GetTrafficFilterRulesetRuleArgs) ToGetTrafficFilterRulesetRuleOutput() GetTrafficFilterRulesetRuleOutput {
+	return i.ToGetTrafficFilterRulesetRuleOutputWithContext(context.Background())
+}
+
+func (i GetTrafficFilterRulesetRuleArgs) ToGetTrafficFilterRulesetRuleOutputWithContext(ctx context.Context) GetTrafficFilterRulesetRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetRuleOutput)
+}
+
+// GetTrafficFilterRulesetRuleArrayInput is an input type that accepts GetTrafficFilterRulesetRuleArray and GetTrafficFilterRulesetRuleArrayOutput values.
+// You can construct a concrete instance of `GetTrafficFilterRulesetRuleArrayInput` via:
+//
+//	GetTrafficFilterRulesetRuleArray{ GetTrafficFilterRulesetRuleArgs{...} }
+type GetTrafficFilterRulesetRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetTrafficFilterRulesetRuleArrayOutput() GetTrafficFilterRulesetRuleArrayOutput
+	ToGetTrafficFilterRulesetRuleArrayOutputWithContext(context.Context) GetTrafficFilterRulesetRuleArrayOutput
+}
+
+type GetTrafficFilterRulesetRuleArray []GetTrafficFilterRulesetRuleInput
+
+func (GetTrafficFilterRulesetRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficFilterRulesetRule)(nil)).Elem()
+}
+
+func (i GetTrafficFilterRulesetRuleArray) ToGetTrafficFilterRulesetRuleArrayOutput() GetTrafficFilterRulesetRuleArrayOutput {
+	return i.ToGetTrafficFilterRulesetRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetTrafficFilterRulesetRuleArray) ToGetTrafficFilterRulesetRuleArrayOutputWithContext(ctx context.Context) GetTrafficFilterRulesetRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetRuleArrayOutput)
+}
+
+type GetTrafficFilterRulesetRuleOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficFilterRulesetRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTrafficFilterRulesetRule)(nil)).Elem()
+}
+
+func (o GetTrafficFilterRulesetRuleOutput) ToGetTrafficFilterRulesetRuleOutput() GetTrafficFilterRulesetRuleOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetRuleOutput) ToGetTrafficFilterRulesetRuleOutputWithContext(ctx context.Context) GetTrafficFilterRulesetRuleOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the traffic filter to select.
+func (o GetTrafficFilterRulesetRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTrafficFilterRulesetRuleOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Source }).(pulumi.StringOutput)
+}
+
+type GetTrafficFilterRulesetRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTrafficFilterRulesetRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTrafficFilterRulesetRule)(nil)).Elem()
+}
+
+func (o GetTrafficFilterRulesetRuleArrayOutput) ToGetTrafficFilterRulesetRuleArrayOutput() GetTrafficFilterRulesetRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetRuleArrayOutput) ToGetTrafficFilterRulesetRuleArrayOutputWithContext(ctx context.Context) GetTrafficFilterRulesetRuleArrayOutput {
+	return o
+}
+
+func (o GetTrafficFilterRulesetRuleArrayOutput) Index(i pulumi.IntInput) GetTrafficFilterRulesetRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficFilterRulesetRule {
+		return vs[0].([]GetTrafficFilterRulesetRule)[vs[1].(int)]
+	}).(GetTrafficFilterRulesetRuleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmInput)(nil)).Elem(), DeploymentApmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmPtrInput)(nil)).Elem(), DeploymentApmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmConfigInput)(nil)).Elem(), DeploymentApmConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmConfigPtrInput)(nil)).Elem(), DeploymentApmConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmTopologyInput)(nil)).Elem(), DeploymentApmTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentApmTopologyPtrInput)(nil)).Elem(), DeploymentApmTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchInput)(nil)).Elem(), DeploymentElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchPtrInput)(nil)).Elem(), DeploymentElasticsearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchColdInput)(nil)).Elem(), DeploymentElasticsearchColdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchColdPtrInput)(nil)).Elem(), DeploymentElasticsearchColdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchColdAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchColdAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchColdAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchColdAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchConfigInput)(nil)).Elem(), DeploymentElasticsearchConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchConfigPtrInput)(nil)).Elem(), DeploymentElasticsearchConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchCoordinatingInput)(nil)).Elem(), DeploymentElasticsearchCoordinatingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchCoordinatingPtrInput)(nil)).Elem(), DeploymentElasticsearchCoordinatingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchCoordinatingAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchCoordinatingAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchCoordinatingAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchCoordinatingAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchExtensionInput)(nil)).Elem(), DeploymentElasticsearchExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchExtensionArrayInput)(nil)).Elem(), DeploymentElasticsearchExtensionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchFrozenInput)(nil)).Elem(), DeploymentElasticsearchFrozenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchFrozenPtrInput)(nil)).Elem(), DeploymentElasticsearchFrozenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchFrozenAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchFrozenAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchFrozenAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchFrozenAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotInput)(nil)).Elem(), DeploymentElasticsearchHotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotPtrInput)(nil)).Elem(), DeploymentElasticsearchHotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchHotAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchHotAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterInput)(nil)).Elem(), DeploymentElasticsearchMasterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterPtrInput)(nil)).Elem(), DeploymentElasticsearchMasterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchMasterAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchMasterAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMlInput)(nil)).Elem(), DeploymentElasticsearchMlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMlPtrInput)(nil)).Elem(), DeploymentElasticsearchMlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMlAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchMlAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMlAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchMlAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchRemoteClusterInput)(nil)).Elem(), DeploymentElasticsearchRemoteClusterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchRemoteClusterArrayInput)(nil)).Elem(), DeploymentElasticsearchRemoteClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotInput)(nil)).Elem(), DeploymentElasticsearchSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotPtrInput)(nil)).Elem(), DeploymentElasticsearchSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotRepositoryInput)(nil)).Elem(), DeploymentElasticsearchSnapshotRepositoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotRepositoryPtrInput)(nil)).Elem(), DeploymentElasticsearchSnapshotRepositoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotRepositoryReferenceInput)(nil)).Elem(), DeploymentElasticsearchSnapshotRepositoryReferenceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotRepositoryReferencePtrInput)(nil)).Elem(), DeploymentElasticsearchSnapshotRepositoryReferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotSourceInput)(nil)).Elem(), DeploymentElasticsearchSnapshotSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchSnapshotSourcePtrInput)(nil)).Elem(), DeploymentElasticsearchSnapshotSourceArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchStrategyInput)(nil)).Elem(), DeploymentElasticsearchStrategyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchStrategyPtrInput)(nil)).Elem(), DeploymentElasticsearchStrategyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyInput)(nil)).Elem(), DeploymentElasticsearchTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyArrayInput)(nil)).Elem(), DeploymentElasticsearchTopologyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchTopologyAutoscalingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchTopologyAutoscalingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyConfigInput)(nil)).Elem(), DeploymentElasticsearchTopologyConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTopologyConfigArrayInput)(nil)).Elem(), DeploymentElasticsearchTopologyConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTrustAccountInput)(nil)).Elem(), DeploymentElasticsearchTrustAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTrustAccountArrayInput)(nil)).Elem(), DeploymentElasticsearchTrustAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTrustExternalInput)(nil)).Elem(), DeploymentElasticsearchTrustExternalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchTrustExternalArrayInput)(nil)).Elem(), DeploymentElasticsearchTrustExternalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchWarmInput)(nil)).Elem(), DeploymentElasticsearchWarmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchWarmPtrInput)(nil)).Elem(), DeploymentElasticsearchWarmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchWarmAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchWarmAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchWarmAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchWarmAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchInput)(nil)).Elem(), DeploymentEnterpriseSearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchPtrInput)(nil)).Elem(), DeploymentEnterpriseSearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchConfigInput)(nil)).Elem(), DeploymentEnterpriseSearchConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchConfigPtrInput)(nil)).Elem(), DeploymentEnterpriseSearchConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEnterpriseSearchTopologyPtrInput)(nil)).Elem(), DeploymentEnterpriseSearchTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerInput)(nil)).Elem(), DeploymentIntegrationsServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerPtrInput)(nil)).Elem(), DeploymentIntegrationsServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerConfigInput)(nil)).Elem(), DeploymentIntegrationsServerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerConfigPtrInput)(nil)).Elem(), DeploymentIntegrationsServerConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerTopologyPtrInput)(nil)).Elem(), DeploymentIntegrationsServerTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerEndpointsInput)(nil)).Elem(), DeploymentIntegrationsServerEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentIntegrationsServerEndpointsPtrInput)(nil)).Elem(), DeploymentIntegrationsServerEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaInput)(nil)).Elem(), DeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaPtrInput)(nil)).Elem(), DeploymentKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaConfigInput)(nil)).Elem(), DeploymentKibanaConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaConfigPtrInput)(nil)).Elem(), DeploymentKibanaConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaTopologyInput)(nil)).Elem(), DeploymentKibanaTopologyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentKibanaTopologyPtrInput)(nil)).Elem(), DeploymentKibanaTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentObservabilityInput)(nil)).Elem(), DeploymentObservabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentObservabilityPtrInput)(nil)).Elem(), DeploymentObservabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterRuleInput)(nil)).Elem(), DeploymentTrafficFilterRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterRuleArrayInput)(nil)).Elem(), DeploymentTrafficFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryGenericInput)(nil)).Elem(), SnapshotRepositoryGenericArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryGenericPtrInput)(nil)).Elem(), SnapshotRepositoryGenericArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryS3Input)(nil)).Elem(), SnapshotRepositoryS3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryS3PtrInput)(nil)).Elem(), SnapshotRepositoryS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentApmInput)(nil)).Elem(), GetDeploymentApmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentApmArrayInput)(nil)).Elem(), GetDeploymentApmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentApmTopologyInput)(nil)).Elem(), GetDeploymentApmTopologyArgs{})
@@ -8183,17 +11260,17 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentObservabilityInput)(nil)).Elem(), GetDeploymentObservabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentObservabilityArrayInput)(nil)).Elem(), GetDeploymentObservabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsApmInput)(nil)).Elem(), GetDeploymentsApmArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsApmPtrInput)(nil)).Elem(), GetDeploymentsApmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsApmArrayInput)(nil)).Elem(), GetDeploymentsApmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentInput)(nil)).Elem(), GetDeploymentsDeploymentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsDeploymentArrayInput)(nil)).Elem(), GetDeploymentsDeploymentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsElasticsearchInput)(nil)).Elem(), GetDeploymentsElasticsearchArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsElasticsearchPtrInput)(nil)).Elem(), GetDeploymentsElasticsearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsElasticsearchArrayInput)(nil)).Elem(), GetDeploymentsElasticsearchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsEnterpriseSearchInput)(nil)).Elem(), GetDeploymentsEnterpriseSearchArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsEnterpriseSearchPtrInput)(nil)).Elem(), GetDeploymentsEnterpriseSearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsEnterpriseSearchArrayInput)(nil)).Elem(), GetDeploymentsEnterpriseSearchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsIntegrationsServerInput)(nil)).Elem(), GetDeploymentsIntegrationsServerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsIntegrationsServerPtrInput)(nil)).Elem(), GetDeploymentsIntegrationsServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsIntegrationsServerArrayInput)(nil)).Elem(), GetDeploymentsIntegrationsServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsKibanaInput)(nil)).Elem(), GetDeploymentsKibanaArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsKibanaPtrInput)(nil)).Elem(), GetDeploymentsKibanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentsKibanaArrayInput)(nil)).Elem(), GetDeploymentsKibanaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackApmInput)(nil)).Elem(), GetStackApmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackApmArrayInput)(nil)).Elem(), GetStackApmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackElasticsearchInput)(nil)).Elem(), GetStackElasticsearchArgs{})
@@ -8202,56 +11279,84 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackEnterpriseSearchArrayInput)(nil)).Elem(), GetStackEnterpriseSearchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackKibanaInput)(nil)).Elem(), GetStackKibanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackKibanaArrayInput)(nil)).Elem(), GetStackKibanaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficFilterRulesetInput)(nil)).Elem(), GetTrafficFilterRulesetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficFilterRulesetArrayInput)(nil)).Elem(), GetTrafficFilterRulesetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficFilterRulesetRuleInput)(nil)).Elem(), GetTrafficFilterRulesetRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTrafficFilterRulesetRuleArrayInput)(nil)).Elem(), GetTrafficFilterRulesetRuleArray{})
 	pulumi.RegisterOutputType(DeploymentApmOutput{})
 	pulumi.RegisterOutputType(DeploymentApmPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentApmConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentApmConfigPtrOutput{})
-	pulumi.RegisterOutputType(DeploymentApmTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentApmTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchColdOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchColdPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchColdAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchColdAutoscalingPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchConfigPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchCoordinatingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchCoordinatingPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchCoordinatingAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchExtensionOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchExtensionArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchFrozenOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchFrozenPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchFrozenAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchFrozenAutoscalingPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchHotOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchHotPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchHotAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchHotAutoscalingPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMasterOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMasterPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMasterAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMasterAutoscalingPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMlOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMlPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMlAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchMlAutoscalingPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchRemoteClusterOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchRemoteClusterArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotRepositoryOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotRepositoryPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotRepositoryReferenceOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotSourceOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchSnapshotSourcePtrOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchStrategyOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchStrategyPtrOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyArrayOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyAutoscalingOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyAutoscalingPtrOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyConfigOutput{})
-	pulumi.RegisterOutputType(DeploymentElasticsearchTopologyConfigArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTrustAccountOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTrustAccountArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTrustExternalOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchTrustExternalArrayOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchWarmOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchWarmPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchWarmAutoscalingOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchWarmAutoscalingPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentEnterpriseSearchConfigPtrOutput{})
-	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentEnterpriseSearchTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentIntegrationsServerConfigPtrOutput{})
-	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentIntegrationsServerTopologyPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerEndpointsOutput{})
+	pulumi.RegisterOutputType(DeploymentIntegrationsServerEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaConfigOutput{})
 	pulumi.RegisterOutputType(DeploymentKibanaConfigPtrOutput{})
-	pulumi.RegisterOutputType(DeploymentKibanaTopologyOutput{})
-	pulumi.RegisterOutputType(DeploymentKibanaTopologyPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentObservabilityOutput{})
 	pulumi.RegisterOutputType(DeploymentObservabilityPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterRuleOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(SnapshotRepositoryGenericOutput{})
+	pulumi.RegisterOutputType(SnapshotRepositoryGenericPtrOutput{})
+	pulumi.RegisterOutputType(SnapshotRepositoryS3Output{})
+	pulumi.RegisterOutputType(SnapshotRepositoryS3PtrOutput{})
 	pulumi.RegisterOutputType(GetDeploymentApmOutput{})
 	pulumi.RegisterOutputType(GetDeploymentApmArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentApmTopologyOutput{})
@@ -8277,17 +11382,17 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentObservabilityOutput{})
 	pulumi.RegisterOutputType(GetDeploymentObservabilityArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsApmOutput{})
-	pulumi.RegisterOutputType(GetDeploymentsApmPtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsApmArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsDeploymentArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsElasticsearchOutput{})
-	pulumi.RegisterOutputType(GetDeploymentsElasticsearchPtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsElasticsearchArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsEnterpriseSearchOutput{})
-	pulumi.RegisterOutputType(GetDeploymentsEnterpriseSearchPtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsEnterpriseSearchArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsIntegrationsServerOutput{})
-	pulumi.RegisterOutputType(GetDeploymentsIntegrationsServerPtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsIntegrationsServerArrayOutput{})
 	pulumi.RegisterOutputType(GetDeploymentsKibanaOutput{})
-	pulumi.RegisterOutputType(GetDeploymentsKibanaPtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentsKibanaArrayOutput{})
 	pulumi.RegisterOutputType(GetStackApmOutput{})
 	pulumi.RegisterOutputType(GetStackApmArrayOutput{})
 	pulumi.RegisterOutputType(GetStackElasticsearchOutput{})
@@ -8296,4 +11401,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStackEnterpriseSearchArrayOutput{})
 	pulumi.RegisterOutputType(GetStackKibanaOutput{})
 	pulumi.RegisterOutputType(GetStackKibanaArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficFilterRulesetOutput{})
+	pulumi.RegisterOutputType(GetTrafficFilterRulesetArrayOutput{})
+	pulumi.RegisterOutputType(GetTrafficFilterRulesetRuleOutput{})
+	pulumi.RegisterOutputType(GetTrafficFilterRulesetRuleArrayOutput{})
 }

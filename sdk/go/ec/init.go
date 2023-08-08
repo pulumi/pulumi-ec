@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DeploymentTrafficFilter{}
 	case "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation":
 		r = &DeploymentTrafficFilterAssociation{}
+	case "ec:index/snapshotRepository:SnapshotRepository":
+		r = &SnapshotRepository{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -57,7 +60,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"ec",
 		"index/deployment",
@@ -81,6 +87,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ec",
 		"index/deploymentTrafficFilterAssociation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ec",
+		"index/snapshotRepository",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

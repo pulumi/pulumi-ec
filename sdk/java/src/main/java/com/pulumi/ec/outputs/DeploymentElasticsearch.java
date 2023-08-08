@@ -4,14 +4,21 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.ec.outputs.DeploymentElasticsearchCold;
 import com.pulumi.ec.outputs.DeploymentElasticsearchConfig;
+import com.pulumi.ec.outputs.DeploymentElasticsearchCoordinating;
 import com.pulumi.ec.outputs.DeploymentElasticsearchExtension;
+import com.pulumi.ec.outputs.DeploymentElasticsearchFrozen;
+import com.pulumi.ec.outputs.DeploymentElasticsearchHot;
+import com.pulumi.ec.outputs.DeploymentElasticsearchMaster;
+import com.pulumi.ec.outputs.DeploymentElasticsearchMl;
 import com.pulumi.ec.outputs.DeploymentElasticsearchRemoteCluster;
+import com.pulumi.ec.outputs.DeploymentElasticsearchSnapshot;
 import com.pulumi.ec.outputs.DeploymentElasticsearchSnapshotSource;
-import com.pulumi.ec.outputs.DeploymentElasticsearchStrategy;
-import com.pulumi.ec.outputs.DeploymentElasticsearchTopology;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTrustAccount;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTrustExternal;
+import com.pulumi.ec.outputs.DeploymentElasticsearchWarm;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -21,89 +28,132 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentElasticsearch {
     /**
-     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `&#34;true&#34;` or `&#34;false&#34;`.
+     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      * 
      */
-    private @Nullable String autoscale;
+    private @Nullable Boolean autoscale;
     private @Nullable String cloudId;
     /**
-     * @return Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+     * @return &#39;cold&#39; topology element
+     * 
+     */
+    private @Nullable DeploymentElasticsearchCold cold;
+    /**
+     * @return Elasticsearch settings which will be applied to all topologies
      * 
      */
     private @Nullable DeploymentElasticsearchConfig config;
     /**
-     * @return Custom Elasticsearch bundles or plugins. Can be set multiple times.
+     * @return &#39;coordinating&#39; topology element
+     * 
+     */
+    private @Nullable DeploymentElasticsearchCoordinating coordinating;
+    /**
+     * @return Optional Elasticsearch extensions such as custom bundles or plugins.
      * 
      */
     private @Nullable List<DeploymentElasticsearchExtension> extensions;
+    /**
+     * @return &#39;frozen&#39; topology element
+     * 
+     */
+    private @Nullable DeploymentElasticsearchFrozen frozen;
+    /**
+     * @return &#39;hot&#39; topology element
+     * 
+     */
+    private DeploymentElasticsearchHot hot;
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
     /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * @return &#39;master&#39; topology element
+     * 
+     */
+    private @Nullable DeploymentElasticsearchMaster master;
+    /**
+     * @return &#39;ml&#39; topology element
+     * 
+     */
+    private @Nullable DeploymentElasticsearchMl ml;
+    /**
+     * @return A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     private @Nullable String refId;
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     private @Nullable String region;
     /**
-     * @return Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+     * @return Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      * 
      */
     private @Nullable List<DeploymentElasticsearchRemoteCluster> remoteClusters;
     private @Nullable String resourceId;
     /**
-     * @return Restores data from a snapshot of another deployment.
+     * @return (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      * 
      */
+    private @Nullable DeploymentElasticsearchSnapshot snapshot;
     private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
-    /**
-     * @return Choose the configuration strategy used to apply the changes.
-     * 
-     */
-    private @Nullable DeploymentElasticsearchStrategy strategy;
-    /**
-     * @return Can be set multiple times to compose complex topologies.
-     * 
-     */
-    private @Nullable List<DeploymentElasticsearchTopology> topologies;
-    /**
-     * @return The trust relationships with other ESS accounts.
-     * 
-     */
+    private @Nullable String strategy;
     private @Nullable List<DeploymentElasticsearchTrustAccount> trustAccounts;
-    /**
-     * @return The trust relationship with external entities (remote environments, remote accounts...).
-     * 
-     */
     private @Nullable List<DeploymentElasticsearchTrustExternal> trustExternals;
+    private @Nullable DeploymentElasticsearchWarm warm;
 
     private DeploymentElasticsearch() {}
     /**
-     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `&#34;true&#34;` or `&#34;false&#34;`.
+     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      * 
      */
-    public Optional<String> autoscale() {
+    public Optional<Boolean> autoscale() {
         return Optional.ofNullable(this.autoscale);
     }
     public Optional<String> cloudId() {
         return Optional.ofNullable(this.cloudId);
     }
     /**
-     * @return Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+     * @return &#39;cold&#39; topology element
+     * 
+     */
+    public Optional<DeploymentElasticsearchCold> cold() {
+        return Optional.ofNullable(this.cold);
+    }
+    /**
+     * @return Elasticsearch settings which will be applied to all topologies
      * 
      */
     public Optional<DeploymentElasticsearchConfig> config() {
         return Optional.ofNullable(this.config);
     }
     /**
-     * @return Custom Elasticsearch bundles or plugins. Can be set multiple times.
+     * @return &#39;coordinating&#39; topology element
+     * 
+     */
+    public Optional<DeploymentElasticsearchCoordinating> coordinating() {
+        return Optional.ofNullable(this.coordinating);
+    }
+    /**
+     * @return Optional Elasticsearch extensions such as custom bundles or plugins.
      * 
      */
     public List<DeploymentElasticsearchExtension> extensions() {
         return this.extensions == null ? List.of() : this.extensions;
+    }
+    /**
+     * @return &#39;frozen&#39; topology element
+     * 
+     */
+    public Optional<DeploymentElasticsearchFrozen> frozen() {
+        return Optional.ofNullable(this.frozen);
+    }
+    /**
+     * @return &#39;hot&#39; topology element
+     * 
+     */
+    public DeploymentElasticsearchHot hot() {
+        return this.hot;
     }
     public Optional<String> httpEndpoint() {
         return Optional.ofNullable(this.httpEndpoint);
@@ -112,21 +162,35 @@ public final class DeploymentElasticsearch {
         return Optional.ofNullable(this.httpsEndpoint);
     }
     /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * @return &#39;master&#39; topology element
+     * 
+     */
+    public Optional<DeploymentElasticsearchMaster> master() {
+        return Optional.ofNullable(this.master);
+    }
+    /**
+     * @return &#39;ml&#39; topology element
+     * 
+     */
+    public Optional<DeploymentElasticsearchMl> ml() {
+        return Optional.ofNullable(this.ml);
+    }
+    /**
+     * @return A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
     /**
-     * @return Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+     * @return Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      * 
      */
     public List<DeploymentElasticsearchRemoteCluster> remoteClusters() {
@@ -136,39 +200,26 @@ public final class DeploymentElasticsearch {
         return Optional.ofNullable(this.resourceId);
     }
     /**
-     * @return Restores data from a snapshot of another deployment.
+     * @return (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      * 
      */
+    public Optional<DeploymentElasticsearchSnapshot> snapshot() {
+        return Optional.ofNullable(this.snapshot);
+    }
     public Optional<DeploymentElasticsearchSnapshotSource> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
     }
-    /**
-     * @return Choose the configuration strategy used to apply the changes.
-     * 
-     */
-    public Optional<DeploymentElasticsearchStrategy> strategy() {
+    public Optional<String> strategy() {
         return Optional.ofNullable(this.strategy);
     }
-    /**
-     * @return Can be set multiple times to compose complex topologies.
-     * 
-     */
-    public List<DeploymentElasticsearchTopology> topologies() {
-        return this.topologies == null ? List.of() : this.topologies;
-    }
-    /**
-     * @return The trust relationships with other ESS accounts.
-     * 
-     */
     public List<DeploymentElasticsearchTrustAccount> trustAccounts() {
         return this.trustAccounts == null ? List.of() : this.trustAccounts;
     }
-    /**
-     * @return The trust relationship with external entities (remote environments, remote accounts...).
-     * 
-     */
     public List<DeploymentElasticsearchTrustExternal> trustExternals() {
         return this.trustExternals == null ? List.of() : this.trustExternals;
+    }
+    public Optional<DeploymentElasticsearchWarm> warm() {
+        return Optional.ofNullable(this.warm);
     }
 
     public static Builder builder() {
@@ -180,43 +231,57 @@ public final class DeploymentElasticsearch {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String autoscale;
+        private @Nullable Boolean autoscale;
         private @Nullable String cloudId;
+        private @Nullable DeploymentElasticsearchCold cold;
         private @Nullable DeploymentElasticsearchConfig config;
+        private @Nullable DeploymentElasticsearchCoordinating coordinating;
         private @Nullable List<DeploymentElasticsearchExtension> extensions;
+        private @Nullable DeploymentElasticsearchFrozen frozen;
+        private DeploymentElasticsearchHot hot;
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
+        private @Nullable DeploymentElasticsearchMaster master;
+        private @Nullable DeploymentElasticsearchMl ml;
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable List<DeploymentElasticsearchRemoteCluster> remoteClusters;
         private @Nullable String resourceId;
+        private @Nullable DeploymentElasticsearchSnapshot snapshot;
         private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
-        private @Nullable DeploymentElasticsearchStrategy strategy;
-        private @Nullable List<DeploymentElasticsearchTopology> topologies;
+        private @Nullable String strategy;
         private @Nullable List<DeploymentElasticsearchTrustAccount> trustAccounts;
         private @Nullable List<DeploymentElasticsearchTrustExternal> trustExternals;
+        private @Nullable DeploymentElasticsearchWarm warm;
         public Builder() {}
         public Builder(DeploymentElasticsearch defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.autoscale = defaults.autoscale;
     	      this.cloudId = defaults.cloudId;
+    	      this.cold = defaults.cold;
     	      this.config = defaults.config;
+    	      this.coordinating = defaults.coordinating;
     	      this.extensions = defaults.extensions;
+    	      this.frozen = defaults.frozen;
+    	      this.hot = defaults.hot;
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
+    	      this.master = defaults.master;
+    	      this.ml = defaults.ml;
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.remoteClusters = defaults.remoteClusters;
     	      this.resourceId = defaults.resourceId;
+    	      this.snapshot = defaults.snapshot;
     	      this.snapshotSource = defaults.snapshotSource;
     	      this.strategy = defaults.strategy;
-    	      this.topologies = defaults.topologies;
     	      this.trustAccounts = defaults.trustAccounts;
     	      this.trustExternals = defaults.trustExternals;
+    	      this.warm = defaults.warm;
         }
 
         @CustomType.Setter
-        public Builder autoscale(@Nullable String autoscale) {
+        public Builder autoscale(@Nullable Boolean autoscale) {
             this.autoscale = autoscale;
             return this;
         }
@@ -226,8 +291,18 @@ public final class DeploymentElasticsearch {
             return this;
         }
         @CustomType.Setter
+        public Builder cold(@Nullable DeploymentElasticsearchCold cold) {
+            this.cold = cold;
+            return this;
+        }
+        @CustomType.Setter
         public Builder config(@Nullable DeploymentElasticsearchConfig config) {
             this.config = config;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder coordinating(@Nullable DeploymentElasticsearchCoordinating coordinating) {
+            this.coordinating = coordinating;
             return this;
         }
         @CustomType.Setter
@@ -239,6 +314,16 @@ public final class DeploymentElasticsearch {
             return extensions(List.of(extensions));
         }
         @CustomType.Setter
+        public Builder frozen(@Nullable DeploymentElasticsearchFrozen frozen) {
+            this.frozen = frozen;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hot(DeploymentElasticsearchHot hot) {
+            this.hot = Objects.requireNonNull(hot);
+            return this;
+        }
+        @CustomType.Setter
         public Builder httpEndpoint(@Nullable String httpEndpoint) {
             this.httpEndpoint = httpEndpoint;
             return this;
@@ -246,6 +331,16 @@ public final class DeploymentElasticsearch {
         @CustomType.Setter
         public Builder httpsEndpoint(@Nullable String httpsEndpoint) {
             this.httpsEndpoint = httpsEndpoint;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder master(@Nullable DeploymentElasticsearchMaster master) {
+            this.master = master;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ml(@Nullable DeploymentElasticsearchMl ml) {
+            this.ml = ml;
             return this;
         }
         @CustomType.Setter
@@ -272,22 +367,19 @@ public final class DeploymentElasticsearch {
             return this;
         }
         @CustomType.Setter
+        public Builder snapshot(@Nullable DeploymentElasticsearchSnapshot snapshot) {
+            this.snapshot = snapshot;
+            return this;
+        }
+        @CustomType.Setter
         public Builder snapshotSource(@Nullable DeploymentElasticsearchSnapshotSource snapshotSource) {
             this.snapshotSource = snapshotSource;
             return this;
         }
         @CustomType.Setter
-        public Builder strategy(@Nullable DeploymentElasticsearchStrategy strategy) {
+        public Builder strategy(@Nullable String strategy) {
             this.strategy = strategy;
             return this;
-        }
-        @CustomType.Setter
-        public Builder topologies(@Nullable List<DeploymentElasticsearchTopology> topologies) {
-            this.topologies = topologies;
-            return this;
-        }
-        public Builder topologies(DeploymentElasticsearchTopology... topologies) {
-            return topologies(List.of(topologies));
         }
         @CustomType.Setter
         public Builder trustAccounts(@Nullable List<DeploymentElasticsearchTrustAccount> trustAccounts) {
@@ -305,23 +397,35 @@ public final class DeploymentElasticsearch {
         public Builder trustExternals(DeploymentElasticsearchTrustExternal... trustExternals) {
             return trustExternals(List.of(trustExternals));
         }
+        @CustomType.Setter
+        public Builder warm(@Nullable DeploymentElasticsearchWarm warm) {
+            this.warm = warm;
+            return this;
+        }
         public DeploymentElasticsearch build() {
             final var o = new DeploymentElasticsearch();
             o.autoscale = autoscale;
             o.cloudId = cloudId;
+            o.cold = cold;
             o.config = config;
+            o.coordinating = coordinating;
             o.extensions = extensions;
+            o.frozen = frozen;
+            o.hot = hot;
             o.httpEndpoint = httpEndpoint;
             o.httpsEndpoint = httpsEndpoint;
+            o.master = master;
+            o.ml = ml;
             o.refId = refId;
             o.region = region;
             o.remoteClusters = remoteClusters;
             o.resourceId = resourceId;
+            o.snapshot = snapshot;
             o.snapshotSource = snapshotSource;
             o.strategy = strategy;
-            o.topologies = topologies;
             o.trustAccounts = trustAccounts;
             o.trustExternals = trustExternals;
+            o.warm = warm;
             return o;
         }
     }

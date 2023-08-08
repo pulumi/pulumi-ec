@@ -7,652 +7,627 @@ import * as outputs from "../types/output";
 
 export interface DeploymentApm {
     /**
-     * APM settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Apm configuration options for the APM Server
      */
     config?: pulumi.Input<inputs.DeploymentApmConfig>;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
     elasticsearchClusterRefId?: pulumi.Input<string>;
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
-    /**
-     * Can be set on the APM resource. The default value `main-apm` is recommended.
-     */
+    instanceConfigurationId?: pulumi.Input<string>;
     refId?: pulumi.Input<string>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
     /**
-     * Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to "memory".
      */
-    topology?: pulumi.Input<inputs.DeploymentApmTopology>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentApmConfig {
-    /**
-     * Enable debug mode for APM servers. Defaults to `false`.
-     */
     debugEnabled?: pulumi.Input<boolean>;
     dockerImage?: pulumi.Input<string>;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: pulumi.Input<string>;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: pulumi.Input<string>;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: pulumi.Input<string>;
-}
-
-export interface DeploymentApmTopology {
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
-    instanceConfigurationId?: pulumi.Input<string>;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
-    size?: pulumi.Input<string>;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: pulumi.Input<string>;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
-    zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearch {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      */
-    autoscale?: pulumi.Input<string>;
+    autoscale?: pulumi.Input<boolean>;
     cloudId?: pulumi.Input<string>;
     /**
-     * Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+     * 'cold' topology element
+     */
+    cold?: pulumi.Input<inputs.DeploymentElasticsearchCold>;
+    /**
+     * Elasticsearch settings which will be applied to all topologies
      */
     config?: pulumi.Input<inputs.DeploymentElasticsearchConfig>;
     /**
-     * Custom Elasticsearch bundles or plugins. Can be set multiple times.
+     * 'coordinating' topology element
+     */
+    coordinating?: pulumi.Input<inputs.DeploymentElasticsearchCoordinating>;
+    /**
+     * Optional Elasticsearch extensions such as custom bundles or plugins.
      */
     extensions?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchExtension>[]>;
+    /**
+     * 'frozen' topology element
+     */
+    frozen?: pulumi.Input<inputs.DeploymentElasticsearchFrozen>;
+    /**
+     * 'hot' topology element
+     */
+    hot: pulumi.Input<inputs.DeploymentElasticsearchHot>;
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
     /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * 'master' topology element
+     */
+    master?: pulumi.Input<inputs.DeploymentElasticsearchMaster>;
+    /**
+     * 'ml' topology element
+     */
+    ml?: pulumi.Input<inputs.DeploymentElasticsearchMl>;
+    /**
+     * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      */
     refId?: pulumi.Input<string>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region?: pulumi.Input<string>;
     /**
-     * Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+     * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      */
     remoteClusters?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchRemoteCluster>[]>;
     resourceId?: pulumi.Input<string>;
     /**
-     * Restores data from a snapshot of another deployment.
+     * (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      */
+    snapshot?: pulumi.Input<inputs.DeploymentElasticsearchSnapshot>;
     snapshotSource?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotSource>;
-    /**
-     * Choose the configuration strategy used to apply the changes.
-     */
-    strategy?: pulumi.Input<inputs.DeploymentElasticsearchStrategy>;
-    /**
-     * Can be set multiple times to compose complex topologies.
-     */
-    topologies?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTopology>[]>;
-    /**
-     * The trust relationships with other ESS accounts.
-     */
+    strategy?: pulumi.Input<string>;
     trustAccounts?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustAccount>[]>;
-    /**
-     * The trust relationship with external entities (remote environments, remote accounts...).
-     */
     trustExternals?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustExternal>[]>;
+    warm?: pulumi.Input<inputs.DeploymentElasticsearchWarm>;
 }
 
-export interface DeploymentElasticsearchConfig {
-    dockerImage?: pulumi.Input<string>;
-    /**
-     * List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-     */
-    plugins?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsJson?: pulumi.Input<string>;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideJson?: pulumi.Input<string>;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsYaml?: pulumi.Input<string>;
-}
-
-export interface DeploymentElasticsearchExtension {
-    /**
-     * Extension name.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Extension type, only `bundle` or `plugin` are supported.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-     */
-    url: pulumi.Input<string>;
-    /**
-     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
-     */
-    version: pulumi.Input<string>;
-}
-
-export interface DeploymentElasticsearchRemoteCluster {
-    /**
-     * Alias for the Cross Cluster Search binding.
-     */
-    alias: pulumi.Input<string>;
-    /**
-     * Remote deployment ID.
-     */
-    deploymentId: pulumi.Input<string>;
-    /**
-     * Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
-     */
-    refId?: pulumi.Input<string>;
-    /**
-     * If true, skip the cluster during search when disconnected. Defaults to `false`.
-     */
-    skipUnavailable?: pulumi.Input<boolean>;
-}
-
-export interface DeploymentElasticsearchSnapshotSource {
-    /**
-     * Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     */
-    snapshotName?: pulumi.Input<string>;
-    /**
-     * ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-     */
-    sourceElasticsearchClusterId: pulumi.Input<string>;
-}
-
-export interface DeploymentElasticsearchStrategy {
-    /**
-     * Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
-     */
-    type: pulumi.Input<string>;
-}
-
-export interface DeploymentElasticsearchTopology {
-    /**
-     * Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     */
-    autoscaling?: pulumi.Input<inputs.DeploymentElasticsearchTopologyAutoscaling>;
-    /**
-     * Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
-     */
-    configs?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTopologyConfig>[]>;
-    /**
-     * Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
-     */
-    id: pulumi.Input<string>;
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
+export interface DeploymentElasticsearchCold {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchColdAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The node type for the Elasticsearch cluster (data node).
-     */
     nodeTypeData?: pulumi.Input<string>;
-    /**
-     * The node type for the Elasticsearch cluster (ingest node).
-     */
     nodeTypeIngest?: pulumi.Input<string>;
-    /**
-     * The node type for the Elasticsearch cluster (master node).
-     */
     nodeTypeMaster?: pulumi.Input<string>;
-    /**
-     * The node type for the Elasticsearch cluster (machine learning node).
-     */
     nodeTypeMl?: pulumi.Input<string>;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
     size?: pulumi.Input<string>;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
     sizeResource?: pulumi.Input<string>;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
     zoneCount?: pulumi.Input<number>;
 }
 
-export interface DeploymentElasticsearchTopologyAutoscaling {
-    /**
-     * Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
-     */
+export interface DeploymentElasticsearchColdAutoscaling {
     maxSize?: pulumi.Input<string>;
-    /**
-     * Defines the resource type the scale up will use (Defaults to `"memory"`).
-     */
     maxSizeResource?: pulumi.Input<string>;
-    /**
-     * Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
-     */
     minSize?: pulumi.Input<string>;
-    /**
-     * Defines the resource type the scale down will use (Defaults to `"memory"`).
-     */
     minSizeResource?: pulumi.Input<string>;
     policyOverrideJson?: pulumi.Input<string>;
 }
 
-export interface DeploymentElasticsearchTopologyConfig {
-    /**
-     * List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-     */
+export interface DeploymentElasticsearchConfig {
+    dockerImage?: pulumi.Input<string>;
     plugins?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: pulumi.Input<string>;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: pulumi.Input<string>;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
+export interface DeploymentElasticsearchCoordinating {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchCoordinatingAutoscaling>;
+    instanceConfigurationId?: pulumi.Input<string>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentElasticsearchCoordinatingAutoscaling {
+    maxSize?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchExtension {
+    name: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+    /**
+     * Elastic Stack version to use for all of the deployment resources.
+     */
+    version: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchFrozen {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchFrozenAutoscaling>;
+    instanceConfigurationId?: pulumi.Input<string>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentElasticsearchFrozenAutoscaling {
+    maxSize?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchHot {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchHotAutoscaling>;
+    instanceConfigurationId?: pulumi.Input<string>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentElasticsearchHotAutoscaling {
+    maxSize?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchMaster {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMasterAutoscaling>;
+    instanceConfigurationId?: pulumi.Input<string>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentElasticsearchMasterAutoscaling {
+    maxSize?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchMl {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMlAutoscaling>;
+    instanceConfigurationId?: pulumi.Input<string>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentElasticsearchMlAutoscaling {
+    maxSize?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchRemoteCluster {
+    alias: pulumi.Input<string>;
+    deploymentId: pulumi.Input<string>;
+    refId?: pulumi.Input<string>;
+    skipUnavailable?: pulumi.Input<boolean>;
+}
+
+export interface DeploymentElasticsearchSnapshot {
+    enabled: pulumi.Input<boolean>;
+    repository?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepository>;
+}
+
+export interface DeploymentElasticsearchSnapshotRepository {
+    reference?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepositoryReference>;
+}
+
+export interface DeploymentElasticsearchSnapshotRepositoryReference {
+    repositoryName: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchSnapshotSource {
+    snapshotName?: pulumi.Input<string>;
+    sourceElasticsearchClusterId: pulumi.Input<string>;
+}
+
 export interface DeploymentElasticsearchTrustAccount {
-    /**
-     * The account identifier to establish the new trust with.
-     */
     accountId: pulumi.Input<string>;
-    /**
-     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
-     */
     trustAll: pulumi.Input<boolean>;
-    /**
-     * The list of clusters to trust. Only used when `trustAll` is `false`.
-     */
     trustAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface DeploymentElasticsearchTrustExternal {
-    /**
-     * Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-     */
     relationshipId: pulumi.Input<string>;
-    /**
-     * If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
-     */
     trustAll: pulumi.Input<boolean>;
-    /**
-     * The list of clusters to trust. Only used when `trustAll` is `false`.
-     */
     trustAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface DeploymentElasticsearchWarm {
+    autoscaling: pulumi.Input<inputs.DeploymentElasticsearchWarmAutoscaling>;
+    instanceConfigurationId?: pulumi.Input<string>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentElasticsearchWarmAutoscaling {
+    maxSize?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentEnterpriseSearch {
     /**
-     * Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Enterprise Search configuration options for the Enterprise Search Server
      */
     config?: pulumi.Input<inputs.DeploymentEnterpriseSearchConfig>;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
     elasticsearchClusterRefId?: pulumi.Input<string>;
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
-    /**
-     * Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-     */
-    refId?: pulumi.Input<string>;
-    /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
-     */
-    region?: pulumi.Input<string>;
-    resourceId?: pulumi.Input<string>;
-    /**
-     * Can be set multiple times to compose complex topologies.
-     */
-    topology?: pulumi.Input<inputs.DeploymentEnterpriseSearchTopology>;
-}
-
-export interface DeploymentEnterpriseSearchConfig {
-    dockerImage?: pulumi.Input<string>;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsJson?: pulumi.Input<string>;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideJson?: pulumi.Input<string>;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsYaml?: pulumi.Input<string>;
-}
-
-export interface DeploymentEnterpriseSearchTopology {
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
     instanceConfigurationId?: pulumi.Input<string>;
     nodeTypeAppserver?: pulumi.Input<boolean>;
     nodeTypeConnector?: pulumi.Input<boolean>;
     nodeTypeWorker?: pulumi.Input<boolean>;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
-    size?: pulumi.Input<string>;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: pulumi.Input<string>;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
-    zoneCount?: pulumi.Input<number>;
-}
-
-export interface DeploymentIntegrationsServer {
-    apmHttpsEndpoint?: pulumi.Input<string>;
-    /**
-     * Integrations Server settings applied to all topologies unless overridden in the `topology` element.
-     */
-    config?: pulumi.Input<inputs.DeploymentIntegrationsServerConfig>;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
-    elasticsearchClusterRefId?: pulumi.Input<string>;
-    fleetHttpsEndpoint?: pulumi.Input<string>;
-    httpEndpoint?: pulumi.Input<string>;
-    httpsEndpoint?: pulumi.Input<string>;
-    /**
-     * Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-     */
     refId?: pulumi.Input<string>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
     /**
-     * Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to "memory".
      */
-    topology?: pulumi.Input<inputs.DeploymentIntegrationsServerTopology>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
 }
 
-export interface DeploymentIntegrationsServerConfig {
-    /**
-     * Enable debug mode for APM servers. Defaults to `false`.
-     */
-    debugEnabled?: pulumi.Input<boolean>;
+export interface DeploymentEnterpriseSearchConfig {
     dockerImage?: pulumi.Input<string>;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: pulumi.Input<string>;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: pulumi.Input<string>;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
-export interface DeploymentIntegrationsServerTopology {
+export interface DeploymentIntegrationsServer {
     /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+     * Optionally define the Integrations Server configuration options for the IntegrationsServer Server
      */
+    config?: pulumi.Input<inputs.DeploymentIntegrationsServerConfig>;
+    elasticsearchClusterRefId?: pulumi.Input<string>;
+    /**
+     * URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+     */
+    endpoints?: pulumi.Input<inputs.DeploymentIntegrationsServerEndpoints>;
+    httpEndpoint?: pulumi.Input<string>;
+    httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
+    refId?: pulumi.Input<string>;
     /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
+    region?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
     /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
+     * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
     zoneCount?: pulumi.Input<number>;
+}
+
+export interface DeploymentIntegrationsServerConfig {
+    debugEnabled?: pulumi.Input<boolean>;
+    dockerImage?: pulumi.Input<string>;
+    userSettingsJson?: pulumi.Input<string>;
+    userSettingsOverrideJson?: pulumi.Input<string>;
+    userSettingsOverrideYaml?: pulumi.Input<string>;
+    userSettingsYaml?: pulumi.Input<string>;
+}
+
+export interface DeploymentIntegrationsServerEndpoints {
+    apm: pulumi.Input<string>;
+    fleet: pulumi.Input<string>;
 }
 
 export interface DeploymentKibana {
     /**
-     * Kibana settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Kibana configuration options for the Kibana Server
      */
     config?: pulumi.Input<inputs.DeploymentKibanaConfig>;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
     elasticsearchClusterRefId?: pulumi.Input<string>;
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
-    /**
-     * Can be set on the Kibana resource. The default value `main-kibana` is recommended.
-     */
+    instanceConfigurationId?: pulumi.Input<string>;
     refId?: pulumi.Input<string>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
     /**
-     * Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to "memory".
      */
-    topology?: pulumi.Input<inputs.DeploymentKibanaTopology>;
+    sizeResource?: pulumi.Input<string>;
+    zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentKibanaConfig {
     dockerImage?: pulumi.Input<string>;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: pulumi.Input<string>;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: pulumi.Input<string>;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
-export interface DeploymentKibanaTopology {
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
-    instanceConfigurationId?: pulumi.Input<string>;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
-    size?: pulumi.Input<string>;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: pulumi.Input<string>;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
-    zoneCount?: pulumi.Input<number>;
-}
-
 export interface DeploymentObservability {
-    /**
-     * Remote deployment ID.
-     */
     deploymentId: pulumi.Input<string>;
     logs?: pulumi.Input<boolean>;
     metrics?: pulumi.Input<boolean>;
-    /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-     */
     refId?: pulumi.Input<string>;
 }
 
 export interface DeploymentTrafficFilterRule {
     /**
-     * Azure endpoint GUID. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+     * Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      */
     azureEndpointGuid?: pulumi.Input<string>;
     /**
-     * Azure endpoint name. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+     * Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      */
     azureEndpointName?: pulumi.Input<string>;
     /**
-     * Description of this individual rule.
+     * Description of this individual rule
      */
     description?: pulumi.Input<string>;
     /**
-     * The ruleset ID.
+     * Computed rule ID
      */
     id?: pulumi.Input<string>;
     /**
-     * traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `"azurePrivateEndpoint"`.
+     * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      */
     source?: pulumi.Input<string>;
 }
 
 export interface GetDeploymentsApm {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsApmArgs {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: pulumi.Input<string>;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Elastic stack version.
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface GetDeploymentsElasticsearch {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsElasticsearchArgs {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: pulumi.Input<string>;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Elastic stack version.
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface GetDeploymentsEnterpriseSearch {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsEnterpriseSearchArgs {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: pulumi.Input<string>;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Elastic stack version.
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface GetDeploymentsIntegrationsServer {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsIntegrationsServerArgs {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: pulumi.Input<string>;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Elastic stack version.
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface GetDeploymentsKibana {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsKibanaArgs {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: pulumi.Input<string>;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Elastic stack version.
+     */
     version?: pulumi.Input<string>;
 }
 
+export interface SnapshotRepositoryGeneric {
+    /**
+     * An arbitrary JSON object containing the repository settings.
+     */
+    settings: pulumi.Input<string>;
+    /**
+     * Repository type
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface SnapshotRepositoryS3 {
+    /**
+     * An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
+     */
+    accessKey?: pulumi.Input<string>;
+    /**
+     * Name of the S3 bucket to use for snapshots.
+     */
+    bucket: pulumi.Input<string>;
+    /**
+     * The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+     */
+    endpoint?: pulumi.Input<string>;
+    /**
+     * Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
+     */
+    pathStyleAccess?: pulumi.Input<boolean>;
+    /**
+     * Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * An S3 secret key. If set, the accessKey setting must also be specified.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
+     */
+    serverSideEncryption?: pulumi.Input<boolean>;
+}

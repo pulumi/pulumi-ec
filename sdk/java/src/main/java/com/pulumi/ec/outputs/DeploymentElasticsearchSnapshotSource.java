@@ -11,29 +11,13 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchSnapshotSource {
-    /**
-     * @return Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     * 
-     */
     private @Nullable String snapshotName;
-    /**
-     * @return ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-     * 
-     */
     private String sourceElasticsearchClusterId;
 
     private DeploymentElasticsearchSnapshotSource() {}
-    /**
-     * @return Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     * 
-     */
     public Optional<String> snapshotName() {
         return Optional.ofNullable(this.snapshotName);
     }
-    /**
-     * @return ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-     * 
-     */
     public String sourceElasticsearchClusterId() {
         return this.sourceElasticsearchClusterId;
     }

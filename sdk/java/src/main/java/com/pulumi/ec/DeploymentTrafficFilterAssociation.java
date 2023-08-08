@@ -64,34 +64,34 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import is not supported on this resource.
+ * Import is not supported on this resource
  * 
  */
 @ResourceType(type="ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation")
 public class DeploymentTrafficFilterAssociation extends com.pulumi.resources.CustomResource {
     /**
-     * Deployment ID of the deployment to which the traffic filter rule is attached.
+     * Required deployment ID where the traffic filter will be associated
      * 
      */
     @Export(name="deploymentId", type=String.class, parameters={})
     private Output<String> deploymentId;
 
     /**
-     * @return Deployment ID of the deployment to which the traffic filter rule is attached.
+     * @return Required deployment ID where the traffic filter will be associated
      * 
      */
     public Output<String> deploymentId() {
         return this.deploymentId;
     }
     /**
-     * Traffic filter ID of the rule to use for the attachment.
+     * Required traffic filter ruleset ID to tie to a deployment
      * 
      */
     @Export(name="trafficFilterId", type=String.class, parameters={})
     private Output<String> trafficFilterId;
 
     /**
-     * @return Traffic filter ID of the rule to use for the attachment.
+     * @return Required traffic filter ruleset ID to tie to a deployment
      * 
      */
     public Output<String> trafficFilterId() {

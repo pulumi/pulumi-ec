@@ -15,30 +15,46 @@ public final class GetDeploymentsElasticsearch extends com.pulumi.resources.Invo
     public static final GetDeploymentsElasticsearch Empty = new GetDeploymentsElasticsearch();
 
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      * 
      */
     @Import(name="healthy")
     private @Nullable String healthy;
 
     /**
-     * @return Overall health status of the deployment.
+     * @return Overall health status of the resource instances.
      * 
      */
     public Optional<String> healthy() {
         return Optional.ofNullable(this.healthy);
     }
 
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     * 
+     */
     @Import(name="status")
     private @Nullable String status;
 
+    /**
+     * @return Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     * 
+     */
     public Optional<String> status() {
         return Optional.ofNullable(this.status);
     }
 
+    /**
+     * Elastic stack version.
+     * 
+     */
     @Import(name="version")
     private @Nullable String version;
 
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public Optional<String> version() {
         return Optional.ofNullable(this.version);
     }
@@ -70,7 +86,7 @@ public final class GetDeploymentsElasticsearch extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param healthy Overall health status of the deployment.
+         * @param healthy Overall health status of the resource instances.
          * 
          * @return builder
          * 
@@ -80,11 +96,23 @@ public final class GetDeploymentsElasticsearch extends com.pulumi.resources.Invo
             return this;
         }
 
+        /**
+         * @param status Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(@Nullable String status) {
             $.status = status;
             return this;
         }
 
+        /**
+         * @param version Elastic stack version.
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(@Nullable String version) {
             $.version = version;
             return this;

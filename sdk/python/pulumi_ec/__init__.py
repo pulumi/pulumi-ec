@@ -16,7 +16,9 @@ from .get_deployment import *
 from .get_deployments import *
 from .get_gcp_private_service_connect_endpoint import *
 from .get_stack import *
+from .get_traffic_filter import *
 from .provider import *
+from .snapshot_repository import *
 from ._inputs import *
 from . import outputs
 
@@ -68,6 +70,14 @@ _utilities.register(
   "fqn": "pulumi_ec",
   "classes": {
    "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation": "DeploymentTrafficFilterAssociation"
+  }
+ },
+ {
+  "pkg": "ec",
+  "mod": "index/snapshotRepository",
+  "fqn": "pulumi_ec",
+  "classes": {
+   "ec:index/snapshotRepository:SnapshotRepository": "SnapshotRepository"
   }
  }
 ]

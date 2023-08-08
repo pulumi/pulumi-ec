@@ -19,7 +19,7 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly bool NodeTypeData;
         public readonly bool NodeTypeIngest;
         public readonly bool NodeTypeMaster;
-        public readonly bool? NodeTypeMl;
+        public readonly bool NodeTypeMl;
         public readonly string Size;
         public readonly string SizeResource;
         public readonly int ZoneCount;
@@ -38,7 +38,7 @@ namespace Pulumi.ElasticCloud.Outputs
 
             bool nodeTypeMaster,
 
-            bool? nodeTypeMl,
+            bool nodeTypeMl,
 
             string size,
 

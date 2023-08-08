@@ -10,21 +10,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentObservability {
+    /**
+     * @return Destination deployment ID for the shipped logs and monitoring metrics.
+     * 
+     */
     private String deploymentId;
+    /**
+     * @return Defines whether logs are shipped to the destination deployment.
+     * 
+     */
     private Boolean logs;
+    /**
+     * @return Defines whether metrics are shipped to the destination deployment.
+     * 
+     */
     private Boolean metrics;
+    /**
+     * @return Elasticsearch resource kind ref_id of the destination deployment.
+     * 
+     */
     private String refId;
 
     private GetDeploymentObservability() {}
+    /**
+     * @return Destination deployment ID for the shipped logs and monitoring metrics.
+     * 
+     */
     public String deploymentId() {
         return this.deploymentId;
     }
+    /**
+     * @return Defines whether logs are shipped to the destination deployment.
+     * 
+     */
     public Boolean logs() {
         return this.logs;
     }
+    /**
+     * @return Defines whether metrics are shipped to the destination deployment.
+     * 
+     */
     public Boolean metrics() {
         return this.metrics;
     }
+    /**
+     * @return Elasticsearch resource kind ref_id of the destination deployment.
+     * 
+     */
     public String refId() {
         return this.refId;
     }

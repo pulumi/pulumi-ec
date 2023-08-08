@@ -11,33 +11,89 @@ import java.util.Objects;
 
 @CustomType
 public final class GetStackElasticsearch {
+    /**
+     * @return Maximum size of the instances.
+     * 
+     */
     private Integer capacityConstraintsMax;
+    /**
+     * @return Minimum size of the instances.
+     * 
+     */
     private Integer capacityConstraintsMin;
+    /**
+     * @return List of node types compatible with this one.
+     * 
+     */
     private List<String> compatibleNodeTypes;
+    /**
+     * @return List of default plugins.
+     * 
+     */
     private List<String> defaultPlugins;
+    /**
+     * @return List of configuration options that cannot be overridden by user settings.
+     * 
+     */
     private List<String> denylists;
+    /**
+     * @return Docker image to use for the Elasticsearch cluster instances.
+     * 
+     */
     private String dockerImage;
+    /**
+     * @return List of available plugins to be specified by users in Elasticsearch cluster instances.
+     * 
+     */
     private List<String> plugins;
 
     private GetStackElasticsearch() {}
+    /**
+     * @return Maximum size of the instances.
+     * 
+     */
     public Integer capacityConstraintsMax() {
         return this.capacityConstraintsMax;
     }
+    /**
+     * @return Minimum size of the instances.
+     * 
+     */
     public Integer capacityConstraintsMin() {
         return this.capacityConstraintsMin;
     }
+    /**
+     * @return List of node types compatible with this one.
+     * 
+     */
     public List<String> compatibleNodeTypes() {
         return this.compatibleNodeTypes;
     }
+    /**
+     * @return List of default plugins.
+     * 
+     */
     public List<String> defaultPlugins() {
         return this.defaultPlugins;
     }
+    /**
+     * @return List of configuration options that cannot be overridden by user settings.
+     * 
+     */
     public List<String> denylists() {
         return this.denylists;
     }
+    /**
+     * @return Docker image to use for the Elasticsearch cluster instances.
+     * 
+     */
     public String dockerImage() {
         return this.dockerImage;
     }
+    /**
+     * @return List of available plugins to be specified by users in Elasticsearch cluster instances.
+     * 
+     */
     public List<String> plugins() {
         return this.plugins;
     }

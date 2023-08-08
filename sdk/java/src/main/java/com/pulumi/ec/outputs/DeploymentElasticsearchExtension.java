@@ -9,51 +9,27 @@ import java.util.Objects;
 
 @CustomType
 public final class DeploymentElasticsearchExtension {
-    /**
-     * @return Extension name.
-     * 
-     */
     private String name;
-    /**
-     * @return Extension type, only `bundle` or `plugin` are supported.
-     * 
-     */
     private String type;
-    /**
-     * @return Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-     * 
-     */
     private String url;
     /**
-     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+     * @return Elastic Stack version to use for all of the deployment resources.
      * 
      */
     private String version;
 
     private DeploymentElasticsearchExtension() {}
-    /**
-     * @return Extension name.
-     * 
-     */
     public String name() {
         return this.name;
     }
-    /**
-     * @return Extension type, only `bundle` or `plugin` are supported.
-     * 
-     */
     public String type() {
         return this.type;
     }
-    /**
-     * @return Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-     * 
-     */
     public String url() {
         return this.url;
     }
     /**
-     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+     * @return Elastic Stack version to use for all of the deployment resources.
      * 
      */
     public String version() {

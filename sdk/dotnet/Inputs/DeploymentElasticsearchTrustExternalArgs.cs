@@ -12,24 +12,14 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchTrustExternalArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-        /// </summary>
         [Input("relationshipId", required: true)]
         public Input<string> RelationshipId { get; set; } = null!;
 
-        /// <summary>
-        /// If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
-        /// </summary>
         [Input("trustAll", required: true)]
         public Input<bool> TrustAll { get; set; } = null!;
 
         [Input("trustAllowlists")]
         private InputList<string>? _trustAllowlists;
-
-        /// <summary>
-        /// The list of clusters to trust. Only used when `trust_all` is `false`.
-        /// </summary>
         public InputList<string> TrustAllowlists
         {
             get => _trustAllowlists ?? (_trustAllowlists = new InputList<string>());

@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about an existing Elastic Cloud stack.
  *
+ *   > **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -41,15 +43,15 @@ export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetStackArgs {
     /**
-     * Lock the `"latest"` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+     * Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
      */
     lock?: boolean;
     /**
-     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
+     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
      */
     region: string;
     /**
-     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
      */
     versionRegex: string;
 }
@@ -68,64 +70,53 @@ export interface GetStackResult {
     readonly allowlisted: boolean;
     /**
      * Information for APM workloads on this stack version.
-     * * `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `apm.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `apm.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `apm.#.compatible_node_types` - List of node types compatible with this one.
-     * * `apm.#.docker_image` - Docker image to use for the APM instance.
      */
     readonly apms: outputs.GetStackApm[];
     /**
      * Information for Elasticsearch workloads on this stack version.
-     * * `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.
-     * * `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.
-     * * `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.
-     * * `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.
      */
     readonly elasticsearches: outputs.GetStackElasticsearch[];
     /**
      * Information for Enterprise Search workloads on this stack version.
-     * * `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.
-     * * `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.
      */
     readonly enterpriseSearches: outputs.GetStackEnterpriseSearch[];
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Unique identifier of this data source.
      */
     readonly id: string;
     /**
      * Information for Kibana workloads on this stack version.
-     * * `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `kibana.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `kibana.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `kibana.#.compatible_node_types` - List of node types compatible with this one.
-     * * `kibana.#.docker_image` - Docker image to use for the Kibana instance.
      */
     readonly kibanas: outputs.GetStackKibana[];
+    /**
+     * Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+     */
     readonly lock?: boolean;
     /**
-     * The minimum stack version recommended.
+     * The minimum stack version which can be upgraded to this stack version.
      */
     readonly minUpgradableFrom: string;
+    /**
+     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+     */
     readonly region: string;
     /**
-     * The stack version you can upgrade to.
+     * A list of stack versions which this stack version can be upgraded to.
      */
     readonly upgradableTos: string[];
     /**
-     * The stack version.
+     * The stack version
      */
     readonly version: string;
+    /**
+     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+     */
     readonly versionRegex: string;
 }
 /**
  * Use this data source to retrieve information about an existing Elastic Cloud stack.
+ *
+ *   > **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
  *
  * ## Example Usage
  *
@@ -153,15 +144,15 @@ export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetStackOutputArgs {
     /**
-     * Lock the `"latest"` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+     * Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
      */
     lock?: pulumi.Input<boolean>;
     /**
-     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
+     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
      */
     region: pulumi.Input<string>;
     /**
-     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
      */
     versionRegex: pulumi.Input<string>;
 }

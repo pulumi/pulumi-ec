@@ -13,17 +13,41 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentApmResult
     {
+        /// <summary>
+        /// The locally-unique user-specified id of an APM Resource.
+        /// </summary>
         public readonly string ElasticsearchClusterRefId;
         /// <summary>
-        /// Overall health status of the deployment.
+        /// APM resource health status.
         /// </summary>
         public readonly bool Healthy;
+        /// <summary>
+        /// HTTP endpoint for the APM resource.
+        /// </summary>
         public readonly string HttpEndpoint;
+        /// <summary>
+        /// HTTPS endpoint for the APM resource.
+        /// </summary>
         public readonly string HttpsEndpoint;
+        /// <summary>
+        /// A locally-unique friendly alias for this APM resource.
+        /// </summary>
         public readonly string RefId;
+        /// <summary>
+        /// The resource unique identifier.
+        /// </summary>
         public readonly string ResourceId;
+        /// <summary>
+        /// APM resource status (for example, "started", "stopped", etc).
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Node topology element definition.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentApmTopologyResult> Topologies;
+        /// <summary>
+        /// Elastic stack version.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

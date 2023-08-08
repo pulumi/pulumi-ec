@@ -6,7 +6,7 @@ package com.pulumi.ec.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.DeploymentApmConfigArgs;
-import com.pulumi.ec.inputs.DeploymentApmTopologyArgs;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,31 +18,23 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
     public static final DeploymentApmArgs Empty = new DeploymentApmArgs();
 
     /**
-     * APM settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Apm configuration options for the APM Server
      * 
      */
     @Import(name="config")
     private @Nullable Output<DeploymentApmConfigArgs> config;
 
     /**
-     * @return APM settings applied to all topologies unless overridden in the `topology` element.
+     * @return Optionally define the Apm configuration options for the APM Server
      * 
      */
     public Optional<Output<DeploymentApmConfigArgs>> config() {
         return Optional.ofNullable(this.config);
     }
 
-    /**
-     * This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     @Import(name="elasticsearchClusterRefId")
     private @Nullable Output<String> elasticsearchClusterRefId;
 
-    /**
-     * @return This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<Output<String>> elasticsearchClusterRefId() {
         return Optional.ofNullable(this.elasticsearchClusterRefId);
     }
@@ -61,30 +53,29 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.httpsEndpoint);
     }
 
-    /**
-     * Can be set on the APM resource. The default value `main-apm` is recommended.
-     * 
-     */
+    @Import(name="instanceConfigurationId")
+    private @Nullable Output<String> instanceConfigurationId;
+
+    public Optional<Output<String>> instanceConfigurationId() {
+        return Optional.ofNullable(this.instanceConfigurationId);
+    }
+
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
-    /**
-     * @return Can be set on the APM resource. The default value `main-apm` is recommended.
-     * 
-     */
     public Optional<Output<String>> refId() {
         return Optional.ofNullable(this.refId);
     }
 
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<Output<String>> region() {
@@ -98,19 +89,33 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.resourceId);
     }
 
-    /**
-     * Can be set multiple times to compose complex topologies.
-     * 
-     */
-    @Import(name="topology")
-    private @Nullable Output<DeploymentApmTopologyArgs> topology;
+    @Import(name="size")
+    private @Nullable Output<String> size;
+
+    public Optional<Output<String>> size() {
+        return Optional.ofNullable(this.size);
+    }
 
     /**
-     * @return Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to &#34;memory&#34;.
      * 
      */
-    public Optional<Output<DeploymentApmTopologyArgs>> topology() {
-        return Optional.ofNullable(this.topology);
+    @Import(name="sizeResource")
+    private @Nullable Output<String> sizeResource;
+
+    /**
+     * @return Optional size type, defaults to &#34;memory&#34;.
+     * 
+     */
+    public Optional<Output<String>> sizeResource() {
+        return Optional.ofNullable(this.sizeResource);
+    }
+
+    @Import(name="zoneCount")
+    private @Nullable Output<Integer> zoneCount;
+
+    public Optional<Output<Integer>> zoneCount() {
+        return Optional.ofNullable(this.zoneCount);
     }
 
     private DeploymentApmArgs() {}
@@ -120,10 +125,13 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         this.elasticsearchClusterRefId = $.elasticsearchClusterRefId;
         this.httpEndpoint = $.httpEndpoint;
         this.httpsEndpoint = $.httpsEndpoint;
+        this.instanceConfigurationId = $.instanceConfigurationId;
         this.refId = $.refId;
         this.region = $.region;
         this.resourceId = $.resourceId;
-        this.topology = $.topology;
+        this.size = $.size;
+        this.sizeResource = $.sizeResource;
+        this.zoneCount = $.zoneCount;
     }
 
     public static Builder builder() {
@@ -145,7 +153,7 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param config APM settings applied to all topologies unless overridden in the `topology` element.
+         * @param config Optionally define the Apm configuration options for the APM Server
          * 
          * @return builder
          * 
@@ -156,7 +164,7 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param config APM settings applied to all topologies unless overridden in the `topology` element.
+         * @param config Optionally define the Apm configuration options for the APM Server
          * 
          * @return builder
          * 
@@ -165,23 +173,11 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
             return config(Output.of(config));
         }
 
-        /**
-         * @param elasticsearchClusterRefId This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder elasticsearchClusterRefId(@Nullable Output<String> elasticsearchClusterRefId) {
             $.elasticsearchClusterRefId = elasticsearchClusterRefId;
             return this;
         }
 
-        /**
-         * @param elasticsearchClusterRefId This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder elasticsearchClusterRefId(String elasticsearchClusterRefId) {
             return elasticsearchClusterRefId(Output.of(elasticsearchClusterRefId));
         }
@@ -204,29 +200,26 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
             return httpsEndpoint(Output.of(httpsEndpoint));
         }
 
-        /**
-         * @param refId Can be set on the APM resource. The default value `main-apm` is recommended.
-         * 
-         * @return builder
-         * 
-         */
+        public Builder instanceConfigurationId(@Nullable Output<String> instanceConfigurationId) {
+            $.instanceConfigurationId = instanceConfigurationId;
+            return this;
+        }
+
+        public Builder instanceConfigurationId(String instanceConfigurationId) {
+            return instanceConfigurationId(Output.of(instanceConfigurationId));
+        }
+
         public Builder refId(@Nullable Output<String> refId) {
             $.refId = refId;
             return this;
         }
 
-        /**
-         * @param refId Can be set on the APM resource. The default value `main-apm` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refId(String refId) {
             return refId(Output.of(refId));
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -237,7 +230,7 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -255,25 +248,43 @@ public final class DeploymentApmArgs extends com.pulumi.resources.ResourceArgs {
             return resourceId(Output.of(resourceId));
         }
 
+        public Builder size(@Nullable Output<String> size) {
+            $.size = size;
+            return this;
+        }
+
+        public Builder size(String size) {
+            return size(Output.of(size));
+        }
+
         /**
-         * @param topology Can be set multiple times to compose complex topologies.
+         * @param sizeResource Optional size type, defaults to &#34;memory&#34;.
          * 
          * @return builder
          * 
          */
-        public Builder topology(@Nullable Output<DeploymentApmTopologyArgs> topology) {
-            $.topology = topology;
+        public Builder sizeResource(@Nullable Output<String> sizeResource) {
+            $.sizeResource = sizeResource;
             return this;
         }
 
         /**
-         * @param topology Can be set multiple times to compose complex topologies.
+         * @param sizeResource Optional size type, defaults to &#34;memory&#34;.
          * 
          * @return builder
          * 
          */
-        public Builder topology(DeploymentApmTopologyArgs topology) {
-            return topology(Output.of(topology));
+        public Builder sizeResource(String sizeResource) {
+            return sizeResource(Output.of(sizeResource));
+        }
+
+        public Builder zoneCount(@Nullable Output<Integer> zoneCount) {
+            $.zoneCount = zoneCount;
+            return this;
+        }
+
+        public Builder zoneCount(Integer zoneCount) {
+            return zoneCount(Output.of(zoneCount));
         }
 
         public DeploymentApmArgs build() {

@@ -13,14 +13,11 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentKibanaGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Kibana settings applied to all topologies unless overridden in the `topology` element.
+        /// Optionally define the Kibana configuration options for the Kibana Server
         /// </summary>
         [Input("config")]
         public Input<Inputs.DeploymentKibanaConfigGetArgs>? Config { get; set; }
 
-        /// <summary>
-        /// This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         [Input("elasticsearchClusterRefId")]
         public Input<string>? ElasticsearchClusterRefId { get; set; }
 
@@ -30,14 +27,14 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("httpsEndpoint")]
         public Input<string>? HttpsEndpoint { get; set; }
 
-        /// <summary>
-        /// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
-        /// </summary>
+        [Input("instanceConfigurationId")]
+        public Input<string>? InstanceConfigurationId { get; set; }
+
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -45,11 +42,17 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
+        [Input("size")]
+        public Input<string>? Size { get; set; }
+
         /// <summary>
-        /// Can be set multiple times to compose complex topologies.
+        /// Optional size type, defaults to "memory".
         /// </summary>
-        [Input("topology")]
-        public Input<Inputs.DeploymentKibanaTopologyGetArgs>? Topology { get; set; }
+        [Input("sizeResource")]
+        public Input<string>? SizeResource { get; set; }
+
+        [Input("zoneCount")]
+        public Input<int>? ZoneCount { get; set; }
 
         public DeploymentKibanaGetArgs()
         {

@@ -14,28 +14,25 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentKibana
     {
         /// <summary>
-        /// Kibana settings applied to all topologies unless overridden in the `topology` element.
+        /// Optionally define the Kibana configuration options for the Kibana Server
         /// </summary>
         public readonly Outputs.DeploymentKibanaConfig? Config;
-        /// <summary>
-        /// This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         public readonly string? ElasticsearchClusterRefId;
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
-        /// <summary>
-        /// Can be set on the Kibana resource. The default value `main-kibana` is recommended.
-        /// </summary>
+        public readonly string? InstanceConfigurationId;
         public readonly string? RefId;
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         public readonly string? Region;
         public readonly string? ResourceId;
+        public readonly string? Size;
         /// <summary>
-        /// Can be set multiple times to compose complex topologies.
+        /// Optional size type, defaults to "memory".
         /// </summary>
-        public readonly Outputs.DeploymentKibanaTopology? Topology;
+        public readonly string? SizeResource;
+        public readonly int? ZoneCount;
 
         [OutputConstructor]
         private DeploymentKibana(
@@ -47,22 +44,31 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? httpsEndpoint,
 
+            string? instanceConfigurationId,
+
             string? refId,
 
             string? region,
 
             string? resourceId,
 
-            Outputs.DeploymentKibanaTopology? topology)
+            string? size,
+
+            string? sizeResource,
+
+            int? zoneCount)
         {
             Config = config;
             ElasticsearchClusterRefId = elasticsearchClusterRefId;
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
+            InstanceConfigurationId = instanceConfigurationId;
             RefId = refId;
             Region = region;
             ResourceId = resourceId;
-            Topology = topology;
+            Size = size;
+            SizeResource = sizeResource;
+            ZoneCount = zoneCount;
         }
     }
 }

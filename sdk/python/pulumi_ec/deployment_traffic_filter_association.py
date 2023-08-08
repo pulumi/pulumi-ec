@@ -18,8 +18,8 @@ class DeploymentTrafficFilterAssociationArgs:
                  traffic_filter_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a DeploymentTrafficFilterAssociation resource.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment to which the traffic filter rule is attached.
-        :param pulumi.Input[str] traffic_filter_id: Traffic filter ID of the rule to use for the attachment.
+        :param pulumi.Input[str] deployment_id: Required deployment ID where the traffic filter will be associated
+        :param pulumi.Input[str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
         pulumi.set(__self__, "deployment_id", deployment_id)
         pulumi.set(__self__, "traffic_filter_id", traffic_filter_id)
@@ -28,7 +28,7 @@ class DeploymentTrafficFilterAssociationArgs:
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Input[str]:
         """
-        Deployment ID of the deployment to which the traffic filter rule is attached.
+        Required deployment ID where the traffic filter will be associated
         """
         return pulumi.get(self, "deployment_id")
 
@@ -40,7 +40,7 @@ class DeploymentTrafficFilterAssociationArgs:
     @pulumi.getter(name="trafficFilterId")
     def traffic_filter_id(self) -> pulumi.Input[str]:
         """
-        Traffic filter ID of the rule to use for the attachment.
+        Required traffic filter ruleset ID to tie to a deployment
         """
         return pulumi.get(self, "traffic_filter_id")
 
@@ -56,8 +56,8 @@ class _DeploymentTrafficFilterAssociationState:
                  traffic_filter_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilterAssociation resources.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment to which the traffic filter rule is attached.
-        :param pulumi.Input[str] traffic_filter_id: Traffic filter ID of the rule to use for the attachment.
+        :param pulumi.Input[str] deployment_id: Required deployment ID where the traffic filter will be associated
+        :param pulumi.Input[str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
         if deployment_id is not None:
             pulumi.set(__self__, "deployment_id", deployment_id)
@@ -68,7 +68,7 @@ class _DeploymentTrafficFilterAssociationState:
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Deployment ID of the deployment to which the traffic filter rule is attached.
+        Required deployment ID where the traffic filter will be associated
         """
         return pulumi.get(self, "deployment_id")
 
@@ -80,7 +80,7 @@ class _DeploymentTrafficFilterAssociationState:
     @pulumi.getter(name="trafficFilterId")
     def traffic_filter_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Traffic filter ID of the rule to use for the attachment.
+        Required traffic filter ruleset ID to tie to a deployment
         """
         return pulumi.get(self, "traffic_filter_id")
 
@@ -118,12 +118,12 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
 
         ## Import
 
-        Import is not supported on this resource.
+        Import is not supported on this resource
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment to which the traffic filter rule is attached.
-        :param pulumi.Input[str] traffic_filter_id: Traffic filter ID of the rule to use for the attachment.
+        :param pulumi.Input[str] deployment_id: Required deployment ID where the traffic filter will be associated
+        :param pulumi.Input[str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
         ...
     @overload
@@ -152,7 +152,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
 
         ## Import
 
-        Import is not supported on this resource.
+        Import is not supported on this resource
 
         :param str resource_name: The name of the resource.
         :param DeploymentTrafficFilterAssociationArgs args: The arguments to use to populate this resource's properties.
@@ -205,8 +205,8 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment to which the traffic filter rule is attached.
-        :param pulumi.Input[str] traffic_filter_id: Traffic filter ID of the rule to use for the attachment.
+        :param pulumi.Input[str] deployment_id: Required deployment ID where the traffic filter will be associated
+        :param pulumi.Input[str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -220,7 +220,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Output[str]:
         """
-        Deployment ID of the deployment to which the traffic filter rule is attached.
+        Required deployment ID where the traffic filter will be associated
         """
         return pulumi.get(self, "deployment_id")
 
@@ -228,7 +228,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
     @pulumi.getter(name="trafficFilterId")
     def traffic_filter_id(self) -> pulumi.Output[str]:
         """
-        Traffic filter ID of the rule to use for the attachment.
+        Required traffic filter ruleset ID to tie to a deployment
         """
         return pulumi.get(self, "traffic_filter_id")
 

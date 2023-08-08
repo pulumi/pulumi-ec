@@ -12,24 +12,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentObservability {
-    /**
-     * @return Remote deployment ID.
-     * 
-     */
     private String deploymentId;
     private @Nullable Boolean logs;
     private @Nullable Boolean metrics;
-    /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     private @Nullable String refId;
 
     private DeploymentObservability() {}
-    /**
-     * @return Remote deployment ID.
-     * 
-     */
     public String deploymentId() {
         return this.deploymentId;
     }
@@ -39,10 +27,6 @@ public final class DeploymentObservability {
     public Optional<Boolean> metrics() {
         return Optional.ofNullable(this.metrics);
     }
-    /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }

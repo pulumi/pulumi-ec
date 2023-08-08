@@ -20,99 +20,161 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDeploymentsResult {
-    private @Nullable GetDeploymentsApm apm;
+    /**
+     * @return Filter by APM resource kind status or configuration.
+     * 
+     */
+    private @Nullable List<GetDeploymentsApm> apms;
+    /**
+     * @return Filter the result set by the ID of the deployment template the deployment is based off.
+     * 
+     */
     private @Nullable String deploymentTemplateId;
     /**
      * @return List of deployments which match the specified query.
-     * * `deployments.#.deployment_id` - The deployment unique ID.
-     * * `deployments.#.alias` - Deployment alias.
-     * * `deployments.#.name` - The name of the deployment.
-     * * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-     * * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-     * * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-     * * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-     * * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-     * * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-     * * `deployments.#.apm_resource_id` - The APM resource unique ID.
-     * * `deployments.#.apm_ref_id` - The APM resource reference.
-     * * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-     * * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
      * 
      */
     private List<GetDeploymentsDeployment> deployments;
-    private @Nullable GetDeploymentsElasticsearch elasticsearch;
-    private @Nullable GetDeploymentsEnterpriseSearch enterpriseSearch;
+    /**
+     * @return Filter by Elasticsearch resource kind status or configuration.
+     * 
+     */
+    private @Nullable List<GetDeploymentsElasticsearch> elasticsearches;
+    /**
+     * @return Filter by Enterprise Search resource kind status or configuration.
+     * 
+     */
+    private @Nullable List<GetDeploymentsEnterpriseSearch> enterpriseSearches;
+    /**
+     * @return Filter the result set by their health status.
+     * 
+     */
     private @Nullable String healthy;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of this data source.
      * 
      */
     private String id;
-    private @Nullable GetDeploymentsIntegrationsServer integrationsServer;
-    private @Nullable GetDeploymentsKibana kibana;
+    /**
+     * @return Filter by Integrations Server resource kind status or configuration.
+     * 
+     */
+    private @Nullable List<GetDeploymentsIntegrationsServer> integrationsServers;
+    /**
+     * @return Filter by Kibana resource kind status or configuration.
+     * 
+     */
+    private @Nullable List<GetDeploymentsKibana> kibanas;
+    /**
+     * @return Prefix to filter the returned deployment list by.
+     * 
+     */
     private @Nullable String namePrefix;
+    /**
+     * @return The number of deployments actually returned.
+     * 
+     */
     private Integer returnCount;
+    /**
+     * @return The maximum number of deployments to return. Defaults to `100`.
+     * 
+     */
     private @Nullable Integer size;
+    /**
+     * @return Filter the result set by their assigned tags.
+     * 
+     */
     private @Nullable Map<String,String> tags;
 
     private GetDeploymentsResult() {}
-    public Optional<GetDeploymentsApm> apm() {
-        return Optional.ofNullable(this.apm);
+    /**
+     * @return Filter by APM resource kind status or configuration.
+     * 
+     */
+    public List<GetDeploymentsApm> apms() {
+        return this.apms == null ? List.of() : this.apms;
     }
+    /**
+     * @return Filter the result set by the ID of the deployment template the deployment is based off.
+     * 
+     */
     public Optional<String> deploymentTemplateId() {
         return Optional.ofNullable(this.deploymentTemplateId);
     }
     /**
      * @return List of deployments which match the specified query.
-     * * `deployments.#.deployment_id` - The deployment unique ID.
-     * * `deployments.#.alias` - Deployment alias.
-     * * `deployments.#.name` - The name of the deployment.
-     * * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-     * * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-     * * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-     * * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-     * * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-     * * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-     * * `deployments.#.apm_resource_id` - The APM resource unique ID.
-     * * `deployments.#.apm_ref_id` - The APM resource reference.
-     * * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-     * * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
      * 
      */
     public List<GetDeploymentsDeployment> deployments() {
         return this.deployments;
     }
-    public Optional<GetDeploymentsElasticsearch> elasticsearch() {
-        return Optional.ofNullable(this.elasticsearch);
+    /**
+     * @return Filter by Elasticsearch resource kind status or configuration.
+     * 
+     */
+    public List<GetDeploymentsElasticsearch> elasticsearches() {
+        return this.elasticsearches == null ? List.of() : this.elasticsearches;
     }
-    public Optional<GetDeploymentsEnterpriseSearch> enterpriseSearch() {
-        return Optional.ofNullable(this.enterpriseSearch);
+    /**
+     * @return Filter by Enterprise Search resource kind status or configuration.
+     * 
+     */
+    public List<GetDeploymentsEnterpriseSearch> enterpriseSearches() {
+        return this.enterpriseSearches == null ? List.of() : this.enterpriseSearches;
     }
+    /**
+     * @return Filter the result set by their health status.
+     * 
+     */
     public Optional<String> healthy() {
         return Optional.ofNullable(this.healthy);
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of this data source.
      * 
      */
     public String id() {
         return this.id;
     }
-    public Optional<GetDeploymentsIntegrationsServer> integrationsServer() {
-        return Optional.ofNullable(this.integrationsServer);
+    /**
+     * @return Filter by Integrations Server resource kind status or configuration.
+     * 
+     */
+    public List<GetDeploymentsIntegrationsServer> integrationsServers() {
+        return this.integrationsServers == null ? List.of() : this.integrationsServers;
     }
-    public Optional<GetDeploymentsKibana> kibana() {
-        return Optional.ofNullable(this.kibana);
+    /**
+     * @return Filter by Kibana resource kind status or configuration.
+     * 
+     */
+    public List<GetDeploymentsKibana> kibanas() {
+        return this.kibanas == null ? List.of() : this.kibanas;
     }
+    /**
+     * @return Prefix to filter the returned deployment list by.
+     * 
+     */
     public Optional<String> namePrefix() {
         return Optional.ofNullable(this.namePrefix);
     }
+    /**
+     * @return The number of deployments actually returned.
+     * 
+     */
     public Integer returnCount() {
         return this.returnCount;
     }
+    /**
+     * @return The maximum number of deployments to return. Defaults to `100`.
+     * 
+     */
     public Optional<Integer> size() {
         return Optional.ofNullable(this.size);
     }
+    /**
+     * @return Filter the result set by their assigned tags.
+     * 
+     */
     public Map<String,String> tags() {
         return this.tags == null ? Map.of() : this.tags;
     }
@@ -126,15 +188,15 @@ public final class GetDeploymentsResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable GetDeploymentsApm apm;
+        private @Nullable List<GetDeploymentsApm> apms;
         private @Nullable String deploymentTemplateId;
         private List<GetDeploymentsDeployment> deployments;
-        private @Nullable GetDeploymentsElasticsearch elasticsearch;
-        private @Nullable GetDeploymentsEnterpriseSearch enterpriseSearch;
+        private @Nullable List<GetDeploymentsElasticsearch> elasticsearches;
+        private @Nullable List<GetDeploymentsEnterpriseSearch> enterpriseSearches;
         private @Nullable String healthy;
         private String id;
-        private @Nullable GetDeploymentsIntegrationsServer integrationsServer;
-        private @Nullable GetDeploymentsKibana kibana;
+        private @Nullable List<GetDeploymentsIntegrationsServer> integrationsServers;
+        private @Nullable List<GetDeploymentsKibana> kibanas;
         private @Nullable String namePrefix;
         private Integer returnCount;
         private @Nullable Integer size;
@@ -142,15 +204,15 @@ public final class GetDeploymentsResult {
         public Builder() {}
         public Builder(GetDeploymentsResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.apm = defaults.apm;
+    	      this.apms = defaults.apms;
     	      this.deploymentTemplateId = defaults.deploymentTemplateId;
     	      this.deployments = defaults.deployments;
-    	      this.elasticsearch = defaults.elasticsearch;
-    	      this.enterpriseSearch = defaults.enterpriseSearch;
+    	      this.elasticsearches = defaults.elasticsearches;
+    	      this.enterpriseSearches = defaults.enterpriseSearches;
     	      this.healthy = defaults.healthy;
     	      this.id = defaults.id;
-    	      this.integrationsServer = defaults.integrationsServer;
-    	      this.kibana = defaults.kibana;
+    	      this.integrationsServers = defaults.integrationsServers;
+    	      this.kibanas = defaults.kibanas;
     	      this.namePrefix = defaults.namePrefix;
     	      this.returnCount = defaults.returnCount;
     	      this.size = defaults.size;
@@ -158,9 +220,12 @@ public final class GetDeploymentsResult {
         }
 
         @CustomType.Setter
-        public Builder apm(@Nullable GetDeploymentsApm apm) {
-            this.apm = apm;
+        public Builder apms(@Nullable List<GetDeploymentsApm> apms) {
+            this.apms = apms;
             return this;
+        }
+        public Builder apms(GetDeploymentsApm... apms) {
+            return apms(List.of(apms));
         }
         @CustomType.Setter
         public Builder deploymentTemplateId(@Nullable String deploymentTemplateId) {
@@ -176,14 +241,20 @@ public final class GetDeploymentsResult {
             return deployments(List.of(deployments));
         }
         @CustomType.Setter
-        public Builder elasticsearch(@Nullable GetDeploymentsElasticsearch elasticsearch) {
-            this.elasticsearch = elasticsearch;
+        public Builder elasticsearches(@Nullable List<GetDeploymentsElasticsearch> elasticsearches) {
+            this.elasticsearches = elasticsearches;
             return this;
         }
+        public Builder elasticsearches(GetDeploymentsElasticsearch... elasticsearches) {
+            return elasticsearches(List.of(elasticsearches));
+        }
         @CustomType.Setter
-        public Builder enterpriseSearch(@Nullable GetDeploymentsEnterpriseSearch enterpriseSearch) {
-            this.enterpriseSearch = enterpriseSearch;
+        public Builder enterpriseSearches(@Nullable List<GetDeploymentsEnterpriseSearch> enterpriseSearches) {
+            this.enterpriseSearches = enterpriseSearches;
             return this;
+        }
+        public Builder enterpriseSearches(GetDeploymentsEnterpriseSearch... enterpriseSearches) {
+            return enterpriseSearches(List.of(enterpriseSearches));
         }
         @CustomType.Setter
         public Builder healthy(@Nullable String healthy) {
@@ -196,14 +267,20 @@ public final class GetDeploymentsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder integrationsServer(@Nullable GetDeploymentsIntegrationsServer integrationsServer) {
-            this.integrationsServer = integrationsServer;
+        public Builder integrationsServers(@Nullable List<GetDeploymentsIntegrationsServer> integrationsServers) {
+            this.integrationsServers = integrationsServers;
             return this;
         }
+        public Builder integrationsServers(GetDeploymentsIntegrationsServer... integrationsServers) {
+            return integrationsServers(List.of(integrationsServers));
+        }
         @CustomType.Setter
-        public Builder kibana(@Nullable GetDeploymentsKibana kibana) {
-            this.kibana = kibana;
+        public Builder kibanas(@Nullable List<GetDeploymentsKibana> kibanas) {
+            this.kibanas = kibanas;
             return this;
+        }
+        public Builder kibanas(GetDeploymentsKibana... kibanas) {
+            return kibanas(List.of(kibanas));
         }
         @CustomType.Setter
         public Builder namePrefix(@Nullable String namePrefix) {
@@ -227,15 +304,15 @@ public final class GetDeploymentsResult {
         }
         public GetDeploymentsResult build() {
             final var o = new GetDeploymentsResult();
-            o.apm = apm;
+            o.apms = apms;
             o.deploymentTemplateId = deploymentTemplateId;
             o.deployments = deployments;
-            o.elasticsearch = elasticsearch;
-            o.enterpriseSearch = enterpriseSearch;
+            o.elasticsearches = elasticsearches;
+            o.enterpriseSearches = enterpriseSearches;
             o.healthy = healthy;
             o.id = id;
-            o.integrationsServer = integrationsServer;
-            o.kibana = kibana;
+            o.integrationsServers = integrationsServers;
+            o.kibanas = kibanas;
             o.namePrefix = namePrefix;
             o.returnCount = returnCount;
             o.size = size;

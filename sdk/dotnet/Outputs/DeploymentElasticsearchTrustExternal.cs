@@ -13,17 +13,8 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchTrustExternal
     {
-        /// <summary>
-        /// Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-        /// </summary>
         public readonly string RelationshipId;
-        /// <summary>
-        /// If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
-        /// </summary>
         public readonly bool TrustAll;
-        /// <summary>
-        /// The list of clusters to trust. Only used when `trust_all` is `false`.
-        /// </summary>
         public readonly ImmutableArray<string> TrustAllowlists;
 
         [OutputConstructor]

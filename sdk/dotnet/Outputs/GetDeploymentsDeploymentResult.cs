@@ -13,18 +13,57 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentsDeploymentResult
     {
+        /// <summary>
+        /// Deployment alias.
+        /// </summary>
         public readonly string Alias;
+        /// <summary>
+        /// The APM resource reference.
+        /// </summary>
         public readonly string ApmRefId;
+        /// <summary>
+        /// The APM resource unique ID.
+        /// </summary>
         public readonly string ApmResourceId;
+        /// <summary>
+        /// The deployment unique ID.
+        /// </summary>
         public readonly string DeploymentId;
+        /// <summary>
+        /// The Elasticsearch resource reference.
+        /// </summary>
         public readonly string ElasticsearchRefId;
+        /// <summary>
+        /// The Elasticsearch resource unique ID.
+        /// </summary>
         public readonly string ElasticsearchResourceId;
+        /// <summary>
+        /// The Enterprise Search resource reference.
+        /// </summary>
         public readonly string EnterpriseSearchRefId;
+        /// <summary>
+        /// The Enterprise Search resource unique ID.
+        /// </summary>
         public readonly string EnterpriseSearchResourceId;
+        /// <summary>
+        /// The Integrations Server resource reference.
+        /// </summary>
         public readonly string IntegrationsServerRefId;
+        /// <summary>
+        /// The Integrations Server resource unique ID.
+        /// </summary>
         public readonly string IntegrationsServerResourceId;
+        /// <summary>
+        /// The Kibana resource reference.
+        /// </summary>
         public readonly string KibanaRefId;
+        /// <summary>
+        /// The Kibana resource unique ID.
+        /// </summary>
         public readonly string KibanaResourceId;
+        /// <summary>
+        /// The name of the deployment.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

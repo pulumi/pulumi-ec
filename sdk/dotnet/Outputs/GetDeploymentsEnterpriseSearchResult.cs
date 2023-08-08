@@ -14,10 +14,16 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class GetDeploymentsEnterpriseSearchResult
     {
         /// <summary>
-        /// Overall health status of the deployment.
+        /// Overall health status of the resource instances.
         /// </summary>
         public readonly string? Healthy;
+        /// <summary>
+        /// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+        /// </summary>
         public readonly string? Status;
+        /// <summary>
+        /// Elastic stack version.
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

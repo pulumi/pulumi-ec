@@ -10,105 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
+    /// Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+    /// 
+    ///   Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+    /// 
+    ///   **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+    /// 
     /// ## Example Usage
-    /// ### With extension file
-    /// 
-    /// ```csharp
-    /// using System;
-    /// using System.Collections.Generic;
-    /// using System.IO;
-    /// using System.Security.Cryptography;
-    /// using System.Text;
-    /// using Pulumi;
-    /// using ElasticCloud = Pulumi.ElasticCloud;
-    /// 
-    /// 	private static string ComputeFileBase64Sha256(string path) {
-    /// 		var fileData = Encoding.UTF8.GetBytes(File.ReadAllText(path));
-    /// 		var hashData = SHA256.Create().ComputeHash(fileData);
-    /// 		return Convert.ToBase64String(hashData);
-    /// 	}
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var filePath = "/path/to/plugin.zip";
-    /// 
-    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("exampleExtension", new()
-    ///     {
-    ///         Description = "my extension",
-    ///         Version = "*",
-    ///         ExtensionType = "bundle",
-    ///         FilePath = filePath,
-    ///         FileHash = ComputeFileBase64Sha256(filePath),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ### With download URL
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using ElasticCloud = Pulumi.ElasticCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("exampleExtension", new()
-    ///     {
-    ///         Description = "my extension",
-    ///         DownloadUrl = "https://example.net",
-    ///         ExtensionType = "bundle",
-    ///         Version = "*",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ### Using extension in ec.Deployment
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using ElasticCloud = Pulumi.ElasticCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("exampleExtension", new()
-    ///     {
-    ///         Description = "my extension",
-    ///         Version = "*",
-    ///         ExtensionType = "bundle",
-    ///         DownloadUrl = "https://example.net",
-    ///     });
-    /// 
-    ///     var latest = ElasticCloud.GetStack.Invoke(new()
-    ///     {
-    ///         VersionRegex = "latest",
-    ///         Region = "us-east-1",
-    ///     });
-    /// 
-    ///     var withExtension = new ElasticCloud.Deployment("withExtension", new()
-    ///     {
-    ///         Region = "us-east-1",
-    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
-    ///         DeploymentTemplateId = "aws-io-optimized-v2",
-    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
-    ///         {
-    ///             Extensions = new[]
-    ///             {
-    ///                 new ElasticCloud.Inputs.DeploymentElasticsearchExtensionArgs
-    ///                 {
-    ///                     Name = exampleExtension.Name,
-    ///                     Type = "bundle",
-    ///                     Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
-    ///                     Url = exampleExtension.Url,
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// 
     /// ## Import
     /// 
-    /// You can import extensions using the `id`, for example
+    /// Extensions can be imported using the `id`, for example
     /// 
     /// ```sh
     ///  $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
@@ -118,61 +30,61 @@ namespace Pulumi.ElasticCloud
     public partial class DeploymentExtension : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Description of the extension.
+        /// Description for the extension
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// The URL to download the extension archive.
         /// </summary>
         [Output("downloadUrl")]
-        public Output<string?> DownloadUrl { get; private set; } = null!;
+        public Output<string> DownloadUrl { get; private set; } = null!;
 
         /// <summary>
-        /// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         /// </summary>
         [Output("extensionType")]
         public Output<string> ExtensionType { get; private set; } = null!;
 
         /// <summary>
-        /// Hash value of the file. If it is changed, the file is reuploaded.
+        /// Hash value of the file. Triggers re-uploading the file on change.
         /// </summary>
         [Output("fileHash")]
         public Output<string?> FileHash { get; private set; } = null!;
 
         /// <summary>
-        /// File path of the extension uploaded.
+        /// Local file path to upload as the extension.
         /// </summary>
         [Output("filePath")]
         public Output<string?> FilePath { get; private set; } = null!;
 
         /// <summary>
-        /// The datetime the extension was last modified.
+        /// The datatime the extension was last modified.
         /// </summary>
         [Output("lastModified")]
         public Output<string> LastModified { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the extension.
+        /// Name of the extension
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The extension file size in bytes.
+        /// The size of the extension file in bytes.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
-        /// The extension URL to be used in the plan.
+        /// The extension URL which will be used in the Elastic Cloud deployment plan.
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        /// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -224,7 +136,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentExtensionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the extension.
+        /// Description for the extension
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -236,31 +148,31 @@ namespace Pulumi.ElasticCloud
         public Input<string>? DownloadUrl { get; set; }
 
         /// <summary>
-        /// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         /// </summary>
         [Input("extensionType", required: true)]
         public Input<string> ExtensionType { get; set; } = null!;
 
         /// <summary>
-        /// Hash value of the file. If it is changed, the file is reuploaded.
+        /// Hash value of the file. Triggers re-uploading the file on change.
         /// </summary>
         [Input("fileHash")]
         public Input<string>? FileHash { get; set; }
 
         /// <summary>
-        /// File path of the extension uploaded.
+        /// Local file path to upload as the extension.
         /// </summary>
         [Input("filePath")]
         public Input<string>? FilePath { get; set; }
 
         /// <summary>
-        /// Name of the extension.
+        /// Name of the extension
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        /// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -274,7 +186,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentExtensionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the extension.
+        /// Description for the extension
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -286,49 +198,49 @@ namespace Pulumi.ElasticCloud
         public Input<string>? DownloadUrl { get; set; }
 
         /// <summary>
-        /// `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         /// </summary>
         [Input("extensionType")]
         public Input<string>? ExtensionType { get; set; }
 
         /// <summary>
-        /// Hash value of the file. If it is changed, the file is reuploaded.
+        /// Hash value of the file. Triggers re-uploading the file on change.
         /// </summary>
         [Input("fileHash")]
         public Input<string>? FileHash { get; set; }
 
         /// <summary>
-        /// File path of the extension uploaded.
+        /// Local file path to upload as the extension.
         /// </summary>
         [Input("filePath")]
         public Input<string>? FilePath { get; set; }
 
         /// <summary>
-        /// The datetime the extension was last modified.
+        /// The datatime the extension was last modified.
         /// </summary>
         [Input("lastModified")]
         public Input<string>? LastModified { get; set; }
 
         /// <summary>
-        /// Name of the extension.
+        /// Name of the extension
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The extension file size in bytes.
+        /// The size of the extension file in bytes.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
         /// <summary>
-        /// The extension URL to be used in the plan.
+        /// The extension URL which will be used in the Elastic Cloud deployment plan.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        /// Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

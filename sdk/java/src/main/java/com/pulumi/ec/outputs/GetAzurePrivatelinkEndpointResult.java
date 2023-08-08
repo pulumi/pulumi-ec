@@ -19,6 +19,10 @@ public final class GetAzurePrivatelinkEndpointResult {
      * 
      */
     private String id;
+    /**
+     * @return Region to retrieve the Private Link configuration for.
+     * 
+     */
     private String region;
     /**
      * @return The service alias to establish a connection to.
@@ -41,6 +45,10 @@ public final class GetAzurePrivatelinkEndpointResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Region to retrieve the Private Link configuration for.
+     * 
+     */
     public String region() {
         return this.region;
     }

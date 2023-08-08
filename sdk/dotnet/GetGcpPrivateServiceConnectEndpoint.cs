@@ -14,14 +14,13 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
         /// 
-        /// &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -43,14 +42,13 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
         /// 
-        /// &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -74,7 +72,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetGcpPrivateServiceConnectEndpointArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Region to retrieve the Private Link configuration for.
+        /// Region to retrieve the Prive Link configuration for.
         /// </summary>
         [Input("region", required: true)]
         public string Region { get; set; } = null!;
@@ -88,7 +86,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetGcpPrivateServiceConnectEndpointInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Region to retrieve the Private Link configuration for.
+        /// Region to retrieve the Prive Link configuration for.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -111,6 +109,9 @@ namespace Pulumi.ElasticCloud
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Region to retrieve the Prive Link configuration for.
+        /// </summary>
         public readonly string Region;
         /// <summary>
         /// The service attachment URI to attach the PSC endpoint to.

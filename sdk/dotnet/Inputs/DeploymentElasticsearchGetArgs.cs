@@ -13,31 +13,55 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentElasticsearchGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
+        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         /// </summary>
         [Input("autoscale")]
-        public Input<string>? Autoscale { get; set; }
+        public Input<bool>? Autoscale { get; set; }
 
         [Input("cloudId")]
         public Input<string>? CloudId { get; set; }
 
         /// <summary>
-        /// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+        /// 'cold' topology element
+        /// </summary>
+        [Input("cold")]
+        public Input<Inputs.DeploymentElasticsearchColdGetArgs>? Cold { get; set; }
+
+        /// <summary>
+        /// Elasticsearch settings which will be applied to all topologies
         /// </summary>
         [Input("config")]
         public Input<Inputs.DeploymentElasticsearchConfigGetArgs>? Config { get; set; }
+
+        /// <summary>
+        /// 'coordinating' topology element
+        /// </summary>
+        [Input("coordinating")]
+        public Input<Inputs.DeploymentElasticsearchCoordinatingGetArgs>? Coordinating { get; set; }
 
         [Input("extensions")]
         private InputList<Inputs.DeploymentElasticsearchExtensionGetArgs>? _extensions;
 
         /// <summary>
-        /// Custom Elasticsearch bundles or plugins. Can be set multiple times.
+        /// Optional Elasticsearch extensions such as custom bundles or plugins.
         /// </summary>
         public InputList<Inputs.DeploymentElasticsearchExtensionGetArgs> Extensions
         {
             get => _extensions ?? (_extensions = new InputList<Inputs.DeploymentElasticsearchExtensionGetArgs>());
             set => _extensions = value;
         }
+
+        /// <summary>
+        /// 'frozen' topology element
+        /// </summary>
+        [Input("frozen")]
+        public Input<Inputs.DeploymentElasticsearchFrozenGetArgs>? Frozen { get; set; }
+
+        /// <summary>
+        /// 'hot' topology element
+        /// </summary>
+        [Input("hot", required: true)]
+        public Input<Inputs.DeploymentElasticsearchHotGetArgs> Hot { get; set; } = null!;
 
         [Input("httpEndpoint")]
         public Input<string>? HttpEndpoint { get; set; }
@@ -46,13 +70,25 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? HttpsEndpoint { get; set; }
 
         /// <summary>
-        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+        /// 'master' topology element
+        /// </summary>
+        [Input("master")]
+        public Input<Inputs.DeploymentElasticsearchMasterGetArgs>? Master { get; set; }
+
+        /// <summary>
+        /// 'ml' topology element
+        /// </summary>
+        [Input("ml")]
+        public Input<Inputs.DeploymentElasticsearchMlGetArgs>? Ml { get; set; }
+
+        /// <summary>
+        /// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         /// </summary>
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -61,7 +97,7 @@ namespace Pulumi.ElasticCloud.Inputs
         private InputList<Inputs.DeploymentElasticsearchRemoteClusterGetArgs>? _remoteClusters;
 
         /// <summary>
-        /// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+        /// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         /// </summary>
         public InputList<Inputs.DeploymentElasticsearchRemoteClusterGetArgs> RemoteClusters
         {
@@ -73,35 +109,19 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? ResourceId { get; set; }
 
         /// <summary>
-        /// Restores data from a snapshot of another deployment.
+        /// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
         /// </summary>
+        [Input("snapshot")]
+        public Input<Inputs.DeploymentElasticsearchSnapshotGetArgs>? Snapshot { get; set; }
+
         [Input("snapshotSource")]
         public Input<Inputs.DeploymentElasticsearchSnapshotSourceGetArgs>? SnapshotSource { get; set; }
 
-        /// <summary>
-        /// Choose the configuration strategy used to apply the changes.
-        /// </summary>
         [Input("strategy")]
-        public Input<Inputs.DeploymentElasticsearchStrategyGetArgs>? Strategy { get; set; }
-
-        [Input("topologies")]
-        private InputList<Inputs.DeploymentElasticsearchTopologyGetArgs>? _topologies;
-
-        /// <summary>
-        /// Can be set multiple times to compose complex topologies.
-        /// </summary>
-        public InputList<Inputs.DeploymentElasticsearchTopologyGetArgs> Topologies
-        {
-            get => _topologies ?? (_topologies = new InputList<Inputs.DeploymentElasticsearchTopologyGetArgs>());
-            set => _topologies = value;
-        }
+        public Input<string>? Strategy { get; set; }
 
         [Input("trustAccounts")]
         private InputList<Inputs.DeploymentElasticsearchTrustAccountGetArgs>? _trustAccounts;
-
-        /// <summary>
-        /// The trust relationships with other ESS accounts.
-        /// </summary>
         public InputList<Inputs.DeploymentElasticsearchTrustAccountGetArgs> TrustAccounts
         {
             get => _trustAccounts ?? (_trustAccounts = new InputList<Inputs.DeploymentElasticsearchTrustAccountGetArgs>());
@@ -110,15 +130,14 @@ namespace Pulumi.ElasticCloud.Inputs
 
         [Input("trustExternals")]
         private InputList<Inputs.DeploymentElasticsearchTrustExternalGetArgs>? _trustExternals;
-
-        /// <summary>
-        /// The trust relationship with external entities (remote environments, remote accounts...).
-        /// </summary>
         public InputList<Inputs.DeploymentElasticsearchTrustExternalGetArgs> TrustExternals
         {
             get => _trustExternals ?? (_trustExternals = new InputList<Inputs.DeploymentElasticsearchTrustExternalGetArgs>());
             set => _trustExternals = value;
         }
+
+        [Input("warm")]
+        public Input<Inputs.DeploymentElasticsearchWarmGetArgs>? Warm { get; set; }
 
         public DeploymentElasticsearchGetArgs()
         {

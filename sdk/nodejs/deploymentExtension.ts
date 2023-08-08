@@ -5,74 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+ *
+ *   Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+ *
+ *   **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+ *
  * ## Example Usage
- * ### With extension file
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as crypto from "crypto";
- * import * as ec from "@pulumi/ec";
- * import * as fs from "fs";
- *
- * func computeFilebase64sha256(path string) string {
- * 	const fileData = Buffer.from(fs.readFileSync(path), 'binary')
- * 	return crypto.createHash('sha256').update(fileData).digest('hex')
- * }
- *
- * const filePath = "/path/to/plugin.zip";
- * const exampleExtension = new ec.DeploymentExtension("exampleExtension", {
- *     description: "my extension",
- *     version: "*",
- *     extensionType: "bundle",
- *     filePath: filePath,
- *     fileHash: computeFilebase64sha256(filePath),
- * });
- * ```
- * ### With download URL
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const exampleExtension = new ec.DeploymentExtension("exampleExtension", {
- *     description: "my extension",
- *     downloadUrl: "https://example.net",
- *     extensionType: "bundle",
- *     version: "*",
- * });
- * ```
- * ### Using extension in ec.Deployment
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const exampleExtension = new ec.DeploymentExtension("exampleExtension", {
- *     description: "my extension",
- *     version: "*",
- *     extensionType: "bundle",
- *     downloadUrl: "https://example.net",
- * });
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const withExtension = new ec.Deployment("withExtension", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {
- *         extensions: [{
- *             name: exampleExtension.name,
- *             type: "bundle",
- *             version: latest.then(latest => latest.version),
- *             url: exampleExtension.url,
- *         }],
- *     },
- * });
- * ```
  *
  * ## Import
  *
- * You can import extensions using the `id`, for example
+ * Extensions can be imported using the `id`, for example
  *
  * ```sh
  *  $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
@@ -107,43 +50,43 @@ export class DeploymentExtension extends pulumi.CustomResource {
     }
 
     /**
-     * Description of the extension.
+     * Description for the extension
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string>;
     /**
      * The URL to download the extension archive.
      */
-    public readonly downloadUrl!: pulumi.Output<string | undefined>;
+    public readonly downloadUrl!: pulumi.Output<string>;
     /**
-     * `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      */
     public readonly extensionType!: pulumi.Output<string>;
     /**
-     * Hash value of the file. If it is changed, the file is reuploaded.
+     * Hash value of the file. Triggers re-uploading the file on change.
      */
     public readonly fileHash!: pulumi.Output<string | undefined>;
     /**
-     * File path of the extension uploaded.
+     * Local file path to upload as the extension.
      */
     public readonly filePath!: pulumi.Output<string | undefined>;
     /**
-     * The datetime the extension was last modified.
+     * The datatime the extension was last modified.
      */
     public /*out*/ readonly lastModified!: pulumi.Output<string>;
     /**
-     * Name of the extension.
+     * Name of the extension
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The extension file size in bytes.
+     * The size of the extension file in bytes.
      */
     public /*out*/ readonly size!: pulumi.Output<number>;
     /**
-     * The extension URL to be used in the plan.
+     * The extension URL which will be used in the Elastic Cloud deployment plan.
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
-     * Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -199,7 +142,7 @@ export class DeploymentExtension extends pulumi.CustomResource {
  */
 export interface DeploymentExtensionState {
     /**
-     * Description of the extension.
+     * Description for the extension
      */
     description?: pulumi.Input<string>;
     /**
@@ -207,35 +150,35 @@ export interface DeploymentExtensionState {
      */
     downloadUrl?: pulumi.Input<string>;
     /**
-     * `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      */
     extensionType?: pulumi.Input<string>;
     /**
-     * Hash value of the file. If it is changed, the file is reuploaded.
+     * Hash value of the file. Triggers re-uploading the file on change.
      */
     fileHash?: pulumi.Input<string>;
     /**
-     * File path of the extension uploaded.
+     * Local file path to upload as the extension.
      */
     filePath?: pulumi.Input<string>;
     /**
-     * The datetime the extension was last modified.
+     * The datatime the extension was last modified.
      */
     lastModified?: pulumi.Input<string>;
     /**
-     * Name of the extension.
+     * Name of the extension
      */
     name?: pulumi.Input<string>;
     /**
-     * The extension file size in bytes.
+     * The size of the extension file in bytes.
      */
     size?: pulumi.Input<number>;
     /**
-     * The extension URL to be used in the plan.
+     * The extension URL which will be used in the Elastic Cloud deployment plan.
      */
     url?: pulumi.Input<string>;
     /**
-     * Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      */
     version?: pulumi.Input<string>;
 }
@@ -245,7 +188,7 @@ export interface DeploymentExtensionState {
  */
 export interface DeploymentExtensionArgs {
     /**
-     * Description of the extension.
+     * Description for the extension
      */
     description?: pulumi.Input<string>;
     /**
@@ -253,23 +196,23 @@ export interface DeploymentExtensionArgs {
      */
     downloadUrl?: pulumi.Input<string>;
     /**
-     * `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      */
     extensionType: pulumi.Input<string>;
     /**
-     * Hash value of the file. If it is changed, the file is reuploaded.
+     * Hash value of the file. Triggers re-uploading the file on change.
      */
     fileHash?: pulumi.Input<string>;
     /**
-     * File path of the extension uploaded.
+     * Local file path to upload as the extension.
      */
     filePath?: pulumi.Input<string>;
     /**
-     * Name of the extension.
+     * Name of the extension
      */
     name?: pulumi.Input<string>;
     /**
-     * Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      */
     version: pulumi.Input<string>;
 }

@@ -8,185 +8,26 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Basic
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
+ * ### With config
  *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const exampleMinimal = new ec.Deployment("exampleMinimal", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {},
- *     kibana: {},
- *     integrationsServer: {},
- *     enterpriseSearch: {},
- * });
- * ```
- * ### Tiered deployment with Autoscaling enabled
+ * `es.yaml`
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
+ * `deployment.tf`:
  *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const exampleMinimal = new ec.Deployment("exampleMinimal", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {
- *         autoscale: "true",
- *         topologies: [
- *             {
- *                 id: "cold",
- *             },
- *             {
- *                 id: "frozen",
- *             },
- *             {
- *                 id: "hot_content",
- *                 size: "8g",
- *                 autoscaling: {
- *                     maxSize: "128g",
- *                     maxSizeResource: "memory",
- *                 },
- *             },
- *             {
- *                 id: "ml",
- *             },
- *             {
- *                 id: "warm",
- *             },
- *         ],
- *     },
- *     kibana: {},
- *     integrationsServer: {},
- *     enterpriseSearch: {},
- * });
- * ```
- * ### With observability settings
+ * ### With autoscaling
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const exampleObservability = new ec.Deployment("exampleObservability", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {},
- *     kibana: {},
- *     observability: {
- *         deploymentId: ec_deployment.example_minimal.id,
- *     },
- * });
- * ```
+ * ### With observability
  *
  * It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deploymentId` to `self`.
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * ```
- * ### With Cross Cluster Search settings
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const sourceDeployment = new ec.Deployment("sourceDeployment", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {
- *         topologies: [{
- *             id: "hot_content",
- *             size: "1g",
- *         }],
- *     },
- * });
- * const ccs = new ec.Deployment("ccs", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-cross-cluster-search-v2",
- *     elasticsearch: {
- *         remoteClusters: [{
- *             deploymentId: sourceDeployment.id,
- *             alias: sourceDeployment.name,
- *             refId: sourceDeployment.elasticsearch.apply(elasticsearch => elasticsearch.refId),
- *         }],
- *     },
- *     kibana: {},
- * });
- * ```
- * ### With tags
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const withTags = new ec.Deployment("withTags", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {},
- *     tags: {
- *         owner: "elastic cloud",
- *         component: "search",
- *     },
- * });
- * ```
- * ### With configuration strategy
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * const withTags = new ec.Deployment("withTags", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {
- *         strategy: {
- *             type: "rolling_all",
- *         },
- *     },
- *     tags: {
- *         owner: "elastic cloud",
- *         component: "search",
- *     },
- * });
- * ```
+ * ### With Çross Cluster Search settings
  *
  * ## Import
  *
- * ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes. ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example
- *
- * ```sh
- *  $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
- * ```
+ * ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes. ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported. ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported. ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing. Deployments can be imported using the `id`, for example: <break><break>```sh<break> $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed <break>```<break><break>
  */
 export class Deployment extends pulumi.CustomResource {
     /**
@@ -221,106 +62,73 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly alias!: pulumi.Output<string>;
     /**
-     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+     * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      */
     public readonly apm!: pulumi.Output<outputs.DeploymentApm | undefined>;
-    /**
-     * Auto-generated APM secret_token, empty unless an `apm` resource is specified.
-     * * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
-     * * `elasticsearch.#.region` - Elasticsearch region.
-     * * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
-     * * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
-     * * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
-     * * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
-     * * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
-     * * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
-     * * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
-     * * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
-     * * `kibana.#.resource_id` - Kibana resource unique identifier.
-     * * `kibana.#.region` - Kibana region.
-     * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
-     * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
-     * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
-     * * `integrations_server.#.region` - Integrations Server region.
-     * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
-     * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
-     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
-     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
-     * * `apm.#.resource_id` - APM resource unique identifier.
-     * * `apm.#.region` - APM region.
-     * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
-     * * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
-     * * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
-     * * `enterprise_search.#.region` - Enterprise Search region.
-     * * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
-     * * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
-     * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
-     * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
-     * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
-     * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
-     */
     public /*out*/ readonly apmSecretToken!: pulumi.Output<string>;
     /**
      * Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      */
     public readonly deploymentTemplateId!: pulumi.Output<string>;
     /**
-     * Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+     * Elasticsearch cluster definition
      */
     public readonly elasticsearch!: pulumi.Output<outputs.DeploymentElasticsearch>;
     /**
-     * Auto-generated Elasticsearch password.
+     * Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
+     * <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
+     * import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
      */
     public /*out*/ readonly elasticsearchPassword!: pulumi.Output<string>;
     /**
-     * Auto-generated Elasticsearch username.
+     * Username for authenticating to the Elasticsearch resource.
      */
     public /*out*/ readonly elasticsearchUsername!: pulumi.Output<string>;
     /**
-     * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+     * Enterprise Search cluster definition.
      */
     public readonly enterpriseSearch!: pulumi.Output<outputs.DeploymentEnterpriseSearch | undefined>;
     /**
-     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
      */
     public readonly integrationsServer!: pulumi.Output<outputs.DeploymentIntegrationsServer | undefined>;
     /**
-     * Kibana instance definition, can only be specified once.
+     * Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     public readonly kibana!: pulumi.Output<outputs.DeploymentKibana | undefined>;
     /**
-     * Name of the deployment.
+     * Name for the deployment
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+     * current deployment itself by setting observability.deployment_id to `self`.
      */
     public readonly observability!: pulumi.Output<outputs.DeploymentObservability | undefined>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * returned as part of the error.
      */
-    public readonly requestId!: pulumi.Output<string | undefined>;
+    public readonly requestId!: pulumi.Output<string>;
     /**
-     * Key value map of arbitrary string tags.
+     * Explicitly resets the elasticsearch_password when true
+     */
+    public readonly resetElasticsearchPassword!: pulumi.Output<boolean | undefined>;
+    /**
+     * Optional map of deployment tags
      */
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * List of traffic filter rule identifiers that will be applied to the deployment.
+     * List of traffic filters rule identifiers that will be applied to the deployment.
      */
-    public readonly trafficFilters!: pulumi.Output<string[] | undefined>;
+    public readonly trafficFilters!: pulumi.Output<string[]>;
     /**
-     * Elastic Stack version to use for all the deployment resources.
+     * Elastic Stack version to use for all of the deployment resources.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -351,6 +159,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["observability"] = state ? state.observability : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["requestId"] = state ? state.requestId : undefined;
+            resourceInputs["resetElasticsearchPassword"] = state ? state.resetElasticsearchPassword : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["trafficFilters"] = state ? state.trafficFilters : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
@@ -379,6 +188,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["observability"] = args ? args.observability : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["requestId"] = args ? args.requestId : undefined;
+            resourceInputs["resetElasticsearchPassword"] = args ? args.resetElasticsearchPassword : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["trafficFilters"] = args ? args.trafficFilters : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
@@ -402,106 +212,73 @@ export interface DeploymentState {
      */
     alias?: pulumi.Input<string>;
     /**
-     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+     * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      */
     apm?: pulumi.Input<inputs.DeploymentApm>;
-    /**
-     * Auto-generated APM secret_token, empty unless an `apm` resource is specified.
-     * * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
-     * * `elasticsearch.#.region` - Elasticsearch region.
-     * * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
-     * * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
-     * * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
-     * * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
-     * * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
-     * * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
-     * * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
-     * * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
-     * * `kibana.#.resource_id` - Kibana resource unique identifier.
-     * * `kibana.#.region` - Kibana region.
-     * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
-     * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
-     * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
-     * * `integrations_server.#.region` - Integrations Server region.
-     * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
-     * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
-     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
-     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
-     * * `apm.#.resource_id` - APM resource unique identifier.
-     * * `apm.#.region` - APM region.
-     * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
-     * * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
-     * * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
-     * * `enterprise_search.#.region` - Enterprise Search region.
-     * * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
-     * * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
-     * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
-     * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind refId of the destination deployment.
-     * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
-     * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
-     */
     apmSecretToken?: pulumi.Input<string>;
     /**
      * Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      */
     deploymentTemplateId?: pulumi.Input<string>;
     /**
-     * Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+     * Elasticsearch cluster definition
      */
     elasticsearch?: pulumi.Input<inputs.DeploymentElasticsearch>;
     /**
-     * Auto-generated Elasticsearch password.
+     * Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
+     * <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
+     * import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
      */
     elasticsearchPassword?: pulumi.Input<string>;
     /**
-     * Auto-generated Elasticsearch username.
+     * Username for authenticating to the Elasticsearch resource.
      */
     elasticsearchUsername?: pulumi.Input<string>;
     /**
-     * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+     * Enterprise Search cluster definition.
      */
     enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch>;
     /**
-     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
      */
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
-     * Kibana instance definition, can only be specified once.
+     * Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * Name of the deployment.
+     * Name for the deployment
      */
     name?: pulumi.Input<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+     * current deployment itself by setting observability.deployment_id to `self`.
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region?: pulumi.Input<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * returned as part of the error.
      */
     requestId?: pulumi.Input<string>;
     /**
-     * Key value map of arbitrary string tags.
+     * Explicitly resets the elasticsearch_password when true
+     */
+    resetElasticsearchPassword?: pulumi.Input<boolean>;
+    /**
+     * Optional map of deployment tags
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * List of traffic filter rule identifiers that will be applied to the deployment.
+     * List of traffic filters rule identifiers that will be applied to the deployment.
      */
     trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Elastic Stack version to use for all the deployment resources.
+     * Elastic Stack version to use for all of the deployment resources.
      */
     version?: pulumi.Input<string>;
 }
@@ -515,7 +292,7 @@ export interface DeploymentArgs {
      */
     alias?: pulumi.Input<string>;
     /**
-     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+     * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      */
     apm?: pulumi.Input<inputs.DeploymentApm>;
     /**
@@ -523,47 +300,54 @@ export interface DeploymentArgs {
      */
     deploymentTemplateId: pulumi.Input<string>;
     /**
-     * Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+     * Elasticsearch cluster definition
      */
     elasticsearch: pulumi.Input<inputs.DeploymentElasticsearch>;
     /**
-     * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+     * Enterprise Search cluster definition.
      */
     enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch>;
     /**
-     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
      */
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
-     * Kibana instance definition, can only be specified once.
+     * Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * Name of the deployment.
+     * Name for the deployment
      */
     name?: pulumi.Input<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+     * current deployment itself by setting observability.deployment_id to `self`.
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region: pulumi.Input<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * returned as part of the error.
      */
     requestId?: pulumi.Input<string>;
     /**
-     * Key value map of arbitrary string tags.
+     * Explicitly resets the elasticsearch_password when true
+     */
+    resetElasticsearchPassword?: pulumi.Input<boolean>;
+    /**
+     * Optional map of deployment tags
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * List of traffic filter rule identifiers that will be applied to the deployment.
+     * List of traffic filters rule identifiers that will be applied to the deployment.
      */
     trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Elastic Stack version to use for all the deployment resources.
+     * Elastic Stack version to use for all of the deployment resources.
      */
     version: pulumi.Input<string>;
 }

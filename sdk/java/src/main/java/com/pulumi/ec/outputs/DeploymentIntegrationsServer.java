@@ -5,7 +5,8 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.DeploymentIntegrationsServerConfig;
-import com.pulumi.ec.outputs.DeploymentIntegrationsServerTopology;
+import com.pulumi.ec.outputs.DeploymentIntegrationsServerEndpoints;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,57 +14,52 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentIntegrationsServer {
-    private @Nullable String apmHttpsEndpoint;
     /**
-     * @return Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+     * @return Optionally define the Integrations Server configuration options for the IntegrationsServer Server
      * 
      */
     private @Nullable DeploymentIntegrationsServerConfig config;
+    private @Nullable String elasticsearchClusterRefId;
     /**
-     * @return This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
+     * @return URLs for the accessing the Fleet and APM API&#39;s within this Integrations Server resource.
      * 
      */
-    private @Nullable String elasticsearchClusterRefId;
-    private @Nullable String fleetHttpsEndpoint;
+    private @Nullable DeploymentIntegrationsServerEndpoints endpoints;
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
-    /**
-     * @return Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-     * 
-     */
+    private @Nullable String instanceConfigurationId;
     private @Nullable String refId;
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     private @Nullable String region;
     private @Nullable String resourceId;
+    private @Nullable String size;
     /**
-     * @return Can be set multiple times to compose complex topologies.
+     * @return Optional size type, defaults to &#34;memory&#34;.
      * 
      */
-    private @Nullable DeploymentIntegrationsServerTopology topology;
+    private @Nullable String sizeResource;
+    private @Nullable Integer zoneCount;
 
     private DeploymentIntegrationsServer() {}
-    public Optional<String> apmHttpsEndpoint() {
-        return Optional.ofNullable(this.apmHttpsEndpoint);
-    }
     /**
-     * @return Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+     * @return Optionally define the Integrations Server configuration options for the IntegrationsServer Server
      * 
      */
     public Optional<DeploymentIntegrationsServerConfig> config() {
         return Optional.ofNullable(this.config);
     }
-    /**
-     * @return This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<String> elasticsearchClusterRefId() {
         return Optional.ofNullable(this.elasticsearchClusterRefId);
     }
-    public Optional<String> fleetHttpsEndpoint() {
-        return Optional.ofNullable(this.fleetHttpsEndpoint);
+    /**
+     * @return URLs for the accessing the Fleet and APM API&#39;s within this Integrations Server resource.
+     * 
+     */
+    public Optional<DeploymentIntegrationsServerEndpoints> endpoints() {
+        return Optional.ofNullable(this.endpoints);
     }
     public Optional<String> httpEndpoint() {
         return Optional.ofNullable(this.httpEndpoint);
@@ -71,15 +67,14 @@ public final class DeploymentIntegrationsServer {
     public Optional<String> httpsEndpoint() {
         return Optional.ofNullable(this.httpsEndpoint);
     }
-    /**
-     * @return Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-     * 
-     */
+    public Optional<String> instanceConfigurationId() {
+        return Optional.ofNullable(this.instanceConfigurationId);
+    }
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<String> region() {
@@ -88,12 +83,18 @@ public final class DeploymentIntegrationsServer {
     public Optional<String> resourceId() {
         return Optional.ofNullable(this.resourceId);
     }
+    public Optional<String> size() {
+        return Optional.ofNullable(this.size);
+    }
     /**
-     * @return Can be set multiple times to compose complex topologies.
+     * @return Optional size type, defaults to &#34;memory&#34;.
      * 
      */
-    public Optional<DeploymentIntegrationsServerTopology> topology() {
-        return Optional.ofNullable(this.topology);
+    public Optional<String> sizeResource() {
+        return Optional.ofNullable(this.sizeResource);
+    }
+    public Optional<Integer> zoneCount() {
+        return Optional.ofNullable(this.zoneCount);
     }
 
     public static Builder builder() {
@@ -105,36 +106,35 @@ public final class DeploymentIntegrationsServer {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String apmHttpsEndpoint;
         private @Nullable DeploymentIntegrationsServerConfig config;
         private @Nullable String elasticsearchClusterRefId;
-        private @Nullable String fleetHttpsEndpoint;
+        private @Nullable DeploymentIntegrationsServerEndpoints endpoints;
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
+        private @Nullable String instanceConfigurationId;
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable String resourceId;
-        private @Nullable DeploymentIntegrationsServerTopology topology;
+        private @Nullable String size;
+        private @Nullable String sizeResource;
+        private @Nullable Integer zoneCount;
         public Builder() {}
         public Builder(DeploymentIntegrationsServer defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.apmHttpsEndpoint = defaults.apmHttpsEndpoint;
     	      this.config = defaults.config;
     	      this.elasticsearchClusterRefId = defaults.elasticsearchClusterRefId;
-    	      this.fleetHttpsEndpoint = defaults.fleetHttpsEndpoint;
+    	      this.endpoints = defaults.endpoints;
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
+    	      this.instanceConfigurationId = defaults.instanceConfigurationId;
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.resourceId = defaults.resourceId;
-    	      this.topology = defaults.topology;
+    	      this.size = defaults.size;
+    	      this.sizeResource = defaults.sizeResource;
+    	      this.zoneCount = defaults.zoneCount;
         }
 
-        @CustomType.Setter
-        public Builder apmHttpsEndpoint(@Nullable String apmHttpsEndpoint) {
-            this.apmHttpsEndpoint = apmHttpsEndpoint;
-            return this;
-        }
         @CustomType.Setter
         public Builder config(@Nullable DeploymentIntegrationsServerConfig config) {
             this.config = config;
@@ -146,8 +146,8 @@ public final class DeploymentIntegrationsServer {
             return this;
         }
         @CustomType.Setter
-        public Builder fleetHttpsEndpoint(@Nullable String fleetHttpsEndpoint) {
-            this.fleetHttpsEndpoint = fleetHttpsEndpoint;
+        public Builder endpoints(@Nullable DeploymentIntegrationsServerEndpoints endpoints) {
+            this.endpoints = endpoints;
             return this;
         }
         @CustomType.Setter
@@ -158,6 +158,11 @@ public final class DeploymentIntegrationsServer {
         @CustomType.Setter
         public Builder httpsEndpoint(@Nullable String httpsEndpoint) {
             this.httpsEndpoint = httpsEndpoint;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
+            this.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
         @CustomType.Setter
@@ -176,22 +181,34 @@ public final class DeploymentIntegrationsServer {
             return this;
         }
         @CustomType.Setter
-        public Builder topology(@Nullable DeploymentIntegrationsServerTopology topology) {
-            this.topology = topology;
+        public Builder size(@Nullable String size) {
+            this.size = size;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder sizeResource(@Nullable String sizeResource) {
+            this.sizeResource = sizeResource;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder zoneCount(@Nullable Integer zoneCount) {
+            this.zoneCount = zoneCount;
             return this;
         }
         public DeploymentIntegrationsServer build() {
             final var o = new DeploymentIntegrationsServer();
-            o.apmHttpsEndpoint = apmHttpsEndpoint;
             o.config = config;
             o.elasticsearchClusterRefId = elasticsearchClusterRefId;
-            o.fleetHttpsEndpoint = fleetHttpsEndpoint;
+            o.endpoints = endpoints;
             o.httpEndpoint = httpEndpoint;
             o.httpsEndpoint = httpsEndpoint;
+            o.instanceConfigurationId = instanceConfigurationId;
             o.refId = refId;
             o.region = region;
             o.resourceId = resourceId;
-            o.topology = topology;
+            o.size = size;
+            o.sizeResource = sizeResource;
+            o.zoneCount = zoneCount;
             return o;
         }
     }

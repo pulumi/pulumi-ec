@@ -17,14 +17,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     public static final DeploymentExtensionState Empty = new DeploymentExtensionState();
 
     /**
-     * Description of the extension.
+     * Description for the extension
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of the extension.
+     * @return Description for the extension
      * 
      */
     public Optional<Output<String>> description() {
@@ -47,14 +47,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
     @Import(name="extensionType")
     private @Nullable Output<String> extensionType;
 
     /**
-     * @return `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * @return Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
     public Optional<Output<String>> extensionType() {
@@ -62,14 +62,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Hash value of the file. If it is changed, the file is reuploaded.
+     * Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
     @Import(name="fileHash")
     private @Nullable Output<String> fileHash;
 
     /**
-     * @return Hash value of the file. If it is changed, the file is reuploaded.
+     * @return Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
     public Optional<Output<String>> fileHash() {
@@ -77,14 +77,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * File path of the extension uploaded.
+     * Local file path to upload as the extension.
      * 
      */
     @Import(name="filePath")
     private @Nullable Output<String> filePath;
 
     /**
-     * @return File path of the extension uploaded.
+     * @return Local file path to upload as the extension.
      * 
      */
     public Optional<Output<String>> filePath() {
@@ -92,14 +92,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The datetime the extension was last modified.
+     * The datatime the extension was last modified.
      * 
      */
     @Import(name="lastModified")
     private @Nullable Output<String> lastModified;
 
     /**
-     * @return The datetime the extension was last modified.
+     * @return The datatime the extension was last modified.
      * 
      */
     public Optional<Output<String>> lastModified() {
@@ -107,14 +107,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Name of the extension.
+     * Name of the extension
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the extension.
+     * @return Name of the extension
      * 
      */
     public Optional<Output<String>> name() {
@@ -122,14 +122,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The extension file size in bytes.
+     * The size of the extension file in bytes.
      * 
      */
     @Import(name="size")
     private @Nullable Output<Integer> size;
 
     /**
-     * @return The extension file size in bytes.
+     * @return The size of the extension file in bytes.
      * 
      */
     public Optional<Output<Integer>> size() {
@@ -137,14 +137,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The extension URL to be used in the plan.
+     * The extension URL which will be used in the Elastic Cloud deployment plan.
      * 
      */
     @Import(name="url")
     private @Nullable Output<String> url;
 
     /**
-     * @return The extension URL to be used in the plan.
+     * @return The extension URL which will be used in the Elastic Cloud deployment plan.
      * 
      */
     public Optional<Output<String>> url() {
@@ -152,14 +152,14 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * @return Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
     public Optional<Output<String>> version() {
@@ -200,7 +200,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param description Description of the extension.
+         * @param description Description for the extension
          * 
          * @return builder
          * 
@@ -211,7 +211,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param description Description of the extension.
+         * @param description Description for the extension
          * 
          * @return builder
          * 
@@ -242,7 +242,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param extensionType `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+         * @param extensionType Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
          * 
          * @return builder
          * 
@@ -253,7 +253,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param extensionType `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+         * @param extensionType Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
          * 
          * @return builder
          * 
@@ -263,7 +263,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param fileHash Hash value of the file. If it is changed, the file is reuploaded.
+         * @param fileHash Hash value of the file. Triggers re-uploading the file on change.
          * 
          * @return builder
          * 
@@ -274,7 +274,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param fileHash Hash value of the file. If it is changed, the file is reuploaded.
+         * @param fileHash Hash value of the file. Triggers re-uploading the file on change.
          * 
          * @return builder
          * 
@@ -284,7 +284,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param filePath File path of the extension uploaded.
+         * @param filePath Local file path to upload as the extension.
          * 
          * @return builder
          * 
@@ -295,7 +295,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param filePath File path of the extension uploaded.
+         * @param filePath Local file path to upload as the extension.
          * 
          * @return builder
          * 
@@ -305,7 +305,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param lastModified The datetime the extension was last modified.
+         * @param lastModified The datatime the extension was last modified.
          * 
          * @return builder
          * 
@@ -316,7 +316,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param lastModified The datetime the extension was last modified.
+         * @param lastModified The datatime the extension was last modified.
          * 
          * @return builder
          * 
@@ -326,7 +326,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param name Name of the extension.
+         * @param name Name of the extension
          * 
          * @return builder
          * 
@@ -337,7 +337,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param name Name of the extension.
+         * @param name Name of the extension
          * 
          * @return builder
          * 
@@ -347,7 +347,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param size The extension file size in bytes.
+         * @param size The size of the extension file in bytes.
          * 
          * @return builder
          * 
@@ -358,7 +358,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param size The extension file size in bytes.
+         * @param size The size of the extension file in bytes.
          * 
          * @return builder
          * 
@@ -368,7 +368,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param url The extension URL to be used in the plan.
+         * @param url The extension URL which will be used in the Elastic Cloud deployment plan.
          * 
          * @return builder
          * 
@@ -379,7 +379,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param url The extension URL to be used in the plan.
+         * @param url The extension URL which will be used in the Elastic Cloud deployment plan.
          * 
          * @return builder
          * 
@@ -389,7 +389,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param version Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+         * @param version Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
          * 
          * @return builder
          * 
@@ -400,7 +400,7 @@ public final class DeploymentExtensionState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param version Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+         * @param version Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
          * 
          * @return builder
          * 

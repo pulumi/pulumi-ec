@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
 func GetApikey(ctx *pulumi.Context) string {

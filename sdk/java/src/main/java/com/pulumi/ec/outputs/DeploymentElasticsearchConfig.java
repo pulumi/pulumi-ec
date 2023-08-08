@@ -13,68 +13,28 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentElasticsearchConfig {
     private @Nullable String dockerImage;
-    /**
-     * @return List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-     * 
-     */
     private @Nullable List<String> plugins;
-    /**
-     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     private @Nullable String userSettingsJson;
-    /**
-     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     private @Nullable String userSettingsOverrideJson;
-    /**
-     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     private @Nullable String userSettingsOverrideYaml;
-    /**
-     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     private @Nullable String userSettingsYaml;
 
     private DeploymentElasticsearchConfig() {}
     public Optional<String> dockerImage() {
         return Optional.ofNullable(this.dockerImage);
     }
-    /**
-     * @return List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-     * 
-     */
     public List<String> plugins() {
         return this.plugins == null ? List.of() : this.plugins;
     }
-    /**
-     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<String> userSettingsJson() {
         return Optional.ofNullable(this.userSettingsJson);
     }
-    /**
-     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<String> userSettingsOverrideJson() {
         return Optional.ofNullable(this.userSettingsOverrideJson);
     }
-    /**
-     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<String> userSettingsOverrideYaml() {
         return Optional.ofNullable(this.userSettingsOverrideYaml);
     }
-    /**
-     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<String> userSettingsYaml() {
         return Optional.ofNullable(this.userSettingsYaml);
     }

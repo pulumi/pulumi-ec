@@ -17,14 +17,14 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
     public static final DeploymentElasticsearchKeystoreState Empty = new DeploymentElasticsearchKeystoreState();
 
     /**
-     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      * 
      */
     @Import(name="asFile")
     private @Nullable Output<Boolean> asFile;
 
     /**
-     * @return if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * @return Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      * 
      */
     public Optional<Output<Boolean>> asFile() {
@@ -32,14 +32,14 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
     }
 
     /**
-     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      * 
      */
     @Import(name="deploymentId")
     private @Nullable Output<String> deploymentId;
 
     /**
-     * @return Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * @return Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      * 
      */
     public Optional<Output<String>> deploymentId() {
@@ -47,14 +47,14 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
     }
 
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      * 
      */
     @Import(name="settingName")
     private @Nullable Output<String> settingName;
 
     /**
-     * @return Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * @return Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      * 
      */
     public Optional<Output<String>> settingName() {
@@ -104,7 +104,7 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
         }
 
         /**
-         * @param asFile if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+         * @param asFile Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
         }
 
         /**
-         * @param asFile if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+         * @param asFile Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
          * 
          * @return builder
          * 
@@ -125,7 +125,7 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
         }
 
         /**
-         * @param deploymentId Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+         * @param deploymentId Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
         }
 
         /**
-         * @param deploymentId Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+         * @param deploymentId Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
         }
 
         /**
-         * @param settingName Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+         * @param settingName Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class DeploymentElasticsearchKeystoreState extends com.pulumi.resou
         }
 
         /**
-         * @param settingName Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+         * @param settingName Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
          * 
          * @return builder
          * 

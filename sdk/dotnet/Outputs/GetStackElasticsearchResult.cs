@@ -13,12 +13,33 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetStackElasticsearchResult
     {
+        /// <summary>
+        /// Maximum size of the instances.
+        /// </summary>
         public readonly int CapacityConstraintsMax;
+        /// <summary>
+        /// Minimum size of the instances.
+        /// </summary>
         public readonly int CapacityConstraintsMin;
+        /// <summary>
+        /// List of node types compatible with this one.
+        /// </summary>
         public readonly ImmutableArray<string> CompatibleNodeTypes;
+        /// <summary>
+        /// List of default plugins.
+        /// </summary>
         public readonly ImmutableArray<string> DefaultPlugins;
+        /// <summary>
+        /// List of configuration options that cannot be overridden by user settings.
+        /// </summary>
         public readonly ImmutableArray<string> Denylists;
+        /// <summary>
+        /// Docker image to use for the Elasticsearch cluster instances.
+        /// </summary>
         public readonly string DockerImage;
+        /// <summary>
+        /// List of available plugins to be specified by users in Elasticsearch cluster instances.
+        /// </summary>
         public readonly ImmutableArray<string> Plugins;
 
         [OutputConstructor]

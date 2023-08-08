@@ -12,24 +12,40 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetDeploymentsKibana {
     /**
-     * @return Overall health status of the deployment.
+     * @return Overall health status of the resource instances.
      * 
      */
     private @Nullable String healthy;
+    /**
+     * @return Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     * 
+     */
     private @Nullable String status;
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     private @Nullable String version;
 
     private GetDeploymentsKibana() {}
     /**
-     * @return Overall health status of the deployment.
+     * @return Overall health status of the resource instances.
      * 
      */
     public Optional<String> healthy() {
         return Optional.ofNullable(this.healthy);
     }
+    /**
+     * @return Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     * 
+     */
     public Optional<String> status() {
         return Optional.ofNullable(this.status);
     }
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public Optional<String> version() {
         return Optional.ofNullable(this.version);
     }

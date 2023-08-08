@@ -13,13 +13,26 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetStackKibanaResult
     {
+        /// <summary>
+        /// Maximum size of the instances.
+        /// </summary>
         public readonly int CapacityConstraintsMax;
+        /// <summary>
+        /// Minimum size of the instances.
+        /// </summary>
         public readonly int CapacityConstraintsMin;
+        /// <summary>
+        /// List of node types compatible with this one.
+        /// </summary>
         public readonly ImmutableArray<string> CompatibleNodeTypes;
-        public readonly ImmutableArray<string> DefaultPlugins;
+        /// <summary>
+        /// List of configuration options that cannot be overridden by user settings.
+        /// </summary>
         public readonly ImmutableArray<string> Denylists;
+        /// <summary>
+        /// Docker image to use for the Kibana instance.
+        /// </summary>
         public readonly string DockerImage;
-        public readonly ImmutableArray<string> Plugins;
 
         [OutputConstructor]
         private GetStackKibanaResult(
@@ -29,21 +42,15 @@ namespace Pulumi.ElasticCloud.Outputs
 
             ImmutableArray<string> compatibleNodeTypes,
 
-            ImmutableArray<string> defaultPlugins,
-
             ImmutableArray<string> denylists,
 
-            string dockerImage,
-
-            ImmutableArray<string> plugins)
+            string dockerImage)
         {
             CapacityConstraintsMax = capacityConstraintsMax;
             CapacityConstraintsMin = capacityConstraintsMin;
             CompatibleNodeTypes = compatibleNodeTypes;
-            DefaultPlugins = defaultPlugins;
             Denylists = denylists;
             DockerImage = dockerImage;
-            Plugins = plugins;
         }
     }
 }

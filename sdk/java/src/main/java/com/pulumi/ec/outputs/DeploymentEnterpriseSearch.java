@@ -5,7 +5,8 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.DeploymentEnterpriseSearchConfig;
-import com.pulumi.ec.outputs.DeploymentEnterpriseSearchTopology;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,46 +15,40 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentEnterpriseSearch {
     /**
-     * @return Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+     * @return Optionally define the Enterprise Search configuration options for the Enterprise Search Server
      * 
      */
     private @Nullable DeploymentEnterpriseSearchConfig config;
-    /**
-     * @return This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     private @Nullable String elasticsearchClusterRefId;
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
-    /**
-     * @return Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-     * 
-     */
+    private @Nullable String instanceConfigurationId;
+    private @Nullable Boolean nodeTypeAppserver;
+    private @Nullable Boolean nodeTypeConnector;
+    private @Nullable Boolean nodeTypeWorker;
     private @Nullable String refId;
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     private @Nullable String region;
     private @Nullable String resourceId;
+    private @Nullable String size;
     /**
-     * @return Can be set multiple times to compose complex topologies.
+     * @return Optional size type, defaults to &#34;memory&#34;.
      * 
      */
-    private @Nullable DeploymentEnterpriseSearchTopology topology;
+    private @Nullable String sizeResource;
+    private @Nullable Integer zoneCount;
 
     private DeploymentEnterpriseSearch() {}
     /**
-     * @return Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+     * @return Optionally define the Enterprise Search configuration options for the Enterprise Search Server
      * 
      */
     public Optional<DeploymentEnterpriseSearchConfig> config() {
         return Optional.ofNullable(this.config);
     }
-    /**
-     * @return This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<String> elasticsearchClusterRefId() {
         return Optional.ofNullable(this.elasticsearchClusterRefId);
     }
@@ -63,15 +58,23 @@ public final class DeploymentEnterpriseSearch {
     public Optional<String> httpsEndpoint() {
         return Optional.ofNullable(this.httpsEndpoint);
     }
-    /**
-     * @return Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-     * 
-     */
+    public Optional<String> instanceConfigurationId() {
+        return Optional.ofNullable(this.instanceConfigurationId);
+    }
+    public Optional<Boolean> nodeTypeAppserver() {
+        return Optional.ofNullable(this.nodeTypeAppserver);
+    }
+    public Optional<Boolean> nodeTypeConnector() {
+        return Optional.ofNullable(this.nodeTypeConnector);
+    }
+    public Optional<Boolean> nodeTypeWorker() {
+        return Optional.ofNullable(this.nodeTypeWorker);
+    }
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<String> region() {
@@ -80,12 +83,18 @@ public final class DeploymentEnterpriseSearch {
     public Optional<String> resourceId() {
         return Optional.ofNullable(this.resourceId);
     }
+    public Optional<String> size() {
+        return Optional.ofNullable(this.size);
+    }
     /**
-     * @return Can be set multiple times to compose complex topologies.
+     * @return Optional size type, defaults to &#34;memory&#34;.
      * 
      */
-    public Optional<DeploymentEnterpriseSearchTopology> topology() {
-        return Optional.ofNullable(this.topology);
+    public Optional<String> sizeResource() {
+        return Optional.ofNullable(this.sizeResource);
+    }
+    public Optional<Integer> zoneCount() {
+        return Optional.ofNullable(this.zoneCount);
     }
 
     public static Builder builder() {
@@ -101,10 +110,16 @@ public final class DeploymentEnterpriseSearch {
         private @Nullable String elasticsearchClusterRefId;
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
+        private @Nullable String instanceConfigurationId;
+        private @Nullable Boolean nodeTypeAppserver;
+        private @Nullable Boolean nodeTypeConnector;
+        private @Nullable Boolean nodeTypeWorker;
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable String resourceId;
-        private @Nullable DeploymentEnterpriseSearchTopology topology;
+        private @Nullable String size;
+        private @Nullable String sizeResource;
+        private @Nullable Integer zoneCount;
         public Builder() {}
         public Builder(DeploymentEnterpriseSearch defaults) {
     	      Objects.requireNonNull(defaults);
@@ -112,10 +127,16 @@ public final class DeploymentEnterpriseSearch {
     	      this.elasticsearchClusterRefId = defaults.elasticsearchClusterRefId;
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
+    	      this.instanceConfigurationId = defaults.instanceConfigurationId;
+    	      this.nodeTypeAppserver = defaults.nodeTypeAppserver;
+    	      this.nodeTypeConnector = defaults.nodeTypeConnector;
+    	      this.nodeTypeWorker = defaults.nodeTypeWorker;
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.resourceId = defaults.resourceId;
-    	      this.topology = defaults.topology;
+    	      this.size = defaults.size;
+    	      this.sizeResource = defaults.sizeResource;
+    	      this.zoneCount = defaults.zoneCount;
         }
 
         @CustomType.Setter
@@ -139,6 +160,26 @@ public final class DeploymentEnterpriseSearch {
             return this;
         }
         @CustomType.Setter
+        public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
+            this.instanceConfigurationId = instanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder nodeTypeAppserver(@Nullable Boolean nodeTypeAppserver) {
+            this.nodeTypeAppserver = nodeTypeAppserver;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder nodeTypeConnector(@Nullable Boolean nodeTypeConnector) {
+            this.nodeTypeConnector = nodeTypeConnector;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder nodeTypeWorker(@Nullable Boolean nodeTypeWorker) {
+            this.nodeTypeWorker = nodeTypeWorker;
+            return this;
+        }
+        @CustomType.Setter
         public Builder refId(@Nullable String refId) {
             this.refId = refId;
             return this;
@@ -154,8 +195,18 @@ public final class DeploymentEnterpriseSearch {
             return this;
         }
         @CustomType.Setter
-        public Builder topology(@Nullable DeploymentEnterpriseSearchTopology topology) {
-            this.topology = topology;
+        public Builder size(@Nullable String size) {
+            this.size = size;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder sizeResource(@Nullable String sizeResource) {
+            this.sizeResource = sizeResource;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder zoneCount(@Nullable Integer zoneCount) {
+            this.zoneCount = zoneCount;
             return this;
         }
         public DeploymentEnterpriseSearch build() {
@@ -164,10 +215,16 @@ public final class DeploymentEnterpriseSearch {
             o.elasticsearchClusterRefId = elasticsearchClusterRefId;
             o.httpEndpoint = httpEndpoint;
             o.httpsEndpoint = httpsEndpoint;
+            o.instanceConfigurationId = instanceConfigurationId;
+            o.nodeTypeAppserver = nodeTypeAppserver;
+            o.nodeTypeConnector = nodeTypeConnector;
+            o.nodeTypeWorker = nodeTypeWorker;
             o.refId = refId;
             o.region = region;
             o.resourceId = resourceId;
-            o.topology = topology;
+            o.size = size;
+            o.sizeResource = sizeResource;
+            o.zoneCount = zoneCount;
             return o;
         }
     }

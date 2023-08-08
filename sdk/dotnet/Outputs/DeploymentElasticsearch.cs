@@ -14,67 +14,92 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearch
     {
         /// <summary>
-        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
+        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         /// </summary>
-        public readonly string? Autoscale;
+        public readonly bool? Autoscale;
         public readonly string? CloudId;
         /// <summary>
-        /// Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+        /// 'cold' topology element
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchCold? Cold;
+        /// <summary>
+        /// Elasticsearch settings which will be applied to all topologies
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchConfig? Config;
         /// <summary>
-        /// Custom Elasticsearch bundles or plugins. Can be set multiple times.
+        /// 'coordinating' topology element
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchCoordinating? Coordinating;
+        /// <summary>
+        /// Optional Elasticsearch extensions such as custom bundles or plugins.
         /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchExtension> Extensions;
+        /// <summary>
+        /// 'frozen' topology element
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchFrozen? Frozen;
+        /// <summary>
+        /// 'hot' topology element
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchHot Hot;
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
         /// <summary>
-        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+        /// 'master' topology element
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchMaster? Master;
+        /// <summary>
+        /// 'ml' topology element
+        /// </summary>
+        public readonly Outputs.DeploymentElasticsearchMl? Ml;
+        /// <summary>
+        /// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         /// </summary>
         public readonly string? RefId;
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+        /// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchRemoteCluster> RemoteClusters;
         public readonly string? ResourceId;
         /// <summary>
-        /// Restores data from a snapshot of another deployment.
+        /// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
         /// </summary>
+        public readonly Outputs.DeploymentElasticsearchSnapshot? Snapshot;
         public readonly Outputs.DeploymentElasticsearchSnapshotSource? SnapshotSource;
-        /// <summary>
-        /// Choose the configuration strategy used to apply the changes.
-        /// </summary>
-        public readonly Outputs.DeploymentElasticsearchStrategy? Strategy;
-        /// <summary>
-        /// Can be set multiple times to compose complex topologies.
-        /// </summary>
-        public readonly ImmutableArray<Outputs.DeploymentElasticsearchTopology> Topologies;
-        /// <summary>
-        /// The trust relationships with other ESS accounts.
-        /// </summary>
+        public readonly string? Strategy;
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchTrustAccount> TrustAccounts;
-        /// <summary>
-        /// The trust relationship with external entities (remote environments, remote accounts...).
-        /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchTrustExternal> TrustExternals;
+        public readonly Outputs.DeploymentElasticsearchWarm? Warm;
 
         [OutputConstructor]
         private DeploymentElasticsearch(
-            string? autoscale,
+            bool? autoscale,
 
             string? cloudId,
 
+            Outputs.DeploymentElasticsearchCold? cold,
+
             Outputs.DeploymentElasticsearchConfig? config,
 
+            Outputs.DeploymentElasticsearchCoordinating? coordinating,
+
             ImmutableArray<Outputs.DeploymentElasticsearchExtension> extensions,
+
+            Outputs.DeploymentElasticsearchFrozen? frozen,
+
+            Outputs.DeploymentElasticsearchHot hot,
 
             string? httpEndpoint,
 
             string? httpsEndpoint,
+
+            Outputs.DeploymentElasticsearchMaster? master,
+
+            Outputs.DeploymentElasticsearchMl? ml,
 
             string? refId,
 
@@ -84,31 +109,40 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? resourceId,
 
+            Outputs.DeploymentElasticsearchSnapshot? snapshot,
+
             Outputs.DeploymentElasticsearchSnapshotSource? snapshotSource,
 
-            Outputs.DeploymentElasticsearchStrategy? strategy,
-
-            ImmutableArray<Outputs.DeploymentElasticsearchTopology> topologies,
+            string? strategy,
 
             ImmutableArray<Outputs.DeploymentElasticsearchTrustAccount> trustAccounts,
 
-            ImmutableArray<Outputs.DeploymentElasticsearchTrustExternal> trustExternals)
+            ImmutableArray<Outputs.DeploymentElasticsearchTrustExternal> trustExternals,
+
+            Outputs.DeploymentElasticsearchWarm? warm)
         {
             Autoscale = autoscale;
             CloudId = cloudId;
+            Cold = cold;
             Config = config;
+            Coordinating = coordinating;
             Extensions = extensions;
+            Frozen = frozen;
+            Hot = hot;
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
+            Master = master;
+            Ml = ml;
             RefId = refId;
             Region = region;
             RemoteClusters = remoteClusters;
             ResourceId = resourceId;
+            Snapshot = snapshot;
             SnapshotSource = snapshotSource;
             Strategy = strategy;
-            Topologies = topologies;
             TrustAccounts = trustAccounts;
             TrustExternals = trustExternals;
+            Warm = warm;
         }
     }
 }

@@ -7,12 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
-//
-// > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
 //
 // ## Example Usage
 //
@@ -40,6 +39,7 @@ import (
 //
 // ```
 func GetAzurePrivatelinkEndpoint(ctx *pulumi.Context, args *GetAzurePrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*GetAzurePrivatelinkEndpointResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAzurePrivatelinkEndpointResult
 	err := ctx.Invoke("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args, &rv, opts...)
 	if err != nil {
@@ -59,7 +59,8 @@ type GetAzurePrivatelinkEndpointResult struct {
 	// The domain name to used in when configuring a private hosted zone in the VNet connection.
 	DomainName string `pulumi:"domainName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Region to retrieve the Private Link configuration for.
 	Region string `pulumi:"region"`
 	// The service alias to establish a connection to.
 	ServiceAlias string `pulumi:"serviceAlias"`
@@ -113,6 +114,7 @@ func (o GetAzurePrivatelinkEndpointResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzurePrivatelinkEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Region to retrieve the Private Link configuration for.
 func (o GetAzurePrivatelinkEndpointResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzurePrivatelinkEndpointResult) string { return v.Region }).(pulumi.StringOutput)
 }

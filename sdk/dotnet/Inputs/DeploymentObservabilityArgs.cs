@@ -12,9 +12,6 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentObservabilityArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Remote deployment ID.
-        /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
@@ -24,9 +21,6 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("metrics")]
         public Input<bool>? Metrics { get; set; }
 
-        /// <summary>
-        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 

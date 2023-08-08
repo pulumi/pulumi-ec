@@ -13,15 +13,9 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentObservability
     {
-        /// <summary>
-        /// Remote deployment ID.
-        /// </summary>
         public readonly string DeploymentId;
         public readonly bool? Logs;
         public readonly bool? Metrics;
-        /// <summary>
-        /// Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         public readonly string? RefId;
 
         [OutputConstructor]

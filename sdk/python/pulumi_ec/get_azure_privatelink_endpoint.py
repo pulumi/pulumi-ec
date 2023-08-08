@@ -54,6 +54,9 @@ class GetAzurePrivatelinkEndpointResult:
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region to retrieve the Private Link configuration for.
+        """
         return pulumi.get(self, "region")
 
     @property
@@ -82,8 +85,6 @@ def get_azure_privatelink_endpoint(region: Optional[str] = None,
     """
     Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
 
-    > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-
     ## Example Usage
 
     ```python
@@ -102,10 +103,10 @@ def get_azure_privatelink_endpoint(region: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint', __args__, opts=opts, typ=GetAzurePrivatelinkEndpointResult).value
 
     return AwaitableGetAzurePrivatelinkEndpointResult(
-        domain_name=__ret__.domain_name,
-        id=__ret__.id,
-        region=__ret__.region,
-        service_alias=__ret__.service_alias)
+        domain_name=pulumi.get(__ret__, 'domain_name'),
+        id=pulumi.get(__ret__, 'id'),
+        region=pulumi.get(__ret__, 'region'),
+        service_alias=pulumi.get(__ret__, 'service_alias'))
 
 
 @_utilities.lift_output_func(get_azure_privatelink_endpoint)
@@ -113,8 +114,6 @@ def get_azure_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = 
                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzurePrivatelinkEndpointResult]:
     """
     Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
-
-    > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
 
     ## Example Usage
 

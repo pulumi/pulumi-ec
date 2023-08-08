@@ -17,37 +17,21 @@ namespace Pulumi.ElasticCloud.Inputs
 
         [Input("plugins")]
         private InputList<string>? _plugins;
-
-        /// <summary>
-        /// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-        /// </summary>
         public InputList<string> Plugins
         {
             get => _plugins ?? (_plugins = new InputList<string>());
             set => _plugins = value;
         }
 
-        /// <summary>
-        /// JSON-formatted user level `enterprise_search.yml` setting overrides.
-        /// </summary>
         [Input("userSettingsJson")]
         public Input<string>? UserSettingsJson { get; set; }
 
-        /// <summary>
-        /// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-        /// </summary>
         [Input("userSettingsOverrideJson")]
         public Input<string>? UserSettingsOverrideJson { get; set; }
 
-        /// <summary>
-        /// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-        /// </summary>
         [Input("userSettingsOverrideYaml")]
         public Input<string>? UserSettingsOverrideYaml { get; set; }
 
-        /// <summary>
-        /// YAML-formatted user level `enterprise_search.yml` setting overrides.
-        /// </summary>
         [Input("userSettingsYaml")]
         public Input<string>? UserSettingsYaml { get; set; }
 

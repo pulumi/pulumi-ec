@@ -16,14 +16,14 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
     public static final DeploymentExtensionArgs Empty = new DeploymentExtensionArgs();
 
     /**
-     * Description of the extension.
+     * Description for the extension
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of the extension.
+     * @return Description for the extension
      * 
      */
     public Optional<Output<String>> description() {
@@ -46,14 +46,14 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
     @Import(name="extensionType", required=true)
     private Output<String> extensionType;
 
     /**
-     * @return `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * @return Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
     public Output<String> extensionType() {
@@ -61,14 +61,14 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Hash value of the file. If it is changed, the file is reuploaded.
+     * Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
     @Import(name="fileHash")
     private @Nullable Output<String> fileHash;
 
     /**
-     * @return Hash value of the file. If it is changed, the file is reuploaded.
+     * @return Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
     public Optional<Output<String>> fileHash() {
@@ -76,14 +76,14 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * File path of the extension uploaded.
+     * Local file path to upload as the extension.
      * 
      */
     @Import(name="filePath")
     private @Nullable Output<String> filePath;
 
     /**
-     * @return File path of the extension uploaded.
+     * @return Local file path to upload as the extension.
      * 
      */
     public Optional<Output<String>> filePath() {
@@ -91,14 +91,14 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Name of the extension.
+     * Name of the extension
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the extension.
+     * @return Name of the extension
      * 
      */
     public Optional<Output<String>> name() {
@@ -106,14 +106,14 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
     @Import(name="version", required=true)
     private Output<String> version;
 
     /**
-     * @return Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * @return Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
     public Output<String> version() {
@@ -151,7 +151,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param description Description of the extension.
+         * @param description Description for the extension
          * 
          * @return builder
          * 
@@ -162,7 +162,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param description Description of the extension.
+         * @param description Description for the extension
          * 
          * @return builder
          * 
@@ -193,7 +193,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param extensionType `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+         * @param extensionType Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
          * 
          * @return builder
          * 
@@ -204,7 +204,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param extensionType `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+         * @param extensionType Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
          * 
          * @return builder
          * 
@@ -214,7 +214,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param fileHash Hash value of the file. If it is changed, the file is reuploaded.
+         * @param fileHash Hash value of the file. Triggers re-uploading the file on change.
          * 
          * @return builder
          * 
@@ -225,7 +225,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param fileHash Hash value of the file. If it is changed, the file is reuploaded.
+         * @param fileHash Hash value of the file. Triggers re-uploading the file on change.
          * 
          * @return builder
          * 
@@ -235,7 +235,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param filePath File path of the extension uploaded.
+         * @param filePath Local file path to upload as the extension.
          * 
          * @return builder
          * 
@@ -246,7 +246,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param filePath File path of the extension uploaded.
+         * @param filePath Local file path to upload as the extension.
          * 
          * @return builder
          * 
@@ -256,7 +256,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param name Name of the extension.
+         * @param name Name of the extension
          * 
          * @return builder
          * 
@@ -267,7 +267,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param name Name of the extension.
+         * @param name Name of the extension
          * 
          * @return builder
          * 
@@ -277,7 +277,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param version Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+         * @param version Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
          * 
          * @return builder
          * 
@@ -288,7 +288,7 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param version Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+         * @param version Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
          * 
          * @return builder
          * 
