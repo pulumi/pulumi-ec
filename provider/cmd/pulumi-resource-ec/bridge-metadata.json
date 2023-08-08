@@ -1,4 +1,357 @@
 {
+    "auto-aliasing": {
+        "resources": {
+            "ec_deployment": {
+                "current": "ec:index/deployment:Deployment",
+                "fields": {
+                    "elasticsearch": {
+                        "elem": {
+                            "fields": {
+                                "cold": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "config": {
+                                    "elem": {
+                                        "fields": {
+                                            "plugins": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "coordinating": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension": {
+                                    "maxItemsOne": false
+                                },
+                                "frozen": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "hot": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "master": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "ml": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "remote_cluster": {
+                                    "maxItemsOne": false
+                                },
+                                "trust_account": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "elem": {
+                                            "fields": {
+                                                "trust_allowlist": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "trust_external": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "elem": {
+                                            "fields": {
+                                                "trust_allowlist": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "warm": {
+                                    "elem": {
+                                        "fields": {
+                                            "node_roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "traffic_filter": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_deployment_elasticsearch_keystore": {
+                "current": "ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore"
+            },
+            "ec_deployment_extension": {
+                "current": "ec:index/deploymentExtension:DeploymentExtension"
+            },
+            "ec_deployment_traffic_filter": {
+                "current": "ec:index/deploymentTrafficFilter:DeploymentTrafficFilter",
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_deployment_traffic_filter_association": {
+                "current": "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation"
+            },
+            "ec_snapshot_repository": {
+                "current": "ec:index/snapshotRepository:SnapshotRepository"
+            }
+        },
+        "datasources": {
+            "ec_aws_privatelink_endpoint": {
+                "current": "ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint",
+                "fields": {
+                    "zone_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_azure_privatelink_endpoint": {
+                "current": "ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint"
+            },
+            "ec_deployment": {
+                "current": "ec:index/getDeployment:getDeployment",
+                "fields": {
+                    "apm": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "topology": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "elasticsearch": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "topology": {
+                                        "maxItemsOne": false,
+                                        "elem": {
+                                            "elem": {
+                                                "fields": {
+                                                    "autoscaling": {
+                                                        "maxItemsOne": false
+                                                    },
+                                                    "node_roles": {
+                                                        "maxItemsOne": false
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "enterprise_search": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "topology": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "integrations_server": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "topology": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "kibana": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "topology": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "observability": {
+                        "maxItemsOne": false
+                    },
+                    "traffic_filter": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_deployments": {
+                "current": "ec:index/getDeployments:getDeployments",
+                "fields": {
+                    "apm": {
+                        "maxItemsOne": false
+                    },
+                    "deployments": {
+                        "maxItemsOne": false
+                    },
+                    "elasticsearch": {
+                        "maxItemsOne": false
+                    },
+                    "enterprise_search": {
+                        "maxItemsOne": false
+                    },
+                    "integrations_server": {
+                        "maxItemsOne": false
+                    },
+                    "kibana": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_gcp_private_service_connect_endpoint": {
+                "current": "ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint"
+            },
+            "ec_stack": {
+                "current": "ec:index/getStack:getStack",
+                "fields": {
+                    "apm": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "compatible_node_types": {
+                                        "maxItemsOne": false
+                                    },
+                                    "denylist": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "elasticsearch": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "compatible_node_types": {
+                                        "maxItemsOne": false
+                                    },
+                                    "default_plugins": {
+                                        "maxItemsOne": false
+                                    },
+                                    "denylist": {
+                                        "maxItemsOne": false
+                                    },
+                                    "plugins": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "enterprise_search": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "compatible_node_types": {
+                                        "maxItemsOne": false
+                                    },
+                                    "denylist": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "kibana": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "compatible_node_types": {
+                                        "maxItemsOne": false
+                                    },
+                                    "denylist": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "upgradable_to": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_traffic_filter": {
+                "current": "ec:index/getTrafficFilter:getTrafficFilter",
+                "fields": {
+                    "rulesets": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "elem": {
+                                "fields": {
+                                    "rules": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "renames": {
         "resources": {
             "ec:index/deployment:Deployment": "ec_deployment",

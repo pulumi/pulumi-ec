@@ -17,18 +17,14 @@ package ec
 import (
 	// Allow us to embed metadata
 	_ "embed"
-
 	"fmt"
 	"path/filepath"
-	"unicode"
 
 	"github.com/elastic/terraform-provider-ec/ec"
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 )
 
 // all of the token components used below.
@@ -38,25 +34,6 @@ const (
 	// modules:
 	mainMod = "index" // the y module
 )
-
-func makeMember(mod, name string) tokens.ModuleMember {
-	lower := string(unicode.ToLower(rune(name[0]))) + name[1:]
-	return tokens.ModuleMember(fmt.Sprintf("%s:%s/%s:%s", mainPkg, mod, lower, name))
-}
-
-// makeDataSource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the data source's
-// first character.
-func makeDataSource(mod, fn string) tokens.ModuleMember {
-	return makeMember(mod, fn)
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod, res string) tokens.Type {
-	return tokens.Type(makeMember(mod, res))
-}
 
 //go:embed  cmd/pulumi-resource-ec/bridge-metadata.json
 var metadata []byte
@@ -77,21 +54,8 @@ func Provider() tfbridge.ProviderInfo {
 		License:      "Apache-2.0",
 		Homepage:     "https://pulumi.io",
 		Repository:   "https://github.com/pulumi/pulumi-ec",
-		Config:       map[string]*tfbridge.SchemaInfo{},
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Resources: map[string]*tfbridge.ResourceInfo{
-			"ec_deployment":                            {Tok: makeResource(mainMod, "Deployment")},
-			"ec_deployment_elasticsearch_keystore":     {Tok: makeResource(mainMod, "DeploymentElasticsearchKeystore")},
-			"ec_deployment_extension":                  {Tok: makeResource(mainMod, "DeploymentExtension")},
-			"ec_deployment_traffic_filter":             {Tok: makeResource(mainMod, "DeploymentTrafficFilter")},
-			"ec_deployment_traffic_filter_association": {Tok: makeResource(mainMod, "DeploymentTrafficFilterAssociation")},
-		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"ec_deployment":  {Tok: makeDataSource(mainMod, "getDeployment")},
-			"ec_deployments": {Tok: makeDataSource(mainMod, "getDeployments")},
-			"ec_stack":       {Tok: makeDataSource(mainMod, "getStack")},
-		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -131,11 +95,12 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := x.ComputeDefaults(&prov, x.TokensSingleModule("ec_", mainMod,
-		x.MakeStandardToken(mainPkg)))
-	contract.AssertNoError(err)
+	prov.MustComputeTokens(tks.SingleModule("ec_", mainMod,
+		tks.MakeStandard(mainPkg)))
 
 	prov.SetAutonaming(255, "-")
+
+	prov.MustApplyAutoAliases()
 
 	return prov
 }
