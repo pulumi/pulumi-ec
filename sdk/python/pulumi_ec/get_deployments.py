@@ -23,34 +23,34 @@ class GetDeploymentsResult:
     """
     A collection of values returned by getDeployments.
     """
-    def __init__(__self__, apm=None, deployment_template_id=None, deployments=None, elasticsearch=None, enterprise_search=None, healthy=None, id=None, integrations_server=None, kibana=None, name_prefix=None, return_count=None, size=None, tags=None):
-        if apm and not isinstance(apm, dict):
-            raise TypeError("Expected argument 'apm' to be a dict")
-        pulumi.set(__self__, "apm", apm)
+    def __init__(__self__, apms=None, deployment_template_id=None, deployments=None, elasticsearches=None, enterprise_searches=None, healthy=None, id=None, integrations_servers=None, kibanas=None, name_prefix=None, return_count=None, size=None, tags=None):
+        if apms and not isinstance(apms, list):
+            raise TypeError("Expected argument 'apms' to be a list")
+        pulumi.set(__self__, "apms", apms)
         if deployment_template_id and not isinstance(deployment_template_id, str):
             raise TypeError("Expected argument 'deployment_template_id' to be a str")
         pulumi.set(__self__, "deployment_template_id", deployment_template_id)
         if deployments and not isinstance(deployments, list):
             raise TypeError("Expected argument 'deployments' to be a list")
         pulumi.set(__self__, "deployments", deployments)
-        if elasticsearch and not isinstance(elasticsearch, dict):
-            raise TypeError("Expected argument 'elasticsearch' to be a dict")
-        pulumi.set(__self__, "elasticsearch", elasticsearch)
-        if enterprise_search and not isinstance(enterprise_search, dict):
-            raise TypeError("Expected argument 'enterprise_search' to be a dict")
-        pulumi.set(__self__, "enterprise_search", enterprise_search)
+        if elasticsearches and not isinstance(elasticsearches, list):
+            raise TypeError("Expected argument 'elasticsearches' to be a list")
+        pulumi.set(__self__, "elasticsearches", elasticsearches)
+        if enterprise_searches and not isinstance(enterprise_searches, list):
+            raise TypeError("Expected argument 'enterprise_searches' to be a list")
+        pulumi.set(__self__, "enterprise_searches", enterprise_searches)
         if healthy and not isinstance(healthy, str):
             raise TypeError("Expected argument 'healthy' to be a str")
         pulumi.set(__self__, "healthy", healthy)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if integrations_server and not isinstance(integrations_server, dict):
-            raise TypeError("Expected argument 'integrations_server' to be a dict")
-        pulumi.set(__self__, "integrations_server", integrations_server)
-        if kibana and not isinstance(kibana, dict):
-            raise TypeError("Expected argument 'kibana' to be a dict")
-        pulumi.set(__self__, "kibana", kibana)
+        if integrations_servers and not isinstance(integrations_servers, list):
+            raise TypeError("Expected argument 'integrations_servers' to be a list")
+        pulumi.set(__self__, "integrations_servers", integrations_servers)
+        if kibanas and not isinstance(kibanas, list):
+            raise TypeError("Expected argument 'kibanas' to be a list")
+        pulumi.set(__self__, "kibanas", kibanas)
         if name_prefix and not isinstance(name_prefix, str):
             raise TypeError("Expected argument 'name_prefix' to be a str")
         pulumi.set(__self__, "name_prefix", name_prefix)
@@ -66,12 +66,18 @@ class GetDeploymentsResult:
 
     @property
     @pulumi.getter
-    def apm(self) -> Optional['outputs.GetDeploymentsApmResult']:
-        return pulumi.get(self, "apm")
+    def apms(self) -> Optional[Sequence['outputs.GetDeploymentsApmResult']]:
+        """
+        Filter by APM resource kind status or configuration.
+        """
+        return pulumi.get(self, "apms")
 
     @property
     @pulumi.getter(name="deploymentTemplateId")
     def deployment_template_id(self) -> Optional[str]:
+        """
+        Filter the result set by the ID of the deployment template the deployment is based off.
+        """
         return pulumi.get(self, "deployment_template_id")
 
     @property
@@ -79,73 +85,87 @@ class GetDeploymentsResult:
     def deployments(self) -> Sequence['outputs.GetDeploymentsDeploymentResult']:
         """
         List of deployments which match the specified query.
-        * `deployments.#.deployment_id` - The deployment unique ID.
-        * `deployments.#.alias` - Deployment alias.
-        * `deployments.#.name` - The name of the deployment.
-        * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-        * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-        * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-        * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-        * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-        * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-        * `deployments.#.apm_resource_id` - The APM resource unique ID.
-        * `deployments.#.apm_ref_id` - The APM resource reference.
-        * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-        * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
         """
         return pulumi.get(self, "deployments")
 
     @property
     @pulumi.getter
-    def elasticsearch(self) -> Optional['outputs.GetDeploymentsElasticsearchResult']:
-        return pulumi.get(self, "elasticsearch")
+    def elasticsearches(self) -> Optional[Sequence['outputs.GetDeploymentsElasticsearchResult']]:
+        """
+        Filter by Elasticsearch resource kind status or configuration.
+        """
+        return pulumi.get(self, "elasticsearches")
 
     @property
-    @pulumi.getter(name="enterpriseSearch")
-    def enterprise_search(self) -> Optional['outputs.GetDeploymentsEnterpriseSearchResult']:
-        return pulumi.get(self, "enterprise_search")
+    @pulumi.getter(name="enterpriseSearches")
+    def enterprise_searches(self) -> Optional[Sequence['outputs.GetDeploymentsEnterpriseSearchResult']]:
+        """
+        Filter by Enterprise Search resource kind status or configuration.
+        """
+        return pulumi.get(self, "enterprise_searches")
 
     @property
     @pulumi.getter
     def healthy(self) -> Optional[str]:
+        """
+        Filter the result set by their health status.
+        """
         return pulumi.get(self, "healthy")
 
     @property
     @pulumi.getter
     def id(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Unique identifier of this data source.
         """
         return pulumi.get(self, "id")
 
     @property
-    @pulumi.getter(name="integrationsServer")
-    def integrations_server(self) -> Optional['outputs.GetDeploymentsIntegrationsServerResult']:
-        return pulumi.get(self, "integrations_server")
+    @pulumi.getter(name="integrationsServers")
+    def integrations_servers(self) -> Optional[Sequence['outputs.GetDeploymentsIntegrationsServerResult']]:
+        """
+        Filter by Integrations Server resource kind status or configuration.
+        """
+        return pulumi.get(self, "integrations_servers")
 
     @property
     @pulumi.getter
-    def kibana(self) -> Optional['outputs.GetDeploymentsKibanaResult']:
-        return pulumi.get(self, "kibana")
+    def kibanas(self) -> Optional[Sequence['outputs.GetDeploymentsKibanaResult']]:
+        """
+        Filter by Kibana resource kind status or configuration.
+        """
+        return pulumi.get(self, "kibanas")
 
     @property
     @pulumi.getter(name="namePrefix")
     def name_prefix(self) -> Optional[str]:
+        """
+        Prefix to filter the returned deployment list by.
+        """
         return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="returnCount")
     def return_count(self) -> int:
+        """
+        The number of deployments actually returned.
+        """
         return pulumi.get(self, "return_count")
 
     @property
     @pulumi.getter
     def size(self) -> Optional[int]:
+        """
+        The maximum number of deployments to return. Defaults to `100`.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Filter the result set by their assigned tags.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -155,28 +175,28 @@ class AwaitableGetDeploymentsResult(GetDeploymentsResult):
         if False:
             yield self
         return GetDeploymentsResult(
-            apm=self.apm,
+            apms=self.apms,
             deployment_template_id=self.deployment_template_id,
             deployments=self.deployments,
-            elasticsearch=self.elasticsearch,
-            enterprise_search=self.enterprise_search,
+            elasticsearches=self.elasticsearches,
+            enterprise_searches=self.enterprise_searches,
             healthy=self.healthy,
             id=self.id,
-            integrations_server=self.integrations_server,
-            kibana=self.kibana,
+            integrations_servers=self.integrations_servers,
+            kibanas=self.kibanas,
             name_prefix=self.name_prefix,
             return_count=self.return_count,
             size=self.size,
             tags=self.tags)
 
 
-def get_deployments(apm: Optional[pulumi.InputType['GetDeploymentsApmArgs']] = None,
+def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmArgs']]] = None,
                     deployment_template_id: Optional[str] = None,
-                    elasticsearch: Optional[pulumi.InputType['GetDeploymentsElasticsearchArgs']] = None,
-                    enterprise_search: Optional[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] = None,
+                    elasticsearches: Optional[Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']]] = None,
+                    enterprise_searches: Optional[Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']]] = None,
                     healthy: Optional[str] = None,
-                    integrations_server: Optional[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] = None,
-                    kibana: Optional[pulumi.InputType['GetDeploymentsKibanaArgs']] = None,
+                    integrations_servers: Optional[Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']]] = None,
+                    kibanas: Optional[Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']]] = None,
                     name_prefix: Optional[str] = None,
                     size: Optional[int] = None,
                     tags: Optional[Mapping[str, str]] = None,
@@ -191,18 +211,18 @@ def get_deployments(apm: Optional[pulumi.InputType['GetDeploymentsApmArgs']] = N
     import pulumi_ec as ec
 
     example = ec.get_deployments(deployment_template_id="azure-compute-optimized",
-        elasticsearch=ec.GetDeploymentsElasticsearchArgs(
+        elasticsearches=[ec.GetDeploymentsElasticsearchArgs(
             healthy="true",
-        ),
-        enterprise_search=ec.GetDeploymentsEnterpriseSearchArgs(
+        )],
+        enterprise_searches=[ec.GetDeploymentsEnterpriseSearchArgs(
             healthy="true",
-        ),
-        integrations_server=ec.GetDeploymentsIntegrationsServerArgs(
+        )],
+        integrations_servers=[ec.GetDeploymentsIntegrationsServerArgs(
             version="8.0.0",
-        ),
-        kibana=ec.GetDeploymentsKibanaArgs(
+        )],
+        kibanas=[ec.GetDeploymentsKibanaArgs(
             status="started",
-        ),
+        )],
         name_prefix="test",
         size=200,
         tags={
@@ -211,40 +231,25 @@ def get_deployments(apm: Optional[pulumi.InputType['GetDeploymentsApmArgs']] = N
     ```
 
 
-    :param pulumi.InputType['GetDeploymentsApmArgs'] apm: **DEPRECATED** Filter by APM resource kind status or configuration.
-           * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `apm.#.version` - Elastic stack version.
-           * `apm.#.healthy` - Overall health status of the APM instances.
-    :param str deployment_template_id: ID of the deployment template used to create the deployment.
-    :param pulumi.InputType['GetDeploymentsElasticsearchArgs'] elasticsearch: Filter by Elasticsearch resource kind status or configuration.
-           * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `elasticsearch.#.version` - Elastic stack version.
-           * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
-    :param pulumi.InputType['GetDeploymentsEnterpriseSearchArgs'] enterprise_search: Filter by Enterprise Search resource kind status or configuration.
-           * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `enterprise_search.#.version` - Elastic stack version.
-           * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
-    :param str healthy: Overall health status of the deployment.
-    :param pulumi.InputType['GetDeploymentsIntegrationsServerArgs'] integrations_server: Filter by Integrations Server resource kind status or configuration.
-           * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `integrations_server.#.version` - Elastic stack version.
-           * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
-    :param pulumi.InputType['GetDeploymentsKibanaArgs'] kibana: Filter by Kibana resource kind status or configuration.
-           * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `kibana.#.version` - Elastic stack version.
-           * `kibana.#.healthy` - Overall health status of the Kibana instances.
-    :param str name_prefix: Prefix that one or several deployment names have in common.
+    :param Sequence[pulumi.InputType['GetDeploymentsApmArgs']] apms: Filter by APM resource kind status or configuration.
+    :param str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
+    :param Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
+    :param Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
+    :param str healthy: Filter the result set by their health status.
+    :param Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
+    :param Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']] kibanas: Filter by Kibana resource kind status or configuration.
+    :param str name_prefix: Prefix to filter the returned deployment list by.
     :param int size: The maximum number of deployments to return. Defaults to `100`.
-    :param Mapping[str, str] tags: Key value map of arbitrary string tags for the deployment.
+    :param Mapping[str, str] tags: Filter the result set by their assigned tags.
     """
     __args__ = dict()
-    __args__['apm'] = apm
+    __args__['apms'] = apms
     __args__['deploymentTemplateId'] = deployment_template_id
-    __args__['elasticsearch'] = elasticsearch
-    __args__['enterpriseSearch'] = enterprise_search
+    __args__['elasticsearches'] = elasticsearches
+    __args__['enterpriseSearches'] = enterprise_searches
     __args__['healthy'] = healthy
-    __args__['integrationsServer'] = integrations_server
-    __args__['kibana'] = kibana
+    __args__['integrationsServers'] = integrations_servers
+    __args__['kibanas'] = kibanas
     __args__['namePrefix'] = name_prefix
     __args__['size'] = size
     __args__['tags'] = tags
@@ -252,29 +257,29 @@ def get_deployments(apm: Optional[pulumi.InputType['GetDeploymentsApmArgs']] = N
     __ret__ = pulumi.runtime.invoke('ec:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult).value
 
     return AwaitableGetDeploymentsResult(
-        apm=__ret__.apm,
-        deployment_template_id=__ret__.deployment_template_id,
-        deployments=__ret__.deployments,
-        elasticsearch=__ret__.elasticsearch,
-        enterprise_search=__ret__.enterprise_search,
-        healthy=__ret__.healthy,
-        id=__ret__.id,
-        integrations_server=__ret__.integrations_server,
-        kibana=__ret__.kibana,
-        name_prefix=__ret__.name_prefix,
-        return_count=__ret__.return_count,
-        size=__ret__.size,
-        tags=__ret__.tags)
+        apms=pulumi.get(__ret__, 'apms'),
+        deployment_template_id=pulumi.get(__ret__, 'deployment_template_id'),
+        deployments=pulumi.get(__ret__, 'deployments'),
+        elasticsearches=pulumi.get(__ret__, 'elasticsearches'),
+        enterprise_searches=pulumi.get(__ret__, 'enterprise_searches'),
+        healthy=pulumi.get(__ret__, 'healthy'),
+        id=pulumi.get(__ret__, 'id'),
+        integrations_servers=pulumi.get(__ret__, 'integrations_servers'),
+        kibanas=pulumi.get(__ret__, 'kibanas'),
+        name_prefix=pulumi.get(__ret__, 'name_prefix'),
+        return_count=pulumi.get(__ret__, 'return_count'),
+        size=pulumi.get(__ret__, 'size'),
+        tags=pulumi.get(__ret__, 'tags'))
 
 
 @_utilities.lift_output_func(get_deployments)
-def get_deployments_output(apm: Optional[pulumi.Input[Optional[pulumi.InputType['GetDeploymentsApmArgs']]]] = None,
+def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDeploymentsApmArgs']]]]] = None,
                            deployment_template_id: Optional[pulumi.Input[Optional[str]]] = None,
-                           elasticsearch: Optional[pulumi.Input[Optional[pulumi.InputType['GetDeploymentsElasticsearchArgs']]]] = None,
-                           enterprise_search: Optional[pulumi.Input[Optional[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']]]] = None,
+                           elasticsearches: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']]]]] = None,
+                           enterprise_searches: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']]]]] = None,
                            healthy: Optional[pulumi.Input[Optional[str]]] = None,
-                           integrations_server: Optional[pulumi.Input[Optional[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']]]] = None,
-                           kibana: Optional[pulumi.Input[Optional[pulumi.InputType['GetDeploymentsKibanaArgs']]]] = None,
+                           integrations_servers: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']]]]] = None,
+                           kibanas: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']]]]] = None,
                            name_prefix: Optional[pulumi.Input[Optional[str]]] = None,
                            size: Optional[pulumi.Input[Optional[int]]] = None,
                            tags: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
@@ -289,18 +294,18 @@ def get_deployments_output(apm: Optional[pulumi.Input[Optional[pulumi.InputType[
     import pulumi_ec as ec
 
     example = ec.get_deployments(deployment_template_id="azure-compute-optimized",
-        elasticsearch=ec.GetDeploymentsElasticsearchArgs(
+        elasticsearches=[ec.GetDeploymentsElasticsearchArgs(
             healthy="true",
-        ),
-        enterprise_search=ec.GetDeploymentsEnterpriseSearchArgs(
+        )],
+        enterprise_searches=[ec.GetDeploymentsEnterpriseSearchArgs(
             healthy="true",
-        ),
-        integrations_server=ec.GetDeploymentsIntegrationsServerArgs(
+        )],
+        integrations_servers=[ec.GetDeploymentsIntegrationsServerArgs(
             version="8.0.0",
-        ),
-        kibana=ec.GetDeploymentsKibanaArgs(
+        )],
+        kibanas=[ec.GetDeploymentsKibanaArgs(
             status="started",
-        ),
+        )],
         name_prefix="test",
         size=200,
         tags={
@@ -309,30 +314,15 @@ def get_deployments_output(apm: Optional[pulumi.Input[Optional[pulumi.InputType[
     ```
 
 
-    :param pulumi.InputType['GetDeploymentsApmArgs'] apm: **DEPRECATED** Filter by APM resource kind status or configuration.
-           * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `apm.#.version` - Elastic stack version.
-           * `apm.#.healthy` - Overall health status of the APM instances.
-    :param str deployment_template_id: ID of the deployment template used to create the deployment.
-    :param pulumi.InputType['GetDeploymentsElasticsearchArgs'] elasticsearch: Filter by Elasticsearch resource kind status or configuration.
-           * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `elasticsearch.#.version` - Elastic stack version.
-           * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
-    :param pulumi.InputType['GetDeploymentsEnterpriseSearchArgs'] enterprise_search: Filter by Enterprise Search resource kind status or configuration.
-           * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `enterprise_search.#.version` - Elastic stack version.
-           * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
-    :param str healthy: Overall health status of the deployment.
-    :param pulumi.InputType['GetDeploymentsIntegrationsServerArgs'] integrations_server: Filter by Integrations Server resource kind status or configuration.
-           * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `integrations_server.#.version` - Elastic stack version.
-           * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
-    :param pulumi.InputType['GetDeploymentsKibanaArgs'] kibana: Filter by Kibana resource kind status or configuration.
-           * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-           * `kibana.#.version` - Elastic stack version.
-           * `kibana.#.healthy` - Overall health status of the Kibana instances.
-    :param str name_prefix: Prefix that one or several deployment names have in common.
+    :param Sequence[pulumi.InputType['GetDeploymentsApmArgs']] apms: Filter by APM resource kind status or configuration.
+    :param str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
+    :param Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
+    :param Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
+    :param str healthy: Filter the result set by their health status.
+    :param Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
+    :param Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']] kibanas: Filter by Kibana resource kind status or configuration.
+    :param str name_prefix: Prefix to filter the returned deployment list by.
     :param int size: The maximum number of deployments to return. Defaults to `100`.
-    :param Mapping[str, str] tags: Key value map of arbitrary string tags for the deployment.
+    :param Mapping[str, str] tags: Filter the result set by their assigned tags.
     """
     ...

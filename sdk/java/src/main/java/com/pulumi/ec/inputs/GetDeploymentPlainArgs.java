@@ -13,14 +13,14 @@ public final class GetDeploymentPlainArgs extends com.pulumi.resources.InvokeArg
     public static final GetDeploymentPlainArgs Empty = new GetDeploymentPlainArgs();
 
     /**
-     * The ID of an existing Elastic Cloud deployment.
+     * The unique ID of the deployment.
      * 
      */
     @Import(name="id", required=true)
     private String id;
 
     /**
-     * @return The ID of an existing Elastic Cloud deployment.
+     * @return The unique ID of the deployment.
      * 
      */
     public String id() {
@@ -52,7 +52,7 @@ public final class GetDeploymentPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param id The ID of an existing Elastic Cloud deployment.
+         * @param id The unique ID of the deployment.
          * 
          * @return builder
          * 

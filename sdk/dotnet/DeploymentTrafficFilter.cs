@@ -10,13 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
-    /// Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
-    /// 
     /// ## Example Usage
-    /// ### IP type
+    /// ### IP based traffic filter
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -51,16 +50,23 @@ namespace Pulumi.ElasticCloud
     ///         {
     ///             example.Id,
     ///         },
-    ///         Elasticsearch = null,
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///         },
     ///         Kibana = null,
     ///     });
     /// 
     /// });
     /// ```
-    /// ### Azure Private Link type
+    /// ### Azure Private Link traffic filter
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -98,16 +104,24 @@ namespace Pulumi.ElasticCloud
     ///         {
     ///             azure.Id,
     ///         },
-    ///         Elasticsearch = null,
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///         },
     ///         Kibana = null,
     ///     });
     /// 
     /// });
     /// ```
-    /// ### GCP Private Service Connect type
+    /// 
+    /// ###GCP Private Service Connect traffic filter
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -144,7 +158,13 @@ namespace Pulumi.ElasticCloud
     ///         {
     ///             gcpPsc.Id,
     ///         },
-    ///         Elasticsearch = null,
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///         },
     ///         Kibana = null,
     ///     });
     /// 
@@ -153,7 +173,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// You can import traffic filters using the `id`, for example
+    /// Traffic filters can be imported using the `id`, for example
     /// 
     /// ```sh
     ///  $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
@@ -163,37 +183,37 @@ namespace Pulumi.ElasticCloud
     public partial class DeploymentTrafficFilter : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Description of the ruleset.
+        /// Ruleset description
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// To automatically include the ruleset in the new deployments. Defaults to `false`.
+        /// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         /// </summary>
         [Output("includeByDefault")]
-        public Output<bool?> IncludeByDefault { get; private set; } = null!;
+        public Output<bool> IncludeByDefault { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the ruleset.
+        /// Name of the ruleset
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Filter region, the ruleset can only be attached to deployments in the specific region.
+        /// Filter region, the ruleset can only be attached to deployments in the specific region
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Rule block, which can be specified multiple times for multiple rules.
+        /// Set of rules, which the ruleset is made of.
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.DeploymentTrafficFilterRule>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        /// Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -245,34 +265,34 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the ruleset.
+        /// Ruleset description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// To automatically include the ruleset in the new deployments. Defaults to `false`.
+        /// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         /// </summary>
         [Input("includeByDefault")]
         public Input<bool>? IncludeByDefault { get; set; }
 
         /// <summary>
-        /// Name of the ruleset.
+        /// Name of the ruleset
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Filter region, the ruleset can only be attached to deployments in the specific region.
+        /// Filter region, the ruleset can only be attached to deployments in the specific region
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
-        [Input("rules", required: true)]
+        [Input("rules")]
         private InputList<Inputs.DeploymentTrafficFilterRuleArgs>? _rules;
 
         /// <summary>
-        /// Rule block, which can be specified multiple times for multiple rules.
+        /// Set of rules, which the ruleset is made of.
         /// </summary>
         public InputList<Inputs.DeploymentTrafficFilterRuleArgs> Rules
         {
@@ -281,7 +301,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        /// Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -295,25 +315,25 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the ruleset.
+        /// Ruleset description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// To automatically include the ruleset in the new deployments. Defaults to `false`.
+        /// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         /// </summary>
         [Input("includeByDefault")]
         public Input<bool>? IncludeByDefault { get; set; }
 
         /// <summary>
-        /// Name of the ruleset.
+        /// Name of the ruleset
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Filter region, the ruleset can only be attached to deployments in the specific region.
+        /// Filter region, the ruleset can only be attached to deployments in the specific region
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -322,7 +342,7 @@ namespace Pulumi.ElasticCloud
         private InputList<Inputs.DeploymentTrafficFilterRuleGetArgs>? _rules;
 
         /// <summary>
-        /// Rule block, which can be specified multiple times for multiple rules.
+        /// Set of rules, which the ruleset is made of.
         /// </summary>
         public InputList<Inputs.DeploymentTrafficFilterRuleGetArgs> Rules
         {
@@ -331,7 +351,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        /// Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

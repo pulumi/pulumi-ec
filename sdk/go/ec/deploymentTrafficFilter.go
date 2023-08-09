@@ -8,13 +8,12 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
-//
 // ## Example Usage
-// ### IP type
+// ### IP based traffic filter
 //
 // ```go
 // package main
@@ -54,8 +53,12 @@ import (
 //				TrafficFilters: pulumi.StringArray{
 //					example.ID(),
 //				},
-//				Elasticsearch: nil,
-//				Kibana:        nil,
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: nil,
+//					},
+//				},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err
@@ -65,7 +68,7 @@ import (
 //	}
 //
 // ```
-// ### Azure Private Link type
+// ### Azure Private Link traffic filter
 //
 // ```go
 // package main
@@ -107,8 +110,12 @@ import (
 //				TrafficFilters: pulumi.StringArray{
 //					azure.ID(),
 //				},
-//				Elasticsearch: nil,
-//				Kibana:        nil,
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: nil,
+//					},
+//				},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err
@@ -118,7 +125,8 @@ import (
 //	}
 //
 // ```
-// ### GCP Private Service Connect type
+//
+// ###GCP Private Service Connect traffic filter
 //
 // ```go
 // package main
@@ -159,8 +167,12 @@ import (
 //				TrafficFilters: pulumi.StringArray{
 //					gcpPsc.ID(),
 //				},
-//				Elasticsearch: nil,
-//				Kibana:        nil,
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: nil,
+//					},
+//				},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err
@@ -173,7 +185,7 @@ import (
 //
 // ## Import
 //
-// # You can import traffic filters using the `id`, for example
+// # Traffic filters can be imported using the `id`, for example
 //
 // ```sh
 //
@@ -183,17 +195,17 @@ import (
 type DeploymentTrafficFilter struct {
 	pulumi.CustomResourceState
 
-	// Description of the ruleset.
+	// Ruleset description
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// To automatically include the ruleset in the new deployments. Defaults to `false`.
-	IncludeByDefault pulumi.BoolPtrOutput `pulumi:"includeByDefault"`
-	// Name of the ruleset.
+	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
+	IncludeByDefault pulumi.BoolOutput `pulumi:"includeByDefault"`
+	// Name of the ruleset
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Filter region, the ruleset can only be attached to deployments in the specific region.
+	// Filter region, the ruleset can only be attached to deployments in the specific region
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Rule block, which can be specified multiple times for multiple rules.
+	// Set of rules, which the ruleset is made of.
 	Rules DeploymentTrafficFilterRuleArrayOutput `pulumi:"rules"`
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+	// Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -207,12 +219,10 @@ func NewDeploymentTrafficFilter(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
-	if args.Rules == nil {
-		return nil, errors.New("invalid value for required argument 'Rules'")
-	}
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeploymentTrafficFilter
 	err := ctx.RegisterResource("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -235,32 +245,32 @@ func GetDeploymentTrafficFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentTrafficFilter resources.
 type deploymentTrafficFilterState struct {
-	// Description of the ruleset.
+	// Ruleset description
 	Description *string `pulumi:"description"`
-	// To automatically include the ruleset in the new deployments. Defaults to `false`.
+	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault *bool `pulumi:"includeByDefault"`
-	// Name of the ruleset.
+	// Name of the ruleset
 	Name *string `pulumi:"name"`
-	// Filter region, the ruleset can only be attached to deployments in the specific region.
+	// Filter region, the ruleset can only be attached to deployments in the specific region
 	Region *string `pulumi:"region"`
-	// Rule block, which can be specified multiple times for multiple rules.
+	// Set of rules, which the ruleset is made of.
 	Rules []DeploymentTrafficFilterRule `pulumi:"rules"`
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+	// Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
 	Type *string `pulumi:"type"`
 }
 
 type DeploymentTrafficFilterState struct {
-	// Description of the ruleset.
+	// Ruleset description
 	Description pulumi.StringPtrInput
-	// To automatically include the ruleset in the new deployments. Defaults to `false`.
+	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolPtrInput
-	// Name of the ruleset.
+	// Name of the ruleset
 	Name pulumi.StringPtrInput
-	// Filter region, the ruleset can only be attached to deployments in the specific region.
+	// Filter region, the ruleset can only be attached to deployments in the specific region
 	Region pulumi.StringPtrInput
-	// Rule block, which can be specified multiple times for multiple rules.
+	// Set of rules, which the ruleset is made of.
 	Rules DeploymentTrafficFilterRuleArrayInput
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+	// Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
 	Type pulumi.StringPtrInput
 }
 
@@ -269,33 +279,33 @@ func (DeploymentTrafficFilterState) ElementType() reflect.Type {
 }
 
 type deploymentTrafficFilterArgs struct {
-	// Description of the ruleset.
+	// Ruleset description
 	Description *string `pulumi:"description"`
-	// To automatically include the ruleset in the new deployments. Defaults to `false`.
+	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault *bool `pulumi:"includeByDefault"`
-	// Name of the ruleset.
+	// Name of the ruleset
 	Name *string `pulumi:"name"`
-	// Filter region, the ruleset can only be attached to deployments in the specific region.
+	// Filter region, the ruleset can only be attached to deployments in the specific region
 	Region string `pulumi:"region"`
-	// Rule block, which can be specified multiple times for multiple rules.
+	// Set of rules, which the ruleset is made of.
 	Rules []DeploymentTrafficFilterRule `pulumi:"rules"`
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+	// Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a DeploymentTrafficFilter resource.
 type DeploymentTrafficFilterArgs struct {
-	// Description of the ruleset.
+	// Ruleset description
 	Description pulumi.StringPtrInput
-	// To automatically include the ruleset in the new deployments. Defaults to `false`.
+	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolPtrInput
-	// Name of the ruleset.
+	// Name of the ruleset
 	Name pulumi.StringPtrInput
-	// Filter region, the ruleset can only be attached to deployments in the specific region.
+	// Filter region, the ruleset can only be attached to deployments in the specific region
 	Region pulumi.StringInput
-	// Rule block, which can be specified multiple times for multiple rules.
+	// Set of rules, which the ruleset is made of.
 	Rules DeploymentTrafficFilterRuleArrayInput
-	// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+	// Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
 	Type pulumi.StringInput
 }
 
@@ -386,32 +396,32 @@ func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutputWithContex
 	return o
 }
 
-// Description of the ruleset.
+// Ruleset description
 func (o DeploymentTrafficFilterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// To automatically include the ruleset in the new deployments. Defaults to `false`.
-func (o DeploymentTrafficFilterOutput) IncludeByDefault() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.BoolPtrOutput { return v.IncludeByDefault }).(pulumi.BoolPtrOutput)
+// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
+func (o DeploymentTrafficFilterOutput) IncludeByDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.BoolOutput { return v.IncludeByDefault }).(pulumi.BoolOutput)
 }
 
-// Name of the ruleset.
+// Name of the ruleset
 func (o DeploymentTrafficFilterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Filter region, the ruleset can only be attached to deployments in the specific region.
+// Filter region, the ruleset can only be attached to deployments in the specific region
 func (o DeploymentTrafficFilterOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Rule block, which can be specified multiple times for multiple rules.
+// Set of rules, which the ruleset is made of.
 func (o DeploymentTrafficFilterOutput) Rules() DeploymentTrafficFilterRuleArrayOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) DeploymentTrafficFilterRuleArrayOutput { return v.Rules }).(DeploymentTrafficFilterRuleArrayOutput)
 }
 
-// Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+// Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
 func (o DeploymentTrafficFilterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -12,62 +12,62 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentTrafficFilterRule {
     /**
-     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     private @Nullable String azureEndpointGuid;
     /**
-     * @return Azure endpoint name. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     private @Nullable String azureEndpointName;
     /**
-     * @return Description of this individual rule.
+     * @return Description of this individual rule
      * 
      */
     private @Nullable String description;
     /**
-     * @return The ruleset ID.
+     * @return Computed rule ID
      * 
      */
     private @Nullable String id;
     /**
-     * @return traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `&#34;azure_private_endpoint&#34;`.
+     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
      * 
      */
     private @Nullable String source;
 
     private DeploymentTrafficFilterRule() {}
     /**
-     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     public Optional<String> azureEndpointGuid() {
         return Optional.ofNullable(this.azureEndpointGuid);
     }
     /**
-     * @return Azure endpoint name. Only applicable when the ruleset type is set to `&#34;azure_private_endpoint&#34;`.
+     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
      * 
      */
     public Optional<String> azureEndpointName() {
         return Optional.ofNullable(this.azureEndpointName);
     }
     /**
-     * @return Description of this individual rule.
+     * @return Description of this individual rule
      * 
      */
     public Optional<String> description() {
         return Optional.ofNullable(this.description);
     }
     /**
-     * @return The ruleset ID.
+     * @return Computed rule ID
      * 
      */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `&#34;azure_private_endpoint&#34;`.
+     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
      * 
      */
     public Optional<String> source() {

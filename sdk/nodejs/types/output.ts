@@ -7,577 +7,475 @@ import * as outputs from "../types/output";
 
 export interface DeploymentApm {
     /**
-     * APM settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Apm configuration options for the APM Server
      */
     config?: outputs.DeploymentApmConfig;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
-    elasticsearchClusterRefId?: string;
+    elasticsearchClusterRefId: string;
     httpEndpoint: string;
     httpsEndpoint: string;
+    instanceConfigurationId: string;
+    refId: string;
     /**
-     * Can be set on the APM resource. The default value `main-apm` is recommended.
-     */
-    refId?: string;
-    /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region: string;
     resourceId: string;
+    size: string;
     /**
-     * Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to "memory".
      */
-    topology: outputs.DeploymentApmTopology;
+    sizeResource: string;
+    zoneCount: number;
 }
 
 export interface DeploymentApmConfig {
-    /**
-     * Enable debug mode for APM servers. Defaults to `false`.
-     */
-    debugEnabled?: boolean;
+    debugEnabled: boolean;
     dockerImage?: string;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: string;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: string;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: string;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: string;
-}
-
-export interface DeploymentApmTopology {
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
-    instanceConfigurationId: string;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
-    size: string;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: string;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
-    zoneCount: number;
 }
 
 export interface DeploymentElasticsearch {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `"true"` or `"false"`.
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      */
-    autoscale: string;
+    autoscale: boolean;
     cloudId: string;
     /**
-     * Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+     * 'cold' topology element
+     */
+    cold?: outputs.DeploymentElasticsearchCold;
+    /**
+     * Elasticsearch settings which will be applied to all topologies
      */
     config?: outputs.DeploymentElasticsearchConfig;
     /**
-     * Custom Elasticsearch bundles or plugins. Can be set multiple times.
+     * 'coordinating' topology element
+     */
+    coordinating?: outputs.DeploymentElasticsearchCoordinating;
+    /**
+     * Optional Elasticsearch extensions such as custom bundles or plugins.
      */
     extensions?: outputs.DeploymentElasticsearchExtension[];
+    /**
+     * 'frozen' topology element
+     */
+    frozen?: outputs.DeploymentElasticsearchFrozen;
+    /**
+     * 'hot' topology element
+     */
+    hot: outputs.DeploymentElasticsearchHot;
     httpEndpoint: string;
     httpsEndpoint: string;
     /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * 'master' topology element
      */
-    refId?: string;
+    master?: outputs.DeploymentElasticsearchMaster;
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * 'ml' topology element
+     */
+    ml?: outputs.DeploymentElasticsearchMl;
+    /**
+     * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     */
+    refId: string;
+    /**
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region: string;
     /**
-     * Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+     * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      */
     remoteClusters?: outputs.DeploymentElasticsearchRemoteCluster[];
     resourceId: string;
     /**
-     * Restores data from a snapshot of another deployment.
+     * (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      */
+    snapshot: outputs.DeploymentElasticsearchSnapshot;
     snapshotSource?: outputs.DeploymentElasticsearchSnapshotSource;
-    /**
-     * Choose the configuration strategy used to apply the changes.
-     */
-    strategy?: outputs.DeploymentElasticsearchStrategy;
-    /**
-     * Can be set multiple times to compose complex topologies.
-     */
-    topologies: outputs.DeploymentElasticsearchTopology[];
-    /**
-     * The trust relationships with other ESS accounts.
-     */
+    strategy?: string;
     trustAccounts: outputs.DeploymentElasticsearchTrustAccount[];
-    /**
-     * The trust relationship with external entities (remote environments, remote accounts...).
-     */
     trustExternals: outputs.DeploymentElasticsearchTrustExternal[];
+    warm?: outputs.DeploymentElasticsearchWarm;
 }
 
-export interface DeploymentElasticsearchConfig {
-    dockerImage?: string;
-    /**
-     * List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-     */
-    plugins?: string[];
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsJson?: string;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideJson?: string;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideYaml?: string;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsYaml?: string;
-}
-
-export interface DeploymentElasticsearchExtension {
-    /**
-     * Extension name.
-     */
-    name: string;
-    /**
-     * Extension type, only `bundle` or `plugin` are supported.
-     */
-    type: string;
-    /**
-     * Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-     */
-    url: string;
-    /**
-     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
-     */
-    version: string;
-}
-
-export interface DeploymentElasticsearchRemoteCluster {
-    /**
-     * Alias for the Cross Cluster Search binding.
-     */
-    alias: string;
-    /**
-     * Remote deployment ID.
-     */
-    deploymentId: string;
-    /**
-     * Remote Elasticsearch `refId`. The default value `main-elasticsearch` is recommended.
-     */
-    refId?: string;
-    /**
-     * If true, skip the cluster during search when disconnected. Defaults to `false`.
-     */
-    skipUnavailable?: boolean;
-}
-
-export interface DeploymentElasticsearchSnapshotSource {
-    /**
-     * Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     */
-    snapshotName?: string;
-    /**
-     * ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-     */
-    sourceElasticsearchClusterId: string;
-}
-
-export interface DeploymentElasticsearchStrategy {
-    /**
-     * Set the type of configuration strategy [autodetect, grow_and_shrink, rolling_grow_and_shrink, rollingAll].
-     */
-    type: string;
-}
-
-export interface DeploymentElasticsearchTopology {
-    /**
-     * Autoscaling policy defining the maximum and / or minimum total size for this topology element. For more information refer to the `autoscaling` block.
-     */
-    autoscaling: outputs.DeploymentElasticsearchTopologyAutoscaling;
-    /**
-     * Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
-     */
-    configs: outputs.DeploymentElasticsearchTopologyConfig[];
-    /**
-     * Unique topology identifier. It generally refers to an Elasticsearch data tier, such as `hotContent`, `warm`, `cold`, `coordinating`, `frozen`, `ml` or `master`.
-     */
-    id: string;
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
+export interface DeploymentElasticsearchCold {
+    autoscaling: outputs.DeploymentElasticsearchColdAutoscaling;
     instanceConfigurationId: string;
     nodeRoles: string[];
-    /**
-     * The node type for the Elasticsearch cluster (data node).
-     */
     nodeTypeData: string;
-    /**
-     * The node type for the Elasticsearch cluster (ingest node).
-     */
     nodeTypeIngest: string;
-    /**
-     * The node type for the Elasticsearch cluster (master node).
-     */
     nodeTypeMaster: string;
-    /**
-     * The node type for the Elasticsearch cluster (machine learning node).
-     */
     nodeTypeMl: string;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
     size: string;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: string;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
+    sizeResource: string;
     zoneCount: number;
 }
 
-export interface DeploymentElasticsearchTopologyAutoscaling {
-    /**
-     * Defines the maximum size the deployment will scale up to. When set, scaling up will be enabled. All tiers should support this option.
-     */
+export interface DeploymentElasticsearchColdAutoscaling {
     maxSize: string;
-    /**
-     * Defines the resource type the scale up will use (Defaults to `"memory"`).
-     */
     maxSizeResource: string;
-    /**
-     * Defines the minimum size the deployment will scale down to. When set, scale down will be enabled, please note that not all the tiers support this option.
-     */
     minSize: string;
-    /**
-     * Defines the resource type the scale down will use (Defaults to `"memory"`).
-     */
     minSizeResource: string;
     policyOverrideJson: string;
 }
 
-export interface DeploymentElasticsearchTopologyConfig {
-    /**
-     * List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-     */
+export interface DeploymentElasticsearchConfig {
+    dockerImage?: string;
     plugins: string[];
+    userSettingsJson?: string;
+    userSettingsOverrideJson?: string;
+    userSettingsOverrideYaml?: string;
+    userSettingsYaml?: string;
+}
+
+export interface DeploymentElasticsearchCoordinating {
+    autoscaling: outputs.DeploymentElasticsearchCoordinatingAutoscaling;
+    instanceConfigurationId: string;
+    nodeRoles: string[];
+    nodeTypeData: string;
+    nodeTypeIngest: string;
+    nodeTypeMaster: string;
+    nodeTypeMl: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
+export interface DeploymentElasticsearchCoordinatingAutoscaling {
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+    policyOverrideJson: string;
+}
+
+export interface DeploymentElasticsearchExtension {
+    name: string;
+    type: string;
+    url: string;
     /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
+     * Elastic Stack version to use for all of the deployment resources.
      */
-    userSettingsJson: string;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideJson: string;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideYaml: string;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsYaml: string;
+    version: string;
+}
+
+export interface DeploymentElasticsearchFrozen {
+    autoscaling: outputs.DeploymentElasticsearchFrozenAutoscaling;
+    instanceConfigurationId: string;
+    nodeRoles: string[];
+    nodeTypeData: string;
+    nodeTypeIngest: string;
+    nodeTypeMaster: string;
+    nodeTypeMl: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
+export interface DeploymentElasticsearchFrozenAutoscaling {
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+    policyOverrideJson: string;
+}
+
+export interface DeploymentElasticsearchHot {
+    autoscaling: outputs.DeploymentElasticsearchHotAutoscaling;
+    instanceConfigurationId: string;
+    nodeRoles: string[];
+    nodeTypeData: string;
+    nodeTypeIngest: string;
+    nodeTypeMaster: string;
+    nodeTypeMl: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
+export interface DeploymentElasticsearchHotAutoscaling {
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+    policyOverrideJson: string;
+}
+
+export interface DeploymentElasticsearchMaster {
+    autoscaling: outputs.DeploymentElasticsearchMasterAutoscaling;
+    instanceConfigurationId: string;
+    nodeRoles: string[];
+    nodeTypeData: string;
+    nodeTypeIngest: string;
+    nodeTypeMaster: string;
+    nodeTypeMl: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
+export interface DeploymentElasticsearchMasterAutoscaling {
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+    policyOverrideJson: string;
+}
+
+export interface DeploymentElasticsearchMl {
+    autoscaling: outputs.DeploymentElasticsearchMlAutoscaling;
+    instanceConfigurationId: string;
+    nodeRoles: string[];
+    nodeTypeData: string;
+    nodeTypeIngest: string;
+    nodeTypeMaster: string;
+    nodeTypeMl: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
+export interface DeploymentElasticsearchMlAutoscaling {
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+    policyOverrideJson: string;
+}
+
+export interface DeploymentElasticsearchRemoteCluster {
+    alias: string;
+    deploymentId: string;
+    refId: string;
+    skipUnavailable: boolean;
+}
+
+export interface DeploymentElasticsearchSnapshot {
+    enabled: boolean;
+    repository: outputs.DeploymentElasticsearchSnapshotRepository;
+}
+
+export interface DeploymentElasticsearchSnapshotRepository {
+    reference: outputs.DeploymentElasticsearchSnapshotRepositoryReference;
+}
+
+export interface DeploymentElasticsearchSnapshotRepositoryReference {
+    repositoryName: string;
+}
+
+export interface DeploymentElasticsearchSnapshotSource {
+    snapshotName: string;
+    sourceElasticsearchClusterId: string;
 }
 
 export interface DeploymentElasticsearchTrustAccount {
-    /**
-     * The account identifier to establish the new trust with.
-     */
     accountId: string;
-    /**
-     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
-     */
     trustAll: boolean;
-    /**
-     * The list of clusters to trust. Only used when `trustAll` is `false`.
-     */
     trustAllowlists?: string[];
 }
 
 export interface DeploymentElasticsearchTrustExternal {
-    /**
-     * Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-     */
     relationshipId: string;
-    /**
-     * If true, all clusters in this external entity will be trusted and the `trustAllowlist` is ignored.
-     */
     trustAll: boolean;
-    /**
-     * The list of clusters to trust. Only used when `trustAll` is `false`.
-     */
     trustAllowlists?: string[];
+}
+
+export interface DeploymentElasticsearchWarm {
+    autoscaling: outputs.DeploymentElasticsearchWarmAutoscaling;
+    instanceConfigurationId: string;
+    nodeRoles: string[];
+    nodeTypeData: string;
+    nodeTypeIngest: string;
+    nodeTypeMaster: string;
+    nodeTypeMl: string;
+    size: string;
+    sizeResource: string;
+    zoneCount: number;
+}
+
+export interface DeploymentElasticsearchWarmAutoscaling {
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+    policyOverrideJson: string;
 }
 
 export interface DeploymentEnterpriseSearch {
     /**
-     * Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Enterprise Search configuration options for the Enterprise Search Server
      */
     config?: outputs.DeploymentEnterpriseSearchConfig;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
-    elasticsearchClusterRefId?: string;
+    elasticsearchClusterRefId: string;
     httpEndpoint: string;
     httpsEndpoint: string;
-    /**
-     * Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-     */
-    refId?: string;
-    /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
-     */
-    region: string;
-    resourceId: string;
-    /**
-     * Can be set multiple times to compose complex topologies.
-     */
-    topology: outputs.DeploymentEnterpriseSearchTopology;
-}
-
-export interface DeploymentEnterpriseSearchConfig {
-    dockerImage?: string;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsJson?: string;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideJson?: string;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsOverrideYaml?: string;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
-    userSettingsYaml?: string;
-}
-
-export interface DeploymentEnterpriseSearchTopology {
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
     instanceConfigurationId: string;
     nodeTypeAppserver: boolean;
     nodeTypeConnector: boolean;
     nodeTypeWorker: boolean;
+    refId: string;
     /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
-    size: string;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: string;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
-    zoneCount: number;
-}
-
-export interface DeploymentIntegrationsServer {
-    apmHttpsEndpoint: string;
-    /**
-     * Integrations Server settings applied to all topologies unless overridden in the `topology` element.
-     */
-    config?: outputs.DeploymentIntegrationsServerConfig;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
-    elasticsearchClusterRefId?: string;
-    fleetHttpsEndpoint: string;
-    httpEndpoint: string;
-    httpsEndpoint: string;
-    /**
-     * Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-     */
-    refId?: string;
-    /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region: string;
     resourceId: string;
+    size: string;
     /**
-     * Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to "memory".
      */
-    topology: outputs.DeploymentIntegrationsServerTopology;
+    sizeResource: string;
+    zoneCount: number;
 }
 
-export interface DeploymentIntegrationsServerConfig {
-    /**
-     * Enable debug mode for APM servers. Defaults to `false`.
-     */
-    debugEnabled?: boolean;
+export interface DeploymentEnterpriseSearchConfig {
     dockerImage?: string;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: string;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: string;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: string;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: string;
 }
 
-export interface DeploymentIntegrationsServerTopology {
+export interface DeploymentIntegrationsServer {
     /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
+     * Optionally define the Integrations Server configuration options for the IntegrationsServer Server
      */
+    config?: outputs.DeploymentIntegrationsServerConfig;
+    elasticsearchClusterRefId: string;
+    /**
+     * URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+     */
+    endpoints: outputs.DeploymentIntegrationsServerEndpoints;
+    httpEndpoint: string;
+    httpsEndpoint: string;
     instanceConfigurationId: string;
+    refId: string;
     /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
+    region: string;
+    resourceId: string;
     size: string;
     /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
+     * Optional size type, defaults to "memory".
      */
-    sizeResource?: string;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
+    sizeResource: string;
     zoneCount: number;
+}
+
+export interface DeploymentIntegrationsServerConfig {
+    debugEnabled: boolean;
+    dockerImage?: string;
+    userSettingsJson?: string;
+    userSettingsOverrideJson?: string;
+    userSettingsOverrideYaml?: string;
+    userSettingsYaml?: string;
+}
+
+export interface DeploymentIntegrationsServerEndpoints {
+    apm: string;
+    fleet: string;
 }
 
 export interface DeploymentKibana {
     /**
-     * Kibana settings applied to all topologies unless overridden in the `topology` element.
+     * Optionally define the Kibana configuration options for the Kibana Server
      */
     config?: outputs.DeploymentKibanaConfig;
-    /**
-     * This field references the `refId` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-     */
-    elasticsearchClusterRefId?: string;
+    elasticsearchClusterRefId: string;
     httpEndpoint: string;
     httpsEndpoint: string;
+    instanceConfigurationId: string;
+    refId: string;
     /**
-     * Can be set on the Kibana resource. The default value `main-kibana` is recommended.
-     */
-    refId?: string;
-    /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region: string;
     resourceId: string;
+    size: string;
     /**
-     * Can be set multiple times to compose complex topologies.
+     * Optional size type, defaults to "memory".
      */
-    topology: outputs.DeploymentKibanaTopology;
+    sizeResource: string;
+    zoneCount: number;
 }
 
 export interface DeploymentKibanaConfig {
     dockerImage?: string;
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsJson?: string;
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideJson?: string;
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     */
     userSettingsOverrideYaml?: string;
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     */
     userSettingsYaml?: string;
 }
 
-export interface DeploymentKibanaTopology {
-    /**
-     * Default instance configuration of the deployment template. To change it, use the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-     */
-    instanceConfigurationId: string;
-    /**
-     * Amount of memory (RAM) per `topology` element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.
-     */
-    size: string;
-    /**
-     * Type of resource to which the size is assigned. Defaults to `"memory"`.
-     */
-    sizeResource?: string;
-    /**
-     * Number of zones that the Enterprise Search deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value.
-     */
-    zoneCount: number;
-}
-
 export interface DeploymentObservability {
-    /**
-     * Remote deployment ID.
-     */
     deploymentId: string;
-    logs?: boolean;
-    metrics?: boolean;
-    /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-     */
+    logs: boolean;
+    metrics: boolean;
     refId: string;
 }
 
 export interface DeploymentTrafficFilterRule {
     /**
-     * Azure endpoint GUID. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+     * Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      */
     azureEndpointGuid?: string;
     /**
-     * Azure endpoint name. Only applicable when the ruleset type is set to `"azurePrivateEndpoint"`.
+     * Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      */
     azureEndpointName?: string;
     /**
-     * Description of this individual rule.
+     * Description of this individual rule
      */
     description?: string;
     /**
-     * The ruleset ID.
+     * Computed rule ID
      */
     id: string;
     /**
-     * traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `"azurePrivateEndpoint"`.
+     * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      */
     source?: string;
 }
 
 export interface GetDeploymentApm {
+    /**
+     * The locally-unique user-specified id of an APM Resource.
+     */
     elasticsearchClusterRefId: string;
     /**
-     * Overall health status of the deployment.
+     * APM resource health status.
      */
     healthy: boolean;
+    /**
+     * HTTP endpoint for the APM resource.
+     */
     httpEndpoint: string;
+    /**
+     * HTTPS endpoint for the APM resource.
+     */
     httpsEndpoint: string;
+    /**
+     * A locally-unique friendly alias for this APM resource.
+     */
     refId: string;
+    /**
+     * The resource unique identifier.
+     */
     resourceId: string;
+    /**
+     * APM resource status (for example, "started", "stopped", etc).
+     */
     status: string;
+    /**
+     * Node topology element definition.
+     */
     topologies: outputs.GetDeploymentApmTopology[];
+    /**
+     * Elastic stack version.
+     */
     version: string;
 }
 
@@ -589,18 +487,45 @@ export interface GetDeploymentApmTopology {
 }
 
 export interface GetDeploymentElasticsearch {
+    /**
+     * Whether or not Elasticsearch autoscaling is enabled.
+     */
     autoscale: string;
+    /**
+     * The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
+     */
     cloudId: string;
     /**
-     * Overall health status of the deployment.
+     * Elasticsearch resource health status.
      */
     healthy: boolean;
+    /**
+     * HTTP endpoint for the Elasticsearch resource.
+     */
     httpEndpoint: string;
+    /**
+     * HTTPS endpoint for the Elasticsearch resource.
+     */
     httpsEndpoint: string;
+    /**
+     * A locally-unique friendly alias for this Elasticsearch cluster.
+     */
     refId: string;
+    /**
+     * The resource unique identifier.
+     */
     resourceId: string;
+    /**
+     * Elasticsearch resource status (for example, "started", "stopped", etc).
+     */
     status: string;
+    /**
+     * Node topology element definition.
+     */
     topologies: outputs.GetDeploymentElasticsearchTopology[];
+    /**
+     * Elastic stack version.
+     */
     version: string;
 }
 
@@ -611,7 +536,7 @@ export interface GetDeploymentElasticsearchTopology {
     nodeTypeData: boolean;
     nodeTypeIngest: boolean;
     nodeTypeMaster: boolean;
-    nodeTypeMl?: boolean;
+    nodeTypeMl: boolean;
     size: string;
     sizeResource: string;
     zoneCount: number;
@@ -626,17 +551,41 @@ export interface GetDeploymentElasticsearchTopologyAutoscaling {
 }
 
 export interface GetDeploymentEnterpriseSearch {
+    /**
+     * A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     */
     elasticsearchClusterRefId: string;
     /**
-     * Overall health status of the deployment.
+     * Enterprise Search resource health status.
      */
     healthy: boolean;
+    /**
+     * HTTP endpoint for the Enterprise Search resource.
+     */
     httpEndpoint: string;
+    /**
+     * HTTPS endpoint for the Enterprise Search resource.
+     */
     httpsEndpoint: string;
+    /**
+     * A locally-unique friendly alias for this Enterprise Search resource.
+     */
     refId: string;
+    /**
+     * The resource unique identifier.
+     */
     resourceId: string;
+    /**
+     * Enterprise Search resource status (for example, "started", "stopped", etc).
+     */
     status: string;
+    /**
+     * Node topology element definition.
+     */
     topologies: outputs.GetDeploymentEnterpriseSearchTopology[];
+    /**
+     * Elastic stack version.
+     */
     version: string;
 }
 
@@ -651,17 +600,41 @@ export interface GetDeploymentEnterpriseSearchTopology {
 }
 
 export interface GetDeploymentIntegrationsServer {
+    /**
+     * A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     */
     elasticsearchClusterRefId: string;
     /**
-     * Overall health status of the deployment.
+     * Resource kind health status.
      */
     healthy: boolean;
+    /**
+     * HTTP endpoint for the resource kind.
+     */
     httpEndpoint: string;
+    /**
+     * HTTPS endpoint for the resource kind.
+     */
     httpsEndpoint: string;
+    /**
+     * A locally-unique friendly alias for this Integrations Server resource.
+     */
     refId: string;
+    /**
+     * The resource unique identifier.
+     */
     resourceId: string;
+    /**
+     * Resource kind status (for example, "started", "stopped", etc).
+     */
     status: string;
+    /**
+     * Node topology element definition.
+     */
     topologies: outputs.GetDeploymentIntegrationsServerTopology[];
+    /**
+     * Elastic stack version.
+     */
     version: string;
 }
 
@@ -673,17 +646,41 @@ export interface GetDeploymentIntegrationsServerTopology {
 }
 
 export interface GetDeploymentKibana {
+    /**
+     * A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     */
     elasticsearchClusterRefId: string;
     /**
-     * Overall health status of the deployment.
+     * Kibana resource health status.
      */
     healthy: boolean;
+    /**
+     * HTTP endpoint for the Kibana resource.
+     */
     httpEndpoint: string;
+    /**
+     * HTTPS endpoint for the Kibana resource.
+     */
     httpsEndpoint: string;
+    /**
+     * A locally-unique friendly alias for this Kibana resource.
+     */
     refId: string;
+    /**
+     * The resource unique identifier.
+     */
     resourceId: string;
+    /**
+     * Kibana resource status (for example, "started", "stopped", etc).
+     */
     status: string;
+    /**
+     * Node topology element definition.
+     */
     topologies: outputs.GetDeploymentKibanaTopology[];
+    /**
+     * Elastic stack version.
+     */
     version: string;
 }
 
@@ -695,110 +692,329 @@ export interface GetDeploymentKibanaTopology {
 }
 
 export interface GetDeploymentObservability {
+    /**
+     * Destination deployment ID for the shipped logs and monitoring metrics.
+     */
     deploymentId: string;
+    /**
+     * Defines whether logs are shipped to the destination deployment.
+     */
     logs: boolean;
+    /**
+     * Defines whether metrics are shipped to the destination deployment.
+     */
     metrics: boolean;
+    /**
+     * Elasticsearch resource kind refId of the destination deployment.
+     */
     refId: string;
 }
 
 export interface GetDeploymentsApm {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsDeployment {
+    /**
+     * Deployment alias.
+     */
     alias: string;
+    /**
+     * The APM resource reference.
+     */
     apmRefId: string;
+    /**
+     * The APM resource unique ID.
+     */
     apmResourceId: string;
+    /**
+     * The deployment unique ID.
+     */
     deploymentId: string;
+    /**
+     * The Elasticsearch resource reference.
+     */
     elasticsearchRefId: string;
+    /**
+     * The Elasticsearch resource unique ID.
+     */
     elasticsearchResourceId: string;
+    /**
+     * The Enterprise Search resource reference.
+     */
     enterpriseSearchRefId: string;
+    /**
+     * The Enterprise Search resource unique ID.
+     */
     enterpriseSearchResourceId: string;
+    /**
+     * The Integrations Server resource reference.
+     */
     integrationsServerRefId: string;
+    /**
+     * The Integrations Server resource unique ID.
+     */
     integrationsServerResourceId: string;
+    /**
+     * The Kibana resource reference.
+     */
     kibanaRefId: string;
+    /**
+     * The Kibana resource unique ID.
+     */
     kibanaResourceId: string;
+    /**
+     * The name of the deployment.
+     */
     name: string;
 }
 
 export interface GetDeploymentsElasticsearch {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsEnterpriseSearch {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsIntegrationsServer {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetDeploymentsKibana {
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     */
     status?: string;
+    /**
+     * Elastic stack version.
+     */
     version?: string;
 }
 
 export interface GetStackApm {
+    /**
+     * Maximum size of the instances.
+     */
     capacityConstraintsMax: number;
+    /**
+     * Minimum size of the instances.
+     */
     capacityConstraintsMin: number;
+    /**
+     * List of node types compatible with this one.
+     */
     compatibleNodeTypes: string[];
-    defaultPlugins: string[];
+    /**
+     * List of configuration options that cannot be overridden by user settings.
+     */
     denylists: string[];
+    /**
+     * Docker image to use for the APM instance.
+     */
     dockerImage: string;
-    plugins: string[];
 }
 
 export interface GetStackElasticsearch {
+    /**
+     * Maximum size of the instances.
+     */
     capacityConstraintsMax: number;
+    /**
+     * Minimum size of the instances.
+     */
     capacityConstraintsMin: number;
+    /**
+     * List of node types compatible with this one.
+     */
     compatibleNodeTypes: string[];
+    /**
+     * List of default plugins.
+     */
     defaultPlugins: string[];
+    /**
+     * List of configuration options that cannot be overridden by user settings.
+     */
     denylists: string[];
+    /**
+     * Docker image to use for the Elasticsearch cluster instances.
+     */
     dockerImage: string;
+    /**
+     * List of available plugins to be specified by users in Elasticsearch cluster instances.
+     */
     plugins: string[];
 }
 
 export interface GetStackEnterpriseSearch {
+    /**
+     * Maximum size of the instances.
+     */
     capacityConstraintsMax: number;
+    /**
+     * Minimum size of the instances.
+     */
     capacityConstraintsMin: number;
+    /**
+     * List of node types compatible with this one.
+     */
     compatibleNodeTypes: string[];
-    defaultPlugins: string[];
+    /**
+     * List of configuration options that cannot be overridden by user settings.
+     */
     denylists: string[];
+    /**
+     * Docker image to use for the Enterprise Search instance.
+     */
     dockerImage: string;
-    plugins: string[];
 }
 
 export interface GetStackKibana {
+    /**
+     * Maximum size of the instances.
+     */
     capacityConstraintsMax: number;
+    /**
+     * Minimum size of the instances.
+     */
     capacityConstraintsMin: number;
+    /**
+     * List of node types compatible with this one.
+     */
     compatibleNodeTypes: string[];
-    defaultPlugins: string[];
+    /**
+     * List of configuration options that cannot be overridden by user settings.
+     */
     denylists: string[];
+    /**
+     * Docker image to use for the Kibana instance.
+     */
     dockerImage: string;
-    plugins: string[];
+}
+
+export interface GetTrafficFilterRuleset {
+    /**
+     * The description of the ruleset.
+     */
+    description: string;
+    /**
+     * The ID of the ruleset
+     */
+    id: string;
+    /**
+     * Should the ruleset be automatically included in the new deployments.
+     */
+    includeByDefault: boolean;
+    /**
+     * The name of the ruleset.
+     */
+    name: string;
+    /**
+     * The ruleset can be attached only to deployments in the specific region.
+     */
+    region: string;
+    /**
+     * An individual rule
+     */
+    rules: outputs.GetTrafficFilterRulesetRule[];
+}
+
+export interface GetTrafficFilterRulesetRule {
+    description: string;
+    /**
+     * The id of the traffic filter to select.
+     */
+    id: string;
+    source: string;
+}
+
+export interface SnapshotRepositoryGeneric {
+    /**
+     * An arbitrary JSON object containing the repository settings.
+     */
+    settings: string;
+    /**
+     * Repository type
+     */
+    type: string;
+}
+
+export interface SnapshotRepositoryS3 {
+    /**
+     * An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
+     */
+    accessKey?: string;
+    /**
+     * Name of the S3 bucket to use for snapshots.
+     */
+    bucket: string;
+    /**
+     * The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+     */
+    endpoint?: string;
+    /**
+     * Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
+     */
+    pathStyleAccess: boolean;
+    /**
+     * Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
+     */
+    region?: string;
+    /**
+     * An S3 secret key. If set, the accessKey setting must also be specified.
+     */
+    secretKey?: string;
+    /**
+     * When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
+     */
+    serverSideEncryption: boolean;
 }
 

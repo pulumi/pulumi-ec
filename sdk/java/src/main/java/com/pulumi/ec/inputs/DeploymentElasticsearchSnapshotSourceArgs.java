@@ -15,32 +15,16 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
 
     public static final DeploymentElasticsearchSnapshotSourceArgs Empty = new DeploymentElasticsearchSnapshotSourceArgs();
 
-    /**
-     * Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     * 
-     */
     @Import(name="snapshotName")
     private @Nullable Output<String> snapshotName;
 
-    /**
-     * @return Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-     * 
-     */
     public Optional<Output<String>> snapshotName() {
         return Optional.ofNullable(this.snapshotName);
     }
 
-    /**
-     * ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-     * 
-     */
     @Import(name="sourceElasticsearchClusterId", required=true)
     private Output<String> sourceElasticsearchClusterId;
 
-    /**
-     * @return ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-     * 
-     */
     public Output<String> sourceElasticsearchClusterId() {
         return this.sourceElasticsearchClusterId;
     }
@@ -70,44 +54,20 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
             $ = new DeploymentElasticsearchSnapshotSourceArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param snapshotName Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-         * 
-         * @return builder
-         * 
-         */
         public Builder snapshotName(@Nullable Output<String> snapshotName) {
             $.snapshotName = snapshotName;
             return this;
         }
 
-        /**
-         * @param snapshotName Name of the snapshot to restore. Use `__latest_success__` to get the most recent successful snapshot (Defaults to `__latest_success__`).
-         * 
-         * @return builder
-         * 
-         */
         public Builder snapshotName(String snapshotName) {
             return snapshotName(Output.of(snapshotName));
         }
 
-        /**
-         * @param sourceElasticsearchClusterId ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-         * 
-         * @return builder
-         * 
-         */
         public Builder sourceElasticsearchClusterId(Output<String> sourceElasticsearchClusterId) {
             $.sourceElasticsearchClusterId = sourceElasticsearchClusterId;
             return this;
         }
 
-        /**
-         * @param sourceElasticsearchClusterId ID of the Elasticsearch cluster, not to be confused with the deployment ID, that will be used as the source of the snapshot. The Elasticsearch cluster must be in the same region and must have a compatible version of the Elastic Stack.
-         * 
-         * @return builder
-         * 
-         */
         public Builder sourceElasticsearchClusterId(String sourceElasticsearchClusterId) {
             return sourceElasticsearchClusterId(Output.of(sourceElasticsearchClusterId));
         }

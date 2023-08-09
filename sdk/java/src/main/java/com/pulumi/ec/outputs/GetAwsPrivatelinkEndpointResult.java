@@ -20,6 +20,10 @@ public final class GetAwsPrivatelinkEndpointResult {
      * 
      */
     private String id;
+    /**
+     * @return Region to retrieve the Private Link configuration for.
+     * 
+     */
     private String region;
     /**
      * @return The VPC service name used to connect to the region.
@@ -47,6 +51,10 @@ public final class GetAwsPrivatelinkEndpointResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Region to retrieve the Private Link configuration for.
+     * 
+     */
     public String region() {
         return this.region;
     }

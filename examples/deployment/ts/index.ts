@@ -11,5 +11,5 @@ new elasticCloud.Deployment('my-deployment', {
   region: REGION,
   version: latestVersion.then((x: { version: string; }) => x.version),
   deploymentTemplateId: "aws-io-optimized-v2",
-  elasticsearch: {}
+  elasticsearch: { hot: { autoscaling: {} } },
 });

@@ -14,6 +14,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
     /// 
@@ -48,19 +49,19 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// Import is not supported on this resource.
+    /// Import is not supported on this resource
     /// </summary>
     [ElasticCloudResourceType("ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation")]
     public partial class DeploymentTrafficFilterAssociation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Deployment ID of the deployment to which the traffic filter rule is attached.
+        /// Required deployment ID where the traffic filter will be associated
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
-        /// Traffic filter ID of the rule to use for the attachment.
+        /// Required traffic filter ruleset ID to tie to a deployment
         /// </summary>
         [Output("trafficFilterId")]
         public Output<string> TrafficFilterId { get; private set; } = null!;
@@ -112,13 +113,13 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterAssociationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment ID of the deployment to which the traffic filter rule is attached.
+        /// Required deployment ID where the traffic filter will be associated
         /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
         /// <summary>
-        /// Traffic filter ID of the rule to use for the attachment.
+        /// Required traffic filter ruleset ID to tie to a deployment
         /// </summary>
         [Input("trafficFilterId", required: true)]
         public Input<string> TrafficFilterId { get; set; } = null!;
@@ -132,13 +133,13 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterAssociationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment ID of the deployment to which the traffic filter rule is attached.
+        /// Required deployment ID where the traffic filter will be associated
         /// </summary>
         [Input("deploymentId")]
         public Input<string>? DeploymentId { get; set; }
 
         /// <summary>
-        /// Traffic filter ID of the rule to use for the attachment.
+        /// Required traffic filter ruleset ID to tie to a deployment
         /// </summary>
         [Input("trafficFilterId")]
         public Input<string>? TrafficFilterId { get; set; }

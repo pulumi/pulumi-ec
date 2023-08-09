@@ -13,14 +13,14 @@ public final class GetGcpPrivateServiceConnectEndpointPlainArgs extends com.pulu
     public static final GetGcpPrivateServiceConnectEndpointPlainArgs Empty = new GetGcpPrivateServiceConnectEndpointPlainArgs();
 
     /**
-     * Region to retrieve the Private Link configuration for.
+     * Region to retrieve the Prive Link configuration for.
      * 
      */
     @Import(name="region", required=true)
     private String region;
 
     /**
-     * @return Region to retrieve the Private Link configuration for.
+     * @return Region to retrieve the Prive Link configuration for.
      * 
      */
     public String region() {
@@ -52,7 +52,7 @@ public final class GetGcpPrivateServiceConnectEndpointPlainArgs extends com.pulu
         }
 
         /**
-         * @param region Region to retrieve the Private Link configuration for.
+         * @param region Region to retrieve the Prive Link configuration for.
          * 
          * @return builder
          * 

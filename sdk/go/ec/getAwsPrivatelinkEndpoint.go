@@ -7,12 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
-//
-// > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
 //
 // ## Example Usage
 //
@@ -28,8 +27,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.GetAwsPrivatelinkEndpoint(ctx, &ec.GetAwsPrivatelinkEndpointArgs{
-//				Region: "us-east-1",
+//			_, err := ec.GetAzurePrivatelinkEndpoint(ctx, &ec.GetAzurePrivatelinkEndpointArgs{
+//				Region: "eastus",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -40,6 +39,7 @@ import (
 //
 // ```
 func GetAwsPrivatelinkEndpoint(ctx *pulumi.Context, args *GetAwsPrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*GetAwsPrivatelinkEndpointResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAwsPrivatelinkEndpointResult
 	err := ctx.Invoke("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args, &rv, opts...)
 	if err != nil {
@@ -59,7 +59,8 @@ type GetAwsPrivatelinkEndpointResult struct {
 	// The domain name to used in when configuring a private hosted zone in the VPCE connection.
 	DomainName string `pulumi:"domainName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Region to retrieve the Private Link configuration for.
 	Region string `pulumi:"region"`
 	// The VPC service name used to connect to the region.
 	VpcServiceName string `pulumi:"vpcServiceName"`
@@ -115,6 +116,7 @@ func (o GetAwsPrivatelinkEndpointResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsPrivatelinkEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Region to retrieve the Private Link configuration for.
 func (o GetAwsPrivatelinkEndpointResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsPrivatelinkEndpointResult) string { return v.Region }).(pulumi.StringOutput)
 }

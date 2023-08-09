@@ -16,11 +16,10 @@ package main
 
 import (
 	ec "github.com/pulumi/pulumi-ec/provider"
-	"github.com/pulumi/pulumi-ec/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.Main("ec", version.Version, ec.Provider())
+	tfgen.Main("ec", ec.Provider())
 }

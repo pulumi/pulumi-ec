@@ -7,10 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to retrieve information about an existing Elastic Cloud stack.
+//
+//	> **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
 //
 // ## Example Usage
 //
@@ -47,6 +50,7 @@ import (
 //
 // ```
 func GetStack(ctx *pulumi.Context, args *GetStackArgs, opts ...pulumi.InvokeOption) (*GetStackResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetStackResult
 	err := ctx.Invoke("ec:index/getStack:getStack", args, &rv, opts...)
 	if err != nil {
@@ -57,11 +61,11 @@ func GetStack(ctx *pulumi.Context, args *GetStackArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getStack.
 type GetStackArgs struct {
-	// Lock the `"latest"` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+	// Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
 	Lock *bool `pulumi:"lock"`
-	// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
+	// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
 	Region string `pulumi:"region"`
-	// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+	// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
 	VersionRegex string `pulumi:"versionRegex"`
 }
 
@@ -72,45 +76,26 @@ type GetStackResult struct {
 	// To include/not include this version in the `allowlist`. This is only relevant for Elasticsearch Service (ESS), not for ECE.
 	Allowlisted bool `pulumi:"allowlisted"`
 	// Information for APM workloads on this stack version.
-	// * `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.
-	// * `apm.#.capacity_constraints_min` - Minimum size of the instances.
-	// * `apm.#.capacity_constraints_max` - Maximum size of the instances.
-	// * `apm.#.compatible_node_types` - List of node types compatible with this one.
-	// * `apm.#.docker_image` - Docker image to use for the APM instance.
 	Apms []GetStackApm `pulumi:"apms"`
 	// Information for Elasticsearch workloads on this stack version.
-	// * `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.
-	// * `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.
-	// * `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.
-	// * `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.
-	// * `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.
-	// * `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.
-	// * `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.
 	Elasticsearches []GetStackElasticsearch `pulumi:"elasticsearches"`
 	// Information for Enterprise Search workloads on this stack version.
-	// * `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.
-	// * `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.
-	// * `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.
-	// * `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.
-	// * `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.
 	EnterpriseSearches []GetStackEnterpriseSearch `pulumi:"enterpriseSearches"`
-	// The provider-assigned unique ID for this managed resource.
+	// Unique identifier of this data source.
 	Id string `pulumi:"id"`
 	// Information for Kibana workloads on this stack version.
-	// * `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.
-	// * `kibana.#.capacity_constraints_min` - Minimum size of the instances.
-	// * `kibana.#.capacity_constraints_max` - Maximum size of the instances.
-	// * `kibana.#.compatible_node_types` - List of node types compatible with this one.
-	// * `kibana.#.docker_image` - Docker image to use for the Kibana instance.
 	Kibanas []GetStackKibana `pulumi:"kibanas"`
-	Lock    *bool            `pulumi:"lock"`
-	// The minimum stack version recommended.
+	// Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+	Lock *bool `pulumi:"lock"`
+	// The minimum stack version which can be upgraded to this stack version.
 	MinUpgradableFrom string `pulumi:"minUpgradableFrom"`
-	Region            string `pulumi:"region"`
-	// The stack version you can upgrade to.
+	// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+	Region string `pulumi:"region"`
+	// A list of stack versions which this stack version can be upgraded to.
 	UpgradableTos []string `pulumi:"upgradableTos"`
-	// The stack version.
-	Version      string `pulumi:"version"`
+	// The stack version
+	Version string `pulumi:"version"`
+	// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
 	VersionRegex string `pulumi:"versionRegex"`
 }
 
@@ -129,11 +114,11 @@ func GetStackOutput(ctx *pulumi.Context, args GetStackOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getStack.
 type GetStackOutputArgs struct {
-	// Lock the `"latest"` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+	// Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
 	Lock pulumi.BoolPtrInput `pulumi:"lock"`
-	// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
+	// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
 	Region pulumi.StringInput `pulumi:"region"`
-	// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+	// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
 	VersionRegex pulumi.StringInput `pulumi:"versionRegex"`
 }
 
@@ -167,75 +152,56 @@ func (o GetStackResultOutput) Allowlisted() pulumi.BoolOutput {
 }
 
 // Information for APM workloads on this stack version.
-// * `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.
-// * `apm.#.capacity_constraints_min` - Minimum size of the instances.
-// * `apm.#.capacity_constraints_max` - Maximum size of the instances.
-// * `apm.#.compatible_node_types` - List of node types compatible with this one.
-// * `apm.#.docker_image` - Docker image to use for the APM instance.
 func (o GetStackResultOutput) Apms() GetStackApmArrayOutput {
 	return o.ApplyT(func(v GetStackResult) []GetStackApm { return v.Apms }).(GetStackApmArrayOutput)
 }
 
 // Information for Elasticsearch workloads on this stack version.
-// * `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.
-// * `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.
-// * `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.
-// * `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.
-// * `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.
-// * `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.
-// * `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.
 func (o GetStackResultOutput) Elasticsearches() GetStackElasticsearchArrayOutput {
 	return o.ApplyT(func(v GetStackResult) []GetStackElasticsearch { return v.Elasticsearches }).(GetStackElasticsearchArrayOutput)
 }
 
 // Information for Enterprise Search workloads on this stack version.
-// * `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.
-// * `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.
-// * `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.
-// * `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.
-// * `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.
 func (o GetStackResultOutput) EnterpriseSearches() GetStackEnterpriseSearchArrayOutput {
 	return o.ApplyT(func(v GetStackResult) []GetStackEnterpriseSearch { return v.EnterpriseSearches }).(GetStackEnterpriseSearchArrayOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// Unique identifier of this data source.
 func (o GetStackResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Information for Kibana workloads on this stack version.
-// * `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.
-// * `kibana.#.capacity_constraints_min` - Minimum size of the instances.
-// * `kibana.#.capacity_constraints_max` - Maximum size of the instances.
-// * `kibana.#.compatible_node_types` - List of node types compatible with this one.
-// * `kibana.#.docker_image` - Docker image to use for the Kibana instance.
 func (o GetStackResultOutput) Kibanas() GetStackKibanaArrayOutput {
 	return o.ApplyT(func(v GetStackResult) []GetStackKibana { return v.Kibanas }).(GetStackKibanaArrayOutput)
 }
 
+// Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
 func (o GetStackResultOutput) Lock() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetStackResult) *bool { return v.Lock }).(pulumi.BoolPtrOutput)
 }
 
-// The minimum stack version recommended.
+// The minimum stack version which can be upgraded to this stack version.
 func (o GetStackResultOutput) MinUpgradableFrom() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackResult) string { return v.MinUpgradableFrom }).(pulumi.StringOutput)
 }
 
+// Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
 func (o GetStackResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// The stack version you can upgrade to.
+// A list of stack versions which this stack version can be upgraded to.
 func (o GetStackResultOutput) UpgradableTos() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStackResult) []string { return v.UpgradableTos }).(pulumi.StringArrayOutput)
 }
 
-// The stack version.
+// The stack version
 func (o GetStackResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
+// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
 func (o GetStackResultOutput) VersionRegex() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackResult) string { return v.VersionRegex }).(pulumi.StringOutput)
 }

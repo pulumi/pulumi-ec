@@ -13,14 +13,20 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class GetDeploymentsKibanaArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Overall health status of the deployment.
+        /// Overall health status of the resource instances.
         /// </summary>
         [Input("healthy")]
         public string? Healthy { get; set; }
 
+        /// <summary>
+        /// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+        /// </summary>
         [Input("status")]
         public string? Status { get; set; }
 
+        /// <summary>
+        /// Elastic stack version.
+        /// </summary>
         [Input("version")]
         public string? Version { get; set; }
 

@@ -11,35 +11,67 @@ import java.util.Objects;
 
 @CustomType
 public final class GetStackEnterpriseSearch {
+    /**
+     * @return Maximum size of the instances.
+     * 
+     */
     private Integer capacityConstraintsMax;
+    /**
+     * @return Minimum size of the instances.
+     * 
+     */
     private Integer capacityConstraintsMin;
+    /**
+     * @return List of node types compatible with this one.
+     * 
+     */
     private List<String> compatibleNodeTypes;
-    private List<String> defaultPlugins;
+    /**
+     * @return List of configuration options that cannot be overridden by user settings.
+     * 
+     */
     private List<String> denylists;
+    /**
+     * @return Docker image to use for the Enterprise Search instance.
+     * 
+     */
     private String dockerImage;
-    private List<String> plugins;
 
     private GetStackEnterpriseSearch() {}
+    /**
+     * @return Maximum size of the instances.
+     * 
+     */
     public Integer capacityConstraintsMax() {
         return this.capacityConstraintsMax;
     }
+    /**
+     * @return Minimum size of the instances.
+     * 
+     */
     public Integer capacityConstraintsMin() {
         return this.capacityConstraintsMin;
     }
+    /**
+     * @return List of node types compatible with this one.
+     * 
+     */
     public List<String> compatibleNodeTypes() {
         return this.compatibleNodeTypes;
     }
-    public List<String> defaultPlugins() {
-        return this.defaultPlugins;
-    }
+    /**
+     * @return List of configuration options that cannot be overridden by user settings.
+     * 
+     */
     public List<String> denylists() {
         return this.denylists;
     }
+    /**
+     * @return Docker image to use for the Enterprise Search instance.
+     * 
+     */
     public String dockerImage() {
         return this.dockerImage;
-    }
-    public List<String> plugins() {
-        return this.plugins;
     }
 
     public static Builder builder() {
@@ -54,20 +86,16 @@ public final class GetStackEnterpriseSearch {
         private Integer capacityConstraintsMax;
         private Integer capacityConstraintsMin;
         private List<String> compatibleNodeTypes;
-        private List<String> defaultPlugins;
         private List<String> denylists;
         private String dockerImage;
-        private List<String> plugins;
         public Builder() {}
         public Builder(GetStackEnterpriseSearch defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.capacityConstraintsMax = defaults.capacityConstraintsMax;
     	      this.capacityConstraintsMin = defaults.capacityConstraintsMin;
     	      this.compatibleNodeTypes = defaults.compatibleNodeTypes;
-    	      this.defaultPlugins = defaults.defaultPlugins;
     	      this.denylists = defaults.denylists;
     	      this.dockerImage = defaults.dockerImage;
-    	      this.plugins = defaults.plugins;
         }
 
         @CustomType.Setter
@@ -89,14 +117,6 @@ public final class GetStackEnterpriseSearch {
             return compatibleNodeTypes(List.of(compatibleNodeTypes));
         }
         @CustomType.Setter
-        public Builder defaultPlugins(List<String> defaultPlugins) {
-            this.defaultPlugins = Objects.requireNonNull(defaultPlugins);
-            return this;
-        }
-        public Builder defaultPlugins(String... defaultPlugins) {
-            return defaultPlugins(List.of(defaultPlugins));
-        }
-        @CustomType.Setter
         public Builder denylists(List<String> denylists) {
             this.denylists = Objects.requireNonNull(denylists);
             return this;
@@ -109,23 +129,13 @@ public final class GetStackEnterpriseSearch {
             this.dockerImage = Objects.requireNonNull(dockerImage);
             return this;
         }
-        @CustomType.Setter
-        public Builder plugins(List<String> plugins) {
-            this.plugins = Objects.requireNonNull(plugins);
-            return this;
-        }
-        public Builder plugins(String... plugins) {
-            return plugins(List.of(plugins));
-        }
         public GetStackEnterpriseSearch build() {
             final var o = new GetStackEnterpriseSearch();
             o.capacityConstraintsMax = capacityConstraintsMax;
             o.capacityConstraintsMin = capacityConstraintsMin;
             o.compatibleNodeTypes = compatibleNodeTypes;
-            o.defaultPlugins = defaultPlugins;
             o.denylists = denylists;
             o.dockerImage = dockerImage;
-            o.plugins = plugins;
             return o;
         }
     }

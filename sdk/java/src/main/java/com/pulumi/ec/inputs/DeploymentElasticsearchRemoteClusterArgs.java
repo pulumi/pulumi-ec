@@ -16,62 +16,30 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
 
     public static final DeploymentElasticsearchRemoteClusterArgs Empty = new DeploymentElasticsearchRemoteClusterArgs();
 
-    /**
-     * Alias for the Cross Cluster Search binding.
-     * 
-     */
     @Import(name="alias", required=true)
     private Output<String> alias;
 
-    /**
-     * @return Alias for the Cross Cluster Search binding.
-     * 
-     */
     public Output<String> alias() {
         return this.alias;
     }
 
-    /**
-     * Remote deployment ID.
-     * 
-     */
     @Import(name="deploymentId", required=true)
     private Output<String> deploymentId;
 
-    /**
-     * @return Remote deployment ID.
-     * 
-     */
     public Output<String> deploymentId() {
         return this.deploymentId;
     }
 
-    /**
-     * Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
-    /**
-     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<Output<String>> refId() {
         return Optional.ofNullable(this.refId);
     }
 
-    /**
-     * If true, skip the cluster during search when disconnected. Defaults to `false`.
-     * 
-     */
     @Import(name="skipUnavailable")
     private @Nullable Output<Boolean> skipUnavailable;
 
-    /**
-     * @return If true, skip the cluster during search when disconnected. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> skipUnavailable() {
         return Optional.ofNullable(this.skipUnavailable);
     }
@@ -103,86 +71,38 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
             $ = new DeploymentElasticsearchRemoteClusterArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param alias Alias for the Cross Cluster Search binding.
-         * 
-         * @return builder
-         * 
-         */
         public Builder alias(Output<String> alias) {
             $.alias = alias;
             return this;
         }
 
-        /**
-         * @param alias Alias for the Cross Cluster Search binding.
-         * 
-         * @return builder
-         * 
-         */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
         }
 
-        /**
-         * @param deploymentId Remote deployment ID.
-         * 
-         * @return builder
-         * 
-         */
         public Builder deploymentId(Output<String> deploymentId) {
             $.deploymentId = deploymentId;
             return this;
         }
 
-        /**
-         * @param deploymentId Remote deployment ID.
-         * 
-         * @return builder
-         * 
-         */
         public Builder deploymentId(String deploymentId) {
             return deploymentId(Output.of(deploymentId));
         }
 
-        /**
-         * @param refId Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refId(@Nullable Output<String> refId) {
             $.refId = refId;
             return this;
         }
 
-        /**
-         * @param refId Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refId(String refId) {
             return refId(Output.of(refId));
         }
 
-        /**
-         * @param skipUnavailable If true, skip the cluster during search when disconnected. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder skipUnavailable(@Nullable Output<Boolean> skipUnavailable) {
             $.skipUnavailable = skipUnavailable;
             return this;
         }
 
-        /**
-         * @param skipUnavailable If true, skip the cluster during search when disconnected. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder skipUnavailable(Boolean skipUnavailable) {
             return skipUnavailable(Output.of(skipUnavailable));
         }

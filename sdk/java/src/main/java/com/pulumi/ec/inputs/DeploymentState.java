@@ -11,6 +11,7 @@ import com.pulumi.ec.inputs.DeploymentEnterpriseSearchArgs;
 import com.pulumi.ec.inputs.DeploymentIntegrationsServerArgs;
 import com.pulumi.ec.inputs.DeploymentKibanaArgs;
 import com.pulumi.ec.inputs.DeploymentObservabilityArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -39,109 +40,23 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+     * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      * 
      */
     @Import(name="apm")
     private @Nullable Output<DeploymentApmArgs> apm;
 
     /**
-     * @return **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+     * @return **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      * 
      */
     public Optional<Output<DeploymentApmArgs>> apm() {
         return Optional.ofNullable(this.apm);
     }
 
-    /**
-     * Auto-generated APM secret_token, empty unless an `apm` resource is specified.
-     * * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
-     * * `elasticsearch.#.region` - Elasticsearch region.
-     * * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
-     * * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
-     * * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
-     * * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
-     * * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
-     * * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
-     * * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
-     * * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
-     * * `kibana.#.resource_id` - Kibana resource unique identifier.
-     * * `kibana.#.region` - Kibana region.
-     * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
-     * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
-     * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
-     * * `integrations_server.#.region` - Integrations Server region.
-     * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
-     * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
-     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
-     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
-     * * `apm.#.resource_id` - APM resource unique identifier.
-     * * `apm.#.region` - APM region.
-     * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
-     * * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
-     * * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
-     * * `enterprise_search.#.region` - Enterprise Search region.
-     * * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
-     * * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
-     * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
-     * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
-     * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
-     * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
-     * 
-     */
     @Import(name="apmSecretToken")
     private @Nullable Output<String> apmSecretToken;
 
-    /**
-     * @return Auto-generated APM secret_token, empty unless an `apm` resource is specified.
-     * * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
-     * * `elasticsearch.#.region` - Elasticsearch region.
-     * * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
-     * * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
-     * * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
-     * * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
-     * * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
-     * * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
-     * * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
-     * * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
-     * * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
-     * * `kibana.#.resource_id` - Kibana resource unique identifier.
-     * * `kibana.#.region` - Kibana region.
-     * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
-     * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
-     * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
-     * * `integrations_server.#.region` - Integrations Server region.
-     * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
-     * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
-     * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
-     * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
-     * * `apm.#.resource_id` - APM resource unique identifier.
-     * * `apm.#.region` - APM region.
-     * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
-     * * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
-     * * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
-     * * `enterprise_search.#.region` - Enterprise Search region.
-     * * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
-     * * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
-     * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
-     * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-     * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
-     * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
-     * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
-     * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
-     * 
-     */
     public Optional<Output<String>> apmSecretToken() {
         return Optional.ofNullable(this.apmSecretToken);
     }
@@ -162,14 +77,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+     * Elasticsearch cluster definition
      * 
      */
     @Import(name="elasticsearch")
     private @Nullable Output<DeploymentElasticsearchArgs> elasticsearch;
 
     /**
-     * @return Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+     * @return Elasticsearch cluster definition
      * 
      */
     public Optional<Output<DeploymentElasticsearchArgs>> elasticsearch() {
@@ -177,14 +92,18 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Auto-generated Elasticsearch password.
+     * Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
+     * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
+     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
      * 
      */
     @Import(name="elasticsearchPassword")
     private @Nullable Output<String> elasticsearchPassword;
 
     /**
-     * @return Auto-generated Elasticsearch password.
+     * @return Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
+     * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
+     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
      * 
      */
     public Optional<Output<String>> elasticsearchPassword() {
@@ -192,14 +111,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Auto-generated Elasticsearch username.
+     * Username for authenticating to the Elasticsearch resource.
      * 
      */
     @Import(name="elasticsearchUsername")
     private @Nullable Output<String> elasticsearchUsername;
 
     /**
-     * @return Auto-generated Elasticsearch username.
+     * @return Username for authenticating to the Elasticsearch resource.
      * 
      */
     public Optional<Output<String>> elasticsearchUsername() {
@@ -207,14 +126,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+     * Enterprise Search cluster definition.
      * 
      */
     @Import(name="enterpriseSearch")
     private @Nullable Output<DeploymentEnterpriseSearchArgs> enterpriseSearch;
 
     /**
-     * @return Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+     * @return Enterprise Search cluster definition.
      * 
      */
     public Optional<Output<DeploymentEnterpriseSearchArgs>> enterpriseSearch() {
@@ -222,14 +141,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
      * 
      */
     @Import(name="integrationsServer")
     private @Nullable Output<DeploymentIntegrationsServerArgs> integrationsServer;
 
     /**
-     * @return Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+     * @return Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
      * 
      */
     public Optional<Output<DeploymentIntegrationsServerArgs>> integrationsServer() {
@@ -237,14 +156,16 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Kibana instance definition, can only be specified once.
+     * Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
     @Import(name="kibana")
     private @Nullable Output<DeploymentKibanaArgs> kibana;
 
     /**
-     * @return Kibana instance definition, can only be specified once.
+     * @return Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
     public Optional<Output<DeploymentKibanaArgs>> kibana() {
@@ -252,14 +173,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Name of the deployment.
+     * Name for the deployment
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the deployment.
+     * @return Name for the deployment
      * 
      */
     public Optional<Output<String>> name() {
@@ -267,14 +188,16 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+     * current deployment itself by setting observability.deployment_id to `self`.
      * 
      */
     @Import(name="observability")
     private @Nullable Output<DeploymentObservabilityArgs> observability;
 
     /**
-     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+     * current deployment itself by setting observability.deployment_id to `self`.
      * 
      */
     public Optional<Output<DeploymentObservabilityArgs>> observability() {
@@ -282,14 +205,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<Output<String>> region() {
@@ -297,14 +220,16 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * returned as part of the error.
      * 
      */
     @Import(name="requestId")
     private @Nullable Output<String> requestId;
 
     /**
-     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * returned as part of the error.
      * 
      */
     public Optional<Output<String>> requestId() {
@@ -312,14 +237,29 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Key value map of arbitrary string tags.
+     * Explicitly resets the elasticsearch_password when true
+     * 
+     */
+    @Import(name="resetElasticsearchPassword")
+    private @Nullable Output<Boolean> resetElasticsearchPassword;
+
+    /**
+     * @return Explicitly resets the elasticsearch_password when true
+     * 
+     */
+    public Optional<Output<Boolean>> resetElasticsearchPassword() {
+        return Optional.ofNullable(this.resetElasticsearchPassword);
+    }
+
+    /**
+     * Optional map of deployment tags
      * 
      */
     @Import(name="tags")
     private @Nullable Output<Map<String,String>> tags;
 
     /**
-     * @return Key value map of arbitrary string tags.
+     * @return Optional map of deployment tags
      * 
      */
     public Optional<Output<Map<String,String>>> tags() {
@@ -327,14 +267,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of traffic filter rule identifiers that will be applied to the deployment.
+     * List of traffic filters rule identifiers that will be applied to the deployment.
      * 
      */
     @Import(name="trafficFilters")
     private @Nullable Output<List<String>> trafficFilters;
 
     /**
-     * @return List of traffic filter rule identifiers that will be applied to the deployment.
+     * @return List of traffic filters rule identifiers that will be applied to the deployment.
      * 
      */
     public Optional<Output<List<String>>> trafficFilters() {
@@ -342,14 +282,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Elastic Stack version to use for all the deployment resources.
+     * Elastic Stack version to use for all of the deployment resources.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Elastic Stack version to use for all the deployment resources.
+     * @return Elastic Stack version to use for all of the deployment resources.
      * 
      */
     public Optional<Output<String>> version() {
@@ -373,6 +313,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         this.observability = $.observability;
         this.region = $.region;
         this.requestId = $.requestId;
+        this.resetElasticsearchPassword = $.resetElasticsearchPassword;
         this.tags = $.tags;
         this.trafficFilters = $.trafficFilters;
         this.version = $.version;
@@ -418,7 +359,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apm **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+         * @param apm **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
          * 
          * @return builder
          * 
@@ -429,7 +370,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apm **DEPRECATED** (Optional) APM instance definition, can only be specified once. It should only be used with deployments with a version prior to 8.0.0.
+         * @param apm **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
          * 
          * @return builder
          * 
@@ -438,101 +379,11 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
             return apm(Output.of(apm));
         }
 
-        /**
-         * @param apmSecretToken Auto-generated APM secret_token, empty unless an `apm` resource is specified.
-         * * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
-         * * `elasticsearch.#.region` - Elasticsearch region.
-         * * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
-         * * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
-         * * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
-         * * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
-         * * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
-         * * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
-         * * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
-         * * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
-         * * `kibana.#.resource_id` - Kibana resource unique identifier.
-         * * `kibana.#.region` - Kibana region.
-         * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
-         * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
-         * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
-         * * `integrations_server.#.region` - Integrations Server region.
-         * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
-         * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
-         * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
-         * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
-         * * `apm.#.resource_id` - APM resource unique identifier.
-         * * `apm.#.region` - APM region.
-         * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
-         * * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
-         * * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
-         * * `enterprise_search.#.region` - Enterprise Search region.
-         * * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
-         * * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
-         * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
-         * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
-         * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-         * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
-         * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
-         * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
-         * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apmSecretToken(@Nullable Output<String> apmSecretToken) {
             $.apmSecretToken = apmSecretToken;
             return this;
         }
 
-        /**
-         * @param apmSecretToken Auto-generated APM secret_token, empty unless an `apm` resource is specified.
-         * * `elasticsearch.#.resource_id` - Elasticsearch resource unique identifier.
-         * * `elasticsearch.#.region` - Elasticsearch region.
-         * * `elasticsearch.#.cloud_id` - Encoded Elasticsearch credentials to use in Beats or Logstash. For more information, see [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html).
-         * * `elasticsearch.#.http_endpoint` - Elasticsearch resource HTTP endpoint.
-         * * `elasticsearch.#.https_endpoint` - Elasticsearch resource HTTPs endpoint.
-         * * `elasticsearch.#.topology.#.instance_configuration_id` - instance configuration of the deployment topology element.
-         * * `elasticsearch.#.topology.#.node_type_data` - Node type (data) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_type_master` - Node type (master) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_type_ingest` - Node type (ingest) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_type_ml` - Node type (machine learning) for the Elasticsearch topology element.
-         * * `elasticsearch.#.topology.#.node_roles` - List of roles for the topology element. They are inferred from the deployment template.
-         * * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - Computed policy overrides set directly via the API or other clients.
-         * * `elasticsearch.#.snapshot_source.#.source_elasticsearch_cluster_id` - ID of the Elasticsearch cluster that will be used as the source of the snapshot.
-         * * `elasticsearch.#.snapshot_source.#.snapshot_name` - Name of the snapshot to restore.
-         * * `kibana.#.resource_id` - Kibana resource unique identifier.
-         * * `kibana.#.region` - Kibana region.
-         * * `kibana.#.http_endpoint` - Kibana resource HTTP endpoint.
-         * * `kibana.#.https_endpoint` - Kibana resource HTTPs endpoint.
-         * * `integrations_server.#.resource_id` - Integrations Server resource unique identifier.
-         * * `integrations_server.#.region` - Integrations Server region.
-         * * `integrations_server.#.http_endpoint` - Integrations Server resource HTTP endpoint.
-         * * `integrations_server.#.https_endpoint` - Integrations Server resource HTTPs endpoint.
-         * * `integrations_server.#.fleet_https_endpoint` - HTTPs endpoint for Fleet Server.
-         * * `integrations_server.#.apm_https_endpoint` - HTTPs endpoint for APM Server.
-         * * `apm.#.resource_id` - APM resource unique identifier.
-         * * `apm.#.region` - APM region.
-         * * `apm.#.http_endpoint` - APM resource HTTP endpoint.
-         * * `apm.#.https_endpoint` - APM resource HTTPs endpoint.
-         * * `enterprise_search.#.resource_id` - Enterprise Search resource unique identifier.
-         * * `enterprise_search.#.region` - Enterprise Search region.
-         * * `enterprise_search.#.http_endpoint` - Enterprise Search resource HTTP endpoint.
-         * * `enterprise_search.#.https_endpoint` - Enterprise Search resource HTTPs endpoint.
-         * * `enterprise_search.#.topology.#.node_type_appserver` - Node type (Appserver) for the Enterprise Search topology element.
-         * * `enterprise_search.#.topology.#.node_type_connector` - Node type (Connector) for the Enterprise Search topology element.
-         * * `enterprise_search.#.topology.#.node_type_worker` - Node type (worker) for the Enterprise Search topology element.
-         * * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics. Use `self` as destination deployment ID to target the current deployment.
-         * * `observability.#.ref_id` - (Optional) Elasticsearch resource kind ref_id of the destination deployment.
-         * * `observability.#.logs` - Enables or disables shipping logs. Defaults to true.
-         * * `observability.#.metrics` - Enables or disables shipping metrics. Defaults to true.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apmSecretToken(String apmSecretToken) {
             return apmSecretToken(Output.of(apmSecretToken));
         }
@@ -559,7 +410,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearch Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+         * @param elasticsearch Elasticsearch cluster definition
          * 
          * @return builder
          * 
@@ -570,7 +421,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearch Elasticsearch cluster definition, can only be specified once. For multi-node Elasticsearch clusters, use multiple `topology` blocks.
+         * @param elasticsearch Elasticsearch cluster definition
          * 
          * @return builder
          * 
@@ -580,7 +431,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearchPassword Auto-generated Elasticsearch password.
+         * @param elasticsearchPassword Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
+         * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
+         * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
          * 
          * @return builder
          * 
@@ -591,7 +444,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearchPassword Auto-generated Elasticsearch password.
+         * @param elasticsearchPassword Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
+         * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
+         * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
          * 
          * @return builder
          * 
@@ -601,7 +456,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearchUsername Auto-generated Elasticsearch username.
+         * @param elasticsearchUsername Username for authenticating to the Elasticsearch resource.
          * 
          * @return builder
          * 
@@ -612,7 +467,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearchUsername Auto-generated Elasticsearch username.
+         * @param elasticsearchUsername Username for authenticating to the Elasticsearch resource.
          * 
          * @return builder
          * 
@@ -622,7 +477,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enterpriseSearch Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+         * @param enterpriseSearch Enterprise Search cluster definition.
          * 
          * @return builder
          * 
@@ -633,7 +488,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enterpriseSearch Enterprise Search server definition, can only be specified once. For multi-node Enterprise Search deployments, use multiple `topology` blocks.
+         * @param enterpriseSearch Enterprise Search cluster definition.
          * 
          * @return builder
          * 
@@ -643,7 +498,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param integrationsServer Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+         * @param integrationsServer Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
          * 
          * @return builder
          * 
@@ -654,7 +509,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param integrationsServer Integrations Server instance definition, can only be specified once. It has replaced `apm` in stack version 8.0.0.
+         * @param integrationsServer Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
          * 
          * @return builder
          * 
@@ -664,7 +519,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kibana Kibana instance definition, can only be specified once.
+         * @param kibana Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+         * block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
          * 
@@ -675,7 +531,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kibana Kibana instance definition, can only be specified once.
+         * @param kibana Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+         * block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
          * 
@@ -685,7 +542,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Name of the deployment.
+         * @param name Name for the deployment
          * 
          * @return builder
          * 
@@ -696,7 +553,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Name of the deployment.
+         * @param name Name for the deployment
          * 
          * @return builder
          * 
@@ -706,7 +563,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+         * current deployment itself by setting observability.deployment_id to `self`.
          * 
          * @return builder
          * 
@@ -717,7 +575,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
+         * current deployment itself by setting observability.deployment_id to `self`.
          * 
          * @return builder
          * 
@@ -727,7 +586,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -738,7 +597,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -748,7 +607,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+         * returned as part of the error.
          * 
          * @return builder
          * 
@@ -759,7 +619,8 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+         * returned as part of the error.
          * 
          * @return builder
          * 
@@ -769,7 +630,28 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags Key value map of arbitrary string tags.
+         * @param resetElasticsearchPassword Explicitly resets the elasticsearch_password when true
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resetElasticsearchPassword(@Nullable Output<Boolean> resetElasticsearchPassword) {
+            $.resetElasticsearchPassword = resetElasticsearchPassword;
+            return this;
+        }
+
+        /**
+         * @param resetElasticsearchPassword Explicitly resets the elasticsearch_password when true
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resetElasticsearchPassword(Boolean resetElasticsearchPassword) {
+            return resetElasticsearchPassword(Output.of(resetElasticsearchPassword));
+        }
+
+        /**
+         * @param tags Optional map of deployment tags
          * 
          * @return builder
          * 
@@ -780,7 +662,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags Key value map of arbitrary string tags.
+         * @param tags Optional map of deployment tags
          * 
          * @return builder
          * 
@@ -790,7 +672,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param trafficFilters List of traffic filter rule identifiers that will be applied to the deployment.
+         * @param trafficFilters List of traffic filters rule identifiers that will be applied to the deployment.
          * 
          * @return builder
          * 
@@ -801,7 +683,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param trafficFilters List of traffic filter rule identifiers that will be applied to the deployment.
+         * @param trafficFilters List of traffic filters rule identifiers that will be applied to the deployment.
          * 
          * @return builder
          * 
@@ -811,7 +693,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param trafficFilters List of traffic filter rule identifiers that will be applied to the deployment.
+         * @param trafficFilters List of traffic filters rule identifiers that will be applied to the deployment.
          * 
          * @return builder
          * 
@@ -821,7 +703,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Elastic Stack version to use for all the deployment resources.
+         * @param version Elastic Stack version to use for all of the deployment resources.
          * 
          * @return builder
          * 
@@ -832,7 +714,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Elastic Stack version to use for all the deployment resources.
+         * @param version Elastic Stack version to use for all of the deployment resources.
          * 
          * @return builder
          * 

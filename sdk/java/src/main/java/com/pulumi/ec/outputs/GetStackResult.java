@@ -29,68 +29,58 @@ public final class GetStackResult {
     private Boolean allowlisted;
     /**
      * @return Information for APM workloads on this stack version.
-     * * `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `apm.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `apm.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `apm.#.compatible_node_types` - List of node types compatible with this one.
-     * * `apm.#.docker_image` - Docker image to use for the APM instance.
      * 
      */
     private List<GetStackApm> apms;
     /**
      * @return Information for Elasticsearch workloads on this stack version.
-     * * `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.
-     * * `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.
-     * * `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.
-     * * `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.
      * 
      */
     private List<GetStackElasticsearch> elasticsearches;
     /**
      * @return Information for Enterprise Search workloads on this stack version.
-     * * `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.
-     * * `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.
      * 
      */
     private List<GetStackEnterpriseSearch> enterpriseSearches;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of this data source.
      * 
      */
     private String id;
     /**
      * @return Information for Kibana workloads on this stack version.
-     * * `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `kibana.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `kibana.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `kibana.#.compatible_node_types` - List of node types compatible with this one.
-     * * `kibana.#.docker_image` - Docker image to use for the Kibana instance.
      * 
      */
     private List<GetStackKibana> kibanas;
+    /**
+     * @return Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * 
+     */
     private @Nullable Boolean lock;
     /**
-     * @return The minimum stack version recommended.
+     * @return The minimum stack version which can be upgraded to this stack version.
      * 
      */
     private String minUpgradableFrom;
+    /**
+     * @return Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+     * 
+     */
     private String region;
     /**
-     * @return The stack version you can upgrade to.
+     * @return A list of stack versions which this stack version can be upgraded to.
      * 
      */
     private List<String> upgradableTos;
     /**
-     * @return The stack version.
+     * @return The stack version
      * 
      */
     private String version;
+    /**
+     * @return Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+     * 
+     */
     private String versionRegex;
 
     private GetStackResult() {}
@@ -110,11 +100,6 @@ public final class GetStackResult {
     }
     /**
      * @return Information for APM workloads on this stack version.
-     * * `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `apm.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `apm.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `apm.#.compatible_node_types` - List of node types compatible with this one.
-     * * `apm.#.docker_image` - Docker image to use for the APM instance.
      * 
      */
     public List<GetStackApm> apms() {
@@ -122,13 +107,6 @@ public final class GetStackResult {
     }
     /**
      * @return Information for Elasticsearch workloads on this stack version.
-     * * `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.
-     * * `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.
-     * * `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.
-     * * `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.
      * 
      */
     public List<GetStackElasticsearch> elasticsearches() {
@@ -136,18 +114,13 @@ public final class GetStackResult {
     }
     /**
      * @return Information for Enterprise Search workloads on this stack version.
-     * * `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.
-     * * `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.
      * 
      */
     public List<GetStackEnterpriseSearch> enterpriseSearches() {
         return this.enterpriseSearches;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of this data source.
      * 
      */
     public String id() {
@@ -155,43 +128,50 @@ public final class GetStackResult {
     }
     /**
      * @return Information for Kibana workloads on this stack version.
-     * * `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.
-     * * `kibana.#.capacity_constraints_min` - Minimum size of the instances.
-     * * `kibana.#.capacity_constraints_max` - Maximum size of the instances.
-     * * `kibana.#.compatible_node_types` - List of node types compatible with this one.
-     * * `kibana.#.docker_image` - Docker image to use for the Kibana instance.
      * 
      */
     public List<GetStackKibana> kibanas() {
         return this.kibanas;
     }
+    /**
+     * @return Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * 
+     */
     public Optional<Boolean> lock() {
         return Optional.ofNullable(this.lock);
     }
     /**
-     * @return The minimum stack version recommended.
+     * @return The minimum stack version which can be upgraded to this stack version.
      * 
      */
     public String minUpgradableFrom() {
         return this.minUpgradableFrom;
     }
+    /**
+     * @return Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+     * 
+     */
     public String region() {
         return this.region;
     }
     /**
-     * @return The stack version you can upgrade to.
+     * @return A list of stack versions which this stack version can be upgraded to.
      * 
      */
     public List<String> upgradableTos() {
         return this.upgradableTos;
     }
     /**
-     * @return The stack version.
+     * @return The stack version
      * 
      */
     public String version() {
         return this.version;
     }
+    /**
+     * @return Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+     * 
+     */
     public String versionRegex() {
         return this.versionRegex;
     }

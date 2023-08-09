@@ -20,19 +20,20 @@ import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
 import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointPlainArgs;
 import com.pulumi.ec.inputs.GetStackArgs;
 import com.pulumi.ec.inputs.GetStackPlainArgs;
+import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+import com.pulumi.ec.inputs.GetTrafficFilterPlainArgs;
 import com.pulumi.ec.outputs.GetAwsPrivatelinkEndpointResult;
 import com.pulumi.ec.outputs.GetAzurePrivatelinkEndpointResult;
 import com.pulumi.ec.outputs.GetDeploymentResult;
 import com.pulumi.ec.outputs.GetDeploymentsResult;
 import com.pulumi.ec.outputs.GetGcpPrivateServiceConnectEndpointResult;
 import com.pulumi.ec.outputs.GetStackResult;
+import com.pulumi.ec.outputs.GetTrafficFilterResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
-     * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
      * 
      * ## Example Usage
      * ```java
@@ -42,7 +43,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -56,8 +57,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
+     *             .region(&#34;eastus&#34;)
      *             .build());
      * 
      *     }
@@ -71,8 +72,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -81,7 +80,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -95,8 +94,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
+     *             .region(&#34;eastus&#34;)
      *             .build());
      * 
      *     }
@@ -110,8 +109,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -120,7 +117,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -134,8 +131,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
+     *             .region(&#34;eastus&#34;)
      *             .build());
      * 
      *     }
@@ -149,8 +146,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -159,7 +154,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -173,8 +168,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
+     *             .region(&#34;eastus&#34;)
      *             .build());
      * 
      *     }
@@ -187,8 +182,6 @@ public final class EcFunctions {
     }
     /**
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
-     * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
      * 
      * ## Example Usage
      * ```java
@@ -227,8 +220,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -266,8 +257,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -304,8 +293,6 @@ public final class EcFunctions {
     }
     /**
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
-     * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
      * 
      * ## Example Usage
      * ```java
@@ -501,10 +488,6 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -520,16 +503,16 @@ public final class EcFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
-     *             .elasticsearch(GetDeploymentsElasticsearchArgs.builder()
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .enterpriseSearch(GetDeploymentsEnterpriseSearchArgs.builder()
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .integrationsServer(GetDeploymentsIntegrationsServerArgs.builder()
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
      *                 .version(&#34;8.0.0&#34;)
      *                 .build())
-     *             .kibana(GetDeploymentsKibanaArgs.builder()
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
      *             .namePrefix(&#34;test&#34;)
@@ -557,10 +540,6 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -576,16 +555,16 @@ public final class EcFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
-     *             .elasticsearch(GetDeploymentsElasticsearchArgs.builder()
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .enterpriseSearch(GetDeploymentsEnterpriseSearchArgs.builder()
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .integrationsServer(GetDeploymentsIntegrationsServerArgs.builder()
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
      *                 .version(&#34;8.0.0&#34;)
      *                 .build())
-     *             .kibana(GetDeploymentsKibanaArgs.builder()
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
      *             .namePrefix(&#34;test&#34;)
@@ -613,10 +592,6 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -632,16 +607,16 @@ public final class EcFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
-     *             .elasticsearch(GetDeploymentsElasticsearchArgs.builder()
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .enterpriseSearch(GetDeploymentsEnterpriseSearchArgs.builder()
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .integrationsServer(GetDeploymentsIntegrationsServerArgs.builder()
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
      *                 .version(&#34;8.0.0&#34;)
      *                 .build())
-     *             .kibana(GetDeploymentsKibanaArgs.builder()
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
      *             .namePrefix(&#34;test&#34;)
@@ -669,10 +644,6 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -688,16 +659,16 @@ public final class EcFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
-     *             .elasticsearch(GetDeploymentsElasticsearchArgs.builder()
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .enterpriseSearch(GetDeploymentsEnterpriseSearchArgs.builder()
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .integrationsServer(GetDeploymentsIntegrationsServerArgs.builder()
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
      *                 .version(&#34;8.0.0&#34;)
      *                 .build())
-     *             .kibana(GetDeploymentsKibanaArgs.builder()
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
      *             .namePrefix(&#34;test&#34;)
@@ -725,10 +696,6 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -744,16 +711,16 @@ public final class EcFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
-     *             .elasticsearch(GetDeploymentsElasticsearchArgs.builder()
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .enterpriseSearch(GetDeploymentsEnterpriseSearchArgs.builder()
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .integrationsServer(GetDeploymentsIntegrationsServerArgs.builder()
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
      *                 .version(&#34;8.0.0&#34;)
      *                 .build())
-     *             .kibana(GetDeploymentsKibanaArgs.builder()
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
      *             .namePrefix(&#34;test&#34;)
@@ -781,10 +748,6 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
-     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -800,16 +763,16 @@ public final class EcFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
-     *             .elasticsearch(GetDeploymentsElasticsearchArgs.builder()
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .enterpriseSearch(GetDeploymentsEnterpriseSearchArgs.builder()
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
      *                 .build())
-     *             .integrationsServer(GetDeploymentsIntegrationsServerArgs.builder()
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
      *                 .version(&#34;8.0.0&#34;)
      *                 .build())
-     *             .kibana(GetDeploymentsKibanaArgs.builder()
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
      *             .namePrefix(&#34;test&#34;)
@@ -827,8 +790,6 @@ public final class EcFunctions {
     }
     /**
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
-     * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
      * 
      * ## Example Usage
      * ```java
@@ -867,8 +828,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -905,8 +864,6 @@ public final class EcFunctions {
     }
     /**
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
-     * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
      * 
      * ## Example Usage
      * ```java
@@ -945,8 +902,6 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
      * 
-     * &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -983,6 +938,8 @@ public final class EcFunctions {
     }
     /**
      * Use this data source to retrieve information about an existing Elastic Cloud stack.
+     * 
+     *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
      * 
      * ## Example Usage
      * ```java
@@ -1028,6 +985,8 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about an existing Elastic Cloud stack.
      * 
+     *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1071,6 +1030,8 @@ public final class EcFunctions {
     }
     /**
      * Use this data source to retrieve information about an existing Elastic Cloud stack.
+     * 
+     *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
      * 
      * ## Example Usage
      * ```java
@@ -1116,6 +1077,8 @@ public final class EcFunctions {
     /**
      * Use this data source to retrieve information about an existing Elastic Cloud stack.
      * 
+     *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1156,5 +1119,275 @@ public final class EcFunctions {
      */
     public static CompletableFuture<GetStackResult> getStackPlain(GetStackPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ec:index/getStack:getStack", TypeShape.of(GetStackResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name(&#34;example-filter&#34;)
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetTrafficFilterResult> getTrafficFilter() {
+        return getTrafficFilter(GetTrafficFilterArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name(&#34;example-filter&#34;)
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetTrafficFilterResult> getTrafficFilterPlain() {
+        return getTrafficFilterPlain(GetTrafficFilterPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name(&#34;example-filter&#34;)
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetTrafficFilterResult> getTrafficFilter(GetTrafficFilterArgs args) {
+        return getTrafficFilter(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name(&#34;example-filter&#34;)
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetTrafficFilterResult> getTrafficFilterPlain(GetTrafficFilterPlainArgs args) {
+        return getTrafficFilterPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name(&#34;example-filter&#34;)
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetTrafficFilterResult> getTrafficFilter(GetTrafficFilterArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getTrafficFilter:getTrafficFilter", TypeShape.of(GetTrafficFilterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name(&#34;example-filter&#34;)
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetTrafficFilterResult> getTrafficFilterPlain(GetTrafficFilterPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ec:index/getTrafficFilter:getTrafficFilter", TypeShape.of(GetTrafficFilterResult.class), args, Utilities.withVersion(options));
     }
 }

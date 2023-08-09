@@ -7,12 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
-//
-// > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
 //
 // ## Example Usage
 //
@@ -40,6 +39,7 @@ import (
 //
 // ```
 func GetGcpPrivateServiceConnectEndpoint(ctx *pulumi.Context, args *GetGcpPrivateServiceConnectEndpointArgs, opts ...pulumi.InvokeOption) (*GetGcpPrivateServiceConnectEndpointResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGcpPrivateServiceConnectEndpointResult
 	err := ctx.Invoke("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", args, &rv, opts...)
 	if err != nil {
@@ -50,7 +50,7 @@ func GetGcpPrivateServiceConnectEndpoint(ctx *pulumi.Context, args *GetGcpPrivat
 
 // A collection of arguments for invoking getGcpPrivateServiceConnectEndpoint.
 type GetGcpPrivateServiceConnectEndpointArgs struct {
-	// Region to retrieve the Private Link configuration for.
+	// Region to retrieve the Prive Link configuration for.
 	Region string `pulumi:"region"`
 }
 
@@ -59,7 +59,8 @@ type GetGcpPrivateServiceConnectEndpointResult struct {
 	// The domain name to point towards the PSC endpoint.
 	DomainName string `pulumi:"domainName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Region to retrieve the Prive Link configuration for.
 	Region string `pulumi:"region"`
 	// The service attachment URI to attach the PSC endpoint to.
 	ServiceAttachmentUri string `pulumi:"serviceAttachmentUri"`
@@ -80,7 +81,7 @@ func GetGcpPrivateServiceConnectEndpointOutput(ctx *pulumi.Context, args GetGcpP
 
 // A collection of arguments for invoking getGcpPrivateServiceConnectEndpoint.
 type GetGcpPrivateServiceConnectEndpointOutputArgs struct {
-	// Region to retrieve the Private Link configuration for.
+	// Region to retrieve the Prive Link configuration for.
 	Region pulumi.StringInput `pulumi:"region"`
 }
 
@@ -113,6 +114,7 @@ func (o GetGcpPrivateServiceConnectEndpointResultOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v GetGcpPrivateServiceConnectEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Region to retrieve the Prive Link configuration for.
 func (o GetGcpPrivateServiceConnectEndpointResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGcpPrivateServiceConnectEndpointResult) string { return v.Region }).(pulumi.StringOutput)
 }

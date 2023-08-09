@@ -23,13 +23,13 @@ class DeploymentExtensionArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DeploymentExtension resource.
-        :param pulumi.Input[str] extension_type: `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
-        :param pulumi.Input[str] version: Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
-        :param pulumi.Input[str] description: Description of the extension.
+        :param pulumi.Input[str] extension_type: Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        :param pulumi.Input[str] version: Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
+        :param pulumi.Input[str] description: Description for the extension
         :param pulumi.Input[str] download_url: The URL to download the extension archive.
-        :param pulumi.Input[str] file_hash: Hash value of the file. If it is changed, the file is reuploaded.
-        :param pulumi.Input[str] file_path: File path of the extension uploaded.
-        :param pulumi.Input[str] name: Name of the extension.
+        :param pulumi.Input[str] file_hash: Hash value of the file. Triggers re-uploading the file on change.
+        :param pulumi.Input[str] file_path: Local file path to upload as the extension.
+        :param pulumi.Input[str] name: Name of the extension
         """
         pulumi.set(__self__, "extension_type", extension_type)
         pulumi.set(__self__, "version", version)
@@ -48,7 +48,7 @@ class DeploymentExtensionArgs:
     @pulumi.getter(name="extensionType")
     def extension_type(self) -> pulumi.Input[str]:
         """
-        `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         """
         return pulumi.get(self, "extension_type")
 
@@ -60,7 +60,7 @@ class DeploymentExtensionArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         return pulumi.get(self, "version")
 
@@ -72,7 +72,7 @@ class DeploymentExtensionArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the extension.
+        Description for the extension
         """
         return pulumi.get(self, "description")
 
@@ -96,7 +96,7 @@ class DeploymentExtensionArgs:
     @pulumi.getter(name="fileHash")
     def file_hash(self) -> Optional[pulumi.Input[str]]:
         """
-        Hash value of the file. If it is changed, the file is reuploaded.
+        Hash value of the file. Triggers re-uploading the file on change.
         """
         return pulumi.get(self, "file_hash")
 
@@ -108,7 +108,7 @@ class DeploymentExtensionArgs:
     @pulumi.getter(name="filePath")
     def file_path(self) -> Optional[pulumi.Input[str]]:
         """
-        File path of the extension uploaded.
+        Local file path to upload as the extension.
         """
         return pulumi.get(self, "file_path")
 
@@ -120,7 +120,7 @@ class DeploymentExtensionArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the extension.
+        Name of the extension
         """
         return pulumi.get(self, "name")
 
@@ -144,16 +144,16 @@ class _DeploymentExtensionState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeploymentExtension resources.
-        :param pulumi.Input[str] description: Description of the extension.
+        :param pulumi.Input[str] description: Description for the extension
         :param pulumi.Input[str] download_url: The URL to download the extension archive.
-        :param pulumi.Input[str] extension_type: `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
-        :param pulumi.Input[str] file_hash: Hash value of the file. If it is changed, the file is reuploaded.
-        :param pulumi.Input[str] file_path: File path of the extension uploaded.
-        :param pulumi.Input[str] last_modified: The datetime the extension was last modified.
-        :param pulumi.Input[str] name: Name of the extension.
-        :param pulumi.Input[int] size: The extension file size in bytes.
-        :param pulumi.Input[str] url: The extension URL to be used in the plan.
-        :param pulumi.Input[str] version: Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        :param pulumi.Input[str] extension_type: Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        :param pulumi.Input[str] file_hash: Hash value of the file. Triggers re-uploading the file on change.
+        :param pulumi.Input[str] file_path: Local file path to upload as the extension.
+        :param pulumi.Input[str] last_modified: The datatime the extension was last modified.
+        :param pulumi.Input[str] name: Name of the extension
+        :param pulumi.Input[int] size: The size of the extension file in bytes.
+        :param pulumi.Input[str] url: The extension URL which will be used in the Elastic Cloud deployment plan.
+        :param pulumi.Input[str] version: Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -180,7 +180,7 @@ class _DeploymentExtensionState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the extension.
+        Description for the extension
         """
         return pulumi.get(self, "description")
 
@@ -204,7 +204,7 @@ class _DeploymentExtensionState:
     @pulumi.getter(name="extensionType")
     def extension_type(self) -> Optional[pulumi.Input[str]]:
         """
-        `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         """
         return pulumi.get(self, "extension_type")
 
@@ -216,7 +216,7 @@ class _DeploymentExtensionState:
     @pulumi.getter(name="fileHash")
     def file_hash(self) -> Optional[pulumi.Input[str]]:
         """
-        Hash value of the file. If it is changed, the file is reuploaded.
+        Hash value of the file. Triggers re-uploading the file on change.
         """
         return pulumi.get(self, "file_hash")
 
@@ -228,7 +228,7 @@ class _DeploymentExtensionState:
     @pulumi.getter(name="filePath")
     def file_path(self) -> Optional[pulumi.Input[str]]:
         """
-        File path of the extension uploaded.
+        Local file path to upload as the extension.
         """
         return pulumi.get(self, "file_path")
 
@@ -240,7 +240,7 @@ class _DeploymentExtensionState:
     @pulumi.getter(name="lastModified")
     def last_modified(self) -> Optional[pulumi.Input[str]]:
         """
-        The datetime the extension was last modified.
+        The datatime the extension was last modified.
         """
         return pulumi.get(self, "last_modified")
 
@@ -252,7 +252,7 @@ class _DeploymentExtensionState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the extension.
+        Name of the extension
         """
         return pulumi.get(self, "name")
 
@@ -264,7 +264,7 @@ class _DeploymentExtensionState:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
         """
-        The extension file size in bytes.
+        The size of the extension file in bytes.
         """
         return pulumi.get(self, "size")
 
@@ -276,7 +276,7 @@ class _DeploymentExtensionState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
-        The extension URL to be used in the plan.
+        The extension URL which will be used in the Elastic Cloud deployment plan.
         """
         return pulumi.get(self, "url")
 
@@ -288,7 +288,7 @@ class _DeploymentExtensionState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         return pulumi.get(self, "version")
 
@@ -311,68 +311,17 @@ class DeploymentExtension(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+
+          Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+
+          **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+
         ## Example Usage
-        ### With extension file
-
-        ```python
-        import pulumi
-        import base64
-        import hashlib
-        import pulumi_ec as ec
-
-        def computeFilebase64sha256(path):
-        	fileData = open(path).read().encode()
-        	hashedData = hashlib.sha256(fileData.encode()).digest()
-        	return base64.b64encode(hashedData).decode()
-
-        file_path = "/path/to/plugin.zip"
-        example_extension = ec.DeploymentExtension("exampleExtension",
-            description="my extension",
-            version="*",
-            extension_type="bundle",
-            file_path=file_path,
-            file_hash=computeFilebase64sha256(file_path))
-        ```
-        ### With download URL
-        ```python
-        import pulumi
-        import pulumi_ec as ec
-
-        example_extension = ec.DeploymentExtension("exampleExtension",
-            description="my extension",
-            download_url="https://example.net",
-            extension_type="bundle",
-            version="*")
-        ```
-        ### Using extension in Deployment
-        ```python
-        import pulumi
-        import pulumi_ec as ec
-
-        example_extension = ec.DeploymentExtension("exampleExtension",
-            description="my extension",
-            version="*",
-            extension_type="bundle",
-            download_url="https://example.net")
-        latest = ec.get_stack(version_regex="latest",
-            region="us-east-1")
-        with_extension = ec.Deployment("withExtension",
-            region="us-east-1",
-            version=latest.version,
-            deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                extensions=[ec.DeploymentElasticsearchExtensionArgs(
-                    name=example_extension.name,
-                    type="bundle",
-                    version=latest.version,
-                    url=example_extension.url,
-                )],
-            ))
-        ```
 
         ## Import
 
-        You can import extensions using the `id`, for example
+        Extensions can be imported using the `id`, for example
 
         ```sh
          $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
@@ -380,13 +329,13 @@ class DeploymentExtension(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the extension.
+        :param pulumi.Input[str] description: Description for the extension
         :param pulumi.Input[str] download_url: The URL to download the extension archive.
-        :param pulumi.Input[str] extension_type: `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
-        :param pulumi.Input[str] file_hash: Hash value of the file. If it is changed, the file is reuploaded.
-        :param pulumi.Input[str] file_path: File path of the extension uploaded.
-        :param pulumi.Input[str] name: Name of the extension.
-        :param pulumi.Input[str] version: Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        :param pulumi.Input[str] extension_type: Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        :param pulumi.Input[str] file_hash: Hash value of the file. Triggers re-uploading the file on change.
+        :param pulumi.Input[str] file_path: Local file path to upload as the extension.
+        :param pulumi.Input[str] name: Name of the extension
+        :param pulumi.Input[str] version: Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         ...
     @overload
@@ -395,68 +344,17 @@ class DeploymentExtension(pulumi.CustomResource):
                  args: DeploymentExtensionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+
+          Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+
+          **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+
         ## Example Usage
-        ### With extension file
-
-        ```python
-        import pulumi
-        import base64
-        import hashlib
-        import pulumi_ec as ec
-
-        def computeFilebase64sha256(path):
-        	fileData = open(path).read().encode()
-        	hashedData = hashlib.sha256(fileData.encode()).digest()
-        	return base64.b64encode(hashedData).decode()
-
-        file_path = "/path/to/plugin.zip"
-        example_extension = ec.DeploymentExtension("exampleExtension",
-            description="my extension",
-            version="*",
-            extension_type="bundle",
-            file_path=file_path,
-            file_hash=computeFilebase64sha256(file_path))
-        ```
-        ### With download URL
-        ```python
-        import pulumi
-        import pulumi_ec as ec
-
-        example_extension = ec.DeploymentExtension("exampleExtension",
-            description="my extension",
-            download_url="https://example.net",
-            extension_type="bundle",
-            version="*")
-        ```
-        ### Using extension in Deployment
-        ```python
-        import pulumi
-        import pulumi_ec as ec
-
-        example_extension = ec.DeploymentExtension("exampleExtension",
-            description="my extension",
-            version="*",
-            extension_type="bundle",
-            download_url="https://example.net")
-        latest = ec.get_stack(version_regex="latest",
-            region="us-east-1")
-        with_extension = ec.Deployment("withExtension",
-            region="us-east-1",
-            version=latest.version,
-            deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                extensions=[ec.DeploymentElasticsearchExtensionArgs(
-                    name=example_extension.name,
-                    type="bundle",
-                    version=latest.version,
-                    url=example_extension.url,
-                )],
-            ))
-        ```
 
         ## Import
 
-        You can import extensions using the `id`, for example
+        Extensions can be imported using the `id`, for example
 
         ```sh
          $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
@@ -534,16 +432,16 @@ class DeploymentExtension(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the extension.
+        :param pulumi.Input[str] description: Description for the extension
         :param pulumi.Input[str] download_url: The URL to download the extension archive.
-        :param pulumi.Input[str] extension_type: `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
-        :param pulumi.Input[str] file_hash: Hash value of the file. If it is changed, the file is reuploaded.
-        :param pulumi.Input[str] file_path: File path of the extension uploaded.
-        :param pulumi.Input[str] last_modified: The datetime the extension was last modified.
-        :param pulumi.Input[str] name: Name of the extension.
-        :param pulumi.Input[int] size: The extension file size in bytes.
-        :param pulumi.Input[str] url: The extension URL to be used in the plan.
-        :param pulumi.Input[str] version: Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        :param pulumi.Input[str] extension_type: Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        :param pulumi.Input[str] file_hash: Hash value of the file. Triggers re-uploading the file on change.
+        :param pulumi.Input[str] file_path: Local file path to upload as the extension.
+        :param pulumi.Input[str] last_modified: The datatime the extension was last modified.
+        :param pulumi.Input[str] name: Name of the extension
+        :param pulumi.Input[int] size: The size of the extension file in bytes.
+        :param pulumi.Input[str] url: The extension URL which will be used in the Elastic Cloud deployment plan.
+        :param pulumi.Input[str] version: Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -563,15 +461,15 @@ class DeploymentExtension(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[str]]:
+    def description(self) -> pulumi.Output[str]:
         """
-        Description of the extension.
+        Description for the extension
         """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="downloadUrl")
-    def download_url(self) -> pulumi.Output[Optional[str]]:
+    def download_url(self) -> pulumi.Output[str]:
         """
         The URL to download the extension archive.
         """
@@ -581,7 +479,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter(name="extensionType")
     def extension_type(self) -> pulumi.Output[str]:
         """
-        `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         """
         return pulumi.get(self, "extension_type")
 
@@ -589,7 +487,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter(name="fileHash")
     def file_hash(self) -> pulumi.Output[Optional[str]]:
         """
-        Hash value of the file. If it is changed, the file is reuploaded.
+        Hash value of the file. Triggers re-uploading the file on change.
         """
         return pulumi.get(self, "file_hash")
 
@@ -597,7 +495,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter(name="filePath")
     def file_path(self) -> pulumi.Output[Optional[str]]:
         """
-        File path of the extension uploaded.
+        Local file path to upload as the extension.
         """
         return pulumi.get(self, "file_path")
 
@@ -605,7 +503,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter(name="lastModified")
     def last_modified(self) -> pulumi.Output[str]:
         """
-        The datetime the extension was last modified.
+        The datatime the extension was last modified.
         """
         return pulumi.get(self, "last_modified")
 
@@ -613,7 +511,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the extension.
+        Name of the extension
         """
         return pulumi.get(self, "name")
 
@@ -621,7 +519,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[int]:
         """
-        The extension file size in bytes.
+        The size of the extension file in bytes.
         """
         return pulumi.get(self, "size")
 
@@ -629,7 +527,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         """
-        The extension URL to be used in the plan.
+        The extension URL which will be used in the Elastic Cloud deployment plan.
         """
         return pulumi.get(self, "url")
 
@@ -637,7 +535,7 @@ class DeploymentExtension(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+        Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         return pulumi.get(self, "version")
 

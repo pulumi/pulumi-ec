@@ -17,22 +17,21 @@ __all__ = ['DeploymentTrafficFilterArgs', 'DeploymentTrafficFilter']
 class DeploymentTrafficFilterArgs:
     def __init__(__self__, *,
                  region: pulumi.Input[str],
-                 rules: pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]],
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  include_by_default: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]] = None):
         """
         The set of arguments for constructing a DeploymentTrafficFilter resource.
-        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region.
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Rule block, which can be specified multiple times for multiple rules.
-        :param pulumi.Input[str] type: Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
-        :param pulumi.Input[str] description: Description of the ruleset.
-        :param pulumi.Input[bool] include_by_default: To automatically include the ruleset in the new deployments. Defaults to `false`.
-        :param pulumi.Input[str] name: Name of the ruleset.
+        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
+        :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
+        :param pulumi.Input[str] name: Name of the ruleset
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Set of rules, which the ruleset is made of.
         """
         pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "rules", rules)
         pulumi.set(__self__, "type", type)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -40,12 +39,14 @@ class DeploymentTrafficFilterArgs:
             pulumi.set(__self__, "include_by_default", include_by_default)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
 
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        Filter region, the ruleset can only be attached to deployments in the specific region.
+        Filter region, the ruleset can only be attached to deployments in the specific region
         """
         return pulumi.get(self, "region")
 
@@ -55,21 +56,9 @@ class DeploymentTrafficFilterArgs:
 
     @property
     @pulumi.getter
-    def rules(self) -> pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]:
-        """
-        Rule block, which can be specified multiple times for multiple rules.
-        """
-        return pulumi.get(self, "rules")
-
-    @rules.setter
-    def rules(self, value: pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]):
-        pulumi.set(self, "rules", value)
-
-    @property
-    @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         return pulumi.get(self, "type")
 
@@ -81,7 +70,7 @@ class DeploymentTrafficFilterArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the ruleset.
+        Ruleset description
         """
         return pulumi.get(self, "description")
 
@@ -93,7 +82,7 @@ class DeploymentTrafficFilterArgs:
     @pulumi.getter(name="includeByDefault")
     def include_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        To automatically include the ruleset in the new deployments. Defaults to `false`.
+        Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         """
         return pulumi.get(self, "include_by_default")
 
@@ -105,13 +94,25 @@ class DeploymentTrafficFilterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the ruleset.
+        Name of the ruleset
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]]:
+        """
+        Set of rules, which the ruleset is made of.
+        """
+        return pulumi.get(self, "rules")
+
+    @rules.setter
+    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]]):
+        pulumi.set(self, "rules", value)
 
 
 @pulumi.input_type
@@ -125,12 +126,12 @@ class _DeploymentTrafficFilterState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilter resources.
-        :param pulumi.Input[str] description: Description of the ruleset.
-        :param pulumi.Input[bool] include_by_default: To automatically include the ruleset in the new deployments. Defaults to `false`.
-        :param pulumi.Input[str] name: Name of the ruleset.
-        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region.
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Rule block, which can be specified multiple times for multiple rules.
-        :param pulumi.Input[str] type: Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
+        :param pulumi.Input[str] name: Name of the ruleset
+        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -149,7 +150,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the ruleset.
+        Ruleset description
         """
         return pulumi.get(self, "description")
 
@@ -161,7 +162,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter(name="includeByDefault")
     def include_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        To automatically include the ruleset in the new deployments. Defaults to `false`.
+        Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         """
         return pulumi.get(self, "include_by_default")
 
@@ -173,7 +174,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the ruleset.
+        Name of the ruleset
         """
         return pulumi.get(self, "name")
 
@@ -185,7 +186,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Filter region, the ruleset can only be attached to deployments in the specific region.
+        Filter region, the ruleset can only be attached to deployments in the specific region
         """
         return pulumi.get(self, "region")
 
@@ -197,7 +198,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]]:
         """
-        Rule block, which can be specified multiple times for multiple rules.
+        Set of rules, which the ruleset is made of.
         """
         return pulumi.get(self, "rules")
 
@@ -209,7 +210,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         return pulumi.get(self, "type")
 
@@ -231,10 +232,8 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
-
         ## Example Usage
-        ### IP type
+        ### IP based traffic filter
 
         ```python
         import pulumi
@@ -254,10 +253,14 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
             traffic_filters=[example.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        ### Azure Private Link type
+        ### Azure Private Link traffic filter
 
         ```python
         import pulumi
@@ -279,10 +282,15 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="azure-io-optimized-v3",
             traffic_filters=[azure.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        ### GCP Private Service Connect type
+
+        ###GCP Private Service Connect traffic filter
 
         ```python
         import pulumi
@@ -303,13 +311,17 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="gcp-storage-optimized",
             traffic_filters=[gcp_psc.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ),
             kibana=ec.DeploymentKibanaArgs())
         ```
 
         ## Import
 
-        You can import traffic filters using the `id`, for example
+        Traffic filters can be imported using the `id`, for example
 
         ```sh
          $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
@@ -317,12 +329,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the ruleset.
-        :param pulumi.Input[bool] include_by_default: To automatically include the ruleset in the new deployments. Defaults to `false`.
-        :param pulumi.Input[str] name: Name of the ruleset.
-        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]] rules: Rule block, which can be specified multiple times for multiple rules.
-        :param pulumi.Input[str] type: Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
+        :param pulumi.Input[str] name: Name of the ruleset
+        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         ...
     @overload
@@ -331,10 +343,8 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  args: DeploymentTrafficFilterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
-
         ## Example Usage
-        ### IP type
+        ### IP based traffic filter
 
         ```python
         import pulumi
@@ -354,10 +364,14 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
             traffic_filters=[example.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        ### Azure Private Link type
+        ### Azure Private Link traffic filter
 
         ```python
         import pulumi
@@ -379,10 +393,15 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="azure-io-optimized-v3",
             traffic_filters=[azure.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        ### GCP Private Service Connect type
+
+        ###GCP Private Service Connect traffic filter
 
         ```python
         import pulumi
@@ -403,13 +422,17 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="gcp-storage-optimized",
             traffic_filters=[gcp_psc.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(),
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ),
             kibana=ec.DeploymentKibanaArgs())
         ```
 
         ## Import
 
-        You can import traffic filters using the `id`, for example
+        Traffic filters can be imported using the `id`, for example
 
         ```sh
          $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
@@ -451,8 +474,6 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
-            if rules is None and not opts.urn:
-                raise TypeError("Missing required property 'rules'")
             __props__.__dict__["rules"] = rules
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -480,12 +501,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the ruleset.
-        :param pulumi.Input[bool] include_by_default: To automatically include the ruleset in the new deployments. Defaults to `false`.
-        :param pulumi.Input[str] name: Name of the ruleset.
-        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]] rules: Rule block, which can be specified multiple times for multiple rules.
-        :param pulumi.Input[str] type: Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
+        :param pulumi.Input[str] name: Name of the ruleset
+        :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -503,15 +524,15 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        Description of the ruleset.
+        Ruleset description
         """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="includeByDefault")
-    def include_by_default(self) -> pulumi.Output[Optional[bool]]:
+    def include_by_default(self) -> pulumi.Output[bool]:
         """
-        To automatically include the ruleset in the new deployments. Defaults to `false`.
+        Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         """
         return pulumi.get(self, "include_by_default")
 
@@ -519,7 +540,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the ruleset.
+        Name of the ruleset
         """
         return pulumi.get(self, "name")
 
@@ -527,15 +548,15 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        Filter region, the ruleset can only be attached to deployments in the specific region.
+        Filter region, the ruleset can only be attached to deployments in the specific region
         """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
-    def rules(self) -> pulumi.Output[Sequence['outputs.DeploymentTrafficFilterRule']]:
+    def rules(self) -> pulumi.Output[Optional[Sequence['outputs.DeploymentTrafficFilterRule']]]:
         """
-        Rule block, which can be specified multiple times for multiple rules.
+        Set of rules, which the ruleset is made of.
         """
         return pulumi.get(self, "rules")
 
@@ -543,7 +564,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azure_private_endpoint"`, or `"gcp_private_service_connect_endpoint"`.
+        Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         return pulumi.get(self, "type")
 

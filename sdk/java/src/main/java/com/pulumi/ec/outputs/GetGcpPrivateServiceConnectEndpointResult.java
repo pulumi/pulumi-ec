@@ -19,6 +19,10 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
      * 
      */
     private String id;
+    /**
+     * @return Region to retrieve the Prive Link configuration for.
+     * 
+     */
     private String region;
     /**
      * @return The service attachment URI to attach the PSC endpoint to.
@@ -41,6 +45,10 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Region to retrieve the Prive Link configuration for.
+     * 
+     */
     public String region() {
         return this.region;
     }

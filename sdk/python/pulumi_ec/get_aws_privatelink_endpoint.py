@@ -57,6 +57,9 @@ class GetAwsPrivatelinkEndpointResult:
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region to retrieve the Private Link configuration for.
+        """
         return pulumi.get(self, "region")
 
     @property
@@ -94,15 +97,13 @@ def get_aws_privatelink_endpoint(region: Optional[str] = None,
     """
     Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
 
-    > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-
     ## Example Usage
 
     ```python
     import pulumi
     import pulumi_ec as ec
 
-    us_east_1 = ec.get_aws_privatelink_endpoint(region="us-east-1")
+    eastus = ec.get_azure_privatelink_endpoint(region="eastus")
     ```
 
 
@@ -114,11 +115,11 @@ def get_aws_privatelink_endpoint(region: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint', __args__, opts=opts, typ=GetAwsPrivatelinkEndpointResult).value
 
     return AwaitableGetAwsPrivatelinkEndpointResult(
-        domain_name=__ret__.domain_name,
-        id=__ret__.id,
-        region=__ret__.region,
-        vpc_service_name=__ret__.vpc_service_name,
-        zone_ids=__ret__.zone_ids)
+        domain_name=pulumi.get(__ret__, 'domain_name'),
+        id=pulumi.get(__ret__, 'id'),
+        region=pulumi.get(__ret__, 'region'),
+        vpc_service_name=pulumi.get(__ret__, 'vpc_service_name'),
+        zone_ids=pulumi.get(__ret__, 'zone_ids'))
 
 
 @_utilities.lift_output_func(get_aws_privatelink_endpoint)
@@ -127,15 +128,13 @@ def get_aws_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = No
     """
     Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
 
-    > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-
     ## Example Usage
 
     ```python
     import pulumi
     import pulumi_ec as ec
 
-    us_east_1 = ec.get_aws_privatelink_endpoint(region="us-east-1")
+    eastus = ec.get_azure_privatelink_endpoint(region="eastus")
     ```
 
 

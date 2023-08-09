@@ -12,53 +12,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchRemoteCluster {
-    /**
-     * @return Alias for the Cross Cluster Search binding.
-     * 
-     */
     private String alias;
-    /**
-     * @return Remote deployment ID.
-     * 
-     */
     private String deploymentId;
-    /**
-     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     private @Nullable String refId;
-    /**
-     * @return If true, skip the cluster during search when disconnected. Defaults to `false`.
-     * 
-     */
     private @Nullable Boolean skipUnavailable;
 
     private DeploymentElasticsearchRemoteCluster() {}
-    /**
-     * @return Alias for the Cross Cluster Search binding.
-     * 
-     */
     public String alias() {
         return this.alias;
     }
-    /**
-     * @return Remote deployment ID.
-     * 
-     */
     public String deploymentId() {
         return this.deploymentId;
     }
-    /**
-     * @return Remote Elasticsearch `ref_id`. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
-    /**
-     * @return If true, skip the cluster during search when disconnected. Defaults to `false`.
-     * 
-     */
     public Optional<Boolean> skipUnavailable() {
         return Optional.ofNullable(this.skipUnavailable);
     }

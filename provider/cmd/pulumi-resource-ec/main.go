@@ -17,12 +17,16 @@
 package main
 
 import (
+	"context"
+
 	ec "github.com/pulumi/pulumi-ec/provider"
-	"github.com/pulumi/pulumi-ec/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 )
 
 func main() {
+	ctx := context.Background()
 	// Modify the path to point to the new provider
-	tfbridge.Main("ec", version.Version, ec.Provider(), pulumiSchema)
+	tfbridge.Main(ctx, "ec", ec.Provider(), tfbridge.ProviderMetadata{
+		PackageSchema: pulumiSchema,
+	})
 }

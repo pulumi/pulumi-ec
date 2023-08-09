@@ -17,14 +17,14 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetStackArgs Empty = new GetStackArgs();
 
     /**
-     * Lock the `&#34;latest&#34;` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
      * 
      */
     @Import(name="lock")
     private @Nullable Output<Boolean> lock;
 
     /**
-     * @return Lock the `&#34;latest&#34;` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * @return Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
      * 
      */
     public Optional<Output<Boolean>> lock() {
@@ -32,14 +32,14 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `&#34;ece-region`.
+     * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `&#34;ece-region`.
+     * @return Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
      * 
      */
     public Output<String> region() {
@@ -47,14 +47,14 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `&#34;latest&#34;` is also accepted to obtain the latest available stack version.
+     * Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
      * 
      */
     @Import(name="versionRegex", required=true)
     private Output<String> versionRegex;
 
     /**
-     * @return Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `&#34;latest&#34;` is also accepted to obtain the latest available stack version.
+     * @return Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
      * 
      */
     public Output<String> versionRegex() {
@@ -88,7 +88,7 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param lock Lock the `&#34;latest&#34;` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+         * @param lock Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
          * 
          * @return builder
          * 
@@ -99,7 +99,7 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param lock Lock the `&#34;latest&#34;` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+         * @param lock Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
          * 
          * @return builder
          * 
@@ -109,7 +109,7 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param region Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `&#34;ece-region`.
+         * @param region Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param region Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `&#34;ece-region`.
+         * @param region Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param versionRegex Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `&#34;latest&#34;` is also accepted to obtain the latest available stack version.
+         * @param versionRegex Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class GetStackArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param versionRegex Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `&#34;latest&#34;` is also accepted to obtain the latest available stack version.
+         * @param versionRegex Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
          * 
          * @return builder
          * 

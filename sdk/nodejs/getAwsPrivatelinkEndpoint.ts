@@ -7,16 +7,14 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
  *
- * > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
- *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const us-east-1 = ec.getAwsPrivatelinkEndpoint({
- *     region: "us-east-1",
+ * const eastus = ec.getAzurePrivatelinkEndpoint({
+ *     region: "eastus",
  * });
  * ```
  */
@@ -50,6 +48,9 @@ export interface GetAwsPrivatelinkEndpointResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Region to retrieve the Private Link configuration for.
+     */
     readonly region: string;
     /**
      * The VPC service name used to connect to the region.
@@ -63,16 +64,14 @@ export interface GetAwsPrivatelinkEndpointResult {
 /**
  * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
  *
- * > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
- *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const us-east-1 = ec.getAwsPrivatelinkEndpoint({
- *     region: "us-east-1",
+ * const eastus = ec.getAzurePrivatelinkEndpoint({
+ *     region: "eastus",
  * });
  * ```
  */

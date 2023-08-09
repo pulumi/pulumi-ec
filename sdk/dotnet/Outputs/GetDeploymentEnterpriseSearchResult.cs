@@ -13,17 +13,41 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentEnterpriseSearchResult
     {
+        /// <summary>
+        /// A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+        /// </summary>
         public readonly string ElasticsearchClusterRefId;
         /// <summary>
-        /// Overall health status of the deployment.
+        /// Enterprise Search resource health status.
         /// </summary>
         public readonly bool Healthy;
+        /// <summary>
+        /// HTTP endpoint for the Enterprise Search resource.
+        /// </summary>
         public readonly string HttpEndpoint;
+        /// <summary>
+        /// HTTPS endpoint for the Enterprise Search resource.
+        /// </summary>
         public readonly string HttpsEndpoint;
+        /// <summary>
+        /// A locally-unique friendly alias for this Enterprise Search resource.
+        /// </summary>
         public readonly string RefId;
+        /// <summary>
+        /// The resource unique identifier.
+        /// </summary>
         public readonly string ResourceId;
+        /// <summary>
+        /// Enterprise Search resource status (for example, "started", "stopped", etc).
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Node topology element definition.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentEnterpriseSearchTopologyResult> Topologies;
+        /// <summary>
+        /// Elastic stack version.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

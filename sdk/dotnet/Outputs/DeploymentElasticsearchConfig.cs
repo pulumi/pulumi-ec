@@ -14,25 +14,10 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearchConfig
     {
         public readonly string? DockerImage;
-        /// <summary>
-        /// List of Elasticsearch supported plugins. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html).
-        /// </summary>
         public readonly ImmutableArray<string> Plugins;
-        /// <summary>
-        /// JSON-formatted user level `enterprise_search.yml` setting overrides.
-        /// </summary>
         public readonly string? UserSettingsJson;
-        /// <summary>
-        /// JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-        /// </summary>
         public readonly string? UserSettingsOverrideJson;
-        /// <summary>
-        /// YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-        /// </summary>
         public readonly string? UserSettingsOverrideYaml;
-        /// <summary>
-        /// YAML-formatted user level `enterprise_search.yml` setting overrides.
-        /// </summary>
         public readonly string? UserSettingsYaml;
 
         [OutputConstructor]

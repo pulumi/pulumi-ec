@@ -14,14 +14,13 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
         /// 
-        /// &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -43,14 +42,13 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
         /// 
-        /// &gt; **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -111,6 +109,9 @@ namespace Pulumi.ElasticCloud
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Region to retrieve the Private Link configuration for.
+        /// </summary>
         public readonly string Region;
         /// <summary>
         /// The service alias to establish a connection to.

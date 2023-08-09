@@ -17,47 +17,23 @@ public final class DeploymentElasticsearchTrustExternalArgs extends com.pulumi.r
 
     public static final DeploymentElasticsearchTrustExternalArgs Empty = new DeploymentElasticsearchTrustExternalArgs();
 
-    /**
-     * Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-     * 
-     */
     @Import(name="relationshipId", required=true)
     private Output<String> relationshipId;
 
-    /**
-     * @return Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-     * 
-     */
     public Output<String> relationshipId() {
         return this.relationshipId;
     }
 
-    /**
-     * If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
-     * 
-     */
     @Import(name="trustAll", required=true)
     private Output<Boolean> trustAll;
 
-    /**
-     * @return If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
-     * 
-     */
     public Output<Boolean> trustAll() {
         return this.trustAll;
     }
 
-    /**
-     * The list of clusters to trust. Only used when `trust_all` is `false`.
-     * 
-     */
     @Import(name="trustAllowlists")
     private @Nullable Output<List<String>> trustAllowlists;
 
-    /**
-     * @return The list of clusters to trust. Only used when `trust_all` is `false`.
-     * 
-     */
     public Optional<Output<List<String>>> trustAllowlists() {
         return Optional.ofNullable(this.trustAllowlists);
     }
@@ -88,75 +64,33 @@ public final class DeploymentElasticsearchTrustExternalArgs extends com.pulumi.r
             $ = new DeploymentElasticsearchTrustExternalArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param relationshipId Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-         * 
-         * @return builder
-         * 
-         */
         public Builder relationshipId(Output<String> relationshipId) {
             $.relationshipId = relationshipId;
             return this;
         }
 
-        /**
-         * @param relationshipId Identifier of the the trust relationship with external entities (remote environments, remote accounts...).
-         * 
-         * @return builder
-         * 
-         */
         public Builder relationshipId(String relationshipId) {
             return relationshipId(Output.of(relationshipId));
         }
 
-        /**
-         * @param trustAll If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAll(Output<Boolean> trustAll) {
             $.trustAll = trustAll;
             return this;
         }
 
-        /**
-         * @param trustAll If true, all clusters in this external entity will be trusted and the `trust_allowlist` is ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAll(Boolean trustAll) {
             return trustAll(Output.of(trustAll));
         }
 
-        /**
-         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAllowlists(@Nullable Output<List<String>> trustAllowlists) {
             $.trustAllowlists = trustAllowlists;
             return this;
         }
 
-        /**
-         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAllowlists(List<String> trustAllowlists) {
             return trustAllowlists(Output.of(trustAllowlists));
         }
 
-        /**
-         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAllowlists(String... trustAllowlists) {
             return trustAllowlists(List.of(trustAllowlists));
         }

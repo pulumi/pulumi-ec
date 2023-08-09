@@ -16,17 +16,9 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
 
     public static final DeploymentIntegrationsServerConfigArgs Empty = new DeploymentIntegrationsServerConfigArgs();
 
-    /**
-     * Enable debug mode for APM servers. Defaults to `false`.
-     * 
-     */
     @Import(name="debugEnabled")
     private @Nullable Output<Boolean> debugEnabled;
 
-    /**
-     * @return Enable debug mode for APM servers. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> debugEnabled() {
         return Optional.ofNullable(this.debugEnabled);
     }
@@ -38,62 +30,30 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         return Optional.ofNullable(this.dockerImage);
     }
 
-    /**
-     * JSON-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     @Import(name="userSettingsJson")
     private @Nullable Output<String> userSettingsJson;
 
-    /**
-     * @return JSON-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<Output<String>> userSettingsJson() {
         return Optional.ofNullable(this.userSettingsJson);
     }
 
-    /**
-     * JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     @Import(name="userSettingsOverrideJson")
     private @Nullable Output<String> userSettingsOverrideJson;
 
-    /**
-     * @return JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<Output<String>> userSettingsOverrideJson() {
         return Optional.ofNullable(this.userSettingsOverrideJson);
     }
 
-    /**
-     * YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     @Import(name="userSettingsOverrideYaml")
     private @Nullable Output<String> userSettingsOverrideYaml;
 
-    /**
-     * @return YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<Output<String>> userSettingsOverrideYaml() {
         return Optional.ofNullable(this.userSettingsOverrideYaml);
     }
 
-    /**
-     * YAML-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     @Import(name="userSettingsYaml")
     private @Nullable Output<String> userSettingsYaml;
 
-    /**
-     * @return YAML-formatted user level `enterprise_search.yml` setting overrides.
-     * 
-     */
     public Optional<Output<String>> userSettingsYaml() {
         return Optional.ofNullable(this.userSettingsYaml);
     }
@@ -127,23 +87,11 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
             $ = new DeploymentIntegrationsServerConfigArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param debugEnabled Enable debug mode for APM servers. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder debugEnabled(@Nullable Output<Boolean> debugEnabled) {
             $.debugEnabled = debugEnabled;
             return this;
         }
 
-        /**
-         * @param debugEnabled Enable debug mode for APM servers. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder debugEnabled(Boolean debugEnabled) {
             return debugEnabled(Output.of(debugEnabled));
         }
@@ -157,86 +105,38 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
             return dockerImage(Output.of(dockerImage));
         }
 
-        /**
-         * @param userSettingsJson JSON-formatted user level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsJson(@Nullable Output<String> userSettingsJson) {
             $.userSettingsJson = userSettingsJson;
             return this;
         }
 
-        /**
-         * @param userSettingsJson JSON-formatted user level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsJson(String userSettingsJson) {
             return userSettingsJson(Output.of(userSettingsJson));
         }
 
-        /**
-         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsOverrideJson(@Nullable Output<String> userSettingsOverrideJson) {
             $.userSettingsOverrideJson = userSettingsOverrideJson;
             return this;
         }
 
-        /**
-         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsOverrideJson(String userSettingsOverrideJson) {
             return userSettingsOverrideJson(Output.of(userSettingsOverrideJson));
         }
 
-        /**
-         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsOverrideYaml(@Nullable Output<String> userSettingsOverrideYaml) {
             $.userSettingsOverrideYaml = userSettingsOverrideYaml;
             return this;
         }
 
-        /**
-         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsOverrideYaml(String userSettingsOverrideYaml) {
             return userSettingsOverrideYaml(Output.of(userSettingsOverrideYaml));
         }
 
-        /**
-         * @param userSettingsYaml YAML-formatted user level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsYaml(@Nullable Output<String> userSettingsYaml) {
             $.userSettingsYaml = userSettingsYaml;
             return this;
         }
 
-        /**
-         * @param userSettingsYaml YAML-formatted user level `enterprise_search.yml` setting overrides.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userSettingsYaml(String userSettingsYaml) {
             return userSettingsYaml(Output.of(userSettingsYaml));
         }

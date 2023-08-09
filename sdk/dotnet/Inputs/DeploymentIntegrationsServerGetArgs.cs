@@ -12,23 +12,20 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentIntegrationsServerGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("apmHttpsEndpoint")]
-        public Input<string>? ApmHttpsEndpoint { get; set; }
-
         /// <summary>
-        /// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+        /// Optionally define the Integrations Server configuration options for the IntegrationsServer Server
         /// </summary>
         [Input("config")]
         public Input<Inputs.DeploymentIntegrationsServerConfigGetArgs>? Config { get; set; }
 
-        /// <summary>
-        /// This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         [Input("elasticsearchClusterRefId")]
         public Input<string>? ElasticsearchClusterRefId { get; set; }
 
-        [Input("fleetHttpsEndpoint")]
-        public Input<string>? FleetHttpsEndpoint { get; set; }
+        /// <summary>
+        /// URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+        /// </summary>
+        [Input("endpoints")]
+        public Input<Inputs.DeploymentIntegrationsServerEndpointsGetArgs>? Endpoints { get; set; }
 
         [Input("httpEndpoint")]
         public Input<string>? HttpEndpoint { get; set; }
@@ -36,14 +33,14 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("httpsEndpoint")]
         public Input<string>? HttpsEndpoint { get; set; }
 
-        /// <summary>
-        /// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-        /// </summary>
+        [Input("instanceConfigurationId")]
+        public Input<string>? InstanceConfigurationId { get; set; }
+
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -51,11 +48,17 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
+        [Input("size")]
+        public Input<string>? Size { get; set; }
+
         /// <summary>
-        /// Can be set multiple times to compose complex topologies.
+        /// Optional size type, defaults to "memory".
         /// </summary>
-        [Input("topology")]
-        public Input<Inputs.DeploymentIntegrationsServerTopologyGetArgs>? Topology { get; set; }
+        [Input("sizeResource")]
+        public Input<string>? SizeResource { get; set; }
+
+        [Input("zoneCount")]
+        public Input<int>? ZoneCount { get; set; }
 
         public DeploymentIntegrationsServerGetArgs()
         {

@@ -5,14 +5,21 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ec.inputs.DeploymentElasticsearchColdArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchConfigArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchCoordinatingArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchExtensionArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchFrozenArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchMasterArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchMlArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchRemoteClusterArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchSnapshotArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchSnapshotSourceArgs;
-import com.pulumi.ec.inputs.DeploymentElasticsearchStrategyArgs;
-import com.pulumi.ec.inputs.DeploymentElasticsearchTopologyArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTrustAccountArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTrustExternalArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchWarmArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -25,17 +32,17 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     public static final DeploymentElasticsearchArgs Empty = new DeploymentElasticsearchArgs();
 
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `&#34;true&#34;` or `&#34;false&#34;`.
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      * 
      */
     @Import(name="autoscale")
-    private @Nullable Output<String> autoscale;
+    private @Nullable Output<Boolean> autoscale;
 
     /**
-     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `&#34;true&#34;` or `&#34;false&#34;`.
+     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      * 
      */
-    public Optional<Output<String>> autoscale() {
+    public Optional<Output<Boolean>> autoscale() {
         return Optional.ofNullable(this.autoscale);
     }
 
@@ -47,14 +54,29 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+     * &#39;cold&#39; topology element
+     * 
+     */
+    @Import(name="cold")
+    private @Nullable Output<DeploymentElasticsearchColdArgs> cold;
+
+    /**
+     * @return &#39;cold&#39; topology element
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchColdArgs>> cold() {
+        return Optional.ofNullable(this.cold);
+    }
+
+    /**
+     * Elasticsearch settings which will be applied to all topologies
      * 
      */
     @Import(name="config")
     private @Nullable Output<DeploymentElasticsearchConfigArgs> config;
 
     /**
-     * @return Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+     * @return Elasticsearch settings which will be applied to all topologies
      * 
      */
     public Optional<Output<DeploymentElasticsearchConfigArgs>> config() {
@@ -62,18 +84,63 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Custom Elasticsearch bundles or plugins. Can be set multiple times.
+     * &#39;coordinating&#39; topology element
+     * 
+     */
+    @Import(name="coordinating")
+    private @Nullable Output<DeploymentElasticsearchCoordinatingArgs> coordinating;
+
+    /**
+     * @return &#39;coordinating&#39; topology element
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchCoordinatingArgs>> coordinating() {
+        return Optional.ofNullable(this.coordinating);
+    }
+
+    /**
+     * Optional Elasticsearch extensions such as custom bundles or plugins.
      * 
      */
     @Import(name="extensions")
     private @Nullable Output<List<DeploymentElasticsearchExtensionArgs>> extensions;
 
     /**
-     * @return Custom Elasticsearch bundles or plugins. Can be set multiple times.
+     * @return Optional Elasticsearch extensions such as custom bundles or plugins.
      * 
      */
     public Optional<Output<List<DeploymentElasticsearchExtensionArgs>>> extensions() {
         return Optional.ofNullable(this.extensions);
+    }
+
+    /**
+     * &#39;frozen&#39; topology element
+     * 
+     */
+    @Import(name="frozen")
+    private @Nullable Output<DeploymentElasticsearchFrozenArgs> frozen;
+
+    /**
+     * @return &#39;frozen&#39; topology element
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchFrozenArgs>> frozen() {
+        return Optional.ofNullable(this.frozen);
+    }
+
+    /**
+     * &#39;hot&#39; topology element
+     * 
+     */
+    @Import(name="hot", required=true)
+    private Output<DeploymentElasticsearchHotArgs> hot;
+
+    /**
+     * @return &#39;hot&#39; topology element
+     * 
+     */
+    public Output<DeploymentElasticsearchHotArgs> hot() {
+        return this.hot;
     }
 
     @Import(name="httpEndpoint")
@@ -91,14 +158,44 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * &#39;master&#39; topology element
+     * 
+     */
+    @Import(name="master")
+    private @Nullable Output<DeploymentElasticsearchMasterArgs> master;
+
+    /**
+     * @return &#39;master&#39; topology element
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchMasterArgs>> master() {
+        return Optional.ofNullable(this.master);
+    }
+
+    /**
+     * &#39;ml&#39; topology element
+     * 
+     */
+    @Import(name="ml")
+    private @Nullable Output<DeploymentElasticsearchMlArgs> ml;
+
+    /**
+     * @return &#39;ml&#39; topology element
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchMlArgs>> ml() {
+        return Optional.ofNullable(this.ml);
+    }
+
+    /**
+     * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
     /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+     * @return A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      * 
      */
     public Optional<Output<String>> refId() {
@@ -106,14 +203,14 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<Output<String>> region() {
@@ -121,14 +218,14 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+     * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      * 
      */
     @Import(name="remoteClusters")
     private @Nullable Output<List<DeploymentElasticsearchRemoteClusterArgs>> remoteClusters;
 
     /**
-     * @return Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+     * @return Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      * 
      */
     public Optional<Output<List<DeploymentElasticsearchRemoteClusterArgs>>> remoteClusters() {
@@ -143,78 +240,53 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Restores data from a snapshot of another deployment.
+     * (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      * 
      */
+    @Import(name="snapshot")
+    private @Nullable Output<DeploymentElasticsearchSnapshotArgs> snapshot;
+
+    /**
+     * @return (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+     * 
+     */
+    public Optional<Output<DeploymentElasticsearchSnapshotArgs>> snapshot() {
+        return Optional.ofNullable(this.snapshot);
+    }
+
     @Import(name="snapshotSource")
     private @Nullable Output<DeploymentElasticsearchSnapshotSourceArgs> snapshotSource;
 
-    /**
-     * @return Restores data from a snapshot of another deployment.
-     * 
-     */
     public Optional<Output<DeploymentElasticsearchSnapshotSourceArgs>> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
     }
 
-    /**
-     * Choose the configuration strategy used to apply the changes.
-     * 
-     */
     @Import(name="strategy")
-    private @Nullable Output<DeploymentElasticsearchStrategyArgs> strategy;
+    private @Nullable Output<String> strategy;
 
-    /**
-     * @return Choose the configuration strategy used to apply the changes.
-     * 
-     */
-    public Optional<Output<DeploymentElasticsearchStrategyArgs>> strategy() {
+    public Optional<Output<String>> strategy() {
         return Optional.ofNullable(this.strategy);
     }
 
-    /**
-     * Can be set multiple times to compose complex topologies.
-     * 
-     */
-    @Import(name="topologies")
-    private @Nullable Output<List<DeploymentElasticsearchTopologyArgs>> topologies;
-
-    /**
-     * @return Can be set multiple times to compose complex topologies.
-     * 
-     */
-    public Optional<Output<List<DeploymentElasticsearchTopologyArgs>>> topologies() {
-        return Optional.ofNullable(this.topologies);
-    }
-
-    /**
-     * The trust relationships with other ESS accounts.
-     * 
-     */
     @Import(name="trustAccounts")
     private @Nullable Output<List<DeploymentElasticsearchTrustAccountArgs>> trustAccounts;
 
-    /**
-     * @return The trust relationships with other ESS accounts.
-     * 
-     */
     public Optional<Output<List<DeploymentElasticsearchTrustAccountArgs>>> trustAccounts() {
         return Optional.ofNullable(this.trustAccounts);
     }
 
-    /**
-     * The trust relationship with external entities (remote environments, remote accounts...).
-     * 
-     */
     @Import(name="trustExternals")
     private @Nullable Output<List<DeploymentElasticsearchTrustExternalArgs>> trustExternals;
 
-    /**
-     * @return The trust relationship with external entities (remote environments, remote accounts...).
-     * 
-     */
     public Optional<Output<List<DeploymentElasticsearchTrustExternalArgs>>> trustExternals() {
         return Optional.ofNullable(this.trustExternals);
+    }
+
+    @Import(name="warm")
+    private @Nullable Output<DeploymentElasticsearchWarmArgs> warm;
+
+    public Optional<Output<DeploymentElasticsearchWarmArgs>> warm() {
+        return Optional.ofNullable(this.warm);
     }
 
     private DeploymentElasticsearchArgs() {}
@@ -222,19 +294,26 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     private DeploymentElasticsearchArgs(DeploymentElasticsearchArgs $) {
         this.autoscale = $.autoscale;
         this.cloudId = $.cloudId;
+        this.cold = $.cold;
         this.config = $.config;
+        this.coordinating = $.coordinating;
         this.extensions = $.extensions;
+        this.frozen = $.frozen;
+        this.hot = $.hot;
         this.httpEndpoint = $.httpEndpoint;
         this.httpsEndpoint = $.httpsEndpoint;
+        this.master = $.master;
+        this.ml = $.ml;
         this.refId = $.refId;
         this.region = $.region;
         this.remoteClusters = $.remoteClusters;
         this.resourceId = $.resourceId;
+        this.snapshot = $.snapshot;
         this.snapshotSource = $.snapshotSource;
         this.strategy = $.strategy;
-        this.topologies = $.topologies;
         this.trustAccounts = $.trustAccounts;
         this.trustExternals = $.trustExternals;
+        this.warm = $.warm;
     }
 
     public static Builder builder() {
@@ -256,23 +335,23 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `&#34;true&#34;` or `&#34;false&#34;`.
+         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
          * 
          * @return builder
          * 
          */
-        public Builder autoscale(@Nullable Output<String> autoscale) {
+        public Builder autoscale(@Nullable Output<Boolean> autoscale) {
             $.autoscale = autoscale;
             return this;
         }
 
         /**
-         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template. Accepted values are `&#34;true&#34;` or `&#34;false&#34;`.
+         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
          * 
          * @return builder
          * 
          */
-        public Builder autoscale(String autoscale) {
+        public Builder autoscale(Boolean autoscale) {
             return autoscale(Output.of(autoscale));
         }
 
@@ -286,7 +365,28 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param config Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+         * @param cold &#39;cold&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cold(@Nullable Output<DeploymentElasticsearchColdArgs> cold) {
+            $.cold = cold;
+            return this;
+        }
+
+        /**
+         * @param cold &#39;cold&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cold(DeploymentElasticsearchColdArgs cold) {
+            return cold(Output.of(cold));
+        }
+
+        /**
+         * @param config Elasticsearch settings which will be applied to all topologies
          * 
          * @return builder
          * 
@@ -297,7 +397,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param config Elasticsearch settings applied to all topologies unless overridden in the `topology` element.
+         * @param config Elasticsearch settings which will be applied to all topologies
          * 
          * @return builder
          * 
@@ -307,7 +407,28 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param extensions Custom Elasticsearch bundles or plugins. Can be set multiple times.
+         * @param coordinating &#39;coordinating&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder coordinating(@Nullable Output<DeploymentElasticsearchCoordinatingArgs> coordinating) {
+            $.coordinating = coordinating;
+            return this;
+        }
+
+        /**
+         * @param coordinating &#39;coordinating&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder coordinating(DeploymentElasticsearchCoordinatingArgs coordinating) {
+            return coordinating(Output.of(coordinating));
+        }
+
+        /**
+         * @param extensions Optional Elasticsearch extensions such as custom bundles or plugins.
          * 
          * @return builder
          * 
@@ -318,7 +439,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param extensions Custom Elasticsearch bundles or plugins. Can be set multiple times.
+         * @param extensions Optional Elasticsearch extensions such as custom bundles or plugins.
          * 
          * @return builder
          * 
@@ -328,13 +449,55 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param extensions Custom Elasticsearch bundles or plugins. Can be set multiple times.
+         * @param extensions Optional Elasticsearch extensions such as custom bundles or plugins.
          * 
          * @return builder
          * 
          */
         public Builder extensions(DeploymentElasticsearchExtensionArgs... extensions) {
             return extensions(List.of(extensions));
+        }
+
+        /**
+         * @param frozen &#39;frozen&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder frozen(@Nullable Output<DeploymentElasticsearchFrozenArgs> frozen) {
+            $.frozen = frozen;
+            return this;
+        }
+
+        /**
+         * @param frozen &#39;frozen&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder frozen(DeploymentElasticsearchFrozenArgs frozen) {
+            return frozen(Output.of(frozen));
+        }
+
+        /**
+         * @param hot &#39;hot&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hot(Output<DeploymentElasticsearchHotArgs> hot) {
+            $.hot = hot;
+            return this;
+        }
+
+        /**
+         * @param hot &#39;hot&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hot(DeploymentElasticsearchHotArgs hot) {
+            return hot(Output.of(hot));
         }
 
         public Builder httpEndpoint(@Nullable Output<String> httpEndpoint) {
@@ -356,7 +519,49 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+         * @param master &#39;master&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder master(@Nullable Output<DeploymentElasticsearchMasterArgs> master) {
+            $.master = master;
+            return this;
+        }
+
+        /**
+         * @param master &#39;master&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder master(DeploymentElasticsearchMasterArgs master) {
+            return master(Output.of(master));
+        }
+
+        /**
+         * @param ml &#39;ml&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ml(@Nullable Output<DeploymentElasticsearchMlArgs> ml) {
+            $.ml = ml;
+            return this;
+        }
+
+        /**
+         * @param ml &#39;ml&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ml(DeploymentElasticsearchMlArgs ml) {
+            return ml(Output.of(ml));
+        }
+
+        /**
+         * @param refId A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
          * 
          * @return builder
          * 
@@ -367,7 +572,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+         * @param refId A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
          * 
          * @return builder
          * 
@@ -377,7 +582,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -388,7 +593,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `&#34;ece-region&#34;`.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -398,7 +603,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param remoteClusters Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+         * @param remoteClusters Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
          * 
          * @return builder
          * 
@@ -409,7 +614,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param remoteClusters Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+         * @param remoteClusters Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
          * 
          * @return builder
          * 
@@ -419,7 +624,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param remoteClusters Elasticsearch remote clusters to configure for the Elasticsearch resource. Can be set multiple times.
+         * @param remoteClusters Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
          * 
          * @return builder
          * 
@@ -438,141 +643,81 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param snapshotSource Restores data from a snapshot of another deployment.
+         * @param snapshot (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
          * 
          * @return builder
          * 
          */
+        public Builder snapshot(@Nullable Output<DeploymentElasticsearchSnapshotArgs> snapshot) {
+            $.snapshot = snapshot;
+            return this;
+        }
+
+        /**
+         * @param snapshot (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder snapshot(DeploymentElasticsearchSnapshotArgs snapshot) {
+            return snapshot(Output.of(snapshot));
+        }
+
         public Builder snapshotSource(@Nullable Output<DeploymentElasticsearchSnapshotSourceArgs> snapshotSource) {
             $.snapshotSource = snapshotSource;
             return this;
         }
 
-        /**
-         * @param snapshotSource Restores data from a snapshot of another deployment.
-         * 
-         * @return builder
-         * 
-         */
         public Builder snapshotSource(DeploymentElasticsearchSnapshotSourceArgs snapshotSource) {
             return snapshotSource(Output.of(snapshotSource));
         }
 
-        /**
-         * @param strategy Choose the configuration strategy used to apply the changes.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder strategy(@Nullable Output<DeploymentElasticsearchStrategyArgs> strategy) {
+        public Builder strategy(@Nullable Output<String> strategy) {
             $.strategy = strategy;
             return this;
         }
 
-        /**
-         * @param strategy Choose the configuration strategy used to apply the changes.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder strategy(DeploymentElasticsearchStrategyArgs strategy) {
+        public Builder strategy(String strategy) {
             return strategy(Output.of(strategy));
         }
 
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(@Nullable Output<List<DeploymentElasticsearchTopologyArgs>> topologies) {
-            $.topologies = topologies;
-            return this;
-        }
-
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(List<DeploymentElasticsearchTopologyArgs> topologies) {
-            return topologies(Output.of(topologies));
-        }
-
-        /**
-         * @param topologies Can be set multiple times to compose complex topologies.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder topologies(DeploymentElasticsearchTopologyArgs... topologies) {
-            return topologies(List.of(topologies));
-        }
-
-        /**
-         * @param trustAccounts The trust relationships with other ESS accounts.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAccounts(@Nullable Output<List<DeploymentElasticsearchTrustAccountArgs>> trustAccounts) {
             $.trustAccounts = trustAccounts;
             return this;
         }
 
-        /**
-         * @param trustAccounts The trust relationships with other ESS accounts.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAccounts(List<DeploymentElasticsearchTrustAccountArgs> trustAccounts) {
             return trustAccounts(Output.of(trustAccounts));
         }
 
-        /**
-         * @param trustAccounts The trust relationships with other ESS accounts.
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustAccounts(DeploymentElasticsearchTrustAccountArgs... trustAccounts) {
             return trustAccounts(List.of(trustAccounts));
         }
 
-        /**
-         * @param trustExternals The trust relationship with external entities (remote environments, remote accounts...).
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustExternals(@Nullable Output<List<DeploymentElasticsearchTrustExternalArgs>> trustExternals) {
             $.trustExternals = trustExternals;
             return this;
         }
 
-        /**
-         * @param trustExternals The trust relationship with external entities (remote environments, remote accounts...).
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustExternals(List<DeploymentElasticsearchTrustExternalArgs> trustExternals) {
             return trustExternals(Output.of(trustExternals));
         }
 
-        /**
-         * @param trustExternals The trust relationship with external entities (remote environments, remote accounts...).
-         * 
-         * @return builder
-         * 
-         */
         public Builder trustExternals(DeploymentElasticsearchTrustExternalArgs... trustExternals) {
             return trustExternals(List.of(trustExternals));
         }
 
+        public Builder warm(@Nullable Output<DeploymentElasticsearchWarmArgs> warm) {
+            $.warm = warm;
+            return this;
+        }
+
+        public Builder warm(DeploymentElasticsearchWarmArgs warm) {
+            return warm(Output.of(warm));
+        }
+
         public DeploymentElasticsearchArgs build() {
+            $.hot = Objects.requireNonNull($.hot, "expected parameter 'hot' to be non-null");
             return $;
         }
     }

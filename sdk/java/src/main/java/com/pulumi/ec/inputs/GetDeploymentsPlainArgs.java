@@ -11,6 +11,7 @@ import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServer;
 import com.pulumi.ec.inputs.GetDeploymentsKibana;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,35 +23,29 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     public static final GetDeploymentsPlainArgs Empty = new GetDeploymentsPlainArgs();
 
     /**
-     * **DEPRECATED** Filter by APM resource kind status or configuration.
-     * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `apm.#.version` - Elastic stack version.
-     * * `apm.#.healthy` - Overall health status of the APM instances.
+     * Filter by APM resource kind status or configuration.
      * 
      */
-    @Import(name="apm")
-    private @Nullable GetDeploymentsApm apm;
+    @Import(name="apms")
+    private @Nullable List<GetDeploymentsApm> apms;
 
     /**
-     * @return **DEPRECATED** Filter by APM resource kind status or configuration.
-     * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `apm.#.version` - Elastic stack version.
-     * * `apm.#.healthy` - Overall health status of the APM instances.
+     * @return Filter by APM resource kind status or configuration.
      * 
      */
-    public Optional<GetDeploymentsApm> apm() {
-        return Optional.ofNullable(this.apm);
+    public Optional<List<GetDeploymentsApm>> apms() {
+        return Optional.ofNullable(this.apms);
     }
 
     /**
-     * ID of the deployment template used to create the deployment.
+     * Filter the result set by the ID of the deployment template the deployment is based off.
      * 
      */
     @Import(name="deploymentTemplateId")
     private @Nullable String deploymentTemplateId;
 
     /**
-     * @return ID of the deployment template used to create the deployment.
+     * @return Filter the result set by the ID of the deployment template the deployment is based off.
      * 
      */
     public Optional<String> deploymentTemplateId() {
@@ -59,55 +54,43 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
 
     /**
      * Filter by Elasticsearch resource kind status or configuration.
-     * * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `elasticsearch.#.version` - Elastic stack version.
-     * * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
      * 
      */
-    @Import(name="elasticsearch")
-    private @Nullable GetDeploymentsElasticsearch elasticsearch;
+    @Import(name="elasticsearches")
+    private @Nullable List<GetDeploymentsElasticsearch> elasticsearches;
 
     /**
      * @return Filter by Elasticsearch resource kind status or configuration.
-     * * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `elasticsearch.#.version` - Elastic stack version.
-     * * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
      * 
      */
-    public Optional<GetDeploymentsElasticsearch> elasticsearch() {
-        return Optional.ofNullable(this.elasticsearch);
+    public Optional<List<GetDeploymentsElasticsearch>> elasticsearches() {
+        return Optional.ofNullable(this.elasticsearches);
     }
 
     /**
      * Filter by Enterprise Search resource kind status or configuration.
-     * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `enterprise_search.#.version` - Elastic stack version.
-     * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
      * 
      */
-    @Import(name="enterpriseSearch")
-    private @Nullable GetDeploymentsEnterpriseSearch enterpriseSearch;
+    @Import(name="enterpriseSearches")
+    private @Nullable List<GetDeploymentsEnterpriseSearch> enterpriseSearches;
 
     /**
      * @return Filter by Enterprise Search resource kind status or configuration.
-     * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `enterprise_search.#.version` - Elastic stack version.
-     * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
      * 
      */
-    public Optional<GetDeploymentsEnterpriseSearch> enterpriseSearch() {
-        return Optional.ofNullable(this.enterpriseSearch);
+    public Optional<List<GetDeploymentsEnterpriseSearch>> enterpriseSearches() {
+        return Optional.ofNullable(this.enterpriseSearches);
     }
 
     /**
-     * Overall health status of the deployment.
+     * Filter the result set by their health status.
      * 
      */
     @Import(name="healthy")
     private @Nullable String healthy;
 
     /**
-     * @return Overall health status of the deployment.
+     * @return Filter the result set by their health status.
      * 
      */
     public Optional<String> healthy() {
@@ -116,55 +99,43 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
 
     /**
      * Filter by Integrations Server resource kind status or configuration.
-     * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `integrations_server.#.version` - Elastic stack version.
-     * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
      * 
      */
-    @Import(name="integrationsServer")
-    private @Nullable GetDeploymentsIntegrationsServer integrationsServer;
+    @Import(name="integrationsServers")
+    private @Nullable List<GetDeploymentsIntegrationsServer> integrationsServers;
 
     /**
      * @return Filter by Integrations Server resource kind status or configuration.
-     * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `integrations_server.#.version` - Elastic stack version.
-     * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
      * 
      */
-    public Optional<GetDeploymentsIntegrationsServer> integrationsServer() {
-        return Optional.ofNullable(this.integrationsServer);
+    public Optional<List<GetDeploymentsIntegrationsServer>> integrationsServers() {
+        return Optional.ofNullable(this.integrationsServers);
     }
 
     /**
      * Filter by Kibana resource kind status or configuration.
-     * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `kibana.#.version` - Elastic stack version.
-     * * `kibana.#.healthy` - Overall health status of the Kibana instances.
      * 
      */
-    @Import(name="kibana")
-    private @Nullable GetDeploymentsKibana kibana;
+    @Import(name="kibanas")
+    private @Nullable List<GetDeploymentsKibana> kibanas;
 
     /**
      * @return Filter by Kibana resource kind status or configuration.
-     * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `kibana.#.version` - Elastic stack version.
-     * * `kibana.#.healthy` - Overall health status of the Kibana instances.
      * 
      */
-    public Optional<GetDeploymentsKibana> kibana() {
-        return Optional.ofNullable(this.kibana);
+    public Optional<List<GetDeploymentsKibana>> kibanas() {
+        return Optional.ofNullable(this.kibanas);
     }
 
     /**
-     * Prefix that one or several deployment names have in common.
+     * Prefix to filter the returned deployment list by.
      * 
      */
     @Import(name="namePrefix")
     private @Nullable String namePrefix;
 
     /**
-     * @return Prefix that one or several deployment names have in common.
+     * @return Prefix to filter the returned deployment list by.
      * 
      */
     public Optional<String> namePrefix() {
@@ -187,14 +158,14 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * Key value map of arbitrary string tags for the deployment.
+     * Filter the result set by their assigned tags.
      * 
      */
     @Import(name="tags")
     private @Nullable Map<String,String> tags;
 
     /**
-     * @return Key value map of arbitrary string tags for the deployment.
+     * @return Filter the result set by their assigned tags.
      * 
      */
     public Optional<Map<String,String>> tags() {
@@ -204,13 +175,13 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     private GetDeploymentsPlainArgs() {}
 
     private GetDeploymentsPlainArgs(GetDeploymentsPlainArgs $) {
-        this.apm = $.apm;
+        this.apms = $.apms;
         this.deploymentTemplateId = $.deploymentTemplateId;
-        this.elasticsearch = $.elasticsearch;
-        this.enterpriseSearch = $.enterpriseSearch;
+        this.elasticsearches = $.elasticsearches;
+        this.enterpriseSearches = $.enterpriseSearches;
         this.healthy = $.healthy;
-        this.integrationsServer = $.integrationsServer;
-        this.kibana = $.kibana;
+        this.integrationsServers = $.integrationsServers;
+        this.kibanas = $.kibanas;
         this.namePrefix = $.namePrefix;
         this.size = $.size;
         this.tags = $.tags;
@@ -235,21 +206,28 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param apm **DEPRECATED** Filter by APM resource kind status or configuration.
-         * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-         * * `apm.#.version` - Elastic stack version.
-         * * `apm.#.healthy` - Overall health status of the APM instances.
+         * @param apms Filter by APM resource kind status or configuration.
          * 
          * @return builder
          * 
          */
-        public Builder apm(@Nullable GetDeploymentsApm apm) {
-            $.apm = apm;
+        public Builder apms(@Nullable List<GetDeploymentsApm> apms) {
+            $.apms = apms;
             return this;
         }
 
         /**
-         * @param deploymentTemplateId ID of the deployment template used to create the deployment.
+         * @param apms Filter by APM resource kind status or configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apms(GetDeploymentsApm... apms) {
+            return apms(List.of(apms));
+        }
+
+        /**
+         * @param deploymentTemplateId Filter the result set by the ID of the deployment template the deployment is based off.
          * 
          * @return builder
          * 
@@ -260,35 +238,49 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param elasticsearch Filter by Elasticsearch resource kind status or configuration.
-         * * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-         * * `elasticsearch.#.version` - Elastic stack version.
-         * * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
+         * @param elasticsearches Filter by Elasticsearch resource kind status or configuration.
          * 
          * @return builder
          * 
          */
-        public Builder elasticsearch(@Nullable GetDeploymentsElasticsearch elasticsearch) {
-            $.elasticsearch = elasticsearch;
+        public Builder elasticsearches(@Nullable List<GetDeploymentsElasticsearch> elasticsearches) {
+            $.elasticsearches = elasticsearches;
             return this;
         }
 
         /**
-         * @param enterpriseSearch Filter by Enterprise Search resource kind status or configuration.
-         * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-         * * `enterprise_search.#.version` - Elastic stack version.
-         * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
+         * @param elasticsearches Filter by Elasticsearch resource kind status or configuration.
          * 
          * @return builder
          * 
          */
-        public Builder enterpriseSearch(@Nullable GetDeploymentsEnterpriseSearch enterpriseSearch) {
-            $.enterpriseSearch = enterpriseSearch;
+        public Builder elasticsearches(GetDeploymentsElasticsearch... elasticsearches) {
+            return elasticsearches(List.of(elasticsearches));
+        }
+
+        /**
+         * @param enterpriseSearches Filter by Enterprise Search resource kind status or configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enterpriseSearches(@Nullable List<GetDeploymentsEnterpriseSearch> enterpriseSearches) {
+            $.enterpriseSearches = enterpriseSearches;
             return this;
         }
 
         /**
-         * @param healthy Overall health status of the deployment.
+         * @param enterpriseSearches Filter by Enterprise Search resource kind status or configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enterpriseSearches(GetDeploymentsEnterpriseSearch... enterpriseSearches) {
+            return enterpriseSearches(List.of(enterpriseSearches));
+        }
+
+        /**
+         * @param healthy Filter the result set by their health status.
          * 
          * @return builder
          * 
@@ -299,35 +291,49 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param integrationsServer Filter by Integrations Server resource kind status or configuration.
-         * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-         * * `integrations_server.#.version` - Elastic stack version.
-         * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
+         * @param integrationsServers Filter by Integrations Server resource kind status or configuration.
          * 
          * @return builder
          * 
          */
-        public Builder integrationsServer(@Nullable GetDeploymentsIntegrationsServer integrationsServer) {
-            $.integrationsServer = integrationsServer;
+        public Builder integrationsServers(@Nullable List<GetDeploymentsIntegrationsServer> integrationsServers) {
+            $.integrationsServers = integrationsServers;
             return this;
         }
 
         /**
-         * @param kibana Filter by Kibana resource kind status or configuration.
-         * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-         * * `kibana.#.version` - Elastic stack version.
-         * * `kibana.#.healthy` - Overall health status of the Kibana instances.
+         * @param integrationsServers Filter by Integrations Server resource kind status or configuration.
          * 
          * @return builder
          * 
          */
-        public Builder kibana(@Nullable GetDeploymentsKibana kibana) {
-            $.kibana = kibana;
+        public Builder integrationsServers(GetDeploymentsIntegrationsServer... integrationsServers) {
+            return integrationsServers(List.of(integrationsServers));
+        }
+
+        /**
+         * @param kibanas Filter by Kibana resource kind status or configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kibanas(@Nullable List<GetDeploymentsKibana> kibanas) {
+            $.kibanas = kibanas;
             return this;
         }
 
         /**
-         * @param namePrefix Prefix that one or several deployment names have in common.
+         * @param kibanas Filter by Kibana resource kind status or configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kibanas(GetDeploymentsKibana... kibanas) {
+            return kibanas(List.of(kibanas));
+        }
+
+        /**
+         * @param namePrefix Prefix to filter the returned deployment list by.
          * 
          * @return builder
          * 
@@ -349,7 +355,7 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param tags Key value map of arbitrary string tags for the deployment.
+         * @param tags Filter the result set by their assigned tags.
          * 
          * @return builder
          * 

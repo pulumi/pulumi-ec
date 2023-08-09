@@ -16,17 +16,9 @@ public final class DeploymentObservabilityArgs extends com.pulumi.resources.Reso
 
     public static final DeploymentObservabilityArgs Empty = new DeploymentObservabilityArgs();
 
-    /**
-     * Remote deployment ID.
-     * 
-     */
     @Import(name="deploymentId", required=true)
     private Output<String> deploymentId;
 
-    /**
-     * @return Remote deployment ID.
-     * 
-     */
     public Output<String> deploymentId() {
         return this.deploymentId;
     }
@@ -45,17 +37,9 @@ public final class DeploymentObservabilityArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.metrics);
     }
 
-    /**
-     * Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
-    /**
-     * @return Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-     * 
-     */
     public Optional<Output<String>> refId() {
         return Optional.ofNullable(this.refId);
     }
@@ -87,23 +71,11 @@ public final class DeploymentObservabilityArgs extends com.pulumi.resources.Reso
             $ = new DeploymentObservabilityArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param deploymentId Remote deployment ID.
-         * 
-         * @return builder
-         * 
-         */
         public Builder deploymentId(Output<String> deploymentId) {
             $.deploymentId = deploymentId;
             return this;
         }
 
-        /**
-         * @param deploymentId Remote deployment ID.
-         * 
-         * @return builder
-         * 
-         */
         public Builder deploymentId(String deploymentId) {
             return deploymentId(Output.of(deploymentId));
         }
@@ -126,23 +98,11 @@ public final class DeploymentObservabilityArgs extends com.pulumi.resources.Reso
             return metrics(Output.of(metrics));
         }
 
-        /**
-         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refId(@Nullable Output<String> refId) {
             $.refId = refId;
             return this;
         }
 
-        /**
-         * @param refId Can be set on the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refId(String refId) {
             return refId(Output.of(refId));
         }

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,17 +29,25 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ec.GetDeployments(ctx, &ec.GetDeploymentsArgs{
 //				DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
-//				Elasticsearch: ec.GetDeploymentsElasticsearch{
-//					Healthy: pulumi.StringRef("true"),
+//				Elasticsearches: []ec.GetDeploymentsElasticsearch{
+//					{
+//						Healthy: pulumi.StringRef("true"),
+//					},
 //				},
-//				EnterpriseSearch: ec.GetDeploymentsEnterpriseSearch{
-//					Healthy: pulumi.StringRef("true"),
+//				EnterpriseSearches: []ec.GetDeploymentsEnterpriseSearch{
+//					{
+//						Healthy: pulumi.StringRef("true"),
+//					},
 //				},
-//				IntegrationsServer: ec.GetDeploymentsIntegrationsServer{
-//					Version: pulumi.StringRef("8.0.0"),
+//				IntegrationsServers: []ec.GetDeploymentsIntegrationsServer{
+//					{
+//						Version: pulumi.StringRef("8.0.0"),
+//					},
 //				},
-//				Kibana: ec.GetDeploymentsKibana{
-//					Status: pulumi.StringRef("started"),
+//				Kibanas: []ec.GetDeploymentsKibana{
+//					{
+//						Status: pulumi.StringRef("started"),
+//					},
 //				},
 //				NamePrefix: pulumi.StringRef("test"),
 //				Size:       pulumi.IntRef(200),
@@ -55,6 +64,7 @@ import (
 //
 // ```
 func GetDeployments(ctx *pulumi.Context, args *GetDeploymentsArgs, opts ...pulumi.InvokeOption) (*GetDeploymentsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDeploymentsResult
 	err := ctx.Invoke("ec:index/getDeployments:getDeployments", args, &rv, opts...)
 	if err != nil {
@@ -65,73 +75,56 @@ func GetDeployments(ctx *pulumi.Context, args *GetDeploymentsArgs, opts ...pulum
 
 // A collection of arguments for invoking getDeployments.
 type GetDeploymentsArgs struct {
-	// **DEPRECATED** Filter by APM resource kind status or configuration.
-	// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `apm.#.version` - Elastic stack version.
-	// * `apm.#.healthy` - Overall health status of the APM instances.
-	Apm *GetDeploymentsApm `pulumi:"apm"`
-	// ID of the deployment template used to create the deployment.
+	// Filter by APM resource kind status or configuration.
+	Apms []GetDeploymentsApm `pulumi:"apms"`
+	// Filter the result set by the ID of the deployment template the deployment is based off.
 	DeploymentTemplateId *string `pulumi:"deploymentTemplateId"`
 	// Filter by Elasticsearch resource kind status or configuration.
-	// * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `elasticsearch.#.version` - Elastic stack version.
-	// * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
-	Elasticsearch *GetDeploymentsElasticsearch `pulumi:"elasticsearch"`
+	Elasticsearches []GetDeploymentsElasticsearch `pulumi:"elasticsearches"`
 	// Filter by Enterprise Search resource kind status or configuration.
-	// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `enterprise_search.#.version` - Elastic stack version.
-	// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
-	EnterpriseSearch *GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearch"`
-	// Overall health status of the deployment.
+	EnterpriseSearches []GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearches"`
+	// Filter the result set by their health status.
 	Healthy *string `pulumi:"healthy"`
 	// Filter by Integrations Server resource kind status or configuration.
-	// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `integrations_server.#.version` - Elastic stack version.
-	// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
-	IntegrationsServer *GetDeploymentsIntegrationsServer `pulumi:"integrationsServer"`
+	IntegrationsServers []GetDeploymentsIntegrationsServer `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
-	// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `kibana.#.version` - Elastic stack version.
-	// * `kibana.#.healthy` - Overall health status of the Kibana instances.
-	Kibana *GetDeploymentsKibana `pulumi:"kibana"`
-	// Prefix that one or several deployment names have in common.
+	Kibanas []GetDeploymentsKibana `pulumi:"kibanas"`
+	// Prefix to filter the returned deployment list by.
 	NamePrefix *string `pulumi:"namePrefix"`
 	// The maximum number of deployments to return. Defaults to `100`.
 	Size *int `pulumi:"size"`
-	// Key value map of arbitrary string tags for the deployment.
+	// Filter the result set by their assigned tags.
 	Tags map[string]string `pulumi:"tags"`
 }
 
 // A collection of values returned by getDeployments.
 type GetDeploymentsResult struct {
-	Apm                  *GetDeploymentsApm `pulumi:"apm"`
-	DeploymentTemplateId *string            `pulumi:"deploymentTemplateId"`
+	// Filter by APM resource kind status or configuration.
+	Apms []GetDeploymentsApm `pulumi:"apms"`
+	// Filter the result set by the ID of the deployment template the deployment is based off.
+	DeploymentTemplateId *string `pulumi:"deploymentTemplateId"`
 	// List of deployments which match the specified query.
-	// * `deployments.#.deployment_id` - The deployment unique ID.
-	// * `deployments.#.alias` - Deployment alias.
-	// * `deployments.#.name` - The name of the deployment.
-	// * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-	// * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-	// * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-	// * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-	// * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-	// * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-	// * `deployments.#.apm_resource_id` - The APM resource unique ID.
-	// * `deployments.#.apm_ref_id` - The APM resource reference.
-	// * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-	// * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
-	Deployments      []GetDeploymentsDeployment      `pulumi:"deployments"`
-	Elasticsearch    *GetDeploymentsElasticsearch    `pulumi:"elasticsearch"`
-	EnterpriseSearch *GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearch"`
-	Healthy          *string                         `pulumi:"healthy"`
-	// The provider-assigned unique ID for this managed resource.
-	Id                 string                            `pulumi:"id"`
-	IntegrationsServer *GetDeploymentsIntegrationsServer `pulumi:"integrationsServer"`
-	Kibana             *GetDeploymentsKibana             `pulumi:"kibana"`
-	NamePrefix         *string                           `pulumi:"namePrefix"`
-	ReturnCount        int                               `pulumi:"returnCount"`
-	Size               *int                              `pulumi:"size"`
-	Tags               map[string]string                 `pulumi:"tags"`
+	Deployments []GetDeploymentsDeployment `pulumi:"deployments"`
+	// Filter by Elasticsearch resource kind status or configuration.
+	Elasticsearches []GetDeploymentsElasticsearch `pulumi:"elasticsearches"`
+	// Filter by Enterprise Search resource kind status or configuration.
+	EnterpriseSearches []GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearches"`
+	// Filter the result set by their health status.
+	Healthy *string `pulumi:"healthy"`
+	// Unique identifier of this data source.
+	Id string `pulumi:"id"`
+	// Filter by Integrations Server resource kind status or configuration.
+	IntegrationsServers []GetDeploymentsIntegrationsServer `pulumi:"integrationsServers"`
+	// Filter by Kibana resource kind status or configuration.
+	Kibanas []GetDeploymentsKibana `pulumi:"kibanas"`
+	// Prefix to filter the returned deployment list by.
+	NamePrefix *string `pulumi:"namePrefix"`
+	// The number of deployments actually returned.
+	ReturnCount int `pulumi:"returnCount"`
+	// The maximum number of deployments to return. Defaults to `100`.
+	Size *int `pulumi:"size"`
+	// Filter the result set by their assigned tags.
+	Tags map[string]string `pulumi:"tags"`
 }
 
 func GetDeploymentsOutput(ctx *pulumi.Context, args GetDeploymentsOutputArgs, opts ...pulumi.InvokeOption) GetDeploymentsResultOutput {
@@ -149,40 +142,25 @@ func GetDeploymentsOutput(ctx *pulumi.Context, args GetDeploymentsOutputArgs, op
 
 // A collection of arguments for invoking getDeployments.
 type GetDeploymentsOutputArgs struct {
-	// **DEPRECATED** Filter by APM resource kind status or configuration.
-	// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `apm.#.version` - Elastic stack version.
-	// * `apm.#.healthy` - Overall health status of the APM instances.
-	Apm GetDeploymentsApmPtrInput `pulumi:"apm"`
-	// ID of the deployment template used to create the deployment.
+	// Filter by APM resource kind status or configuration.
+	Apms GetDeploymentsApmArrayInput `pulumi:"apms"`
+	// Filter the result set by the ID of the deployment template the deployment is based off.
 	DeploymentTemplateId pulumi.StringPtrInput `pulumi:"deploymentTemplateId"`
 	// Filter by Elasticsearch resource kind status or configuration.
-	// * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `elasticsearch.#.version` - Elastic stack version.
-	// * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
-	Elasticsearch GetDeploymentsElasticsearchPtrInput `pulumi:"elasticsearch"`
+	Elasticsearches GetDeploymentsElasticsearchArrayInput `pulumi:"elasticsearches"`
 	// Filter by Enterprise Search resource kind status or configuration.
-	// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `enterprise_search.#.version` - Elastic stack version.
-	// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
-	EnterpriseSearch GetDeploymentsEnterpriseSearchPtrInput `pulumi:"enterpriseSearch"`
-	// Overall health status of the deployment.
+	EnterpriseSearches GetDeploymentsEnterpriseSearchArrayInput `pulumi:"enterpriseSearches"`
+	// Filter the result set by their health status.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
 	// Filter by Integrations Server resource kind status or configuration.
-	// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `integrations_server.#.version` - Elastic stack version.
-	// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
-	IntegrationsServer GetDeploymentsIntegrationsServerPtrInput `pulumi:"integrationsServer"`
+	IntegrationsServers GetDeploymentsIntegrationsServerArrayInput `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
-	// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-	// * `kibana.#.version` - Elastic stack version.
-	// * `kibana.#.healthy` - Overall health status of the Kibana instances.
-	Kibana GetDeploymentsKibanaPtrInput `pulumi:"kibana"`
-	// Prefix that one or several deployment names have in common.
+	Kibanas GetDeploymentsKibanaArrayInput `pulumi:"kibanas"`
+	// Prefix to filter the returned deployment list by.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 	// The maximum number of deployments to return. Defaults to `100`.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// Key value map of arbitrary string tags for the deployment.
+	// Filter the result set by their assigned tags.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
@@ -205,69 +183,67 @@ func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutputWithContext(ctx 
 	return o
 }
 
-func (o GetDeploymentsResultOutput) Apm() GetDeploymentsApmPtrOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) *GetDeploymentsApm { return v.Apm }).(GetDeploymentsApmPtrOutput)
+// Filter by APM resource kind status or configuration.
+func (o GetDeploymentsResultOutput) Apms() GetDeploymentsApmArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsApm { return v.Apms }).(GetDeploymentsApmArrayOutput)
 }
 
+// Filter the result set by the ID of the deployment template the deployment is based off.
 func (o GetDeploymentsResultOutput) DeploymentTemplateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) *string { return v.DeploymentTemplateId }).(pulumi.StringPtrOutput)
 }
 
 // List of deployments which match the specified query.
-// * `deployments.#.deployment_id` - The deployment unique ID.
-// * `deployments.#.alias` - Deployment alias.
-// * `deployments.#.name` - The name of the deployment.
-// * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-// * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-// * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-// * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-// * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-// * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-// * `deployments.#.apm_resource_id` - The APM resource unique ID.
-// * `deployments.#.apm_ref_id` - The APM resource reference.
-// * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-// * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
 func (o GetDeploymentsResultOutput) Deployments() GetDeploymentsDeploymentArrayOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsDeployment { return v.Deployments }).(GetDeploymentsDeploymentArrayOutput)
 }
 
-func (o GetDeploymentsResultOutput) Elasticsearch() GetDeploymentsElasticsearchPtrOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) *GetDeploymentsElasticsearch { return v.Elasticsearch }).(GetDeploymentsElasticsearchPtrOutput)
+// Filter by Elasticsearch resource kind status or configuration.
+func (o GetDeploymentsResultOutput) Elasticsearches() GetDeploymentsElasticsearchArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsElasticsearch { return v.Elasticsearches }).(GetDeploymentsElasticsearchArrayOutput)
 }
 
-func (o GetDeploymentsResultOutput) EnterpriseSearch() GetDeploymentsEnterpriseSearchPtrOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) *GetDeploymentsEnterpriseSearch { return v.EnterpriseSearch }).(GetDeploymentsEnterpriseSearchPtrOutput)
+// Filter by Enterprise Search resource kind status or configuration.
+func (o GetDeploymentsResultOutput) EnterpriseSearches() GetDeploymentsEnterpriseSearchArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsEnterpriseSearch { return v.EnterpriseSearches }).(GetDeploymentsEnterpriseSearchArrayOutput)
 }
 
+// Filter the result set by their health status.
 func (o GetDeploymentsResultOutput) Healthy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) *string { return v.Healthy }).(pulumi.StringPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// Unique identifier of this data source.
 func (o GetDeploymentsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetDeploymentsResultOutput) IntegrationsServer() GetDeploymentsIntegrationsServerPtrOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) *GetDeploymentsIntegrationsServer { return v.IntegrationsServer }).(GetDeploymentsIntegrationsServerPtrOutput)
+// Filter by Integrations Server resource kind status or configuration.
+func (o GetDeploymentsResultOutput) IntegrationsServers() GetDeploymentsIntegrationsServerArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsIntegrationsServer { return v.IntegrationsServers }).(GetDeploymentsIntegrationsServerArrayOutput)
 }
 
-func (o GetDeploymentsResultOutput) Kibana() GetDeploymentsKibanaPtrOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) *GetDeploymentsKibana { return v.Kibana }).(GetDeploymentsKibanaPtrOutput)
+// Filter by Kibana resource kind status or configuration.
+func (o GetDeploymentsResultOutput) Kibanas() GetDeploymentsKibanaArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsKibana { return v.Kibanas }).(GetDeploymentsKibanaArrayOutput)
 }
 
+// Prefix to filter the returned deployment list by.
 func (o GetDeploymentsResultOutput) NamePrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
 }
 
+// The number of deployments actually returned.
 func (o GetDeploymentsResultOutput) ReturnCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) int { return v.ReturnCount }).(pulumi.IntOutput)
 }
 
+// The maximum number of deployments to return. Defaults to `100`.
 func (o GetDeploymentsResultOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
+// Filter the result set by their assigned tags.
 func (o GetDeploymentsResultOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }

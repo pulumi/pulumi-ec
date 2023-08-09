@@ -19,14 +19,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     public static final DeploymentTrafficFilterState Empty = new DeploymentTrafficFilterState();
 
     /**
-     * Description of the ruleset.
+     * Ruleset description
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of the ruleset.
+     * @return Ruleset description
      * 
      */
     public Optional<Output<String>> description() {
@@ -34,14 +34,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     }
 
     /**
-     * To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      * 
      */
     @Import(name="includeByDefault")
     private @Nullable Output<Boolean> includeByDefault;
 
     /**
-     * @return To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * @return Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      * 
      */
     public Optional<Output<Boolean>> includeByDefault() {
@@ -49,14 +49,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     }
 
     /**
-     * Name of the ruleset.
+     * Name of the ruleset
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the ruleset.
+     * @return Name of the ruleset
      * 
      */
     public Optional<Output<String>> name() {
@@ -64,14 +64,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     }
 
     /**
-     * Filter region, the ruleset can only be attached to deployments in the specific region.
+     * Filter region, the ruleset can only be attached to deployments in the specific region
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Filter region, the ruleset can only be attached to deployments in the specific region.
+     * @return Filter region, the ruleset can only be attached to deployments in the specific region
      * 
      */
     public Optional<Output<String>> region() {
@@ -79,14 +79,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     }
 
     /**
-     * Rule block, which can be specified multiple times for multiple rules.
+     * Set of rules, which the ruleset is made of.
      * 
      */
     @Import(name="rules")
     private @Nullable Output<List<DeploymentTrafficFilterRuleArgs>> rules;
 
     /**
-     * @return Rule block, which can be specified multiple times for multiple rules.
+     * @return Set of rules, which the ruleset is made of.
      * 
      */
     public Optional<Output<List<DeploymentTrafficFilterRuleArgs>>> rules() {
@@ -94,14 +94,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     }
 
     /**
-     * Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
+     * Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
+     * @return Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
      * 
      */
     public Optional<Output<String>> type() {
@@ -138,7 +138,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param description Description of the ruleset.
+         * @param description Ruleset description
          * 
          * @return builder
          * 
@@ -149,7 +149,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param description Description of the ruleset.
+         * @param description Ruleset description
          * 
          * @return builder
          * 
@@ -159,7 +159,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param includeByDefault To automatically include the ruleset in the new deployments. Defaults to `false`.
+         * @param includeByDefault Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
          * 
          * @return builder
          * 
@@ -170,7 +170,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param includeByDefault To automatically include the ruleset in the new deployments. Defaults to `false`.
+         * @param includeByDefault Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
          * 
          * @return builder
          * 
@@ -180,7 +180,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param name Name of the ruleset.
+         * @param name Name of the ruleset
          * 
          * @return builder
          * 
@@ -191,7 +191,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param name Name of the ruleset.
+         * @param name Name of the ruleset
          * 
          * @return builder
          * 
@@ -201,7 +201,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param region Filter region, the ruleset can only be attached to deployments in the specific region.
+         * @param region Filter region, the ruleset can only be attached to deployments in the specific region
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param region Filter region, the ruleset can only be attached to deployments in the specific region.
+         * @param region Filter region, the ruleset can only be attached to deployments in the specific region
          * 
          * @return builder
          * 
@@ -222,7 +222,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param rules Rule block, which can be specified multiple times for multiple rules.
+         * @param rules Set of rules, which the ruleset is made of.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param rules Rule block, which can be specified multiple times for multiple rules.
+         * @param rules Set of rules, which the ruleset is made of.
          * 
          * @return builder
          * 
@@ -243,7 +243,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param rules Rule block, which can be specified multiple times for multiple rules.
+         * @param rules Set of rules, which the ruleset is made of.
          * 
          * @return builder
          * 
@@ -253,7 +253,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
+         * @param type Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
          * 
          * @return builder
          * 
@@ -264,7 +264,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type Type of the ruleset.  It can be `&#34;ip&#34;`, `&#34;vpce&#34;`, `&#34;azure_private_endpoint&#34;`, or `&#34;gcp_private_service_connect_endpoint&#34;`.
+         * @param type Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
          * 
          * @return builder
          * 

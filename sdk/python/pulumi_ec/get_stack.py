@@ -84,11 +84,6 @@ class GetStackResult:
     def apms(self) -> Sequence['outputs.GetStackApmResult']:
         """
         Information for APM workloads on this stack version.
-        * `apm.#.denylist` - List of configuration options that cannot be overridden by user settings.
-        * `apm.#.capacity_constraints_min` - Minimum size of the instances.
-        * `apm.#.capacity_constraints_max` - Maximum size of the instances.
-        * `apm.#.compatible_node_types` - List of node types compatible with this one.
-        * `apm.#.docker_image` - Docker image to use for the APM instance.
         """
         return pulumi.get(self, "apms")
 
@@ -97,13 +92,6 @@ class GetStackResult:
     def elasticsearches(self) -> Sequence['outputs.GetStackElasticsearchResult']:
         """
         Information for Elasticsearch workloads on this stack version.
-        * `elasticsearch.#.denylist` - List of configuration options that cannot be overridden by user settings.
-        * `elasticsearch.#.capacity_constraints_min` - Minimum size of the instances.
-        * `elasticsearch.#.capacity_constraints_max` - Maximum size of the instances.
-        * `elasticsearch.#.compatible_node_types` - List of node types compatible with this one.
-        * `elasticsearch.#.default_plugins` - List of default plugins which are included in all Elasticsearch cluster instances.
-        * `elasticsearch.#.docker_image` - Docker image to use for the Elasticsearch cluster instances.
-        * `elasticsearch.#.plugins` - List of available plugins to be specified by users in Elasticsearch cluster instances.
         """
         return pulumi.get(self, "elasticsearches")
 
@@ -112,11 +100,6 @@ class GetStackResult:
     def enterprise_searches(self) -> Sequence['outputs.GetStackEnterpriseSearchResult']:
         """
         Information for Enterprise Search workloads on this stack version.
-        * `enterprise_search.#.denylist` - List of configuration options that cannot be overridden by user settings.
-        * `enterprise_search.#.capacity_constraints_min` - Minimum size of the instances.
-        * `enterprise_search.#.capacity_constraints_max` - Maximum size of the instances.
-        * `enterprise_search.#.compatible_node_types` - List of node types compatible with this one.
-        * `enterprise_search.#.docker_image` - Docker image to use for the Enterprise Search instance.
         """
         return pulumi.get(self, "enterprise_searches")
 
@@ -124,7 +107,7 @@ class GetStackResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Unique identifier of this data source.
         """
         return pulumi.get(self, "id")
 
@@ -133,37 +116,38 @@ class GetStackResult:
     def kibanas(self) -> Sequence['outputs.GetStackKibanaResult']:
         """
         Information for Kibana workloads on this stack version.
-        * `kibana.#.denylist` - List of configuration options that cannot be overridden by user settings.
-        * `kibana.#.capacity_constraints_min` - Minimum size of the instances.
-        * `kibana.#.capacity_constraints_max` - Maximum size of the instances.
-        * `kibana.#.compatible_node_types` - List of node types compatible with this one.
-        * `kibana.#.docker_image` - Docker image to use for the Kibana instance.
         """
         return pulumi.get(self, "kibanas")
 
     @property
     @pulumi.getter
     def lock(self) -> Optional[bool]:
+        """
+        Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+        """
         return pulumi.get(self, "lock")
 
     @property
     @pulumi.getter(name="minUpgradableFrom")
     def min_upgradable_from(self) -> str:
         """
-        The minimum stack version recommended.
+        The minimum stack version which can be upgraded to this stack version.
         """
         return pulumi.get(self, "min_upgradable_from")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="upgradableTos")
     def upgradable_tos(self) -> Sequence[str]:
         """
-        The stack version you can upgrade to.
+        A list of stack versions which this stack version can be upgraded to.
         """
         return pulumi.get(self, "upgradable_tos")
 
@@ -171,13 +155,16 @@ class GetStackResult:
     @pulumi.getter
     def version(self) -> str:
         """
-        The stack version.
+        The stack version
         """
         return pulumi.get(self, "version")
 
     @property
     @pulumi.getter(name="versionRegex")
     def version_regex(self) -> str:
+        """
+        Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+        """
         return pulumi.get(self, "version_regex")
 
 
@@ -209,6 +196,8 @@ def get_stack(lock: Optional[bool] = None,
     """
     Use this data source to retrieve information about an existing Elastic Cloud stack.
 
+      > **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+
     ## Example Usage
 
     ```python
@@ -223,9 +212,9 @@ def get_stack(lock: Optional[bool] = None,
     ```
 
 
-    :param bool lock: Lock the `"latest"` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
-    :param str region: Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
-    :param str version_regex: Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+    :param bool lock: Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+    :param str region: Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+    :param str version_regex: Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
     """
     __args__ = dict()
     __args__['lock'] = lock
@@ -235,19 +224,19 @@ def get_stack(lock: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('ec:index/getStack:getStack', __args__, opts=opts, typ=GetStackResult).value
 
     return AwaitableGetStackResult(
-        accessible=__ret__.accessible,
-        allowlisted=__ret__.allowlisted,
-        apms=__ret__.apms,
-        elasticsearches=__ret__.elasticsearches,
-        enterprise_searches=__ret__.enterprise_searches,
-        id=__ret__.id,
-        kibanas=__ret__.kibanas,
-        lock=__ret__.lock,
-        min_upgradable_from=__ret__.min_upgradable_from,
-        region=__ret__.region,
-        upgradable_tos=__ret__.upgradable_tos,
-        version=__ret__.version,
-        version_regex=__ret__.version_regex)
+        accessible=pulumi.get(__ret__, 'accessible'),
+        allowlisted=pulumi.get(__ret__, 'allowlisted'),
+        apms=pulumi.get(__ret__, 'apms'),
+        elasticsearches=pulumi.get(__ret__, 'elasticsearches'),
+        enterprise_searches=pulumi.get(__ret__, 'enterprise_searches'),
+        id=pulumi.get(__ret__, 'id'),
+        kibanas=pulumi.get(__ret__, 'kibanas'),
+        lock=pulumi.get(__ret__, 'lock'),
+        min_upgradable_from=pulumi.get(__ret__, 'min_upgradable_from'),
+        region=pulumi.get(__ret__, 'region'),
+        upgradable_tos=pulumi.get(__ret__, 'upgradable_tos'),
+        version=pulumi.get(__ret__, 'version'),
+        version_regex=pulumi.get(__ret__, 'version_regex'))
 
 
 @_utilities.lift_output_func(get_stack)
@@ -258,6 +247,8 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
     """
     Use this data source to retrieve information about an existing Elastic Cloud stack.
 
+      > **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+
     ## Example Usage
 
     ```python
@@ -272,8 +263,8 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
     ```
 
 
-    :param bool lock: Lock the `"latest"` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
-    :param str region: Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `"ece-region`.
-    :param str version_regex: Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `"latest"` is also accepted to obtain the latest available stack version.
+    :param bool lock: Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+    :param str region: Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
+    :param str version_regex: Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
     """
     ...

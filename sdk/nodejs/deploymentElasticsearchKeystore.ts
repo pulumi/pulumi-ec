@@ -6,35 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
- *
- * These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
- * ### Adding a new keystore setting to your deployment
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ec from "@pulumi/ec";
- *
- * const latest = ec.getStack({
- *     versionRegex: "latest",
- *     region: "us-east-1",
- * });
- * // Create an Elastic Cloud deployment
- * const exampleKeystore = new ec.Deployment("exampleKeystore", {
- *     region: "us-east-1",
- *     version: latest.then(latest => latest.version),
- *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {},
- * });
- * // Create the keystore secret entry
- * const secureUrl = new ec.DeploymentElasticsearchKeystore("secureUrl", {
- *     deploymentId: exampleKeystore.id,
- *     settingName: "xpack.notification.slack.account.hello.secure_url",
- *     value: "http://my-secure-url.com",
- * });
- * ```
- * ### Adding credentials to use GCS as a snapshot repository
- *
- * For up-to-date documentation on the `settingName`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+ * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,7 +22,11 @@ import * as utilities from "./utilities";
  *     region: "us-east-1",
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "aws-io-optimized-v2",
- *     elasticsearch: {},
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
  * });
  * // Create the keystore secret entry
  * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
@@ -60,13 +36,40 @@ import * as utilities from "./utilities";
  *     asFile: true,
  * });
  * ```
- * ## Attributes reference
+ * ### Adding credentials to use GCS as a snapshot repository
  *
- * There are no additional attributes exported by this resource other than the referenced arguments.
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ * import * as fs from "fs";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * // Create an Elastic Cloud deployment
+ * const exampleKeystore = new ec.Deployment("exampleKeystore", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
+ * });
+ * // Create the keystore secret entry
+ * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
+ *     deploymentId: exampleKeystore.id,
+ *     settingName: "gcs.client.default.credentials_file",
+ *     value: fs.readFileSync("service-account-key.json"),
+ *     asFile: true,
+ * });
+ * ```
  *
  * ## Import
  *
- * This resource cannot be imported.
+ * This resource cannot be imported
  */
 export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
     /**
@@ -97,15 +100,15 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
     }
 
     /**
-     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      */
-    public readonly asFile!: pulumi.Output<boolean | undefined>;
+    public readonly asFile!: pulumi.Output<boolean>;
     /**
-     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      */
     public readonly deploymentId!: pulumi.Output<string>;
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
     public readonly settingName!: pulumi.Output<string>;
     /**
@@ -158,15 +161,15 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
  */
 export interface DeploymentElasticsearchKeystoreState {
     /**
-     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      */
     asFile?: pulumi.Input<boolean>;
     /**
-     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      */
     deploymentId?: pulumi.Input<string>;
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
     settingName?: pulumi.Input<string>;
     /**
@@ -180,15 +183,15 @@ export interface DeploymentElasticsearchKeystoreState {
  */
 export interface DeploymentElasticsearchKeystoreArgs {
     /**
-     * if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+     * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      */
     asFile?: pulumi.Input<boolean>;
     /**
-     * Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+     * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      */
     deploymentId: pulumi.Input<string>;
     /**
-     * Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+     * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
     settingName: pulumi.Input<string>;
     /**

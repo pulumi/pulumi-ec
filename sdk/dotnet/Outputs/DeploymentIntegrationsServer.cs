@@ -13,45 +13,44 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentIntegrationsServer
     {
-        public readonly string? ApmHttpsEndpoint;
         /// <summary>
-        /// Integrations Server settings applied to all topologies unless overridden in the `topology` element.
+        /// Optionally define the Integrations Server configuration options for the IntegrationsServer Server
         /// </summary>
         public readonly Outputs.DeploymentIntegrationsServerConfig? Config;
-        /// <summary>
-        /// This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         public readonly string? ElasticsearchClusterRefId;
-        public readonly string? FleetHttpsEndpoint;
+        /// <summary>
+        /// URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
+        /// </summary>
+        public readonly Outputs.DeploymentIntegrationsServerEndpoints? Endpoints;
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
-        /// <summary>
-        /// Can be set on the Integrations Server resource. The default value `main-integrations_server` is recommended.
-        /// </summary>
+        public readonly string? InstanceConfigurationId;
         public readonly string? RefId;
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         public readonly string? Region;
         public readonly string? ResourceId;
+        public readonly string? Size;
         /// <summary>
-        /// Can be set multiple times to compose complex topologies.
+        /// Optional size type, defaults to "memory".
         /// </summary>
-        public readonly Outputs.DeploymentIntegrationsServerTopology? Topology;
+        public readonly string? SizeResource;
+        public readonly int? ZoneCount;
 
         [OutputConstructor]
         private DeploymentIntegrationsServer(
-            string? apmHttpsEndpoint,
-
             Outputs.DeploymentIntegrationsServerConfig? config,
 
             string? elasticsearchClusterRefId,
 
-            string? fleetHttpsEndpoint,
+            Outputs.DeploymentIntegrationsServerEndpoints? endpoints,
 
             string? httpEndpoint,
 
             string? httpsEndpoint,
+
+            string? instanceConfigurationId,
 
             string? refId,
 
@@ -59,18 +58,24 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? resourceId,
 
-            Outputs.DeploymentIntegrationsServerTopology? topology)
+            string? size,
+
+            string? sizeResource,
+
+            int? zoneCount)
         {
-            ApmHttpsEndpoint = apmHttpsEndpoint;
             Config = config;
             ElasticsearchClusterRefId = elasticsearchClusterRefId;
-            FleetHttpsEndpoint = fleetHttpsEndpoint;
+            Endpoints = endpoints;
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
+            InstanceConfigurationId = instanceConfigurationId;
             RefId = refId;
             Region = region;
             ResourceId = resourceId;
-            Topology = topology;
+            Size = size;
+            SizeResource = sizeResource;
+            ZoneCount = zoneCount;
         }
     }
 }

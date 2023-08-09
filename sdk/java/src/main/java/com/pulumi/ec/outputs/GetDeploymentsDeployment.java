@@ -9,57 +9,161 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentsDeployment {
+    /**
+     * @return Deployment alias.
+     * 
+     */
     private String alias;
+    /**
+     * @return The APM resource reference.
+     * 
+     */
     private String apmRefId;
+    /**
+     * @return The APM resource unique ID.
+     * 
+     */
     private String apmResourceId;
+    /**
+     * @return The deployment unique ID.
+     * 
+     */
     private String deploymentId;
+    /**
+     * @return The Elasticsearch resource reference.
+     * 
+     */
     private String elasticsearchRefId;
+    /**
+     * @return The Elasticsearch resource unique ID.
+     * 
+     */
     private String elasticsearchResourceId;
+    /**
+     * @return The Enterprise Search resource reference.
+     * 
+     */
     private String enterpriseSearchRefId;
+    /**
+     * @return The Enterprise Search resource unique ID.
+     * 
+     */
     private String enterpriseSearchResourceId;
+    /**
+     * @return The Integrations Server resource reference.
+     * 
+     */
     private String integrationsServerRefId;
+    /**
+     * @return The Integrations Server resource unique ID.
+     * 
+     */
     private String integrationsServerResourceId;
+    /**
+     * @return The Kibana resource reference.
+     * 
+     */
     private String kibanaRefId;
+    /**
+     * @return The Kibana resource unique ID.
+     * 
+     */
     private String kibanaResourceId;
+    /**
+     * @return The name of the deployment.
+     * 
+     */
     private String name;
 
     private GetDeploymentsDeployment() {}
+    /**
+     * @return Deployment alias.
+     * 
+     */
     public String alias() {
         return this.alias;
     }
+    /**
+     * @return The APM resource reference.
+     * 
+     */
     public String apmRefId() {
         return this.apmRefId;
     }
+    /**
+     * @return The APM resource unique ID.
+     * 
+     */
     public String apmResourceId() {
         return this.apmResourceId;
     }
+    /**
+     * @return The deployment unique ID.
+     * 
+     */
     public String deploymentId() {
         return this.deploymentId;
     }
+    /**
+     * @return The Elasticsearch resource reference.
+     * 
+     */
     public String elasticsearchRefId() {
         return this.elasticsearchRefId;
     }
+    /**
+     * @return The Elasticsearch resource unique ID.
+     * 
+     */
     public String elasticsearchResourceId() {
         return this.elasticsearchResourceId;
     }
+    /**
+     * @return The Enterprise Search resource reference.
+     * 
+     */
     public String enterpriseSearchRefId() {
         return this.enterpriseSearchRefId;
     }
+    /**
+     * @return The Enterprise Search resource unique ID.
+     * 
+     */
     public String enterpriseSearchResourceId() {
         return this.enterpriseSearchResourceId;
     }
+    /**
+     * @return The Integrations Server resource reference.
+     * 
+     */
     public String integrationsServerRefId() {
         return this.integrationsServerRefId;
     }
+    /**
+     * @return The Integrations Server resource unique ID.
+     * 
+     */
     public String integrationsServerResourceId() {
         return this.integrationsServerResourceId;
     }
+    /**
+     * @return The Kibana resource reference.
+     * 
+     */
     public String kibanaRefId() {
         return this.kibanaRefId;
     }
+    /**
+     * @return The Kibana resource unique ID.
+     * 
+     */
     public String kibanaResourceId() {
         return this.kibanaResourceId;
     }
+    /**
+     * @return The name of the deployment.
+     * 
+     */
     public String name() {
         return this.name;
     }

@@ -8,58 +8,12 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // ## Example Usage
-//
-// These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
-// ### Adding a new keystore setting to your deployment
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
-//				VersionRegex: "latest",
-//				Region:       "us-east-1",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
-//				Region:               pulumi.String("us-east-1"),
-//				Version:              *pulumi.String(latest.Version),
-//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-//				Elasticsearch:        nil,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "secureUrl", &ec.DeploymentElasticsearchKeystoreArgs{
-//				DeploymentId: exampleKeystore.ID(),
-//				SettingName:  pulumi.String("xpack.notification.slack.account.hello.secure_url"),
-//				Value:        pulumi.String("http://my-secure-url.com"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// ### Adding credentials to use GCS as a snapshot repository
-//
-// For up-to-date documentation on the `settingName`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
+// ### Basic
 //
 // ```go
 // package main
@@ -94,7 +48,11 @@ import (
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              *pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
-//				Elasticsearch:        nil,
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: nil,
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -113,21 +71,76 @@ import (
 //	}
 //
 // ```
-// ## Attributes reference
+// ### Adding credentials to use GCS as a snapshot repository
 //
-// There are no additional attributes exported by this resource other than the referenced arguments.
+// ```go
+// package main
+//
+// import (
+//
+//	"os"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := os.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              *pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: nil,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
+//				DeploymentId: exampleKeystore.ID(),
+//				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
+//				Value:        readFileOrPanic("service-account-key.json"),
+//				AsFile:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
-// This resource cannot be imported.
+// This resource cannot be imported
 type DeploymentElasticsearchKeystore struct {
 	pulumi.CustomResourceState
 
-	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
-	AsFile pulumi.BoolPtrOutput `pulumi:"asFile"`
-	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+	// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
+	AsFile pulumi.BoolOutput `pulumi:"asFile"`
+	// Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+	// Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName pulumi.StringOutput `pulumi:"settingName"`
 	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value pulumi.StringOutput `pulumi:"value"`
@@ -156,6 +169,7 @@ func NewDeploymentElasticsearchKeystore(ctx *pulumi.Context,
 		"value",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeploymentElasticsearchKeystore
 	err := ctx.RegisterResource("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", name, args, &resource, opts...)
 	if err != nil {
@@ -178,22 +192,22 @@ func GetDeploymentElasticsearchKeystore(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentElasticsearchKeystore resources.
 type deploymentElasticsearchKeystoreState struct {
-	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+	// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
 	AsFile *bool `pulumi:"asFile"`
-	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+	// Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
 	DeploymentId *string `pulumi:"deploymentId"`
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+	// Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName *string `pulumi:"settingName"`
 	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value *string `pulumi:"value"`
 }
 
 type DeploymentElasticsearchKeystoreState struct {
-	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+	// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
 	AsFile pulumi.BoolPtrInput
-	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+	// Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
 	DeploymentId pulumi.StringPtrInput
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+	// Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName pulumi.StringPtrInput
 	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value pulumi.StringPtrInput
@@ -204,11 +218,11 @@ func (DeploymentElasticsearchKeystoreState) ElementType() reflect.Type {
 }
 
 type deploymentElasticsearchKeystoreArgs struct {
-	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+	// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
 	AsFile *bool `pulumi:"asFile"`
-	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+	// Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
 	DeploymentId string `pulumi:"deploymentId"`
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+	// Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName string `pulumi:"settingName"`
 	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value string `pulumi:"value"`
@@ -216,11 +230,11 @@ type deploymentElasticsearchKeystoreArgs struct {
 
 // The set of arguments for constructing a DeploymentElasticsearchKeystore resource.
 type DeploymentElasticsearchKeystoreArgs struct {
-	// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+	// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
 	AsFile pulumi.BoolPtrInput
-	// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+	// Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
 	DeploymentId pulumi.StringInput
-	// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+	// Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 	SettingName pulumi.StringInput
 	// Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 	Value pulumi.StringInput
@@ -313,17 +327,17 @@ func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystore
 	return o
 }
 
-// if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
-func (o DeploymentElasticsearchKeystoreOutput) AsFile() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.BoolPtrOutput { return v.AsFile }).(pulumi.BoolPtrOutput)
+// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
+func (o DeploymentElasticsearchKeystoreOutput) AsFile() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.BoolOutput { return v.AsFile }).(pulumi.BoolOutput)
 }
 
-// Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+// Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
 func (o DeploymentElasticsearchKeystoreOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.StringOutput { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
-// Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+// Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
 func (o DeploymentElasticsearchKeystoreOutput) SettingName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchKeystore) pulumi.StringOutput { return v.SettingName }).(pulumi.StringOutput)
 }

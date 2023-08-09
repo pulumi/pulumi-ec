@@ -13,31 +13,31 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentTrafficFilterRuleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Azure endpoint GUID. Only applicable when the ruleset type is set to `"azure_private_endpoint"`.
+        /// Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
         /// </summary>
         [Input("azureEndpointGuid")]
         public Input<string>? AzureEndpointGuid { get; set; }
 
         /// <summary>
-        /// Azure endpoint name. Only applicable when the ruleset type is set to `"azure_private_endpoint"`.
+        /// Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
         /// </summary>
         [Input("azureEndpointName")]
         public Input<string>? AzureEndpointName { get; set; }
 
         /// <summary>
-        /// Description of this individual rule.
+        /// Description of this individual rule
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ruleset ID.
+        /// Computed rule ID
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `"azure_private_endpoint"`.
+        /// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
         /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }

@@ -10,8 +10,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDeploymentElasticsearchTopology {
@@ -21,7 +19,7 @@ public final class GetDeploymentElasticsearchTopology {
     private Boolean nodeTypeData;
     private Boolean nodeTypeIngest;
     private Boolean nodeTypeMaster;
-    private @Nullable Boolean nodeTypeMl;
+    private Boolean nodeTypeMl;
     private String size;
     private String sizeResource;
     private Integer zoneCount;
@@ -45,8 +43,8 @@ public final class GetDeploymentElasticsearchTopology {
     public Boolean nodeTypeMaster() {
         return this.nodeTypeMaster;
     }
-    public Optional<Boolean> nodeTypeMl() {
-        return Optional.ofNullable(this.nodeTypeMl);
+    public Boolean nodeTypeMl() {
+        return this.nodeTypeMl;
     }
     public String size() {
         return this.size;
@@ -73,7 +71,7 @@ public final class GetDeploymentElasticsearchTopology {
         private Boolean nodeTypeData;
         private Boolean nodeTypeIngest;
         private Boolean nodeTypeMaster;
-        private @Nullable Boolean nodeTypeMl;
+        private Boolean nodeTypeMl;
         private String size;
         private String sizeResource;
         private Integer zoneCount;
@@ -129,8 +127,8 @@ public final class GetDeploymentElasticsearchTopology {
             return this;
         }
         @CustomType.Setter
-        public Builder nodeTypeMl(@Nullable Boolean nodeTypeMl) {
-            this.nodeTypeMl = nodeTypeMl;
+        public Builder nodeTypeMl(Boolean nodeTypeMl) {
+            this.nodeTypeMl = Objects.requireNonNull(nodeTypeMl);
             return this;
         }
         @CustomType.Setter

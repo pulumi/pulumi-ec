@@ -20,10 +20,10 @@ class DeploymentElasticsearchKeystoreArgs:
                  as_file: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a DeploymentElasticsearchKeystore resource.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
-        :param pulumi.Input[str] setting_name: Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        :param pulumi.Input[str] deployment_id: Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
+        :param pulumi.Input[str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         :param pulumi.Input[str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
-        :param pulumi.Input[bool] as_file: if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+        :param pulumi.Input[bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
         pulumi.set(__self__, "deployment_id", deployment_id)
         pulumi.set(__self__, "setting_name", setting_name)
@@ -35,7 +35,7 @@ class DeploymentElasticsearchKeystoreArgs:
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Input[str]:
         """
-        Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+        Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
         """
         return pulumi.get(self, "deployment_id")
 
@@ -47,7 +47,7 @@ class DeploymentElasticsearchKeystoreArgs:
     @pulumi.getter(name="settingName")
     def setting_name(self) -> pulumi.Input[str]:
         """
-        Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         """
         return pulumi.get(self, "setting_name")
 
@@ -71,7 +71,7 @@ class DeploymentElasticsearchKeystoreArgs:
     @pulumi.getter(name="asFile")
     def as_file(self) -> Optional[pulumi.Input[bool]]:
         """
-        if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+        Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
         return pulumi.get(self, "as_file")
 
@@ -89,9 +89,9 @@ class _DeploymentElasticsearchKeystoreState:
                  value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeploymentElasticsearchKeystore resources.
-        :param pulumi.Input[bool] as_file: if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
-        :param pulumi.Input[str] setting_name: Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        :param pulumi.Input[bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
+        :param pulumi.Input[str] deployment_id: Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
+        :param pulumi.Input[str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         :param pulumi.Input[str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         """
         if as_file is not None:
@@ -107,7 +107,7 @@ class _DeploymentElasticsearchKeystoreState:
     @pulumi.getter(name="asFile")
     def as_file(self) -> Optional[pulumi.Input[bool]]:
         """
-        if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+        Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
         return pulumi.get(self, "as_file")
 
@@ -119,7 +119,7 @@ class _DeploymentElasticsearchKeystoreState:
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+        Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
         """
         return pulumi.get(self, "deployment_id")
 
@@ -131,7 +131,7 @@ class _DeploymentElasticsearchKeystoreState:
     @pulumi.getter(name="settingName")
     def setting_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         """
         return pulumi.get(self, "setting_name")
 
@@ -164,9 +164,7 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
-
-        These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
-        ### Adding a new keystore setting to your deployment
+        ### Basic
 
         ```python
         import pulumi
@@ -179,29 +177,11 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs())
-        # Create the keystore secret entry
-        secure_url = ec.DeploymentElasticsearchKeystore("secureUrl",
-            deployment_id=example_keystore.id,
-            setting_name="xpack.notification.slack.account.hello.secure_url",
-            value="http://my-secure-url.com")
-        ```
-        ### Adding credentials to use GCS as a snapshot repository
-
-        For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
-
-        ```python
-        import pulumi
-        import pulumi_ec as ec
-
-        latest = ec.get_stack(version_regex="latest",
-            region="us-east-1")
-        # Create an Elastic Cloud deployment
-        example_keystore = ec.Deployment("exampleKeystore",
-            region="us-east-1",
-            version=latest.version,
-            deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs())
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ))
         # Create the keystore secret entry
         gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
             deployment_id=example_keystore.id,
@@ -209,19 +189,41 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             value=(lambda path: open(path).read())("service-account-key.json"),
             as_file=True)
         ```
-        ## Attributes reference
+        ### Adding credentials to use GCS as a snapshot repository
 
-        There are no additional attributes exported by this resource other than the referenced arguments.
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        # Create an Elastic Cloud deployment
+        example_keystore = ec.Deployment("exampleKeystore",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ))
+        # Create the keystore secret entry
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+            deployment_id=example_keystore.id,
+            setting_name="gcs.client.default.credentials_file",
+            value=(lambda path: open(path).read())("service-account-key.json"),
+            as_file=True)
+        ```
 
         ## Import
 
-        This resource cannot be imported.
+        This resource cannot be imported
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] as_file: if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
-        :param pulumi.Input[str] setting_name: Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        :param pulumi.Input[bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
+        :param pulumi.Input[str] deployment_id: Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
+        :param pulumi.Input[str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         :param pulumi.Input[str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         """
         ...
@@ -232,9 +234,7 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-
-        These examples show how to use the resource at a basic level, and can be copied. This resource becomes really useful when combined with other data providers, like vault or similar.
-        ### Adding a new keystore setting to your deployment
+        ### Basic
 
         ```python
         import pulumi
@@ -247,29 +247,11 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs())
-        # Create the keystore secret entry
-        secure_url = ec.DeploymentElasticsearchKeystore("secureUrl",
-            deployment_id=example_keystore.id,
-            setting_name="xpack.notification.slack.account.hello.secure_url",
-            value="http://my-secure-url.com")
-        ```
-        ### Adding credentials to use GCS as a snapshot repository
-
-        For up-to-date documentation on the `setting_name`, refer to the [ESS documentation](https://www.elastic.co/guide/en/cloud/current/ec-gcs-snapshotting.html#ec-gcs-service-account-key).
-
-        ```python
-        import pulumi
-        import pulumi_ec as ec
-
-        latest = ec.get_stack(version_regex="latest",
-            region="us-east-1")
-        # Create an Elastic Cloud deployment
-        example_keystore = ec.Deployment("exampleKeystore",
-            region="us-east-1",
-            version=latest.version,
-            deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs())
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ))
         # Create the keystore secret entry
         gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
             deployment_id=example_keystore.id,
@@ -277,13 +259,35 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             value=(lambda path: open(path).read())("service-account-key.json"),
             as_file=True)
         ```
-        ## Attributes reference
+        ### Adding credentials to use GCS as a snapshot repository
 
-        There are no additional attributes exported by this resource other than the referenced arguments.
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        # Create an Elastic Cloud deployment
+        example_keystore = ec.Deployment("exampleKeystore",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch=ec.DeploymentElasticsearchArgs(
+                hot=ec.DeploymentElasticsearchHotArgs(
+                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
+                ),
+            ))
+        # Create the keystore secret entry
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+            deployment_id=example_keystore.id,
+            setting_name="gcs.client.default.credentials_file",
+            value=(lambda path: open(path).read())("service-account-key.json"),
+            as_file=True)
+        ```
 
         ## Import
 
-        This resource cannot be imported.
+        This resource cannot be imported
 
         :param str resource_name: The name of the resource.
         :param DeploymentElasticsearchKeystoreArgs args: The arguments to use to populate this resource's properties.
@@ -346,9 +350,9 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] as_file: if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
-        :param pulumi.Input[str] deployment_id: Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
-        :param pulumi.Input[str] setting_name: Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        :param pulumi.Input[bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
+        :param pulumi.Input[str] deployment_id: Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
+        :param pulumi.Input[str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         :param pulumi.Input[str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -363,9 +367,9 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="asFile")
-    def as_file(self) -> pulumi.Output[Optional[bool]]:
+    def as_file(self) -> pulumi.Output[bool]:
         """
-        if set to `true`, it stores the remote keystore setting as a file. The default value is `false`, which stores the keystore setting as string when value is a plain string.
+        Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
         return pulumi.get(self, "as_file")
 
@@ -373,7 +377,7 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Output[str]:
         """
-        Deployment ID of the deployment that holds the Elasticsearch cluster where the keystore setting is written to.
+        Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
         """
         return pulumi.get(self, "deployment_id")
 
@@ -381,7 +385,7 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
     @pulumi.getter(name="settingName")
     def setting_name(self) -> pulumi.Output[str]:
         """
-        Required name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
+        Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         """
         return pulumi.get(self, "setting_name")
 

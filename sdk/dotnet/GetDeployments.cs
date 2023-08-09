@@ -20,6 +20,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -28,21 +29,33 @@ namespace Pulumi.ElasticCloud
         ///     var example = ElasticCloud.GetDeployments.Invoke(new()
         ///     {
         ///         DeploymentTemplateId = "azure-compute-optimized",
-        ///         Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
+        ///         Elasticsearches = new[]
         ///         {
-        ///             Healthy = "true",
+        ///             new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
         ///         },
-        ///         EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///         EnterpriseSearches = new[]
         ///         {
-        ///             Healthy = "true",
+        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
         ///         },
-        ///         IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///         IntegrationsServers = new[]
         ///         {
-        ///             Version = "8.0.0",
+        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///             {
+        ///                 Version = "8.0.0",
+        ///             },
         ///         },
-        ///         Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///         Kibanas = new[]
         ///         {
-        ///             Status = "started",
+        ///             new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///             {
+        ///                 Status = "started",
+        ///             },
         ///         },
         ///         NamePrefix = "test",
         ///         Size = 200,
@@ -69,6 +82,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -77,21 +91,33 @@ namespace Pulumi.ElasticCloud
         ///     var example = ElasticCloud.GetDeployments.Invoke(new()
         ///     {
         ///         DeploymentTemplateId = "azure-compute-optimized",
-        ///         Elasticsearch = new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
+        ///         Elasticsearches = new[]
         ///         {
-        ///             Healthy = "true",
+        ///             new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
         ///         },
-        ///         EnterpriseSearch = new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///         EnterpriseSearches = new[]
         ///         {
-        ///             Healthy = "true",
+        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
         ///         },
-        ///         IntegrationsServer = new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///         IntegrationsServers = new[]
         ///         {
-        ///             Version = "8.0.0",
+        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///             {
+        ///                 Version = "8.0.0",
+        ///             },
         ///         },
-        ///         Kibana = new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///         Kibanas = new[]
         ///         {
-        ///             Status = "started",
+        ///             new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///             {
+        ///                 Status = "started",
+        ///             },
         ///         },
         ///         NamePrefix = "test",
         ///         Size = 200,
@@ -113,65 +139,80 @@ namespace Pulumi.ElasticCloud
 
     public sealed class GetDeploymentsArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// **DEPRECATED** Filter by APM resource kind status or configuration.
-        /// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `apm.#.version` - Elastic stack version.
-        /// * `apm.#.healthy` - Overall health status of the APM instances.
-        /// </summary>
-        [Input("apm")]
-        public Inputs.GetDeploymentsApmArgs? Apm { get; set; }
+        [Input("apms")]
+        private List<Inputs.GetDeploymentsApmArgs>? _apms;
 
         /// <summary>
-        /// ID of the deployment template used to create the deployment.
+        /// Filter by APM resource kind status or configuration.
+        /// </summary>
+        public List<Inputs.GetDeploymentsApmArgs> Apms
+        {
+            get => _apms ?? (_apms = new List<Inputs.GetDeploymentsApmArgs>());
+            set => _apms = value;
+        }
+
+        /// <summary>
+        /// Filter the result set by the ID of the deployment template the deployment is based off.
         /// </summary>
         [Input("deploymentTemplateId")]
         public string? DeploymentTemplateId { get; set; }
 
+        [Input("elasticsearches")]
+        private List<Inputs.GetDeploymentsElasticsearchArgs>? _elasticsearches;
+
         /// <summary>
         /// Filter by Elasticsearch resource kind status or configuration.
-        /// * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `elasticsearch.#.version` - Elastic stack version.
-        /// * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
         /// </summary>
-        [Input("elasticsearch")]
-        public Inputs.GetDeploymentsElasticsearchArgs? Elasticsearch { get; set; }
+        public List<Inputs.GetDeploymentsElasticsearchArgs> Elasticsearches
+        {
+            get => _elasticsearches ?? (_elasticsearches = new List<Inputs.GetDeploymentsElasticsearchArgs>());
+            set => _elasticsearches = value;
+        }
+
+        [Input("enterpriseSearches")]
+        private List<Inputs.GetDeploymentsEnterpriseSearchArgs>? _enterpriseSearches;
 
         /// <summary>
         /// Filter by Enterprise Search resource kind status or configuration.
-        /// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `enterprise_search.#.version` - Elastic stack version.
-        /// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
         /// </summary>
-        [Input("enterpriseSearch")]
-        public Inputs.GetDeploymentsEnterpriseSearchArgs? EnterpriseSearch { get; set; }
+        public List<Inputs.GetDeploymentsEnterpriseSearchArgs> EnterpriseSearches
+        {
+            get => _enterpriseSearches ?? (_enterpriseSearches = new List<Inputs.GetDeploymentsEnterpriseSearchArgs>());
+            set => _enterpriseSearches = value;
+        }
 
         /// <summary>
-        /// Overall health status of the deployment.
+        /// Filter the result set by their health status.
         /// </summary>
         [Input("healthy")]
         public string? Healthy { get; set; }
 
+        [Input("integrationsServers")]
+        private List<Inputs.GetDeploymentsIntegrationsServerArgs>? _integrationsServers;
+
         /// <summary>
         /// Filter by Integrations Server resource kind status or configuration.
-        /// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `integrations_server.#.version` - Elastic stack version.
-        /// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
         /// </summary>
-        [Input("integrationsServer")]
-        public Inputs.GetDeploymentsIntegrationsServerArgs? IntegrationsServer { get; set; }
+        public List<Inputs.GetDeploymentsIntegrationsServerArgs> IntegrationsServers
+        {
+            get => _integrationsServers ?? (_integrationsServers = new List<Inputs.GetDeploymentsIntegrationsServerArgs>());
+            set => _integrationsServers = value;
+        }
+
+        [Input("kibanas")]
+        private List<Inputs.GetDeploymentsKibanaArgs>? _kibanas;
 
         /// <summary>
         /// Filter by Kibana resource kind status or configuration.
-        /// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `kibana.#.version` - Elastic stack version.
-        /// * `kibana.#.healthy` - Overall health status of the Kibana instances.
         /// </summary>
-        [Input("kibana")]
-        public Inputs.GetDeploymentsKibanaArgs? Kibana { get; set; }
+        public List<Inputs.GetDeploymentsKibanaArgs> Kibanas
+        {
+            get => _kibanas ?? (_kibanas = new List<Inputs.GetDeploymentsKibanaArgs>());
+            set => _kibanas = value;
+        }
 
         /// <summary>
-        /// Prefix that one or several deployment names have in common.
+        /// Prefix to filter the returned deployment list by.
         /// </summary>
         [Input("namePrefix")]
         public string? NamePrefix { get; set; }
@@ -186,7 +227,7 @@ namespace Pulumi.ElasticCloud
         private Dictionary<string, string>? _tags;
 
         /// <summary>
-        /// Key value map of arbitrary string tags for the deployment.
+        /// Filter the result set by their assigned tags.
         /// </summary>
         public Dictionary<string, string> Tags
         {
@@ -202,65 +243,80 @@ namespace Pulumi.ElasticCloud
 
     public sealed class GetDeploymentsInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// **DEPRECATED** Filter by APM resource kind status or configuration.
-        /// * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `apm.#.version` - Elastic stack version.
-        /// * `apm.#.healthy` - Overall health status of the APM instances.
-        /// </summary>
-        [Input("apm")]
-        public Input<Inputs.GetDeploymentsApmInputArgs>? Apm { get; set; }
+        [Input("apms")]
+        private InputList<Inputs.GetDeploymentsApmInputArgs>? _apms;
 
         /// <summary>
-        /// ID of the deployment template used to create the deployment.
+        /// Filter by APM resource kind status or configuration.
+        /// </summary>
+        public InputList<Inputs.GetDeploymentsApmInputArgs> Apms
+        {
+            get => _apms ?? (_apms = new InputList<Inputs.GetDeploymentsApmInputArgs>());
+            set => _apms = value;
+        }
+
+        /// <summary>
+        /// Filter the result set by the ID of the deployment template the deployment is based off.
         /// </summary>
         [Input("deploymentTemplateId")]
         public Input<string>? DeploymentTemplateId { get; set; }
 
+        [Input("elasticsearches")]
+        private InputList<Inputs.GetDeploymentsElasticsearchInputArgs>? _elasticsearches;
+
         /// <summary>
         /// Filter by Elasticsearch resource kind status or configuration.
-        /// * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `elasticsearch.#.version` - Elastic stack version.
-        /// * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
         /// </summary>
-        [Input("elasticsearch")]
-        public Input<Inputs.GetDeploymentsElasticsearchInputArgs>? Elasticsearch { get; set; }
+        public InputList<Inputs.GetDeploymentsElasticsearchInputArgs> Elasticsearches
+        {
+            get => _elasticsearches ?? (_elasticsearches = new InputList<Inputs.GetDeploymentsElasticsearchInputArgs>());
+            set => _elasticsearches = value;
+        }
+
+        [Input("enterpriseSearches")]
+        private InputList<Inputs.GetDeploymentsEnterpriseSearchInputArgs>? _enterpriseSearches;
 
         /// <summary>
         /// Filter by Enterprise Search resource kind status or configuration.
-        /// * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `enterprise_search.#.version` - Elastic stack version.
-        /// * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
         /// </summary>
-        [Input("enterpriseSearch")]
-        public Input<Inputs.GetDeploymentsEnterpriseSearchInputArgs>? EnterpriseSearch { get; set; }
+        public InputList<Inputs.GetDeploymentsEnterpriseSearchInputArgs> EnterpriseSearches
+        {
+            get => _enterpriseSearches ?? (_enterpriseSearches = new InputList<Inputs.GetDeploymentsEnterpriseSearchInputArgs>());
+            set => _enterpriseSearches = value;
+        }
 
         /// <summary>
-        /// Overall health status of the deployment.
+        /// Filter the result set by their health status.
         /// </summary>
         [Input("healthy")]
         public Input<string>? Healthy { get; set; }
 
+        [Input("integrationsServers")]
+        private InputList<Inputs.GetDeploymentsIntegrationsServerInputArgs>? _integrationsServers;
+
         /// <summary>
         /// Filter by Integrations Server resource kind status or configuration.
-        /// * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `integrations_server.#.version` - Elastic stack version.
-        /// * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
         /// </summary>
-        [Input("integrationsServer")]
-        public Input<Inputs.GetDeploymentsIntegrationsServerInputArgs>? IntegrationsServer { get; set; }
+        public InputList<Inputs.GetDeploymentsIntegrationsServerInputArgs> IntegrationsServers
+        {
+            get => _integrationsServers ?? (_integrationsServers = new InputList<Inputs.GetDeploymentsIntegrationsServerInputArgs>());
+            set => _integrationsServers = value;
+        }
+
+        [Input("kibanas")]
+        private InputList<Inputs.GetDeploymentsKibanaInputArgs>? _kibanas;
 
         /// <summary>
         /// Filter by Kibana resource kind status or configuration.
-        /// * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-        /// * `kibana.#.version` - Elastic stack version.
-        /// * `kibana.#.healthy` - Overall health status of the Kibana instances.
         /// </summary>
-        [Input("kibana")]
-        public Input<Inputs.GetDeploymentsKibanaInputArgs>? Kibana { get; set; }
+        public InputList<Inputs.GetDeploymentsKibanaInputArgs> Kibanas
+        {
+            get => _kibanas ?? (_kibanas = new InputList<Inputs.GetDeploymentsKibanaInputArgs>());
+            set => _kibanas = value;
+        }
 
         /// <summary>
-        /// Prefix that one or several deployment names have in common.
+        /// Prefix to filter the returned deployment list by.
         /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
@@ -275,7 +331,7 @@ namespace Pulumi.ElasticCloud
         private InputMap<string>? _tags;
 
         /// <summary>
-        /// Key value map of arbitrary string tags for the deployment.
+        /// Filter the result set by their assigned tags.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -293,58 +349,78 @@ namespace Pulumi.ElasticCloud
     [OutputType]
     public sealed class GetDeploymentsResult
     {
-        public readonly Outputs.GetDeploymentsApmResult? Apm;
+        /// <summary>
+        /// Filter by APM resource kind status or configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentsApmResult> Apms;
+        /// <summary>
+        /// Filter the result set by the ID of the deployment template the deployment is based off.
+        /// </summary>
         public readonly string? DeploymentTemplateId;
         /// <summary>
         /// List of deployments which match the specified query.
-        /// * `deployments.#.deployment_id` - The deployment unique ID.
-        /// * `deployments.#.alias` - Deployment alias.
-        /// * `deployments.#.name` - The name of the deployment.
-        /// * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-        /// * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-        /// * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-        /// * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-        /// * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-        /// * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-        /// * `deployments.#.apm_resource_id` - The APM resource unique ID.
-        /// * `deployments.#.apm_ref_id` - The APM resource reference.
-        /// * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-        /// * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentsDeploymentResult> Deployments;
-        public readonly Outputs.GetDeploymentsElasticsearchResult? Elasticsearch;
-        public readonly Outputs.GetDeploymentsEnterpriseSearchResult? EnterpriseSearch;
+        /// <summary>
+        /// Filter by Elasticsearch resource kind status or configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentsElasticsearchResult> Elasticsearches;
+        /// <summary>
+        /// Filter by Enterprise Search resource kind status or configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentsEnterpriseSearchResult> EnterpriseSearches;
+        /// <summary>
+        /// Filter the result set by their health status.
+        /// </summary>
         public readonly string? Healthy;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Unique identifier of this data source.
         /// </summary>
         public readonly string Id;
-        public readonly Outputs.GetDeploymentsIntegrationsServerResult? IntegrationsServer;
-        public readonly Outputs.GetDeploymentsKibanaResult? Kibana;
+        /// <summary>
+        /// Filter by Integrations Server resource kind status or configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentsIntegrationsServerResult> IntegrationsServers;
+        /// <summary>
+        /// Filter by Kibana resource kind status or configuration.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDeploymentsKibanaResult> Kibanas;
+        /// <summary>
+        /// Prefix to filter the returned deployment list by.
+        /// </summary>
         public readonly string? NamePrefix;
+        /// <summary>
+        /// The number of deployments actually returned.
+        /// </summary>
         public readonly int ReturnCount;
+        /// <summary>
+        /// The maximum number of deployments to return. Defaults to `100`.
+        /// </summary>
         public readonly int? Size;
+        /// <summary>
+        /// Filter the result set by their assigned tags.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Tags;
 
         [OutputConstructor]
         private GetDeploymentsResult(
-            Outputs.GetDeploymentsApmResult? apm,
+            ImmutableArray<Outputs.GetDeploymentsApmResult> apms,
 
             string? deploymentTemplateId,
 
             ImmutableArray<Outputs.GetDeploymentsDeploymentResult> deployments,
 
-            Outputs.GetDeploymentsElasticsearchResult? elasticsearch,
+            ImmutableArray<Outputs.GetDeploymentsElasticsearchResult> elasticsearches,
 
-            Outputs.GetDeploymentsEnterpriseSearchResult? enterpriseSearch,
+            ImmutableArray<Outputs.GetDeploymentsEnterpriseSearchResult> enterpriseSearches,
 
             string? healthy,
 
             string id,
 
-            Outputs.GetDeploymentsIntegrationsServerResult? integrationsServer,
+            ImmutableArray<Outputs.GetDeploymentsIntegrationsServerResult> integrationsServers,
 
-            Outputs.GetDeploymentsKibanaResult? kibana,
+            ImmutableArray<Outputs.GetDeploymentsKibanaResult> kibanas,
 
             string? namePrefix,
 
@@ -354,15 +430,15 @@ namespace Pulumi.ElasticCloud
 
             ImmutableDictionary<string, string>? tags)
         {
-            Apm = apm;
+            Apms = apms;
             DeploymentTemplateId = deploymentTemplateId;
             Deployments = deployments;
-            Elasticsearch = elasticsearch;
-            EnterpriseSearch = enterpriseSearch;
+            Elasticsearches = elasticsearches;
+            EnterpriseSearches = enterpriseSearches;
             Healthy = healthy;
             Id = id;
-            IntegrationsServer = integrationsServer;
-            Kibana = kibana;
+            IntegrationsServers = integrationsServers;
+            Kibanas = kibanas;
             NamePrefix = namePrefix;
             ReturnCount = returnCount;
             Size = size;

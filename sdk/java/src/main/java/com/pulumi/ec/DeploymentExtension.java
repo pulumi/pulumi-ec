@@ -16,8 +16,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
+ * 
+ *   Extensions allow users of Elastic Cloud to use custom plugins, scripts, or dictionaries to enhance the core functionality of Elasticsearch. Before you install an extension, be sure to check out the supported and official [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/plugins/current/index.html) already available.
+ * 
+ *   **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
+ * 
  * ## Example Usage
  * ### With extension file
+ * 
  * ```java
  * package generated_program;
  * 
@@ -26,6 +33,13 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.ec.DeploymentExtension;
  * import com.pulumi.ec.DeploymentExtensionArgs;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -49,42 +63,28 @@ import javax.annotation.Nullable;
  *             .fileHash(computeFileBase64Sha256(filePath))
  *             .build());
  * 
- *     }
- * }
- * ```
- * ### With download URL
- * ```java
- * package generated_program;
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
  * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.ec.DeploymentExtension;
- * import com.pulumi.ec.DeploymentExtensionArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
- *             .description(&#34;my extension&#34;)
- *             .downloadUrl(&#34;https://example.net&#34;)
- *             .extensionType(&#34;bundle&#34;)
- *             .version(&#34;*&#34;)
+ *         var withExtension = new Deployment(&#34;withExtension&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .extension(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                 .build())
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Using extension in ec.Deployment
+ * ### With download URL
+ * 
  * ```java
  * package generated_program;
  * 
@@ -98,6 +98,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.Deployment;
  * import com.pulumi.ec.DeploymentArgs;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -128,12 +130,10 @@ import javax.annotation.Nullable;
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
- *                 .extensions(DeploymentElasticsearchExtensionArgs.builder()
- *                     .name(exampleExtension.name())
- *                     .type(&#34;bundle&#34;)
- *                     .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
- *                     .url(exampleExtension.url())
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
  *                     .build())
+ *                 .extension(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *                 .build())
  *             .build());
  * 
@@ -143,7 +143,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * You can import extensions using the `id`, for example
+ * Extensions can be imported using the `id`, for example
  * 
  * ```sh
  *  $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
@@ -153,140 +153,140 @@ import javax.annotation.Nullable;
 @ResourceType(type="ec:index/deploymentExtension:DeploymentExtension")
 public class DeploymentExtension extends com.pulumi.resources.CustomResource {
     /**
-     * Description of the extension.
+     * Description for the extension
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
-    private Output</* @Nullable */ String> description;
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output<String> description;
 
     /**
-     * @return Description of the extension.
+     * @return Description for the extension
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * The URL to download the extension archive.
      * 
      */
-    @Export(name="downloadUrl", type=String.class, parameters={})
-    private Output</* @Nullable */ String> downloadUrl;
+    @Export(name="downloadUrl", refs={String.class}, tree="[0]")
+    private Output<String> downloadUrl;
 
     /**
      * @return The URL to download the extension archive.
      * 
      */
-    public Output<Optional<String>> downloadUrl() {
-        return Codegen.optional(this.downloadUrl);
+    public Output<String> downloadUrl() {
+        return this.downloadUrl;
     }
     /**
-     * `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
-    @Export(name="extensionType", type=String.class, parameters={})
+    @Export(name="extensionType", refs={String.class}, tree="[0]")
     private Output<String> extensionType;
 
     /**
-     * @return `bundle` or `plugin` allowed. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+     * @return Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      * 
      */
     public Output<String> extensionType() {
         return this.extensionType;
     }
     /**
-     * Hash value of the file. If it is changed, the file is reuploaded.
+     * Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
-    @Export(name="fileHash", type=String.class, parameters={})
+    @Export(name="fileHash", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fileHash;
 
     /**
-     * @return Hash value of the file. If it is changed, the file is reuploaded.
+     * @return Hash value of the file. Triggers re-uploading the file on change.
      * 
      */
     public Output<Optional<String>> fileHash() {
         return Codegen.optional(this.fileHash);
     }
     /**
-     * File path of the extension uploaded.
+     * Local file path to upload as the extension.
      * 
      */
-    @Export(name="filePath", type=String.class, parameters={})
+    @Export(name="filePath", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> filePath;
 
     /**
-     * @return File path of the extension uploaded.
+     * @return Local file path to upload as the extension.
      * 
      */
     public Output<Optional<String>> filePath() {
         return Codegen.optional(this.filePath);
     }
     /**
-     * The datetime the extension was last modified.
+     * The datatime the extension was last modified.
      * 
      */
-    @Export(name="lastModified", type=String.class, parameters={})
+    @Export(name="lastModified", refs={String.class}, tree="[0]")
     private Output<String> lastModified;
 
     /**
-     * @return The datetime the extension was last modified.
+     * @return The datatime the extension was last modified.
      * 
      */
     public Output<String> lastModified() {
         return this.lastModified;
     }
     /**
-     * Name of the extension.
+     * Name of the extension
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name of the extension.
+     * @return Name of the extension
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The extension file size in bytes.
+     * The size of the extension file in bytes.
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
-     * @return The extension file size in bytes.
+     * @return The size of the extension file in bytes.
      * 
      */
     public Output<Integer> size() {
         return this.size;
     }
     /**
-     * The extension URL to be used in the plan.
+     * The extension URL which will be used in the Elastic Cloud deployment plan.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
-     * @return The extension URL to be used in the plan.
+     * @return The extension URL which will be used in the Elastic Cloud deployment plan.
      * 
      */
     public Output<String> url() {
         return this.url;
     }
     /**
-     * Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return Elastic stack version, a numeric version for plugins, e.g. 2.3.0 should be set. Major version e.g. 2.*, or wildcards e.g. * for bundles.
+     * @return Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      * 
      */
     public Output<String> version() {

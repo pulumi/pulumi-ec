@@ -54,6 +54,9 @@ class GetGcpPrivateServiceConnectEndpointResult:
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region to retrieve the Prive Link configuration for.
+        """
         return pulumi.get(self, "region")
 
     @property
@@ -82,8 +85,6 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
     """
     Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
 
-    > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-
     ## Example Usage
 
     ```python
@@ -94,7 +95,7 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
     ```
 
 
-    :param str region: Region to retrieve the Private Link configuration for.
+    :param str region: Region to retrieve the Prive Link configuration for.
     """
     __args__ = dict()
     __args__['region'] = region
@@ -102,10 +103,10 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint', __args__, opts=opts, typ=GetGcpPrivateServiceConnectEndpointResult).value
 
     return AwaitableGetGcpPrivateServiceConnectEndpointResult(
-        domain_name=__ret__.domain_name,
-        id=__ret__.id,
-        region=__ret__.region,
-        service_attachment_uri=__ret__.service_attachment_uri)
+        domain_name=pulumi.get(__ret__, 'domain_name'),
+        id=pulumi.get(__ret__, 'id'),
+        region=pulumi.get(__ret__, 'region'),
+        service_attachment_uri=pulumi.get(__ret__, 'service_attachment_uri'))
 
 
 @_utilities.lift_output_func(get_gcp_private_service_connect_endpoint)
@@ -114,8 +115,6 @@ def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Inpu
     """
     Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
 
-    > **NOTE:** This data source provides data relevant to the Elasticsearch Service (ESS) only, and should not be used for ECE.
-
     ## Example Usage
 
     ```python
@@ -126,6 +125,6 @@ def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Inpu
     ```
 
 
-    :param str region: Region to retrieve the Private Link configuration for.
+    :param str region: Region to retrieve the Prive Link configuration for.
     """
     ...

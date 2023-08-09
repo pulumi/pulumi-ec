@@ -12,49 +12,113 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentKibana {
+    /**
+     * @return A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     * 
+     */
     private String elasticsearchClusterRefId;
     /**
-     * @return Overall health status of the deployment.
+     * @return Kibana resource health status.
      * 
      */
     private Boolean healthy;
+    /**
+     * @return HTTP endpoint for the Kibana resource.
+     * 
+     */
     private String httpEndpoint;
+    /**
+     * @return HTTPS endpoint for the Kibana resource.
+     * 
+     */
     private String httpsEndpoint;
+    /**
+     * @return A locally-unique friendly alias for this Kibana resource.
+     * 
+     */
     private String refId;
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     private String resourceId;
+    /**
+     * @return Kibana resource status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     private String status;
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     private List<GetDeploymentKibanaTopology> topologies;
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     private String version;
 
     private GetDeploymentKibana() {}
+    /**
+     * @return A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     * 
+     */
     public String elasticsearchClusterRefId() {
         return this.elasticsearchClusterRefId;
     }
     /**
-     * @return Overall health status of the deployment.
+     * @return Kibana resource health status.
      * 
      */
     public Boolean healthy() {
         return this.healthy;
     }
+    /**
+     * @return HTTP endpoint for the Kibana resource.
+     * 
+     */
     public String httpEndpoint() {
         return this.httpEndpoint;
     }
+    /**
+     * @return HTTPS endpoint for the Kibana resource.
+     * 
+     */
     public String httpsEndpoint() {
         return this.httpsEndpoint;
     }
+    /**
+     * @return A locally-unique friendly alias for this Kibana resource.
+     * 
+     */
     public String refId() {
         return this.refId;
     }
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     public String resourceId() {
         return this.resourceId;
     }
+    /**
+     * @return Kibana resource status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     public List<GetDeploymentKibanaTopology> topologies() {
         return this.topologies;
     }
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public String version() {
         return this.version;
     }

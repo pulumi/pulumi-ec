@@ -17,18 +17,18 @@ import * as utilities from "./utilities";
  *
  * const example = ec.getDeployments({
  *     deploymentTemplateId: "azure-compute-optimized",
- *     elasticsearch: {
+ *     elasticsearches: [{
  *         healthy: "true",
- *     },
- *     enterpriseSearch: {
+ *     }],
+ *     enterpriseSearches: [{
  *         healthy: "true",
- *     },
- *     integrationsServer: {
+ *     }],
+ *     integrationsServers: [{
  *         version: "8.0.0",
- *     },
- *     kibana: {
+ *     }],
+ *     kibanas: [{
  *         status: "started",
- *     },
+ *     }],
  *     namePrefix: "test",
  *     size: 200,
  *     tags: {
@@ -42,13 +42,13 @@ export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOp
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getDeployments:getDeployments", {
-        "apm": args.apm,
+        "apms": args.apms,
         "deploymentTemplateId": args.deploymentTemplateId,
-        "elasticsearch": args.elasticsearch,
-        "enterpriseSearch": args.enterpriseSearch,
+        "elasticsearches": args.elasticsearches,
+        "enterpriseSearches": args.enterpriseSearches,
         "healthy": args.healthy,
-        "integrationsServer": args.integrationsServer,
-        "kibana": args.kibana,
+        "integrationsServers": args.integrationsServers,
+        "kibanas": args.kibanas,
         "namePrefix": args.namePrefix,
         "size": args.size,
         "tags": args.tags,
@@ -60,50 +60,35 @@ export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOp
  */
 export interface GetDeploymentsArgs {
     /**
-     * **DEPRECATED** Filter by APM resource kind status or configuration.
-     * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `apm.#.version` - Elastic stack version.
-     * * `apm.#.healthy` - Overall health status of the APM instances.
+     * Filter by APM resource kind status or configuration.
      */
-    apm?: inputs.GetDeploymentsApm;
+    apms?: inputs.GetDeploymentsApm[];
     /**
-     * ID of the deployment template used to create the deployment.
+     * Filter the result set by the ID of the deployment template the deployment is based off.
      */
     deploymentTemplateId?: string;
     /**
      * Filter by Elasticsearch resource kind status or configuration.
-     * * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `elasticsearch.#.version` - Elastic stack version.
-     * * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
      */
-    elasticsearch?: inputs.GetDeploymentsElasticsearch;
+    elasticsearches?: inputs.GetDeploymentsElasticsearch[];
     /**
      * Filter by Enterprise Search resource kind status or configuration.
-     * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `enterprise_search.#.version` - Elastic stack version.
-     * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
      */
-    enterpriseSearch?: inputs.GetDeploymentsEnterpriseSearch;
+    enterpriseSearches?: inputs.GetDeploymentsEnterpriseSearch[];
     /**
-     * Overall health status of the deployment.
+     * Filter the result set by their health status.
      */
     healthy?: string;
     /**
      * Filter by Integrations Server resource kind status or configuration.
-     * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `integrations_server.#.version` - Elastic stack version.
-     * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
      */
-    integrationsServer?: inputs.GetDeploymentsIntegrationsServer;
+    integrationsServers?: inputs.GetDeploymentsIntegrationsServer[];
     /**
      * Filter by Kibana resource kind status or configuration.
-     * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `kibana.#.version` - Elastic stack version.
-     * * `kibana.#.healthy` - Overall health status of the Kibana instances.
      */
-    kibana?: inputs.GetDeploymentsKibana;
+    kibanas?: inputs.GetDeploymentsKibana[];
     /**
-     * Prefix that one or several deployment names have in common.
+     * Prefix to filter the returned deployment list by.
      */
     namePrefix?: string;
     /**
@@ -111,7 +96,7 @@ export interface GetDeploymentsArgs {
      */
     size?: number;
     /**
-     * Key value map of arbitrary string tags for the deployment.
+     * Filter the result set by their assigned tags.
      */
     tags?: {[key: string]: string};
 }
@@ -120,37 +105,57 @@ export interface GetDeploymentsArgs {
  * A collection of values returned by getDeployments.
  */
 export interface GetDeploymentsResult {
-    readonly apm?: outputs.GetDeploymentsApm;
+    /**
+     * Filter by APM resource kind status or configuration.
+     */
+    readonly apms?: outputs.GetDeploymentsApm[];
+    /**
+     * Filter the result set by the ID of the deployment template the deployment is based off.
+     */
     readonly deploymentTemplateId?: string;
     /**
      * List of deployments which match the specified query.
-     * * `deployments.#.deployment_id` - The deployment unique ID.
-     * * `deployments.#.alias` - Deployment alias.
-     * * `deployments.#.name` - The name of the deployment.
-     * * `deployments.#.elasticsearch_resource_id` - The Elasticsearch resource unique ID.
-     * * `deployments.#.elasticsearch_ref_id` - The Elasticsearch resource reference.
-     * * `deployments.#.kibana_resource_id` - The Kibana resource unique ID.
-     * * `deployments.#.kibana_ref_id` - The Kibana resource reference.
-     * * `deployments.#.integrations_server_resource_id` - The Integrations Server resource unique ID.
-     * * `deployments.#.integrations_server_ref_id` - The Integrations Server resource reference.
-     * * `deployments.#.apm_resource_id` - The APM resource unique ID.
-     * * `deployments.#.apm_ref_id` - The APM resource reference.
-     * * `deployments.#.enterprise_search_resource_id` - The Enterprise Search resource unique ID.
-     * * `deployments.#.enterprise_search_ref_id` - The Enterprise Search resource reference.
      */
     readonly deployments: outputs.GetDeploymentsDeployment[];
-    readonly elasticsearch?: outputs.GetDeploymentsElasticsearch;
-    readonly enterpriseSearch?: outputs.GetDeploymentsEnterpriseSearch;
+    /**
+     * Filter by Elasticsearch resource kind status or configuration.
+     */
+    readonly elasticsearches?: outputs.GetDeploymentsElasticsearch[];
+    /**
+     * Filter by Enterprise Search resource kind status or configuration.
+     */
+    readonly enterpriseSearches?: outputs.GetDeploymentsEnterpriseSearch[];
+    /**
+     * Filter the result set by their health status.
+     */
     readonly healthy?: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Unique identifier of this data source.
      */
     readonly id: string;
-    readonly integrationsServer?: outputs.GetDeploymentsIntegrationsServer;
-    readonly kibana?: outputs.GetDeploymentsKibana;
+    /**
+     * Filter by Integrations Server resource kind status or configuration.
+     */
+    readonly integrationsServers?: outputs.GetDeploymentsIntegrationsServer[];
+    /**
+     * Filter by Kibana resource kind status or configuration.
+     */
+    readonly kibanas?: outputs.GetDeploymentsKibana[];
+    /**
+     * Prefix to filter the returned deployment list by.
+     */
     readonly namePrefix?: string;
+    /**
+     * The number of deployments actually returned.
+     */
     readonly returnCount: number;
+    /**
+     * The maximum number of deployments to return. Defaults to `100`.
+     */
     readonly size?: number;
+    /**
+     * Filter the result set by their assigned tags.
+     */
     readonly tags?: {[key: string]: string};
 }
 /**
@@ -164,18 +169,18 @@ export interface GetDeploymentsResult {
  *
  * const example = ec.getDeployments({
  *     deploymentTemplateId: "azure-compute-optimized",
- *     elasticsearch: {
+ *     elasticsearches: [{
  *         healthy: "true",
- *     },
- *     enterpriseSearch: {
+ *     }],
+ *     enterpriseSearches: [{
  *         healthy: "true",
- *     },
- *     integrationsServer: {
+ *     }],
+ *     integrationsServers: [{
  *         version: "8.0.0",
- *     },
- *     kibana: {
+ *     }],
+ *     kibanas: [{
  *         status: "started",
- *     },
+ *     }],
  *     namePrefix: "test",
  *     size: 200,
  *     tags: {
@@ -193,50 +198,35 @@ export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pul
  */
 export interface GetDeploymentsOutputArgs {
     /**
-     * **DEPRECATED** Filter by APM resource kind status or configuration.
-     * * `apm.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `apm.#.version` - Elastic stack version.
-     * * `apm.#.healthy` - Overall health status of the APM instances.
+     * Filter by APM resource kind status or configuration.
      */
-    apm?: pulumi.Input<inputs.GetDeploymentsApmArgs>;
+    apms?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsApmArgs>[]>;
     /**
-     * ID of the deployment template used to create the deployment.
+     * Filter the result set by the ID of the deployment template the deployment is based off.
      */
     deploymentTemplateId?: pulumi.Input<string>;
     /**
      * Filter by Elasticsearch resource kind status or configuration.
-     * * `elasticsearch.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `elasticsearch.#.version` - Elastic stack version.
-     * * `elasticsearch.#.healthy` - Overall health status of the Elasticsearch instances.
      */
-    elasticsearch?: pulumi.Input<inputs.GetDeploymentsElasticsearchArgs>;
+    elasticsearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsElasticsearchArgs>[]>;
     /**
      * Filter by Enterprise Search resource kind status or configuration.
-     * * `enterprise_search.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `enterprise_search.#.version` - Elastic stack version.
-     * * `enterprise_search.#.healthy` - Overall health status of the Enterprise Search instances.
      */
-    enterpriseSearch?: pulumi.Input<inputs.GetDeploymentsEnterpriseSearchArgs>;
+    enterpriseSearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsEnterpriseSearchArgs>[]>;
     /**
-     * Overall health status of the deployment.
+     * Filter the result set by their health status.
      */
     healthy?: pulumi.Input<string>;
     /**
      * Filter by Integrations Server resource kind status or configuration.
-     * * `integrations_server.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `integrations_server.#.version` - Elastic stack version.
-     * * `integrations_server.#.healthy` - Overall health status of the Integrations Server instances.
      */
-    integrationsServer?: pulumi.Input<inputs.GetDeploymentsIntegrationsServerArgs>;
+    integrationsServers?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsIntegrationsServerArgs>[]>;
     /**
      * Filter by Kibana resource kind status or configuration.
-     * * `kibana.#.status` - Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).
-     * * `kibana.#.version` - Elastic stack version.
-     * * `kibana.#.healthy` - Overall health status of the Kibana instances.
      */
-    kibana?: pulumi.Input<inputs.GetDeploymentsKibanaArgs>;
+    kibanas?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsKibanaArgs>[]>;
     /**
-     * Prefix that one or several deployment names have in common.
+     * Prefix to filter the returned deployment list by.
      */
     namePrefix?: pulumi.Input<string>;
     /**
@@ -244,7 +234,7 @@ export interface GetDeploymentsOutputArgs {
      */
     size?: pulumi.Input<number>;
     /**
-     * Key value map of arbitrary string tags for the deployment.
+     * Filter the result set by their assigned tags.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

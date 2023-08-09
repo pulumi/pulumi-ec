@@ -13,9 +13,21 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentObservabilityResult
     {
+        /// <summary>
+        /// Destination deployment ID for the shipped logs and monitoring metrics.
+        /// </summary>
         public readonly string DeploymentId;
+        /// <summary>
+        /// Defines whether logs are shipped to the destination deployment.
+        /// </summary>
         public readonly bool Logs;
+        /// <summary>
+        /// Defines whether metrics are shipped to the destination deployment.
+        /// </summary>
         public readonly bool Metrics;
+        /// <summary>
+        /// Elasticsearch resource kind ref_id of the destination deployment.
+        /// </summary>
         public readonly string RefId;
 
         [OutputConstructor]

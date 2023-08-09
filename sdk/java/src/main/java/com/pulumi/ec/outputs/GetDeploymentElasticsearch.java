@@ -12,53 +12,125 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentElasticsearch {
+    /**
+     * @return Whether or not Elasticsearch autoscaling is enabled.
+     * 
+     */
     private String autoscale;
+    /**
+     * @return The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
+     * 
+     */
     private String cloudId;
     /**
-     * @return Overall health status of the deployment.
+     * @return Elasticsearch resource health status.
      * 
      */
     private Boolean healthy;
+    /**
+     * @return HTTP endpoint for the Elasticsearch resource.
+     * 
+     */
     private String httpEndpoint;
+    /**
+     * @return HTTPS endpoint for the Elasticsearch resource.
+     * 
+     */
     private String httpsEndpoint;
+    /**
+     * @return A locally-unique friendly alias for this Elasticsearch cluster.
+     * 
+     */
     private String refId;
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     private String resourceId;
+    /**
+     * @return Elasticsearch resource status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     private String status;
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     private List<GetDeploymentElasticsearchTopology> topologies;
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     private String version;
 
     private GetDeploymentElasticsearch() {}
+    /**
+     * @return Whether or not Elasticsearch autoscaling is enabled.
+     * 
+     */
     public String autoscale() {
         return this.autoscale;
     }
+    /**
+     * @return The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
+     * 
+     */
     public String cloudId() {
         return this.cloudId;
     }
     /**
-     * @return Overall health status of the deployment.
+     * @return Elasticsearch resource health status.
      * 
      */
     public Boolean healthy() {
         return this.healthy;
     }
+    /**
+     * @return HTTP endpoint for the Elasticsearch resource.
+     * 
+     */
     public String httpEndpoint() {
         return this.httpEndpoint;
     }
+    /**
+     * @return HTTPS endpoint for the Elasticsearch resource.
+     * 
+     */
     public String httpsEndpoint() {
         return this.httpsEndpoint;
     }
+    /**
+     * @return A locally-unique friendly alias for this Elasticsearch cluster.
+     * 
+     */
     public String refId() {
         return this.refId;
     }
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     public String resourceId() {
         return this.resourceId;
     }
+    /**
+     * @return Elasticsearch resource status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     public List<GetDeploymentElasticsearchTopology> topologies() {
         return this.topologies;
     }
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public String version() {
         return this.version;
     }

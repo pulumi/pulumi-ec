@@ -12,49 +12,113 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentIntegrationsServer {
+    /**
+     * @return A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     * 
+     */
     private String elasticsearchClusterRefId;
     /**
-     * @return Overall health status of the deployment.
+     * @return Resource kind health status.
      * 
      */
     private Boolean healthy;
+    /**
+     * @return HTTP endpoint for the resource kind.
+     * 
+     */
     private String httpEndpoint;
+    /**
+     * @return HTTPS endpoint for the resource kind.
+     * 
+     */
     private String httpsEndpoint;
+    /**
+     * @return A locally-unique friendly alias for this Integrations Server resource.
+     * 
+     */
     private String refId;
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     private String resourceId;
+    /**
+     * @return Resource kind status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     private String status;
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     private List<GetDeploymentIntegrationsServerTopology> topologies;
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     private String version;
 
     private GetDeploymentIntegrationsServer() {}
+    /**
+     * @return A locally-unique friendly alias for an Elasticsearch resource in this deployment.
+     * 
+     */
     public String elasticsearchClusterRefId() {
         return this.elasticsearchClusterRefId;
     }
     /**
-     * @return Overall health status of the deployment.
+     * @return Resource kind health status.
      * 
      */
     public Boolean healthy() {
         return this.healthy;
     }
+    /**
+     * @return HTTP endpoint for the resource kind.
+     * 
+     */
     public String httpEndpoint() {
         return this.httpEndpoint;
     }
+    /**
+     * @return HTTPS endpoint for the resource kind.
+     * 
+     */
     public String httpsEndpoint() {
         return this.httpsEndpoint;
     }
+    /**
+     * @return A locally-unique friendly alias for this Integrations Server resource.
+     * 
+     */
     public String refId() {
         return this.refId;
     }
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     public String resourceId() {
         return this.resourceId;
     }
+    /**
+     * @return Resource kind status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     public List<GetDeploymentIntegrationsServerTopology> topologies() {
         return this.topologies;
     }
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public String version() {
         return this.version;
     }

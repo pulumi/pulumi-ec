@@ -12,49 +12,113 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentApm {
+    /**
+     * @return The locally-unique user-specified id of an APM Resource.
+     * 
+     */
     private String elasticsearchClusterRefId;
     /**
-     * @return Overall health status of the deployment.
+     * @return APM resource health status.
      * 
      */
     private Boolean healthy;
+    /**
+     * @return HTTP endpoint for the APM resource.
+     * 
+     */
     private String httpEndpoint;
+    /**
+     * @return HTTPS endpoint for the APM resource.
+     * 
+     */
     private String httpsEndpoint;
+    /**
+     * @return A locally-unique friendly alias for this APM resource.
+     * 
+     */
     private String refId;
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     private String resourceId;
+    /**
+     * @return APM resource status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     private String status;
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     private List<GetDeploymentApmTopology> topologies;
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     private String version;
 
     private GetDeploymentApm() {}
+    /**
+     * @return The locally-unique user-specified id of an APM Resource.
+     * 
+     */
     public String elasticsearchClusterRefId() {
         return this.elasticsearchClusterRefId;
     }
     /**
-     * @return Overall health status of the deployment.
+     * @return APM resource health status.
      * 
      */
     public Boolean healthy() {
         return this.healthy;
     }
+    /**
+     * @return HTTP endpoint for the APM resource.
+     * 
+     */
     public String httpEndpoint() {
         return this.httpEndpoint;
     }
+    /**
+     * @return HTTPS endpoint for the APM resource.
+     * 
+     */
     public String httpsEndpoint() {
         return this.httpsEndpoint;
     }
+    /**
+     * @return A locally-unique friendly alias for this APM resource.
+     * 
+     */
     public String refId() {
         return this.refId;
     }
+    /**
+     * @return The resource unique identifier.
+     * 
+     */
     public String resourceId() {
         return this.resourceId;
     }
+    /**
+     * @return APM resource status (for example, &#34;started&#34;, &#34;stopped&#34;, etc).
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Node topology element definition.
+     * 
+     */
     public List<GetDeploymentApmTopology> topologies() {
         return this.topologies;
     }
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public String version() {
         return this.version;
     }

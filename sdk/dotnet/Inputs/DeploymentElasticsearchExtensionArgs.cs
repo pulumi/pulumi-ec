@@ -12,26 +12,17 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchExtensionArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Extension name.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// Extension type, only `bundle` or `plugin` are supported.
-        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        /// <summary>
-        /// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+        /// Elastic Stack version to use for all of the deployment resources.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;

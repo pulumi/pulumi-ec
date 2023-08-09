@@ -7,10 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
- *
  * ## Example Usage
- * ### IP type
+ * ### IP based traffic filter
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,11 +31,15 @@ import * as utilities from "./utilities";
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "aws-io-optimized-v2",
  *     trafficFilters: [example.id],
- *     elasticsearch: {},
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
  *     kibana: {},
  * });
  * ```
- * ### Azure Private Link type
+ * ### Azure Private Link traffic filter
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -62,11 +64,16 @@ import * as utilities from "./utilities";
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "azure-io-optimized-v3",
  *     trafficFilters: [azure.id],
- *     elasticsearch: {},
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
  *     kibana: {},
  * });
  * ```
- * ### GCP Private Service Connect type
+ *
+ * ###GCP Private Service Connect traffic filter
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -90,14 +97,18 @@ import * as utilities from "./utilities";
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "gcp-storage-optimized",
  *     trafficFilters: [gcpPsc.id],
- *     elasticsearch: {},
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
  *     kibana: {},
  * });
  * ```
  *
  * ## Import
  *
- * You can import traffic filters using the `id`, for example
+ * Traffic filters can be imported using the `id`, for example
  *
  * ```sh
  *  $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
@@ -132,27 +143,27 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
     }
 
     /**
-     * Description of the ruleset.
+     * Ruleset description
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      */
-    public readonly includeByDefault!: pulumi.Output<boolean | undefined>;
+    public readonly includeByDefault!: pulumi.Output<boolean>;
     /**
-     * Name of the ruleset.
+     * Name of the ruleset
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Filter region, the ruleset can only be attached to deployments in the specific region.
+     * Filter region, the ruleset can only be attached to deployments in the specific region
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Rule block, which can be specified multiple times for multiple rules.
+     * Set of rules, which the ruleset is made of.
      */
-    public readonly rules!: pulumi.Output<outputs.DeploymentTrafficFilterRule[]>;
+    public readonly rules!: pulumi.Output<outputs.DeploymentTrafficFilterRule[] | undefined>;
     /**
-     * Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+     * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -180,9 +191,6 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            if ((!args || args.rules === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'rules'");
-            }
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
@@ -203,27 +211,27 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
  */
 export interface DeploymentTrafficFilterState {
     /**
-     * Description of the ruleset.
+     * Ruleset description
      */
     description?: pulumi.Input<string>;
     /**
-     * To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      */
     includeByDefault?: pulumi.Input<boolean>;
     /**
-     * Name of the ruleset.
+     * Name of the ruleset
      */
     name?: pulumi.Input<string>;
     /**
-     * Filter region, the ruleset can only be attached to deployments in the specific region.
+     * Filter region, the ruleset can only be attached to deployments in the specific region
      */
     region?: pulumi.Input<string>;
     /**
-     * Rule block, which can be specified multiple times for multiple rules.
+     * Set of rules, which the ruleset is made of.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
     /**
-     * Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+     * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
      */
     type?: pulumi.Input<string>;
 }
@@ -233,27 +241,27 @@ export interface DeploymentTrafficFilterState {
  */
 export interface DeploymentTrafficFilterArgs {
     /**
-     * Description of the ruleset.
+     * Ruleset description
      */
     description?: pulumi.Input<string>;
     /**
-     * To automatically include the ruleset in the new deployments. Defaults to `false`.
+     * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      */
     includeByDefault?: pulumi.Input<boolean>;
     /**
-     * Name of the ruleset.
+     * Name of the ruleset
      */
     name?: pulumi.Input<string>;
     /**
-     * Filter region, the ruleset can only be attached to deployments in the specific region.
+     * Filter region, the ruleset can only be attached to deployments in the specific region
      */
     region: pulumi.Input<string>;
     /**
-     * Rule block, which can be specified multiple times for multiple rules.
+     * Set of rules, which the ruleset is made of.
      */
-    rules: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
     /**
-     * Type of the ruleset.  It can be `"ip"`, `"vpce"`, `"azurePrivateEndpoint"`, or `"gcpPrivateServiceConnectEndpoint"`.
+     * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
      */
     type: pulumi.Input<string>;
 }

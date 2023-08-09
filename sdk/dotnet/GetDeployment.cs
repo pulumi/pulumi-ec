@@ -20,6 +20,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -47,6 +48,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using ElasticCloud = Pulumi.ElasticCloud;
         /// 
@@ -70,7 +72,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetDeploymentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of an existing Elastic Cloud deployment.
+        /// The unique ID of the deployment.
         /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
@@ -84,7 +86,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetDeploymentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of an existing Elastic Cloud deployment.
+        /// The unique ID of the deployment.
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -105,68 +107,18 @@ namespace Pulumi.ElasticCloud
         public readonly string Alias;
         /// <summary>
         /// Instance configuration of the APM type.
-        /// * `apm.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-        /// * `apm.#.healthy` - Resource kind health status.
-        /// * `apm.#.http_endpoint` - HTTP endpoint for the resource kind.
-        /// * `apm.#.https_endpoint` - HTTPS endpoint for the resource kind.
-        /// * `apm.#.ref_id` - User specified ref_id for the resource kind.
-        /// * `apm.#.resource_id` - The resource unique identifier.
-        /// * `apm.#.status` - Resource kind status (for example, "started", "stopped", etc).
-        /// * `apm.#.version` - Elastic stack version.
-        /// * `apm.#.topology` - Node topology element definition.
-        /// * `apm.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-        /// * `apm.#.topology.#.size` - Amount of memory (RAM) per topology element in the "&lt;size in GB&gt;g" notation.
-        /// * `apm.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentApmResult> Apms;
         /// <summary>
-        /// ID of the deployment template used to create the deployment.
+        /// ID of the deployment template this deployment is based off.
         /// </summary>
         public readonly string DeploymentTemplateId;
         /// <summary>
-        /// Instance configuration of the Elasticsearch resource kind.
-        /// * `elasticsearch.#.autoscale` - Whether or not Elasticsearch autoscaling is enabled.
-        /// * `elasticsearch.#.healthy` - Resource kind health status.
-        /// * `elasticsearch.#.cloud_id` - The encoded Elasticsearch credentials to use in Beats or Logstash. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
-        /// * `elasticsearch.#.http_endpoint` - HTTP endpoint for the resource kind.
-        /// * `elasticsearch.#.https_endpoint` - HTTPS endpoint for the resource kind.
-        /// * `elasticsearch.#.ref_id` - User specified ref_id for the resource kind.
-        /// * `elasticsearch.#.resource_id` - The resource unique identifier.
-        /// * `elasticsearch.#.status` - Resource kind status (for example, "started", "stopped", etc).
-        /// * `elasticsearch.#.version` - Elastic stack version.
-        /// * `elasticsearch.#.topology` - Topology element definition.
-        /// * `elasticsearch.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-        /// * `elasticsearch.#.topology.#.size` - Amount of memory (RAM) per topology element in the "&lt;size in GB&gt;g" notation.
-        /// * `elasticsearch.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
-        /// * `elasticsearch.#.topology.#.node_roles` - Defines the list of Elasticsearch node roles assigned to the topology element (&gt;=7.10.0).
-        /// * `elasticsearch.#.topology.#.node_type_data` - Defines whether this node can hold data (&lt;7.10.0).
-        /// * `elasticsearch.#.topology.#.node_type_master` - Defines whether this node can be elected master (&lt;7.10.0).
-        /// * `elasticsearch.#.topology.#.node_type_ingest` - Defines whether this node can run an ingest pipeline (&lt;7.10.0).
-        /// * `elasticsearch.#.topology.#.node_type_ml` - Defines whether this node can run ML jobs (&lt;7.10.0).
-        /// * `elasticsearch.#.topology.#.autoscaling.#.max_size` - The maximum size for the scale up policy.
-        /// * `elasticsearch.#.topology.#.autoscaling.#.max_size_resource` - The maximum size resource for the scale up policy.
-        /// * `elasticsearch.#.topology.#.autoscaling.#.min_size` - The minimum size for the scale down policy.
-        /// * `elasticsearch.#.topology.#.autoscaling.#.min_size_resource` - The minimum size for the scale down policy.
-        /// * `elasticsearch.#.topology.#.autoscaling.#.policy_override_json` - The advanced policy overrides for the autoscaling policy.
+        /// Instance configuration of the Elasticsearch Elasticsearch resource.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentElasticsearchResult> Elasticsearches;
         /// <summary>
         /// Instance configuration of the Enterprise Search type.
-        /// * `enterprise_search.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-        /// * `enterprise_search.#.healthy` - Resource kind health status.
-        /// * `enterprise_search.#.http_endpoint` - HTTP endpoint for the resource kind.
-        /// * `enterprise_search.#.https_endpoint` - HTTPS endpoint for the resource kind.
-        /// * `enterprise_search.#.ref_id` - User specified ref_id for the resource kind.
-        /// * `enterprise_search.#.resource_id` - The resource unique identifier.
-        /// * `enterprise_search.#.status` - Resource kind status (for example, "started", "stopped", etc).
-        /// * `enterprise_search.#.version` - Elastic stack version.
-        /// * `enterprise_search.#.topology` - Node topology element definition.
-        /// * `enterprise_search.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-        /// * `enterprise_search.#.topology.#.size` - Amount of memory (RAM) per topology element in the "&lt;size in GB&gt;g" notation.
-        /// * `enterprise_search.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
-        /// * `enterprise_search.#.topology.#.node_type_appserver` - Defines whether this instance should run as application/API server.
-        /// * `enterprise_search.#.topology.#.node_type_connector` - Defines whether this instance should run as connector.
-        /// * `enterprise_search.#.topology.#.node_type_worker` - Defines whether this instance should run as background worker.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentEnterpriseSearchResult> EnterpriseSearches;
         /// <summary>
@@ -179,34 +131,10 @@ namespace Pulumi.ElasticCloud
         public readonly string Id;
         /// <summary>
         /// Instance configuration of the Integrations Server type.
-        /// * `integrations_server.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-        /// * `integrations_server.#.healthy` - Resource kind health status.
-        /// * `integrations_server.#.http_endpoint` - HTTP endpoint for the resource kind.
-        /// * `integrations_server.#.https_endpoint` - HTTPS endpoint for the resource kind.
-        /// * `integrations_server.#.ref_id` - User specified ref_id for the resource kind.
-        /// * `integrations_server.#.resource_id` - The resource unique identifier.
-        /// * `integrations_server.#.status` - Resource kind status (for example, "started", "stopped", etc).
-        /// * `integrations_server.#.version` - Elastic stack version.
-        /// * `integrations_server.#.topology` - Node topology element definition.
-        /// * `integrations_server.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-        /// * `integrations_server.#.topology.#.size` - Amount of memory (RAM) per topology element in the "&lt;size in GB&gt;g" notation.
-        /// * `integrations_server.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentIntegrationsServerResult> IntegrationsServers;
         /// <summary>
         /// Instance configuration of the Kibana type.
-        /// * `kibana.#.elasticsearch_cluster_ref_id` - The user-specified ID of the Elasticsearch cluster to which this resource kind will link.
-        /// * `kibana.#.healthy` - Resource kind health status.
-        /// * `kibana.#.http_endpoint` - HTTP endpoint for the resource kind.
-        /// * `kibana.#.https_endpoint` - HTTPS endpoint for the resource kind.
-        /// * `kibana.#.ref_id` - User specified ref_id for the resource kind.
-        /// * `kibana.#.resource_id` - The resource unique identifier.
-        /// * `kibana.#.status` - Resource kind status (for example, "started", "stopped", etc).
-        /// * `kibana.#.version` - Elastic stack version.
-        /// * `kibana.#.topology` - Node topology element definition.
-        /// * `kibana.#.topology.#.instance_configuration_id` - Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-        /// * `kibana.#.topology.#.size` - Amount of memory (RAM) per topology element in the "&lt;size in GB&gt;g" notation.
-        /// * `kibana.#.topology.#.zone_count` - Number of zones in which nodes will be placed.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentKibanaResult> Kibanas;
         /// <summary>
@@ -215,14 +143,10 @@ namespace Pulumi.ElasticCloud
         public readonly string Name;
         /// <summary>
         /// Observability settings. Information about logs and metrics shipped to a dedicated deployment.
-        /// * `observability.#.deployment_id` - Destination deployment ID for the shipped logs and monitoring metrics.
-        /// * `observability.#.ref_id` - Elasticsearch resource kind ref_id of the destination deployment.
-        /// * `observability.#.logs` - Defines whether logs are enabled or disabled.
-        /// * `observability.#.metrics` - Defines whether metrics are enabled or disabled.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentObservabilityResult> Observabilities;
         /// <summary>
-        /// Region where the deployment can be found.
+        /// Region where the deployment is hosted.
         /// </summary>
         public readonly string Region;
         /// <summary>

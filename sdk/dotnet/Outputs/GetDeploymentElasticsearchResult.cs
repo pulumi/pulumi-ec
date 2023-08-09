@@ -13,18 +13,45 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentElasticsearchResult
     {
+        /// <summary>
+        /// Whether or not Elasticsearch autoscaling is enabled.
+        /// </summary>
         public readonly string Autoscale;
+        /// <summary>
+        /// The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana. See [Configure Beats and Logstash with Cloud ID](https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html) for more information.
+        /// </summary>
         public readonly string CloudId;
         /// <summary>
-        /// Overall health status of the deployment.
+        /// Elasticsearch resource health status.
         /// </summary>
         public readonly bool Healthy;
+        /// <summary>
+        /// HTTP endpoint for the Elasticsearch resource.
+        /// </summary>
         public readonly string HttpEndpoint;
+        /// <summary>
+        /// HTTPS endpoint for the Elasticsearch resource.
+        /// </summary>
         public readonly string HttpsEndpoint;
+        /// <summary>
+        /// A locally-unique friendly alias for this Elasticsearch cluster.
+        /// </summary>
         public readonly string RefId;
+        /// <summary>
+        /// The resource unique identifier.
+        /// </summary>
         public readonly string ResourceId;
+        /// <summary>
+        /// Elasticsearch resource status (for example, "started", "stopped", etc).
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Node topology element definition.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentElasticsearchTopologyResult> Topologies;
+        /// <summary>
+        /// Elastic stack version.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

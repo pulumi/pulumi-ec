@@ -16,30 +16,46 @@ public final class GetDeploymentsEnterpriseSearchArgs extends com.pulumi.resourc
     public static final GetDeploymentsEnterpriseSearchArgs Empty = new GetDeploymentsEnterpriseSearchArgs();
 
     /**
-     * Overall health status of the deployment.
+     * Overall health status of the resource instances.
      * 
      */
     @Import(name="healthy")
     private @Nullable Output<String> healthy;
 
     /**
-     * @return Overall health status of the deployment.
+     * @return Overall health status of the resource instances.
      * 
      */
     public Optional<Output<String>> healthy() {
         return Optional.ofNullable(this.healthy);
     }
 
+    /**
+     * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     * 
+     */
     @Import(name="status")
     private @Nullable Output<String> status;
 
+    /**
+     * @return Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+     * 
+     */
     public Optional<Output<String>> status() {
         return Optional.ofNullable(this.status);
     }
 
+    /**
+     * Elastic stack version.
+     * 
+     */
     @Import(name="version")
     private @Nullable Output<String> version;
 
+    /**
+     * @return Elastic stack version.
+     * 
+     */
     public Optional<Output<String>> version() {
         return Optional.ofNullable(this.version);
     }
@@ -71,7 +87,7 @@ public final class GetDeploymentsEnterpriseSearchArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param healthy Overall health status of the deployment.
+         * @param healthy Overall health status of the resource instances.
          * 
          * @return builder
          * 
@@ -82,7 +98,7 @@ public final class GetDeploymentsEnterpriseSearchArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param healthy Overall health status of the deployment.
+         * @param healthy Overall health status of the resource instances.
          * 
          * @return builder
          * 
@@ -91,20 +107,44 @@ public final class GetDeploymentsEnterpriseSearchArgs extends com.pulumi.resourc
             return healthy(Output.of(healthy));
         }
 
+        /**
+         * @param status Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(@Nullable Output<String> status) {
             $.status = status;
             return this;
         }
 
+        /**
+         * @param status Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(String status) {
             return status(Output.of(status));
         }
 
+        /**
+         * @param version Elastic stack version.
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(@Nullable Output<String> version) {
             $.version = version;
             return this;
         }
 
+        /**
+         * @param version Elastic stack version.
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(String version) {
             return version(Output.of(version));
         }

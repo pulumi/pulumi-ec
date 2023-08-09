@@ -15,19 +15,16 @@
 package ec
 
 import (
+	// Allow us to embed metadata
+	_ "embed"
 	"fmt"
 	"path/filepath"
-	"unicode"
 
 	"github.com/elastic/terraform-provider-ec/ec"
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 )
 
 // all of the token components used below.
@@ -38,63 +35,27 @@ const (
 	mainMod = "index" // the y module
 )
 
-func makeMember(mod, name string) tokens.ModuleMember {
-	lower := string(unicode.ToLower(rune(name[0]))) + name[1:]
-	return tokens.ModuleMember(fmt.Sprintf("%s:%s/%s:%s", mainPkg, mod, lower, name))
-}
-
-// makeDataSource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the data source's
-// first character.
-func makeDataSource(mod, fn string) tokens.ModuleMember {
-	return makeMember(mod, fn)
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod, res string) tokens.Type {
-	return tokens.Type(makeMember(mod, res))
-}
-
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
+//go:embed  cmd/pulumi-resource-ec/bridge-metadata.json
+var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(ec.Provider())
+	p := pf.ShimProvider(ec.New(version.Version))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                    p,
-		Name:                 "ec",
-		DisplayName:          "ElasticCloud (EC)",
-		GitHubOrg:            "elastic",
-		Description:          "A Pulumi package for creating and managing ElasticCloud resources.",
-		Keywords:             []string{"pulumi", "ec", "elasticsearch", "es", "elastic", "elasticcloud"},
-		License:              "Apache-2.0",
-		Homepage:             "https://pulumi.io",
-		Repository:           "https://github.com/pulumi/pulumi-ec",
-		Config:               map[string]*tfbridge.SchemaInfo{},
-		PreConfigureCallback: preConfigureCallback,
-		Resources: map[string]*tfbridge.ResourceInfo{
-			"ec_deployment":                            {Tok: makeResource(mainMod, "Deployment")},
-			"ec_deployment_elasticsearch_keystore":     {Tok: makeResource(mainMod, "DeploymentElasticsearchKeystore")},
-			"ec_deployment_extension":                  {Tok: makeResource(mainMod, "DeploymentExtension")},
-			"ec_deployment_traffic_filter":             {Tok: makeResource(mainMod, "DeploymentTrafficFilter")},
-			"ec_deployment_traffic_filter_association": {Tok: makeResource(mainMod, "DeploymentTrafficFilterAssociation")},
-		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"ec_deployment":  {Tok: makeDataSource(mainMod, "getDeployment")},
-			"ec_deployments": {Tok: makeDataSource(mainMod, "getDeployments")},
-			"ec_stack":       {Tok: makeDataSource(mainMod, "getStack")},
-		},
+		P:            p,
+		Name:         "ec",
+		DisplayName:  "ElasticCloud (EC)",
+		GitHubOrg:    "elastic",
+		Description:  "A Pulumi package for creating and managing ElasticCloud resources.",
+		Keywords:     []string{"pulumi", "ec", "elasticsearch", "es", "elastic", "elasticcloud"},
+		License:      "Apache-2.0",
+		Homepage:     "https://pulumi.io",
+		Repository:   "https://github.com/pulumi/pulumi-ec",
+		Version:      version.Version,
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -134,11 +95,12 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := x.ComputeDefaults(&prov, x.TokensSingleModule("ec_", mainMod,
-		x.MakeStandardToken(mainPkg)))
-	contract.AssertNoError(err)
+	prov.MustComputeTokens(tks.SingleModule("ec_", mainMod,
+		tks.MakeStandard(mainPkg)))
 
 	prov.SetAutonaming(255, "-")
+
+	prov.MustApplyAutoAliases()
 
 	return prov
 }

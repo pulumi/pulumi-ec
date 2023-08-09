@@ -14,28 +14,28 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentEnterpriseSearch
     {
         /// <summary>
-        /// Enterprise Search settings applied to all topologies unless overridden in the `topology` element.
+        /// Optionally define the Enterprise Search configuration options for the Enterprise Search Server
         /// </summary>
         public readonly Outputs.DeploymentEnterpriseSearchConfig? Config;
-        /// <summary>
-        /// This field references the `ref_id` of the deployment Elasticsearch cluster. The default value `main-elasticsearch` is recommended.
-        /// </summary>
         public readonly string? ElasticsearchClusterRefId;
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
-        /// <summary>
-        /// Can be set on the Enterprise Search resource. The default value `main-enterprise_search` is recommended.
-        /// </summary>
+        public readonly string? InstanceConfigurationId;
+        public readonly bool? NodeTypeAppserver;
+        public readonly bool? NodeTypeConnector;
+        public readonly bool? NodeTypeWorker;
         public readonly string? RefId;
         /// <summary>
-        /// Elasticsearch Service (ESS) region where to create the deployment. For Elastic Cloud Enterprise (ECE) installations, set `"ece-region"`.
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         public readonly string? Region;
         public readonly string? ResourceId;
+        public readonly string? Size;
         /// <summary>
-        /// Can be set multiple times to compose complex topologies.
+        /// Optional size type, defaults to "memory".
         /// </summary>
-        public readonly Outputs.DeploymentEnterpriseSearchTopology? Topology;
+        public readonly string? SizeResource;
+        public readonly int? ZoneCount;
 
         [OutputConstructor]
         private DeploymentEnterpriseSearch(
@@ -47,22 +47,40 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? httpsEndpoint,
 
+            string? instanceConfigurationId,
+
+            bool? nodeTypeAppserver,
+
+            bool? nodeTypeConnector,
+
+            bool? nodeTypeWorker,
+
             string? refId,
 
             string? region,
 
             string? resourceId,
 
-            Outputs.DeploymentEnterpriseSearchTopology? topology)
+            string? size,
+
+            string? sizeResource,
+
+            int? zoneCount)
         {
             Config = config;
             ElasticsearchClusterRefId = elasticsearchClusterRefId;
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
+            InstanceConfigurationId = instanceConfigurationId;
+            NodeTypeAppserver = nodeTypeAppserver;
+            NodeTypeConnector = nodeTypeConnector;
+            NodeTypeWorker = nodeTypeWorker;
             RefId = refId;
             Region = region;
             ResourceId = resourceId;
-            Topology = topology;
+            Size = size;
+            SizeResource = sizeResource;
+            ZoneCount = zoneCount;
         }
     }
 }
