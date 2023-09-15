@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -160,6 +161,12 @@ func (i *DeploymentTrafficFilterAssociation) ToDeploymentTrafficFilterAssociatio
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterAssociationOutput)
 }
 
+func (i *DeploymentTrafficFilterAssociation) ToOutput(ctx context.Context) pulumix.Output[*DeploymentTrafficFilterAssociation] {
+	return pulumix.Output[*DeploymentTrafficFilterAssociation]{
+		OutputState: i.ToDeploymentTrafficFilterAssociationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentTrafficFilterAssociationArrayInput is an input type that accepts DeploymentTrafficFilterAssociationArray and DeploymentTrafficFilterAssociationArrayOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterAssociationArrayInput` via:
 //
@@ -183,6 +190,12 @@ func (i DeploymentTrafficFilterAssociationArray) ToDeploymentTrafficFilterAssoci
 
 func (i DeploymentTrafficFilterAssociationArray) ToDeploymentTrafficFilterAssociationArrayOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterAssociationArrayOutput)
+}
+
+func (i DeploymentTrafficFilterAssociationArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentTrafficFilterAssociation] {
+	return pulumix.Output[[]*DeploymentTrafficFilterAssociation]{
+		OutputState: i.ToDeploymentTrafficFilterAssociationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DeploymentTrafficFilterAssociationMapInput is an input type that accepts DeploymentTrafficFilterAssociationMap and DeploymentTrafficFilterAssociationMapOutput values.
@@ -210,6 +223,12 @@ func (i DeploymentTrafficFilterAssociationMap) ToDeploymentTrafficFilterAssociat
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterAssociationMapOutput)
 }
 
+func (i DeploymentTrafficFilterAssociationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentTrafficFilterAssociation] {
+	return pulumix.Output[map[string]*DeploymentTrafficFilterAssociation]{
+		OutputState: i.ToDeploymentTrafficFilterAssociationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentTrafficFilterAssociationOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterAssociationOutput) ElementType() reflect.Type {
@@ -222,6 +241,12 @@ func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssoc
 
 func (o DeploymentTrafficFilterAssociationOutput) ToDeploymentTrafficFilterAssociationOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationOutput {
 	return o
+}
+
+func (o DeploymentTrafficFilterAssociationOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentTrafficFilterAssociation] {
+	return pulumix.Output[*DeploymentTrafficFilterAssociation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Required deployment ID where the traffic filter will be associated
@@ -248,6 +273,12 @@ func (o DeploymentTrafficFilterAssociationArrayOutput) ToDeploymentTrafficFilter
 	return o
 }
 
+func (o DeploymentTrafficFilterAssociationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentTrafficFilterAssociation] {
+	return pulumix.Output[[]*DeploymentTrafficFilterAssociation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentTrafficFilterAssociationArrayOutput) Index(i pulumi.IntInput) DeploymentTrafficFilterAssociationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentTrafficFilterAssociation {
 		return vs[0].([]*DeploymentTrafficFilterAssociation)[vs[1].(int)]
@@ -266,6 +297,12 @@ func (o DeploymentTrafficFilterAssociationMapOutput) ToDeploymentTrafficFilterAs
 
 func (o DeploymentTrafficFilterAssociationMapOutput) ToDeploymentTrafficFilterAssociationMapOutputWithContext(ctx context.Context) DeploymentTrafficFilterAssociationMapOutput {
 	return o
+}
+
+func (o DeploymentTrafficFilterAssociationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentTrafficFilterAssociation] {
+	return pulumix.Output[map[string]*DeploymentTrafficFilterAssociation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentTrafficFilterAssociationMapOutput) MapIndex(k pulumi.StringInput) DeploymentTrafficFilterAssociationOutput {

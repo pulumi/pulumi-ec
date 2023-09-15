@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
@@ -104,6 +105,12 @@ func (o GetAwsPrivatelinkEndpointResultOutput) ToGetAwsPrivatelinkEndpointResult
 
 func (o GetAwsPrivatelinkEndpointResultOutput) ToGetAwsPrivatelinkEndpointResultOutputWithContext(ctx context.Context) GetAwsPrivatelinkEndpointResultOutput {
 	return o
+}
+
+func (o GetAwsPrivatelinkEndpointResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAwsPrivatelinkEndpointResult] {
+	return pulumix.Output[GetAwsPrivatelinkEndpointResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The domain name to used in when configuring a private hosted zone in the VPCE connection.

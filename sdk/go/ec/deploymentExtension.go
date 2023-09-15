@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
@@ -197,6 +198,12 @@ func (i *DeploymentExtension) ToDeploymentExtensionOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentExtensionOutput)
 }
 
+func (i *DeploymentExtension) ToOutput(ctx context.Context) pulumix.Output[*DeploymentExtension] {
+	return pulumix.Output[*DeploymentExtension]{
+		OutputState: i.ToDeploymentExtensionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentExtensionArrayInput is an input type that accepts DeploymentExtensionArray and DeploymentExtensionArrayOutput values.
 // You can construct a concrete instance of `DeploymentExtensionArrayInput` via:
 //
@@ -220,6 +227,12 @@ func (i DeploymentExtensionArray) ToDeploymentExtensionArrayOutput() DeploymentE
 
 func (i DeploymentExtensionArray) ToDeploymentExtensionArrayOutputWithContext(ctx context.Context) DeploymentExtensionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentExtensionArrayOutput)
+}
+
+func (i DeploymentExtensionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentExtension] {
+	return pulumix.Output[[]*DeploymentExtension]{
+		OutputState: i.ToDeploymentExtensionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DeploymentExtensionMapInput is an input type that accepts DeploymentExtensionMap and DeploymentExtensionMapOutput values.
@@ -247,6 +260,12 @@ func (i DeploymentExtensionMap) ToDeploymentExtensionMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentExtensionMapOutput)
 }
 
+func (i DeploymentExtensionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentExtension] {
+	return pulumix.Output[map[string]*DeploymentExtension]{
+		OutputState: i.ToDeploymentExtensionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentExtensionOutput struct{ *pulumi.OutputState }
 
 func (DeploymentExtensionOutput) ElementType() reflect.Type {
@@ -259,6 +278,12 @@ func (o DeploymentExtensionOutput) ToDeploymentExtensionOutput() DeploymentExten
 
 func (o DeploymentExtensionOutput) ToDeploymentExtensionOutputWithContext(ctx context.Context) DeploymentExtensionOutput {
 	return o
+}
+
+func (o DeploymentExtensionOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentExtension] {
+	return pulumix.Output[*DeploymentExtension]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Description for the extension
@@ -325,6 +350,12 @@ func (o DeploymentExtensionArrayOutput) ToDeploymentExtensionArrayOutputWithCont
 	return o
 }
 
+func (o DeploymentExtensionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentExtension] {
+	return pulumix.Output[[]*DeploymentExtension]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentExtensionArrayOutput) Index(i pulumi.IntInput) DeploymentExtensionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentExtension {
 		return vs[0].([]*DeploymentExtension)[vs[1].(int)]
@@ -343,6 +374,12 @@ func (o DeploymentExtensionMapOutput) ToDeploymentExtensionMapOutput() Deploymen
 
 func (o DeploymentExtensionMapOutput) ToDeploymentExtensionMapOutputWithContext(ctx context.Context) DeploymentExtensionMapOutput {
 	return o
+}
+
+func (o DeploymentExtensionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentExtension] {
+	return pulumix.Output[map[string]*DeploymentExtension]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentExtensionMapOutput) MapIndex(k pulumi.StringInput) DeploymentExtensionOutput {
