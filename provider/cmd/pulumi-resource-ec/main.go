@@ -18,10 +18,15 @@ package main
 
 import (
 	"context"
+	// We import embed so we can embed the schema as a json file
+	_ "embed"
 
 	ec "github.com/pulumi/pulumi-ec/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 )
+
+//go:embed schema-embed.json
+var pulumiSchema []byte
 
 func main() {
 	ctx := context.Background()
