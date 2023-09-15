@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
@@ -102,6 +103,12 @@ func (o GetAzurePrivatelinkEndpointResultOutput) ToGetAzurePrivatelinkEndpointRe
 
 func (o GetAzurePrivatelinkEndpointResultOutput) ToGetAzurePrivatelinkEndpointResultOutputWithContext(ctx context.Context) GetAzurePrivatelinkEndpointResultOutput {
 	return o
+}
+
+func (o GetAzurePrivatelinkEndpointResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAzurePrivatelinkEndpointResult] {
+	return pulumix.Output[GetAzurePrivatelinkEndpointResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The domain name to used in when configuring a private hosted zone in the VNet connection.

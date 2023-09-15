@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages Elastic Cloud Enterprise snapshot repositories.
@@ -128,6 +129,12 @@ func (i *SnapshotRepository) ToSnapshotRepositoryOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryOutput)
 }
 
+func (i *SnapshotRepository) ToOutput(ctx context.Context) pulumix.Output[*SnapshotRepository] {
+	return pulumix.Output[*SnapshotRepository]{
+		OutputState: i.ToSnapshotRepositoryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SnapshotRepositoryArrayInput is an input type that accepts SnapshotRepositoryArray and SnapshotRepositoryArrayOutput values.
 // You can construct a concrete instance of `SnapshotRepositoryArrayInput` via:
 //
@@ -151,6 +158,12 @@ func (i SnapshotRepositoryArray) ToSnapshotRepositoryArrayOutput() SnapshotRepos
 
 func (i SnapshotRepositoryArray) ToSnapshotRepositoryArrayOutputWithContext(ctx context.Context) SnapshotRepositoryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryArrayOutput)
+}
+
+func (i SnapshotRepositoryArray) ToOutput(ctx context.Context) pulumix.Output[[]*SnapshotRepository] {
+	return pulumix.Output[[]*SnapshotRepository]{
+		OutputState: i.ToSnapshotRepositoryArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SnapshotRepositoryMapInput is an input type that accepts SnapshotRepositoryMap and SnapshotRepositoryMapOutput values.
@@ -178,6 +191,12 @@ func (i SnapshotRepositoryMap) ToSnapshotRepositoryMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryMapOutput)
 }
 
+func (i SnapshotRepositoryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SnapshotRepository] {
+	return pulumix.Output[map[string]*SnapshotRepository]{
+		OutputState: i.ToSnapshotRepositoryMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SnapshotRepositoryOutput struct{ *pulumi.OutputState }
 
 func (SnapshotRepositoryOutput) ElementType() reflect.Type {
@@ -190,6 +209,12 @@ func (o SnapshotRepositoryOutput) ToSnapshotRepositoryOutput() SnapshotRepositor
 
 func (o SnapshotRepositoryOutput) ToSnapshotRepositoryOutputWithContext(ctx context.Context) SnapshotRepositoryOutput {
 	return o
+}
+
+func (o SnapshotRepositoryOutput) ToOutput(ctx context.Context) pulumix.Output[*SnapshotRepository] {
+	return pulumix.Output[*SnapshotRepository]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Generic repository settings.
@@ -221,6 +246,12 @@ func (o SnapshotRepositoryArrayOutput) ToSnapshotRepositoryArrayOutputWithContex
 	return o
 }
 
+func (o SnapshotRepositoryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SnapshotRepository] {
+	return pulumix.Output[[]*SnapshotRepository]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SnapshotRepositoryArrayOutput) Index(i pulumi.IntInput) SnapshotRepositoryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SnapshotRepository {
 		return vs[0].([]*SnapshotRepository)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o SnapshotRepositoryMapOutput) ToSnapshotRepositoryMapOutput() SnapshotRep
 
 func (o SnapshotRepositoryMapOutput) ToSnapshotRepositoryMapOutputWithContext(ctx context.Context) SnapshotRepositoryMapOutput {
 	return o
+}
+
+func (o SnapshotRepositoryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SnapshotRepository] {
+	return pulumix.Output[map[string]*SnapshotRepository]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SnapshotRepositoryMapOutput) MapIndex(k pulumi.StringInput) SnapshotRepositoryOutput {

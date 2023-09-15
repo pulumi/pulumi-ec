@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -70,6 +71,12 @@ func (i DeploymentApmArgs) ToDeploymentApmOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmOutput)
 }
 
+func (i DeploymentApmArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentApm] {
+	return pulumix.Output[DeploymentApm]{
+		OutputState: i.ToDeploymentApmOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentApmArgs) ToDeploymentApmPtrOutput() DeploymentApmPtrOutput {
 	return i.ToDeploymentApmPtrOutputWithContext(context.Background())
 }
@@ -111,6 +118,12 @@ func (i *deploymentApmPtrType) ToDeploymentApmPtrOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmPtrOutput)
 }
 
+func (i *deploymentApmPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentApm] {
+	return pulumix.Output[*DeploymentApm]{
+		OutputState: i.ToDeploymentApmPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentApmOutput struct{ *pulumi.OutputState }
 
 func (DeploymentApmOutput) ElementType() reflect.Type {
@@ -133,6 +146,12 @@ func (o DeploymentApmOutput) ToDeploymentApmPtrOutputWithContext(ctx context.Con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentApm) *DeploymentApm {
 		return &v
 	}).(DeploymentApmPtrOutput)
+}
+
+func (o DeploymentApmOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentApm] {
+	return pulumix.Output[DeploymentApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Optionally define the Apm configuration options for the APM Server
@@ -194,6 +213,12 @@ func (o DeploymentApmPtrOutput) ToDeploymentApmPtrOutput() DeploymentApmPtrOutpu
 
 func (o DeploymentApmPtrOutput) ToDeploymentApmPtrOutputWithContext(ctx context.Context) DeploymentApmPtrOutput {
 	return o
+}
+
+func (o DeploymentApmPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentApm] {
+	return pulumix.Output[*DeploymentApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentApmPtrOutput) Elem() DeploymentApmOutput {
@@ -349,6 +374,12 @@ func (i DeploymentApmConfigArgs) ToDeploymentApmConfigOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmConfigOutput)
 }
 
+func (i DeploymentApmConfigArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentApmConfig] {
+	return pulumix.Output[DeploymentApmConfig]{
+		OutputState: i.ToDeploymentApmConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentApmConfigArgs) ToDeploymentApmConfigPtrOutput() DeploymentApmConfigPtrOutput {
 	return i.ToDeploymentApmConfigPtrOutputWithContext(context.Background())
 }
@@ -390,6 +421,12 @@ func (i *deploymentApmConfigPtrType) ToDeploymentApmConfigPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentApmConfigPtrOutput)
 }
 
+func (i *deploymentApmConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentApmConfig] {
+	return pulumix.Output[*DeploymentApmConfig]{
+		OutputState: i.ToDeploymentApmConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentApmConfigOutput struct{ *pulumi.OutputState }
 
 func (DeploymentApmConfigOutput) ElementType() reflect.Type {
@@ -412,6 +449,12 @@ func (o DeploymentApmConfigOutput) ToDeploymentApmConfigPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentApmConfig) *DeploymentApmConfig {
 		return &v
 	}).(DeploymentApmConfigPtrOutput)
+}
+
+func (o DeploymentApmConfigOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentApmConfig] {
+	return pulumix.Output[DeploymentApmConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentApmConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
@@ -450,6 +493,12 @@ func (o DeploymentApmConfigPtrOutput) ToDeploymentApmConfigPtrOutput() Deploymen
 
 func (o DeploymentApmConfigPtrOutput) ToDeploymentApmConfigPtrOutputWithContext(ctx context.Context) DeploymentApmConfigPtrOutput {
 	return o
+}
+
+func (o DeploymentApmConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentApmConfig] {
+	return pulumix.Output[*DeploymentApmConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentApmConfigPtrOutput) Elem() DeploymentApmConfigOutput {
@@ -615,6 +664,12 @@ func (i DeploymentElasticsearchArgs) ToDeploymentElasticsearchOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchOutput)
 }
 
+func (i DeploymentElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearch] {
+	return pulumix.Output[DeploymentElasticsearch]{
+		OutputState: i.ToDeploymentElasticsearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchArgs) ToDeploymentElasticsearchPtrOutput() DeploymentElasticsearchPtrOutput {
 	return i.ToDeploymentElasticsearchPtrOutputWithContext(context.Background())
 }
@@ -656,6 +711,12 @@ func (i *deploymentElasticsearchPtrType) ToDeploymentElasticsearchPtrOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchPtrOutput)
 }
 
+func (i *deploymentElasticsearchPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearch] {
+	return pulumix.Output[*DeploymentElasticsearch]{
+		OutputState: i.ToDeploymentElasticsearchPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchOutput) ElementType() reflect.Type {
@@ -678,6 +739,12 @@ func (o DeploymentElasticsearchOutput) ToDeploymentElasticsearchPtrOutputWithCon
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearch) *DeploymentElasticsearch {
 		return &v
 	}).(DeploymentElasticsearchPtrOutput)
+}
+
+func (o DeploymentElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearch] {
+	return pulumix.Output[DeploymentElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
@@ -793,6 +860,12 @@ func (o DeploymentElasticsearchPtrOutput) ToDeploymentElasticsearchPtrOutput() D
 
 func (o DeploymentElasticsearchPtrOutput) ToDeploymentElasticsearchPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearch] {
+	return pulumix.Output[*DeploymentElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchPtrOutput) Elem() DeploymentElasticsearchOutput {
@@ -1065,6 +1138,12 @@ func (i DeploymentElasticsearchColdArgs) ToDeploymentElasticsearchColdOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdOutput)
 }
 
+func (i DeploymentElasticsearchColdArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchCold] {
+	return pulumix.Output[DeploymentElasticsearchCold]{
+		OutputState: i.ToDeploymentElasticsearchColdOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchColdArgs) ToDeploymentElasticsearchColdPtrOutput() DeploymentElasticsearchColdPtrOutput {
 	return i.ToDeploymentElasticsearchColdPtrOutputWithContext(context.Background())
 }
@@ -1106,6 +1185,12 @@ func (i *deploymentElasticsearchColdPtrType) ToDeploymentElasticsearchColdPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdPtrOutput)
 }
 
+func (i *deploymentElasticsearchColdPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchCold] {
+	return pulumix.Output[*DeploymentElasticsearchCold]{
+		OutputState: i.ToDeploymentElasticsearchColdPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchColdOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchColdOutput) ElementType() reflect.Type {
@@ -1128,6 +1213,12 @@ func (o DeploymentElasticsearchColdOutput) ToDeploymentElasticsearchColdPtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchCold) *DeploymentElasticsearchCold {
 		return &v
 	}).(DeploymentElasticsearchColdPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchCold] {
+	return pulumix.Output[DeploymentElasticsearchCold]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchColdOutput) Autoscaling() DeploymentElasticsearchColdAutoscalingOutput {
@@ -1182,6 +1273,12 @@ func (o DeploymentElasticsearchColdPtrOutput) ToDeploymentElasticsearchColdPtrOu
 
 func (o DeploymentElasticsearchColdPtrOutput) ToDeploymentElasticsearchColdPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchColdPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchCold] {
+	return pulumix.Output[*DeploymentElasticsearchCold]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchColdPtrOutput) Elem() DeploymentElasticsearchColdOutput {
@@ -1323,6 +1420,12 @@ func (i DeploymentElasticsearchColdAutoscalingArgs) ToDeploymentElasticsearchCol
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchColdAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchColdAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchColdAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchColdAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchColdAutoscalingArgs) ToDeploymentElasticsearchColdAutoscalingPtrOutput() DeploymentElasticsearchColdAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -1364,6 +1467,12 @@ func (i *deploymentElasticsearchColdAutoscalingPtrType) ToDeploymentElasticsearc
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchColdAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchColdAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchColdAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchColdAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchColdAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchColdAutoscalingOutput) ElementType() reflect.Type {
@@ -1386,6 +1495,12 @@ func (o DeploymentElasticsearchColdAutoscalingOutput) ToDeploymentElasticsearchC
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchColdAutoscaling) *DeploymentElasticsearchColdAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchColdAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchColdAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchColdAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchColdAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -1420,6 +1535,12 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) ToDeploymentElasticsear
 
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) ToDeploymentElasticsearchColdAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchColdAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchColdAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchColdAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchColdAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) Elem() DeploymentElasticsearchColdAutoscalingOutput {
@@ -1518,6 +1639,12 @@ func (i DeploymentElasticsearchConfigArgs) ToDeploymentElasticsearchConfigOutput
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchConfigOutput)
 }
 
+func (i DeploymentElasticsearchConfigArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchConfig] {
+	return pulumix.Output[DeploymentElasticsearchConfig]{
+		OutputState: i.ToDeploymentElasticsearchConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchConfigArgs) ToDeploymentElasticsearchConfigPtrOutput() DeploymentElasticsearchConfigPtrOutput {
 	return i.ToDeploymentElasticsearchConfigPtrOutputWithContext(context.Background())
 }
@@ -1559,6 +1686,12 @@ func (i *deploymentElasticsearchConfigPtrType) ToDeploymentElasticsearchConfigPt
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchConfigPtrOutput)
 }
 
+func (i *deploymentElasticsearchConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchConfig] {
+	return pulumix.Output[*DeploymentElasticsearchConfig]{
+		OutputState: i.ToDeploymentElasticsearchConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchConfigOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchConfigOutput) ElementType() reflect.Type {
@@ -1581,6 +1714,12 @@ func (o DeploymentElasticsearchConfigOutput) ToDeploymentElasticsearchConfigPtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchConfig) *DeploymentElasticsearchConfig {
 		return &v
 	}).(DeploymentElasticsearchConfigPtrOutput)
+}
+
+func (o DeploymentElasticsearchConfigOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchConfig] {
+	return pulumix.Output[DeploymentElasticsearchConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchConfigOutput) DockerImage() pulumi.StringPtrOutput {
@@ -1619,6 +1758,12 @@ func (o DeploymentElasticsearchConfigPtrOutput) ToDeploymentElasticsearchConfigP
 
 func (o DeploymentElasticsearchConfigPtrOutput) ToDeploymentElasticsearchConfigPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchConfigPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchConfig] {
+	return pulumix.Output[*DeploymentElasticsearchConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchConfigPtrOutput) Elem() DeploymentElasticsearchConfigOutput {
@@ -1734,6 +1879,12 @@ func (i DeploymentElasticsearchCoordinatingArgs) ToDeploymentElasticsearchCoordi
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingOutput)
 }
 
+func (i DeploymentElasticsearchCoordinatingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchCoordinating] {
+	return pulumix.Output[DeploymentElasticsearchCoordinating]{
+		OutputState: i.ToDeploymentElasticsearchCoordinatingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchCoordinatingArgs) ToDeploymentElasticsearchCoordinatingPtrOutput() DeploymentElasticsearchCoordinatingPtrOutput {
 	return i.ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(context.Background())
 }
@@ -1775,6 +1926,12 @@ func (i *deploymentElasticsearchCoordinatingPtrType) ToDeploymentElasticsearchCo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingPtrOutput)
 }
 
+func (i *deploymentElasticsearchCoordinatingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchCoordinating] {
+	return pulumix.Output[*DeploymentElasticsearchCoordinating]{
+		OutputState: i.ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchCoordinatingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchCoordinatingOutput) ElementType() reflect.Type {
@@ -1797,6 +1954,12 @@ func (o DeploymentElasticsearchCoordinatingOutput) ToDeploymentElasticsearchCoor
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchCoordinating) *DeploymentElasticsearchCoordinating {
 		return &v
 	}).(DeploymentElasticsearchCoordinatingPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchCoordinating] {
+	return pulumix.Output[DeploymentElasticsearchCoordinating]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchCoordinatingOutput) Autoscaling() DeploymentElasticsearchCoordinatingAutoscalingOutput {
@@ -1853,6 +2016,12 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) ToDeploymentElasticsearchC
 
 func (o DeploymentElasticsearchCoordinatingPtrOutput) ToDeploymentElasticsearchCoordinatingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchCoordinating] {
+	return pulumix.Output[*DeploymentElasticsearchCoordinating]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchCoordinatingPtrOutput) Elem() DeploymentElasticsearchCoordinatingOutput {
@@ -1994,6 +2163,12 @@ func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToDeploymentElastics
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchCoordinatingAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchCoordinatingAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchCoordinatingAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchCoordinatingAutoscalingArgs) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutput() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -2035,6 +2210,12 @@ func (i *deploymentElasticsearchCoordinatingAutoscalingPtrType) ToDeploymentElas
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchCoordinatingAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchCoordinatingAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchCoordinatingAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchCoordinatingAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchCoordinatingAutoscalingOutput) ElementType() reflect.Type {
@@ -2057,6 +2238,12 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToDeploymentElasti
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchCoordinatingAutoscaling) *DeploymentElasticsearchCoordinatingAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchCoordinatingAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchCoordinatingAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -2091,6 +2278,12 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) ToDeploymentEla
 
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) ToDeploymentElasticsearchCoordinatingAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchCoordinatingAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchCoordinatingAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) Elem() DeploymentElasticsearchCoordinatingAutoscalingOutput {
@@ -2187,6 +2380,12 @@ func (i DeploymentElasticsearchExtensionArgs) ToDeploymentElasticsearchExtension
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchExtensionOutput)
 }
 
+func (i DeploymentElasticsearchExtensionArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchExtension] {
+	return pulumix.Output[DeploymentElasticsearchExtension]{
+		OutputState: i.ToDeploymentElasticsearchExtensionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentElasticsearchExtensionArrayInput is an input type that accepts DeploymentElasticsearchExtensionArray and DeploymentElasticsearchExtensionArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchExtensionArrayInput` via:
 //
@@ -2212,6 +2411,12 @@ func (i DeploymentElasticsearchExtensionArray) ToDeploymentElasticsearchExtensio
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchExtensionArrayOutput)
 }
 
+func (i DeploymentElasticsearchExtensionArray) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchExtension] {
+	return pulumix.Output[[]DeploymentElasticsearchExtension]{
+		OutputState: i.ToDeploymentElasticsearchExtensionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchExtensionOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchExtensionOutput) ElementType() reflect.Type {
@@ -2224,6 +2429,12 @@ func (o DeploymentElasticsearchExtensionOutput) ToDeploymentElasticsearchExtensi
 
 func (o DeploymentElasticsearchExtensionOutput) ToDeploymentElasticsearchExtensionOutputWithContext(ctx context.Context) DeploymentElasticsearchExtensionOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchExtensionOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchExtension] {
+	return pulumix.Output[DeploymentElasticsearchExtension]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchExtensionOutput) Name() pulumi.StringOutput {
@@ -2255,6 +2466,12 @@ func (o DeploymentElasticsearchExtensionArrayOutput) ToDeploymentElasticsearchEx
 
 func (o DeploymentElasticsearchExtensionArrayOutput) ToDeploymentElasticsearchExtensionArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchExtensionArrayOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchExtensionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchExtension] {
+	return pulumix.Output[[]DeploymentElasticsearchExtension]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchExtensionArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchExtensionOutput {
@@ -2312,6 +2529,12 @@ func (i DeploymentElasticsearchFrozenArgs) ToDeploymentElasticsearchFrozenOutput
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenOutput)
 }
 
+func (i DeploymentElasticsearchFrozenArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchFrozen] {
+	return pulumix.Output[DeploymentElasticsearchFrozen]{
+		OutputState: i.ToDeploymentElasticsearchFrozenOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchFrozenArgs) ToDeploymentElasticsearchFrozenPtrOutput() DeploymentElasticsearchFrozenPtrOutput {
 	return i.ToDeploymentElasticsearchFrozenPtrOutputWithContext(context.Background())
 }
@@ -2353,6 +2576,12 @@ func (i *deploymentElasticsearchFrozenPtrType) ToDeploymentElasticsearchFrozenPt
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenPtrOutput)
 }
 
+func (i *deploymentElasticsearchFrozenPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchFrozen] {
+	return pulumix.Output[*DeploymentElasticsearchFrozen]{
+		OutputState: i.ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchFrozenOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchFrozenOutput) ElementType() reflect.Type {
@@ -2375,6 +2604,12 @@ func (o DeploymentElasticsearchFrozenOutput) ToDeploymentElasticsearchFrozenPtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchFrozen) *DeploymentElasticsearchFrozen {
 		return &v
 	}).(DeploymentElasticsearchFrozenPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchFrozen] {
+	return pulumix.Output[DeploymentElasticsearchFrozen]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchFrozenOutput) Autoscaling() DeploymentElasticsearchFrozenAutoscalingOutput {
@@ -2429,6 +2664,12 @@ func (o DeploymentElasticsearchFrozenPtrOutput) ToDeploymentElasticsearchFrozenP
 
 func (o DeploymentElasticsearchFrozenPtrOutput) ToDeploymentElasticsearchFrozenPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchFrozenPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchFrozen] {
+	return pulumix.Output[*DeploymentElasticsearchFrozen]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchFrozenPtrOutput) Elem() DeploymentElasticsearchFrozenOutput {
@@ -2570,6 +2811,12 @@ func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToDeploymentElasticsearchF
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchFrozenAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchFrozenAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchFrozenAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchFrozenAutoscalingArgs) ToDeploymentElasticsearchFrozenAutoscalingPtrOutput() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -2611,6 +2858,12 @@ func (i *deploymentElasticsearchFrozenAutoscalingPtrType) ToDeploymentElasticsea
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchFrozenAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchFrozenAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchFrozenAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchFrozenAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchFrozenAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchFrozenAutoscalingOutput) ElementType() reflect.Type {
@@ -2633,6 +2886,12 @@ func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToDeploymentElasticsearc
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchFrozenAutoscaling) *DeploymentElasticsearchFrozenAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchFrozenAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchFrozenAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchFrozenAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -2667,6 +2926,12 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) ToDeploymentElasticse
 
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) ToDeploymentElasticsearchFrozenAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchFrozenAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchFrozenAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchFrozenAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) Elem() DeploymentElasticsearchFrozenAutoscalingOutput {
@@ -2773,6 +3038,12 @@ func (i DeploymentElasticsearchHotArgs) ToDeploymentElasticsearchHotOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotOutput)
 }
 
+func (i DeploymentElasticsearchHotArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchHot] {
+	return pulumix.Output[DeploymentElasticsearchHot]{
+		OutputState: i.ToDeploymentElasticsearchHotOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchHotArgs) ToDeploymentElasticsearchHotPtrOutput() DeploymentElasticsearchHotPtrOutput {
 	return i.ToDeploymentElasticsearchHotPtrOutputWithContext(context.Background())
 }
@@ -2814,6 +3085,12 @@ func (i *deploymentElasticsearchHotPtrType) ToDeploymentElasticsearchHotPtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotPtrOutput)
 }
 
+func (i *deploymentElasticsearchHotPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchHot] {
+	return pulumix.Output[*DeploymentElasticsearchHot]{
+		OutputState: i.ToDeploymentElasticsearchHotPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchHotOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchHotOutput) ElementType() reflect.Type {
@@ -2836,6 +3113,12 @@ func (o DeploymentElasticsearchHotOutput) ToDeploymentElasticsearchHotPtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchHot) *DeploymentElasticsearchHot {
 		return &v
 	}).(DeploymentElasticsearchHotPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchHot] {
+	return pulumix.Output[DeploymentElasticsearchHot]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchHotOutput) Autoscaling() DeploymentElasticsearchHotAutoscalingOutput {
@@ -2890,6 +3173,12 @@ func (o DeploymentElasticsearchHotPtrOutput) ToDeploymentElasticsearchHotPtrOutp
 
 func (o DeploymentElasticsearchHotPtrOutput) ToDeploymentElasticsearchHotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchHotPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchHot] {
+	return pulumix.Output[*DeploymentElasticsearchHot]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchHotPtrOutput) Elem() DeploymentElasticsearchHotOutput {
@@ -3031,6 +3320,12 @@ func (i DeploymentElasticsearchHotAutoscalingArgs) ToDeploymentElasticsearchHotA
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchHotAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchHotAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchHotAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchHotAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchHotAutoscalingArgs) ToDeploymentElasticsearchHotAutoscalingPtrOutput() DeploymentElasticsearchHotAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -3072,6 +3367,12 @@ func (i *deploymentElasticsearchHotAutoscalingPtrType) ToDeploymentElasticsearch
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchHotAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchHotAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchHotAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchHotAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchHotAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchHotAutoscalingOutput) ElementType() reflect.Type {
@@ -3094,6 +3395,12 @@ func (o DeploymentElasticsearchHotAutoscalingOutput) ToDeploymentElasticsearchHo
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchHotAutoscaling) *DeploymentElasticsearchHotAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchHotAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchHotAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchHotAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchHotAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -3128,6 +3435,12 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) ToDeploymentElasticsearc
 
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) ToDeploymentElasticsearchHotAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchHotAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchHotAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchHotAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchHotAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) Elem() DeploymentElasticsearchHotAutoscalingOutput {
@@ -3234,6 +3547,12 @@ func (i DeploymentElasticsearchMasterArgs) ToDeploymentElasticsearchMasterOutput
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterOutput)
 }
 
+func (i DeploymentElasticsearchMasterArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMaster] {
+	return pulumix.Output[DeploymentElasticsearchMaster]{
+		OutputState: i.ToDeploymentElasticsearchMasterOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchMasterArgs) ToDeploymentElasticsearchMasterPtrOutput() DeploymentElasticsearchMasterPtrOutput {
 	return i.ToDeploymentElasticsearchMasterPtrOutputWithContext(context.Background())
 }
@@ -3275,6 +3594,12 @@ func (i *deploymentElasticsearchMasterPtrType) ToDeploymentElasticsearchMasterPt
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterPtrOutput)
 }
 
+func (i *deploymentElasticsearchMasterPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMaster] {
+	return pulumix.Output[*DeploymentElasticsearchMaster]{
+		OutputState: i.ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchMasterOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchMasterOutput) ElementType() reflect.Type {
@@ -3297,6 +3622,12 @@ func (o DeploymentElasticsearchMasterOutput) ToDeploymentElasticsearchMasterPtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMaster) *DeploymentElasticsearchMaster {
 		return &v
 	}).(DeploymentElasticsearchMasterPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMaster] {
+	return pulumix.Output[DeploymentElasticsearchMaster]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMasterOutput) Autoscaling() DeploymentElasticsearchMasterAutoscalingOutput {
@@ -3351,6 +3682,12 @@ func (o DeploymentElasticsearchMasterPtrOutput) ToDeploymentElasticsearchMasterP
 
 func (o DeploymentElasticsearchMasterPtrOutput) ToDeploymentElasticsearchMasterPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchMasterPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMaster] {
+	return pulumix.Output[*DeploymentElasticsearchMaster]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMasterPtrOutput) Elem() DeploymentElasticsearchMasterOutput {
@@ -3492,6 +3829,12 @@ func (i DeploymentElasticsearchMasterAutoscalingArgs) ToDeploymentElasticsearchM
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchMasterAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMasterAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchMasterAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchMasterAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchMasterAutoscalingArgs) ToDeploymentElasticsearchMasterAutoscalingPtrOutput() DeploymentElasticsearchMasterAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -3533,6 +3876,12 @@ func (i *deploymentElasticsearchMasterAutoscalingPtrType) ToDeploymentElasticsea
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMasterAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchMasterAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMasterAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchMasterAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchMasterAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchMasterAutoscalingOutput) ElementType() reflect.Type {
@@ -3555,6 +3904,12 @@ func (o DeploymentElasticsearchMasterAutoscalingOutput) ToDeploymentElasticsearc
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMasterAutoscaling) *DeploymentElasticsearchMasterAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchMasterAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMasterAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchMasterAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -3589,6 +3944,12 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) ToDeploymentElasticse
 
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) ToDeploymentElasticsearchMasterAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMasterAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMasterAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchMasterAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) Elem() DeploymentElasticsearchMasterAutoscalingOutput {
@@ -3695,6 +4056,12 @@ func (i DeploymentElasticsearchMlArgs) ToDeploymentElasticsearchMlOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlOutput)
 }
 
+func (i DeploymentElasticsearchMlArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMl] {
+	return pulumix.Output[DeploymentElasticsearchMl]{
+		OutputState: i.ToDeploymentElasticsearchMlOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchMlArgs) ToDeploymentElasticsearchMlPtrOutput() DeploymentElasticsearchMlPtrOutput {
 	return i.ToDeploymentElasticsearchMlPtrOutputWithContext(context.Background())
 }
@@ -3736,6 +4103,12 @@ func (i *deploymentElasticsearchMlPtrType) ToDeploymentElasticsearchMlPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlPtrOutput)
 }
 
+func (i *deploymentElasticsearchMlPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMl] {
+	return pulumix.Output[*DeploymentElasticsearchMl]{
+		OutputState: i.ToDeploymentElasticsearchMlPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchMlOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchMlOutput) ElementType() reflect.Type {
@@ -3758,6 +4131,12 @@ func (o DeploymentElasticsearchMlOutput) ToDeploymentElasticsearchMlPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMl) *DeploymentElasticsearchMl {
 		return &v
 	}).(DeploymentElasticsearchMlPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMl] {
+	return pulumix.Output[DeploymentElasticsearchMl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMlOutput) Autoscaling() DeploymentElasticsearchMlAutoscalingOutput {
@@ -3812,6 +4191,12 @@ func (o DeploymentElasticsearchMlPtrOutput) ToDeploymentElasticsearchMlPtrOutput
 
 func (o DeploymentElasticsearchMlPtrOutput) ToDeploymentElasticsearchMlPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchMlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMl] {
+	return pulumix.Output[*DeploymentElasticsearchMl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMlPtrOutput) Elem() DeploymentElasticsearchMlOutput {
@@ -3953,6 +4338,12 @@ func (i DeploymentElasticsearchMlAutoscalingArgs) ToDeploymentElasticsearchMlAut
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchMlAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMlAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchMlAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchMlAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchMlAutoscalingArgs) ToDeploymentElasticsearchMlAutoscalingPtrOutput() DeploymentElasticsearchMlAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -3994,6 +4385,12 @@ func (i *deploymentElasticsearchMlAutoscalingPtrType) ToDeploymentElasticsearchM
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchMlAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchMlAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMlAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchMlAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchMlAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchMlAutoscalingOutput) ElementType() reflect.Type {
@@ -4016,6 +4413,12 @@ func (o DeploymentElasticsearchMlAutoscalingOutput) ToDeploymentElasticsearchMlA
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchMlAutoscaling) *DeploymentElasticsearchMlAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchMlAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchMlAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchMlAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchMlAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -4050,6 +4453,12 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) ToDeploymentElasticsearch
 
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) ToDeploymentElasticsearchMlAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchMlAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchMlAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchMlAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchMlAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) Elem() DeploymentElasticsearchMlAutoscalingOutput {
@@ -4144,6 +4553,12 @@ func (i DeploymentElasticsearchRemoteClusterArgs) ToDeploymentElasticsearchRemot
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchRemoteClusterOutput)
 }
 
+func (i DeploymentElasticsearchRemoteClusterArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchRemoteCluster] {
+	return pulumix.Output[DeploymentElasticsearchRemoteCluster]{
+		OutputState: i.ToDeploymentElasticsearchRemoteClusterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentElasticsearchRemoteClusterArrayInput is an input type that accepts DeploymentElasticsearchRemoteClusterArray and DeploymentElasticsearchRemoteClusterArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchRemoteClusterArrayInput` via:
 //
@@ -4169,6 +4584,12 @@ func (i DeploymentElasticsearchRemoteClusterArray) ToDeploymentElasticsearchRemo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchRemoteClusterArrayOutput)
 }
 
+func (i DeploymentElasticsearchRemoteClusterArray) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchRemoteCluster] {
+	return pulumix.Output[[]DeploymentElasticsearchRemoteCluster]{
+		OutputState: i.ToDeploymentElasticsearchRemoteClusterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchRemoteClusterOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchRemoteClusterOutput) ElementType() reflect.Type {
@@ -4181,6 +4602,12 @@ func (o DeploymentElasticsearchRemoteClusterOutput) ToDeploymentElasticsearchRem
 
 func (o DeploymentElasticsearchRemoteClusterOutput) ToDeploymentElasticsearchRemoteClusterOutputWithContext(ctx context.Context) DeploymentElasticsearchRemoteClusterOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchRemoteClusterOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchRemoteCluster] {
+	return pulumix.Output[DeploymentElasticsearchRemoteCluster]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchRemoteClusterOutput) Alias() pulumi.StringOutput {
@@ -4211,6 +4638,12 @@ func (o DeploymentElasticsearchRemoteClusterArrayOutput) ToDeploymentElasticsear
 
 func (o DeploymentElasticsearchRemoteClusterArrayOutput) ToDeploymentElasticsearchRemoteClusterArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchRemoteClusterArrayOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchRemoteClusterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchRemoteCluster] {
+	return pulumix.Output[[]DeploymentElasticsearchRemoteCluster]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchRemoteClusterArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchRemoteClusterOutput {
@@ -4250,6 +4683,12 @@ func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotOu
 
 func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotOutput)
+}
+
+func (i DeploymentElasticsearchSnapshotArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshot] {
+	return pulumix.Output[DeploymentElasticsearchSnapshot]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i DeploymentElasticsearchSnapshotArgs) ToDeploymentElasticsearchSnapshotPtrOutput() DeploymentElasticsearchSnapshotPtrOutput {
@@ -4293,6 +4732,12 @@ func (i *deploymentElasticsearchSnapshotPtrType) ToDeploymentElasticsearchSnapsh
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotPtrOutput)
 }
 
+func (i *deploymentElasticsearchSnapshotPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshot] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshot]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchSnapshotOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchSnapshotOutput) ElementType() reflect.Type {
@@ -4317,6 +4762,12 @@ func (o DeploymentElasticsearchSnapshotOutput) ToDeploymentElasticsearchSnapshot
 	}).(DeploymentElasticsearchSnapshotPtrOutput)
 }
 
+func (o DeploymentElasticsearchSnapshotOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshot] {
+	return pulumix.Output[DeploymentElasticsearchSnapshot]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentElasticsearchSnapshotOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshot) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -4339,6 +4790,12 @@ func (o DeploymentElasticsearchSnapshotPtrOutput) ToDeploymentElasticsearchSnaps
 
 func (o DeploymentElasticsearchSnapshotPtrOutput) ToDeploymentElasticsearchSnapshotPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchSnapshotPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshot] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshot]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchSnapshotPtrOutput) Elem() DeploymentElasticsearchSnapshotOutput {
@@ -4400,6 +4857,12 @@ func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToDeploymentElasticsearch
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryOutput)
 }
 
+func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshotRepository] {
+	return pulumix.Output[DeploymentElasticsearchSnapshotRepository]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotRepositoryOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchSnapshotRepositoryArgs) ToDeploymentElasticsearchSnapshotRepositoryPtrOutput() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
 	return i.ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(context.Background())
 }
@@ -4441,6 +4904,12 @@ func (i *deploymentElasticsearchSnapshotRepositoryPtrType) ToDeploymentElasticse
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryPtrOutput)
 }
 
+func (i *deploymentElasticsearchSnapshotRepositoryPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshotRepository] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshotRepository]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchSnapshotRepositoryOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchSnapshotRepositoryOutput) ElementType() reflect.Type {
@@ -4465,6 +4934,12 @@ func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToDeploymentElasticsear
 	}).(DeploymentElasticsearchSnapshotRepositoryPtrOutput)
 }
 
+func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshotRepository] {
+	return pulumix.Output[DeploymentElasticsearchSnapshotRepository]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentElasticsearchSnapshotRepositoryOutput) Reference() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotRepository) *DeploymentElasticsearchSnapshotRepositoryReference {
 		return v.Reference
@@ -4483,6 +4958,12 @@ func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) ToDeploymentElastics
 
 func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) ToDeploymentElasticsearchSnapshotRepositoryPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshotRepository] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshotRepository]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) Elem() DeploymentElasticsearchSnapshotRepositoryOutput {
@@ -4535,6 +5016,12 @@ func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToDeploymentElas
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryReferenceOutput)
 }
 
+func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshotRepositoryReference] {
+	return pulumix.Output[DeploymentElasticsearchSnapshotRepositoryReference]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotRepositoryReferenceOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchSnapshotRepositoryReferenceArgs) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutput() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
 	return i.ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(context.Background())
 }
@@ -4576,6 +5063,12 @@ func (i *deploymentElasticsearchSnapshotRepositoryReferencePtrType) ToDeployment
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput)
 }
 
+func (i *deploymentElasticsearchSnapshotRepositoryReferencePtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshotRepositoryReference] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshotRepositoryReference]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchSnapshotRepositoryReferenceOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ElementType() reflect.Type {
@@ -4600,6 +5093,12 @@ func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToDeploymentEl
 	}).(DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput)
 }
 
+func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshotRepositoryReference] {
+	return pulumix.Output[DeploymentElasticsearchSnapshotRepositoryReference]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) RepositoryName() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotRepositoryReference) string { return v.RepositoryName }).(pulumi.StringOutput)
 }
@@ -4616,6 +5115,12 @@ func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) ToDeploymen
 
 func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) ToDeploymentElasticsearchSnapshotRepositoryReferencePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshotRepositoryReference] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshotRepositoryReference]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) Elem() DeploymentElasticsearchSnapshotRepositoryReferenceOutput {
@@ -4670,6 +5175,12 @@ func (i DeploymentElasticsearchSnapshotSourceArgs) ToDeploymentElasticsearchSnap
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotSourceOutput)
 }
 
+func (i DeploymentElasticsearchSnapshotSourceArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshotSource] {
+	return pulumix.Output[DeploymentElasticsearchSnapshotSource]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotSourceOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchSnapshotSourceArgs) ToDeploymentElasticsearchSnapshotSourcePtrOutput() DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return i.ToDeploymentElasticsearchSnapshotSourcePtrOutputWithContext(context.Background())
 }
@@ -4711,6 +5222,12 @@ func (i *deploymentElasticsearchSnapshotSourcePtrType) ToDeploymentElasticsearch
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
+func (i *deploymentElasticsearchSnapshotSourcePtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshotSource] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshotSource]{
+		OutputState: i.ToDeploymentElasticsearchSnapshotSourcePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchSnapshotSourceOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchSnapshotSourceOutput) ElementType() reflect.Type {
@@ -4735,6 +5252,12 @@ func (o DeploymentElasticsearchSnapshotSourceOutput) ToDeploymentElasticsearchSn
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
+func (o DeploymentElasticsearchSnapshotSourceOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchSnapshotSource] {
+	return pulumix.Output[DeploymentElasticsearchSnapshotSource]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentElasticsearchSnapshotSourceOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotSource) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
 }
@@ -4755,6 +5278,12 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) ToDeploymentElasticsearc
 
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) ToDeploymentElasticsearchSnapshotSourcePtrOutputWithContext(ctx context.Context) DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchSnapshotSourcePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchSnapshotSource] {
+	return pulumix.Output[*DeploymentElasticsearchSnapshotSource]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) Elem() DeploymentElasticsearchSnapshotSourceOutput {
@@ -4820,6 +5349,12 @@ func (i DeploymentElasticsearchTrustAccountArgs) ToDeploymentElasticsearchTrustA
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTrustAccountOutput)
 }
 
+func (i DeploymentElasticsearchTrustAccountArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchTrustAccount] {
+	return pulumix.Output[DeploymentElasticsearchTrustAccount]{
+		OutputState: i.ToDeploymentElasticsearchTrustAccountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentElasticsearchTrustAccountArrayInput is an input type that accepts DeploymentElasticsearchTrustAccountArray and DeploymentElasticsearchTrustAccountArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTrustAccountArrayInput` via:
 //
@@ -4845,6 +5380,12 @@ func (i DeploymentElasticsearchTrustAccountArray) ToDeploymentElasticsearchTrust
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTrustAccountArrayOutput)
 }
 
+func (i DeploymentElasticsearchTrustAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchTrustAccount] {
+	return pulumix.Output[[]DeploymentElasticsearchTrustAccount]{
+		OutputState: i.ToDeploymentElasticsearchTrustAccountArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchTrustAccountOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchTrustAccountOutput) ElementType() reflect.Type {
@@ -4857,6 +5398,12 @@ func (o DeploymentElasticsearchTrustAccountOutput) ToDeploymentElasticsearchTrus
 
 func (o DeploymentElasticsearchTrustAccountOutput) ToDeploymentElasticsearchTrustAccountOutputWithContext(ctx context.Context) DeploymentElasticsearchTrustAccountOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchTrustAccountOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchTrustAccount] {
+	return pulumix.Output[DeploymentElasticsearchTrustAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchTrustAccountOutput) AccountId() pulumi.StringOutput {
@@ -4883,6 +5430,12 @@ func (o DeploymentElasticsearchTrustAccountArrayOutput) ToDeploymentElasticsearc
 
 func (o DeploymentElasticsearchTrustAccountArrayOutput) ToDeploymentElasticsearchTrustAccountArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchTrustAccountArrayOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchTrustAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchTrustAccount] {
+	return pulumix.Output[[]DeploymentElasticsearchTrustAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchTrustAccountArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchTrustAccountOutput {
@@ -4926,6 +5479,12 @@ func (i DeploymentElasticsearchTrustExternalArgs) ToDeploymentElasticsearchTrust
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTrustExternalOutput)
 }
 
+func (i DeploymentElasticsearchTrustExternalArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchTrustExternal] {
+	return pulumix.Output[DeploymentElasticsearchTrustExternal]{
+		OutputState: i.ToDeploymentElasticsearchTrustExternalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentElasticsearchTrustExternalArrayInput is an input type that accepts DeploymentElasticsearchTrustExternalArray and DeploymentElasticsearchTrustExternalArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchTrustExternalArrayInput` via:
 //
@@ -4951,6 +5510,12 @@ func (i DeploymentElasticsearchTrustExternalArray) ToDeploymentElasticsearchTrus
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchTrustExternalArrayOutput)
 }
 
+func (i DeploymentElasticsearchTrustExternalArray) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchTrustExternal] {
+	return pulumix.Output[[]DeploymentElasticsearchTrustExternal]{
+		OutputState: i.ToDeploymentElasticsearchTrustExternalArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchTrustExternalOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchTrustExternalOutput) ElementType() reflect.Type {
@@ -4963,6 +5528,12 @@ func (o DeploymentElasticsearchTrustExternalOutput) ToDeploymentElasticsearchTru
 
 func (o DeploymentElasticsearchTrustExternalOutput) ToDeploymentElasticsearchTrustExternalOutputWithContext(ctx context.Context) DeploymentElasticsearchTrustExternalOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchTrustExternalOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchTrustExternal] {
+	return pulumix.Output[DeploymentElasticsearchTrustExternal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchTrustExternalOutput) RelationshipId() pulumi.StringOutput {
@@ -4989,6 +5560,12 @@ func (o DeploymentElasticsearchTrustExternalArrayOutput) ToDeploymentElasticsear
 
 func (o DeploymentElasticsearchTrustExternalArrayOutput) ToDeploymentElasticsearchTrustExternalArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchTrustExternalArrayOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchTrustExternalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentElasticsearchTrustExternal] {
+	return pulumix.Output[[]DeploymentElasticsearchTrustExternal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchTrustExternalArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchTrustExternalOutput {
@@ -5046,6 +5623,12 @@ func (i DeploymentElasticsearchWarmArgs) ToDeploymentElasticsearchWarmOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmOutput)
 }
 
+func (i DeploymentElasticsearchWarmArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchWarm] {
+	return pulumix.Output[DeploymentElasticsearchWarm]{
+		OutputState: i.ToDeploymentElasticsearchWarmOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchWarmArgs) ToDeploymentElasticsearchWarmPtrOutput() DeploymentElasticsearchWarmPtrOutput {
 	return i.ToDeploymentElasticsearchWarmPtrOutputWithContext(context.Background())
 }
@@ -5087,6 +5670,12 @@ func (i *deploymentElasticsearchWarmPtrType) ToDeploymentElasticsearchWarmPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmPtrOutput)
 }
 
+func (i *deploymentElasticsearchWarmPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchWarm] {
+	return pulumix.Output[*DeploymentElasticsearchWarm]{
+		OutputState: i.ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchWarmOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchWarmOutput) ElementType() reflect.Type {
@@ -5109,6 +5698,12 @@ func (o DeploymentElasticsearchWarmOutput) ToDeploymentElasticsearchWarmPtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchWarm) *DeploymentElasticsearchWarm {
 		return &v
 	}).(DeploymentElasticsearchWarmPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchWarm] {
+	return pulumix.Output[DeploymentElasticsearchWarm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchWarmOutput) Autoscaling() DeploymentElasticsearchWarmAutoscalingOutput {
@@ -5163,6 +5758,12 @@ func (o DeploymentElasticsearchWarmPtrOutput) ToDeploymentElasticsearchWarmPtrOu
 
 func (o DeploymentElasticsearchWarmPtrOutput) ToDeploymentElasticsearchWarmPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchWarmPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchWarm] {
+	return pulumix.Output[*DeploymentElasticsearchWarm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchWarmPtrOutput) Elem() DeploymentElasticsearchWarmOutput {
@@ -5304,6 +5905,12 @@ func (i DeploymentElasticsearchWarmAutoscalingArgs) ToDeploymentElasticsearchWar
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmAutoscalingOutput)
 }
 
+func (i DeploymentElasticsearchWarmAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchWarmAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchWarmAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchWarmAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentElasticsearchWarmAutoscalingArgs) ToDeploymentElasticsearchWarmAutoscalingPtrOutput() DeploymentElasticsearchWarmAutoscalingPtrOutput {
 	return i.ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(context.Background())
 }
@@ -5345,6 +5952,12 @@ func (i *deploymentElasticsearchWarmAutoscalingPtrType) ToDeploymentElasticsearc
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchWarmAutoscalingPtrOutput)
 }
 
+func (i *deploymentElasticsearchWarmAutoscalingPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchWarmAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchWarmAutoscaling]{
+		OutputState: i.ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentElasticsearchWarmAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchWarmAutoscalingOutput) ElementType() reflect.Type {
@@ -5367,6 +5980,12 @@ func (o DeploymentElasticsearchWarmAutoscalingOutput) ToDeploymentElasticsearchW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentElasticsearchWarmAutoscaling) *DeploymentElasticsearchWarmAutoscaling {
 		return &v
 	}).(DeploymentElasticsearchWarmAutoscalingPtrOutput)
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchWarmAutoscaling] {
+	return pulumix.Output[DeploymentElasticsearchWarmAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
@@ -5401,6 +6020,12 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) ToDeploymentElasticsear
 
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) ToDeploymentElasticsearchWarmAutoscalingPtrOutputWithContext(ctx context.Context) DeploymentElasticsearchWarmAutoscalingPtrOutput {
 	return o
+}
+
+func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchWarmAutoscaling] {
+	return pulumix.Output[*DeploymentElasticsearchWarmAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) Elem() DeploymentElasticsearchWarmAutoscalingOutput {
@@ -5521,6 +6146,12 @@ func (i DeploymentEnterpriseSearchArgs) ToDeploymentEnterpriseSearchOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchOutput)
 }
 
+func (i DeploymentEnterpriseSearchArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentEnterpriseSearch] {
+	return pulumix.Output[DeploymentEnterpriseSearch]{
+		OutputState: i.ToDeploymentEnterpriseSearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentEnterpriseSearchArgs) ToDeploymentEnterpriseSearchPtrOutput() DeploymentEnterpriseSearchPtrOutput {
 	return i.ToDeploymentEnterpriseSearchPtrOutputWithContext(context.Background())
 }
@@ -5562,6 +6193,12 @@ func (i *deploymentEnterpriseSearchPtrType) ToDeploymentEnterpriseSearchPtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchPtrOutput)
 }
 
+func (i *deploymentEnterpriseSearchPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentEnterpriseSearch] {
+	return pulumix.Output[*DeploymentEnterpriseSearch]{
+		OutputState: i.ToDeploymentEnterpriseSearchPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentEnterpriseSearchOutput struct{ *pulumi.OutputState }
 
 func (DeploymentEnterpriseSearchOutput) ElementType() reflect.Type {
@@ -5584,6 +6221,12 @@ func (o DeploymentEnterpriseSearchOutput) ToDeploymentEnterpriseSearchPtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentEnterpriseSearch) *DeploymentEnterpriseSearch {
 		return &v
 	}).(DeploymentEnterpriseSearchPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentEnterpriseSearch] {
+	return pulumix.Output[DeploymentEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Optionally define the Enterprise Search configuration options for the Enterprise Search Server
@@ -5657,6 +6300,12 @@ func (o DeploymentEnterpriseSearchPtrOutput) ToDeploymentEnterpriseSearchPtrOutp
 
 func (o DeploymentEnterpriseSearchPtrOutput) ToDeploymentEnterpriseSearchPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchPtrOutput {
 	return o
+}
+
+func (o DeploymentEnterpriseSearchPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentEnterpriseSearch] {
+	return pulumix.Output[*DeploymentEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentEnterpriseSearchPtrOutput) Elem() DeploymentEnterpriseSearchOutput {
@@ -5837,6 +6486,12 @@ func (i DeploymentEnterpriseSearchConfigArgs) ToDeploymentEnterpriseSearchConfig
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchConfigOutput)
 }
 
+func (i DeploymentEnterpriseSearchConfigArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentEnterpriseSearchConfig] {
+	return pulumix.Output[DeploymentEnterpriseSearchConfig]{
+		OutputState: i.ToDeploymentEnterpriseSearchConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentEnterpriseSearchConfigArgs) ToDeploymentEnterpriseSearchConfigPtrOutput() DeploymentEnterpriseSearchConfigPtrOutput {
 	return i.ToDeploymentEnterpriseSearchConfigPtrOutputWithContext(context.Background())
 }
@@ -5878,6 +6533,12 @@ func (i *deploymentEnterpriseSearchConfigPtrType) ToDeploymentEnterpriseSearchCo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentEnterpriseSearchConfigPtrOutput)
 }
 
+func (i *deploymentEnterpriseSearchConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentEnterpriseSearchConfig] {
+	return pulumix.Output[*DeploymentEnterpriseSearchConfig]{
+		OutputState: i.ToDeploymentEnterpriseSearchConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentEnterpriseSearchConfigOutput struct{ *pulumi.OutputState }
 
 func (DeploymentEnterpriseSearchConfigOutput) ElementType() reflect.Type {
@@ -5900,6 +6561,12 @@ func (o DeploymentEnterpriseSearchConfigOutput) ToDeploymentEnterpriseSearchConf
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentEnterpriseSearchConfig) *DeploymentEnterpriseSearchConfig {
 		return &v
 	}).(DeploymentEnterpriseSearchConfigPtrOutput)
+}
+
+func (o DeploymentEnterpriseSearchConfigOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentEnterpriseSearchConfig] {
+	return pulumix.Output[DeploymentEnterpriseSearchConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentEnterpriseSearchConfigOutput) DockerImage() pulumi.StringPtrOutput {
@@ -5934,6 +6601,12 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) ToDeploymentEnterpriseSearchC
 
 func (o DeploymentEnterpriseSearchConfigPtrOutput) ToDeploymentEnterpriseSearchConfigPtrOutputWithContext(ctx context.Context) DeploymentEnterpriseSearchConfigPtrOutput {
 	return o
+}
+
+func (o DeploymentEnterpriseSearchConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentEnterpriseSearchConfig] {
+	return pulumix.Output[*DeploymentEnterpriseSearchConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentEnterpriseSearchConfigPtrOutput) Elem() DeploymentEnterpriseSearchConfigOutput {
@@ -6052,6 +6725,12 @@ func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerOutput)
 }
 
+func (i DeploymentIntegrationsServerArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentIntegrationsServer] {
+	return pulumix.Output[DeploymentIntegrationsServer]{
+		OutputState: i.ToDeploymentIntegrationsServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentIntegrationsServerArgs) ToDeploymentIntegrationsServerPtrOutput() DeploymentIntegrationsServerPtrOutput {
 	return i.ToDeploymentIntegrationsServerPtrOutputWithContext(context.Background())
 }
@@ -6093,6 +6772,12 @@ func (i *deploymentIntegrationsServerPtrType) ToDeploymentIntegrationsServerPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerPtrOutput)
 }
 
+func (i *deploymentIntegrationsServerPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentIntegrationsServer] {
+	return pulumix.Output[*DeploymentIntegrationsServer]{
+		OutputState: i.ToDeploymentIntegrationsServerPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentIntegrationsServerOutput struct{ *pulumi.OutputState }
 
 func (DeploymentIntegrationsServerOutput) ElementType() reflect.Type {
@@ -6115,6 +6800,12 @@ func (o DeploymentIntegrationsServerOutput) ToDeploymentIntegrationsServerPtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServer) *DeploymentIntegrationsServer {
 		return &v
 	}).(DeploymentIntegrationsServerPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentIntegrationsServer] {
+	return pulumix.Output[DeploymentIntegrationsServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Optionally define the Integrations Server configuration options for the IntegrationsServer Server
@@ -6181,6 +6872,12 @@ func (o DeploymentIntegrationsServerPtrOutput) ToDeploymentIntegrationsServerPtr
 
 func (o DeploymentIntegrationsServerPtrOutput) ToDeploymentIntegrationsServerPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerPtrOutput {
 	return o
+}
+
+func (o DeploymentIntegrationsServerPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentIntegrationsServer] {
+	return pulumix.Output[*DeploymentIntegrationsServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentIntegrationsServerPtrOutput) Elem() DeploymentIntegrationsServerOutput {
@@ -6346,6 +7043,12 @@ func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerCo
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerConfigOutput)
 }
 
+func (i DeploymentIntegrationsServerConfigArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentIntegrationsServerConfig] {
+	return pulumix.Output[DeploymentIntegrationsServerConfig]{
+		OutputState: i.ToDeploymentIntegrationsServerConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentIntegrationsServerConfigArgs) ToDeploymentIntegrationsServerConfigPtrOutput() DeploymentIntegrationsServerConfigPtrOutput {
 	return i.ToDeploymentIntegrationsServerConfigPtrOutputWithContext(context.Background())
 }
@@ -6387,6 +7090,12 @@ func (i *deploymentIntegrationsServerConfigPtrType) ToDeploymentIntegrationsServ
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerConfigPtrOutput)
 }
 
+func (i *deploymentIntegrationsServerConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentIntegrationsServerConfig] {
+	return pulumix.Output[*DeploymentIntegrationsServerConfig]{
+		OutputState: i.ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentIntegrationsServerConfigOutput struct{ *pulumi.OutputState }
 
 func (DeploymentIntegrationsServerConfigOutput) ElementType() reflect.Type {
@@ -6409,6 +7118,12 @@ func (o DeploymentIntegrationsServerConfigOutput) ToDeploymentIntegrationsServer
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentIntegrationsServerConfig) *DeploymentIntegrationsServerConfig {
 		return &v
 	}).(DeploymentIntegrationsServerConfigPtrOutput)
+}
+
+func (o DeploymentIntegrationsServerConfigOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentIntegrationsServerConfig] {
+	return pulumix.Output[DeploymentIntegrationsServerConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentIntegrationsServerConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
@@ -6447,6 +7162,12 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) ToDeploymentIntegrationsSer
 
 func (o DeploymentIntegrationsServerConfigPtrOutput) ToDeploymentIntegrationsServerConfigPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerConfigPtrOutput {
 	return o
+}
+
+func (o DeploymentIntegrationsServerConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentIntegrationsServerConfig] {
+	return pulumix.Output[*DeploymentIntegrationsServerConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentIntegrationsServerConfigPtrOutput) Elem() DeploymentIntegrationsServerConfigOutput {
@@ -6546,6 +7267,12 @@ func (i DeploymentIntegrationsServerEndpointsArgs) ToDeploymentIntegrationsServe
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerEndpointsOutput)
 }
 
+func (i DeploymentIntegrationsServerEndpointsArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentIntegrationsServerEndpoints] {
+	return pulumix.Output[DeploymentIntegrationsServerEndpoints]{
+		OutputState: i.ToDeploymentIntegrationsServerEndpointsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentIntegrationsServerEndpointsArgs) ToDeploymentIntegrationsServerEndpointsPtrOutput() DeploymentIntegrationsServerEndpointsPtrOutput {
 	return i.ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(context.Background())
 }
@@ -6587,6 +7314,12 @@ func (i *deploymentIntegrationsServerEndpointsPtrType) ToDeploymentIntegrationsS
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentIntegrationsServerEndpointsPtrOutput)
 }
 
+func (i *deploymentIntegrationsServerEndpointsPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentIntegrationsServerEndpoints] {
+	return pulumix.Output[*DeploymentIntegrationsServerEndpoints]{
+		OutputState: i.ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentIntegrationsServerEndpointsOutput struct{ *pulumi.OutputState }
 
 func (DeploymentIntegrationsServerEndpointsOutput) ElementType() reflect.Type {
@@ -6611,6 +7344,12 @@ func (o DeploymentIntegrationsServerEndpointsOutput) ToDeploymentIntegrationsSer
 	}).(DeploymentIntegrationsServerEndpointsPtrOutput)
 }
 
+func (o DeploymentIntegrationsServerEndpointsOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentIntegrationsServerEndpoints] {
+	return pulumix.Output[DeploymentIntegrationsServerEndpoints]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeploymentIntegrationsServerEndpointsOutput) Apm() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerEndpoints) string { return v.Apm }).(pulumi.StringOutput)
 }
@@ -6631,6 +7370,12 @@ func (o DeploymentIntegrationsServerEndpointsPtrOutput) ToDeploymentIntegrations
 
 func (o DeploymentIntegrationsServerEndpointsPtrOutput) ToDeploymentIntegrationsServerEndpointsPtrOutputWithContext(ctx context.Context) DeploymentIntegrationsServerEndpointsPtrOutput {
 	return o
+}
+
+func (o DeploymentIntegrationsServerEndpointsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentIntegrationsServerEndpoints] {
+	return pulumix.Output[*DeploymentIntegrationsServerEndpoints]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentIntegrationsServerEndpointsPtrOutput) Elem() DeploymentIntegrationsServerEndpointsOutput {
@@ -6718,6 +7463,12 @@ func (i DeploymentKibanaArgs) ToDeploymentKibanaOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaOutput)
 }
 
+func (i DeploymentKibanaArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentKibana] {
+	return pulumix.Output[DeploymentKibana]{
+		OutputState: i.ToDeploymentKibanaOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentKibanaArgs) ToDeploymentKibanaPtrOutput() DeploymentKibanaPtrOutput {
 	return i.ToDeploymentKibanaPtrOutputWithContext(context.Background())
 }
@@ -6759,6 +7510,12 @@ func (i *deploymentKibanaPtrType) ToDeploymentKibanaPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaPtrOutput)
 }
 
+func (i *deploymentKibanaPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentKibana] {
+	return pulumix.Output[*DeploymentKibana]{
+		OutputState: i.ToDeploymentKibanaPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentKibanaOutput struct{ *pulumi.OutputState }
 
 func (DeploymentKibanaOutput) ElementType() reflect.Type {
@@ -6781,6 +7538,12 @@ func (o DeploymentKibanaOutput) ToDeploymentKibanaPtrOutputWithContext(ctx conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentKibana) *DeploymentKibana {
 		return &v
 	}).(DeploymentKibanaPtrOutput)
+}
+
+func (o DeploymentKibanaOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentKibana] {
+	return pulumix.Output[DeploymentKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Optionally define the Kibana configuration options for the Kibana Server
@@ -6842,6 +7605,12 @@ func (o DeploymentKibanaPtrOutput) ToDeploymentKibanaPtrOutput() DeploymentKiban
 
 func (o DeploymentKibanaPtrOutput) ToDeploymentKibanaPtrOutputWithContext(ctx context.Context) DeploymentKibanaPtrOutput {
 	return o
+}
+
+func (o DeploymentKibanaPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentKibana] {
+	return pulumix.Output[*DeploymentKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentKibanaPtrOutput) Elem() DeploymentKibanaOutput {
@@ -6995,6 +7764,12 @@ func (i DeploymentKibanaConfigArgs) ToDeploymentKibanaConfigOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaConfigOutput)
 }
 
+func (i DeploymentKibanaConfigArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentKibanaConfig] {
+	return pulumix.Output[DeploymentKibanaConfig]{
+		OutputState: i.ToDeploymentKibanaConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentKibanaConfigArgs) ToDeploymentKibanaConfigPtrOutput() DeploymentKibanaConfigPtrOutput {
 	return i.ToDeploymentKibanaConfigPtrOutputWithContext(context.Background())
 }
@@ -7036,6 +7811,12 @@ func (i *deploymentKibanaConfigPtrType) ToDeploymentKibanaConfigPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentKibanaConfigPtrOutput)
 }
 
+func (i *deploymentKibanaConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentKibanaConfig] {
+	return pulumix.Output[*DeploymentKibanaConfig]{
+		OutputState: i.ToDeploymentKibanaConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentKibanaConfigOutput struct{ *pulumi.OutputState }
 
 func (DeploymentKibanaConfigOutput) ElementType() reflect.Type {
@@ -7058,6 +7839,12 @@ func (o DeploymentKibanaConfigOutput) ToDeploymentKibanaConfigPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentKibanaConfig) *DeploymentKibanaConfig {
 		return &v
 	}).(DeploymentKibanaConfigPtrOutput)
+}
+
+func (o DeploymentKibanaConfigOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentKibanaConfig] {
+	return pulumix.Output[DeploymentKibanaConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentKibanaConfigOutput) DockerImage() pulumi.StringPtrOutput {
@@ -7092,6 +7879,12 @@ func (o DeploymentKibanaConfigPtrOutput) ToDeploymentKibanaConfigPtrOutput() Dep
 
 func (o DeploymentKibanaConfigPtrOutput) ToDeploymentKibanaConfigPtrOutputWithContext(ctx context.Context) DeploymentKibanaConfigPtrOutput {
 	return o
+}
+
+func (o DeploymentKibanaConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentKibanaConfig] {
+	return pulumix.Output[*DeploymentKibanaConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentKibanaConfigPtrOutput) Elem() DeploymentKibanaConfigOutput {
@@ -7186,6 +7979,12 @@ func (i DeploymentObservabilityArgs) ToDeploymentObservabilityOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentObservabilityOutput)
 }
 
+func (i DeploymentObservabilityArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentObservability] {
+	return pulumix.Output[DeploymentObservability]{
+		OutputState: i.ToDeploymentObservabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DeploymentObservabilityArgs) ToDeploymentObservabilityPtrOutput() DeploymentObservabilityPtrOutput {
 	return i.ToDeploymentObservabilityPtrOutputWithContext(context.Background())
 }
@@ -7227,6 +8026,12 @@ func (i *deploymentObservabilityPtrType) ToDeploymentObservabilityPtrOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentObservabilityPtrOutput)
 }
 
+func (i *deploymentObservabilityPtrType) ToOutput(ctx context.Context) pulumix.Output[*DeploymentObservability] {
+	return pulumix.Output[*DeploymentObservability]{
+		OutputState: i.ToDeploymentObservabilityPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentObservabilityOutput struct{ *pulumi.OutputState }
 
 func (DeploymentObservabilityOutput) ElementType() reflect.Type {
@@ -7249,6 +8054,12 @@ func (o DeploymentObservabilityOutput) ToDeploymentObservabilityPtrOutputWithCon
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentObservability) *DeploymentObservability {
 		return &v
 	}).(DeploymentObservabilityPtrOutput)
+}
+
+func (o DeploymentObservabilityOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentObservability] {
+	return pulumix.Output[DeploymentObservability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentObservabilityOutput) DeploymentId() pulumi.StringOutput {
@@ -7279,6 +8090,12 @@ func (o DeploymentObservabilityPtrOutput) ToDeploymentObservabilityPtrOutput() D
 
 func (o DeploymentObservabilityPtrOutput) ToDeploymentObservabilityPtrOutputWithContext(ctx context.Context) DeploymentObservabilityPtrOutput {
 	return o
+}
+
+func (o DeploymentObservabilityPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentObservability] {
+	return pulumix.Output[*DeploymentObservability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentObservabilityPtrOutput) Elem() DeploymentObservabilityOutput {
@@ -7376,6 +8193,12 @@ func (i DeploymentTrafficFilterRuleArgs) ToDeploymentTrafficFilterRuleOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterRuleOutput)
 }
 
+func (i DeploymentTrafficFilterRuleArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentTrafficFilterRule] {
+	return pulumix.Output[DeploymentTrafficFilterRule]{
+		OutputState: i.ToDeploymentTrafficFilterRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeploymentTrafficFilterRuleArrayInput is an input type that accepts DeploymentTrafficFilterRuleArray and DeploymentTrafficFilterRuleArrayOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterRuleArrayInput` via:
 //
@@ -7401,6 +8224,12 @@ func (i DeploymentTrafficFilterRuleArray) ToDeploymentTrafficFilterRuleArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterRuleArrayOutput)
 }
 
+func (i DeploymentTrafficFilterRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentTrafficFilterRule] {
+	return pulumix.Output[[]DeploymentTrafficFilterRule]{
+		OutputState: i.ToDeploymentTrafficFilterRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeploymentTrafficFilterRuleOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterRuleOutput) ElementType() reflect.Type {
@@ -7413,6 +8242,12 @@ func (o DeploymentTrafficFilterRuleOutput) ToDeploymentTrafficFilterRuleOutput()
 
 func (o DeploymentTrafficFilterRuleOutput) ToDeploymentTrafficFilterRuleOutputWithContext(ctx context.Context) DeploymentTrafficFilterRuleOutput {
 	return o
+}
+
+func (o DeploymentTrafficFilterRuleOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentTrafficFilterRule] {
+	return pulumix.Output[DeploymentTrafficFilterRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
@@ -7452,6 +8287,12 @@ func (o DeploymentTrafficFilterRuleArrayOutput) ToDeploymentTrafficFilterRuleArr
 
 func (o DeploymentTrafficFilterRuleArrayOutput) ToDeploymentTrafficFilterRuleArrayOutputWithContext(ctx context.Context) DeploymentTrafficFilterRuleArrayOutput {
 	return o
+}
+
+func (o DeploymentTrafficFilterRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DeploymentTrafficFilterRule] {
+	return pulumix.Output[[]DeploymentTrafficFilterRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeploymentTrafficFilterRuleArrayOutput) Index(i pulumi.IntInput) DeploymentTrafficFilterRuleOutput {
@@ -7497,6 +8338,12 @@ func (i SnapshotRepositoryGenericArgs) ToSnapshotRepositoryGenericOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryGenericOutput)
 }
 
+func (i SnapshotRepositoryGenericArgs) ToOutput(ctx context.Context) pulumix.Output[SnapshotRepositoryGeneric] {
+	return pulumix.Output[SnapshotRepositoryGeneric]{
+		OutputState: i.ToSnapshotRepositoryGenericOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i SnapshotRepositoryGenericArgs) ToSnapshotRepositoryGenericPtrOutput() SnapshotRepositoryGenericPtrOutput {
 	return i.ToSnapshotRepositoryGenericPtrOutputWithContext(context.Background())
 }
@@ -7538,6 +8385,12 @@ func (i *snapshotRepositoryGenericPtrType) ToSnapshotRepositoryGenericPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryGenericPtrOutput)
 }
 
+func (i *snapshotRepositoryGenericPtrType) ToOutput(ctx context.Context) pulumix.Output[*SnapshotRepositoryGeneric] {
+	return pulumix.Output[*SnapshotRepositoryGeneric]{
+		OutputState: i.ToSnapshotRepositoryGenericPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SnapshotRepositoryGenericOutput struct{ *pulumi.OutputState }
 
 func (SnapshotRepositoryGenericOutput) ElementType() reflect.Type {
@@ -7562,6 +8415,12 @@ func (o SnapshotRepositoryGenericOutput) ToSnapshotRepositoryGenericPtrOutputWit
 	}).(SnapshotRepositoryGenericPtrOutput)
 }
 
+func (o SnapshotRepositoryGenericOutput) ToOutput(ctx context.Context) pulumix.Output[SnapshotRepositoryGeneric] {
+	return pulumix.Output[SnapshotRepositoryGeneric]{
+		OutputState: o.OutputState,
+	}
+}
+
 // An arbitrary JSON object containing the repository settings.
 func (o SnapshotRepositoryGenericOutput) Settings() pulumi.StringOutput {
 	return o.ApplyT(func(v SnapshotRepositoryGeneric) string { return v.Settings }).(pulumi.StringOutput)
@@ -7584,6 +8443,12 @@ func (o SnapshotRepositoryGenericPtrOutput) ToSnapshotRepositoryGenericPtrOutput
 
 func (o SnapshotRepositoryGenericPtrOutput) ToSnapshotRepositoryGenericPtrOutputWithContext(ctx context.Context) SnapshotRepositoryGenericPtrOutput {
 	return o
+}
+
+func (o SnapshotRepositoryGenericPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SnapshotRepositoryGeneric] {
+	return pulumix.Output[*SnapshotRepositoryGeneric]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SnapshotRepositoryGenericPtrOutput) Elem() SnapshotRepositoryGenericOutput {
@@ -7673,6 +8538,12 @@ func (i SnapshotRepositoryS3Args) ToSnapshotRepositoryS3OutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryS3Output)
 }
 
+func (i SnapshotRepositoryS3Args) ToOutput(ctx context.Context) pulumix.Output[SnapshotRepositoryS3] {
+	return pulumix.Output[SnapshotRepositoryS3]{
+		OutputState: i.ToSnapshotRepositoryS3OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i SnapshotRepositoryS3Args) ToSnapshotRepositoryS3PtrOutput() SnapshotRepositoryS3PtrOutput {
 	return i.ToSnapshotRepositoryS3PtrOutputWithContext(context.Background())
 }
@@ -7714,6 +8585,12 @@ func (i *snapshotRepositoryS3PtrType) ToSnapshotRepositoryS3PtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotRepositoryS3PtrOutput)
 }
 
+func (i *snapshotRepositoryS3PtrType) ToOutput(ctx context.Context) pulumix.Output[*SnapshotRepositoryS3] {
+	return pulumix.Output[*SnapshotRepositoryS3]{
+		OutputState: i.ToSnapshotRepositoryS3PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SnapshotRepositoryS3Output struct{ *pulumi.OutputState }
 
 func (SnapshotRepositoryS3Output) ElementType() reflect.Type {
@@ -7736,6 +8613,12 @@ func (o SnapshotRepositoryS3Output) ToSnapshotRepositoryS3PtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnapshotRepositoryS3) *SnapshotRepositoryS3 {
 		return &v
 	}).(SnapshotRepositoryS3PtrOutput)
+}
+
+func (o SnapshotRepositoryS3Output) ToOutput(ctx context.Context) pulumix.Output[SnapshotRepositoryS3] {
+	return pulumix.Output[SnapshotRepositoryS3]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
@@ -7785,6 +8668,12 @@ func (o SnapshotRepositoryS3PtrOutput) ToSnapshotRepositoryS3PtrOutput() Snapsho
 
 func (o SnapshotRepositoryS3PtrOutput) ToSnapshotRepositoryS3PtrOutputWithContext(ctx context.Context) SnapshotRepositoryS3PtrOutput {
 	return o
+}
+
+func (o SnapshotRepositoryS3PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SnapshotRepositoryS3] {
+	return pulumix.Output[*SnapshotRepositoryS3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SnapshotRepositoryS3PtrOutput) Elem() SnapshotRepositoryS3Output {
@@ -7932,6 +8821,12 @@ func (i GetDeploymentApmArgs) ToGetDeploymentApmOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentApmOutput)
 }
 
+func (i GetDeploymentApmArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentApm] {
+	return pulumix.Output[GetDeploymentApm]{
+		OutputState: i.ToGetDeploymentApmOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentApmArrayInput is an input type that accepts GetDeploymentApmArray and GetDeploymentApmArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentApmArrayInput` via:
 //
@@ -7957,6 +8852,12 @@ func (i GetDeploymentApmArray) ToGetDeploymentApmArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentApmArrayOutput)
 }
 
+func (i GetDeploymentApmArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentApm] {
+	return pulumix.Output[[]GetDeploymentApm]{
+		OutputState: i.ToGetDeploymentApmArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentApmOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentApmOutput) ElementType() reflect.Type {
@@ -7969,6 +8870,12 @@ func (o GetDeploymentApmOutput) ToGetDeploymentApmOutput() GetDeploymentApmOutpu
 
 func (o GetDeploymentApmOutput) ToGetDeploymentApmOutputWithContext(ctx context.Context) GetDeploymentApmOutput {
 	return o
+}
+
+func (o GetDeploymentApmOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentApm] {
+	return pulumix.Output[GetDeploymentApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The locally-unique user-specified id of an APM Resource.
@@ -8030,6 +8937,12 @@ func (o GetDeploymentApmArrayOutput) ToGetDeploymentApmArrayOutputWithContext(ct
 	return o
 }
 
+func (o GetDeploymentApmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentApm] {
+	return pulumix.Output[[]GetDeploymentApm]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentApmArrayOutput) Index(i pulumi.IntInput) GetDeploymentApmOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentApm {
 		return vs[0].([]GetDeploymentApm)[vs[1].(int)]
@@ -8073,6 +8986,12 @@ func (i GetDeploymentApmTopologyArgs) ToGetDeploymentApmTopologyOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentApmTopologyOutput)
 }
 
+func (i GetDeploymentApmTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentApmTopology] {
+	return pulumix.Output[GetDeploymentApmTopology]{
+		OutputState: i.ToGetDeploymentApmTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentApmTopologyArrayInput is an input type that accepts GetDeploymentApmTopologyArray and GetDeploymentApmTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentApmTopologyArrayInput` via:
 //
@@ -8098,6 +9017,12 @@ func (i GetDeploymentApmTopologyArray) ToGetDeploymentApmTopologyArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentApmTopologyArrayOutput)
 }
 
+func (i GetDeploymentApmTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentApmTopology] {
+	return pulumix.Output[[]GetDeploymentApmTopology]{
+		OutputState: i.ToGetDeploymentApmTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentApmTopologyOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentApmTopologyOutput) ElementType() reflect.Type {
@@ -8110,6 +9035,12 @@ func (o GetDeploymentApmTopologyOutput) ToGetDeploymentApmTopologyOutput() GetDe
 
 func (o GetDeploymentApmTopologyOutput) ToGetDeploymentApmTopologyOutputWithContext(ctx context.Context) GetDeploymentApmTopologyOutput {
 	return o
+}
+
+func (o GetDeploymentApmTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentApmTopology] {
+	return pulumix.Output[GetDeploymentApmTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentApmTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
@@ -8140,6 +9071,12 @@ func (o GetDeploymentApmTopologyArrayOutput) ToGetDeploymentApmTopologyArrayOutp
 
 func (o GetDeploymentApmTopologyArrayOutput) ToGetDeploymentApmTopologyArrayOutputWithContext(ctx context.Context) GetDeploymentApmTopologyArrayOutput {
 	return o
+}
+
+func (o GetDeploymentApmTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentApmTopology] {
+	return pulumix.Output[[]GetDeploymentApmTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentApmTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploymentApmTopologyOutput {
@@ -8217,6 +9154,12 @@ func (i GetDeploymentElasticsearchArgs) ToGetDeploymentElasticsearchOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentElasticsearchOutput)
 }
 
+func (i GetDeploymentElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentElasticsearch] {
+	return pulumix.Output[GetDeploymentElasticsearch]{
+		OutputState: i.ToGetDeploymentElasticsearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentElasticsearchArrayInput is an input type that accepts GetDeploymentElasticsearchArray and GetDeploymentElasticsearchArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchArrayInput` via:
 //
@@ -8242,6 +9185,12 @@ func (i GetDeploymentElasticsearchArray) ToGetDeploymentElasticsearchArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentElasticsearchArrayOutput)
 }
 
+func (i GetDeploymentElasticsearchArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentElasticsearch] {
+	return pulumix.Output[[]GetDeploymentElasticsearch]{
+		OutputState: i.ToGetDeploymentElasticsearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentElasticsearchOutput) ElementType() reflect.Type {
@@ -8254,6 +9203,12 @@ func (o GetDeploymentElasticsearchOutput) ToGetDeploymentElasticsearchOutput() G
 
 func (o GetDeploymentElasticsearchOutput) ToGetDeploymentElasticsearchOutputWithContext(ctx context.Context) GetDeploymentElasticsearchOutput {
 	return o
+}
+
+func (o GetDeploymentElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentElasticsearch] {
+	return pulumix.Output[GetDeploymentElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Whether or not Elasticsearch autoscaling is enabled.
@@ -8320,6 +9275,12 @@ func (o GetDeploymentElasticsearchArrayOutput) ToGetDeploymentElasticsearchArray
 	return o
 }
 
+func (o GetDeploymentElasticsearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentElasticsearch] {
+	return pulumix.Output[[]GetDeploymentElasticsearch]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentElasticsearchArrayOutput) Index(i pulumi.IntInput) GetDeploymentElasticsearchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentElasticsearch {
 		return vs[0].([]GetDeploymentElasticsearch)[vs[1].(int)]
@@ -8375,6 +9336,12 @@ func (i GetDeploymentElasticsearchTopologyArgs) ToGetDeploymentElasticsearchTopo
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentElasticsearchTopologyOutput)
 }
 
+func (i GetDeploymentElasticsearchTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentElasticsearchTopology] {
+	return pulumix.Output[GetDeploymentElasticsearchTopology]{
+		OutputState: i.ToGetDeploymentElasticsearchTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentElasticsearchTopologyArrayInput is an input type that accepts GetDeploymentElasticsearchTopologyArray and GetDeploymentElasticsearchTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchTopologyArrayInput` via:
 //
@@ -8400,6 +9367,12 @@ func (i GetDeploymentElasticsearchTopologyArray) ToGetDeploymentElasticsearchTop
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentElasticsearchTopologyArrayOutput)
 }
 
+func (i GetDeploymentElasticsearchTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentElasticsearchTopology] {
+	return pulumix.Output[[]GetDeploymentElasticsearchTopology]{
+		OutputState: i.ToGetDeploymentElasticsearchTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentElasticsearchTopologyOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentElasticsearchTopologyOutput) ElementType() reflect.Type {
@@ -8412,6 +9385,12 @@ func (o GetDeploymentElasticsearchTopologyOutput) ToGetDeploymentElasticsearchTo
 
 func (o GetDeploymentElasticsearchTopologyOutput) ToGetDeploymentElasticsearchTopologyOutputWithContext(ctx context.Context) GetDeploymentElasticsearchTopologyOutput {
 	return o
+}
+
+func (o GetDeploymentElasticsearchTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentElasticsearchTopology] {
+	return pulumix.Output[GetDeploymentElasticsearchTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentElasticsearchTopologyOutput) Autoscalings() GetDeploymentElasticsearchTopologyAutoscalingArrayOutput {
@@ -8470,6 +9449,12 @@ func (o GetDeploymentElasticsearchTopologyArrayOutput) ToGetDeploymentElasticsea
 	return o
 }
 
+func (o GetDeploymentElasticsearchTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentElasticsearchTopology] {
+	return pulumix.Output[[]GetDeploymentElasticsearchTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentElasticsearchTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploymentElasticsearchTopologyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentElasticsearchTopology {
 		return vs[0].([]GetDeploymentElasticsearchTopology)[vs[1].(int)]
@@ -8515,6 +9500,12 @@ func (i GetDeploymentElasticsearchTopologyAutoscalingArgs) ToGetDeploymentElasti
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentElasticsearchTopologyAutoscalingOutput)
 }
 
+func (i GetDeploymentElasticsearchTopologyAutoscalingArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentElasticsearchTopologyAutoscaling] {
+	return pulumix.Output[GetDeploymentElasticsearchTopologyAutoscaling]{
+		OutputState: i.ToGetDeploymentElasticsearchTopologyAutoscalingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentElasticsearchTopologyAutoscalingArrayInput is an input type that accepts GetDeploymentElasticsearchTopologyAutoscalingArray and GetDeploymentElasticsearchTopologyAutoscalingArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentElasticsearchTopologyAutoscalingArrayInput` via:
 //
@@ -8540,6 +9531,12 @@ func (i GetDeploymentElasticsearchTopologyAutoscalingArray) ToGetDeploymentElast
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentElasticsearchTopologyAutoscalingArrayOutput)
 }
 
+func (i GetDeploymentElasticsearchTopologyAutoscalingArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentElasticsearchTopologyAutoscaling] {
+	return pulumix.Output[[]GetDeploymentElasticsearchTopologyAutoscaling]{
+		OutputState: i.ToGetDeploymentElasticsearchTopologyAutoscalingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentElasticsearchTopologyAutoscalingOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentElasticsearchTopologyAutoscalingOutput) ElementType() reflect.Type {
@@ -8552,6 +9549,12 @@ func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) ToGetDeploymentElas
 
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) ToGetDeploymentElasticsearchTopologyAutoscalingOutputWithContext(ctx context.Context) GetDeploymentElasticsearchTopologyAutoscalingOutput {
 	return o
+}
+
+func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentElasticsearchTopologyAutoscaling] {
+	return pulumix.Output[GetDeploymentElasticsearchTopologyAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) MaxSize() pulumi.StringOutput {
@@ -8586,6 +9589,12 @@ func (o GetDeploymentElasticsearchTopologyAutoscalingArrayOutput) ToGetDeploymen
 
 func (o GetDeploymentElasticsearchTopologyAutoscalingArrayOutput) ToGetDeploymentElasticsearchTopologyAutoscalingArrayOutputWithContext(ctx context.Context) GetDeploymentElasticsearchTopologyAutoscalingArrayOutput {
 	return o
+}
+
+func (o GetDeploymentElasticsearchTopologyAutoscalingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentElasticsearchTopologyAutoscaling] {
+	return pulumix.Output[[]GetDeploymentElasticsearchTopologyAutoscaling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentElasticsearchTopologyAutoscalingArrayOutput) Index(i pulumi.IntInput) GetDeploymentElasticsearchTopologyAutoscalingOutput {
@@ -8659,6 +9668,12 @@ func (i GetDeploymentEnterpriseSearchArgs) ToGetDeploymentEnterpriseSearchOutput
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEnterpriseSearchOutput)
 }
 
+func (i GetDeploymentEnterpriseSearchArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentEnterpriseSearch] {
+	return pulumix.Output[GetDeploymentEnterpriseSearch]{
+		OutputState: i.ToGetDeploymentEnterpriseSearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentEnterpriseSearchArrayInput is an input type that accepts GetDeploymentEnterpriseSearchArray and GetDeploymentEnterpriseSearchArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentEnterpriseSearchArrayInput` via:
 //
@@ -8684,6 +9699,12 @@ func (i GetDeploymentEnterpriseSearchArray) ToGetDeploymentEnterpriseSearchArray
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEnterpriseSearchArrayOutput)
 }
 
+func (i GetDeploymentEnterpriseSearchArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentEnterpriseSearch] {
+	return pulumix.Output[[]GetDeploymentEnterpriseSearch]{
+		OutputState: i.ToGetDeploymentEnterpriseSearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentEnterpriseSearchOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentEnterpriseSearchOutput) ElementType() reflect.Type {
@@ -8696,6 +9717,12 @@ func (o GetDeploymentEnterpriseSearchOutput) ToGetDeploymentEnterpriseSearchOutp
 
 func (o GetDeploymentEnterpriseSearchOutput) ToGetDeploymentEnterpriseSearchOutputWithContext(ctx context.Context) GetDeploymentEnterpriseSearchOutput {
 	return o
+}
+
+func (o GetDeploymentEnterpriseSearchOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentEnterpriseSearch] {
+	return pulumix.Output[GetDeploymentEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A locally-unique friendly alias for an Elasticsearch resource in this deployment.
@@ -8757,6 +9784,12 @@ func (o GetDeploymentEnterpriseSearchArrayOutput) ToGetDeploymentEnterpriseSearc
 	return o
 }
 
+func (o GetDeploymentEnterpriseSearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentEnterpriseSearch] {
+	return pulumix.Output[[]GetDeploymentEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentEnterpriseSearchArrayOutput) Index(i pulumi.IntInput) GetDeploymentEnterpriseSearchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentEnterpriseSearch {
 		return vs[0].([]GetDeploymentEnterpriseSearch)[vs[1].(int)]
@@ -8806,6 +9839,12 @@ func (i GetDeploymentEnterpriseSearchTopologyArgs) ToGetDeploymentEnterpriseSear
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEnterpriseSearchTopologyOutput)
 }
 
+func (i GetDeploymentEnterpriseSearchTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentEnterpriseSearchTopology] {
+	return pulumix.Output[GetDeploymentEnterpriseSearchTopology]{
+		OutputState: i.ToGetDeploymentEnterpriseSearchTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentEnterpriseSearchTopologyArrayInput is an input type that accepts GetDeploymentEnterpriseSearchTopologyArray and GetDeploymentEnterpriseSearchTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentEnterpriseSearchTopologyArrayInput` via:
 //
@@ -8831,6 +9870,12 @@ func (i GetDeploymentEnterpriseSearchTopologyArray) ToGetDeploymentEnterpriseSea
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEnterpriseSearchTopologyArrayOutput)
 }
 
+func (i GetDeploymentEnterpriseSearchTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentEnterpriseSearchTopology] {
+	return pulumix.Output[[]GetDeploymentEnterpriseSearchTopology]{
+		OutputState: i.ToGetDeploymentEnterpriseSearchTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentEnterpriseSearchTopologyOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentEnterpriseSearchTopologyOutput) ElementType() reflect.Type {
@@ -8843,6 +9888,12 @@ func (o GetDeploymentEnterpriseSearchTopologyOutput) ToGetDeploymentEnterpriseSe
 
 func (o GetDeploymentEnterpriseSearchTopologyOutput) ToGetDeploymentEnterpriseSearchTopologyOutputWithContext(ctx context.Context) GetDeploymentEnterpriseSearchTopologyOutput {
 	return o
+}
+
+func (o GetDeploymentEnterpriseSearchTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentEnterpriseSearchTopology] {
+	return pulumix.Output[GetDeploymentEnterpriseSearchTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentEnterpriseSearchTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
@@ -8885,6 +9936,12 @@ func (o GetDeploymentEnterpriseSearchTopologyArrayOutput) ToGetDeploymentEnterpr
 
 func (o GetDeploymentEnterpriseSearchTopologyArrayOutput) ToGetDeploymentEnterpriseSearchTopologyArrayOutputWithContext(ctx context.Context) GetDeploymentEnterpriseSearchTopologyArrayOutput {
 	return o
+}
+
+func (o GetDeploymentEnterpriseSearchTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentEnterpriseSearchTopology] {
+	return pulumix.Output[[]GetDeploymentEnterpriseSearchTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentEnterpriseSearchTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploymentEnterpriseSearchTopologyOutput {
@@ -8958,6 +10015,12 @@ func (i GetDeploymentIntegrationsServerArgs) ToGetDeploymentIntegrationsServerOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerOutput)
 }
 
+func (i GetDeploymentIntegrationsServerArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentIntegrationsServer] {
+	return pulumix.Output[GetDeploymentIntegrationsServer]{
+		OutputState: i.ToGetDeploymentIntegrationsServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentIntegrationsServerArrayInput is an input type that accepts GetDeploymentIntegrationsServerArray and GetDeploymentIntegrationsServerArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentIntegrationsServerArrayInput` via:
 //
@@ -8983,6 +10046,12 @@ func (i GetDeploymentIntegrationsServerArray) ToGetDeploymentIntegrationsServerA
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerArrayOutput)
 }
 
+func (i GetDeploymentIntegrationsServerArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentIntegrationsServer] {
+	return pulumix.Output[[]GetDeploymentIntegrationsServer]{
+		OutputState: i.ToGetDeploymentIntegrationsServerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentIntegrationsServerOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentIntegrationsServerOutput) ElementType() reflect.Type {
@@ -8995,6 +10064,12 @@ func (o GetDeploymentIntegrationsServerOutput) ToGetDeploymentIntegrationsServer
 
 func (o GetDeploymentIntegrationsServerOutput) ToGetDeploymentIntegrationsServerOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerOutput {
 	return o
+}
+
+func (o GetDeploymentIntegrationsServerOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentIntegrationsServer] {
+	return pulumix.Output[GetDeploymentIntegrationsServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A locally-unique friendly alias for an Elasticsearch resource in this deployment.
@@ -9056,6 +10131,12 @@ func (o GetDeploymentIntegrationsServerArrayOutput) ToGetDeploymentIntegrationsS
 	return o
 }
 
+func (o GetDeploymentIntegrationsServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentIntegrationsServer] {
+	return pulumix.Output[[]GetDeploymentIntegrationsServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentIntegrationsServerArrayOutput) Index(i pulumi.IntInput) GetDeploymentIntegrationsServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentIntegrationsServer {
 		return vs[0].([]GetDeploymentIntegrationsServer)[vs[1].(int)]
@@ -9099,6 +10180,12 @@ func (i GetDeploymentIntegrationsServerTopologyArgs) ToGetDeploymentIntegrations
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerTopologyOutput)
 }
 
+func (i GetDeploymentIntegrationsServerTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentIntegrationsServerTopology] {
+	return pulumix.Output[GetDeploymentIntegrationsServerTopology]{
+		OutputState: i.ToGetDeploymentIntegrationsServerTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentIntegrationsServerTopologyArrayInput is an input type that accepts GetDeploymentIntegrationsServerTopologyArray and GetDeploymentIntegrationsServerTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentIntegrationsServerTopologyArrayInput` via:
 //
@@ -9124,6 +10211,12 @@ func (i GetDeploymentIntegrationsServerTopologyArray) ToGetDeploymentIntegration
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentIntegrationsServerTopologyArrayOutput)
 }
 
+func (i GetDeploymentIntegrationsServerTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentIntegrationsServerTopology] {
+	return pulumix.Output[[]GetDeploymentIntegrationsServerTopology]{
+		OutputState: i.ToGetDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentIntegrationsServerTopologyOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentIntegrationsServerTopologyOutput) ElementType() reflect.Type {
@@ -9136,6 +10229,12 @@ func (o GetDeploymentIntegrationsServerTopologyOutput) ToGetDeploymentIntegratio
 
 func (o GetDeploymentIntegrationsServerTopologyOutput) ToGetDeploymentIntegrationsServerTopologyOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerTopologyOutput {
 	return o
+}
+
+func (o GetDeploymentIntegrationsServerTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentIntegrationsServerTopology] {
+	return pulumix.Output[GetDeploymentIntegrationsServerTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentIntegrationsServerTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
@@ -9166,6 +10265,12 @@ func (o GetDeploymentIntegrationsServerTopologyArrayOutput) ToGetDeploymentInteg
 
 func (o GetDeploymentIntegrationsServerTopologyArrayOutput) ToGetDeploymentIntegrationsServerTopologyArrayOutputWithContext(ctx context.Context) GetDeploymentIntegrationsServerTopologyArrayOutput {
 	return o
+}
+
+func (o GetDeploymentIntegrationsServerTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentIntegrationsServerTopology] {
+	return pulumix.Output[[]GetDeploymentIntegrationsServerTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentIntegrationsServerTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploymentIntegrationsServerTopologyOutput {
@@ -9239,6 +10344,12 @@ func (i GetDeploymentKibanaArgs) ToGetDeploymentKibanaOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentKibanaOutput)
 }
 
+func (i GetDeploymentKibanaArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentKibana] {
+	return pulumix.Output[GetDeploymentKibana]{
+		OutputState: i.ToGetDeploymentKibanaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentKibanaArrayInput is an input type that accepts GetDeploymentKibanaArray and GetDeploymentKibanaArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentKibanaArrayInput` via:
 //
@@ -9264,6 +10375,12 @@ func (i GetDeploymentKibanaArray) ToGetDeploymentKibanaArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentKibanaArrayOutput)
 }
 
+func (i GetDeploymentKibanaArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentKibana] {
+	return pulumix.Output[[]GetDeploymentKibana]{
+		OutputState: i.ToGetDeploymentKibanaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentKibanaOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentKibanaOutput) ElementType() reflect.Type {
@@ -9276,6 +10393,12 @@ func (o GetDeploymentKibanaOutput) ToGetDeploymentKibanaOutput() GetDeploymentKi
 
 func (o GetDeploymentKibanaOutput) ToGetDeploymentKibanaOutputWithContext(ctx context.Context) GetDeploymentKibanaOutput {
 	return o
+}
+
+func (o GetDeploymentKibanaOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentKibana] {
+	return pulumix.Output[GetDeploymentKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A locally-unique friendly alias for an Elasticsearch resource in this deployment.
@@ -9337,6 +10460,12 @@ func (o GetDeploymentKibanaArrayOutput) ToGetDeploymentKibanaArrayOutputWithCont
 	return o
 }
 
+func (o GetDeploymentKibanaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentKibana] {
+	return pulumix.Output[[]GetDeploymentKibana]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentKibanaArrayOutput) Index(i pulumi.IntInput) GetDeploymentKibanaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentKibana {
 		return vs[0].([]GetDeploymentKibana)[vs[1].(int)]
@@ -9380,6 +10509,12 @@ func (i GetDeploymentKibanaTopologyArgs) ToGetDeploymentKibanaTopologyOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentKibanaTopologyOutput)
 }
 
+func (i GetDeploymentKibanaTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentKibanaTopology] {
+	return pulumix.Output[GetDeploymentKibanaTopology]{
+		OutputState: i.ToGetDeploymentKibanaTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentKibanaTopologyArrayInput is an input type that accepts GetDeploymentKibanaTopologyArray and GetDeploymentKibanaTopologyArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentKibanaTopologyArrayInput` via:
 //
@@ -9405,6 +10540,12 @@ func (i GetDeploymentKibanaTopologyArray) ToGetDeploymentKibanaTopologyArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentKibanaTopologyArrayOutput)
 }
 
+func (i GetDeploymentKibanaTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentKibanaTopology] {
+	return pulumix.Output[[]GetDeploymentKibanaTopology]{
+		OutputState: i.ToGetDeploymentKibanaTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentKibanaTopologyOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentKibanaTopologyOutput) ElementType() reflect.Type {
@@ -9417,6 +10558,12 @@ func (o GetDeploymentKibanaTopologyOutput) ToGetDeploymentKibanaTopologyOutput()
 
 func (o GetDeploymentKibanaTopologyOutput) ToGetDeploymentKibanaTopologyOutputWithContext(ctx context.Context) GetDeploymentKibanaTopologyOutput {
 	return o
+}
+
+func (o GetDeploymentKibanaTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentKibanaTopology] {
+	return pulumix.Output[GetDeploymentKibanaTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentKibanaTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
@@ -9447,6 +10594,12 @@ func (o GetDeploymentKibanaTopologyArrayOutput) ToGetDeploymentKibanaTopologyArr
 
 func (o GetDeploymentKibanaTopologyArrayOutput) ToGetDeploymentKibanaTopologyArrayOutputWithContext(ctx context.Context) GetDeploymentKibanaTopologyArrayOutput {
 	return o
+}
+
+func (o GetDeploymentKibanaTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentKibanaTopology] {
+	return pulumix.Output[[]GetDeploymentKibanaTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentKibanaTopologyArrayOutput) Index(i pulumi.IntInput) GetDeploymentKibanaTopologyOutput {
@@ -9500,6 +10653,12 @@ func (i GetDeploymentObservabilityArgs) ToGetDeploymentObservabilityOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentObservabilityOutput)
 }
 
+func (i GetDeploymentObservabilityArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentObservability] {
+	return pulumix.Output[GetDeploymentObservability]{
+		OutputState: i.ToGetDeploymentObservabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentObservabilityArrayInput is an input type that accepts GetDeploymentObservabilityArray and GetDeploymentObservabilityArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentObservabilityArrayInput` via:
 //
@@ -9525,6 +10684,12 @@ func (i GetDeploymentObservabilityArray) ToGetDeploymentObservabilityArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentObservabilityArrayOutput)
 }
 
+func (i GetDeploymentObservabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentObservability] {
+	return pulumix.Output[[]GetDeploymentObservability]{
+		OutputState: i.ToGetDeploymentObservabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentObservabilityOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentObservabilityOutput) ElementType() reflect.Type {
@@ -9537,6 +10702,12 @@ func (o GetDeploymentObservabilityOutput) ToGetDeploymentObservabilityOutput() G
 
 func (o GetDeploymentObservabilityOutput) ToGetDeploymentObservabilityOutputWithContext(ctx context.Context) GetDeploymentObservabilityOutput {
 	return o
+}
+
+func (o GetDeploymentObservabilityOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentObservability] {
+	return pulumix.Output[GetDeploymentObservability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Destination deployment ID for the shipped logs and monitoring metrics.
@@ -9571,6 +10742,12 @@ func (o GetDeploymentObservabilityArrayOutput) ToGetDeploymentObservabilityArray
 
 func (o GetDeploymentObservabilityArrayOutput) ToGetDeploymentObservabilityArrayOutputWithContext(ctx context.Context) GetDeploymentObservabilityArrayOutput {
 	return o
+}
+
+func (o GetDeploymentObservabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentObservability] {
+	return pulumix.Output[[]GetDeploymentObservability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentObservabilityArrayOutput) Index(i pulumi.IntInput) GetDeploymentObservabilityOutput {
@@ -9620,6 +10797,12 @@ func (i GetDeploymentsApmArgs) ToGetDeploymentsApmOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsApmOutput)
 }
 
+func (i GetDeploymentsApmArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsApm] {
+	return pulumix.Output[GetDeploymentsApm]{
+		OutputState: i.ToGetDeploymentsApmOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentsApmArrayInput is an input type that accepts GetDeploymentsApmArray and GetDeploymentsApmArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsApmArrayInput` via:
 //
@@ -9645,6 +10828,12 @@ func (i GetDeploymentsApmArray) ToGetDeploymentsApmArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsApmArrayOutput)
 }
 
+func (i GetDeploymentsApmArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsApm] {
+	return pulumix.Output[[]GetDeploymentsApm]{
+		OutputState: i.ToGetDeploymentsApmArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentsApmOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentsApmOutput) ElementType() reflect.Type {
@@ -9657,6 +10846,12 @@ func (o GetDeploymentsApmOutput) ToGetDeploymentsApmOutput() GetDeploymentsApmOu
 
 func (o GetDeploymentsApmOutput) ToGetDeploymentsApmOutputWithContext(ctx context.Context) GetDeploymentsApmOutput {
 	return o
+}
+
+func (o GetDeploymentsApmOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsApm] {
+	return pulumix.Output[GetDeploymentsApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Overall health status of the resource instances.
@@ -9686,6 +10881,12 @@ func (o GetDeploymentsApmArrayOutput) ToGetDeploymentsApmArrayOutput() GetDeploy
 
 func (o GetDeploymentsApmArrayOutput) ToGetDeploymentsApmArrayOutputWithContext(ctx context.Context) GetDeploymentsApmArrayOutput {
 	return o
+}
+
+func (o GetDeploymentsApmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsApm] {
+	return pulumix.Output[[]GetDeploymentsApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentsApmArrayOutput) Index(i pulumi.IntInput) GetDeploymentsApmOutput {
@@ -9775,6 +10976,12 @@ func (i GetDeploymentsDeploymentArgs) ToGetDeploymentsDeploymentOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentOutput)
 }
 
+func (i GetDeploymentsDeploymentArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsDeployment] {
+	return pulumix.Output[GetDeploymentsDeployment]{
+		OutputState: i.ToGetDeploymentsDeploymentOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentsDeploymentArrayInput is an input type that accepts GetDeploymentsDeploymentArray and GetDeploymentsDeploymentArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsDeploymentArrayInput` via:
 //
@@ -9800,6 +11007,12 @@ func (i GetDeploymentsDeploymentArray) ToGetDeploymentsDeploymentArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsDeploymentArrayOutput)
 }
 
+func (i GetDeploymentsDeploymentArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsDeployment] {
+	return pulumix.Output[[]GetDeploymentsDeployment]{
+		OutputState: i.ToGetDeploymentsDeploymentArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentsDeploymentOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentsDeploymentOutput) ElementType() reflect.Type {
@@ -9812,6 +11025,12 @@ func (o GetDeploymentsDeploymentOutput) ToGetDeploymentsDeploymentOutput() GetDe
 
 func (o GetDeploymentsDeploymentOutput) ToGetDeploymentsDeploymentOutputWithContext(ctx context.Context) GetDeploymentsDeploymentOutput {
 	return o
+}
+
+func (o GetDeploymentsDeploymentOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsDeployment] {
+	return pulumix.Output[GetDeploymentsDeployment]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Deployment alias.
@@ -9893,6 +11112,12 @@ func (o GetDeploymentsDeploymentArrayOutput) ToGetDeploymentsDeploymentArrayOutp
 	return o
 }
 
+func (o GetDeploymentsDeploymentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsDeployment] {
+	return pulumix.Output[[]GetDeploymentsDeployment]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetDeploymentsDeploymentArrayOutput) Index(i pulumi.IntInput) GetDeploymentsDeploymentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentsDeployment {
 		return vs[0].([]GetDeploymentsDeployment)[vs[1].(int)]
@@ -9940,6 +11165,12 @@ func (i GetDeploymentsElasticsearchArgs) ToGetDeploymentsElasticsearchOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsElasticsearchOutput)
 }
 
+func (i GetDeploymentsElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsElasticsearch] {
+	return pulumix.Output[GetDeploymentsElasticsearch]{
+		OutputState: i.ToGetDeploymentsElasticsearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentsElasticsearchArrayInput is an input type that accepts GetDeploymentsElasticsearchArray and GetDeploymentsElasticsearchArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsElasticsearchArrayInput` via:
 //
@@ -9965,6 +11196,12 @@ func (i GetDeploymentsElasticsearchArray) ToGetDeploymentsElasticsearchArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsElasticsearchArrayOutput)
 }
 
+func (i GetDeploymentsElasticsearchArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsElasticsearch] {
+	return pulumix.Output[[]GetDeploymentsElasticsearch]{
+		OutputState: i.ToGetDeploymentsElasticsearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentsElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentsElasticsearchOutput) ElementType() reflect.Type {
@@ -9977,6 +11214,12 @@ func (o GetDeploymentsElasticsearchOutput) ToGetDeploymentsElasticsearchOutput()
 
 func (o GetDeploymentsElasticsearchOutput) ToGetDeploymentsElasticsearchOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchOutput {
 	return o
+}
+
+func (o GetDeploymentsElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsElasticsearch] {
+	return pulumix.Output[GetDeploymentsElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Overall health status of the resource instances.
@@ -10006,6 +11249,12 @@ func (o GetDeploymentsElasticsearchArrayOutput) ToGetDeploymentsElasticsearchArr
 
 func (o GetDeploymentsElasticsearchArrayOutput) ToGetDeploymentsElasticsearchArrayOutputWithContext(ctx context.Context) GetDeploymentsElasticsearchArrayOutput {
 	return o
+}
+
+func (o GetDeploymentsElasticsearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsElasticsearch] {
+	return pulumix.Output[[]GetDeploymentsElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentsElasticsearchArrayOutput) Index(i pulumi.IntInput) GetDeploymentsElasticsearchOutput {
@@ -10055,6 +11304,12 @@ func (i GetDeploymentsEnterpriseSearchArgs) ToGetDeploymentsEnterpriseSearchOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsEnterpriseSearchOutput)
 }
 
+func (i GetDeploymentsEnterpriseSearchArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsEnterpriseSearch] {
+	return pulumix.Output[GetDeploymentsEnterpriseSearch]{
+		OutputState: i.ToGetDeploymentsEnterpriseSearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentsEnterpriseSearchArrayInput is an input type that accepts GetDeploymentsEnterpriseSearchArray and GetDeploymentsEnterpriseSearchArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsEnterpriseSearchArrayInput` via:
 //
@@ -10080,6 +11335,12 @@ func (i GetDeploymentsEnterpriseSearchArray) ToGetDeploymentsEnterpriseSearchArr
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsEnterpriseSearchArrayOutput)
 }
 
+func (i GetDeploymentsEnterpriseSearchArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsEnterpriseSearch] {
+	return pulumix.Output[[]GetDeploymentsEnterpriseSearch]{
+		OutputState: i.ToGetDeploymentsEnterpriseSearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentsEnterpriseSearchOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentsEnterpriseSearchOutput) ElementType() reflect.Type {
@@ -10092,6 +11353,12 @@ func (o GetDeploymentsEnterpriseSearchOutput) ToGetDeploymentsEnterpriseSearchOu
 
 func (o GetDeploymentsEnterpriseSearchOutput) ToGetDeploymentsEnterpriseSearchOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchOutput {
 	return o
+}
+
+func (o GetDeploymentsEnterpriseSearchOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsEnterpriseSearch] {
+	return pulumix.Output[GetDeploymentsEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Overall health status of the resource instances.
@@ -10121,6 +11388,12 @@ func (o GetDeploymentsEnterpriseSearchArrayOutput) ToGetDeploymentsEnterpriseSea
 
 func (o GetDeploymentsEnterpriseSearchArrayOutput) ToGetDeploymentsEnterpriseSearchArrayOutputWithContext(ctx context.Context) GetDeploymentsEnterpriseSearchArrayOutput {
 	return o
+}
+
+func (o GetDeploymentsEnterpriseSearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsEnterpriseSearch] {
+	return pulumix.Output[[]GetDeploymentsEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentsEnterpriseSearchArrayOutput) Index(i pulumi.IntInput) GetDeploymentsEnterpriseSearchOutput {
@@ -10170,6 +11443,12 @@ func (i GetDeploymentsIntegrationsServerArgs) ToGetDeploymentsIntegrationsServer
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerOutput)
 }
 
+func (i GetDeploymentsIntegrationsServerArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsIntegrationsServer] {
+	return pulumix.Output[GetDeploymentsIntegrationsServer]{
+		OutputState: i.ToGetDeploymentsIntegrationsServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentsIntegrationsServerArrayInput is an input type that accepts GetDeploymentsIntegrationsServerArray and GetDeploymentsIntegrationsServerArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsIntegrationsServerArrayInput` via:
 //
@@ -10195,6 +11474,12 @@ func (i GetDeploymentsIntegrationsServerArray) ToGetDeploymentsIntegrationsServe
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsIntegrationsServerArrayOutput)
 }
 
+func (i GetDeploymentsIntegrationsServerArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsIntegrationsServer] {
+	return pulumix.Output[[]GetDeploymentsIntegrationsServer]{
+		OutputState: i.ToGetDeploymentsIntegrationsServerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentsIntegrationsServerOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentsIntegrationsServerOutput) ElementType() reflect.Type {
@@ -10207,6 +11492,12 @@ func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServ
 
 func (o GetDeploymentsIntegrationsServerOutput) ToGetDeploymentsIntegrationsServerOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerOutput {
 	return o
+}
+
+func (o GetDeploymentsIntegrationsServerOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsIntegrationsServer] {
+	return pulumix.Output[GetDeploymentsIntegrationsServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Overall health status of the resource instances.
@@ -10236,6 +11527,12 @@ func (o GetDeploymentsIntegrationsServerArrayOutput) ToGetDeploymentsIntegration
 
 func (o GetDeploymentsIntegrationsServerArrayOutput) ToGetDeploymentsIntegrationsServerArrayOutputWithContext(ctx context.Context) GetDeploymentsIntegrationsServerArrayOutput {
 	return o
+}
+
+func (o GetDeploymentsIntegrationsServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsIntegrationsServer] {
+	return pulumix.Output[[]GetDeploymentsIntegrationsServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentsIntegrationsServerArrayOutput) Index(i pulumi.IntInput) GetDeploymentsIntegrationsServerOutput {
@@ -10285,6 +11582,12 @@ func (i GetDeploymentsKibanaArgs) ToGetDeploymentsKibanaOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsKibanaOutput)
 }
 
+func (i GetDeploymentsKibanaArgs) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsKibana] {
+	return pulumix.Output[GetDeploymentsKibana]{
+		OutputState: i.ToGetDeploymentsKibanaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDeploymentsKibanaArrayInput is an input type that accepts GetDeploymentsKibanaArray and GetDeploymentsKibanaArrayOutput values.
 // You can construct a concrete instance of `GetDeploymentsKibanaArrayInput` via:
 //
@@ -10310,6 +11613,12 @@ func (i GetDeploymentsKibanaArray) ToGetDeploymentsKibanaArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentsKibanaArrayOutput)
 }
 
+func (i GetDeploymentsKibanaArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsKibana] {
+	return pulumix.Output[[]GetDeploymentsKibana]{
+		OutputState: i.ToGetDeploymentsKibanaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDeploymentsKibanaOutput struct{ *pulumi.OutputState }
 
 func (GetDeploymentsKibanaOutput) ElementType() reflect.Type {
@@ -10322,6 +11631,12 @@ func (o GetDeploymentsKibanaOutput) ToGetDeploymentsKibanaOutput() GetDeployment
 
 func (o GetDeploymentsKibanaOutput) ToGetDeploymentsKibanaOutputWithContext(ctx context.Context) GetDeploymentsKibanaOutput {
 	return o
+}
+
+func (o GetDeploymentsKibanaOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsKibana] {
+	return pulumix.Output[GetDeploymentsKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Overall health status of the resource instances.
@@ -10351,6 +11666,12 @@ func (o GetDeploymentsKibanaArrayOutput) ToGetDeploymentsKibanaArrayOutput() Get
 
 func (o GetDeploymentsKibanaArrayOutput) ToGetDeploymentsKibanaArrayOutputWithContext(ctx context.Context) GetDeploymentsKibanaArrayOutput {
 	return o
+}
+
+func (o GetDeploymentsKibanaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDeploymentsKibana] {
+	return pulumix.Output[[]GetDeploymentsKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeploymentsKibanaArrayOutput) Index(i pulumi.IntInput) GetDeploymentsKibanaOutput {
@@ -10408,6 +11729,12 @@ func (i GetStackApmArgs) ToGetStackApmOutputWithContext(ctx context.Context) Get
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackApmOutput)
 }
 
+func (i GetStackApmArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackApm] {
+	return pulumix.Output[GetStackApm]{
+		OutputState: i.ToGetStackApmOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackApmArrayInput is an input type that accepts GetStackApmArray and GetStackApmArrayOutput values.
 // You can construct a concrete instance of `GetStackApmArrayInput` via:
 //
@@ -10433,6 +11760,12 @@ func (i GetStackApmArray) ToGetStackApmArrayOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackApmArrayOutput)
 }
 
+func (i GetStackApmArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackApm] {
+	return pulumix.Output[[]GetStackApm]{
+		OutputState: i.ToGetStackApmArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackApmOutput struct{ *pulumi.OutputState }
 
 func (GetStackApmOutput) ElementType() reflect.Type {
@@ -10445,6 +11778,12 @@ func (o GetStackApmOutput) ToGetStackApmOutput() GetStackApmOutput {
 
 func (o GetStackApmOutput) ToGetStackApmOutputWithContext(ctx context.Context) GetStackApmOutput {
 	return o
+}
+
+func (o GetStackApmOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackApm] {
+	return pulumix.Output[GetStackApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Maximum size of the instances.
@@ -10484,6 +11823,12 @@ func (o GetStackApmArrayOutput) ToGetStackApmArrayOutput() GetStackApmArrayOutpu
 
 func (o GetStackApmArrayOutput) ToGetStackApmArrayOutputWithContext(ctx context.Context) GetStackApmArrayOutput {
 	return o
+}
+
+func (o GetStackApmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackApm] {
+	return pulumix.Output[[]GetStackApm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackApmArrayOutput) Index(i pulumi.IntInput) GetStackApmOutput {
@@ -10549,6 +11894,12 @@ func (i GetStackElasticsearchArgs) ToGetStackElasticsearchOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackElasticsearchOutput)
 }
 
+func (i GetStackElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackElasticsearch] {
+	return pulumix.Output[GetStackElasticsearch]{
+		OutputState: i.ToGetStackElasticsearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackElasticsearchArrayInput is an input type that accepts GetStackElasticsearchArray and GetStackElasticsearchArrayOutput values.
 // You can construct a concrete instance of `GetStackElasticsearchArrayInput` via:
 //
@@ -10574,6 +11925,12 @@ func (i GetStackElasticsearchArray) ToGetStackElasticsearchArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackElasticsearchArrayOutput)
 }
 
+func (i GetStackElasticsearchArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackElasticsearch] {
+	return pulumix.Output[[]GetStackElasticsearch]{
+		OutputState: i.ToGetStackElasticsearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (GetStackElasticsearchOutput) ElementType() reflect.Type {
@@ -10586,6 +11943,12 @@ func (o GetStackElasticsearchOutput) ToGetStackElasticsearchOutput() GetStackEla
 
 func (o GetStackElasticsearchOutput) ToGetStackElasticsearchOutputWithContext(ctx context.Context) GetStackElasticsearchOutput {
 	return o
+}
+
+func (o GetStackElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackElasticsearch] {
+	return pulumix.Output[GetStackElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Maximum size of the instances.
@@ -10635,6 +11998,12 @@ func (o GetStackElasticsearchArrayOutput) ToGetStackElasticsearchArrayOutput() G
 
 func (o GetStackElasticsearchArrayOutput) ToGetStackElasticsearchArrayOutputWithContext(ctx context.Context) GetStackElasticsearchArrayOutput {
 	return o
+}
+
+func (o GetStackElasticsearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackElasticsearch] {
+	return pulumix.Output[[]GetStackElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackElasticsearchArrayOutput) Index(i pulumi.IntInput) GetStackElasticsearchOutput {
@@ -10692,6 +12061,12 @@ func (i GetStackEnterpriseSearchArgs) ToGetStackEnterpriseSearchOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackEnterpriseSearchOutput)
 }
 
+func (i GetStackEnterpriseSearchArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackEnterpriseSearch] {
+	return pulumix.Output[GetStackEnterpriseSearch]{
+		OutputState: i.ToGetStackEnterpriseSearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackEnterpriseSearchArrayInput is an input type that accepts GetStackEnterpriseSearchArray and GetStackEnterpriseSearchArrayOutput values.
 // You can construct a concrete instance of `GetStackEnterpriseSearchArrayInput` via:
 //
@@ -10717,6 +12092,12 @@ func (i GetStackEnterpriseSearchArray) ToGetStackEnterpriseSearchArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackEnterpriseSearchArrayOutput)
 }
 
+func (i GetStackEnterpriseSearchArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackEnterpriseSearch] {
+	return pulumix.Output[[]GetStackEnterpriseSearch]{
+		OutputState: i.ToGetStackEnterpriseSearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackEnterpriseSearchOutput struct{ *pulumi.OutputState }
 
 func (GetStackEnterpriseSearchOutput) ElementType() reflect.Type {
@@ -10729,6 +12110,12 @@ func (o GetStackEnterpriseSearchOutput) ToGetStackEnterpriseSearchOutput() GetSt
 
 func (o GetStackEnterpriseSearchOutput) ToGetStackEnterpriseSearchOutputWithContext(ctx context.Context) GetStackEnterpriseSearchOutput {
 	return o
+}
+
+func (o GetStackEnterpriseSearchOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackEnterpriseSearch] {
+	return pulumix.Output[GetStackEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Maximum size of the instances.
@@ -10768,6 +12155,12 @@ func (o GetStackEnterpriseSearchArrayOutput) ToGetStackEnterpriseSearchArrayOutp
 
 func (o GetStackEnterpriseSearchArrayOutput) ToGetStackEnterpriseSearchArrayOutputWithContext(ctx context.Context) GetStackEnterpriseSearchArrayOutput {
 	return o
+}
+
+func (o GetStackEnterpriseSearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackEnterpriseSearch] {
+	return pulumix.Output[[]GetStackEnterpriseSearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackEnterpriseSearchArrayOutput) Index(i pulumi.IntInput) GetStackEnterpriseSearchOutput {
@@ -10825,6 +12218,12 @@ func (i GetStackKibanaArgs) ToGetStackKibanaOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackKibanaOutput)
 }
 
+func (i GetStackKibanaArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackKibana] {
+	return pulumix.Output[GetStackKibana]{
+		OutputState: i.ToGetStackKibanaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackKibanaArrayInput is an input type that accepts GetStackKibanaArray and GetStackKibanaArrayOutput values.
 // You can construct a concrete instance of `GetStackKibanaArrayInput` via:
 //
@@ -10850,6 +12249,12 @@ func (i GetStackKibanaArray) ToGetStackKibanaArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackKibanaArrayOutput)
 }
 
+func (i GetStackKibanaArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackKibana] {
+	return pulumix.Output[[]GetStackKibana]{
+		OutputState: i.ToGetStackKibanaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackKibanaOutput struct{ *pulumi.OutputState }
 
 func (GetStackKibanaOutput) ElementType() reflect.Type {
@@ -10862,6 +12267,12 @@ func (o GetStackKibanaOutput) ToGetStackKibanaOutput() GetStackKibanaOutput {
 
 func (o GetStackKibanaOutput) ToGetStackKibanaOutputWithContext(ctx context.Context) GetStackKibanaOutput {
 	return o
+}
+
+func (o GetStackKibanaOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackKibana] {
+	return pulumix.Output[GetStackKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Maximum size of the instances.
@@ -10901,6 +12312,12 @@ func (o GetStackKibanaArrayOutput) ToGetStackKibanaArrayOutput() GetStackKibanaA
 
 func (o GetStackKibanaArrayOutput) ToGetStackKibanaArrayOutputWithContext(ctx context.Context) GetStackKibanaArrayOutput {
 	return o
+}
+
+func (o GetStackKibanaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackKibana] {
+	return pulumix.Output[[]GetStackKibana]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackKibanaArrayOutput) Index(i pulumi.IntInput) GetStackKibanaOutput {
@@ -10962,6 +12379,12 @@ func (i GetTrafficFilterRulesetArgs) ToGetTrafficFilterRulesetOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetOutput)
 }
 
+func (i GetTrafficFilterRulesetArgs) ToOutput(ctx context.Context) pulumix.Output[GetTrafficFilterRuleset] {
+	return pulumix.Output[GetTrafficFilterRuleset]{
+		OutputState: i.ToGetTrafficFilterRulesetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetTrafficFilterRulesetArrayInput is an input type that accepts GetTrafficFilterRulesetArray and GetTrafficFilterRulesetArrayOutput values.
 // You can construct a concrete instance of `GetTrafficFilterRulesetArrayInput` via:
 //
@@ -10987,6 +12410,12 @@ func (i GetTrafficFilterRulesetArray) ToGetTrafficFilterRulesetArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetArrayOutput)
 }
 
+func (i GetTrafficFilterRulesetArray) ToOutput(ctx context.Context) pulumix.Output[[]GetTrafficFilterRuleset] {
+	return pulumix.Output[[]GetTrafficFilterRuleset]{
+		OutputState: i.ToGetTrafficFilterRulesetArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetTrafficFilterRulesetOutput struct{ *pulumi.OutputState }
 
 func (GetTrafficFilterRulesetOutput) ElementType() reflect.Type {
@@ -10999,6 +12428,12 @@ func (o GetTrafficFilterRulesetOutput) ToGetTrafficFilterRulesetOutput() GetTraf
 
 func (o GetTrafficFilterRulesetOutput) ToGetTrafficFilterRulesetOutputWithContext(ctx context.Context) GetTrafficFilterRulesetOutput {
 	return o
+}
+
+func (o GetTrafficFilterRulesetOutput) ToOutput(ctx context.Context) pulumix.Output[GetTrafficFilterRuleset] {
+	return pulumix.Output[GetTrafficFilterRuleset]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The description of the ruleset.
@@ -11045,6 +12480,12 @@ func (o GetTrafficFilterRulesetArrayOutput) ToGetTrafficFilterRulesetArrayOutput
 	return o
 }
 
+func (o GetTrafficFilterRulesetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetTrafficFilterRuleset] {
+	return pulumix.Output[[]GetTrafficFilterRuleset]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetTrafficFilterRulesetArrayOutput) Index(i pulumi.IntInput) GetTrafficFilterRulesetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTrafficFilterRuleset {
 		return vs[0].([]GetTrafficFilterRuleset)[vs[1].(int)]
@@ -11088,6 +12529,12 @@ func (i GetTrafficFilterRulesetRuleArgs) ToGetTrafficFilterRulesetRuleOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetRuleOutput)
 }
 
+func (i GetTrafficFilterRulesetRuleArgs) ToOutput(ctx context.Context) pulumix.Output[GetTrafficFilterRulesetRule] {
+	return pulumix.Output[GetTrafficFilterRulesetRule]{
+		OutputState: i.ToGetTrafficFilterRulesetRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetTrafficFilterRulesetRuleArrayInput is an input type that accepts GetTrafficFilterRulesetRuleArray and GetTrafficFilterRulesetRuleArrayOutput values.
 // You can construct a concrete instance of `GetTrafficFilterRulesetRuleArrayInput` via:
 //
@@ -11113,6 +12560,12 @@ func (i GetTrafficFilterRulesetRuleArray) ToGetTrafficFilterRulesetRuleArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetTrafficFilterRulesetRuleArrayOutput)
 }
 
+func (i GetTrafficFilterRulesetRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetTrafficFilterRulesetRule] {
+	return pulumix.Output[[]GetTrafficFilterRulesetRule]{
+		OutputState: i.ToGetTrafficFilterRulesetRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetTrafficFilterRulesetRuleOutput struct{ *pulumi.OutputState }
 
 func (GetTrafficFilterRulesetRuleOutput) ElementType() reflect.Type {
@@ -11125,6 +12578,12 @@ func (o GetTrafficFilterRulesetRuleOutput) ToGetTrafficFilterRulesetRuleOutput()
 
 func (o GetTrafficFilterRulesetRuleOutput) ToGetTrafficFilterRulesetRuleOutputWithContext(ctx context.Context) GetTrafficFilterRulesetRuleOutput {
 	return o
+}
+
+func (o GetTrafficFilterRulesetRuleOutput) ToOutput(ctx context.Context) pulumix.Output[GetTrafficFilterRulesetRule] {
+	return pulumix.Output[GetTrafficFilterRulesetRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetTrafficFilterRulesetRuleOutput) Description() pulumi.StringOutput {
@@ -11152,6 +12611,12 @@ func (o GetTrafficFilterRulesetRuleArrayOutput) ToGetTrafficFilterRulesetRuleArr
 
 func (o GetTrafficFilterRulesetRuleArrayOutput) ToGetTrafficFilterRulesetRuleArrayOutputWithContext(ctx context.Context) GetTrafficFilterRulesetRuleArrayOutput {
 	return o
+}
+
+func (o GetTrafficFilterRulesetRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetTrafficFilterRulesetRule] {
+	return pulumix.Output[[]GetTrafficFilterRulesetRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetTrafficFilterRulesetRuleArrayOutput) Index(i pulumi.IntInput) GetTrafficFilterRulesetRuleOutput {
