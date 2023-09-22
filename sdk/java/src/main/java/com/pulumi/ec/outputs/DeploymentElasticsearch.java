@@ -10,6 +10,7 @@ import com.pulumi.ec.outputs.DeploymentElasticsearchCoordinating;
 import com.pulumi.ec.outputs.DeploymentElasticsearchExtension;
 import com.pulumi.ec.outputs.DeploymentElasticsearchFrozen;
 import com.pulumi.ec.outputs.DeploymentElasticsearchHot;
+import com.pulumi.ec.outputs.DeploymentElasticsearchKeystoreContents;
 import com.pulumi.ec.outputs.DeploymentElasticsearchMaster;
 import com.pulumi.ec.outputs.DeploymentElasticsearchMl;
 import com.pulumi.ec.outputs.DeploymentElasticsearchRemoteCluster;
@@ -21,6 +22,7 @@ import com.pulumi.ec.outputs.DeploymentElasticsearchWarm;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -65,6 +67,11 @@ public final class DeploymentElasticsearch {
     private DeploymentElasticsearchHot hot;
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
+    /**
+     * @return Keystore contents that are controlled by the deployment resource.
+     * 
+     */
+    private @Nullable Map<String,DeploymentElasticsearchKeystoreContents> keystoreContents;
     /**
      * @return &#39;master&#39; topology element
      * 
@@ -162,6 +169,13 @@ public final class DeploymentElasticsearch {
         return Optional.ofNullable(this.httpsEndpoint);
     }
     /**
+     * @return Keystore contents that are controlled by the deployment resource.
+     * 
+     */
+    public Map<String,DeploymentElasticsearchKeystoreContents> keystoreContents() {
+        return this.keystoreContents == null ? Map.of() : this.keystoreContents;
+    }
+    /**
      * @return &#39;master&#39; topology element
      * 
      */
@@ -241,6 +255,7 @@ public final class DeploymentElasticsearch {
         private DeploymentElasticsearchHot hot;
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
+        private @Nullable Map<String,DeploymentElasticsearchKeystoreContents> keystoreContents;
         private @Nullable DeploymentElasticsearchMaster master;
         private @Nullable DeploymentElasticsearchMl ml;
         private @Nullable String refId;
@@ -266,6 +281,7 @@ public final class DeploymentElasticsearch {
     	      this.hot = defaults.hot;
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
+    	      this.keystoreContents = defaults.keystoreContents;
     	      this.master = defaults.master;
     	      this.ml = defaults.ml;
     	      this.refId = defaults.refId;
@@ -331,6 +347,11 @@ public final class DeploymentElasticsearch {
         @CustomType.Setter
         public Builder httpsEndpoint(@Nullable String httpsEndpoint) {
             this.httpsEndpoint = httpsEndpoint;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder keystoreContents(@Nullable Map<String,DeploymentElasticsearchKeystoreContents> keystoreContents) {
+            this.keystoreContents = keystoreContents;
             return this;
         }
         @CustomType.Setter
@@ -414,6 +435,7 @@ public final class DeploymentElasticsearch {
             o.hot = hot;
             o.httpEndpoint = httpEndpoint;
             o.httpsEndpoint = httpsEndpoint;
+            o.keystoreContents = keystoreContents;
             o.master = master;
             o.ml = ml;
             o.refId = refId;

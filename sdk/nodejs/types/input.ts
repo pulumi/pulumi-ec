@@ -70,6 +70,10 @@ export interface DeploymentElasticsearch {
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
     /**
+     * Keystore contents that are controlled by the deployment resource.
+     */
+    keystoreContents?: pulumi.Input<{[key: string]: pulumi.Input<inputs.DeploymentElasticsearchKeystoreContents>}>;
+    /**
      * 'master' topology element
      */
     master?: pulumi.Input<inputs.DeploymentElasticsearchMaster>;
@@ -202,6 +206,11 @@ export interface DeploymentElasticsearchHotAutoscaling {
     minSize?: pulumi.Input<string>;
     minSizeResource?: pulumi.Input<string>;
     policyOverrideJson?: pulumi.Input<string>;
+}
+
+export interface DeploymentElasticsearchKeystoreContents {
+    asFile?: pulumi.Input<boolean>;
+    value: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchMaster {

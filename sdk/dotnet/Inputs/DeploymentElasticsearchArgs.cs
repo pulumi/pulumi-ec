@@ -69,6 +69,18 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("httpsEndpoint")]
         public Input<string>? HttpsEndpoint { get; set; }
 
+        [Input("keystoreContents")]
+        private InputMap<Inputs.DeploymentElasticsearchKeystoreContentsArgs>? _keystoreContents;
+
+        /// <summary>
+        /// Keystore contents that are controlled by the deployment resource.
+        /// </summary>
+        public InputMap<Inputs.DeploymentElasticsearchKeystoreContentsArgs> KeystoreContents
+        {
+            get => _keystoreContents ?? (_keystoreContents = new InputMap<Inputs.DeploymentElasticsearchKeystoreContentsArgs>());
+            set => _keystoreContents = value;
+        }
+
         /// <summary>
         /// 'master' topology element
         /// </summary>

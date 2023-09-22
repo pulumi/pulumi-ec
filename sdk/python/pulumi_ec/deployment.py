@@ -603,7 +603,7 @@ class Deployment(pulumi.CustomResource):
 
         It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
 
-        ### With Çross Cluster Search settings
+        ### With Cross Cluster Search settings
 
         ## Import
 
@@ -653,7 +653,7 @@ class Deployment(pulumi.CustomResource):
 
         It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
 
-        ### With Çross Cluster Search settings
+        ### With Cross Cluster Search settings
 
         ## Import
 

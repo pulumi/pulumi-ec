@@ -28,8 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.GetAzurePrivatelinkEndpoint(ctx, &ec.GetAzurePrivatelinkEndpointArgs{
-//				Region: "eastus",
+//			_, err := ec.GetAwsPrivatelinkEndpoint(ctx, &ec.GetAwsPrivatelinkEndpointArgs{
+//				Region: "us-east-1",
 //			}, nil)
 //			if err != nil {
 //				return err

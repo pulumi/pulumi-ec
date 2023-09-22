@@ -394,6 +394,7 @@
                 "extensions": "extension",
                 "httpEndpoint": "http_endpoint",
                 "httpsEndpoint": "https_endpoint",
+                "keystoreContents": "keystore_contents",
                 "refId": "ref_id",
                 "remoteClusters": "remote_cluster",
                 "resourceId": "resource_id",
@@ -475,6 +476,9 @@
                 "minSize": "min_size",
                 "minSizeResource": "min_size_resource",
                 "policyOverrideJson": "policy_override_json"
+            },
+            "ec:index/DeploymentElasticsearchKeystoreContents:DeploymentElasticsearchKeystoreContents": {
+                "asFile": "as_file"
             },
             "ec:index/DeploymentElasticsearchMaster:DeploymentElasticsearchMaster": {
                 "instanceConfigurationId": "instance_configuration_id",
