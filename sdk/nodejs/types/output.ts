@@ -70,6 +70,10 @@ export interface DeploymentElasticsearch {
     httpEndpoint: string;
     httpsEndpoint: string;
     /**
+     * Keystore contents that are controlled by the deployment resource.
+     */
+    keystoreContents?: {[key: string]: outputs.DeploymentElasticsearchKeystoreContents};
+    /**
      * 'master' topology element
      */
     master?: outputs.DeploymentElasticsearchMaster;
@@ -202,6 +206,11 @@ export interface DeploymentElasticsearchHotAutoscaling {
     minSize: string;
     minSizeResource: string;
     policyOverrideJson: string;
+}
+
+export interface DeploymentElasticsearchKeystoreContents {
+    asFile: boolean;
+    value: string;
 }
 
 export interface DeploymentElasticsearchMaster {

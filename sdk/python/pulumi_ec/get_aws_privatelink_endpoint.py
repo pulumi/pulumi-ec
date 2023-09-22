@@ -103,7 +103,7 @@ def get_aws_privatelink_endpoint(region: Optional[str] = None,
     import pulumi
     import pulumi_ec as ec
 
-    eastus = ec.get_azure_privatelink_endpoint(region="eastus")
+    us_east_1 = ec.get_aws_privatelink_endpoint(region="us-east-1")
     ```
 
 
@@ -134,7 +134,7 @@ def get_aws_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = No
     import pulumi
     import pulumi_ec as ec
 
-    eastus = ec.get_azure_privatelink_endpoint(region="eastus")
+    us_east_1 = ec.get_aws_privatelink_endpoint(region="us-east-1")
     ```
 
 

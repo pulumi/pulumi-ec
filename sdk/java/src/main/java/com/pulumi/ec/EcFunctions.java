@@ -43,7 +43,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -57,8 +57,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }
@@ -80,7 +80,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -94,8 +94,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }
@@ -117,7 +117,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -131,8 +131,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }
@@ -154,7 +154,7 @@ public final class EcFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
-     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
+     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -168,8 +168,8 @@ public final class EcFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }

@@ -11,6 +11,7 @@ import com.pulumi.ec.inputs.DeploymentElasticsearchCoordinatingArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchExtensionArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchFrozenArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+import com.pulumi.ec.inputs.DeploymentElasticsearchKeystoreContentsArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchMasterArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchMlArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchRemoteClusterArgs;
@@ -22,6 +23,7 @@ import com.pulumi.ec.inputs.DeploymentElasticsearchWarmArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -155,6 +157,21 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
 
     public Optional<Output<String>> httpsEndpoint() {
         return Optional.ofNullable(this.httpsEndpoint);
+    }
+
+    /**
+     * Keystore contents that are controlled by the deployment resource.
+     * 
+     */
+    @Import(name="keystoreContents")
+    private @Nullable Output<Map<String,DeploymentElasticsearchKeystoreContentsArgs>> keystoreContents;
+
+    /**
+     * @return Keystore contents that are controlled by the deployment resource.
+     * 
+     */
+    public Optional<Output<Map<String,DeploymentElasticsearchKeystoreContentsArgs>>> keystoreContents() {
+        return Optional.ofNullable(this.keystoreContents);
     }
 
     /**
@@ -302,6 +319,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         this.hot = $.hot;
         this.httpEndpoint = $.httpEndpoint;
         this.httpsEndpoint = $.httpsEndpoint;
+        this.keystoreContents = $.keystoreContents;
         this.master = $.master;
         this.ml = $.ml;
         this.refId = $.refId;
@@ -516,6 +534,27 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
 
         public Builder httpsEndpoint(String httpsEndpoint) {
             return httpsEndpoint(Output.of(httpsEndpoint));
+        }
+
+        /**
+         * @param keystoreContents Keystore contents that are controlled by the deployment resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keystoreContents(@Nullable Output<Map<String,DeploymentElasticsearchKeystoreContentsArgs>> keystoreContents) {
+            $.keystoreContents = keystoreContents;
+            return this;
+        }
+
+        /**
+         * @param keystoreContents Keystore contents that are controlled by the deployment resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keystoreContents(Map<String,DeploymentElasticsearchKeystoreContentsArgs> keystoreContents) {
+            return keystoreContents(Output.of(keystoreContents));
         }
 
         /**

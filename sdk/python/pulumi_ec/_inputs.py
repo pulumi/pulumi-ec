@@ -23,6 +23,7 @@ __all__ = [
     'DeploymentElasticsearchFrozenAutoscalingArgs',
     'DeploymentElasticsearchHotArgs',
     'DeploymentElasticsearchHotAutoscalingArgs',
+    'DeploymentElasticsearchKeystoreContentsArgs',
     'DeploymentElasticsearchMasterArgs',
     'DeploymentElasticsearchMasterAutoscalingArgs',
     'DeploymentElasticsearchMlArgs',
@@ -295,6 +296,7 @@ class DeploymentElasticsearchArgs:
                  frozen: Optional[pulumi.Input['DeploymentElasticsearchFrozenArgs']] = None,
                  http_endpoint: Optional[pulumi.Input[str]] = None,
                  https_endpoint: Optional[pulumi.Input[str]] = None,
+                 keystore_contents: Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]] = None,
                  master: Optional[pulumi.Input['DeploymentElasticsearchMasterArgs']] = None,
                  ml: Optional[pulumi.Input['DeploymentElasticsearchMlArgs']] = None,
                  ref_id: Optional[pulumi.Input[str]] = None,
@@ -315,6 +317,7 @@ class DeploymentElasticsearchArgs:
         :param pulumi.Input['DeploymentElasticsearchCoordinatingArgs'] coordinating: 'coordinating' topology element
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]] extensions: Optional Elasticsearch extensions such as custom bundles or plugins.
         :param pulumi.Input['DeploymentElasticsearchFrozenArgs'] frozen: 'frozen' topology element
+        :param pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]] keystore_contents: Keystore contents that are controlled by the deployment resource.
         :param pulumi.Input['DeploymentElasticsearchMasterArgs'] master: 'master' topology element
         :param pulumi.Input['DeploymentElasticsearchMlArgs'] ml: 'ml' topology element
         :param pulumi.Input[str] ref_id: A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
@@ -341,6 +344,8 @@ class DeploymentElasticsearchArgs:
             pulumi.set(__self__, "http_endpoint", http_endpoint)
         if https_endpoint is not None:
             pulumi.set(__self__, "https_endpoint", https_endpoint)
+        if keystore_contents is not None:
+            pulumi.set(__self__, "keystore_contents", keystore_contents)
         if master is not None:
             pulumi.set(__self__, "master", master)
         if ml is not None:
@@ -476,6 +481,18 @@ class DeploymentElasticsearchArgs:
     @https_endpoint.setter
     def https_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "https_endpoint", value)
+
+    @property
+    @pulumi.getter(name="keystoreContents")
+    def keystore_contents(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]:
+        """
+        Keystore contents that are controlled by the deployment resource.
+        """
+        return pulumi.get(self, "keystore_contents")
+
+    @keystore_contents.setter
+    def keystore_contents(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]):
+        pulumi.set(self, "keystore_contents", value)
 
     @property
     @pulumi.getter
@@ -1490,6 +1507,34 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @policy_override_json.setter
     def policy_override_json(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_override_json", value)
+
+
+@pulumi.input_type
+class DeploymentElasticsearchKeystoreContentsArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[str],
+                 as_file: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "value", value)
+        if as_file is not None:
+            pulumi.set(__self__, "as_file", as_file)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter(name="asFile")
+    def as_file(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "as_file")
+
+    @as_file.setter
+    def as_file(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "as_file", value)
 
 
 @pulumi.input_type

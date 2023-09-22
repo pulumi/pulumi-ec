@@ -24,6 +24,7 @@ __all__ = [
     'DeploymentElasticsearchFrozenAutoscaling',
     'DeploymentElasticsearchHot',
     'DeploymentElasticsearchHotAutoscaling',
+    'DeploymentElasticsearchKeystoreContents',
     'DeploymentElasticsearchMaster',
     'DeploymentElasticsearchMasterAutoscaling',
     'DeploymentElasticsearchMl',
@@ -303,6 +304,8 @@ class DeploymentElasticsearch(dict):
             suggest = "http_endpoint"
         elif key == "httpsEndpoint":
             suggest = "https_endpoint"
+        elif key == "keystoreContents":
+            suggest = "keystore_contents"
         elif key == "refId":
             suggest = "ref_id"
         elif key == "remoteClusters":
@@ -338,6 +341,7 @@ class DeploymentElasticsearch(dict):
                  frozen: Optional['outputs.DeploymentElasticsearchFrozen'] = None,
                  http_endpoint: Optional[str] = None,
                  https_endpoint: Optional[str] = None,
+                 keystore_contents: Optional[Mapping[str, 'outputs.DeploymentElasticsearchKeystoreContents']] = None,
                  master: Optional['outputs.DeploymentElasticsearchMaster'] = None,
                  ml: Optional['outputs.DeploymentElasticsearchMl'] = None,
                  ref_id: Optional[str] = None,
@@ -358,6 +362,7 @@ class DeploymentElasticsearch(dict):
         :param 'DeploymentElasticsearchCoordinatingArgs' coordinating: 'coordinating' topology element
         :param Sequence['DeploymentElasticsearchExtensionArgs'] extensions: Optional Elasticsearch extensions such as custom bundles or plugins.
         :param 'DeploymentElasticsearchFrozenArgs' frozen: 'frozen' topology element
+        :param Mapping[str, 'DeploymentElasticsearchKeystoreContentsArgs'] keystore_contents: Keystore contents that are controlled by the deployment resource.
         :param 'DeploymentElasticsearchMasterArgs' master: 'master' topology element
         :param 'DeploymentElasticsearchMlArgs' ml: 'ml' topology element
         :param str ref_id: A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
@@ -384,6 +389,8 @@ class DeploymentElasticsearch(dict):
             pulumi.set(__self__, "http_endpoint", http_endpoint)
         if https_endpoint is not None:
             pulumi.set(__self__, "https_endpoint", https_endpoint)
+        if keystore_contents is not None:
+            pulumi.set(__self__, "keystore_contents", keystore_contents)
         if master is not None:
             pulumi.set(__self__, "master", master)
         if ml is not None:
@@ -479,6 +486,14 @@ class DeploymentElasticsearch(dict):
     @pulumi.getter(name="httpsEndpoint")
     def https_endpoint(self) -> Optional[str]:
         return pulumi.get(self, "https_endpoint")
+
+    @property
+    @pulumi.getter(name="keystoreContents")
+    def keystore_contents(self) -> Optional[Mapping[str, 'outputs.DeploymentElasticsearchKeystoreContents']]:
+        """
+        Keystore contents that are controlled by the deployment resource.
+        """
+        return pulumi.get(self, "keystore_contents")
 
     @property
     @pulumi.getter
@@ -1414,6 +1429,43 @@ class DeploymentElasticsearchHotAutoscaling(dict):
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[str]:
         return pulumi.get(self, "policy_override_json")
+
+
+@pulumi.output_type
+class DeploymentElasticsearchKeystoreContents(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "asFile":
+            suggest = "as_file"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DeploymentElasticsearchKeystoreContents. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DeploymentElasticsearchKeystoreContents.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DeploymentElasticsearchKeystoreContents.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 value: str,
+                 as_file: Optional[bool] = None):
+        pulumi.set(__self__, "value", value)
+        if as_file is not None:
+            pulumi.set(__self__, "as_file", as_file)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter(name="asFile")
+    def as_file(self) -> Optional[bool]:
+        return pulumi.get(self, "as_file")
 
 
 @pulumi.output_type

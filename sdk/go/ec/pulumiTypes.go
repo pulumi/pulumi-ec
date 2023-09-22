@@ -583,6 +583,8 @@ type DeploymentElasticsearch struct {
 	Hot           DeploymentElasticsearchHot `pulumi:"hot"`
 	HttpEndpoint  *string                    `pulumi:"httpEndpoint"`
 	HttpsEndpoint *string                    `pulumi:"httpsEndpoint"`
+	// Keystore contents that are controlled by the deployment resource.
+	KeystoreContents map[string]DeploymentElasticsearchKeystoreContents `pulumi:"keystoreContents"`
 	// 'master' topology element
 	Master *DeploymentElasticsearchMaster `pulumi:"master"`
 	// 'ml' topology element
@@ -632,6 +634,8 @@ type DeploymentElasticsearchArgs struct {
 	Hot           DeploymentElasticsearchHotInput `pulumi:"hot"`
 	HttpEndpoint  pulumi.StringPtrInput           `pulumi:"httpEndpoint"`
 	HttpsEndpoint pulumi.StringPtrInput           `pulumi:"httpsEndpoint"`
+	// Keystore contents that are controlled by the deployment resource.
+	KeystoreContents DeploymentElasticsearchKeystoreContentsMapInput `pulumi:"keystoreContents"`
 	// 'master' topology element
 	Master DeploymentElasticsearchMasterPtrInput `pulumi:"master"`
 	// 'ml' topology element
@@ -792,6 +796,13 @@ func (o DeploymentElasticsearchOutput) HttpEndpoint() pulumi.StringPtrOutput {
 
 func (o DeploymentElasticsearchOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Keystore contents that are controlled by the deployment resource.
+func (o DeploymentElasticsearchOutput) KeystoreContents() DeploymentElasticsearchKeystoreContentsMapOutput {
+	return o.ApplyT(func(v DeploymentElasticsearch) map[string]DeploymentElasticsearchKeystoreContents {
+		return v.KeystoreContents
+	}).(DeploymentElasticsearchKeystoreContentsMapOutput)
 }
 
 // 'master' topology element
@@ -973,6 +984,16 @@ func (o DeploymentElasticsearchPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput
 		}
 		return v.HttpsEndpoint
 	}).(pulumi.StringPtrOutput)
+}
+
+// Keystore contents that are controlled by the deployment resource.
+func (o DeploymentElasticsearchPtrOutput) KeystoreContents() DeploymentElasticsearchKeystoreContentsMapOutput {
+	return o.ApplyT(func(v *DeploymentElasticsearch) map[string]DeploymentElasticsearchKeystoreContents {
+		if v == nil {
+			return nil
+		}
+		return v.KeystoreContents
+	}).(DeploymentElasticsearchKeystoreContentsMapOutput)
 }
 
 // 'master' topology element
@@ -3496,6 +3517,130 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) PolicyOverrideJson() pul
 		}
 		return v.PolicyOverrideJson
 	}).(pulumi.StringPtrOutput)
+}
+
+type DeploymentElasticsearchKeystoreContents struct {
+	AsFile *bool  `pulumi:"asFile"`
+	Value  string `pulumi:"value"`
+}
+
+// DeploymentElasticsearchKeystoreContentsInput is an input type that accepts DeploymentElasticsearchKeystoreContentsArgs and DeploymentElasticsearchKeystoreContentsOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchKeystoreContentsInput` via:
+//
+//	DeploymentElasticsearchKeystoreContentsArgs{...}
+type DeploymentElasticsearchKeystoreContentsInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchKeystoreContentsOutput() DeploymentElasticsearchKeystoreContentsOutput
+	ToDeploymentElasticsearchKeystoreContentsOutputWithContext(context.Context) DeploymentElasticsearchKeystoreContentsOutput
+}
+
+type DeploymentElasticsearchKeystoreContentsArgs struct {
+	AsFile pulumi.BoolPtrInput `pulumi:"asFile"`
+	Value  pulumi.StringInput  `pulumi:"value"`
+}
+
+func (DeploymentElasticsearchKeystoreContentsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchKeystoreContents)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchKeystoreContentsArgs) ToDeploymentElasticsearchKeystoreContentsOutput() DeploymentElasticsearchKeystoreContentsOutput {
+	return i.ToDeploymentElasticsearchKeystoreContentsOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchKeystoreContentsArgs) ToDeploymentElasticsearchKeystoreContentsOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreContentsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystoreContentsOutput)
+}
+
+func (i DeploymentElasticsearchKeystoreContentsArgs) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchKeystoreContents] {
+	return pulumix.Output[DeploymentElasticsearchKeystoreContents]{
+		OutputState: i.ToDeploymentElasticsearchKeystoreContentsOutputWithContext(ctx).OutputState,
+	}
+}
+
+// DeploymentElasticsearchKeystoreContentsMapInput is an input type that accepts DeploymentElasticsearchKeystoreContentsMap and DeploymentElasticsearchKeystoreContentsMapOutput values.
+// You can construct a concrete instance of `DeploymentElasticsearchKeystoreContentsMapInput` via:
+//
+//	DeploymentElasticsearchKeystoreContentsMap{ "key": DeploymentElasticsearchKeystoreContentsArgs{...} }
+type DeploymentElasticsearchKeystoreContentsMapInput interface {
+	pulumi.Input
+
+	ToDeploymentElasticsearchKeystoreContentsMapOutput() DeploymentElasticsearchKeystoreContentsMapOutput
+	ToDeploymentElasticsearchKeystoreContentsMapOutputWithContext(context.Context) DeploymentElasticsearchKeystoreContentsMapOutput
+}
+
+type DeploymentElasticsearchKeystoreContentsMap map[string]DeploymentElasticsearchKeystoreContentsInput
+
+func (DeploymentElasticsearchKeystoreContentsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]DeploymentElasticsearchKeystoreContents)(nil)).Elem()
+}
+
+func (i DeploymentElasticsearchKeystoreContentsMap) ToDeploymentElasticsearchKeystoreContentsMapOutput() DeploymentElasticsearchKeystoreContentsMapOutput {
+	return i.ToDeploymentElasticsearchKeystoreContentsMapOutputWithContext(context.Background())
+}
+
+func (i DeploymentElasticsearchKeystoreContentsMap) ToDeploymentElasticsearchKeystoreContentsMapOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreContentsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystoreContentsMapOutput)
+}
+
+func (i DeploymentElasticsearchKeystoreContentsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]DeploymentElasticsearchKeystoreContents] {
+	return pulumix.Output[map[string]DeploymentElasticsearchKeystoreContents]{
+		OutputState: i.ToDeploymentElasticsearchKeystoreContentsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
+type DeploymentElasticsearchKeystoreContentsOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchKeystoreContentsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentElasticsearchKeystoreContents)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchKeystoreContentsOutput) ToDeploymentElasticsearchKeystoreContentsOutput() DeploymentElasticsearchKeystoreContentsOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchKeystoreContentsOutput) ToDeploymentElasticsearchKeystoreContentsOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreContentsOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchKeystoreContentsOutput) ToOutput(ctx context.Context) pulumix.Output[DeploymentElasticsearchKeystoreContents] {
+	return pulumix.Output[DeploymentElasticsearchKeystoreContents]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o DeploymentElasticsearchKeystoreContentsOutput) AsFile() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchKeystoreContents) *bool { return v.AsFile }).(pulumi.BoolPtrOutput)
+}
+
+func (o DeploymentElasticsearchKeystoreContentsOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentElasticsearchKeystoreContents) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type DeploymentElasticsearchKeystoreContentsMapOutput struct{ *pulumi.OutputState }
+
+func (DeploymentElasticsearchKeystoreContentsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]DeploymentElasticsearchKeystoreContents)(nil)).Elem()
+}
+
+func (o DeploymentElasticsearchKeystoreContentsMapOutput) ToDeploymentElasticsearchKeystoreContentsMapOutput() DeploymentElasticsearchKeystoreContentsMapOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchKeystoreContentsMapOutput) ToDeploymentElasticsearchKeystoreContentsMapOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreContentsMapOutput {
+	return o
+}
+
+func (o DeploymentElasticsearchKeystoreContentsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]DeploymentElasticsearchKeystoreContents] {
+	return pulumix.Output[map[string]DeploymentElasticsearchKeystoreContents]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o DeploymentElasticsearchKeystoreContentsMapOutput) MapIndex(k pulumi.StringInput) DeploymentElasticsearchKeystoreContentsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeploymentElasticsearchKeystoreContents {
+		return vs[0].(map[string]DeploymentElasticsearchKeystoreContents)[vs[1].(string)]
+	}).(DeploymentElasticsearchKeystoreContentsOutput)
 }
 
 type DeploymentElasticsearchMaster struct {
@@ -12652,6 +12797,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotPtrInput)(nil)).Elem(), DeploymentElasticsearchHotArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchHotAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchHotAutoscalingPtrInput)(nil)).Elem(), DeploymentElasticsearchHotAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchKeystoreContentsInput)(nil)).Elem(), DeploymentElasticsearchKeystoreContentsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchKeystoreContentsMapInput)(nil)).Elem(), DeploymentElasticsearchKeystoreContentsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterInput)(nil)).Elem(), DeploymentElasticsearchMasterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterPtrInput)(nil)).Elem(), DeploymentElasticsearchMasterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentElasticsearchMasterAutoscalingInput)(nil)).Elem(), DeploymentElasticsearchMasterAutoscalingArgs{})
@@ -12774,6 +12921,8 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentElasticsearchHotPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchHotAutoscalingOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchHotAutoscalingPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchKeystoreContentsOutput{})
+	pulumi.RegisterOutputType(DeploymentElasticsearchKeystoreContentsMapOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchMasterOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchMasterPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentElasticsearchMasterAutoscalingOutput{})

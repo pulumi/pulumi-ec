@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *
  * It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deploymentId` to `self`.
  *
- * ### With Çross Cluster Search settings
+ * ### With Cross Cluster Search settings
  *
  * ## Import
  *

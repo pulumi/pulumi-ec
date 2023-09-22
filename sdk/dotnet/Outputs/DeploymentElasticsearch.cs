@@ -45,6 +45,10 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
         /// <summary>
+        /// Keystore contents that are controlled by the deployment resource.
+        /// </summary>
+        public readonly ImmutableDictionary<string, Outputs.DeploymentElasticsearchKeystoreContents>? KeystoreContents;
+        /// <summary>
         /// 'master' topology element
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchMaster? Master;
@@ -97,6 +101,8 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? httpsEndpoint,
 
+            ImmutableDictionary<string, Outputs.DeploymentElasticsearchKeystoreContents>? keystoreContents,
+
             Outputs.DeploymentElasticsearchMaster? master,
 
             Outputs.DeploymentElasticsearchMl? ml,
@@ -131,6 +137,7 @@ namespace Pulumi.ElasticCloud.Outputs
             Hot = hot;
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
+            KeystoreContents = keystoreContents;
             Master = master;
             Ml = ml;
             RefId = refId;
