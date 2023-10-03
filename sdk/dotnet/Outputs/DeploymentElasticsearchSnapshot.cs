@@ -13,7 +13,13 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchSnapshot
     {
+        /// <summary>
+        /// Indicates if Snapshotting is enabled.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Snapshot repository configuration
+        /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshotRepository? Repository;
 
         [OutputConstructor]

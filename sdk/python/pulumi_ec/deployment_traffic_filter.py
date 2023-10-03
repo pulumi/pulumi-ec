@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,21 +26,40 @@ class DeploymentTrafficFilterArgs:
         The set of arguments for constructing a DeploymentTrafficFilter resource.
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
         :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Set of rules, which the ruleset is made of.
         """
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "type", type)
+        DeploymentTrafficFilterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            region=region,
+            type=type,
+            description=description,
+            include_by_default=include_by_default,
+            name=name,
+            rules=rules,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             region: pulumi.Input[str],
+             type: pulumi.Input[str],
+             description: Optional[pulumi.Input[str]] = None,
+             include_by_default: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             rules: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("region", region)
+        _setter("type", type)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if include_by_default is not None:
-            pulumi.set(__self__, "include_by_default", include_by_default)
+            _setter("include_by_default", include_by_default)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if rules is not None:
-            pulumi.set(__self__, "rules", rules)
+            _setter("rules", rules)
 
     @property
     @pulumi.getter
@@ -70,7 +89,7 @@ class DeploymentTrafficFilterArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Ruleset description
+        Description of this individual rule
         """
         return pulumi.get(self, "description")
 
@@ -126,31 +145,50 @@ class _DeploymentTrafficFilterState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilter resources.
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Set of rules, which the ruleset is made of.
         :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
+        _DeploymentTrafficFilterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            include_by_default=include_by_default,
+            name=name,
+            region=region,
+            rules=rules,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             include_by_default: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             rules: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if include_by_default is not None:
-            pulumi.set(__self__, "include_by_default", include_by_default)
+            _setter("include_by_default", include_by_default)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if rules is not None:
-            pulumi.set(__self__, "rules", rules)
+            _setter("rules", rules)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Ruleset description
+        Description of this individual rule
         """
         return pulumi.get(self, "description")
 
@@ -329,7 +367,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
@@ -448,6 +486,10 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeploymentTrafficFilterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -501,7 +543,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
@@ -524,7 +566,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        Ruleset description
+        Description of this individual rule
         """
         return pulumi.get(self, "description")
 

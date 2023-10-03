@@ -13,9 +13,17 @@ public final class DeploymentElasticsearchSnapshotRepositoryReferenceArgs extend
 
     public static final DeploymentElasticsearchSnapshotRepositoryReferenceArgs Empty = new DeploymentElasticsearchSnapshotRepositoryReferenceArgs();
 
+    /**
+     * ECE snapshot repository name, from the &#39;/platform/configuration/snapshots/repositories&#39; endpoint
+     * 
+     */
     @Import(name="repositoryName", required=true)
     private Output<String> repositoryName;
 
+    /**
+     * @return ECE snapshot repository name, from the &#39;/platform/configuration/snapshots/repositories&#39; endpoint
+     * 
+     */
     public Output<String> repositoryName() {
         return this.repositoryName;
     }
@@ -44,11 +52,23 @@ public final class DeploymentElasticsearchSnapshotRepositoryReferenceArgs extend
             $ = new DeploymentElasticsearchSnapshotRepositoryReferenceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param repositoryName ECE snapshot repository name, from the &#39;/platform/configuration/snapshots/repositories&#39; endpoint
+         * 
+         * @return builder
+         * 
+         */
         public Builder repositoryName(Output<String> repositoryName) {
             $.repositoryName = repositoryName;
             return this;
         }
 
+        /**
+         * @param repositoryName ECE snapshot repository name, from the &#39;/platform/configuration/snapshots/repositories&#39; endpoint
+         * 
+         * @return builder
+         * 
+         */
         public Builder repositoryName(String repositoryName) {
             return repositoryName(Output.of(repositoryName));
         }

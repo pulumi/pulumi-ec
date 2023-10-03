@@ -13,6 +13,9 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchSnapshotRepositoryReference
     {
+        /// <summary>
+        /// ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
+        /// </summary>
         public readonly string RepositoryName;
 
         [OutputConstructor]

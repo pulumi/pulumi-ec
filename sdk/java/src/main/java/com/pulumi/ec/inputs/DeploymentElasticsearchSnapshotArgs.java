@@ -16,16 +16,32 @@ public final class DeploymentElasticsearchSnapshotArgs extends com.pulumi.resour
 
     public static final DeploymentElasticsearchSnapshotArgs Empty = new DeploymentElasticsearchSnapshotArgs();
 
+    /**
+     * Indicates if Snapshotting is enabled.
+     * 
+     */
     @Import(name="enabled", required=true)
     private Output<Boolean> enabled;
 
+    /**
+     * @return Indicates if Snapshotting is enabled.
+     * 
+     */
     public Output<Boolean> enabled() {
         return this.enabled;
     }
 
+    /**
+     * Snapshot repository configuration
+     * 
+     */
     @Import(name="repository")
     private @Nullable Output<DeploymentElasticsearchSnapshotRepositoryArgs> repository;
 
+    /**
+     * @return Snapshot repository configuration
+     * 
+     */
     public Optional<Output<DeploymentElasticsearchSnapshotRepositoryArgs>> repository() {
         return Optional.ofNullable(this.repository);
     }
@@ -55,20 +71,44 @@ public final class DeploymentElasticsearchSnapshotArgs extends com.pulumi.resour
             $ = new DeploymentElasticsearchSnapshotArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param enabled Indicates if Snapshotting is enabled.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled Indicates if Snapshotting is enabled.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param repository Snapshot repository configuration
+         * 
+         * @return builder
+         * 
+         */
         public Builder repository(@Nullable Output<DeploymentElasticsearchSnapshotRepositoryArgs> repository) {
             $.repository = repository;
             return this;
         }
 
+        /**
+         * @param repository Snapshot repository configuration
+         * 
+         * @return builder
+         * 
+         */
         public Builder repository(DeploymentElasticsearchSnapshotRepositoryArgs repository) {
             return repository(Output.of(repository));
         }

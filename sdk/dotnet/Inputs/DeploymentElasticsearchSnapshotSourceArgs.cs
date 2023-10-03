@@ -12,9 +12,15 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchSnapshotSourceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+        /// </summary>
         [Input("snapshotName")]
         public Input<string>? SnapshotName { get; set; }
 
+        /// <summary>
+        /// ID of the Elasticsearch cluster that will be used as the source of the snapshot
+        /// </summary>
         [Input("sourceElasticsearchClusterId", required: true)]
         public Input<string> SourceElasticsearchClusterId { get; set; } = null!;
 

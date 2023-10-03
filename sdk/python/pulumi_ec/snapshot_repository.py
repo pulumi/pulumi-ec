@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,12 +25,25 @@ class SnapshotRepositoryArgs:
         :param pulumi.Input[str] name: The name of the snapshot repository configuration.
         :param pulumi.Input['SnapshotRepositoryS3Args'] s3: S3 repository settings.
         """
+        SnapshotRepositoryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            generic=generic,
+            name=name,
+            s3=s3,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             generic: Optional[pulumi.Input['SnapshotRepositoryGenericArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             s3: Optional[pulumi.Input['SnapshotRepositoryS3Args']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if generic is not None:
-            pulumi.set(__self__, "generic", generic)
+            _setter("generic", generic)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if s3 is not None:
-            pulumi.set(__self__, "s3", s3)
+            _setter("s3", s3)
 
     @property
     @pulumi.getter
@@ -81,12 +94,25 @@ class _SnapshotRepositoryState:
         :param pulumi.Input[str] name: The name of the snapshot repository configuration.
         :param pulumi.Input['SnapshotRepositoryS3Args'] s3: S3 repository settings.
         """
+        _SnapshotRepositoryState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            generic=generic,
+            name=name,
+            s3=s3,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             generic: Optional[pulumi.Input['SnapshotRepositoryGenericArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             s3: Optional[pulumi.Input['SnapshotRepositoryS3Args']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if generic is not None:
-            pulumi.set(__self__, "generic", generic)
+            _setter("generic", generic)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if s3 is not None:
-            pulumi.set(__self__, "s3", s3)
+            _setter("s3", s3)
 
     @property
     @pulumi.getter
@@ -182,6 +208,10 @@ class SnapshotRepository(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            SnapshotRepositoryArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -199,8 +229,18 @@ class SnapshotRepository(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SnapshotRepositoryArgs.__new__(SnapshotRepositoryArgs)
 
+            if generic is not None and not isinstance(generic, SnapshotRepositoryGenericArgs):
+                generic = generic or {}
+                def _setter(key, value):
+                    generic[key] = value
+                SnapshotRepositoryGenericArgs._configure(_setter, **generic)
             __props__.__dict__["generic"] = generic
             __props__.__dict__["name"] = name
+            if s3 is not None and not isinstance(s3, SnapshotRepositoryS3Args):
+                s3 = s3 or {}
+                def _setter(key, value):
+                    s3[key] = value
+                SnapshotRepositoryS3Args._configure(_setter, **s3)
             __props__.__dict__["s3"] = s3
         super(SnapshotRepository, __self__).__init__(
             'ec:index/snapshotRepository:SnapshotRepository',

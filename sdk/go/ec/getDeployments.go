@@ -84,7 +84,7 @@ type GetDeploymentsArgs struct {
 	Elasticsearches []GetDeploymentsElasticsearch `pulumi:"elasticsearches"`
 	// Filter by Enterprise Search resource kind status or configuration.
 	EnterpriseSearches []GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearches"`
-	// Filter the result set by their health status.
+	// Overall health status of the resource instances.
 	Healthy *string `pulumi:"healthy"`
 	// Filter by Integrations Server resource kind status or configuration.
 	IntegrationsServers []GetDeploymentsIntegrationsServer `pulumi:"integrationsServers"`
@@ -151,7 +151,7 @@ type GetDeploymentsOutputArgs struct {
 	Elasticsearches GetDeploymentsElasticsearchArrayInput `pulumi:"elasticsearches"`
 	// Filter by Enterprise Search resource kind status or configuration.
 	EnterpriseSearches GetDeploymentsEnterpriseSearchArrayInput `pulumi:"enterpriseSearches"`
-	// Filter the result set by their health status.
+	// Overall health status of the resource instances.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
 	// Filter by Integrations Server resource kind status or configuration.
 	IntegrationsServers GetDeploymentsIntegrationsServerArrayInput `pulumi:"integrationsServers"`

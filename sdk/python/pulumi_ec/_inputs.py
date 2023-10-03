@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -71,31 +71,59 @@ class DeploymentApmArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentApmConfigArgs'] config: Optionally define the Apm configuration options for the APM Server
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
         """
+        DeploymentApmArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            elasticsearch_cluster_ref_id=elasticsearch_cluster_ref_id,
+            http_endpoint=http_endpoint,
+            https_endpoint=https_endpoint,
+            instance_configuration_id=instance_configuration_id,
+            ref_id=ref_id,
+            region=region,
+            resource_id=resource_id,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: Optional[pulumi.Input['DeploymentApmConfigArgs']] = None,
+             elasticsearch_cluster_ref_id: Optional[pulumi.Input[str]] = None,
+             http_endpoint: Optional[pulumi.Input[str]] = None,
+             https_endpoint: Optional[pulumi.Input[str]] = None,
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             ref_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             resource_id: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if elasticsearch_cluster_ref_id is not None:
-            pulumi.set(__self__, "elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
+            _setter("elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
         if http_endpoint is not None:
-            pulumi.set(__self__, "http_endpoint", http_endpoint)
+            _setter("http_endpoint", http_endpoint)
         if https_endpoint is not None:
-            pulumi.set(__self__, "https_endpoint", https_endpoint)
+            _setter("https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if resource_id is not None:
-            pulumi.set(__self__, "resource_id", resource_id)
+            _setter("resource_id", resource_id)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
@@ -157,9 +185,6 @@ class DeploymentApmArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -215,22 +240,52 @@ class DeploymentApmConfigArgs:
                  user_settings_override_json: Optional[pulumi.Input[str]] = None,
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] debug_enabled: Optionally enable debug mode for APM servers - defaults to false
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
+        DeploymentApmConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            debug_enabled=debug_enabled,
+            docker_image=docker_image,
+            user_settings_json=user_settings_json,
+            user_settings_override_json=user_settings_override_json,
+            user_settings_override_yaml=user_settings_override_yaml,
+            user_settings_yaml=user_settings_yaml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             debug_enabled: Optional[pulumi.Input[bool]] = None,
+             docker_image: Optional[pulumi.Input[str]] = None,
+             user_settings_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
+             user_settings_yaml: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if debug_enabled is not None:
-            pulumi.set(__self__, "debug_enabled", debug_enabled)
+            _setter("debug_enabled", debug_enabled)
         if docker_image is not None:
-            pulumi.set(__self__, "docker_image", docker_image)
+            _setter("docker_image", docker_image)
         if user_settings_json is not None:
-            pulumi.set(__self__, "user_settings_json", user_settings_json)
+            _setter("user_settings_json", user_settings_json)
         if user_settings_override_json is not None:
-            pulumi.set(__self__, "user_settings_override_json", user_settings_override_json)
+            _setter("user_settings_override_json", user_settings_override_json)
         if user_settings_override_yaml is not None:
-            pulumi.set(__self__, "user_settings_override_yaml", user_settings_override_yaml)
+            _setter("user_settings_override_yaml", user_settings_override_yaml)
         if user_settings_yaml is not None:
-            pulumi.set(__self__, "user_settings_yaml", user_settings_yaml)
+            _setter("user_settings_yaml", user_settings_yaml)
 
     @property
     @pulumi.getter(name="debugEnabled")
     def debug_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Optionally enable debug mode for APM servers - defaults to false
+        """
         return pulumi.get(self, "debug_enabled")
 
     @debug_enabled.setter
@@ -240,6 +295,9 @@ class DeploymentApmConfigArgs:
     @property
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
@@ -249,6 +307,9 @@ class DeploymentApmConfigArgs:
     @property
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
@@ -258,6 +319,9 @@ class DeploymentApmConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
@@ -267,6 +331,9 @@ class DeploymentApmConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
@@ -276,6 +343,9 @@ class DeploymentApmConfigArgs:
     @property
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
@@ -321,55 +391,107 @@ class DeploymentElasticsearchArgs:
         :param pulumi.Input['DeploymentElasticsearchMasterArgs'] master: 'master' topology element
         :param pulumi.Input['DeploymentElasticsearchMlArgs'] ml: 'ml' topology element
         :param pulumi.Input[str] ref_id: A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]] remote_clusters: Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         :param pulumi.Input['DeploymentElasticsearchSnapshotArgs'] snapshot: (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
         """
-        pulumi.set(__self__, "hot", hot)
+        DeploymentElasticsearchArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            hot=hot,
+            autoscale=autoscale,
+            cloud_id=cloud_id,
+            cold=cold,
+            config=config,
+            coordinating=coordinating,
+            extensions=extensions,
+            frozen=frozen,
+            http_endpoint=http_endpoint,
+            https_endpoint=https_endpoint,
+            keystore_contents=keystore_contents,
+            master=master,
+            ml=ml,
+            ref_id=ref_id,
+            region=region,
+            remote_clusters=remote_clusters,
+            resource_id=resource_id,
+            snapshot=snapshot,
+            snapshot_source=snapshot_source,
+            strategy=strategy,
+            trust_accounts=trust_accounts,
+            trust_externals=trust_externals,
+            warm=warm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             hot: pulumi.Input['DeploymentElasticsearchHotArgs'],
+             autoscale: Optional[pulumi.Input[bool]] = None,
+             cloud_id: Optional[pulumi.Input[str]] = None,
+             cold: Optional[pulumi.Input['DeploymentElasticsearchColdArgs']] = None,
+             config: Optional[pulumi.Input['DeploymentElasticsearchConfigArgs']] = None,
+             coordinating: Optional[pulumi.Input['DeploymentElasticsearchCoordinatingArgs']] = None,
+             extensions: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]] = None,
+             frozen: Optional[pulumi.Input['DeploymentElasticsearchFrozenArgs']] = None,
+             http_endpoint: Optional[pulumi.Input[str]] = None,
+             https_endpoint: Optional[pulumi.Input[str]] = None,
+             keystore_contents: Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]] = None,
+             master: Optional[pulumi.Input['DeploymentElasticsearchMasterArgs']] = None,
+             ml: Optional[pulumi.Input['DeploymentElasticsearchMlArgs']] = None,
+             ref_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             remote_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]] = None,
+             resource_id: Optional[pulumi.Input[str]] = None,
+             snapshot: Optional[pulumi.Input['DeploymentElasticsearchSnapshotArgs']] = None,
+             snapshot_source: Optional[pulumi.Input['DeploymentElasticsearchSnapshotSourceArgs']] = None,
+             strategy: Optional[pulumi.Input[str]] = None,
+             trust_accounts: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]] = None,
+             trust_externals: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]] = None,
+             warm: Optional[pulumi.Input['DeploymentElasticsearchWarmArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("hot", hot)
         if autoscale is not None:
-            pulumi.set(__self__, "autoscale", autoscale)
+            _setter("autoscale", autoscale)
         if cloud_id is not None:
-            pulumi.set(__self__, "cloud_id", cloud_id)
+            _setter("cloud_id", cloud_id)
         if cold is not None:
-            pulumi.set(__self__, "cold", cold)
+            _setter("cold", cold)
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if coordinating is not None:
-            pulumi.set(__self__, "coordinating", coordinating)
+            _setter("coordinating", coordinating)
         if extensions is not None:
-            pulumi.set(__self__, "extensions", extensions)
+            _setter("extensions", extensions)
         if frozen is not None:
-            pulumi.set(__self__, "frozen", frozen)
+            _setter("frozen", frozen)
         if http_endpoint is not None:
-            pulumi.set(__self__, "http_endpoint", http_endpoint)
+            _setter("http_endpoint", http_endpoint)
         if https_endpoint is not None:
-            pulumi.set(__self__, "https_endpoint", https_endpoint)
+            _setter("https_endpoint", https_endpoint)
         if keystore_contents is not None:
-            pulumi.set(__self__, "keystore_contents", keystore_contents)
+            _setter("keystore_contents", keystore_contents)
         if master is not None:
-            pulumi.set(__self__, "master", master)
+            _setter("master", master)
         if ml is not None:
-            pulumi.set(__self__, "ml", ml)
+            _setter("ml", ml)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if remote_clusters is not None:
-            pulumi.set(__self__, "remote_clusters", remote_clusters)
+            _setter("remote_clusters", remote_clusters)
         if resource_id is not None:
-            pulumi.set(__self__, "resource_id", resource_id)
+            _setter("resource_id", resource_id)
         if snapshot is not None:
-            pulumi.set(__self__, "snapshot", snapshot)
+            _setter("snapshot", snapshot)
         if snapshot_source is not None:
-            pulumi.set(__self__, "snapshot_source", snapshot_source)
+            _setter("snapshot_source", snapshot_source)
         if strategy is not None:
-            pulumi.set(__self__, "strategy", strategy)
+            _setter("strategy", strategy)
         if trust_accounts is not None:
-            pulumi.set(__self__, "trust_accounts", trust_accounts)
+            _setter("trust_accounts", trust_accounts)
         if trust_externals is not None:
-            pulumi.set(__self__, "trust_externals", trust_externals)
+            _setter("trust_externals", trust_externals)
         if warm is not None:
-            pulumi.set(__self__, "warm", warm)
+            _setter("warm", warm)
 
     @property
     @pulumi.getter
@@ -533,9 +655,6 @@ class DeploymentElasticsearchArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -634,29 +753,68 @@ class DeploymentElasticsearchColdArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchColdArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -675,6 +833,9 @@ class DeploymentElasticsearchColdArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -684,6 +845,9 @@ class DeploymentElasticsearchColdArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -693,6 +857,9 @@ class DeploymentElasticsearchColdArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -702,6 +869,9 @@ class DeploymentElasticsearchColdArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -711,6 +881,9 @@ class DeploymentElasticsearchColdArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -729,6 +902,9 @@ class DeploymentElasticsearchColdArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -753,20 +929,47 @@ class DeploymentElasticsearchColdAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchColdAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -776,6 +979,9 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -785,6 +991,9 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -794,6 +1003,9 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -803,6 +1015,9 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -819,22 +1034,52 @@ class DeploymentElasticsearchConfigArgs:
                  user_settings_override_json: Optional[pulumi.Input[str]] = None,
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plugins: List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+        :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
+        DeploymentElasticsearchConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            docker_image=docker_image,
+            plugins=plugins,
+            user_settings_json=user_settings_json,
+            user_settings_override_json=user_settings_override_json,
+            user_settings_override_yaml=user_settings_override_yaml,
+            user_settings_yaml=user_settings_yaml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             docker_image: Optional[pulumi.Input[str]] = None,
+             plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             user_settings_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
+             user_settings_yaml: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if docker_image is not None:
-            pulumi.set(__self__, "docker_image", docker_image)
+            _setter("docker_image", docker_image)
         if plugins is not None:
-            pulumi.set(__self__, "plugins", plugins)
+            _setter("plugins", plugins)
         if user_settings_json is not None:
-            pulumi.set(__self__, "user_settings_json", user_settings_json)
+            _setter("user_settings_json", user_settings_json)
         if user_settings_override_json is not None:
-            pulumi.set(__self__, "user_settings_override_json", user_settings_override_json)
+            _setter("user_settings_override_json", user_settings_override_json)
         if user_settings_override_yaml is not None:
-            pulumi.set(__self__, "user_settings_override_yaml", user_settings_override_yaml)
+            _setter("user_settings_override_yaml", user_settings_override_yaml)
         if user_settings_yaml is not None:
-            pulumi.set(__self__, "user_settings_yaml", user_settings_yaml)
+            _setter("user_settings_yaml", user_settings_yaml)
 
     @property
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
@@ -844,6 +1089,9 @@ class DeploymentElasticsearchConfigArgs:
     @property
     @pulumi.getter
     def plugins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+        """
         return pulumi.get(self, "plugins")
 
     @plugins.setter
@@ -853,6 +1101,9 @@ class DeploymentElasticsearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
@@ -862,6 +1113,9 @@ class DeploymentElasticsearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
@@ -871,6 +1125,9 @@ class DeploymentElasticsearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
@@ -880,6 +1137,9 @@ class DeploymentElasticsearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
@@ -900,29 +1160,68 @@ class DeploymentElasticsearchCoordinatingArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchCoordinatingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -941,6 +1240,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -950,6 +1252,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -959,6 +1264,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -968,6 +1276,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -977,6 +1288,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -995,6 +1309,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -1019,20 +1336,47 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchCoordinatingAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -1042,6 +1386,9 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -1051,6 +1398,9 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -1060,6 +1410,9 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -1069,6 +1422,9 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -1084,16 +1440,37 @@ class DeploymentElasticsearchExtensionArgs:
                  url: pulumi.Input[str],
                  version: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] version: Elastic Stack version to use for all of the deployment resources.
+        :param pulumi.Input[str] name: Extension name.
+        :param pulumi.Input[str] type: Extension type, only `bundle` or `plugin` are supported.
+        :param pulumi.Input[str] url: Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+        :param pulumi.Input[str] version: Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "version", version)
+        DeploymentElasticsearchExtensionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            type=type,
+            url=url,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             type: pulumi.Input[str],
+             url: pulumi.Input[str],
+             version: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("type", type)
+        _setter("url", url)
+        _setter("version", version)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Extension name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1103,6 +1480,9 @@ class DeploymentElasticsearchExtensionArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Extension type, only `bundle` or `plugin` are supported.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -1112,6 +1492,9 @@ class DeploymentElasticsearchExtensionArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -1122,7 +1505,7 @@ class DeploymentElasticsearchExtensionArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        Elastic Stack version to use for all of the deployment resources.
+        Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         return pulumi.get(self, "version")
 
@@ -1144,29 +1527,68 @@ class DeploymentElasticsearchFrozenArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchFrozenArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -1185,6 +1607,9 @@ class DeploymentElasticsearchFrozenArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -1194,6 +1619,9 @@ class DeploymentElasticsearchFrozenArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -1203,6 +1631,9 @@ class DeploymentElasticsearchFrozenArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -1212,6 +1643,9 @@ class DeploymentElasticsearchFrozenArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -1221,6 +1655,9 @@ class DeploymentElasticsearchFrozenArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -1239,6 +1676,9 @@ class DeploymentElasticsearchFrozenArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -1263,20 +1703,47 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchFrozenAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -1286,6 +1753,9 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -1295,6 +1765,9 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -1304,6 +1777,9 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -1313,6 +1789,9 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -1333,29 +1812,68 @@ class DeploymentElasticsearchHotArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchHotArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -1374,6 +1892,9 @@ class DeploymentElasticsearchHotArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -1383,6 +1904,9 @@ class DeploymentElasticsearchHotArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -1392,6 +1916,9 @@ class DeploymentElasticsearchHotArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -1401,6 +1928,9 @@ class DeploymentElasticsearchHotArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -1410,6 +1940,9 @@ class DeploymentElasticsearchHotArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -1428,6 +1961,9 @@ class DeploymentElasticsearchHotArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -1452,20 +1988,47 @@ class DeploymentElasticsearchHotAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchHotAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -1475,6 +2038,9 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -1484,6 +2050,9 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -1493,6 +2062,9 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -1502,6 +2074,9 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -1514,13 +2089,31 @@ class DeploymentElasticsearchKeystoreContentsArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[str],
                  as_file: Optional[pulumi.Input[bool]] = None):
-        pulumi.set(__self__, "value", value)
+        """
+        :param pulumi.Input[str] value: Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+        :param pulumi.Input[bool] as_file: If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+        """
+        DeploymentElasticsearchKeystoreContentsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            value=value,
+            as_file=as_file,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             value: pulumi.Input[str],
+             as_file: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("value", value)
         if as_file is not None:
-            pulumi.set(__self__, "as_file", as_file)
+            _setter("as_file", as_file)
 
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -1530,6 +2123,9 @@ class DeploymentElasticsearchKeystoreContentsArgs:
     @property
     @pulumi.getter(name="asFile")
     def as_file(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+        """
         return pulumi.get(self, "as_file")
 
     @as_file.setter
@@ -1550,29 +2146,68 @@ class DeploymentElasticsearchMasterArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchMasterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -1591,6 +2226,9 @@ class DeploymentElasticsearchMasterArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -1600,6 +2238,9 @@ class DeploymentElasticsearchMasterArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -1609,6 +2250,9 @@ class DeploymentElasticsearchMasterArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -1618,6 +2262,9 @@ class DeploymentElasticsearchMasterArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -1627,6 +2274,9 @@ class DeploymentElasticsearchMasterArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -1645,6 +2295,9 @@ class DeploymentElasticsearchMasterArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -1669,20 +2322,47 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchMasterAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -1692,6 +2372,9 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -1701,6 +2384,9 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -1710,6 +2396,9 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -1719,6 +2408,9 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -1739,29 +2431,68 @@ class DeploymentElasticsearchMlArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchMlArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -1780,6 +2511,9 @@ class DeploymentElasticsearchMlArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -1789,6 +2523,9 @@ class DeploymentElasticsearchMlArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -1798,6 +2535,9 @@ class DeploymentElasticsearchMlArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -1807,6 +2547,9 @@ class DeploymentElasticsearchMlArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -1816,6 +2559,9 @@ class DeploymentElasticsearchMlArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -1834,6 +2580,9 @@ class DeploymentElasticsearchMlArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -1858,20 +2607,47 @@ class DeploymentElasticsearchMlAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchMlAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -1881,6 +2657,9 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -1890,6 +2669,9 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -1899,6 +2681,9 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -1908,6 +2693,9 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -1922,16 +2710,39 @@ class DeploymentElasticsearchRemoteClusterArgs:
                  deployment_id: pulumi.Input[str],
                  ref_id: Optional[pulumi.Input[str]] = None,
                  skip_unavailable: Optional[pulumi.Input[bool]] = None):
-        pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "deployment_id", deployment_id)
+        """
+        :param pulumi.Input[str] alias: Alias for this Cross Cluster Search binding
+        :param pulumi.Input[str] deployment_id: Remote deployment ID
+        :param pulumi.Input[bool] skip_unavailable: If true, skip the cluster during search when disconnected
+        """
+        DeploymentElasticsearchRemoteClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            deployment_id=deployment_id,
+            ref_id=ref_id,
+            skip_unavailable=skip_unavailable,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: pulumi.Input[str],
+             deployment_id: pulumi.Input[str],
+             ref_id: Optional[pulumi.Input[str]] = None,
+             skip_unavailable: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("alias", alias)
+        _setter("deployment_id", deployment_id)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
         if skip_unavailable is not None:
-            pulumi.set(__self__, "skip_unavailable", skip_unavailable)
+            _setter("skip_unavailable", skip_unavailable)
 
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Input[str]:
+        """
+        Alias for this Cross Cluster Search binding
+        """
         return pulumi.get(self, "alias")
 
     @alias.setter
@@ -1941,6 +2752,9 @@ class DeploymentElasticsearchRemoteClusterArgs:
     @property
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Input[str]:
+        """
+        Remote deployment ID
+        """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
@@ -1959,6 +2773,9 @@ class DeploymentElasticsearchRemoteClusterArgs:
     @property
     @pulumi.getter(name="skipUnavailable")
     def skip_unavailable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip the cluster during search when disconnected
+        """
         return pulumi.get(self, "skip_unavailable")
 
     @skip_unavailable.setter
@@ -1971,13 +2788,31 @@ class DeploymentElasticsearchSnapshotArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[bool],
                  repository: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs']] = None):
-        pulumi.set(__self__, "enabled", enabled)
+        """
+        :param pulumi.Input[bool] enabled: Indicates if Snapshotting is enabled.
+        :param pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs'] repository: Snapshot repository configuration
+        """
+        DeploymentElasticsearchSnapshotArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            repository=repository,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: pulumi.Input[bool],
+             repository: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
         if repository is not None:
-            pulumi.set(__self__, "repository", repository)
+            _setter("repository", repository)
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Input[bool]:
+        """
+        Indicates if Snapshotting is enabled.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -1987,6 +2822,9 @@ class DeploymentElasticsearchSnapshotArgs:
     @property
     @pulumi.getter
     def repository(self) -> Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs']]:
+        """
+        Snapshot repository configuration
+        """
         return pulumi.get(self, "repository")
 
     @repository.setter
@@ -1998,12 +2836,27 @@ class DeploymentElasticsearchSnapshotArgs:
 class DeploymentElasticsearchSnapshotRepositoryArgs:
     def __init__(__self__, *,
                  reference: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']] = None):
+        """
+        :param pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs'] reference: Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+        """
+        DeploymentElasticsearchSnapshotRepositoryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            reference=reference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             reference: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if reference is not None:
-            pulumi.set(__self__, "reference", reference)
+            _setter("reference", reference)
 
     @property
     @pulumi.getter
     def reference(self) -> Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]:
+        """
+        Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+        """
         return pulumi.get(self, "reference")
 
     @reference.setter
@@ -2015,11 +2868,26 @@ class DeploymentElasticsearchSnapshotRepositoryArgs:
 class DeploymentElasticsearchSnapshotRepositoryReferenceArgs:
     def __init__(__self__, *,
                  repository_name: pulumi.Input[str]):
-        pulumi.set(__self__, "repository_name", repository_name)
+        """
+        :param pulumi.Input[str] repository_name: ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
+        """
+        DeploymentElasticsearchSnapshotRepositoryReferenceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            repository_name=repository_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             repository_name: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("repository_name", repository_name)
 
     @property
     @pulumi.getter(name="repositoryName")
     def repository_name(self) -> pulumi.Input[str]:
+        """
+        ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
+        """
         return pulumi.get(self, "repository_name")
 
     @repository_name.setter
@@ -2032,13 +2900,31 @@ class DeploymentElasticsearchSnapshotSourceArgs:
     def __init__(__self__, *,
                  source_elasticsearch_cluster_id: pulumi.Input[str],
                  snapshot_name: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "source_elasticsearch_cluster_id", source_elasticsearch_cluster_id)
+        """
+        :param pulumi.Input[str] source_elasticsearch_cluster_id: ID of the Elasticsearch cluster that will be used as the source of the snapshot
+        :param pulumi.Input[str] snapshot_name: Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+        """
+        DeploymentElasticsearchSnapshotSourceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            source_elasticsearch_cluster_id=source_elasticsearch_cluster_id,
+            snapshot_name=snapshot_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             source_elasticsearch_cluster_id: pulumi.Input[str],
+             snapshot_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("source_elasticsearch_cluster_id", source_elasticsearch_cluster_id)
         if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
+            _setter("snapshot_name", snapshot_name)
 
     @property
     @pulumi.getter(name="sourceElasticsearchClusterId")
     def source_elasticsearch_cluster_id(self) -> pulumi.Input[str]:
+        """
+        ID of the Elasticsearch cluster that will be used as the source of the snapshot
+        """
         return pulumi.get(self, "source_elasticsearch_cluster_id")
 
     @source_elasticsearch_cluster_id.setter
@@ -2048,6 +2934,9 @@ class DeploymentElasticsearchSnapshotSourceArgs:
     @property
     @pulumi.getter(name="snapshotName")
     def snapshot_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+        """
         return pulumi.get(self, "snapshot_name")
 
     @snapshot_name.setter
@@ -2061,14 +2950,35 @@ class DeploymentElasticsearchTrustAccountArgs:
                  account_id: pulumi.Input[str],
                  trust_all: pulumi.Input[bool],
                  trust_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        pulumi.set(__self__, "account_id", account_id)
-        pulumi.set(__self__, "trust_all", trust_all)
+        """
+        :param pulumi.Input[str] account_id: The ID of the Account.
+        :param pulumi.Input[bool] trust_all: If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] trust_allowlists: The list of clusters to trust. Only used when `trust_all` is false.
+        """
+        DeploymentElasticsearchTrustAccountArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            account_id=account_id,
+            trust_all=trust_all,
+            trust_allowlists=trust_allowlists,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             account_id: pulumi.Input[str],
+             trust_all: pulumi.Input[bool],
+             trust_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("account_id", account_id)
+        _setter("trust_all", trust_all)
         if trust_allowlists is not None:
-            pulumi.set(__self__, "trust_allowlists", trust_allowlists)
+            _setter("trust_allowlists", trust_allowlists)
 
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the Account.
+        """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
@@ -2078,6 +2988,9 @@ class DeploymentElasticsearchTrustAccountArgs:
     @property
     @pulumi.getter(name="trustAll")
     def trust_all(self) -> pulumi.Input[bool]:
+        """
+        If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        """
         return pulumi.get(self, "trust_all")
 
     @trust_all.setter
@@ -2087,6 +3000,9 @@ class DeploymentElasticsearchTrustAccountArgs:
     @property
     @pulumi.getter(name="trustAllowlists")
     def trust_allowlists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of clusters to trust. Only used when `trust_all` is false.
+        """
         return pulumi.get(self, "trust_allowlists")
 
     @trust_allowlists.setter
@@ -2100,14 +3016,35 @@ class DeploymentElasticsearchTrustExternalArgs:
                  relationship_id: pulumi.Input[str],
                  trust_all: pulumi.Input[bool],
                  trust_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        pulumi.set(__self__, "relationship_id", relationship_id)
-        pulumi.set(__self__, "trust_all", trust_all)
+        """
+        :param pulumi.Input[str] relationship_id: The ID of the external trust relationship.
+        :param pulumi.Input[bool] trust_all: If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] trust_allowlists: The list of clusters to trust. Only used when `trust_all` is false.
+        """
+        DeploymentElasticsearchTrustExternalArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            relationship_id=relationship_id,
+            trust_all=trust_all,
+            trust_allowlists=trust_allowlists,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             relationship_id: pulumi.Input[str],
+             trust_all: pulumi.Input[bool],
+             trust_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("relationship_id", relationship_id)
+        _setter("trust_all", trust_all)
         if trust_allowlists is not None:
-            pulumi.set(__self__, "trust_allowlists", trust_allowlists)
+            _setter("trust_allowlists", trust_allowlists)
 
     @property
     @pulumi.getter(name="relationshipId")
     def relationship_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the external trust relationship.
+        """
         return pulumi.get(self, "relationship_id")
 
     @relationship_id.setter
@@ -2117,6 +3054,9 @@ class DeploymentElasticsearchTrustExternalArgs:
     @property
     @pulumi.getter(name="trustAll")
     def trust_all(self) -> pulumi.Input[bool]:
+        """
+        If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        """
         return pulumi.get(self, "trust_all")
 
     @trust_all.setter
@@ -2126,6 +3066,9 @@ class DeploymentElasticsearchTrustExternalArgs:
     @property
     @pulumi.getter(name="trustAllowlists")
     def trust_allowlists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of clusters to trust. Only used when `trust_all` is false.
+        """
         return pulumi.get(self, "trust_allowlists")
 
     @trust_allowlists.setter
@@ -2146,29 +3089,68 @@ class DeploymentElasticsearchWarmArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  size_resource: Optional[pulumi.Input[str]] = None,
                  zone_count: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "autoscaling", autoscaling)
+        """
+        :param pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
+        :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
+        :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
+        :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
+        :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        """
+        DeploymentElasticsearchWarmArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoscaling=autoscaling,
+            instance_configuration_id=instance_configuration_id,
+            node_roles=node_roles,
+            node_type_data=node_type_data,
+            node_type_ingest=node_type_ingest,
+            node_type_master=node_type_master,
+            node_type_ml=node_type_ml,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoscaling: pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs'],
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             node_type_data: Optional[pulumi.Input[str]] = None,
+             node_type_ingest: Optional[pulumi.Input[str]] = None,
+             node_type_master: Optional[pulumi.Input[str]] = None,
+             node_type_ml: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("autoscaling", autoscaling)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_roles is not None:
-            pulumi.set(__self__, "node_roles", node_roles)
+            _setter("node_roles", node_roles)
         if node_type_data is not None:
-            pulumi.set(__self__, "node_type_data", node_type_data)
+            _setter("node_type_data", node_type_data)
         if node_type_ingest is not None:
-            pulumi.set(__self__, "node_type_ingest", node_type_ingest)
+            _setter("node_type_ingest", node_type_ingest)
         if node_type_master is not None:
-            pulumi.set(__self__, "node_type_master", node_type_master)
+            _setter("node_type_master", node_type_master)
         if node_type_ml is not None:
-            pulumi.set(__self__, "node_type_ml", node_type_ml)
+            _setter("node_type_ml", node_type_ml)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs']:
+        """
+        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        """
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
@@ -2187,6 +3169,9 @@ class DeploymentElasticsearchWarmArgs:
     @property
     @pulumi.getter(name="nodeRoles")
     def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The computed list of node roles for the current topology element
+        """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
@@ -2196,6 +3181,9 @@ class DeploymentElasticsearchWarmArgs:
     @property
     @pulumi.getter(name="nodeTypeData")
     def node_type_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (data node)
+        """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
@@ -2205,6 +3193,9 @@ class DeploymentElasticsearchWarmArgs:
     @property
     @pulumi.getter(name="nodeTypeIngest")
     def node_type_ingest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (ingest node)
+        """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
@@ -2214,6 +3205,9 @@ class DeploymentElasticsearchWarmArgs:
     @property
     @pulumi.getter(name="nodeTypeMaster")
     def node_type_master(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (master node)
+        """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
@@ -2223,6 +3217,9 @@ class DeploymentElasticsearchWarmArgs:
     @property
     @pulumi.getter(name="nodeTypeMl")
     def node_type_ml(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node type for the Elasticsearch Topology element (machine learning node)
+        """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
@@ -2241,6 +3238,9 @@ class DeploymentElasticsearchWarmArgs:
     @property
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional size type, defaults to "memory".
+        """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
@@ -2265,20 +3265,47 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
+        :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
+        :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
+        """
+        DeploymentElasticsearchWarmAutoscalingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_size=max_size,
+            max_size_resource=max_size_resource,
+            min_size=min_size,
+            min_size_resource=min_size_resource,
+            policy_override_json=policy_override_json,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_size: Optional[pulumi.Input[str]] = None,
+             max_size_resource: Optional[pulumi.Input[str]] = None,
+             min_size: Optional[pulumi.Input[str]] = None,
+             min_size_resource: Optional[pulumi.Input[str]] = None,
+             policy_override_json: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if max_size_resource is not None:
-            pulumi.set(__self__, "max_size_resource", max_size_resource)
+            _setter("max_size_resource", max_size_resource)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if min_size_resource is not None:
-            pulumi.set(__self__, "min_size_resource", min_size_resource)
+            _setter("min_size_resource", min_size_resource)
         if policy_override_json is not None:
-            pulumi.set(__self__, "policy_override_json", policy_override_json)
+            _setter("policy_override_json", policy_override_json)
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum size value for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -2288,6 +3315,9 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @property
     @pulumi.getter(name="maxSizeResource")
     def max_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum resource type for the maximum autoscaling setting.
+        """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
@@ -2297,6 +3327,9 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum size value for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
@@ -2306,6 +3339,9 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @property
     @pulumi.getter(name="minSizeResource")
     def min_size_resource(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum resource type for the minimum autoscaling setting.
+        """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
@@ -2315,6 +3351,9 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @property
     @pulumi.getter(name="policyOverrideJson")
     def policy_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed policy overrides set directly via the API or other clients.
+        """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
@@ -2341,37 +3380,71 @@ class DeploymentEnterpriseSearchArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentEnterpriseSearchConfigArgs'] config: Optionally define the Enterprise Search configuration options for the Enterprise Search Server
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
         """
+        DeploymentEnterpriseSearchArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            elasticsearch_cluster_ref_id=elasticsearch_cluster_ref_id,
+            http_endpoint=http_endpoint,
+            https_endpoint=https_endpoint,
+            instance_configuration_id=instance_configuration_id,
+            node_type_appserver=node_type_appserver,
+            node_type_connector=node_type_connector,
+            node_type_worker=node_type_worker,
+            ref_id=ref_id,
+            region=region,
+            resource_id=resource_id,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: Optional[pulumi.Input['DeploymentEnterpriseSearchConfigArgs']] = None,
+             elasticsearch_cluster_ref_id: Optional[pulumi.Input[str]] = None,
+             http_endpoint: Optional[pulumi.Input[str]] = None,
+             https_endpoint: Optional[pulumi.Input[str]] = None,
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             node_type_appserver: Optional[pulumi.Input[bool]] = None,
+             node_type_connector: Optional[pulumi.Input[bool]] = None,
+             node_type_worker: Optional[pulumi.Input[bool]] = None,
+             ref_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             resource_id: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if elasticsearch_cluster_ref_id is not None:
-            pulumi.set(__self__, "elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
+            _setter("elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
         if http_endpoint is not None:
-            pulumi.set(__self__, "http_endpoint", http_endpoint)
+            _setter("http_endpoint", http_endpoint)
         if https_endpoint is not None:
-            pulumi.set(__self__, "https_endpoint", https_endpoint)
+            _setter("https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if node_type_appserver is not None:
-            pulumi.set(__self__, "node_type_appserver", node_type_appserver)
+            _setter("node_type_appserver", node_type_appserver)
         if node_type_connector is not None:
-            pulumi.set(__self__, "node_type_connector", node_type_connector)
+            _setter("node_type_connector", node_type_connector)
         if node_type_worker is not None:
-            pulumi.set(__self__, "node_type_worker", node_type_worker)
+            _setter("node_type_worker", node_type_worker)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if resource_id is not None:
-            pulumi.set(__self__, "resource_id", resource_id)
+            _setter("resource_id", resource_id)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
@@ -2460,9 +3533,6 @@ class DeploymentEnterpriseSearchArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -2517,20 +3587,47 @@ class DeploymentEnterpriseSearchConfigArgs:
                  user_settings_override_json: Optional[pulumi.Input[str]] = None,
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
+        DeploymentEnterpriseSearchConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            docker_image=docker_image,
+            user_settings_json=user_settings_json,
+            user_settings_override_json=user_settings_override_json,
+            user_settings_override_yaml=user_settings_override_yaml,
+            user_settings_yaml=user_settings_yaml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             docker_image: Optional[pulumi.Input[str]] = None,
+             user_settings_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
+             user_settings_yaml: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if docker_image is not None:
-            pulumi.set(__self__, "docker_image", docker_image)
+            _setter("docker_image", docker_image)
         if user_settings_json is not None:
-            pulumi.set(__self__, "user_settings_json", user_settings_json)
+            _setter("user_settings_json", user_settings_json)
         if user_settings_override_json is not None:
-            pulumi.set(__self__, "user_settings_override_json", user_settings_override_json)
+            _setter("user_settings_override_json", user_settings_override_json)
         if user_settings_override_yaml is not None:
-            pulumi.set(__self__, "user_settings_override_yaml", user_settings_override_yaml)
+            _setter("user_settings_override_yaml", user_settings_override_yaml)
         if user_settings_yaml is not None:
-            pulumi.set(__self__, "user_settings_yaml", user_settings_yaml)
+            _setter("user_settings_yaml", user_settings_yaml)
 
     @property
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
@@ -2540,6 +3637,9 @@ class DeploymentEnterpriseSearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
@@ -2549,6 +3649,9 @@ class DeploymentEnterpriseSearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
@@ -2558,6 +3661,9 @@ class DeploymentEnterpriseSearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
@@ -2567,6 +3673,9 @@ class DeploymentEnterpriseSearchConfigArgs:
     @property
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
@@ -2592,33 +3701,63 @@ class DeploymentIntegrationsServerArgs:
         """
         :param pulumi.Input['DeploymentIntegrationsServerConfigArgs'] config: Optionally define the Integrations Server configuration options for the IntegrationsServer Server
         :param pulumi.Input['DeploymentIntegrationsServerEndpointsArgs'] endpoints: URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
         """
+        DeploymentIntegrationsServerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            elasticsearch_cluster_ref_id=elasticsearch_cluster_ref_id,
+            endpoints=endpoints,
+            http_endpoint=http_endpoint,
+            https_endpoint=https_endpoint,
+            instance_configuration_id=instance_configuration_id,
+            ref_id=ref_id,
+            region=region,
+            resource_id=resource_id,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: Optional[pulumi.Input['DeploymentIntegrationsServerConfigArgs']] = None,
+             elasticsearch_cluster_ref_id: Optional[pulumi.Input[str]] = None,
+             endpoints: Optional[pulumi.Input['DeploymentIntegrationsServerEndpointsArgs']] = None,
+             http_endpoint: Optional[pulumi.Input[str]] = None,
+             https_endpoint: Optional[pulumi.Input[str]] = None,
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             ref_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             resource_id: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if elasticsearch_cluster_ref_id is not None:
-            pulumi.set(__self__, "elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
+            _setter("elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
         if endpoints is not None:
-            pulumi.set(__self__, "endpoints", endpoints)
+            _setter("endpoints", endpoints)
         if http_endpoint is not None:
-            pulumi.set(__self__, "http_endpoint", http_endpoint)
+            _setter("http_endpoint", http_endpoint)
         if https_endpoint is not None:
-            pulumi.set(__self__, "https_endpoint", https_endpoint)
+            _setter("https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if resource_id is not None:
-            pulumi.set(__self__, "resource_id", resource_id)
+            _setter("resource_id", resource_id)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
@@ -2692,9 +3831,6 @@ class DeploymentIntegrationsServerArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -2750,22 +3886,52 @@ class DeploymentIntegrationsServerConfigArgs:
                  user_settings_override_json: Optional[pulumi.Input[str]] = None,
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] debug_enabled: Optionally enable debug mode for APM servers - defaults to false
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
+        DeploymentIntegrationsServerConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            debug_enabled=debug_enabled,
+            docker_image=docker_image,
+            user_settings_json=user_settings_json,
+            user_settings_override_json=user_settings_override_json,
+            user_settings_override_yaml=user_settings_override_yaml,
+            user_settings_yaml=user_settings_yaml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             debug_enabled: Optional[pulumi.Input[bool]] = None,
+             docker_image: Optional[pulumi.Input[str]] = None,
+             user_settings_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
+             user_settings_yaml: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if debug_enabled is not None:
-            pulumi.set(__self__, "debug_enabled", debug_enabled)
+            _setter("debug_enabled", debug_enabled)
         if docker_image is not None:
-            pulumi.set(__self__, "docker_image", docker_image)
+            _setter("docker_image", docker_image)
         if user_settings_json is not None:
-            pulumi.set(__self__, "user_settings_json", user_settings_json)
+            _setter("user_settings_json", user_settings_json)
         if user_settings_override_json is not None:
-            pulumi.set(__self__, "user_settings_override_json", user_settings_override_json)
+            _setter("user_settings_override_json", user_settings_override_json)
         if user_settings_override_yaml is not None:
-            pulumi.set(__self__, "user_settings_override_yaml", user_settings_override_yaml)
+            _setter("user_settings_override_yaml", user_settings_override_yaml)
         if user_settings_yaml is not None:
-            pulumi.set(__self__, "user_settings_yaml", user_settings_yaml)
+            _setter("user_settings_yaml", user_settings_yaml)
 
     @property
     @pulumi.getter(name="debugEnabled")
     def debug_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Optionally enable debug mode for APM servers - defaults to false
+        """
         return pulumi.get(self, "debug_enabled")
 
     @debug_enabled.setter
@@ -2775,6 +3941,9 @@ class DeploymentIntegrationsServerConfigArgs:
     @property
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
@@ -2784,6 +3953,9 @@ class DeploymentIntegrationsServerConfigArgs:
     @property
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
@@ -2793,6 +3965,9 @@ class DeploymentIntegrationsServerConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
@@ -2802,6 +3977,9 @@ class DeploymentIntegrationsServerConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
@@ -2811,6 +3989,9 @@ class DeploymentIntegrationsServerConfigArgs:
     @property
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
@@ -2823,8 +4004,19 @@ class DeploymentIntegrationsServerEndpointsArgs:
     def __init__(__self__, *,
                  apm: pulumi.Input[str],
                  fleet: pulumi.Input[str]):
-        pulumi.set(__self__, "apm", apm)
-        pulumi.set(__self__, "fleet", fleet)
+        DeploymentIntegrationsServerEndpointsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            apm=apm,
+            fleet=fleet,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             apm: pulumi.Input[str],
+             fleet: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("apm", apm)
+        _setter("fleet", fleet)
 
     @property
     @pulumi.getter
@@ -2861,31 +4053,59 @@ class DeploymentKibanaArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentKibanaConfigArgs'] config: Optionally define the Kibana configuration options for the Kibana Server
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
         """
+        DeploymentKibanaArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            elasticsearch_cluster_ref_id=elasticsearch_cluster_ref_id,
+            http_endpoint=http_endpoint,
+            https_endpoint=https_endpoint,
+            instance_configuration_id=instance_configuration_id,
+            ref_id=ref_id,
+            region=region,
+            resource_id=resource_id,
+            size=size,
+            size_resource=size_resource,
+            zone_count=zone_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: Optional[pulumi.Input['DeploymentKibanaConfigArgs']] = None,
+             elasticsearch_cluster_ref_id: Optional[pulumi.Input[str]] = None,
+             http_endpoint: Optional[pulumi.Input[str]] = None,
+             https_endpoint: Optional[pulumi.Input[str]] = None,
+             instance_configuration_id: Optional[pulumi.Input[str]] = None,
+             ref_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             resource_id: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             size_resource: Optional[pulumi.Input[str]] = None,
+             zone_count: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if elasticsearch_cluster_ref_id is not None:
-            pulumi.set(__self__, "elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
+            _setter("elasticsearch_cluster_ref_id", elasticsearch_cluster_ref_id)
         if http_endpoint is not None:
-            pulumi.set(__self__, "http_endpoint", http_endpoint)
+            _setter("http_endpoint", http_endpoint)
         if https_endpoint is not None:
-            pulumi.set(__self__, "https_endpoint", https_endpoint)
+            _setter("https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
-            pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+            _setter("instance_configuration_id", instance_configuration_id)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if resource_id is not None:
-            pulumi.set(__self__, "resource_id", resource_id)
+            _setter("resource_id", resource_id)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if size_resource is not None:
-            pulumi.set(__self__, "size_resource", size_resource)
+            _setter("size_resource", size_resource)
         if zone_count is not None:
-            pulumi.set(__self__, "zone_count", zone_count)
+            _setter("zone_count", zone_count)
 
     @property
     @pulumi.getter
@@ -2947,9 +4167,6 @@ class DeploymentKibanaArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -3004,20 +4221,47 @@ class DeploymentKibanaConfigArgs:
                  user_settings_override_json: Optional[pulumi.Input[str]] = None,
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
+        DeploymentKibanaConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            docker_image=docker_image,
+            user_settings_json=user_settings_json,
+            user_settings_override_json=user_settings_override_json,
+            user_settings_override_yaml=user_settings_override_yaml,
+            user_settings_yaml=user_settings_yaml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             docker_image: Optional[pulumi.Input[str]] = None,
+             user_settings_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_json: Optional[pulumi.Input[str]] = None,
+             user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
+             user_settings_yaml: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if docker_image is not None:
-            pulumi.set(__self__, "docker_image", docker_image)
+            _setter("docker_image", docker_image)
         if user_settings_json is not None:
-            pulumi.set(__self__, "user_settings_json", user_settings_json)
+            _setter("user_settings_json", user_settings_json)
         if user_settings_override_json is not None:
-            pulumi.set(__self__, "user_settings_override_json", user_settings_override_json)
+            _setter("user_settings_override_json", user_settings_override_json)
         if user_settings_override_yaml is not None:
-            pulumi.set(__self__, "user_settings_override_yaml", user_settings_override_yaml)
+            _setter("user_settings_override_yaml", user_settings_override_yaml)
         if user_settings_yaml is not None:
-            pulumi.set(__self__, "user_settings_yaml", user_settings_yaml)
+            _setter("user_settings_yaml", user_settings_yaml)
 
     @property
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
@@ -3027,6 +4271,9 @@ class DeploymentKibanaConfigArgs:
     @property
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
@@ -3036,6 +4283,9 @@ class DeploymentKibanaConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
@@ -3045,6 +4295,9 @@ class DeploymentKibanaConfigArgs:
     @property
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
@@ -3054,6 +4307,9 @@ class DeploymentKibanaConfigArgs:
     @property
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[pulumi.Input[str]]:
+        """
+        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
@@ -3068,13 +4324,28 @@ class DeploymentObservabilityArgs:
                  logs: Optional[pulumi.Input[bool]] = None,
                  metrics: Optional[pulumi.Input[bool]] = None,
                  ref_id: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deployment_id", deployment_id)
+        DeploymentObservabilityArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            deployment_id=deployment_id,
+            logs=logs,
+            metrics=metrics,
+            ref_id=ref_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             deployment_id: pulumi.Input[str],
+             logs: Optional[pulumi.Input[bool]] = None,
+             metrics: Optional[pulumi.Input[bool]] = None,
+             ref_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("deployment_id", deployment_id)
         if logs is not None:
-            pulumi.set(__self__, "logs", logs)
+            _setter("logs", logs)
         if metrics is not None:
-            pulumi.set(__self__, "metrics", metrics)
+            _setter("metrics", metrics)
         if ref_id is not None:
-            pulumi.set(__self__, "ref_id", ref_id)
+            _setter("ref_id", ref_id)
 
     @property
     @pulumi.getter(name="deploymentId")
@@ -3128,16 +4399,33 @@ class DeploymentTrafficFilterRuleArgs:
         :param pulumi.Input[str] id: Computed rule ID
         :param pulumi.Input[str] source: Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
         """
+        DeploymentTrafficFilterRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            azure_endpoint_guid=azure_endpoint_guid,
+            azure_endpoint_name=azure_endpoint_name,
+            description=description,
+            id=id,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             azure_endpoint_guid: Optional[pulumi.Input[str]] = None,
+             azure_endpoint_name: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             id: Optional[pulumi.Input[str]] = None,
+             source: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if azure_endpoint_guid is not None:
-            pulumi.set(__self__, "azure_endpoint_guid", azure_endpoint_guid)
+            _setter("azure_endpoint_guid", azure_endpoint_guid)
         if azure_endpoint_name is not None:
-            pulumi.set(__self__, "azure_endpoint_name", azure_endpoint_name)
+            _setter("azure_endpoint_name", azure_endpoint_name)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
 
     @property
     @pulumi.getter(name="azureEndpointGuid")
@@ -3209,8 +4497,19 @@ class SnapshotRepositoryGenericArgs:
         :param pulumi.Input[str] settings: An arbitrary JSON object containing the repository settings.
         :param pulumi.Input[str] type: Repository type
         """
-        pulumi.set(__self__, "settings", settings)
-        pulumi.set(__self__, "type", type)
+        SnapshotRepositoryGenericArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            settings=settings,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             settings: pulumi.Input[str],
+             type: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("settings", settings)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -3256,19 +4555,40 @@ class SnapshotRepositoryS3Args:
         :param pulumi.Input[str] secret_key: An S3 secret key. If set, the access_key setting must also be specified.
         :param pulumi.Input[bool] server_side_encryption: When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
         """
-        pulumi.set(__self__, "bucket", bucket)
+        SnapshotRepositoryS3Args._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            access_key=access_key,
+            endpoint=endpoint,
+            path_style_access=path_style_access,
+            region=region,
+            secret_key=secret_key,
+            server_side_encryption=server_side_encryption,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             endpoint: Optional[pulumi.Input[str]] = None,
+             path_style_access: Optional[pulumi.Input[bool]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             server_side_encryption: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bucket", bucket)
         if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
+            _setter("access_key", access_key)
         if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
+            _setter("endpoint", endpoint)
         if path_style_access is not None:
-            pulumi.set(__self__, "path_style_access", path_style_access)
+            _setter("path_style_access", path_style_access)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
         if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
+            _setter("server_side_encryption", server_side_encryption)
 
     @property
     @pulumi.getter
@@ -3366,12 +4686,25 @@ class GetDeploymentsApmArgs:
         :param str status: Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
         :param str version: Elastic stack version.
         """
+        GetDeploymentsApmArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            healthy=healthy,
+            status=status,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             healthy: Optional[str] = None,
+             status: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if healthy is not None:
-            pulumi.set(__self__, "healthy", healthy)
+            _setter("healthy", healthy)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -3421,12 +4754,25 @@ class GetDeploymentsElasticsearchArgs:
         :param str status: Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
         :param str version: Elastic stack version.
         """
+        GetDeploymentsElasticsearchArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            healthy=healthy,
+            status=status,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             healthy: Optional[str] = None,
+             status: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if healthy is not None:
-            pulumi.set(__self__, "healthy", healthy)
+            _setter("healthy", healthy)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -3476,12 +4822,25 @@ class GetDeploymentsEnterpriseSearchArgs:
         :param str status: Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
         :param str version: Elastic stack version.
         """
+        GetDeploymentsEnterpriseSearchArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            healthy=healthy,
+            status=status,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             healthy: Optional[str] = None,
+             status: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if healthy is not None:
-            pulumi.set(__self__, "healthy", healthy)
+            _setter("healthy", healthy)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -3531,12 +4890,25 @@ class GetDeploymentsIntegrationsServerArgs:
         :param str status: Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
         :param str version: Elastic stack version.
         """
+        GetDeploymentsIntegrationsServerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            healthy=healthy,
+            status=status,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             healthy: Optional[str] = None,
+             status: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if healthy is not None:
-            pulumi.set(__self__, "healthy", healthy)
+            _setter("healthy", healthy)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -3586,12 +4958,25 @@ class GetDeploymentsKibanaArgs:
         :param str status: Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
         :param str version: Elastic stack version.
         """
+        GetDeploymentsKibanaArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            healthy=healthy,
+            status=status,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             healthy: Optional[str] = None,
+             status: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if healthy is not None:
-            pulumi.set(__self__, "healthy", healthy)
+            _setter("healthy", healthy)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter

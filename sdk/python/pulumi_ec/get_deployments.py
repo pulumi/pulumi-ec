@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -235,7 +235,7 @@ def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmA
     :param str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
     :param Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
-    :param str healthy: Filter the result set by their health status.
+    :param str healthy: Overall health status of the resource instances.
     :param Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']] kibanas: Filter by Kibana resource kind status or configuration.
     :param str name_prefix: Prefix to filter the returned deployment list by.
@@ -318,7 +318,7 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.
     :param str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
     :param Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
-    :param str healthy: Filter the result set by their health status.
+    :param str healthy: Overall health status of the resource instances.
     :param Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']] kibanas: Filter by Kibana resource kind status or configuration.
     :param str name_prefix: Prefix to filter the returned deployment list by.

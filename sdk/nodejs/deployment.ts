@@ -58,7 +58,7 @@ export class Deployment extends pulumi.CustomResource {
     }
 
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Alias for this Cross Cluster Search binding
      */
     public readonly alias!: pulumi.Output<string>;
     /**
@@ -98,7 +98,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly kibana!: pulumi.Output<outputs.DeploymentKibana | undefined>;
     /**
-     * Name for the deployment
+     * Extension name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -107,7 +107,8 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly observability!: pulumi.Output<outputs.DeploymentObservability | undefined>;
     /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `"ece-region".
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -128,7 +129,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly trafficFilters!: pulumi.Output<string[]>;
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -208,7 +209,7 @@ export class Deployment extends pulumi.CustomResource {
  */
 export interface DeploymentState {
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Alias for this Cross Cluster Search binding
      */
     alias?: pulumi.Input<string>;
     /**
@@ -248,7 +249,7 @@ export interface DeploymentState {
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * Name for the deployment
+     * Extension name.
      */
     name?: pulumi.Input<string>;
     /**
@@ -257,7 +258,8 @@ export interface DeploymentState {
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `"ece-region".
      */
     region?: pulumi.Input<string>;
     /**
@@ -278,7 +280,7 @@ export interface DeploymentState {
      */
     trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      */
     version?: pulumi.Input<string>;
 }
@@ -288,7 +290,7 @@ export interface DeploymentState {
  */
 export interface DeploymentArgs {
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Alias for this Cross Cluster Search binding
      */
     alias?: pulumi.Input<string>;
     /**
@@ -317,7 +319,7 @@ export interface DeploymentArgs {
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * Name for the deployment
+     * Extension name.
      */
     name?: pulumi.Input<string>;
     /**
@@ -326,7 +328,8 @@ export interface DeploymentArgs {
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `"ece-region".
      */
     region: pulumi.Input<string>;
     /**
@@ -347,7 +350,7 @@ export interface DeploymentArgs {
      */
     trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      */
     version: pulumi.Input<string>;
 }

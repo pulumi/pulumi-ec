@@ -15,9 +15,17 @@ public final class DeploymentElasticsearchSnapshotRepositoryArgs extends com.pul
 
     public static final DeploymentElasticsearchSnapshotRepositoryArgs Empty = new DeploymentElasticsearchSnapshotRepositoryArgs();
 
+    /**
+     * Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+     * 
+     */
     @Import(name="reference")
     private @Nullable Output<DeploymentElasticsearchSnapshotRepositoryReferenceArgs> reference;
 
+    /**
+     * @return Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+     * 
+     */
     public Optional<Output<DeploymentElasticsearchSnapshotRepositoryReferenceArgs>> reference() {
         return Optional.ofNullable(this.reference);
     }
@@ -46,11 +54,23 @@ public final class DeploymentElasticsearchSnapshotRepositoryArgs extends com.pul
             $ = new DeploymentElasticsearchSnapshotRepositoryArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param reference Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+         * 
+         * @return builder
+         * 
+         */
         public Builder reference(@Nullable Output<DeploymentElasticsearchSnapshotRepositoryReferenceArgs> reference) {
             $.reference = reference;
             return this;
         }
 
+        /**
+         * @param reference Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+         * 
+         * @return builder
+         * 
+         */
         public Builder reference(DeploymentElasticsearchSnapshotRepositoryReferenceArgs reference) {
             return reference(Output.of(reference));
         }

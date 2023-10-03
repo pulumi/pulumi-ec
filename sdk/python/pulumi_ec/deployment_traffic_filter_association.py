@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeploymentTrafficFilterAssociationArgs', 'DeploymentTrafficFilterAssociation']
@@ -21,8 +21,19 @@ class DeploymentTrafficFilterAssociationArgs:
         :param pulumi.Input[str] deployment_id: Required deployment ID where the traffic filter will be associated
         :param pulumi.Input[str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
-        pulumi.set(__self__, "deployment_id", deployment_id)
-        pulumi.set(__self__, "traffic_filter_id", traffic_filter_id)
+        DeploymentTrafficFilterAssociationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            deployment_id=deployment_id,
+            traffic_filter_id=traffic_filter_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             deployment_id: pulumi.Input[str],
+             traffic_filter_id: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("deployment_id", deployment_id)
+        _setter("traffic_filter_id", traffic_filter_id)
 
     @property
     @pulumi.getter(name="deploymentId")
@@ -59,10 +70,21 @@ class _DeploymentTrafficFilterAssociationState:
         :param pulumi.Input[str] deployment_id: Required deployment ID where the traffic filter will be associated
         :param pulumi.Input[str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
+        _DeploymentTrafficFilterAssociationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            deployment_id=deployment_id,
+            traffic_filter_id=traffic_filter_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             deployment_id: Optional[pulumi.Input[str]] = None,
+             traffic_filter_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if deployment_id is not None:
-            pulumi.set(__self__, "deployment_id", deployment_id)
+            _setter("deployment_id", deployment_id)
         if traffic_filter_id is not None:
-            pulumi.set(__self__, "traffic_filter_id", traffic_filter_id)
+            _setter("traffic_filter_id", traffic_filter_id)
 
     @property
     @pulumi.getter(name="deploymentId")
@@ -164,6 +186,10 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeploymentTrafficFilterAssociationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
