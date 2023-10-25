@@ -121,8 +121,7 @@
                     "type": "string"
                 },
                 "region": {
-                    "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "type": "string"
                 },
                 "resourceId": {
                     "type": "string"
@@ -159,22 +158,28 @@
         "ec:index/DeploymentApmConfig:DeploymentApmConfig": {
             "properties": {
                 "debugEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Optionally enable debug mode for APM servers - defaults to false\n"
                 },
                 "dockerImage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
                 },
                 "userSettingsJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 }
             },
             "type": "object",
@@ -248,8 +253,7 @@
                     "description": "A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.\n"
                 },
                 "region": {
-                    "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "type": "string"
                 },
                 "remoteClusters": {
                     "type": "array",
@@ -312,7 +316,8 @@
         "ec:index/DeploymentElasticsearchCold:DeploymentElasticsearchCold": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchColdAutoscaling:DeploymentElasticsearchColdAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchColdAutoscaling:DeploymentElasticsearchColdAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -321,25 +326,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -369,19 +380,24 @@
         "ec:index/DeploymentElasticsearchColdAutoscaling:DeploymentElasticsearchColdAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -400,25 +416,31 @@
         "ec:index/DeploymentElasticsearchConfig:DeploymentElasticsearchConfig": {
             "properties": {
                 "dockerImage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
                 },
                 "plugins": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)\n"
                 },
                 "userSettingsJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 }
             },
             "type": "object",
@@ -433,7 +455,8 @@
         "ec:index/DeploymentElasticsearchCoordinating:DeploymentElasticsearchCoordinating": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchCoordinatingAutoscaling:DeploymentElasticsearchCoordinatingAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchCoordinatingAutoscaling:DeploymentElasticsearchCoordinatingAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -442,25 +465,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -490,19 +519,24 @@
         "ec:index/DeploymentElasticsearchCoordinatingAutoscaling:DeploymentElasticsearchCoordinatingAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -521,17 +555,20 @@
         "ec:index/DeploymentElasticsearchExtension:DeploymentElasticsearchExtension": {
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Extension name.\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Extension type, only `bundle` or `plugin` are supported.\n"
                 },
                 "url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.\u003cname\u003e.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.\n"
                 },
                 "version": {
                     "type": "string",
-                    "description": "Elastic Stack version to use for all of the deployment resources.\n"
+                    "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
                 }
             },
             "type": "object",
@@ -545,7 +582,8 @@
         "ec:index/DeploymentElasticsearchFrozen:DeploymentElasticsearchFrozen": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchFrozenAutoscaling:DeploymentElasticsearchFrozenAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchFrozenAutoscaling:DeploymentElasticsearchFrozenAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -554,25 +592,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -602,19 +646,24 @@
         "ec:index/DeploymentElasticsearchFrozenAutoscaling:DeploymentElasticsearchFrozenAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -633,7 +682,8 @@
         "ec:index/DeploymentElasticsearchHot:DeploymentElasticsearchHot": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchHotAutoscaling:DeploymentElasticsearchHotAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchHotAutoscaling:DeploymentElasticsearchHotAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -642,25 +692,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -690,19 +746,24 @@
         "ec:index/DeploymentElasticsearchHotAutoscaling:DeploymentElasticsearchHotAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -721,10 +782,12 @@
         "ec:index/DeploymentElasticsearchKeystoreContents:DeploymentElasticsearchKeystoreContents": {
             "properties": {
                 "asFile": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "If true, the secret is handled as a file. Otherwise, it's handled as a plain string.\n"
                 },
                 "value": {
                     "type": "string",
+                    "description": "Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.\n",
                     "secret": true
                 }
             },
@@ -744,7 +807,8 @@
         "ec:index/DeploymentElasticsearchMaster:DeploymentElasticsearchMaster": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchMasterAutoscaling:DeploymentElasticsearchMasterAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchMasterAutoscaling:DeploymentElasticsearchMasterAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -753,25 +817,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -801,19 +871,24 @@
         "ec:index/DeploymentElasticsearchMasterAutoscaling:DeploymentElasticsearchMasterAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -832,7 +907,8 @@
         "ec:index/DeploymentElasticsearchMl:DeploymentElasticsearchMl": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchMlAutoscaling:DeploymentElasticsearchMlAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchMlAutoscaling:DeploymentElasticsearchMlAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -841,25 +917,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -889,19 +971,24 @@
         "ec:index/DeploymentElasticsearchMlAutoscaling:DeploymentElasticsearchMlAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -920,16 +1007,19 @@
         "ec:index/DeploymentElasticsearchRemoteCluster:DeploymentElasticsearchRemoteCluster": {
             "properties": {
                 "alias": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alias for this Cross Cluster Search binding\n"
                 },
                 "deploymentId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Remote deployment ID\n"
                 },
                 "refId": {
                     "type": "string"
                 },
                 "skipUnavailable": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "If true, skip the cluster during search when disconnected\n"
                 }
             },
             "type": "object",
@@ -951,10 +1041,12 @@
         "ec:index/DeploymentElasticsearchSnapshot:DeploymentElasticsearchSnapshot": {
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Indicates if Snapshotting is enabled.\n"
                 },
                 "repository": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshotRepository:DeploymentElasticsearchSnapshotRepository"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshotRepository:DeploymentElasticsearchSnapshotRepository",
+                    "description": "Snapshot repository configuration\n"
                 }
             },
             "type": "object",
@@ -973,7 +1065,8 @@
         "ec:index/DeploymentElasticsearchSnapshotRepository:DeploymentElasticsearchSnapshotRepository": {
             "properties": {
                 "reference": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshotRepositoryReference:DeploymentElasticsearchSnapshotRepositoryReference"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshotRepositoryReference:DeploymentElasticsearchSnapshotRepositoryReference",
+                    "description": "Cluster snapshot reference repository settings, containing the repository name in ECE fashion\n"
                 }
             },
             "type": "object",
@@ -988,7 +1081,8 @@
         "ec:index/DeploymentElasticsearchSnapshotRepositoryReference:DeploymentElasticsearchSnapshotRepositoryReference": {
             "properties": {
                 "repositoryName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint\n"
                 }
             },
             "type": "object",
@@ -999,10 +1093,12 @@
         "ec:index/DeploymentElasticsearchSnapshotSource:DeploymentElasticsearchSnapshotSource": {
             "properties": {
                 "snapshotName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.\n"
                 },
                 "sourceElasticsearchClusterId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of the Elasticsearch cluster that will be used as the source of the snapshot\n"
                 }
             },
             "type": "object",
@@ -1021,16 +1117,19 @@
         "ec:index/DeploymentElasticsearchTrustAccount:DeploymentElasticsearchTrustAccount": {
             "properties": {
                 "accountId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the Account.\n"
                 },
                 "trustAll": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.\n"
                 },
                 "trustAllowlists": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The list of clusters to trust. Only used when `trust_all` is false.\n"
                 }
             },
             "type": "object",
@@ -1042,16 +1141,19 @@
         "ec:index/DeploymentElasticsearchTrustExternal:DeploymentElasticsearchTrustExternal": {
             "properties": {
                 "relationshipId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the external trust relationship.\n"
                 },
                 "trustAll": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.\n"
                 },
                 "trustAllowlists": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The list of clusters to trust. Only used when `trust_all` is false.\n"
                 }
             },
             "type": "object",
@@ -1063,7 +1165,8 @@
         "ec:index/DeploymentElasticsearchWarm:DeploymentElasticsearchWarm": {
             "properties": {
                 "autoscaling": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchWarmAutoscaling:DeploymentElasticsearchWarmAutoscaling"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchWarmAutoscaling:DeploymentElasticsearchWarmAutoscaling",
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
                     "type": "string"
@@ -1072,25 +1175,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The computed list of node roles for the current topology element\n"
                 },
                 "nodeTypeData": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (data node)\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (ingest node)\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (master node)\n"
                 },
                 "nodeTypeMl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
                     "type": "string"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer"
@@ -1120,19 +1229,24 @@
         "ec:index/DeploymentElasticsearchWarmAutoscaling:DeploymentElasticsearchWarmAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size value for the maximum autoscaling setting.\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum resource type for the maximum autoscaling setting.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size value for the minimum autoscaling setting.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum resource type for the minimum autoscaling setting.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed policy overrides set directly via the API or other clients.\n"
                 }
             },
             "type": "object",
@@ -1179,8 +1293,7 @@
                     "type": "string"
                 },
                 "region": {
-                    "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "type": "string"
                 },
                 "resourceId": {
                     "type": "string"
@@ -1220,19 +1333,24 @@
         "ec:index/DeploymentEnterpriseSearchConfig:DeploymentEnterpriseSearchConfig": {
             "properties": {
                 "dockerImage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
                 },
                 "userSettingsJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 }
             },
             "type": "object"
@@ -1263,8 +1381,7 @@
                     "type": "string"
                 },
                 "region": {
-                    "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "type": "string"
                 },
                 "resourceId": {
                     "type": "string"
@@ -1302,22 +1419,28 @@
         "ec:index/DeploymentIntegrationsServerConfig:DeploymentIntegrationsServerConfig": {
             "properties": {
                 "debugEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Optionally enable debug mode for APM servers - defaults to false\n"
                 },
                 "dockerImage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
                 },
                 "userSettingsJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 }
             },
             "type": "object",
@@ -1366,8 +1489,7 @@
                     "type": "string"
                 },
                 "region": {
-                    "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "type": "string"
                 },
                 "resourceId": {
                     "type": "string"
@@ -1404,19 +1526,24 @@
         "ec:index/DeploymentKibanaConfig:DeploymentKibanaConfig": {
             "properties": {
                 "dockerImage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
                 },
                 "userSettingsJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsOverrideYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
                 },
                 "userSettingsYaml": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
                 }
             },
             "type": "object"
@@ -1609,16 +1736,20 @@
         "ec:index/getDeploymentApmTopology:getDeploymentApmTopology": {
             "properties": {
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type of resource (\"memory\" or \"storage\")\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones in which nodes will be placed.\n"
                 }
             },
             "type": "object",
@@ -1705,37 +1836,47 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ec:index/getDeploymentElasticsearchTopologyAutoscaling:getDeploymentElasticsearchTopologyAutoscaling"
-                    }
+                    },
+                    "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n"
                 },
                 "nodeRoles": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.\n"
                 },
                 "nodeTypeData": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this node can hold data (\\n\\n).\n"
                 },
                 "nodeTypeIngest": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this node can run an ingest pipeline (\\n\\n).\n"
                 },
                 "nodeTypeMaster": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this node can be elected master (\\n\\n).\n"
                 },
                 "nodeTypeMl": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this node can run ML jobs (\\n\\n).\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type of resource (\"memory\" or \"storage\")\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones in which nodes will be placed.\n"
                 }
             },
             "type": "object",
@@ -1760,19 +1901,24 @@
         "ec:index/getDeploymentElasticsearchTopologyAutoscaling:getDeploymentElasticsearchTopologyAutoscaling": {
             "properties": {
                 "maxSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Maximum size the tier can scale up to, e.g \"64g\".\n"
                 },
                 "maxSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource type used when specifying the maximum size the tier can scale up to.\n"
                 },
                 "minSize": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Minimum size the tier can scale down to when bidirectional autoscaling is supported.\n"
                 },
                 "minSizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.\n"
                 },
                 "policyOverrideJson": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary JSON object overriding the default autoscaling policy. Don't set unless you really know what you are doing.\n"
                 }
             },
             "type": "object",
@@ -1852,25 +1998,32 @@
         "ec:index/getDeploymentEnterpriseSearchTopology:getDeploymentEnterpriseSearchTopology": {
             "properties": {
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n"
                 },
                 "nodeTypeAppserver": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this instance should run as application/API server.\n"
                 },
                 "nodeTypeConnector": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this instance should run as connector.\n"
                 },
                 "nodeTypeWorker": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Defines whether this instance should run as background worker.\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type of resource (\"memory\" or \"storage\")\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones in which nodes will be placed.\n"
                 }
             },
             "type": "object",
@@ -1952,16 +2105,20 @@
         "ec:index/getDeploymentIntegrationsServerTopology:getDeploymentIntegrationsServerTopology": {
             "properties": {
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type of resource (\"memory\" or \"storage\")\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones in which nodes will be placed.\n"
                 }
             },
             "type": "object",
@@ -2040,16 +2197,20 @@
         "ec:index/getDeploymentKibanaTopology:getDeploymentKibanaTopology": {
             "properties": {
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type of resource (\"memory\" or \"storage\")\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones in which nodes will be placed.\n"
                 }
             },
             "type": "object",
@@ -2495,14 +2656,16 @@
         "ec:index/getTrafficFilterRulesetRule:getTrafficFilterRulesetRule": {
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The description of the ruleset.\n"
                 },
                 "id": {
                     "type": "string",
-                    "description": "The id of the traffic filter to select.\n"
+                    "description": "The ID of the ruleset\n"
                 },
                 "source": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.\n"
                 }
             },
             "type": "object",
@@ -2607,7 +2770,7 @@
             "properties": {
                 "alias": {
                     "type": "string",
-                    "description": "Deployment alias, affects the format of the resource URLs.\n"
+                    "description": "Alias for this Cross Cluster Search binding\n"
                 },
                 "apm": {
                     "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -2648,7 +2811,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name for the deployment\n"
+                    "description": "Extension name.\n"
                 },
                 "observability": {
                     "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
@@ -2656,7 +2819,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)\ninstallations, set to `\"ece-region\".\n"
                 },
                 "requestId": {
                     "type": "string",
@@ -2682,7 +2845,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "description": "Elastic Stack version to use for all of the deployment resources.\n"
+                    "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
                 }
             },
             "required": [
@@ -2701,7 +2864,7 @@
             "inputProperties": {
                 "alias": {
                     "type": "string",
-                    "description": "Deployment alias, affects the format of the resource URLs.\n"
+                    "description": "Alias for this Cross Cluster Search binding\n"
                 },
                 "apm": {
                     "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -2729,7 +2892,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name for the deployment\n"
+                    "description": "Extension name.\n"
                 },
                 "observability": {
                     "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
@@ -2737,7 +2900,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)\ninstallations, set to `\"ece-region\".\n"
                 },
                 "requestId": {
                     "type": "string",
@@ -2763,7 +2926,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "description": "Elastic Stack version to use for all of the deployment resources.\n"
+                    "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
                 }
             },
             "requiredInputs": [
@@ -2777,7 +2940,7 @@
                 "properties": {
                     "alias": {
                         "type": "string",
-                        "description": "Deployment alias, affects the format of the resource URLs.\n"
+                        "description": "Alias for this Cross Cluster Search binding\n"
                     },
                     "apm": {
                         "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -2818,7 +2981,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name for the deployment\n"
+                        "description": "Extension name.\n"
                     },
                     "observability": {
                         "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
@@ -2826,7 +2989,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
+                        "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)\ninstallations, set to `\"ece-region\".\n"
                     },
                     "requestId": {
                         "type": "string",
@@ -2852,7 +3015,7 @@
                     },
                     "version": {
                         "type": "string",
-                        "description": "Elastic Stack version to use for all of the deployment resources.\n"
+                        "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
                     }
                 },
                 "type": "object"
@@ -3073,7 +3236,7 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "Ruleset description\n"
+                    "description": "Description of this individual rule\n"
                 },
                 "includeByDefault": {
                     "type": "boolean",
@@ -3108,7 +3271,7 @@
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "Ruleset description\n"
+                    "description": "Description of this individual rule\n"
                 },
                 "includeByDefault": {
                     "type": "boolean",
@@ -3143,7 +3306,7 @@
                 "properties": {
                     "description": {
                         "type": "string",
-                        "description": "Ruleset description\n"
+                        "description": "Description of this individual rule\n"
                     },
                     "includeByDefault": {
                         "type": "boolean",
@@ -3517,7 +3680,7 @@
                     },
                     "healthy": {
                         "type": "string",
-                        "description": "Filter the result set by their health status.\n"
+                        "description": "Overall health status of the resource instances.\n"
                     },
                     "integrationsServers": {
                         "type": "array",
@@ -3799,15 +3962,15 @@
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The id of the traffic filter to select.\n"
+                        "description": "The ID of the ruleset\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The exact name of the traffic filter to select.\n"
+                        "description": "The name of the ruleset.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`\n"
+                        "description": "The ruleset can be attached only to deployments in the specific region.\n"
                     }
                 },
                 "type": "object"
