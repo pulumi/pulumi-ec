@@ -13,11 +13,29 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentIntegrationsServerConfig
     {
+        /// <summary>
+        /// Optionally enable debug mode for APM servers - defaults to false
+        /// </summary>
         public readonly bool? DebugEnabled;
+        /// <summary>
+        /// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        /// </summary>
         public readonly string? DockerImage;
+        /// <summary>
+        /// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        /// </summary>
         public readonly string? UserSettingsJson;
+        /// <summary>
+        /// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        /// </summary>
         public readonly string? UserSettingsOverrideJson;
+        /// <summary>
+        /// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        /// </summary>
         public readonly string? UserSettingsOverrideYaml;
+        /// <summary>
+        /// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        /// </summary>
         public readonly string? UserSettingsYaml;
 
         [OutputConstructor]

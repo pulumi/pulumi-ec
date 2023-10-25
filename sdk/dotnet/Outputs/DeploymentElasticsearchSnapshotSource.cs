@@ -13,7 +13,13 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchSnapshotSource
     {
+        /// <summary>
+        /// Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+        /// </summary>
         public readonly string? SnapshotName;
+        /// <summary>
+        /// ID of the Elasticsearch cluster that will be used as the source of the snapshot
+        /// </summary>
         public readonly string SourceElasticsearchClusterId;
 
         [OutputConstructor]

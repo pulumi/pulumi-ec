@@ -13,11 +13,17 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetTrafficFilterRulesetRuleResult
     {
+        /// <summary>
+        /// The description of the ruleset.
+        /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The id of the traffic filter to select.
+        /// The ID of the ruleset
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
+        /// </summary>
         public readonly string Source;
 
         [OutputConstructor]

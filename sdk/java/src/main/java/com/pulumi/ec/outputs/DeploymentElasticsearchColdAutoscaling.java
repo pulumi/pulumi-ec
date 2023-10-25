@@ -11,25 +11,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchColdAutoscaling {
+    /**
+     * @return Maximum size value for the maximum autoscaling setting.
+     * 
+     */
     private @Nullable String maxSize;
+    /**
+     * @return Maximum resource type for the maximum autoscaling setting.
+     * 
+     */
     private @Nullable String maxSizeResource;
+    /**
+     * @return Minimum size value for the minimum autoscaling setting.
+     * 
+     */
     private @Nullable String minSize;
+    /**
+     * @return Minimum resource type for the minimum autoscaling setting.
+     * 
+     */
     private @Nullable String minSizeResource;
+    /**
+     * @return Computed policy overrides set directly via the API or other clients.
+     * 
+     */
     private @Nullable String policyOverrideJson;
 
     private DeploymentElasticsearchColdAutoscaling() {}
+    /**
+     * @return Maximum size value for the maximum autoscaling setting.
+     * 
+     */
     public Optional<String> maxSize() {
         return Optional.ofNullable(this.maxSize);
     }
+    /**
+     * @return Maximum resource type for the maximum autoscaling setting.
+     * 
+     */
     public Optional<String> maxSizeResource() {
         return Optional.ofNullable(this.maxSizeResource);
     }
+    /**
+     * @return Minimum size value for the minimum autoscaling setting.
+     * 
+     */
     public Optional<String> minSize() {
         return Optional.ofNullable(this.minSize);
     }
+    /**
+     * @return Minimum resource type for the minimum autoscaling setting.
+     * 
+     */
     public Optional<String> minSizeResource() {
         return Optional.ofNullable(this.minSizeResource);
     }
+    /**
+     * @return Computed policy overrides set directly via the API or other clients.
+     * 
+     */
     public Optional<String> policyOverrideJson() {
         return Optional.ofNullable(this.policyOverrideJson);
     }

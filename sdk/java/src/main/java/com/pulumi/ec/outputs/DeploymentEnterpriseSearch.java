@@ -27,10 +27,6 @@ public final class DeploymentEnterpriseSearch {
     private @Nullable Boolean nodeTypeConnector;
     private @Nullable Boolean nodeTypeWorker;
     private @Nullable String refId;
-    /**
-     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
-     * 
-     */
     private @Nullable String region;
     private @Nullable String resourceId;
     private @Nullable String size;
@@ -73,10 +69,6 @@ public final class DeploymentEnterpriseSearch {
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
-    /**
-     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
-     * 
-     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }

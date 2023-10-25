@@ -16,44 +16,92 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
 
     public static final DeploymentElasticsearchConfigArgs Empty = new DeploymentElasticsearchConfigArgs();
 
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * 
+     */
     @Import(name="dockerImage")
     private @Nullable Output<String> dockerImage;
 
+    /**
+     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * 
+     */
     public Optional<Output<String>> dockerImage() {
         return Optional.ofNullable(this.dockerImage);
     }
 
+    /**
+     * List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+     * 
+     */
     @Import(name="plugins")
     private @Nullable Output<List<String>> plugins;
 
+    /**
+     * @return List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+     * 
+     */
     public Optional<Output<List<String>>> plugins() {
         return Optional.ofNullable(this.plugins);
     }
 
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * 
+     */
     @Import(name="userSettingsJson")
     private @Nullable Output<String> userSettingsJson;
 
+    /**
+     * @return An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * 
+     */
     public Optional<Output<String>> userSettingsJson() {
         return Optional.ofNullable(this.userSettingsJson);
     }
 
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * 
+     */
     @Import(name="userSettingsOverrideJson")
     private @Nullable Output<String> userSettingsOverrideJson;
 
+    /**
+     * @return An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * 
+     */
     public Optional<Output<String>> userSettingsOverrideJson() {
         return Optional.ofNullable(this.userSettingsOverrideJson);
     }
 
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * 
+     */
     @Import(name="userSettingsOverrideYaml")
     private @Nullable Output<String> userSettingsOverrideYaml;
 
+    /**
+     * @return An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * 
+     */
     public Optional<Output<String>> userSettingsOverrideYaml() {
         return Optional.ofNullable(this.userSettingsOverrideYaml);
     }
 
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * 
+     */
     @Import(name="userSettingsYaml")
     private @Nullable Output<String> userSettingsYaml;
 
+    /**
+     * @return An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * 
+     */
     public Optional<Output<String>> userSettingsYaml() {
         return Optional.ofNullable(this.userSettingsYaml);
     }
@@ -87,60 +135,138 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
             $ = new DeploymentElasticsearchConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dockerImage(@Nullable Output<String> dockerImage) {
             $.dockerImage = dockerImage;
             return this;
         }
 
+        /**
+         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dockerImage(String dockerImage) {
             return dockerImage(Output.of(dockerImage));
         }
 
+        /**
+         * @param plugins List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+         * 
+         * @return builder
+         * 
+         */
         public Builder plugins(@Nullable Output<List<String>> plugins) {
             $.plugins = plugins;
             return this;
         }
 
+        /**
+         * @param plugins List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+         * 
+         * @return builder
+         * 
+         */
         public Builder plugins(List<String> plugins) {
             return plugins(Output.of(plugins));
         }
 
+        /**
+         * @param plugins List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+         * 
+         * @return builder
+         * 
+         */
         public Builder plugins(String... plugins) {
             return plugins(List.of(plugins));
         }
 
+        /**
+         * @param userSettingsJson An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsJson(@Nullable Output<String> userSettingsJson) {
             $.userSettingsJson = userSettingsJson;
             return this;
         }
 
+        /**
+         * @param userSettingsJson An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsJson(String userSettingsJson) {
             return userSettingsJson(Output.of(userSettingsJson));
         }
 
+        /**
+         * @param userSettingsOverrideJson An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsOverrideJson(@Nullable Output<String> userSettingsOverrideJson) {
             $.userSettingsOverrideJson = userSettingsOverrideJson;
             return this;
         }
 
+        /**
+         * @param userSettingsOverrideJson An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsOverrideJson(String userSettingsOverrideJson) {
             return userSettingsOverrideJson(Output.of(userSettingsOverrideJson));
         }
 
+        /**
+         * @param userSettingsOverrideYaml An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsOverrideYaml(@Nullable Output<String> userSettingsOverrideYaml) {
             $.userSettingsOverrideYaml = userSettingsOverrideYaml;
             return this;
         }
 
+        /**
+         * @param userSettingsOverrideYaml An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsOverrideYaml(String userSettingsOverrideYaml) {
             return userSettingsOverrideYaml(Output.of(userSettingsOverrideYaml));
         }
 
+        /**
+         * @param userSettingsYaml An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsYaml(@Nullable Output<String> userSettingsYaml) {
             $.userSettingsYaml = userSettingsYaml;
             return this;
         }
 
+        /**
+         * @param userSettingsYaml An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userSettingsYaml(String userSettingsYaml) {
             return userSettingsYaml(Output.of(userSettingsYaml));
         }

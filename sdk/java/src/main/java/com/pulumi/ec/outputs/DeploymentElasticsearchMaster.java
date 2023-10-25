@@ -14,42 +14,98 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchMaster {
+    /**
+     * @return Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     * 
+     */
     private DeploymentElasticsearchMasterAutoscaling autoscaling;
     private @Nullable String instanceConfigurationId;
+    /**
+     * @return The computed list of node roles for the current topology element
+     * 
+     */
     private @Nullable List<String> nodeRoles;
+    /**
+     * @return The node type for the Elasticsearch Topology element (data node)
+     * 
+     */
     private @Nullable String nodeTypeData;
+    /**
+     * @return The node type for the Elasticsearch Topology element (ingest node)
+     * 
+     */
     private @Nullable String nodeTypeIngest;
+    /**
+     * @return The node type for the Elasticsearch Topology element (master node)
+     * 
+     */
     private @Nullable String nodeTypeMaster;
+    /**
+     * @return The node type for the Elasticsearch Topology element (machine learning node)
+     * 
+     */
     private @Nullable String nodeTypeMl;
     private @Nullable String size;
+    /**
+     * @return Optional size type, defaults to &#34;memory&#34;.
+     * 
+     */
     private @Nullable String sizeResource;
     private @Nullable Integer zoneCount;
 
     private DeploymentElasticsearchMaster() {}
+    /**
+     * @return Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     * 
+     */
     public DeploymentElasticsearchMasterAutoscaling autoscaling() {
         return this.autoscaling;
     }
     public Optional<String> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
     }
+    /**
+     * @return The computed list of node roles for the current topology element
+     * 
+     */
     public List<String> nodeRoles() {
         return this.nodeRoles == null ? List.of() : this.nodeRoles;
     }
+    /**
+     * @return The node type for the Elasticsearch Topology element (data node)
+     * 
+     */
     public Optional<String> nodeTypeData() {
         return Optional.ofNullable(this.nodeTypeData);
     }
+    /**
+     * @return The node type for the Elasticsearch Topology element (ingest node)
+     * 
+     */
     public Optional<String> nodeTypeIngest() {
         return Optional.ofNullable(this.nodeTypeIngest);
     }
+    /**
+     * @return The node type for the Elasticsearch Topology element (master node)
+     * 
+     */
     public Optional<String> nodeTypeMaster() {
         return Optional.ofNullable(this.nodeTypeMaster);
     }
+    /**
+     * @return The node type for the Elasticsearch Topology element (machine learning node)
+     * 
+     */
     public Optional<String> nodeTypeMl() {
         return Optional.ofNullable(this.nodeTypeMl);
     }
     public Optional<String> size() {
         return Optional.ofNullable(this.size);
     }
+    /**
+     * @return Optional size type, defaults to &#34;memory&#34;.
+     * 
+     */
     public Optional<String> sizeResource() {
         return Optional.ofNullable(this.sizeResource);
     }

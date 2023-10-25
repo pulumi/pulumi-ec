@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchTrustExternal {
+    /**
+     * @return The ID of the external trust relationship.
+     * 
+     */
     private String relationshipId;
+    /**
+     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * 
+     */
     private Boolean trustAll;
+    /**
+     * @return The list of clusters to trust. Only used when `trust_all` is false.
+     * 
+     */
     private @Nullable List<String> trustAllowlists;
 
     private DeploymentElasticsearchTrustExternal() {}
+    /**
+     * @return The ID of the external trust relationship.
+     * 
+     */
     public String relationshipId() {
         return this.relationshipId;
     }
+    /**
+     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * 
+     */
     public Boolean trustAll() {
         return this.trustAll;
     }
+    /**
+     * @return The list of clusters to trust. Only used when `trust_all` is false.
+     * 
+     */
     public List<String> trustAllowlists() {
         return this.trustAllowlists == null ? List.of() : this.trustAllowlists;
     }

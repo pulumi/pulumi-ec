@@ -12,11 +12,18 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchKeystoreContentsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+        /// </summary>
         [Input("asFile")]
         public Input<bool>? AsFile { get; set; }
 
         [Input("value", required: true)]
         private Input<string>? _value;
+
+        /// <summary>
+        /// Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+        /// </summary>
         public Input<string>? Value
         {
             get => _value;

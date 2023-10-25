@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchKeystoreContents {
+    /**
+     * @return If true, the secret is handled as a file. Otherwise, it&#39;s handled as a plain string.
+     * 
+     */
     private @Nullable Boolean asFile;
+    /**
+     * @return Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+     * 
+     */
     private String value;
 
     private DeploymentElasticsearchKeystoreContents() {}
+    /**
+     * @return If true, the secret is handled as a file. Otherwise, it&#39;s handled as a plain string.
+     * 
+     */
     public Optional<Boolean> asFile() {
         return Optional.ofNullable(this.asFile);
     }
+    /**
+     * @return Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+     * 
+     */
     public String value() {
         return this.value;
     }

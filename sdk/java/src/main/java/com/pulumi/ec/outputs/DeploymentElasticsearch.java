@@ -87,10 +87,6 @@ public final class DeploymentElasticsearch {
      * 
      */
     private @Nullable String refId;
-    /**
-     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
-     * 
-     */
     private @Nullable String region;
     /**
      * @return Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
@@ -196,10 +192,6 @@ public final class DeploymentElasticsearch {
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
-    /**
-     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
-     * 
-     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }

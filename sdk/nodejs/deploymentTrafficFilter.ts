@@ -143,7 +143,7 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
     }
 
     /**
-     * Ruleset description
+     * Description of this individual rule
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -211,7 +211,7 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
  */
 export interface DeploymentTrafficFilterState {
     /**
-     * Ruleset description
+     * Description of this individual rule
      */
     description?: pulumi.Input<string>;
     /**
@@ -241,7 +241,7 @@ export interface DeploymentTrafficFilterState {
  */
 export interface DeploymentTrafficFilterArgs {
     /**
-     * Ruleset description
+     * Description of this individual rule
      */
     description?: pulumi.Input<string>;
     /**

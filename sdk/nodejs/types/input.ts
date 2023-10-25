@@ -15,9 +15,6 @@ export interface DeploymentApm {
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
     refId?: pulumi.Input<string>;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
@@ -29,11 +26,29 @@ export interface DeploymentApm {
 }
 
 export interface DeploymentApmConfig {
+    /**
+     * Optionally enable debug mode for APM servers - defaults to false
+     */
     debugEnabled?: pulumi.Input<boolean>;
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
@@ -85,9 +100,6 @@ export interface DeploymentElasticsearch {
      * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      */
     refId?: pulumi.Input<string>;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region?: pulumi.Input<string>;
     /**
      * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
@@ -106,210 +118,540 @@ export interface DeploymentElasticsearch {
 }
 
 export interface DeploymentElasticsearchCold {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchColdAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchColdAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchConfig {
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: pulumi.Input<string>;
+    /**
+     * List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+     */
     plugins?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchCoordinating {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchCoordinatingAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchCoordinatingAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchExtension {
+    /**
+     * Extension name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Extension type, only `bundle` or `plugin` are supported.
+     */
     type: pulumi.Input<string>;
+    /**
+     * Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+     */
     url: pulumi.Input<string>;
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      */
     version: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchFrozen {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchFrozenAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchFrozenAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchHot {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchHotAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchHotAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchKeystoreContents {
+    /**
+     * If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+     */
     asFile?: pulumi.Input<boolean>;
+    /**
+     * Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchMaster {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMasterAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchMasterAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchMl {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMlAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchMlAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchRemoteCluster {
+    /**
+     * Alias for this Cross Cluster Search binding
+     */
     alias: pulumi.Input<string>;
+    /**
+     * Remote deployment ID
+     */
     deploymentId: pulumi.Input<string>;
     refId?: pulumi.Input<string>;
+    /**
+     * If true, skip the cluster during search when disconnected
+     */
     skipUnavailable?: pulumi.Input<boolean>;
 }
 
 export interface DeploymentElasticsearchSnapshot {
+    /**
+     * Indicates if Snapshotting is enabled.
+     */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Snapshot repository configuration
+     */
     repository?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepository>;
 }
 
 export interface DeploymentElasticsearchSnapshotRepository {
+    /**
+     * Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+     */
     reference?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepositoryReference>;
 }
 
 export interface DeploymentElasticsearchSnapshotRepositoryReference {
+    /**
+     * ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
+     */
     repositoryName: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchSnapshotSource {
+    /**
+     * Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+     */
     snapshotName?: pulumi.Input<string>;
+    /**
+     * ID of the Elasticsearch cluster that will be used as the source of the snapshot
+     */
     sourceElasticsearchClusterId: pulumi.Input<string>;
 }
 
 export interface DeploymentElasticsearchTrustAccount {
+    /**
+     * The ID of the Account.
+     */
     accountId: pulumi.Input<string>;
+    /**
+     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+     */
     trustAll: pulumi.Input<boolean>;
+    /**
+     * The list of clusters to trust. Only used when `trustAll` is false.
+     */
     trustAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface DeploymentElasticsearchTrustExternal {
+    /**
+     * The ID of the external trust relationship.
+     */
     relationshipId: pulumi.Input<string>;
+    /**
+     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+     */
     trustAll: pulumi.Input<boolean>;
+    /**
+     * The list of clusters to trust. Only used when `trustAll` is false.
+     */
     trustAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface DeploymentElasticsearchWarm {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchWarmAutoscaling>;
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster?: pulumi.Input<string>;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource?: pulumi.Input<string>;
     zoneCount?: pulumi.Input<number>;
 }
 
 export interface DeploymentElasticsearchWarmAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize?: pulumi.Input<string>;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource?: pulumi.Input<string>;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize?: pulumi.Input<string>;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource?: pulumi.Input<string>;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson?: pulumi.Input<string>;
 }
 
@@ -326,9 +668,6 @@ export interface DeploymentEnterpriseSearch {
     nodeTypeConnector?: pulumi.Input<boolean>;
     nodeTypeWorker?: pulumi.Input<boolean>;
     refId?: pulumi.Input<string>;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
@@ -340,10 +679,25 @@ export interface DeploymentEnterpriseSearch {
 }
 
 export interface DeploymentEnterpriseSearchConfig {
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
@@ -361,9 +715,6 @@ export interface DeploymentIntegrationsServer {
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
     refId?: pulumi.Input<string>;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
@@ -375,11 +726,29 @@ export interface DeploymentIntegrationsServer {
 }
 
 export interface DeploymentIntegrationsServerConfig {
+    /**
+     * Optionally enable debug mode for APM servers - defaults to false
+     */
     debugEnabled?: pulumi.Input<boolean>;
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 
@@ -398,9 +767,6 @@ export interface DeploymentKibana {
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
     refId?: pulumi.Input<string>;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
     size?: pulumi.Input<string>;
@@ -412,10 +778,25 @@ export interface DeploymentKibana {
 }
 
 export interface DeploymentKibanaConfig {
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: pulumi.Input<string>;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: pulumi.Input<string>;
 }
 

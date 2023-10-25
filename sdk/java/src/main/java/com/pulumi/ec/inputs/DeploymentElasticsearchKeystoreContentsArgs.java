@@ -16,16 +16,32 @@ public final class DeploymentElasticsearchKeystoreContentsArgs extends com.pulum
 
     public static final DeploymentElasticsearchKeystoreContentsArgs Empty = new DeploymentElasticsearchKeystoreContentsArgs();
 
+    /**
+     * If true, the secret is handled as a file. Otherwise, it&#39;s handled as a plain string.
+     * 
+     */
     @Import(name="asFile")
     private @Nullable Output<Boolean> asFile;
 
+    /**
+     * @return If true, the secret is handled as a file. Otherwise, it&#39;s handled as a plain string.
+     * 
+     */
     public Optional<Output<Boolean>> asFile() {
         return Optional.ofNullable(this.asFile);
     }
 
+    /**
+     * Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -55,20 +71,44 @@ public final class DeploymentElasticsearchKeystoreContentsArgs extends com.pulum
             $ = new DeploymentElasticsearchKeystoreContentsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param asFile If true, the secret is handled as a file. Otherwise, it&#39;s handled as a plain string.
+         * 
+         * @return builder
+         * 
+         */
         public Builder asFile(@Nullable Output<Boolean> asFile) {
             $.asFile = asFile;
             return this;
         }
 
+        /**
+         * @param asFile If true, the secret is handled as a file. Otherwise, it&#39;s handled as a plain string.
+         * 
+         * @return builder
+         * 
+         */
         public Builder asFile(Boolean asFile) {
             return asFile(Output.of(asFile));
         }
 
+        /**
+         * @param value Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

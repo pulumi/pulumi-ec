@@ -13,10 +13,25 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchMasterAutoscaling
     {
+        /// <summary>
+        /// Maximum size value for the maximum autoscaling setting.
+        /// </summary>
         public readonly string? MaxSize;
+        /// <summary>
+        /// Maximum resource type for the maximum autoscaling setting.
+        /// </summary>
         public readonly string? MaxSizeResource;
+        /// <summary>
+        /// Minimum size value for the minimum autoscaling setting.
+        /// </summary>
         public readonly string? MinSize;
+        /// <summary>
+        /// Minimum resource type for the minimum autoscaling setting.
+        /// </summary>
         public readonly string? MinSizeResource;
+        /// <summary>
+        /// Computed policy overrides set directly via the API or other clients.
+        /// </summary>
         public readonly string? PolicyOverrideJson;
 
         [OutputConstructor]

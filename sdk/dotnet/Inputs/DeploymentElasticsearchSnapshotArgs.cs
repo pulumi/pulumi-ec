@@ -12,9 +12,15 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchSnapshotArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates if Snapshotting is enabled.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
+        /// <summary>
+        /// Snapshot repository configuration
+        /// </summary>
         [Input("repository")]
         public Input<Inputs.DeploymentElasticsearchSnapshotRepositoryArgs>? Repository { get; set; }
 
