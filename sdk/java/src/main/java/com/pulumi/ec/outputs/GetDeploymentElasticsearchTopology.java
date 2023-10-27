@@ -13,45 +13,125 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentElasticsearchTopology {
+    /**
+     * @return Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     * 
+     */
     private List<GetDeploymentElasticsearchTopologyAutoscaling> autoscalings;
+    /**
+     * @return Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     * 
+     */
     private String instanceConfigurationId;
+    /**
+     * @return Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
+     * 
+     */
     private List<String> nodeRoles;
+    /**
+     * @return Defines whether this node can hold data (\n\n).
+     * 
+     */
     private Boolean nodeTypeData;
+    /**
+     * @return Defines whether this node can run an ingest pipeline (\n\n).
+     * 
+     */
     private Boolean nodeTypeIngest;
+    /**
+     * @return Defines whether this node can be elected master (\n\n).
+     * 
+     */
     private Boolean nodeTypeMaster;
+    /**
+     * @return Defines whether this node can run ML jobs (\n\n).
+     * 
+     */
     private Boolean nodeTypeMl;
+    /**
+     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * 
+     */
     private String size;
+    /**
+     * @return Type of resource (&#34;memory&#34; or &#34;storage&#34;)
+     * 
+     */
     private String sizeResource;
+    /**
+     * @return Number of zones in which nodes will be placed.
+     * 
+     */
     private Integer zoneCount;
 
     private GetDeploymentElasticsearchTopology() {}
+    /**
+     * @return Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     * 
+     */
     public List<GetDeploymentElasticsearchTopologyAutoscaling> autoscalings() {
         return this.autoscalings;
     }
+    /**
+     * @return Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     * 
+     */
     public String instanceConfigurationId() {
         return this.instanceConfigurationId;
     }
+    /**
+     * @return Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
+     * 
+     */
     public List<String> nodeRoles() {
         return this.nodeRoles;
     }
+    /**
+     * @return Defines whether this node can hold data (\n\n).
+     * 
+     */
     public Boolean nodeTypeData() {
         return this.nodeTypeData;
     }
+    /**
+     * @return Defines whether this node can run an ingest pipeline (\n\n).
+     * 
+     */
     public Boolean nodeTypeIngest() {
         return this.nodeTypeIngest;
     }
+    /**
+     * @return Defines whether this node can be elected master (\n\n).
+     * 
+     */
     public Boolean nodeTypeMaster() {
         return this.nodeTypeMaster;
     }
+    /**
+     * @return Defines whether this node can run ML jobs (\n\n).
+     * 
+     */
     public Boolean nodeTypeMl() {
         return this.nodeTypeMl;
     }
+    /**
+     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * 
+     */
     public String size() {
         return this.size;
     }
+    /**
+     * @return Type of resource (&#34;memory&#34; or &#34;storage&#34;)
+     * 
+     */
     public String sizeResource() {
         return this.sizeResource;
     }
+    /**
+     * @return Number of zones in which nodes will be placed.
+     * 
+     */
     public Integer zoneCount() {
         return this.zoneCount;
     }

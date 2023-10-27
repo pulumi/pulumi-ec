@@ -36,7 +36,7 @@ namespace Pulumi.ElasticCloud
     public partial class Deployment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Alias for this Cross Cluster Search binding
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
@@ -96,7 +96,7 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.DeploymentKibana?> Kibana { get; private set; } = null!;
 
         /// <summary>
-        /// Name for the deployment
+        /// Extension name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -109,7 +109,8 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.DeploymentObservability?> Observability { get; private set; } = null!;
 
         /// <summary>
-        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+        /// installations, set to `"ece-region".
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -140,7 +141,7 @@ namespace Pulumi.ElasticCloud
         public Output<ImmutableArray<string>> TrafficFilters { get; private set; } = null!;
 
         /// <summary>
-        /// Elastic Stack version to use for all of the deployment resources.
+        /// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -197,7 +198,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Alias for this Cross Cluster Search binding
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
@@ -240,7 +241,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentKibanaArgs>? Kibana { get; set; }
 
         /// <summary>
-        /// Name for the deployment
+        /// Extension name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -253,7 +254,8 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentObservabilityArgs>? Observability { get; set; }
 
         /// <summary>
-        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+        /// installations, set to `"ece-region".
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -296,7 +298,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Elastic Stack version to use for all of the deployment resources.
+        /// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -310,7 +312,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Alias for this Cross Cluster Search binding
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
@@ -389,7 +391,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentKibanaGetArgs>? Kibana { get; set; }
 
         /// <summary>
-        /// Name for the deployment
+        /// Extension name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -402,7 +404,8 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentObservabilityGetArgs>? Observability { get; set; }
 
         /// <summary>
-        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+        /// installations, set to `"ece-region".
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -445,7 +448,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Elastic Stack version to use for all of the deployment resources.
+        /// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

@@ -26,7 +26,7 @@ class DeploymentTrafficFilterArgs:
         The set of arguments for constructing a DeploymentTrafficFilter resource.
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
         :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]] rules: Set of rules, which the ruleset is made of.
@@ -70,7 +70,7 @@ class DeploymentTrafficFilterArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Ruleset description
+        Description of this individual rule
         """
         return pulumi.get(self, "description")
 
@@ -126,7 +126,7 @@ class _DeploymentTrafficFilterState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilter resources.
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
@@ -150,7 +150,7 @@ class _DeploymentTrafficFilterState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Ruleset description
+        Description of this individual rule
         """
         return pulumi.get(self, "description")
 
@@ -329,7 +329,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
@@ -501,7 +501,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Ruleset description
+        :param pulumi.Input[str] description: Description of this individual rule
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
@@ -524,7 +524,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        Ruleset description
+        Description of this individual rule
         """
         return pulumi.get(self, "description")
 

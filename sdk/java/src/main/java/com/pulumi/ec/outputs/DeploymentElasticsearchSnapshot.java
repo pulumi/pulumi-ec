@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchSnapshot {
+    /**
+     * @return Indicates if Snapshotting is enabled.
+     * 
+     */
     private Boolean enabled;
+    /**
+     * @return Snapshot repository configuration
+     * 
+     */
     private @Nullable DeploymentElasticsearchSnapshotRepository repository;
 
     private DeploymentElasticsearchSnapshot() {}
+    /**
+     * @return Indicates if Snapshotting is enabled.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
+    /**
+     * @return Snapshot repository configuration
+     * 
+     */
     public Optional<DeploymentElasticsearchSnapshotRepository> repository() {
         return Optional.ofNullable(this.repository);
     }

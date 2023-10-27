@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchSnapshotSource {
+    /**
+     * @return Name of the snapshot to restore. Use &#39;**latest_success**&#39; to get the most recent successful snapshot.
+     * 
+     */
     private @Nullable String snapshotName;
+    /**
+     * @return ID of the Elasticsearch cluster that will be used as the source of the snapshot
+     * 
+     */
     private String sourceElasticsearchClusterId;
 
     private DeploymentElasticsearchSnapshotSource() {}
+    /**
+     * @return Name of the snapshot to restore. Use &#39;**latest_success**&#39; to get the most recent successful snapshot.
+     * 
+     */
     public Optional<String> snapshotName() {
         return Optional.ofNullable(this.snapshotName);
     }
+    /**
+     * @return ID of the Elasticsearch cluster that will be used as the source of the snapshot
+     * 
+     */
     public String sourceElasticsearchClusterId() {
         return this.sourceElasticsearchClusterId;
     }

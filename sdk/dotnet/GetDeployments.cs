@@ -182,7 +182,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Filter the result set by their health status.
+        /// Overall health status of the resource instances.
         /// </summary>
         [Input("healthy")]
         public string? Healthy { get; set; }
@@ -286,7 +286,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Filter the result set by their health status.
+        /// Overall health status of the resource instances.
         /// </summary>
         [Input("healthy")]
         public Input<string>? Healthy { get; set; }

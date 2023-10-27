@@ -25,14 +25,14 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     public static final DeploymentArgs Empty = new DeploymentArgs();
 
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Alias for this Cross Cluster Search binding
      * 
      */
     @Import(name="alias")
     private @Nullable Output<String> alias;
 
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Alias for this Cross Cluster Search binding
      * 
      */
     public Optional<Output<String>> alias() {
@@ -132,14 +132,14 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Name for the deployment
+     * Extension name.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name for the deployment
+     * @return Extension name.
      * 
      */
     public Optional<Output<String>> name() {
@@ -164,14 +164,16 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `&#34;ece-region&#34;.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Output<String> region() {
@@ -241,14 +243,14 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     @Import(name="version", required=true)
     private Output<String> version;
 
     /**
-     * @return Elastic Stack version to use for all of the deployment resources.
+     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     public Output<String> version() {
@@ -294,7 +296,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param alias Deployment alias, affects the format of the resource URLs.
+         * @param alias Alias for this Cross Cluster Search binding
          * 
          * @return builder
          * 
@@ -305,7 +307,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param alias Deployment alias, affects the format of the resource URLs.
+         * @param alias Alias for this Cross Cluster Search binding
          * 
          * @return builder
          * 
@@ -443,7 +445,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Name for the deployment
+         * @param name Extension name.
          * 
          * @return builder
          * 
@@ -454,7 +456,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Name for the deployment
+         * @param name Extension name.
          * 
          * @return builder
          * 
@@ -487,7 +489,8 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+         * installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -498,7 +501,8 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+         * installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -604,7 +608,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Elastic Stack version to use for all of the deployment resources.
+         * @param version Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
          * 
          * @return builder
          * 
@@ -615,7 +619,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Elastic Stack version to use for all of the deployment resources.
+         * @param version Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
          * 
          * @return builder
          * 

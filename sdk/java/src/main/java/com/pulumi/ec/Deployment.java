@@ -50,14 +50,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="ec:index/deployment:Deployment")
 public class Deployment extends com.pulumi.resources.CustomResource {
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Alias for this Cross Cluster Search binding
      * 
      */
     @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Alias for this Cross Cluster Search binding
      * 
      */
     public Output<String> alias() {
@@ -188,14 +188,14 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.kibana);
     }
     /**
-     * Name for the deployment
+     * Extension name.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name for the deployment
+     * @return Extension name.
      * 
      */
     public Output<String> name() {
@@ -218,14 +218,16 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.observability);
     }
     /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `&#34;ece-region&#34;.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+     * installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Output<String> region() {
@@ -290,14 +292,14 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return this.trafficFilters;
     }
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return Elastic Stack version to use for all of the deployment resources.
+     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     public Output<String> version() {

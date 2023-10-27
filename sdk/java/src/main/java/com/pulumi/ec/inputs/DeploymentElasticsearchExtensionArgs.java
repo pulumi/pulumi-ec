@@ -13,36 +13,60 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
 
     public static final DeploymentElasticsearchExtensionArgs Empty = new DeploymentElasticsearchExtensionArgs();
 
+    /**
+     * Extension name.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Extension name.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Extension type, only `bundle` or `plugin` are supported.
+     * 
+     */
     @Import(name="type", required=true)
     private Output<String> type;
 
+    /**
+     * @return Extension type, only `bundle` or `plugin` are supported.
+     * 
+     */
     public Output<String> type() {
         return this.type;
     }
 
+    /**
+     * Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+     * 
+     */
     @Import(name="url", required=true)
     private Output<String> url;
 
+    /**
+     * @return Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+     * 
+     */
     public Output<String> url() {
         return this.url;
     }
 
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     @Import(name="version", required=true)
     private Output<String> version;
 
     /**
-     * @return Elastic Stack version to use for all of the deployment resources.
+     * @return Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      * 
      */
     public Output<String> version() {
@@ -76,35 +100,71 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
             $ = new DeploymentElasticsearchExtensionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Extension name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Extension name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param type Extension type, only `bundle` or `plugin` are supported.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Extension type, only `bundle` or `plugin` are supported.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }
 
+        /**
+         * @param url Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(Output<String> url) {
             $.url = url;
             return this;
         }
 
+        /**
+         * @param url Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(String url) {
             return url(Output.of(url));
         }
 
         /**
-         * @param version Elastic Stack version to use for all of the deployment resources.
+         * @param version Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
          * 
          * @return builder
          * 
@@ -115,7 +175,7 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
         }
 
         /**
-         * @param version Elastic Stack version to use for all of the deployment resources.
+         * @param version Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
          * 
          * @return builder
          * 

@@ -196,7 +196,7 @@ import (
 type DeploymentTrafficFilter struct {
 	pulumi.CustomResourceState
 
-	// Ruleset description
+	// Description of this individual rule
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolOutput `pulumi:"includeByDefault"`
@@ -246,7 +246,7 @@ func GetDeploymentTrafficFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentTrafficFilter resources.
 type deploymentTrafficFilterState struct {
-	// Ruleset description
+	// Description of this individual rule
 	Description *string `pulumi:"description"`
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault *bool `pulumi:"includeByDefault"`
@@ -261,7 +261,7 @@ type deploymentTrafficFilterState struct {
 }
 
 type DeploymentTrafficFilterState struct {
-	// Ruleset description
+	// Description of this individual rule
 	Description pulumi.StringPtrInput
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolPtrInput
@@ -280,7 +280,7 @@ func (DeploymentTrafficFilterState) ElementType() reflect.Type {
 }
 
 type deploymentTrafficFilterArgs struct {
-	// Ruleset description
+	// Description of this individual rule
 	Description *string `pulumi:"description"`
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault *bool `pulumi:"includeByDefault"`
@@ -296,7 +296,7 @@ type deploymentTrafficFilterArgs struct {
 
 // The set of arguments for constructing a DeploymentTrafficFilter resource.
 type DeploymentTrafficFilterArgs struct {
-	// Ruleset description
+	// Description of this individual rule
 	Description pulumi.StringPtrInput
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolPtrInput
@@ -421,7 +421,7 @@ func (o DeploymentTrafficFilterOutput) ToOutput(ctx context.Context) pulumix.Out
 	}
 }
 
-// Ruleset description
+// Description of this individual rule
 func (o DeploymentTrafficFilterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }

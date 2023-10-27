@@ -9,25 +9,65 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentElasticsearchTopologyAutoscaling {
+    /**
+     * @return Maximum size the tier can scale up to, e.g &#34;64g&#34;.
+     * 
+     */
     private String maxSize;
+    /**
+     * @return Resource type used when specifying the maximum size the tier can scale up to.
+     * 
+     */
     private String maxSizeResource;
+    /**
+     * @return Minimum size the tier can scale down to when bidirectional autoscaling is supported.
+     * 
+     */
     private String minSize;
+    /**
+     * @return Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
+     * 
+     */
     private String minSizeResource;
+    /**
+     * @return An arbitrary JSON object overriding the default autoscaling policy. Don&#39;t set unless you really know what you are doing.
+     * 
+     */
     private String policyOverrideJson;
 
     private GetDeploymentElasticsearchTopologyAutoscaling() {}
+    /**
+     * @return Maximum size the tier can scale up to, e.g &#34;64g&#34;.
+     * 
+     */
     public String maxSize() {
         return this.maxSize;
     }
+    /**
+     * @return Resource type used when specifying the maximum size the tier can scale up to.
+     * 
+     */
     public String maxSizeResource() {
         return this.maxSizeResource;
     }
+    /**
+     * @return Minimum size the tier can scale down to when bidirectional autoscaling is supported.
+     * 
+     */
     public String minSize() {
         return this.minSize;
     }
+    /**
+     * @return Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
+     * 
+     */
     public String minSizeResource() {
         return this.minSizeResource;
     }
+    /**
+     * @return An arbitrary JSON object overriding the default autoscaling policy. Don&#39;t set unless you really know what you are doing.
+     * 
+     */
     public String policyOverrideJson() {
         return this.policyOverrideJson;
     }
