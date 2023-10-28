@@ -83,14 +83,14 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * Filter the result set by their health status.
+     * Overall health status of the resource instances.
      * 
      */
     @Import(name="healthy")
     private @Nullable String healthy;
 
     /**
-     * @return Filter the result set by their health status.
+     * @return Overall health status of the resource instances.
      * 
      */
     public Optional<String> healthy() {
@@ -280,7 +280,7 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param healthy Filter the result set by their health status.
+         * @param healthy Overall health status of the resource instances.
          * 
          * @return builder
          * 

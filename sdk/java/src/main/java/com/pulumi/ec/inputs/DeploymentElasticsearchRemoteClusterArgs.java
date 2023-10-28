@@ -16,16 +16,32 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
 
     public static final DeploymentElasticsearchRemoteClusterArgs Empty = new DeploymentElasticsearchRemoteClusterArgs();
 
+    /**
+     * Alias for this Cross Cluster Search binding
+     * 
+     */
     @Import(name="alias", required=true)
     private Output<String> alias;
 
+    /**
+     * @return Alias for this Cross Cluster Search binding
+     * 
+     */
     public Output<String> alias() {
         return this.alias;
     }
 
+    /**
+     * Remote deployment ID
+     * 
+     */
     @Import(name="deploymentId", required=true)
     private Output<String> deploymentId;
 
+    /**
+     * @return Remote deployment ID
+     * 
+     */
     public Output<String> deploymentId() {
         return this.deploymentId;
     }
@@ -37,9 +53,17 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         return Optional.ofNullable(this.refId);
     }
 
+    /**
+     * If true, skip the cluster during search when disconnected
+     * 
+     */
     @Import(name="skipUnavailable")
     private @Nullable Output<Boolean> skipUnavailable;
 
+    /**
+     * @return If true, skip the cluster during search when disconnected
+     * 
+     */
     public Optional<Output<Boolean>> skipUnavailable() {
         return Optional.ofNullable(this.skipUnavailable);
     }
@@ -71,20 +95,44 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
             $ = new DeploymentElasticsearchRemoteClusterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param alias Alias for this Cross Cluster Search binding
+         * 
+         * @return builder
+         * 
+         */
         public Builder alias(Output<String> alias) {
             $.alias = alias;
             return this;
         }
 
+        /**
+         * @param alias Alias for this Cross Cluster Search binding
+         * 
+         * @return builder
+         * 
+         */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
         }
 
+        /**
+         * @param deploymentId Remote deployment ID
+         * 
+         * @return builder
+         * 
+         */
         public Builder deploymentId(Output<String> deploymentId) {
             $.deploymentId = deploymentId;
             return this;
         }
 
+        /**
+         * @param deploymentId Remote deployment ID
+         * 
+         * @return builder
+         * 
+         */
         public Builder deploymentId(String deploymentId) {
             return deploymentId(Output.of(deploymentId));
         }
@@ -98,11 +146,23 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
             return refId(Output.of(refId));
         }
 
+        /**
+         * @param skipUnavailable If true, skip the cluster during search when disconnected
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipUnavailable(@Nullable Output<Boolean> skipUnavailable) {
             $.skipUnavailable = skipUnavailable;
             return this;
         }
 
+        /**
+         * @param skipUnavailable If true, skip the cluster during search when disconnected
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipUnavailable(Boolean skipUnavailable) {
             return skipUnavailable(Output.of(skipUnavailable));
         }

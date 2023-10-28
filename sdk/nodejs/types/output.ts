@@ -15,9 +15,6 @@ export interface DeploymentApm {
     httpsEndpoint: string;
     instanceConfigurationId: string;
     refId: string;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region: string;
     resourceId: string;
     size: string;
@@ -29,11 +26,29 @@ export interface DeploymentApm {
 }
 
 export interface DeploymentApmConfig {
+    /**
+     * Optionally enable debug mode for APM servers - defaults to false
+     */
     debugEnabled: boolean;
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: string;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: string;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: string;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: string;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: string;
 }
 
@@ -85,9 +100,6 @@ export interface DeploymentElasticsearch {
      * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      */
     refId: string;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region: string;
     /**
      * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
@@ -106,210 +118,540 @@ export interface DeploymentElasticsearch {
 }
 
 export interface DeploymentElasticsearchCold {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchColdAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchColdAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
 export interface DeploymentElasticsearchConfig {
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: string;
+    /**
+     * List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+     */
     plugins: string[];
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: string;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: string;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: string;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: string;
 }
 
 export interface DeploymentElasticsearchCoordinating {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchCoordinatingAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchCoordinatingAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
 export interface DeploymentElasticsearchExtension {
+    /**
+     * Extension name.
+     */
     name: string;
+    /**
+     * Extension type, only `bundle` or `plugin` are supported.
+     */
     type: string;
+    /**
+     * Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+     */
     url: string;
     /**
-     * Elastic Stack version to use for all of the deployment resources.
+     * Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
      */
     version: string;
 }
 
 export interface DeploymentElasticsearchFrozen {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchFrozenAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchFrozenAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
 export interface DeploymentElasticsearchHot {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchHotAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchHotAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
 export interface DeploymentElasticsearchKeystoreContents {
+    /**
+     * If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+     */
     asFile: boolean;
+    /**
+     * Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+     */
     value: string;
 }
 
 export interface DeploymentElasticsearchMaster {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchMasterAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchMasterAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
 export interface DeploymentElasticsearchMl {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchMlAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchMlAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
 export interface DeploymentElasticsearchRemoteCluster {
+    /**
+     * Alias for this Cross Cluster Search binding
+     */
     alias: string;
+    /**
+     * Remote deployment ID
+     */
     deploymentId: string;
     refId: string;
+    /**
+     * If true, skip the cluster during search when disconnected
+     */
     skipUnavailable: boolean;
 }
 
 export interface DeploymentElasticsearchSnapshot {
+    /**
+     * Indicates if Snapshotting is enabled.
+     */
     enabled: boolean;
+    /**
+     * Snapshot repository configuration
+     */
     repository: outputs.DeploymentElasticsearchSnapshotRepository;
 }
 
 export interface DeploymentElasticsearchSnapshotRepository {
+    /**
+     * Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+     */
     reference: outputs.DeploymentElasticsearchSnapshotRepositoryReference;
 }
 
 export interface DeploymentElasticsearchSnapshotRepositoryReference {
+    /**
+     * ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
+     */
     repositoryName: string;
 }
 
 export interface DeploymentElasticsearchSnapshotSource {
+    /**
+     * Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+     */
     snapshotName: string;
+    /**
+     * ID of the Elasticsearch cluster that will be used as the source of the snapshot
+     */
     sourceElasticsearchClusterId: string;
 }
 
 export interface DeploymentElasticsearchTrustAccount {
+    /**
+     * The ID of the Account.
+     */
     accountId: string;
+    /**
+     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+     */
     trustAll: boolean;
+    /**
+     * The list of clusters to trust. Only used when `trustAll` is false.
+     */
     trustAllowlists?: string[];
 }
 
 export interface DeploymentElasticsearchTrustExternal {
+    /**
+     * The ID of the external trust relationship.
+     */
     relationshipId: string;
+    /**
+     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+     */
     trustAll: boolean;
+    /**
+     * The list of clusters to trust. Only used when `trustAll` is false.
+     */
     trustAllowlists?: string[];
 }
 
 export interface DeploymentElasticsearchWarm {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscaling: outputs.DeploymentElasticsearchWarmAutoscaling;
     instanceConfigurationId: string;
+    /**
+     * The computed list of node roles for the current topology element
+     */
     nodeRoles: string[];
+    /**
+     * The node type for the Elasticsearch Topology element (data node)
+     */
     nodeTypeData: string;
+    /**
+     * The node type for the Elasticsearch Topology element (ingest node)
+     */
     nodeTypeIngest: string;
+    /**
+     * The node type for the Elasticsearch Topology element (master node)
+     */
     nodeTypeMaster: string;
+    /**
+     * The node type for the Elasticsearch Topology element (machine learning node)
+     */
     nodeTypeMl: string;
     size: string;
+    /**
+     * Optional size type, defaults to "memory".
+     */
     sizeResource: string;
     zoneCount: number;
 }
 
 export interface DeploymentElasticsearchWarmAutoscaling {
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     */
     maxSize: string;
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     */
     minSize: string;
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     */
     minSizeResource: string;
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     */
     policyOverrideJson: string;
 }
 
@@ -326,9 +668,6 @@ export interface DeploymentEnterpriseSearch {
     nodeTypeConnector: boolean;
     nodeTypeWorker: boolean;
     refId: string;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region: string;
     resourceId: string;
     size: string;
@@ -340,10 +679,25 @@ export interface DeploymentEnterpriseSearch {
 }
 
 export interface DeploymentEnterpriseSearchConfig {
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: string;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: string;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: string;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: string;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: string;
 }
 
@@ -361,9 +715,6 @@ export interface DeploymentIntegrationsServer {
     httpsEndpoint: string;
     instanceConfigurationId: string;
     refId: string;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region: string;
     resourceId: string;
     size: string;
@@ -375,11 +726,29 @@ export interface DeploymentIntegrationsServer {
 }
 
 export interface DeploymentIntegrationsServerConfig {
+    /**
+     * Optionally enable debug mode for APM servers - defaults to false
+     */
     debugEnabled: boolean;
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: string;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: string;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: string;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: string;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: string;
 }
 
@@ -398,9 +767,6 @@ export interface DeploymentKibana {
     httpsEndpoint: string;
     instanceConfigurationId: string;
     refId: string;
-    /**
-     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-     */
     region: string;
     resourceId: string;
     size: string;
@@ -412,10 +778,25 @@ export interface DeploymentKibana {
 }
 
 export interface DeploymentKibanaConfig {
+    /**
+     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     */
     dockerImage?: string;
+    /**
+     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsJson?: string;
+    /**
+     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideJson?: string;
+    /**
+     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     */
     userSettingsOverrideYaml?: string;
+    /**
+     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     */
     userSettingsYaml?: string;
 }
 
@@ -489,9 +870,21 @@ export interface GetDeploymentApm {
 }
 
 export interface GetDeploymentApmTopology {
+    /**
+     * Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     */
     instanceConfigurationId: string;
+    /**
+     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     */
     size: string;
+    /**
+     * Type of resource ("memory" or "storage")
+     */
     sizeResource: string;
+    /**
+     * Number of zones in which nodes will be placed.
+     */
     zoneCount: number;
 }
 
@@ -539,23 +932,68 @@ export interface GetDeploymentElasticsearch {
 }
 
 export interface GetDeploymentElasticsearchTopology {
+    /**
+     * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+     */
     autoscalings: outputs.GetDeploymentElasticsearchTopologyAutoscaling[];
+    /**
+     * Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     */
     instanceConfigurationId: string;
+    /**
+     * Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
+     */
     nodeRoles: string[];
+    /**
+     * Defines whether this node can hold data (\n\n).
+     */
     nodeTypeData: boolean;
+    /**
+     * Defines whether this node can run an ingest pipeline (\n\n).
+     */
     nodeTypeIngest: boolean;
+    /**
+     * Defines whether this node can be elected master (\n\n).
+     */
     nodeTypeMaster: boolean;
+    /**
+     * Defines whether this node can run ML jobs (\n\n).
+     */
     nodeTypeMl: boolean;
+    /**
+     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     */
     size: string;
+    /**
+     * Type of resource ("memory" or "storage")
+     */
     sizeResource: string;
+    /**
+     * Number of zones in which nodes will be placed.
+     */
     zoneCount: number;
 }
 
 export interface GetDeploymentElasticsearchTopologyAutoscaling {
+    /**
+     * Maximum size the tier can scale up to, e.g "64g".
+     */
     maxSize: string;
+    /**
+     * Resource type used when specifying the maximum size the tier can scale up to.
+     */
     maxSizeResource: string;
+    /**
+     * Minimum size the tier can scale down to when bidirectional autoscaling is supported.
+     */
     minSize: string;
+    /**
+     * Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
+     */
     minSizeResource: string;
+    /**
+     * An arbitrary JSON object overriding the default autoscaling policy. Don't set unless you really know what you are doing.
+     */
     policyOverrideJson: string;
 }
 
@@ -599,12 +1037,33 @@ export interface GetDeploymentEnterpriseSearch {
 }
 
 export interface GetDeploymentEnterpriseSearchTopology {
+    /**
+     * Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     */
     instanceConfigurationId: string;
+    /**
+     * Defines whether this instance should run as application/API server.
+     */
     nodeTypeAppserver: boolean;
+    /**
+     * Defines whether this instance should run as connector.
+     */
     nodeTypeConnector: boolean;
+    /**
+     * Defines whether this instance should run as background worker.
+     */
     nodeTypeWorker: boolean;
+    /**
+     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     */
     size: string;
+    /**
+     * Type of resource ("memory" or "storage")
+     */
     sizeResource: string;
+    /**
+     * Number of zones in which nodes will be placed.
+     */
     zoneCount: number;
 }
 
@@ -648,9 +1107,21 @@ export interface GetDeploymentIntegrationsServer {
 }
 
 export interface GetDeploymentIntegrationsServerTopology {
+    /**
+     * Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     */
     instanceConfigurationId: string;
+    /**
+     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     */
     size: string;
+    /**
+     * Type of resource ("memory" or "storage")
+     */
     sizeResource: string;
+    /**
+     * Number of zones in which nodes will be placed.
+     */
     zoneCount: number;
 }
 
@@ -694,9 +1165,21 @@ export interface GetDeploymentKibana {
 }
 
 export interface GetDeploymentKibanaTopology {
+    /**
+     * Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     */
     instanceConfigurationId: string;
+    /**
+     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     */
     size: string;
+    /**
+     * Type of resource ("memory" or "storage")
+     */
     sizeResource: string;
+    /**
+     * Number of zones in which nodes will be placed.
+     */
     zoneCount: number;
 }
 
@@ -977,11 +1460,17 @@ export interface GetTrafficFilterRuleset {
 }
 
 export interface GetTrafficFilterRulesetRule {
+    /**
+     * The description of the ruleset.
+     */
     description: string;
     /**
-     * The id of the traffic filter to select.
+     * The ID of the ruleset
      */
     id: string;
+    /**
+     * Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
+     */
     source: string;
 }
 

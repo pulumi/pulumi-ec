@@ -12,6 +12,9 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchMlArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        /// </summary>
         [Input("autoscaling", required: true)]
         public Input<Inputs.DeploymentElasticsearchMlAutoscalingArgs> Autoscaling { get; set; } = null!;
 
@@ -20,27 +23,46 @@ namespace Pulumi.ElasticCloud.Inputs
 
         [Input("nodeRoles")]
         private InputList<string>? _nodeRoles;
+
+        /// <summary>
+        /// The computed list of node roles for the current topology element
+        /// </summary>
         public InputList<string> NodeRoles
         {
             get => _nodeRoles ?? (_nodeRoles = new InputList<string>());
             set => _nodeRoles = value;
         }
 
+        /// <summary>
+        /// The node type for the Elasticsearch Topology element (data node)
+        /// </summary>
         [Input("nodeTypeData")]
         public Input<string>? NodeTypeData { get; set; }
 
+        /// <summary>
+        /// The node type for the Elasticsearch Topology element (ingest node)
+        /// </summary>
         [Input("nodeTypeIngest")]
         public Input<string>? NodeTypeIngest { get; set; }
 
+        /// <summary>
+        /// The node type for the Elasticsearch Topology element (master node)
+        /// </summary>
         [Input("nodeTypeMaster")]
         public Input<string>? NodeTypeMaster { get; set; }
 
+        /// <summary>
+        /// The node type for the Elasticsearch Topology element (machine learning node)
+        /// </summary>
         [Input("nodeTypeMl")]
         public Input<string>? NodeTypeMl { get; set; }
 
         [Input("size")]
         public Input<string>? Size { get; set; }
 
+        /// <summary>
+        /// Optional size type, defaults to "memory".
+        /// </summary>
         [Input("sizeResource")]
         public Input<string>? SizeResource { get; set; }
 

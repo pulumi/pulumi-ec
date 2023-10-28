@@ -15,37 +15,77 @@ public final class DeploymentElasticsearchMlAutoscalingArgs extends com.pulumi.r
 
     public static final DeploymentElasticsearchMlAutoscalingArgs Empty = new DeploymentElasticsearchMlAutoscalingArgs();
 
+    /**
+     * Maximum size value for the maximum autoscaling setting.
+     * 
+     */
     @Import(name="maxSize")
     private @Nullable Output<String> maxSize;
 
+    /**
+     * @return Maximum size value for the maximum autoscaling setting.
+     * 
+     */
     public Optional<Output<String>> maxSize() {
         return Optional.ofNullable(this.maxSize);
     }
 
+    /**
+     * Maximum resource type for the maximum autoscaling setting.
+     * 
+     */
     @Import(name="maxSizeResource")
     private @Nullable Output<String> maxSizeResource;
 
+    /**
+     * @return Maximum resource type for the maximum autoscaling setting.
+     * 
+     */
     public Optional<Output<String>> maxSizeResource() {
         return Optional.ofNullable(this.maxSizeResource);
     }
 
+    /**
+     * Minimum size value for the minimum autoscaling setting.
+     * 
+     */
     @Import(name="minSize")
     private @Nullable Output<String> minSize;
 
+    /**
+     * @return Minimum size value for the minimum autoscaling setting.
+     * 
+     */
     public Optional<Output<String>> minSize() {
         return Optional.ofNullable(this.minSize);
     }
 
+    /**
+     * Minimum resource type for the minimum autoscaling setting.
+     * 
+     */
     @Import(name="minSizeResource")
     private @Nullable Output<String> minSizeResource;
 
+    /**
+     * @return Minimum resource type for the minimum autoscaling setting.
+     * 
+     */
     public Optional<Output<String>> minSizeResource() {
         return Optional.ofNullable(this.minSizeResource);
     }
 
+    /**
+     * Computed policy overrides set directly via the API or other clients.
+     * 
+     */
     @Import(name="policyOverrideJson")
     private @Nullable Output<String> policyOverrideJson;
 
+    /**
+     * @return Computed policy overrides set directly via the API or other clients.
+     * 
+     */
     public Optional<Output<String>> policyOverrideJson() {
         return Optional.ofNullable(this.policyOverrideJson);
     }
@@ -78,47 +118,107 @@ public final class DeploymentElasticsearchMlAutoscalingArgs extends com.pulumi.r
             $ = new DeploymentElasticsearchMlAutoscalingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param maxSize Maximum size value for the maximum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxSize(@Nullable Output<String> maxSize) {
             $.maxSize = maxSize;
             return this;
         }
 
+        /**
+         * @param maxSize Maximum size value for the maximum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxSize(String maxSize) {
             return maxSize(Output.of(maxSize));
         }
 
+        /**
+         * @param maxSizeResource Maximum resource type for the maximum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxSizeResource(@Nullable Output<String> maxSizeResource) {
             $.maxSizeResource = maxSizeResource;
             return this;
         }
 
+        /**
+         * @param maxSizeResource Maximum resource type for the maximum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxSizeResource(String maxSizeResource) {
             return maxSizeResource(Output.of(maxSizeResource));
         }
 
+        /**
+         * @param minSize Minimum size value for the minimum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder minSize(@Nullable Output<String> minSize) {
             $.minSize = minSize;
             return this;
         }
 
+        /**
+         * @param minSize Minimum size value for the minimum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder minSize(String minSize) {
             return minSize(Output.of(minSize));
         }
 
+        /**
+         * @param minSizeResource Minimum resource type for the minimum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder minSizeResource(@Nullable Output<String> minSizeResource) {
             $.minSizeResource = minSizeResource;
             return this;
         }
 
+        /**
+         * @param minSizeResource Minimum resource type for the minimum autoscaling setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder minSizeResource(String minSizeResource) {
             return minSizeResource(Output.of(minSizeResource));
         }
 
+        /**
+         * @param policyOverrideJson Computed policy overrides set directly via the API or other clients.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyOverrideJson(@Nullable Output<String> policyOverrideJson) {
             $.policyOverrideJson = policyOverrideJson;
             return this;
         }
 
+        /**
+         * @param policyOverrideJson Computed policy overrides set directly via the API or other clients.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyOverrideJson(String policyOverrideJson) {
             return policyOverrideJson(Output.of(policyOverrideJson));
         }

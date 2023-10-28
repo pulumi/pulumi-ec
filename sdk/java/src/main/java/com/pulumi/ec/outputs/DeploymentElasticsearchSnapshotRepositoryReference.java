@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class DeploymentElasticsearchSnapshotRepositoryReference {
+    /**
+     * @return ECE snapshot repository name, from the &#39;/platform/configuration/snapshots/repositories&#39; endpoint
+     * 
+     */
     private String repositoryName;
 
     private DeploymentElasticsearchSnapshotRepositoryReference() {}
+    /**
+     * @return ECE snapshot repository name, from the &#39;/platform/configuration/snapshots/repositories&#39; endpoint
+     * 
+     */
     public String repositoryName() {
         return this.repositoryName;
     }

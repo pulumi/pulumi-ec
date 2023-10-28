@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchSnapshotRepository {
+    /**
+     * @return Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+     * 
+     */
     private @Nullable DeploymentElasticsearchSnapshotRepositoryReference reference;
 
     private DeploymentElasticsearchSnapshotRepository() {}
+    /**
+     * @return Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+     * 
+     */
     public Optional<DeploymentElasticsearchSnapshotRepositoryReference> reference() {
         return Optional.ofNullable(this.reference);
     }

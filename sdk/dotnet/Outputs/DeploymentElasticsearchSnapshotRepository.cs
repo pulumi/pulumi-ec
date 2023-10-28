@@ -13,6 +13,9 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchSnapshotRepository
     {
+        /// <summary>
+        /// Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+        /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshotRepositoryReference? Reference;
 
         [OutputConstructor]

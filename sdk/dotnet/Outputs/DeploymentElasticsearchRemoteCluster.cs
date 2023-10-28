@@ -13,9 +13,18 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchRemoteCluster
     {
+        /// <summary>
+        /// Alias for this Cross Cluster Search binding
+        /// </summary>
         public readonly string Alias;
+        /// <summary>
+        /// Remote deployment ID
+        /// </summary>
         public readonly string DeploymentId;
         public readonly string? RefId;
+        /// <summary>
+        /// If true, skip the cluster during search when disconnected
+        /// </summary>
         public readonly bool? SkipUnavailable;
 
         [OutputConstructor]

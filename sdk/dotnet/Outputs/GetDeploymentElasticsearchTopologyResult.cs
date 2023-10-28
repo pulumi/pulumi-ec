@@ -13,15 +13,45 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentElasticsearchTopologyResult
     {
+        /// <summary>
+        /// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentElasticsearchTopologyAutoscalingResult> Autoscalings;
+        /// <summary>
+        /// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+        /// </summary>
         public readonly string InstanceConfigurationId;
+        /// <summary>
+        /// Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
+        /// </summary>
         public readonly ImmutableArray<string> NodeRoles;
+        /// <summary>
+        /// Defines whether this node can hold data (\n\n).
+        /// </summary>
         public readonly bool NodeTypeData;
+        /// <summary>
+        /// Defines whether this node can run an ingest pipeline (\n\n).
+        /// </summary>
         public readonly bool NodeTypeIngest;
+        /// <summary>
+        /// Defines whether this node can be elected master (\n\n).
+        /// </summary>
         public readonly bool NodeTypeMaster;
+        /// <summary>
+        /// Defines whether this node can run ML jobs (\n\n).
+        /// </summary>
         public readonly bool NodeTypeMl;
+        /// <summary>
+        /// Amount of "size_resource" in Gigabytes. For example "4g".
+        /// </summary>
         public readonly string Size;
+        /// <summary>
+        /// Type of resource ("memory" or "storage")
+        /// </summary>
         public readonly string SizeResource;
+        /// <summary>
+        /// Number of zones in which nodes will be placed.
+        /// </summary>
         public readonly int ZoneCount;
 
         [OutputConstructor]

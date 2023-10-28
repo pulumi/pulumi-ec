@@ -13,7 +13,13 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchKeystoreContents
     {
+        /// <summary>
+        /// If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+        /// </summary>
         public readonly bool? AsFile;
+        /// <summary>
+        /// Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

@@ -183,7 +183,7 @@ namespace Pulumi.ElasticCloud
     public partial class DeploymentTrafficFilter : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Ruleset description
+        /// Description of this individual rule
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -265,7 +265,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Ruleset description
+        /// Description of this individual rule
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -315,7 +315,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Ruleset description
+        /// Description of this individual rule
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
