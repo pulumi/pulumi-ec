@@ -13,11 +13,20 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class DeploymentElasticsearchExtension
     {
+        /// <summary>
+        /// Extension name.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Extension type, only `bundle` or `plugin` are supported.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.&lt;name&gt;.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+        /// </summary>
         public readonly string Url;
         /// <summary>
-        /// Elastic Stack version to use for all of the deployment resources.
+        /// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         /// </summary>
         public readonly string Version;
 

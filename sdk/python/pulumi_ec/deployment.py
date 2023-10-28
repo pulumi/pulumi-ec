@@ -35,15 +35,16 @@ class DeploymentArgs:
         The set of arguments for constructing a Deployment resource.
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        :param pulumi.Input[str] version: Elastic Stack version to use for all of the deployment resources.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+               installations, set to `"ece-region".
+        :param pulumi.Input[str] version: Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+        :param pulumi.Input[str] alias: Alias for this Cross Cluster Search binding
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[str] name: Name for the deployment
+        :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
@@ -107,7 +108,8 @@ class DeploymentArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+        installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
@@ -119,7 +121,7 @@ class DeploymentArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        Elastic Stack version to use for all of the deployment resources.
+        Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         return pulumi.get(self, "version")
 
@@ -131,7 +133,7 @@ class DeploymentArgs:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Deployment alias, affects the format of the resource URLs.
+        Alias for this Cross Cluster Search binding
         """
         return pulumi.get(self, "alias")
 
@@ -192,7 +194,7 @@ class DeploymentArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name for the deployment
+        Extension name.
         """
         return pulumi.get(self, "name")
 
@@ -286,7 +288,7 @@ class _DeploymentState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Alias for this Cross Cluster Search binding
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
@@ -298,16 +300,17 @@ class _DeploymentState:
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[str] name: Name for the deployment
+        :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+               installations, set to `"ece-region".
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
                returned as part of the error.
         :param pulumi.Input[bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
-        :param pulumi.Input[str] version: Elastic Stack version to use for all of the deployment resources.
+        :param pulumi.Input[str] version: Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -350,7 +353,7 @@ class _DeploymentState:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Deployment alias, affects the format of the resource URLs.
+        Alias for this Cross Cluster Search binding
         """
         return pulumi.get(self, "alias")
 
@@ -470,7 +473,7 @@ class _DeploymentState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name for the deployment
+        Extension name.
         """
         return pulumi.get(self, "name")
 
@@ -495,7 +498,8 @@ class _DeploymentState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+        installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
@@ -556,7 +560,7 @@ class _DeploymentState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Elastic Stack version to use for all of the deployment resources.
+        Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         return pulumi.get(self, "version")
 
@@ -611,7 +615,7 @@ class Deployment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Alias for this Cross Cluster Search binding
         :param pulumi.Input[pulumi.InputType['DeploymentApmArgs']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[pulumi.InputType['DeploymentElasticsearchArgs']] elasticsearch: Elasticsearch cluster definition
@@ -619,16 +623,17 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[str] name: Name for the deployment
+        :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+               installations, set to `"ece-region".
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
                returned as part of the error.
         :param pulumi.Input[bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
-        :param pulumi.Input[str] version: Elastic Stack version to use for all of the deployment resources.
+        :param pulumi.Input[str] version: Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         ...
     @overload
@@ -761,7 +766,7 @@ class Deployment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Alias for this Cross Cluster Search binding
         :param pulumi.Input[pulumi.InputType['DeploymentApmArgs']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[pulumi.InputType['DeploymentElasticsearchArgs']] elasticsearch: Elasticsearch cluster definition
@@ -773,16 +778,17 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[str] name: Name for the deployment
+        :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
-        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+               installations, set to `"ece-region".
         :param pulumi.Input[str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
                returned as part of the error.
         :param pulumi.Input[bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
-        :param pulumi.Input[str] version: Elastic Stack version to use for all of the deployment resources.
+        :param pulumi.Input[str] version: Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -812,7 +818,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
         """
-        Deployment alias, affects the format of the resource URLs.
+        Alias for this Cross Cluster Search binding
         """
         return pulumi.get(self, "alias")
 
@@ -892,7 +898,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name for the deployment
+        Extension name.
         """
         return pulumi.get(self, "name")
 
@@ -909,7 +915,8 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
+        installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
@@ -950,7 +957,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        Elastic Stack version to use for all of the deployment resources.
+        Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
         """
         return pulumi.get(self, "version")
 

@@ -12,18 +12,33 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchCoordinatingAutoscalingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum size value for the maximum autoscaling setting.
+        /// </summary>
         [Input("maxSize")]
         public Input<string>? MaxSize { get; set; }
 
+        /// <summary>
+        /// Maximum resource type for the maximum autoscaling setting.
+        /// </summary>
         [Input("maxSizeResource")]
         public Input<string>? MaxSizeResource { get; set; }
 
+        /// <summary>
+        /// Minimum size value for the minimum autoscaling setting.
+        /// </summary>
         [Input("minSize")]
         public Input<string>? MinSize { get; set; }
 
+        /// <summary>
+        /// Minimum resource type for the minimum autoscaling setting.
+        /// </summary>
         [Input("minSizeResource")]
         public Input<string>? MinSizeResource { get; set; }
 
+        /// <summary>
+        /// Computed policy overrides set directly via the API or other clients.
+        /// </summary>
         [Input("policyOverrideJson")]
         public Input<string>? PolicyOverrideJson { get; set; }
 

@@ -17,23 +17,47 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
 
     public static final DeploymentElasticsearchTrustAccountArgs Empty = new DeploymentElasticsearchTrustAccountArgs();
 
+    /**
+     * The ID of the Account.
+     * 
+     */
     @Import(name="accountId", required=true)
     private Output<String> accountId;
 
+    /**
+     * @return The ID of the Account.
+     * 
+     */
     public Output<String> accountId() {
         return this.accountId;
     }
 
+    /**
+     * If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * 
+     */
     @Import(name="trustAll", required=true)
     private Output<Boolean> trustAll;
 
+    /**
+     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * 
+     */
     public Output<Boolean> trustAll() {
         return this.trustAll;
     }
 
+    /**
+     * The list of clusters to trust. Only used when `trust_all` is false.
+     * 
+     */
     @Import(name="trustAllowlists")
     private @Nullable Output<List<String>> trustAllowlists;
 
+    /**
+     * @return The list of clusters to trust. Only used when `trust_all` is false.
+     * 
+     */
     public Optional<Output<List<String>>> trustAllowlists() {
         return Optional.ofNullable(this.trustAllowlists);
     }
@@ -64,33 +88,75 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
             $ = new DeploymentElasticsearchTrustAccountArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param accountId The ID of the Account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder accountId(Output<String> accountId) {
             $.accountId = accountId;
             return this;
         }
 
+        /**
+         * @param accountId The ID of the Account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder accountId(String accountId) {
             return accountId(Output.of(accountId));
         }
 
+        /**
+         * @param trustAll If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAll(Output<Boolean> trustAll) {
             $.trustAll = trustAll;
             return this;
         }
 
+        /**
+         * @param trustAll If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAll(Boolean trustAll) {
             return trustAll(Output.of(trustAll));
         }
 
+        /**
+         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAllowlists(@Nullable Output<List<String>> trustAllowlists) {
             $.trustAllowlists = trustAllowlists;
             return this;
         }
 
+        /**
+         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAllowlists(List<String> trustAllowlists) {
             return trustAllowlists(Output.of(trustAllowlists));
         }
 
+        /**
+         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAllowlists(String... trustAllowlists) {
             return trustAllowlists(List.of(trustAllowlists));
         }

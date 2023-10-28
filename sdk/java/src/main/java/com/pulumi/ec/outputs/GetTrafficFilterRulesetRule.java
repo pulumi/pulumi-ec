@@ -9,25 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetTrafficFilterRulesetRule {
+    /**
+     * @return The description of the ruleset.
+     * 
+     */
     private String description;
     /**
-     * @return The id of the traffic filter to select.
+     * @return The ID of the ruleset
      * 
      */
     private String id;
+    /**
+     * @return Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
+     * 
+     */
     private String source;
 
     private GetTrafficFilterRulesetRule() {}
+    /**
+     * @return The description of the ruleset.
+     * 
+     */
     public String description() {
         return this.description;
     }
     /**
-     * @return The id of the traffic filter to select.
+     * @return The ID of the ruleset
      * 
      */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
+     * 
+     */
     public String source() {
         return this.source;
     }

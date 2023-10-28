@@ -11,33 +11,89 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentEnterpriseSearchTopology {
+    /**
+     * @return Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     * 
+     */
     private String instanceConfigurationId;
+    /**
+     * @return Defines whether this instance should run as application/API server.
+     * 
+     */
     private Boolean nodeTypeAppserver;
+    /**
+     * @return Defines whether this instance should run as connector.
+     * 
+     */
     private Boolean nodeTypeConnector;
+    /**
+     * @return Defines whether this instance should run as background worker.
+     * 
+     */
     private Boolean nodeTypeWorker;
+    /**
+     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * 
+     */
     private String size;
+    /**
+     * @return Type of resource (&#34;memory&#34; or &#34;storage&#34;)
+     * 
+     */
     private String sizeResource;
+    /**
+     * @return Number of zones in which nodes will be placed.
+     * 
+     */
     private Integer zoneCount;
 
     private GetDeploymentEnterpriseSearchTopology() {}
+    /**
+     * @return Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+     * 
+     */
     public String instanceConfigurationId() {
         return this.instanceConfigurationId;
     }
+    /**
+     * @return Defines whether this instance should run as application/API server.
+     * 
+     */
     public Boolean nodeTypeAppserver() {
         return this.nodeTypeAppserver;
     }
+    /**
+     * @return Defines whether this instance should run as connector.
+     * 
+     */
     public Boolean nodeTypeConnector() {
         return this.nodeTypeConnector;
     }
+    /**
+     * @return Defines whether this instance should run as background worker.
+     * 
+     */
     public Boolean nodeTypeWorker() {
         return this.nodeTypeWorker;
     }
+    /**
+     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * 
+     */
     public String size() {
         return this.size;
     }
+    /**
+     * @return Type of resource (&#34;memory&#34; or &#34;storage&#34;)
+     * 
+     */
     public String sizeResource() {
         return this.sizeResource;
     }
+    /**
+     * @return Number of zones in which nodes will be placed.
+     * 
+     */
     public Integer zoneCount() {
         return this.zoneCount;
     }

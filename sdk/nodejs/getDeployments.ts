@@ -76,7 +76,7 @@ export interface GetDeploymentsArgs {
      */
     enterpriseSearches?: inputs.GetDeploymentsEnterpriseSearch[];
     /**
-     * Filter the result set by their health status.
+     * Overall health status of the resource instances.
      */
     healthy?: string;
     /**
@@ -214,7 +214,7 @@ export interface GetDeploymentsOutputArgs {
      */
     enterpriseSearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsEnterpriseSearchArgs>[]>;
     /**
-     * Filter the result set by their health status.
+     * Overall health status of the resource instances.
      */
     healthy?: pulumi.Input<string>;
     /**

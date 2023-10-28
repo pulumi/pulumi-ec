@@ -15,16 +15,32 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
 
     public static final DeploymentElasticsearchSnapshotSourceArgs Empty = new DeploymentElasticsearchSnapshotSourceArgs();
 
+    /**
+     * Name of the snapshot to restore. Use &#39;**latest_success**&#39; to get the most recent successful snapshot.
+     * 
+     */
     @Import(name="snapshotName")
     private @Nullable Output<String> snapshotName;
 
+    /**
+     * @return Name of the snapshot to restore. Use &#39;**latest_success**&#39; to get the most recent successful snapshot.
+     * 
+     */
     public Optional<Output<String>> snapshotName() {
         return Optional.ofNullable(this.snapshotName);
     }
 
+    /**
+     * ID of the Elasticsearch cluster that will be used as the source of the snapshot
+     * 
+     */
     @Import(name="sourceElasticsearchClusterId", required=true)
     private Output<String> sourceElasticsearchClusterId;
 
+    /**
+     * @return ID of the Elasticsearch cluster that will be used as the source of the snapshot
+     * 
+     */
     public Output<String> sourceElasticsearchClusterId() {
         return this.sourceElasticsearchClusterId;
     }
@@ -54,20 +70,44 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
             $ = new DeploymentElasticsearchSnapshotSourceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param snapshotName Name of the snapshot to restore. Use &#39;**latest_success**&#39; to get the most recent successful snapshot.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotName(@Nullable Output<String> snapshotName) {
             $.snapshotName = snapshotName;
             return this;
         }
 
+        /**
+         * @param snapshotName Name of the snapshot to restore. Use &#39;**latest_success**&#39; to get the most recent successful snapshot.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotName(String snapshotName) {
             return snapshotName(Output.of(snapshotName));
         }
 
+        /**
+         * @param sourceElasticsearchClusterId ID of the Elasticsearch cluster that will be used as the source of the snapshot
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceElasticsearchClusterId(Output<String> sourceElasticsearchClusterId) {
             $.sourceElasticsearchClusterId = sourceElasticsearchClusterId;
             return this;
         }
 
+        /**
+         * @param sourceElasticsearchClusterId ID of the Elasticsearch cluster that will be used as the source of the snapshot
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceElasticsearchClusterId(String sourceElasticsearchClusterId) {
             return sourceElasticsearchClusterId(Output.of(sourceElasticsearchClusterId));
         }

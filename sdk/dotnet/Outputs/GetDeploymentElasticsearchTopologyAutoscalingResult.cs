@@ -13,10 +13,25 @@ namespace Pulumi.ElasticCloud.Outputs
     [OutputType]
     public sealed class GetDeploymentElasticsearchTopologyAutoscalingResult
     {
+        /// <summary>
+        /// Maximum size the tier can scale up to, e.g "64g".
+        /// </summary>
         public readonly string MaxSize;
+        /// <summary>
+        /// Resource type used when specifying the maximum size the tier can scale up to.
+        /// </summary>
         public readonly string MaxSizeResource;
+        /// <summary>
+        /// Minimum size the tier can scale down to when bidirectional autoscaling is supported.
+        /// </summary>
         public readonly string MinSize;
+        /// <summary>
+        /// Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
+        /// </summary>
         public readonly string MinSizeResource;
+        /// <summary>
+        /// An arbitrary JSON object overriding the default autoscaling policy. Don't set unless you really know what you are doing.
+        /// </summary>
         public readonly string PolicyOverrideJson;
 
         [OutputConstructor]

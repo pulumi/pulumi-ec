@@ -12,6 +12,9 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchSnapshotRepositoryGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Cluster snapshot reference repository settings, containing the repository name in ECE fashion
+        /// </summary>
         [Input("reference")]
         public Input<Inputs.DeploymentElasticsearchSnapshotRepositoryReferenceGetArgs>? Reference { get; set; }
 

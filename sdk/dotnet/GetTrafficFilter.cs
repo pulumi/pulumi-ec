@@ -92,19 +92,19 @@ namespace Pulumi.ElasticCloud
     public sealed class GetTrafficFilterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The id of the traffic filter to select.
+        /// The ID of the ruleset
         /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// The exact name of the traffic filter to select.
+        /// The name of the ruleset.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
+        /// The ruleset can be attached only to deployments in the specific region.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -118,19 +118,19 @@ namespace Pulumi.ElasticCloud
     public sealed class GetTrafficFilterInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The id of the traffic filter to select.
+        /// The ID of the ruleset
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The exact name of the traffic filter to select.
+        /// The name of the ruleset.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
+        /// The ruleset can be attached only to deployments in the specific region.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

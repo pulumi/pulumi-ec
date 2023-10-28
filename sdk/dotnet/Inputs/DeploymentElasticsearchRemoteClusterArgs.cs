@@ -12,15 +12,24 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class DeploymentElasticsearchRemoteClusterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Alias for this Cross Cluster Search binding
+        /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
 
+        /// <summary>
+        /// Remote deployment ID
+        /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 
+        /// <summary>
+        /// If true, skip the cluster during search when disconnected
+        /// </summary>
         [Input("skipUnavailable")]
         public Input<bool>? SkipUnavailable { get; set; }
 

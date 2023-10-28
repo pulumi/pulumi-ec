@@ -60,9 +60,6 @@ namespace Pulumi.ElasticCloud.Outputs
         /// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         /// </summary>
         public readonly string? RefId;
-        /// <summary>
-        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        /// </summary>
         public readonly string? Region;
         /// <summary>
         /// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times

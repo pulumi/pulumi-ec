@@ -22,10 +22,9 @@ type DeploymentApm struct {
 	HttpsEndpoint             *string              `pulumi:"httpsEndpoint"`
 	InstanceConfigurationId   *string              `pulumi:"instanceConfigurationId"`
 	RefId                     *string              `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     *string `pulumi:"region"`
-	ResourceId *string `pulumi:"resourceId"`
-	Size       *string `pulumi:"size"`
+	Region                    *string              `pulumi:"region"`
+	ResourceId                *string              `pulumi:"resourceId"`
+	Size                      *string              `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
 	ZoneCount    *int    `pulumi:"zoneCount"`
@@ -50,10 +49,9 @@ type DeploymentApmArgs struct {
 	HttpsEndpoint             pulumi.StringPtrInput       `pulumi:"httpsEndpoint"`
 	InstanceConfigurationId   pulumi.StringPtrInput       `pulumi:"instanceConfigurationId"`
 	RefId                     pulumi.StringPtrInput       `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     pulumi.StringPtrInput `pulumi:"region"`
-	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	Region                    pulumi.StringPtrInput       `pulumi:"region"`
+	ResourceId                pulumi.StringPtrInput       `pulumi:"resourceId"`
+	Size                      pulumi.StringPtrInput       `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
 	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
@@ -179,7 +177,6 @@ func (o DeploymentApmOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentApmOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApm) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -286,7 +283,6 @@ func (o DeploymentApmPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentApmPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApm) *string {
 		if v == nil {
@@ -334,12 +330,18 @@ func (o DeploymentApmPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentApmConfig struct {
-	DebugEnabled             *bool   `pulumi:"debugEnabled"`
-	DockerImage              *string `pulumi:"dockerImage"`
-	UserSettingsJson         *string `pulumi:"userSettingsJson"`
+	// Optionally enable debug mode for APM servers - defaults to false
+	DebugEnabled *bool `pulumi:"debugEnabled"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage *string `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson *string `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentApmConfigInput is an input type that accepts DeploymentApmConfigArgs and DeploymentApmConfigOutput values.
@@ -354,12 +356,18 @@ type DeploymentApmConfigInput interface {
 }
 
 type DeploymentApmConfigArgs struct {
-	DebugEnabled             pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
-	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
-	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// Optionally enable debug mode for APM servers - defaults to false
+	DebugEnabled pulumi.BoolPtrInput `pulumi:"debugEnabled"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentApmConfigArgs) ElementType() reflect.Type {
@@ -457,26 +465,32 @@ func (o DeploymentApmConfigOutput) ToOutput(ctx context.Context) pulumix.Output[
 	}
 }
 
+// Optionally enable debug mode for APM servers - defaults to false
 func (o DeploymentApmConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentApmConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentApmConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentApmConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentApmConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentApmConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentApmConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -511,6 +525,7 @@ func (o DeploymentApmConfigPtrOutput) Elem() DeploymentApmConfigOutput {
 	}).(DeploymentApmConfigOutput)
 }
 
+// Optionally enable debug mode for APM servers - defaults to false
 func (o DeploymentApmConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *bool {
 		if v == nil {
@@ -520,6 +535,7 @@ func (o DeploymentApmConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentApmConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -529,6 +545,7 @@ func (o DeploymentApmConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentApmConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -538,6 +555,7 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -547,6 +565,7 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -556,6 +575,7 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentApmConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentApmConfig) *string {
 		if v == nil {
@@ -590,8 +610,7 @@ type DeploymentElasticsearch struct {
 	// 'ml' topology element
 	Ml *DeploymentElasticsearchMl `pulumi:"ml"`
 	// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-	RefId *string `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+	RefId  *string `pulumi:"refId"`
 	Region *string `pulumi:"region"`
 	// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 	RemoteClusters []DeploymentElasticsearchRemoteCluster `pulumi:"remoteClusters"`
@@ -641,8 +660,7 @@ type DeploymentElasticsearchArgs struct {
 	// 'ml' topology element
 	Ml DeploymentElasticsearchMlPtrInput `pulumi:"ml"`
 	// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-	RefId pulumi.StringPtrInput `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
+	RefId  pulumi.StringPtrInput `pulumi:"refId"`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 	RemoteClusters DeploymentElasticsearchRemoteClusterArrayInput `pulumi:"remoteClusters"`
@@ -820,7 +838,6 @@ func (o DeploymentElasticsearchOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentElasticsearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1026,7 +1043,6 @@ func (o DeploymentElasticsearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentElasticsearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -1111,16 +1127,23 @@ func (o DeploymentElasticsearchPtrOutput) Warm() DeploymentElasticsearchWarmPtrO
 }
 
 type DeploymentElasticsearchCold struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchColdAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                               `pulumi:"nodeRoles"`
-	NodeTypeData            *string                                `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                                `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                                `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                                `pulumi:"nodeTypeMl"`
-	Size                    *string                                `pulumi:"size"`
-	SizeResource            *string                                `pulumi:"sizeResource"`
-	ZoneCount               *int                                   `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchColdInput is an input type that accepts DeploymentElasticsearchColdArgs and DeploymentElasticsearchColdOutput values.
@@ -1135,16 +1158,23 @@ type DeploymentElasticsearchColdInput interface {
 }
 
 type DeploymentElasticsearchColdArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchColdAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                       `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                     `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                       `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                       `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                       `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                       `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                       `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                       `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                          `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchColdArgs) ElementType() reflect.Type {
@@ -1242,6 +1272,7 @@ func (o DeploymentElasticsearchColdOutput) ToOutput(ctx context.Context) pulumix
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchColdOutput) Autoscaling() DeploymentElasticsearchColdAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) DeploymentElasticsearchColdAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchColdAutoscalingOutput)
 }
@@ -1250,22 +1281,27 @@ func (o DeploymentElasticsearchColdOutput) InstanceConfigurationId() pulumi.Stri
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchColdOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchColdOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchColdOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchColdOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchColdOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -1274,6 +1310,7 @@ func (o DeploymentElasticsearchColdOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchColdOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -1312,6 +1349,7 @@ func (o DeploymentElasticsearchColdPtrOutput) Elem() DeploymentElasticsearchCold
 	}).(DeploymentElasticsearchColdOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchColdPtrOutput) Autoscaling() DeploymentElasticsearchColdAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *DeploymentElasticsearchColdAutoscaling {
 		if v == nil {
@@ -1330,6 +1368,7 @@ func (o DeploymentElasticsearchColdPtrOutput) InstanceConfigurationId() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchColdPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) []string {
 		if v == nil {
@@ -1339,6 +1378,7 @@ func (o DeploymentElasticsearchColdPtrOutput) NodeRoles() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchColdPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1348,6 +1388,7 @@ func (o DeploymentElasticsearchColdPtrOutput) NodeTypeData() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchColdPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1357,6 +1398,7 @@ func (o DeploymentElasticsearchColdPtrOutput) NodeTypeIngest() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchColdPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1366,6 +1408,7 @@ func (o DeploymentElasticsearchColdPtrOutput) NodeTypeMaster() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchColdPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1384,6 +1427,7 @@ func (o DeploymentElasticsearchColdPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchColdPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1403,10 +1447,15 @@ func (o DeploymentElasticsearchColdPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentElasticsearchColdAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -1422,10 +1471,15 @@ type DeploymentElasticsearchColdAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchColdAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -1524,22 +1578,27 @@ func (o DeploymentElasticsearchColdAutoscalingOutput) ToOutput(ctx context.Conte
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchColdAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -1574,6 +1633,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) Elem() DeploymentElasti
 	}).(DeploymentElasticsearchColdAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -1583,6 +1643,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSize() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -1592,6 +1653,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSizeResource() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -1601,6 +1663,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSize() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -1610,6 +1673,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSizeResource() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -1620,12 +1684,18 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) PolicyOverrideJson() pu
 }
 
 type DeploymentElasticsearchConfig struct {
-	DockerImage              *string  `pulumi:"dockerImage"`
-	Plugins                  []string `pulumi:"plugins"`
-	UserSettingsJson         *string  `pulumi:"userSettingsJson"`
-	UserSettingsOverrideJson *string  `pulumi:"userSettingsOverrideJson"`
-	UserSettingsOverrideYaml *string  `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         *string  `pulumi:"userSettingsYaml"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage *string `pulumi:"dockerImage"`
+	// List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+	Plugins []string `pulumi:"plugins"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson *string `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentElasticsearchConfigInput is an input type that accepts DeploymentElasticsearchConfigArgs and DeploymentElasticsearchConfigOutput values.
@@ -1640,12 +1710,18 @@ type DeploymentElasticsearchConfigInput interface {
 }
 
 type DeploymentElasticsearchConfigArgs struct {
-	DockerImage              pulumi.StringPtrInput   `pulumi:"dockerImage"`
-	Plugins                  pulumi.StringArrayInput `pulumi:"plugins"`
-	UserSettingsJson         pulumi.StringPtrInput   `pulumi:"userSettingsJson"`
-	UserSettingsOverrideJson pulumi.StringPtrInput   `pulumi:"userSettingsOverrideJson"`
-	UserSettingsOverrideYaml pulumi.StringPtrInput   `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         pulumi.StringPtrInput   `pulumi:"userSettingsYaml"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
+	// List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
+	Plugins pulumi.StringArrayInput `pulumi:"plugins"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentElasticsearchConfigArgs) ElementType() reflect.Type {
@@ -1743,26 +1819,32 @@ func (o DeploymentElasticsearchConfigOutput) ToOutput(ctx context.Context) pulum
 	}
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentElasticsearchConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
+// List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
 func (o DeploymentElasticsearchConfigOutput) Plugins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) []string { return v.Plugins }).(pulumi.StringArrayOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -1797,6 +1879,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) Elem() DeploymentElasticsearchCo
 	}).(DeploymentElasticsearchConfigOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentElasticsearchConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1806,6 +1889,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) DockerImage() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
 func (o DeploymentElasticsearchConfigPtrOutput) Plugins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) []string {
 		if v == nil {
@@ -1815,6 +1899,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) Plugins() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1824,6 +1909,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsJson() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1833,6 +1919,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideJson() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1842,6 +1929,7 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsOverrideYaml() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchConfig) *string {
 		if v == nil {
@@ -1852,16 +1940,23 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.String
 }
 
 type DeploymentElasticsearchCoordinating struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchCoordinatingAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                                        `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                                       `pulumi:"nodeRoles"`
-	NodeTypeData            *string                                        `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                                        `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                                        `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                                        `pulumi:"nodeTypeMl"`
-	Size                    *string                                        `pulumi:"size"`
-	SizeResource            *string                                        `pulumi:"sizeResource"`
-	ZoneCount               *int                                           `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchCoordinatingInput is an input type that accepts DeploymentElasticsearchCoordinatingArgs and DeploymentElasticsearchCoordinatingOutput values.
@@ -1876,16 +1971,23 @@ type DeploymentElasticsearchCoordinatingInput interface {
 }
 
 type DeploymentElasticsearchCoordinatingArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchCoordinatingAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                               `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                             `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                               `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                               `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                               `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                               `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                               `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                               `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                                  `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchCoordinatingArgs) ElementType() reflect.Type {
@@ -1983,6 +2085,7 @@ func (o DeploymentElasticsearchCoordinatingOutput) ToOutput(ctx context.Context)
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchCoordinatingOutput) Autoscaling() DeploymentElasticsearchCoordinatingAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) DeploymentElasticsearchCoordinatingAutoscaling {
 		return v.Autoscaling
@@ -1993,22 +2096,27 @@ func (o DeploymentElasticsearchCoordinatingOutput) InstanceConfigurationId() pul
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchCoordinatingOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -2017,6 +2125,7 @@ func (o DeploymentElasticsearchCoordinatingOutput) Size() pulumi.StringPtrOutput
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchCoordinatingOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -2055,6 +2164,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) Elem() DeploymentElasticse
 	}).(DeploymentElasticsearchCoordinatingOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchCoordinatingPtrOutput) Autoscaling() DeploymentElasticsearchCoordinatingAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *DeploymentElasticsearchCoordinatingAutoscaling {
 		if v == nil {
@@ -2073,6 +2183,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) InstanceConfigurationId() 
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) []string {
 		if v == nil {
@@ -2082,6 +2193,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeRoles() pulumi.StringA
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2091,6 +2203,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeData() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2100,6 +2213,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeIngest() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2109,6 +2223,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeMaster() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2127,6 +2242,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) Size() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchCoordinatingPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2146,10 +2262,15 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) ZoneCount() pulumi.IntPtrO
 }
 
 type DeploymentElasticsearchCoordinatingAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -2165,10 +2286,15 @@ type DeploymentElasticsearchCoordinatingAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchCoordinatingAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -2267,22 +2393,27 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) ToOutput(ctx conte
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -2317,6 +2448,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) Elem() Deployme
 	}).(DeploymentElasticsearchCoordinatingAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -2326,6 +2458,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSize() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -2335,6 +2468,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSizeResource
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -2344,6 +2478,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSize() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -2353,6 +2488,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSizeResource
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -2363,10 +2499,13 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) PolicyOverrideJ
 }
 
 type DeploymentElasticsearchExtension struct {
+	// Extension name.
 	Name string `pulumi:"name"`
+	// Extension type, only `bundle` or `plugin` are supported.
 	Type string `pulumi:"type"`
-	Url  string `pulumi:"url"`
-	// Elastic Stack version to use for all of the deployment resources.
+	// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+	Url string `pulumi:"url"`
+	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
 	Version string `pulumi:"version"`
 }
 
@@ -2382,10 +2521,13 @@ type DeploymentElasticsearchExtensionInput interface {
 }
 
 type DeploymentElasticsearchExtensionArgs struct {
+	// Extension name.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Extension type, only `bundle` or `plugin` are supported.
 	Type pulumi.StringInput `pulumi:"type"`
-	Url  pulumi.StringInput `pulumi:"url"`
-	// Elastic Stack version to use for all of the deployment resources.
+	// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
+	Url pulumi.StringInput `pulumi:"url"`
+	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
 	Version pulumi.StringInput `pulumi:"version"`
 }
 
@@ -2458,19 +2600,22 @@ func (o DeploymentElasticsearchExtensionOutput) ToOutput(ctx context.Context) pu
 	}
 }
 
+// Extension name.
 func (o DeploymentElasticsearchExtensionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Extension type, only `bundle` or `plugin` are supported.
 func (o DeploymentElasticsearchExtensionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
 func (o DeploymentElasticsearchExtensionOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// Elastic Stack version to use for all of the deployment resources.
+// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
 func (o DeploymentElasticsearchExtensionOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchExtension) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -2502,16 +2647,23 @@ func (o DeploymentElasticsearchExtensionArrayOutput) Index(i pulumi.IntInput) De
 }
 
 type DeploymentElasticsearchFrozen struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchFrozenAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                                  `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                                 `pulumi:"nodeRoles"`
-	NodeTypeData            *string                                  `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                                  `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                                  `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                                  `pulumi:"nodeTypeMl"`
-	Size                    *string                                  `pulumi:"size"`
-	SizeResource            *string                                  `pulumi:"sizeResource"`
-	ZoneCount               *int                                     `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchFrozenInput is an input type that accepts DeploymentElasticsearchFrozenArgs and DeploymentElasticsearchFrozenOutput values.
@@ -2526,16 +2678,23 @@ type DeploymentElasticsearchFrozenInput interface {
 }
 
 type DeploymentElasticsearchFrozenArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchFrozenAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                       `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                         `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                         `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                         `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                         `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                         `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                         `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                            `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchFrozenArgs) ElementType() reflect.Type {
@@ -2633,6 +2792,7 @@ func (o DeploymentElasticsearchFrozenOutput) ToOutput(ctx context.Context) pulum
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchFrozenOutput) Autoscaling() DeploymentElasticsearchFrozenAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) DeploymentElasticsearchFrozenAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchFrozenAutoscalingOutput)
 }
@@ -2641,22 +2801,27 @@ func (o DeploymentElasticsearchFrozenOutput) InstanceConfigurationId() pulumi.St
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchFrozenOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchFrozenOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchFrozenOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchFrozenOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchFrozenOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -2665,6 +2830,7 @@ func (o DeploymentElasticsearchFrozenOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchFrozenOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -2703,6 +2869,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) Elem() DeploymentElasticsearchFr
 	}).(DeploymentElasticsearchFrozenOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchFrozenPtrOutput) Autoscaling() DeploymentElasticsearchFrozenAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *DeploymentElasticsearchFrozenAutoscaling {
 		if v == nil {
@@ -2721,6 +2888,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) InstanceConfigurationId() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchFrozenPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) []string {
 		if v == nil {
@@ -2730,6 +2898,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) NodeRoles() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2739,6 +2908,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeData() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2748,6 +2918,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeIngest() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2757,6 +2928,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeMaster() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2775,6 +2947,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchFrozenPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2794,10 +2967,15 @@ func (o DeploymentElasticsearchFrozenPtrOutput) ZoneCount() pulumi.IntPtrOutput 
 }
 
 type DeploymentElasticsearchFrozenAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -2813,10 +2991,15 @@ type DeploymentElasticsearchFrozenAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchFrozenAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -2915,22 +3098,27 @@ func (o DeploymentElasticsearchFrozenAutoscalingOutput) ToOutput(ctx context.Con
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -2965,6 +3153,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) Elem() DeploymentElas
 	}).(DeploymentElasticsearchFrozenAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -2974,6 +3163,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSize() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -2983,6 +3173,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSizeResource() pul
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -2992,6 +3183,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSize() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -3001,6 +3193,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSizeResource() pul
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -3011,16 +3204,23 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) PolicyOverrideJson() 
 }
 
 type DeploymentElasticsearchHot struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchHotAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                               `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                              `pulumi:"nodeRoles"`
-	NodeTypeData            *string                               `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                               `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                               `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                               `pulumi:"nodeTypeMl"`
-	Size                    *string                               `pulumi:"size"`
-	SizeResource            *string                               `pulumi:"sizeResource"`
-	ZoneCount               *int                                  `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchHotInput is an input type that accepts DeploymentElasticsearchHotArgs and DeploymentElasticsearchHotOutput values.
@@ -3035,16 +3235,23 @@ type DeploymentElasticsearchHotInput interface {
 }
 
 type DeploymentElasticsearchHotArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchHotAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                      `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                    `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                      `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                      `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                      `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                      `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                      `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                      `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                         `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchHotArgs) ElementType() reflect.Type {
@@ -3142,6 +3349,7 @@ func (o DeploymentElasticsearchHotOutput) ToOutput(ctx context.Context) pulumix.
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchHotOutput) Autoscaling() DeploymentElasticsearchHotAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) DeploymentElasticsearchHotAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchHotAutoscalingOutput)
 }
@@ -3150,22 +3358,27 @@ func (o DeploymentElasticsearchHotOutput) InstanceConfigurationId() pulumi.Strin
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchHotOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchHotOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchHotOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchHotOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchHotOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -3174,6 +3387,7 @@ func (o DeploymentElasticsearchHotOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchHotOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -3212,6 +3426,7 @@ func (o DeploymentElasticsearchHotPtrOutput) Elem() DeploymentElasticsearchHotOu
 	}).(DeploymentElasticsearchHotOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchHotPtrOutput) Autoscaling() DeploymentElasticsearchHotAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *DeploymentElasticsearchHotAutoscaling {
 		if v == nil {
@@ -3230,6 +3445,7 @@ func (o DeploymentElasticsearchHotPtrOutput) InstanceConfigurationId() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchHotPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) []string {
 		if v == nil {
@@ -3239,6 +3455,7 @@ func (o DeploymentElasticsearchHotPtrOutput) NodeRoles() pulumi.StringArrayOutpu
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchHotPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3248,6 +3465,7 @@ func (o DeploymentElasticsearchHotPtrOutput) NodeTypeData() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchHotPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3257,6 +3475,7 @@ func (o DeploymentElasticsearchHotPtrOutput) NodeTypeIngest() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchHotPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3266,6 +3485,7 @@ func (o DeploymentElasticsearchHotPtrOutput) NodeTypeMaster() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchHotPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3284,6 +3504,7 @@ func (o DeploymentElasticsearchHotPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchHotPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3303,10 +3524,15 @@ func (o DeploymentElasticsearchHotPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentElasticsearchHotAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -3322,10 +3548,15 @@ type DeploymentElasticsearchHotAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchHotAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -3424,22 +3655,27 @@ func (o DeploymentElasticsearchHotAutoscalingOutput) ToOutput(ctx context.Contex
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchHotAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -3474,6 +3710,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) Elem() DeploymentElastic
 	}).(DeploymentElasticsearchHotAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -3483,6 +3720,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSize() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -3492,6 +3730,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSizeResource() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -3501,6 +3740,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSize() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -3510,6 +3750,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSizeResource() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -3520,8 +3761,10 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) PolicyOverrideJson() pul
 }
 
 type DeploymentElasticsearchKeystoreContents struct {
-	AsFile *bool  `pulumi:"asFile"`
-	Value  string `pulumi:"value"`
+	// If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
+	AsFile *bool `pulumi:"asFile"`
+	// Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+	Value string `pulumi:"value"`
 }
 
 // DeploymentElasticsearchKeystoreContentsInput is an input type that accepts DeploymentElasticsearchKeystoreContentsArgs and DeploymentElasticsearchKeystoreContentsOutput values.
@@ -3536,8 +3779,10 @@ type DeploymentElasticsearchKeystoreContentsInput interface {
 }
 
 type DeploymentElasticsearchKeystoreContentsArgs struct {
+	// If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
 	AsFile pulumi.BoolPtrInput `pulumi:"asFile"`
-	Value  pulumi.StringInput  `pulumi:"value"`
+	// Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (DeploymentElasticsearchKeystoreContentsArgs) ElementType() reflect.Type {
@@ -3609,10 +3854,12 @@ func (o DeploymentElasticsearchKeystoreContentsOutput) ToOutput(ctx context.Cont
 	}
 }
 
+// If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
 func (o DeploymentElasticsearchKeystoreContentsOutput) AsFile() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchKeystoreContents) *bool { return v.AsFile }).(pulumi.BoolPtrOutput)
 }
 
+// Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
 func (o DeploymentElasticsearchKeystoreContentsOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchKeystoreContents) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3644,16 +3891,23 @@ func (o DeploymentElasticsearchKeystoreContentsMapOutput) MapIndex(k pulumi.Stri
 }
 
 type DeploymentElasticsearchMaster struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchMasterAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                                  `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                                 `pulumi:"nodeRoles"`
-	NodeTypeData            *string                                  `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                                  `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                                  `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                                  `pulumi:"nodeTypeMl"`
-	Size                    *string                                  `pulumi:"size"`
-	SizeResource            *string                                  `pulumi:"sizeResource"`
-	ZoneCount               *int                                     `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchMasterInput is an input type that accepts DeploymentElasticsearchMasterArgs and DeploymentElasticsearchMasterOutput values.
@@ -3668,16 +3922,23 @@ type DeploymentElasticsearchMasterInput interface {
 }
 
 type DeploymentElasticsearchMasterArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchMasterAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                       `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                         `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                         `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                         `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                         `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                         `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                         `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                            `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchMasterArgs) ElementType() reflect.Type {
@@ -3775,6 +4036,7 @@ func (o DeploymentElasticsearchMasterOutput) ToOutput(ctx context.Context) pulum
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchMasterOutput) Autoscaling() DeploymentElasticsearchMasterAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) DeploymentElasticsearchMasterAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchMasterAutoscalingOutput)
 }
@@ -3783,22 +4045,27 @@ func (o DeploymentElasticsearchMasterOutput) InstanceConfigurationId() pulumi.St
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchMasterOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchMasterOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchMasterOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchMasterOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchMasterOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -3807,6 +4074,7 @@ func (o DeploymentElasticsearchMasterOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchMasterOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -3845,6 +4113,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) Elem() DeploymentElasticsearchMa
 	}).(DeploymentElasticsearchMasterOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchMasterPtrOutput) Autoscaling() DeploymentElasticsearchMasterAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *DeploymentElasticsearchMasterAutoscaling {
 		if v == nil {
@@ -3863,6 +4132,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) InstanceConfigurationId() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchMasterPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) []string {
 		if v == nil {
@@ -3872,6 +4142,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) NodeRoles() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3881,6 +4152,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeData() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3890,6 +4162,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeIngest() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3899,6 +4172,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeMaster() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3917,6 +4191,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchMasterPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3936,10 +4211,15 @@ func (o DeploymentElasticsearchMasterPtrOutput) ZoneCount() pulumi.IntPtrOutput 
 }
 
 type DeploymentElasticsearchMasterAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -3955,10 +4235,15 @@ type DeploymentElasticsearchMasterAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchMasterAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -4057,22 +4342,27 @@ func (o DeploymentElasticsearchMasterAutoscalingOutput) ToOutput(ctx context.Con
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchMasterAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -4107,6 +4397,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) Elem() DeploymentElas
 	}).(DeploymentElasticsearchMasterAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4116,6 +4407,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSize() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4125,6 +4417,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSizeResource() pul
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4134,6 +4427,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSize() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4143,6 +4437,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSizeResource() pul
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4153,16 +4448,23 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) PolicyOverrideJson() 
 }
 
 type DeploymentElasticsearchMl struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchMlAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                              `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                             `pulumi:"nodeRoles"`
-	NodeTypeData            *string                              `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                              `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                              `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                              `pulumi:"nodeTypeMl"`
-	Size                    *string                              `pulumi:"size"`
-	SizeResource            *string                              `pulumi:"sizeResource"`
-	ZoneCount               *int                                 `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchMlInput is an input type that accepts DeploymentElasticsearchMlArgs and DeploymentElasticsearchMlOutput values.
@@ -4177,16 +4479,23 @@ type DeploymentElasticsearchMlInput interface {
 }
 
 type DeploymentElasticsearchMlArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchMlAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                     `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                   `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                     `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                     `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                     `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                     `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                     `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                     `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                        `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchMlArgs) ElementType() reflect.Type {
@@ -4284,6 +4593,7 @@ func (o DeploymentElasticsearchMlOutput) ToOutput(ctx context.Context) pulumix.O
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchMlOutput) Autoscaling() DeploymentElasticsearchMlAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) DeploymentElasticsearchMlAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchMlAutoscalingOutput)
 }
@@ -4292,22 +4602,27 @@ func (o DeploymentElasticsearchMlOutput) InstanceConfigurationId() pulumi.String
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchMlOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchMlOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchMlOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchMlOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchMlOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -4316,6 +4631,7 @@ func (o DeploymentElasticsearchMlOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchMlOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -4354,6 +4670,7 @@ func (o DeploymentElasticsearchMlPtrOutput) Elem() DeploymentElasticsearchMlOutp
 	}).(DeploymentElasticsearchMlOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchMlPtrOutput) Autoscaling() DeploymentElasticsearchMlAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *DeploymentElasticsearchMlAutoscaling {
 		if v == nil {
@@ -4372,6 +4689,7 @@ func (o DeploymentElasticsearchMlPtrOutput) InstanceConfigurationId() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchMlPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) []string {
 		if v == nil {
@@ -4381,6 +4699,7 @@ func (o DeploymentElasticsearchMlPtrOutput) NodeRoles() pulumi.StringArrayOutput
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchMlPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4390,6 +4709,7 @@ func (o DeploymentElasticsearchMlPtrOutput) NodeTypeData() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchMlPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4399,6 +4719,7 @@ func (o DeploymentElasticsearchMlPtrOutput) NodeTypeIngest() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchMlPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4408,6 +4729,7 @@ func (o DeploymentElasticsearchMlPtrOutput) NodeTypeMaster() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchMlPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4426,6 +4748,7 @@ func (o DeploymentElasticsearchMlPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchMlPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4445,10 +4768,15 @@ func (o DeploymentElasticsearchMlPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentElasticsearchMlAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -4464,10 +4792,15 @@ type DeploymentElasticsearchMlAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchMlAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -4566,22 +4899,27 @@ func (o DeploymentElasticsearchMlAutoscalingOutput) ToOutput(ctx context.Context
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchMlAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -4616,6 +4954,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) Elem() DeploymentElastics
 	}).(DeploymentElasticsearchMlAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -4625,6 +4964,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSize() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -4634,6 +4974,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSizeResource() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -4643,6 +4984,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSize() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -4652,6 +4994,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSizeResource() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -4662,10 +5005,13 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) PolicyOverrideJson() pulu
 }
 
 type DeploymentElasticsearchRemoteCluster struct {
-	Alias           string  `pulumi:"alias"`
-	DeploymentId    string  `pulumi:"deploymentId"`
-	RefId           *string `pulumi:"refId"`
-	SkipUnavailable *bool   `pulumi:"skipUnavailable"`
+	// Alias for this Cross Cluster Search binding
+	Alias string `pulumi:"alias"`
+	// Remote deployment ID
+	DeploymentId string  `pulumi:"deploymentId"`
+	RefId        *string `pulumi:"refId"`
+	// If true, skip the cluster during search when disconnected
+	SkipUnavailable *bool `pulumi:"skipUnavailable"`
 }
 
 // DeploymentElasticsearchRemoteClusterInput is an input type that accepts DeploymentElasticsearchRemoteClusterArgs and DeploymentElasticsearchRemoteClusterOutput values.
@@ -4680,10 +5026,13 @@ type DeploymentElasticsearchRemoteClusterInput interface {
 }
 
 type DeploymentElasticsearchRemoteClusterArgs struct {
-	Alias           pulumi.StringInput    `pulumi:"alias"`
-	DeploymentId    pulumi.StringInput    `pulumi:"deploymentId"`
-	RefId           pulumi.StringPtrInput `pulumi:"refId"`
-	SkipUnavailable pulumi.BoolPtrInput   `pulumi:"skipUnavailable"`
+	// Alias for this Cross Cluster Search binding
+	Alias pulumi.StringInput `pulumi:"alias"`
+	// Remote deployment ID
+	DeploymentId pulumi.StringInput    `pulumi:"deploymentId"`
+	RefId        pulumi.StringPtrInput `pulumi:"refId"`
+	// If true, skip the cluster during search when disconnected
+	SkipUnavailable pulumi.BoolPtrInput `pulumi:"skipUnavailable"`
 }
 
 func (DeploymentElasticsearchRemoteClusterArgs) ElementType() reflect.Type {
@@ -4755,10 +5104,12 @@ func (o DeploymentElasticsearchRemoteClusterOutput) ToOutput(ctx context.Context
 	}
 }
 
+// Alias for this Cross Cluster Search binding
 func (o DeploymentElasticsearchRemoteClusterOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.Alias }).(pulumi.StringOutput)
 }
 
+// Remote deployment ID
 func (o DeploymentElasticsearchRemoteClusterOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
@@ -4767,6 +5118,7 @@ func (o DeploymentElasticsearchRemoteClusterOutput) RefId() pulumi.StringPtrOutp
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
+// If true, skip the cluster during search when disconnected
 func (o DeploymentElasticsearchRemoteClusterOutput) SkipUnavailable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) *bool { return v.SkipUnavailable }).(pulumi.BoolPtrOutput)
 }
@@ -4798,7 +5150,9 @@ func (o DeploymentElasticsearchRemoteClusterArrayOutput) Index(i pulumi.IntInput
 }
 
 type DeploymentElasticsearchSnapshot struct {
-	Enabled    bool                                       `pulumi:"enabled"`
+	// Indicates if Snapshotting is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// Snapshot repository configuration
 	Repository *DeploymentElasticsearchSnapshotRepository `pulumi:"repository"`
 }
 
@@ -4814,7 +5168,9 @@ type DeploymentElasticsearchSnapshotInput interface {
 }
 
 type DeploymentElasticsearchSnapshotArgs struct {
-	Enabled    pulumi.BoolInput                                  `pulumi:"enabled"`
+	// Indicates if Snapshotting is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Snapshot repository configuration
 	Repository DeploymentElasticsearchSnapshotRepositoryPtrInput `pulumi:"repository"`
 }
 
@@ -4913,10 +5269,12 @@ func (o DeploymentElasticsearchSnapshotOutput) ToOutput(ctx context.Context) pul
 	}
 }
 
+// Indicates if Snapshotting is enabled.
 func (o DeploymentElasticsearchSnapshotOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshot) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// Snapshot repository configuration
 func (o DeploymentElasticsearchSnapshotOutput) Repository() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshot) *DeploymentElasticsearchSnapshotRepository {
 		return v.Repository
@@ -4953,6 +5311,7 @@ func (o DeploymentElasticsearchSnapshotPtrOutput) Elem() DeploymentElasticsearch
 	}).(DeploymentElasticsearchSnapshotOutput)
 }
 
+// Indicates if Snapshotting is enabled.
 func (o DeploymentElasticsearchSnapshotPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshot) *bool {
 		if v == nil {
@@ -4962,6 +5321,7 @@ func (o DeploymentElasticsearchSnapshotPtrOutput) Enabled() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Snapshot repository configuration
 func (o DeploymentElasticsearchSnapshotPtrOutput) Repository() DeploymentElasticsearchSnapshotRepositoryPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshot) *DeploymentElasticsearchSnapshotRepository {
 		if v == nil {
@@ -4972,6 +5332,7 @@ func (o DeploymentElasticsearchSnapshotPtrOutput) Repository() DeploymentElastic
 }
 
 type DeploymentElasticsearchSnapshotRepository struct {
+	// Cluster snapshot reference repository settings, containing the repository name in ECE fashion
 	Reference *DeploymentElasticsearchSnapshotRepositoryReference `pulumi:"reference"`
 }
 
@@ -4987,6 +5348,7 @@ type DeploymentElasticsearchSnapshotRepositoryInput interface {
 }
 
 type DeploymentElasticsearchSnapshotRepositoryArgs struct {
+	// Cluster snapshot reference repository settings, containing the repository name in ECE fashion
 	Reference DeploymentElasticsearchSnapshotRepositoryReferencePtrInput `pulumi:"reference"`
 }
 
@@ -5085,6 +5447,7 @@ func (o DeploymentElasticsearchSnapshotRepositoryOutput) ToOutput(ctx context.Co
 	}
 }
 
+// Cluster snapshot reference repository settings, containing the repository name in ECE fashion
 func (o DeploymentElasticsearchSnapshotRepositoryOutput) Reference() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotRepository) *DeploymentElasticsearchSnapshotRepositoryReference {
 		return v.Reference
@@ -5121,6 +5484,7 @@ func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) Elem() DeploymentEla
 	}).(DeploymentElasticsearchSnapshotRepositoryOutput)
 }
 
+// Cluster snapshot reference repository settings, containing the repository name in ECE fashion
 func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) Reference() DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotRepository) *DeploymentElasticsearchSnapshotRepositoryReference {
 		if v == nil {
@@ -5131,6 +5495,7 @@ func (o DeploymentElasticsearchSnapshotRepositoryPtrOutput) Reference() Deployme
 }
 
 type DeploymentElasticsearchSnapshotRepositoryReference struct {
+	// ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
 	RepositoryName string `pulumi:"repositoryName"`
 }
 
@@ -5146,6 +5511,7 @@ type DeploymentElasticsearchSnapshotRepositoryReferenceInput interface {
 }
 
 type DeploymentElasticsearchSnapshotRepositoryReferenceArgs struct {
+	// ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
 	RepositoryName pulumi.StringInput `pulumi:"repositoryName"`
 }
 
@@ -5244,6 +5610,7 @@ func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) ToOutput(ctx c
 	}
 }
 
+// ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
 func (o DeploymentElasticsearchSnapshotRepositoryReferenceOutput) RepositoryName() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotRepositoryReference) string { return v.RepositoryName }).(pulumi.StringOutput)
 }
@@ -5278,6 +5645,7 @@ func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) Elem() Depl
 	}).(DeploymentElasticsearchSnapshotRepositoryReferenceOutput)
 }
 
+// ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
 func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) RepositoryName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotRepositoryReference) *string {
 		if v == nil {
@@ -5288,8 +5656,10 @@ func (o DeploymentElasticsearchSnapshotRepositoryReferencePtrOutput) RepositoryN
 }
 
 type DeploymentElasticsearchSnapshotSource struct {
-	SnapshotName                 *string `pulumi:"snapshotName"`
-	SourceElasticsearchClusterId string  `pulumi:"sourceElasticsearchClusterId"`
+	// Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+	SnapshotName *string `pulumi:"snapshotName"`
+	// ID of the Elasticsearch cluster that will be used as the source of the snapshot
+	SourceElasticsearchClusterId string `pulumi:"sourceElasticsearchClusterId"`
 }
 
 // DeploymentElasticsearchSnapshotSourceInput is an input type that accepts DeploymentElasticsearchSnapshotSourceArgs and DeploymentElasticsearchSnapshotSourceOutput values.
@@ -5304,8 +5674,10 @@ type DeploymentElasticsearchSnapshotSourceInput interface {
 }
 
 type DeploymentElasticsearchSnapshotSourceArgs struct {
-	SnapshotName                 pulumi.StringPtrInput `pulumi:"snapshotName"`
-	SourceElasticsearchClusterId pulumi.StringInput    `pulumi:"sourceElasticsearchClusterId"`
+	// Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
+	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
+	// ID of the Elasticsearch cluster that will be used as the source of the snapshot
+	SourceElasticsearchClusterId pulumi.StringInput `pulumi:"sourceElasticsearchClusterId"`
 }
 
 func (DeploymentElasticsearchSnapshotSourceArgs) ElementType() reflect.Type {
@@ -5403,10 +5775,12 @@ func (o DeploymentElasticsearchSnapshotSourceOutput) ToOutput(ctx context.Contex
 	}
 }
 
+// Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
 func (o DeploymentElasticsearchSnapshotSourceOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotSource) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
 }
 
+// ID of the Elasticsearch cluster that will be used as the source of the snapshot
 func (o DeploymentElasticsearchSnapshotSourceOutput) SourceElasticsearchClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchSnapshotSource) string { return v.SourceElasticsearchClusterId }).(pulumi.StringOutput)
 }
@@ -5441,6 +5815,7 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) Elem() DeploymentElastic
 	}).(DeploymentElasticsearchSnapshotSourceOutput)
 }
 
+// Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SnapshotName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotSource) *string {
 		if v == nil {
@@ -5450,6 +5825,7 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SnapshotName() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// ID of the Elasticsearch cluster that will be used as the source of the snapshot
 func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SourceElasticsearchClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchSnapshotSource) *string {
 		if v == nil {
@@ -5460,8 +5836,11 @@ func (o DeploymentElasticsearchSnapshotSourcePtrOutput) SourceElasticsearchClust
 }
 
 type DeploymentElasticsearchTrustAccount struct {
-	AccountId       string   `pulumi:"accountId"`
-	TrustAll        bool     `pulumi:"trustAll"`
+	// The ID of the Account.
+	AccountId string `pulumi:"accountId"`
+	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+	TrustAll bool `pulumi:"trustAll"`
+	// The list of clusters to trust. Only used when `trustAll` is false.
 	TrustAllowlists []string `pulumi:"trustAllowlists"`
 }
 
@@ -5477,8 +5856,11 @@ type DeploymentElasticsearchTrustAccountInput interface {
 }
 
 type DeploymentElasticsearchTrustAccountArgs struct {
-	AccountId       pulumi.StringInput      `pulumi:"accountId"`
-	TrustAll        pulumi.BoolInput        `pulumi:"trustAll"`
+	// The ID of the Account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+	TrustAll pulumi.BoolInput `pulumi:"trustAll"`
+	// The list of clusters to trust. Only used when `trustAll` is false.
 	TrustAllowlists pulumi.StringArrayInput `pulumi:"trustAllowlists"`
 }
 
@@ -5551,14 +5933,17 @@ func (o DeploymentElasticsearchTrustAccountOutput) ToOutput(ctx context.Context)
 	}
 }
 
+// The ID of the Account.
 func (o DeploymentElasticsearchTrustAccountOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustAccount) string { return v.AccountId }).(pulumi.StringOutput)
 }
 
+// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
 func (o DeploymentElasticsearchTrustAccountOutput) TrustAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustAccount) bool { return v.TrustAll }).(pulumi.BoolOutput)
 }
 
+// The list of clusters to trust. Only used when `trustAll` is false.
 func (o DeploymentElasticsearchTrustAccountOutput) TrustAllowlists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustAccount) []string { return v.TrustAllowlists }).(pulumi.StringArrayOutput)
 }
@@ -5590,8 +5975,11 @@ func (o DeploymentElasticsearchTrustAccountArrayOutput) Index(i pulumi.IntInput)
 }
 
 type DeploymentElasticsearchTrustExternal struct {
-	RelationshipId  string   `pulumi:"relationshipId"`
-	TrustAll        bool     `pulumi:"trustAll"`
+	// The ID of the external trust relationship.
+	RelationshipId string `pulumi:"relationshipId"`
+	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+	TrustAll bool `pulumi:"trustAll"`
+	// The list of clusters to trust. Only used when `trustAll` is false.
 	TrustAllowlists []string `pulumi:"trustAllowlists"`
 }
 
@@ -5607,8 +5995,11 @@ type DeploymentElasticsearchTrustExternalInput interface {
 }
 
 type DeploymentElasticsearchTrustExternalArgs struct {
-	RelationshipId  pulumi.StringInput      `pulumi:"relationshipId"`
-	TrustAll        pulumi.BoolInput        `pulumi:"trustAll"`
+	// The ID of the external trust relationship.
+	RelationshipId pulumi.StringInput `pulumi:"relationshipId"`
+	// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
+	TrustAll pulumi.BoolInput `pulumi:"trustAll"`
+	// The list of clusters to trust. Only used when `trustAll` is false.
 	TrustAllowlists pulumi.StringArrayInput `pulumi:"trustAllowlists"`
 }
 
@@ -5681,14 +6072,17 @@ func (o DeploymentElasticsearchTrustExternalOutput) ToOutput(ctx context.Context
 	}
 }
 
+// The ID of the external trust relationship.
 func (o DeploymentElasticsearchTrustExternalOutput) RelationshipId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) string { return v.RelationshipId }).(pulumi.StringOutput)
 }
 
+// If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
 func (o DeploymentElasticsearchTrustExternalOutput) TrustAll() pulumi.BoolOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) bool { return v.TrustAll }).(pulumi.BoolOutput)
 }
 
+// The list of clusters to trust. Only used when `trustAll` is false.
 func (o DeploymentElasticsearchTrustExternalOutput) TrustAllowlists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchTrustExternal) []string { return v.TrustAllowlists }).(pulumi.StringArrayOutput)
 }
@@ -5720,16 +6114,23 @@ func (o DeploymentElasticsearchTrustExternalArrayOutput) Index(i pulumi.IntInput
 }
 
 type DeploymentElasticsearchWarm struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchWarmAutoscaling `pulumi:"autoscaling"`
 	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                               `pulumi:"nodeRoles"`
-	NodeTypeData            *string                                `pulumi:"nodeTypeData"`
-	NodeTypeIngest          *string                                `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          *string                                `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              *string                                `pulumi:"nodeTypeMl"`
-	Size                    *string                                `pulumi:"size"`
-	SizeResource            *string                                `pulumi:"sizeResource"`
-	ZoneCount               *int                                   `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData *string `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest *string `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl *string `pulumi:"nodeTypeMl"`
+	Size       *string `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource *string `pulumi:"sizeResource"`
+	ZoneCount    *int    `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchWarmInput is an input type that accepts DeploymentElasticsearchWarmArgs and DeploymentElasticsearchWarmOutput values.
@@ -5744,16 +6145,23 @@ type DeploymentElasticsearchWarmInput interface {
 }
 
 type DeploymentElasticsearchWarmArgs struct {
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 	Autoscaling             DeploymentElasticsearchWarmAutoscalingInput `pulumi:"autoscaling"`
 	InstanceConfigurationId pulumi.StringPtrInput                       `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                     `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.StringPtrInput                       `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.StringPtrInput                       `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.StringPtrInput                       `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.StringPtrInput                       `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringPtrInput                       `pulumi:"size"`
-	SizeResource            pulumi.StringPtrInput                       `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntPtrInput                          `pulumi:"zoneCount"`
+	// The computed list of node roles for the current topology element
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// The node type for the Elasticsearch Topology element (data node)
+	NodeTypeData pulumi.StringPtrInput `pulumi:"nodeTypeData"`
+	// The node type for the Elasticsearch Topology element (ingest node)
+	NodeTypeIngest pulumi.StringPtrInput `pulumi:"nodeTypeIngest"`
+	// The node type for the Elasticsearch Topology element (master node)
+	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
+	// The node type for the Elasticsearch Topology element (machine learning node)
+	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
+	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Optional size type, defaults to "memory".
+	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
+	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchWarmArgs) ElementType() reflect.Type {
@@ -5851,6 +6259,7 @@ func (o DeploymentElasticsearchWarmOutput) ToOutput(ctx context.Context) pulumix
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchWarmOutput) Autoscaling() DeploymentElasticsearchWarmAutoscalingOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) DeploymentElasticsearchWarmAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchWarmAutoscalingOutput)
 }
@@ -5859,22 +6268,27 @@ func (o DeploymentElasticsearchWarmOutput) InstanceConfigurationId() pulumi.Stri
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchWarmOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchWarmOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeData }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchWarmOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeIngest }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchWarmOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeMaster }).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchWarmOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
@@ -5883,6 +6297,7 @@ func (o DeploymentElasticsearchWarmOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchWarmOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
@@ -5921,6 +6336,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) Elem() DeploymentElasticsearchWarm
 	}).(DeploymentElasticsearchWarmOutput)
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o DeploymentElasticsearchWarmPtrOutput) Autoscaling() DeploymentElasticsearchWarmAutoscalingPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *DeploymentElasticsearchWarmAutoscaling {
 		if v == nil {
@@ -5939,6 +6355,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) InstanceConfigurationId() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
+// The computed list of node roles for the current topology element
 func (o DeploymentElasticsearchWarmPtrOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) []string {
 		if v == nil {
@@ -5948,6 +6365,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) NodeRoles() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
+// The node type for the Elasticsearch Topology element (data node)
 func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -5957,6 +6375,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeData() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (ingest node)
 func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeIngest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -5966,6 +6385,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeIngest() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (master node)
 func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeMaster() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -5975,6 +6395,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeMaster() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The node type for the Elasticsearch Topology element (machine learning node)
 func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -5993,6 +6414,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional size type, defaults to "memory".
 func (o DeploymentElasticsearchWarmPtrOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -6012,10 +6434,15 @@ func (o DeploymentElasticsearchWarmPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentElasticsearchWarmAutoscaling struct {
-	MaxSize            *string `pulumi:"maxSize"`
-	MaxSizeResource    *string `pulumi:"maxSizeResource"`
-	MinSize            *string `pulumi:"minSize"`
-	MinSizeResource    *string `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize *string `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource *string `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize *string `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource *string `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson *string `pulumi:"policyOverrideJson"`
 }
 
@@ -6031,10 +6458,15 @@ type DeploymentElasticsearchWarmAutoscalingInput interface {
 }
 
 type DeploymentElasticsearchWarmAutoscalingArgs struct {
-	MaxSize            pulumi.StringPtrInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringPtrInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Maximum size value for the maximum autoscaling setting.
+	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
+	// Maximum resource type for the maximum autoscaling setting.
+	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
+	// Minimum size value for the minimum autoscaling setting.
+	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
+	// Minimum resource type for the minimum autoscaling setting.
+	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
+	// Computed policy overrides set directly via the API or other clients.
 	PolicyOverrideJson pulumi.StringPtrInput `pulumi:"policyOverrideJson"`
 }
 
@@ -6133,22 +6565,27 @@ func (o DeploymentElasticsearchWarmAutoscalingOutput) ToOutput(ctx context.Conte
 	}
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MinSizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchWarmAutoscalingOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.PolicyOverrideJson }).(pulumi.StringPtrOutput)
 }
@@ -6183,6 +6620,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) Elem() DeploymentElasti
 	}).(DeploymentElasticsearchWarmAutoscalingOutput)
 }
 
+// Maximum size value for the maximum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -6192,6 +6630,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSize() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Maximum resource type for the maximum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -6201,6 +6640,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSizeResource() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum size value for the minimum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -6210,6 +6650,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSize() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Minimum resource type for the minimum autoscaling setting.
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -6219,6 +6660,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSizeResource() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Computed policy overrides set directly via the API or other clients.
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) PolicyOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -6239,10 +6681,9 @@ type DeploymentEnterpriseSearch struct {
 	NodeTypeConnector         *bool                             `pulumi:"nodeTypeConnector"`
 	NodeTypeWorker            *bool                             `pulumi:"nodeTypeWorker"`
 	RefId                     *string                           `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     *string `pulumi:"region"`
-	ResourceId *string `pulumi:"resourceId"`
-	Size       *string `pulumi:"size"`
+	Region                    *string                           `pulumi:"region"`
+	ResourceId                *string                           `pulumi:"resourceId"`
+	Size                      *string                           `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
 	ZoneCount    *int    `pulumi:"zoneCount"`
@@ -6270,10 +6711,9 @@ type DeploymentEnterpriseSearchArgs struct {
 	NodeTypeConnector         pulumi.BoolPtrInput                      `pulumi:"nodeTypeConnector"`
 	NodeTypeWorker            pulumi.BoolPtrInput                      `pulumi:"nodeTypeWorker"`
 	RefId                     pulumi.StringPtrInput                    `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     pulumi.StringPtrInput `pulumi:"region"`
-	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	Region                    pulumi.StringPtrInput                    `pulumi:"region"`
+	ResourceId                pulumi.StringPtrInput                    `pulumi:"resourceId"`
+	Size                      pulumi.StringPtrInput                    `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
 	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
@@ -6411,7 +6851,6 @@ func (o DeploymentEnterpriseSearchOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentEnterpriseSearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -6545,7 +6984,6 @@ func (o DeploymentEnterpriseSearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentEnterpriseSearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearch) *string {
 		if v == nil {
@@ -6593,11 +7031,16 @@ func (o DeploymentEnterpriseSearchPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentEnterpriseSearchConfig struct {
-	DockerImage              *string `pulumi:"dockerImage"`
-	UserSettingsJson         *string `pulumi:"userSettingsJson"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage *string `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson *string `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentEnterpriseSearchConfigInput is an input type that accepts DeploymentEnterpriseSearchConfigArgs and DeploymentEnterpriseSearchConfigOutput values.
@@ -6612,11 +7055,16 @@ type DeploymentEnterpriseSearchConfigInput interface {
 }
 
 type DeploymentEnterpriseSearchConfigArgs struct {
-	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
-	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentEnterpriseSearchConfigArgs) ElementType() reflect.Type {
@@ -6714,22 +7162,27 @@ func (o DeploymentEnterpriseSearchConfigOutput) ToOutput(ctx context.Context) pu
 	}
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentEnterpriseSearchConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEnterpriseSearchConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -6764,6 +7217,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) Elem() DeploymentEnterpriseSe
 	}).(DeploymentEnterpriseSearchConfigOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentEnterpriseSearchConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -6773,6 +7227,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) DockerImage() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -6782,6 +7237,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsJson() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -6791,6 +7247,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideJson() pu
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -6800,6 +7257,7 @@ func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsOverrideYaml() pu
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentEnterpriseSearchConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentEnterpriseSearchConfig) *string {
 		if v == nil {
@@ -6819,10 +7277,9 @@ type DeploymentIntegrationsServer struct {
 	HttpsEndpoint           *string                                `pulumi:"httpsEndpoint"`
 	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
 	RefId                   *string                                `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     *string `pulumi:"region"`
-	ResourceId *string `pulumi:"resourceId"`
-	Size       *string `pulumi:"size"`
+	Region                  *string                                `pulumi:"region"`
+	ResourceId              *string                                `pulumi:"resourceId"`
+	Size                    *string                                `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
 	ZoneCount    *int    `pulumi:"zoneCount"`
@@ -6849,10 +7306,9 @@ type DeploymentIntegrationsServerArgs struct {
 	HttpsEndpoint           pulumi.StringPtrInput                         `pulumi:"httpsEndpoint"`
 	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
 	RefId                   pulumi.StringPtrInput                         `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     pulumi.StringPtrInput `pulumi:"region"`
-	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	Region                  pulumi.StringPtrInput                         `pulumi:"region"`
+	ResourceId              pulumi.StringPtrInput                         `pulumi:"resourceId"`
+	Size                    pulumi.StringPtrInput                         `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
 	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
@@ -6983,7 +7439,6 @@ func (o DeploymentIntegrationsServerOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentIntegrationsServerOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServer) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -7100,7 +7555,6 @@ func (o DeploymentIntegrationsServerPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentIntegrationsServerPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServer) *string {
 		if v == nil {
@@ -7148,12 +7602,18 @@ func (o DeploymentIntegrationsServerPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentIntegrationsServerConfig struct {
-	DebugEnabled             *bool   `pulumi:"debugEnabled"`
-	DockerImage              *string `pulumi:"dockerImage"`
-	UserSettingsJson         *string `pulumi:"userSettingsJson"`
+	// Optionally enable debug mode for APM servers - defaults to false
+	DebugEnabled *bool `pulumi:"debugEnabled"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage *string `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson *string `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentIntegrationsServerConfigInput is an input type that accepts DeploymentIntegrationsServerConfigArgs and DeploymentIntegrationsServerConfigOutput values.
@@ -7168,12 +7628,18 @@ type DeploymentIntegrationsServerConfigInput interface {
 }
 
 type DeploymentIntegrationsServerConfigArgs struct {
-	DebugEnabled             pulumi.BoolPtrInput   `pulumi:"debugEnabled"`
-	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
-	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// Optionally enable debug mode for APM servers - defaults to false
+	DebugEnabled pulumi.BoolPtrInput `pulumi:"debugEnabled"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentIntegrationsServerConfigArgs) ElementType() reflect.Type {
@@ -7271,26 +7737,32 @@ func (o DeploymentIntegrationsServerConfigOutput) ToOutput(ctx context.Context) 
 	}
 }
 
+// Optionally enable debug mode for APM servers - defaults to false
 func (o DeploymentIntegrationsServerConfigOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *bool { return v.DebugEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentIntegrationsServerConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentIntegrationsServerConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -7325,6 +7797,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) Elem() DeploymentIntegratio
 	}).(DeploymentIntegrationsServerConfigOutput)
 }
 
+// Optionally enable debug mode for APM servers - defaults to false
 func (o DeploymentIntegrationsServerConfigPtrOutput) DebugEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *bool {
 		if v == nil {
@@ -7334,6 +7807,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) DebugEnabled() pulumi.BoolP
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentIntegrationsServerConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -7343,6 +7817,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) DockerImage() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -7352,6 +7827,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsJson() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -7361,6 +7837,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideJson() 
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -7370,6 +7847,7 @@ func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsOverrideYaml() 
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentIntegrationsServerConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentIntegrationsServerConfig) *string {
 		if v == nil {
@@ -7559,10 +8037,9 @@ type DeploymentKibana struct {
 	HttpsEndpoint             *string                 `pulumi:"httpsEndpoint"`
 	InstanceConfigurationId   *string                 `pulumi:"instanceConfigurationId"`
 	RefId                     *string                 `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     *string `pulumi:"region"`
-	ResourceId *string `pulumi:"resourceId"`
-	Size       *string `pulumi:"size"`
+	Region                    *string                 `pulumi:"region"`
+	ResourceId                *string                 `pulumi:"resourceId"`
+	Size                      *string                 `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
 	ZoneCount    *int    `pulumi:"zoneCount"`
@@ -7587,10 +8064,9 @@ type DeploymentKibanaArgs struct {
 	HttpsEndpoint             pulumi.StringPtrInput          `pulumi:"httpsEndpoint"`
 	InstanceConfigurationId   pulumi.StringPtrInput          `pulumi:"instanceConfigurationId"`
 	RefId                     pulumi.StringPtrInput          `pulumi:"refId"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-	Region     pulumi.StringPtrInput `pulumi:"region"`
-	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	Region                    pulumi.StringPtrInput          `pulumi:"region"`
+	ResourceId                pulumi.StringPtrInput          `pulumi:"resourceId"`
+	Size                      pulumi.StringPtrInput          `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
 	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
@@ -7716,7 +8192,6 @@ func (o DeploymentKibanaOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentKibanaOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibana) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -7823,7 +8298,6 @@ func (o DeploymentKibanaPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentKibanaPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibana) *string {
 		if v == nil {
@@ -7871,11 +8345,16 @@ func (o DeploymentKibanaPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 }
 
 type DeploymentKibanaConfig struct {
-	DockerImage              *string `pulumi:"dockerImage"`
-	UserSettingsJson         *string `pulumi:"userSettingsJson"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage *string `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson *string `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson *string `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml *string `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         *string `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml *string `pulumi:"userSettingsYaml"`
 }
 
 // DeploymentKibanaConfigInput is an input type that accepts DeploymentKibanaConfigArgs and DeploymentKibanaConfigOutput values.
@@ -7890,11 +8369,16 @@ type DeploymentKibanaConfigInput interface {
 }
 
 type DeploymentKibanaConfigArgs struct {
-	DockerImage              pulumi.StringPtrInput `pulumi:"dockerImage"`
-	UserSettingsJson         pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+	DockerImage pulumi.StringPtrInput `pulumi:"dockerImage"`
+	// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsJson pulumi.StringPtrInput `pulumi:"userSettingsJson"`
+	// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideJson pulumi.StringPtrInput `pulumi:"userSettingsOverrideJson"`
+	// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 	UserSettingsOverrideYaml pulumi.StringPtrInput `pulumi:"userSettingsOverrideYaml"`
-	UserSettingsYaml         pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
+	// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+	UserSettingsYaml pulumi.StringPtrInput `pulumi:"userSettingsYaml"`
 }
 
 func (DeploymentKibanaConfigArgs) ElementType() reflect.Type {
@@ -7992,22 +8476,27 @@ func (o DeploymentKibanaConfigOutput) ToOutput(ctx context.Context) pulumix.Outp
 	}
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentKibanaConfigOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.DockerImage }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentKibanaConfigOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentKibanaConfigOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsOverrideJson }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentKibanaConfigOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsOverrideYaml }).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentKibanaConfigOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentKibanaConfig) *string { return v.UserSettingsYaml }).(pulumi.StringPtrOutput)
 }
@@ -8042,6 +8531,7 @@ func (o DeploymentKibanaConfigPtrOutput) Elem() DeploymentKibanaConfigOutput {
 	}).(DeploymentKibanaConfigOutput)
 }
 
+// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
 func (o DeploymentKibanaConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -8051,6 +8541,7 @@ func (o DeploymentKibanaConfigPtrOutput) DockerImage() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -8060,6 +8551,7 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsJson() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -8069,6 +8561,7 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideJson() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -8078,6 +8571,7 @@ func (o DeploymentKibanaConfigPtrOutput) UserSettingsOverrideYaml() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
+// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
 func (o DeploymentKibanaConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentKibanaConfig) *string {
 		if v == nil {
@@ -9095,10 +9589,14 @@ func (o GetDeploymentApmArrayOutput) Index(i pulumi.IntInput) GetDeploymentApmOu
 }
 
 type GetDeploymentApmTopology struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId string `pulumi:"instanceConfigurationId"`
-	Size                    string `pulumi:"size"`
-	SizeResource            string `pulumi:"sizeResource"`
-	ZoneCount               int    `pulumi:"zoneCount"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size string `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource string `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount int `pulumi:"zoneCount"`
 }
 
 // GetDeploymentApmTopologyInput is an input type that accepts GetDeploymentApmTopologyArgs and GetDeploymentApmTopologyOutput values.
@@ -9113,10 +9611,14 @@ type GetDeploymentApmTopologyInput interface {
 }
 
 type GetDeploymentApmTopologyArgs struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId pulumi.StringInput `pulumi:"instanceConfigurationId"`
-	Size                    pulumi.StringInput `pulumi:"size"`
-	SizeResource            pulumi.StringInput `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntInput    `pulumi:"zoneCount"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size pulumi.StringInput `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource pulumi.StringInput `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount pulumi.IntInput `pulumi:"zoneCount"`
 }
 
 func (GetDeploymentApmTopologyArgs) ElementType() reflect.Type {
@@ -9188,18 +9690,22 @@ func (o GetDeploymentApmTopologyOutput) ToOutput(ctx context.Context) pulumix.Ou
 	}
 }
 
+// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 func (o GetDeploymentApmTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApmTopology) string { return v.InstanceConfigurationId }).(pulumi.StringOutput)
 }
 
+// Amount of "sizeResource" in Gigabytes. For example "4g".
 func (o GetDeploymentApmTopologyOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApmTopology) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// Type of resource ("memory" or "storage")
 func (o GetDeploymentApmTopologyOutput) SizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentApmTopology) string { return v.SizeResource }).(pulumi.StringOutput)
 }
 
+// Number of zones in which nodes will be placed.
 func (o GetDeploymentApmTopologyOutput) ZoneCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentApmTopology) int { return v.ZoneCount }).(pulumi.IntOutput)
 }
@@ -9433,16 +9939,26 @@ func (o GetDeploymentElasticsearchArrayOutput) Index(i pulumi.IntInput) GetDeplo
 }
 
 type GetDeploymentElasticsearchTopology struct {
-	Autoscalings            []GetDeploymentElasticsearchTopologyAutoscaling `pulumi:"autoscalings"`
-	InstanceConfigurationId string                                          `pulumi:"instanceConfigurationId"`
-	NodeRoles               []string                                        `pulumi:"nodeRoles"`
-	NodeTypeData            bool                                            `pulumi:"nodeTypeData"`
-	NodeTypeIngest          bool                                            `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          bool                                            `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              bool                                            `pulumi:"nodeTypeMl"`
-	Size                    string                                          `pulumi:"size"`
-	SizeResource            string                                          `pulumi:"sizeResource"`
-	ZoneCount               int                                             `pulumi:"zoneCount"`
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+	Autoscalings []GetDeploymentElasticsearchTopologyAutoscaling `pulumi:"autoscalings"`
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+	InstanceConfigurationId string `pulumi:"instanceConfigurationId"`
+	// Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
+	NodeRoles []string `pulumi:"nodeRoles"`
+	// Defines whether this node can hold data (\n\n).
+	NodeTypeData bool `pulumi:"nodeTypeData"`
+	// Defines whether this node can run an ingest pipeline (\n\n).
+	NodeTypeIngest bool `pulumi:"nodeTypeIngest"`
+	// Defines whether this node can be elected master (\n\n).
+	NodeTypeMaster bool `pulumi:"nodeTypeMaster"`
+	// Defines whether this node can run ML jobs (\n\n).
+	NodeTypeMl bool `pulumi:"nodeTypeMl"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size string `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource string `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount int `pulumi:"zoneCount"`
 }
 
 // GetDeploymentElasticsearchTopologyInput is an input type that accepts GetDeploymentElasticsearchTopologyArgs and GetDeploymentElasticsearchTopologyOutput values.
@@ -9457,16 +9973,26 @@ type GetDeploymentElasticsearchTopologyInput interface {
 }
 
 type GetDeploymentElasticsearchTopologyArgs struct {
-	Autoscalings            GetDeploymentElasticsearchTopologyAutoscalingArrayInput `pulumi:"autoscalings"`
-	InstanceConfigurationId pulumi.StringInput                                      `pulumi:"instanceConfigurationId"`
-	NodeRoles               pulumi.StringArrayInput                                 `pulumi:"nodeRoles"`
-	NodeTypeData            pulumi.BoolInput                                        `pulumi:"nodeTypeData"`
-	NodeTypeIngest          pulumi.BoolInput                                        `pulumi:"nodeTypeIngest"`
-	NodeTypeMaster          pulumi.BoolInput                                        `pulumi:"nodeTypeMaster"`
-	NodeTypeMl              pulumi.BoolInput                                        `pulumi:"nodeTypeMl"`
-	Size                    pulumi.StringInput                                      `pulumi:"size"`
-	SizeResource            pulumi.StringInput                                      `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntInput                                         `pulumi:"zoneCount"`
+	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+	Autoscalings GetDeploymentElasticsearchTopologyAutoscalingArrayInput `pulumi:"autoscalings"`
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
+	InstanceConfigurationId pulumi.StringInput `pulumi:"instanceConfigurationId"`
+	// Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
+	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
+	// Defines whether this node can hold data (\n\n).
+	NodeTypeData pulumi.BoolInput `pulumi:"nodeTypeData"`
+	// Defines whether this node can run an ingest pipeline (\n\n).
+	NodeTypeIngest pulumi.BoolInput `pulumi:"nodeTypeIngest"`
+	// Defines whether this node can be elected master (\n\n).
+	NodeTypeMaster pulumi.BoolInput `pulumi:"nodeTypeMaster"`
+	// Defines whether this node can run ML jobs (\n\n).
+	NodeTypeMl pulumi.BoolInput `pulumi:"nodeTypeMl"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size pulumi.StringInput `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource pulumi.StringInput `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount pulumi.IntInput `pulumi:"zoneCount"`
 }
 
 func (GetDeploymentElasticsearchTopologyArgs) ElementType() reflect.Type {
@@ -9538,44 +10064,54 @@ func (o GetDeploymentElasticsearchTopologyOutput) ToOutput(ctx context.Context) 
 	}
 }
 
+// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
 func (o GetDeploymentElasticsearchTopologyOutput) Autoscalings() GetDeploymentElasticsearchTopologyAutoscalingArrayOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) []GetDeploymentElasticsearchTopologyAutoscaling {
 		return v.Autoscalings
 	}).(GetDeploymentElasticsearchTopologyAutoscalingArrayOutput)
 }
 
+// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 func (o GetDeploymentElasticsearchTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) string { return v.InstanceConfigurationId }).(pulumi.StringOutput)
 }
 
+// Defines the list of Elasticsearch node roles assigned to the topology element. This is supported from v7.10, and required from v8.
 func (o GetDeploymentElasticsearchTopologyOutput) NodeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) []string { return v.NodeRoles }).(pulumi.StringArrayOutput)
 }
 
+// Defines whether this node can hold data (\n\n).
 func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) bool { return v.NodeTypeData }).(pulumi.BoolOutput)
 }
 
+// Defines whether this node can run an ingest pipeline (\n\n).
 func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeIngest() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) bool { return v.NodeTypeIngest }).(pulumi.BoolOutput)
 }
 
+// Defines whether this node can be elected master (\n\n).
 func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeMaster() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) bool { return v.NodeTypeMaster }).(pulumi.BoolOutput)
 }
 
+// Defines whether this node can run ML jobs (\n\n).
 func (o GetDeploymentElasticsearchTopologyOutput) NodeTypeMl() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) bool { return v.NodeTypeMl }).(pulumi.BoolOutput)
 }
 
+// Amount of "sizeResource" in Gigabytes. For example "4g".
 func (o GetDeploymentElasticsearchTopologyOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// Type of resource ("memory" or "storage")
 func (o GetDeploymentElasticsearchTopologyOutput) SizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) string { return v.SizeResource }).(pulumi.StringOutput)
 }
 
+// Number of zones in which nodes will be placed.
 func (o GetDeploymentElasticsearchTopologyOutput) ZoneCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopology) int { return v.ZoneCount }).(pulumi.IntOutput)
 }
@@ -9607,10 +10143,15 @@ func (o GetDeploymentElasticsearchTopologyArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetDeploymentElasticsearchTopologyAutoscaling struct {
-	MaxSize            string `pulumi:"maxSize"`
-	MaxSizeResource    string `pulumi:"maxSizeResource"`
-	MinSize            string `pulumi:"minSize"`
-	MinSizeResource    string `pulumi:"minSizeResource"`
+	// Maximum size the tier can scale up to, e.g "64g".
+	MaxSize string `pulumi:"maxSize"`
+	// Resource type used when specifying the maximum size the tier can scale up to.
+	MaxSizeResource string `pulumi:"maxSizeResource"`
+	// Minimum size the tier can scale down to when bidirectional autoscaling is supported.
+	MinSize string `pulumi:"minSize"`
+	// Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
+	MinSizeResource string `pulumi:"minSizeResource"`
+	// An arbitrary JSON object overriding the default autoscaling policy. Don't set unless you really know what you are doing.
 	PolicyOverrideJson string `pulumi:"policyOverrideJson"`
 }
 
@@ -9626,10 +10167,15 @@ type GetDeploymentElasticsearchTopologyAutoscalingInput interface {
 }
 
 type GetDeploymentElasticsearchTopologyAutoscalingArgs struct {
-	MaxSize            pulumi.StringInput `pulumi:"maxSize"`
-	MaxSizeResource    pulumi.StringInput `pulumi:"maxSizeResource"`
-	MinSize            pulumi.StringInput `pulumi:"minSize"`
-	MinSizeResource    pulumi.StringInput `pulumi:"minSizeResource"`
+	// Maximum size the tier can scale up to, e.g "64g".
+	MaxSize pulumi.StringInput `pulumi:"maxSize"`
+	// Resource type used when specifying the maximum size the tier can scale up to.
+	MaxSizeResource pulumi.StringInput `pulumi:"maxSizeResource"`
+	// Minimum size the tier can scale down to when bidirectional autoscaling is supported.
+	MinSize pulumi.StringInput `pulumi:"minSize"`
+	// Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
+	MinSizeResource pulumi.StringInput `pulumi:"minSizeResource"`
+	// An arbitrary JSON object overriding the default autoscaling policy. Don't set unless you really know what you are doing.
 	PolicyOverrideJson pulumi.StringInput `pulumi:"policyOverrideJson"`
 }
 
@@ -9702,22 +10248,27 @@ func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) ToOutput(ctx contex
 	}
 }
 
+// Maximum size the tier can scale up to, e.g "64g".
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) MaxSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopologyAutoscaling) string { return v.MaxSize }).(pulumi.StringOutput)
 }
 
+// Resource type used when specifying the maximum size the tier can scale up to.
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) MaxSizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopologyAutoscaling) string { return v.MaxSizeResource }).(pulumi.StringOutput)
 }
 
+// Minimum size the tier can scale down to when bidirectional autoscaling is supported.
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) MinSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopologyAutoscaling) string { return v.MinSize }).(pulumi.StringOutput)
 }
 
+// Resource type used when specifying the minimum size the tier can scale down to when bidirectional autoscaling is supported.
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) MinSizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopologyAutoscaling) string { return v.MinSizeResource }).(pulumi.StringOutput)
 }
 
+// An arbitrary JSON object overriding the default autoscaling policy. Don't set unless you really know what you are doing.
 func (o GetDeploymentElasticsearchTopologyAutoscalingOutput) PolicyOverrideJson() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentElasticsearchTopologyAutoscaling) string { return v.PolicyOverrideJson }).(pulumi.StringOutput)
 }
@@ -9942,13 +10493,20 @@ func (o GetDeploymentEnterpriseSearchArrayOutput) Index(i pulumi.IntInput) GetDe
 }
 
 type GetDeploymentEnterpriseSearchTopology struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId string `pulumi:"instanceConfigurationId"`
-	NodeTypeAppserver       bool   `pulumi:"nodeTypeAppserver"`
-	NodeTypeConnector       bool   `pulumi:"nodeTypeConnector"`
-	NodeTypeWorker          bool   `pulumi:"nodeTypeWorker"`
-	Size                    string `pulumi:"size"`
-	SizeResource            string `pulumi:"sizeResource"`
-	ZoneCount               int    `pulumi:"zoneCount"`
+	// Defines whether this instance should run as application/API server.
+	NodeTypeAppserver bool `pulumi:"nodeTypeAppserver"`
+	// Defines whether this instance should run as connector.
+	NodeTypeConnector bool `pulumi:"nodeTypeConnector"`
+	// Defines whether this instance should run as background worker.
+	NodeTypeWorker bool `pulumi:"nodeTypeWorker"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size string `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource string `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount int `pulumi:"zoneCount"`
 }
 
 // GetDeploymentEnterpriseSearchTopologyInput is an input type that accepts GetDeploymentEnterpriseSearchTopologyArgs and GetDeploymentEnterpriseSearchTopologyOutput values.
@@ -9963,13 +10521,20 @@ type GetDeploymentEnterpriseSearchTopologyInput interface {
 }
 
 type GetDeploymentEnterpriseSearchTopologyArgs struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId pulumi.StringInput `pulumi:"instanceConfigurationId"`
-	NodeTypeAppserver       pulumi.BoolInput   `pulumi:"nodeTypeAppserver"`
-	NodeTypeConnector       pulumi.BoolInput   `pulumi:"nodeTypeConnector"`
-	NodeTypeWorker          pulumi.BoolInput   `pulumi:"nodeTypeWorker"`
-	Size                    pulumi.StringInput `pulumi:"size"`
-	SizeResource            pulumi.StringInput `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntInput    `pulumi:"zoneCount"`
+	// Defines whether this instance should run as application/API server.
+	NodeTypeAppserver pulumi.BoolInput `pulumi:"nodeTypeAppserver"`
+	// Defines whether this instance should run as connector.
+	NodeTypeConnector pulumi.BoolInput `pulumi:"nodeTypeConnector"`
+	// Defines whether this instance should run as background worker.
+	NodeTypeWorker pulumi.BoolInput `pulumi:"nodeTypeWorker"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size pulumi.StringInput `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource pulumi.StringInput `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount pulumi.IntInput `pulumi:"zoneCount"`
 }
 
 func (GetDeploymentEnterpriseSearchTopologyArgs) ElementType() reflect.Type {
@@ -10041,30 +10606,37 @@ func (o GetDeploymentEnterpriseSearchTopologyOutput) ToOutput(ctx context.Contex
 	}
 }
 
+// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 func (o GetDeploymentEnterpriseSearchTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) string { return v.InstanceConfigurationId }).(pulumi.StringOutput)
 }
 
+// Defines whether this instance should run as application/API server.
 func (o GetDeploymentEnterpriseSearchTopologyOutput) NodeTypeAppserver() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) bool { return v.NodeTypeAppserver }).(pulumi.BoolOutput)
 }
 
+// Defines whether this instance should run as connector.
 func (o GetDeploymentEnterpriseSearchTopologyOutput) NodeTypeConnector() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) bool { return v.NodeTypeConnector }).(pulumi.BoolOutput)
 }
 
+// Defines whether this instance should run as background worker.
 func (o GetDeploymentEnterpriseSearchTopologyOutput) NodeTypeWorker() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) bool { return v.NodeTypeWorker }).(pulumi.BoolOutput)
 }
 
+// Amount of "sizeResource" in Gigabytes. For example "4g".
 func (o GetDeploymentEnterpriseSearchTopologyOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// Type of resource ("memory" or "storage")
 func (o GetDeploymentEnterpriseSearchTopologyOutput) SizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) string { return v.SizeResource }).(pulumi.StringOutput)
 }
 
+// Number of zones in which nodes will be placed.
 func (o GetDeploymentEnterpriseSearchTopologyOutput) ZoneCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentEnterpriseSearchTopology) int { return v.ZoneCount }).(pulumi.IntOutput)
 }
@@ -10289,10 +10861,14 @@ func (o GetDeploymentIntegrationsServerArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetDeploymentIntegrationsServerTopology struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId string `pulumi:"instanceConfigurationId"`
-	Size                    string `pulumi:"size"`
-	SizeResource            string `pulumi:"sizeResource"`
-	ZoneCount               int    `pulumi:"zoneCount"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size string `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource string `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount int `pulumi:"zoneCount"`
 }
 
 // GetDeploymentIntegrationsServerTopologyInput is an input type that accepts GetDeploymentIntegrationsServerTopologyArgs and GetDeploymentIntegrationsServerTopologyOutput values.
@@ -10307,10 +10883,14 @@ type GetDeploymentIntegrationsServerTopologyInput interface {
 }
 
 type GetDeploymentIntegrationsServerTopologyArgs struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId pulumi.StringInput `pulumi:"instanceConfigurationId"`
-	Size                    pulumi.StringInput `pulumi:"size"`
-	SizeResource            pulumi.StringInput `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntInput    `pulumi:"zoneCount"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size pulumi.StringInput `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource pulumi.StringInput `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount pulumi.IntInput `pulumi:"zoneCount"`
 }
 
 func (GetDeploymentIntegrationsServerTopologyArgs) ElementType() reflect.Type {
@@ -10382,18 +10962,22 @@ func (o GetDeploymentIntegrationsServerTopologyOutput) ToOutput(ctx context.Cont
 	}
 }
 
+// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 func (o GetDeploymentIntegrationsServerTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) string { return v.InstanceConfigurationId }).(pulumi.StringOutput)
 }
 
+// Amount of "sizeResource" in Gigabytes. For example "4g".
 func (o GetDeploymentIntegrationsServerTopologyOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// Type of resource ("memory" or "storage")
 func (o GetDeploymentIntegrationsServerTopologyOutput) SizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) string { return v.SizeResource }).(pulumi.StringOutput)
 }
 
+// Number of zones in which nodes will be placed.
 func (o GetDeploymentIntegrationsServerTopologyOutput) ZoneCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentIntegrationsServerTopology) int { return v.ZoneCount }).(pulumi.IntOutput)
 }
@@ -10618,10 +11202,14 @@ func (o GetDeploymentKibanaArrayOutput) Index(i pulumi.IntInput) GetDeploymentKi
 }
 
 type GetDeploymentKibanaTopology struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId string `pulumi:"instanceConfigurationId"`
-	Size                    string `pulumi:"size"`
-	SizeResource            string `pulumi:"sizeResource"`
-	ZoneCount               int    `pulumi:"zoneCount"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size string `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource string `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount int `pulumi:"zoneCount"`
 }
 
 // GetDeploymentKibanaTopologyInput is an input type that accepts GetDeploymentKibanaTopologyArgs and GetDeploymentKibanaTopologyOutput values.
@@ -10636,10 +11224,14 @@ type GetDeploymentKibanaTopologyInput interface {
 }
 
 type GetDeploymentKibanaTopologyArgs struct {
+	// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 	InstanceConfigurationId pulumi.StringInput `pulumi:"instanceConfigurationId"`
-	Size                    pulumi.StringInput `pulumi:"size"`
-	SizeResource            pulumi.StringInput `pulumi:"sizeResource"`
-	ZoneCount               pulumi.IntInput    `pulumi:"zoneCount"`
+	// Amount of "sizeResource" in Gigabytes. For example "4g".
+	Size pulumi.StringInput `pulumi:"size"`
+	// Type of resource ("memory" or "storage")
+	SizeResource pulumi.StringInput `pulumi:"sizeResource"`
+	// Number of zones in which nodes will be placed.
+	ZoneCount pulumi.IntInput `pulumi:"zoneCount"`
 }
 
 func (GetDeploymentKibanaTopologyArgs) ElementType() reflect.Type {
@@ -10711,18 +11303,22 @@ func (o GetDeploymentKibanaTopologyOutput) ToOutput(ctx context.Context) pulumix
 	}
 }
 
+// Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
 func (o GetDeploymentKibanaTopologyOutput) InstanceConfigurationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibanaTopology) string { return v.InstanceConfigurationId }).(pulumi.StringOutput)
 }
 
+// Amount of "sizeResource" in Gigabytes. For example "4g".
 func (o GetDeploymentKibanaTopologyOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibanaTopology) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// Type of resource ("memory" or "storage")
 func (o GetDeploymentKibanaTopologyOutput) SizeResource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeploymentKibanaTopology) string { return v.SizeResource }).(pulumi.StringOutput)
 }
 
+// Number of zones in which nodes will be placed.
 func (o GetDeploymentKibanaTopologyOutput) ZoneCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDeploymentKibanaTopology) int { return v.ZoneCount }).(pulumi.IntOutput)
 }
@@ -12638,9 +13234,11 @@ func (o GetTrafficFilterRulesetArrayOutput) Index(i pulumi.IntInput) GetTrafficF
 }
 
 type GetTrafficFilterRulesetRule struct {
+	// The description of the ruleset.
 	Description string `pulumi:"description"`
-	// The id of the traffic filter to select.
-	Id     string `pulumi:"id"`
+	// The ID of the ruleset
+	Id string `pulumi:"id"`
+	// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
 	Source string `pulumi:"source"`
 }
 
@@ -12656,9 +13254,11 @@ type GetTrafficFilterRulesetRuleInput interface {
 }
 
 type GetTrafficFilterRulesetRuleArgs struct {
+	// The description of the ruleset.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The id of the traffic filter to select.
-	Id     pulumi.StringInput `pulumi:"id"`
+	// The ID of the ruleset
+	Id pulumi.StringInput `pulumi:"id"`
+	// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
 	Source pulumi.StringInput `pulumi:"source"`
 }
 
@@ -12731,15 +13331,17 @@ func (o GetTrafficFilterRulesetRuleOutput) ToOutput(ctx context.Context) pulumix
 	}
 }
 
+// The description of the ruleset.
 func (o GetTrafficFilterRulesetRuleOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The id of the traffic filter to select.
+// The ID of the ruleset
 func (o GetTrafficFilterRulesetRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
 func (o GetTrafficFilterRulesetRuleOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Source }).(pulumi.StringOutput)
 }

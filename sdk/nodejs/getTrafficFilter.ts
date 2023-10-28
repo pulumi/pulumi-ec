@@ -42,15 +42,15 @@ export function getTrafficFilter(args?: GetTrafficFilterArgs, opts?: pulumi.Invo
  */
 export interface GetTrafficFilterArgs {
     /**
-     * The id of the traffic filter to select.
+     * The ID of the ruleset
      */
     id?: string;
     /**
-     * The exact name of the traffic filter to select.
+     * The name of the ruleset.
      */
     name?: string;
     /**
-     * Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
+     * The ruleset can be attached only to deployments in the specific region.
      */
     region?: string;
 }
@@ -105,15 +105,15 @@ export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?:
  */
 export interface GetTrafficFilterOutputArgs {
     /**
-     * The id of the traffic filter to select.
+     * The ID of the ruleset
      */
     id?: pulumi.Input<string>;
     /**
-     * The exact name of the traffic filter to select.
+     * The name of the ruleset.
      */
     name?: pulumi.Input<string>;
     /**
-     * Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
+     * The ruleset can be attached only to deployments in the specific region.
      */
     region?: pulumi.Input<string>;
 }
