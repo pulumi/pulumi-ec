@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -333,12 +332,6 @@ func (i *DeploymentTrafficFilter) ToDeploymentTrafficFilterOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterOutput)
 }
 
-func (i *DeploymentTrafficFilter) ToOutput(ctx context.Context) pulumix.Output[*DeploymentTrafficFilter] {
-	return pulumix.Output[*DeploymentTrafficFilter]{
-		OutputState: i.ToDeploymentTrafficFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DeploymentTrafficFilterArrayInput is an input type that accepts DeploymentTrafficFilterArray and DeploymentTrafficFilterArrayOutput values.
 // You can construct a concrete instance of `DeploymentTrafficFilterArrayInput` via:
 //
@@ -362,12 +355,6 @@ func (i DeploymentTrafficFilterArray) ToDeploymentTrafficFilterArrayOutput() Dep
 
 func (i DeploymentTrafficFilterArray) ToDeploymentTrafficFilterArrayOutputWithContext(ctx context.Context) DeploymentTrafficFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterArrayOutput)
-}
-
-func (i DeploymentTrafficFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentTrafficFilter] {
-	return pulumix.Output[[]*DeploymentTrafficFilter]{
-		OutputState: i.ToDeploymentTrafficFilterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DeploymentTrafficFilterMapInput is an input type that accepts DeploymentTrafficFilterMap and DeploymentTrafficFilterMapOutput values.
@@ -395,12 +382,6 @@ func (i DeploymentTrafficFilterMap) ToDeploymentTrafficFilterMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTrafficFilterMapOutput)
 }
 
-func (i DeploymentTrafficFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentTrafficFilter] {
-	return pulumix.Output[map[string]*DeploymentTrafficFilter]{
-		OutputState: i.ToDeploymentTrafficFilterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DeploymentTrafficFilterOutput struct{ *pulumi.OutputState }
 
 func (DeploymentTrafficFilterOutput) ElementType() reflect.Type {
@@ -413,12 +394,6 @@ func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutput() Deploym
 
 func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutputWithContext(ctx context.Context) DeploymentTrafficFilterOutput {
 	return o
-}
-
-func (o DeploymentTrafficFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentTrafficFilter] {
-	return pulumix.Output[*DeploymentTrafficFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Description of this individual rule
@@ -465,12 +440,6 @@ func (o DeploymentTrafficFilterArrayOutput) ToDeploymentTrafficFilterArrayOutput
 	return o
 }
 
-func (o DeploymentTrafficFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentTrafficFilter] {
-	return pulumix.Output[[]*DeploymentTrafficFilter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DeploymentTrafficFilterArrayOutput) Index(i pulumi.IntInput) DeploymentTrafficFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentTrafficFilter {
 		return vs[0].([]*DeploymentTrafficFilter)[vs[1].(int)]
@@ -489,12 +458,6 @@ func (o DeploymentTrafficFilterMapOutput) ToDeploymentTrafficFilterMapOutput() D
 
 func (o DeploymentTrafficFilterMapOutput) ToDeploymentTrafficFilterMapOutputWithContext(ctx context.Context) DeploymentTrafficFilterMapOutput {
 	return o
-}
-
-func (o DeploymentTrafficFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentTrafficFilter] {
-	return pulumix.Output[map[string]*DeploymentTrafficFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DeploymentTrafficFilterMapOutput) MapIndex(k pulumi.StringInput) DeploymentTrafficFilterOutput {

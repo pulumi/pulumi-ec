@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -264,12 +263,6 @@ func (i *DeploymentElasticsearchKeystore) ToDeploymentElasticsearchKeystoreOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystoreOutput)
 }
 
-func (i *DeploymentElasticsearchKeystore) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchKeystore] {
-	return pulumix.Output[*DeploymentElasticsearchKeystore]{
-		OutputState: i.ToDeploymentElasticsearchKeystoreOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DeploymentElasticsearchKeystoreArrayInput is an input type that accepts DeploymentElasticsearchKeystoreArray and DeploymentElasticsearchKeystoreArrayOutput values.
 // You can construct a concrete instance of `DeploymentElasticsearchKeystoreArrayInput` via:
 //
@@ -293,12 +286,6 @@ func (i DeploymentElasticsearchKeystoreArray) ToDeploymentElasticsearchKeystoreA
 
 func (i DeploymentElasticsearchKeystoreArray) ToDeploymentElasticsearchKeystoreArrayOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystoreArrayOutput)
-}
-
-func (i DeploymentElasticsearchKeystoreArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentElasticsearchKeystore] {
-	return pulumix.Output[[]*DeploymentElasticsearchKeystore]{
-		OutputState: i.ToDeploymentElasticsearchKeystoreArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DeploymentElasticsearchKeystoreMapInput is an input type that accepts DeploymentElasticsearchKeystoreMap and DeploymentElasticsearchKeystoreMapOutput values.
@@ -326,12 +313,6 @@ func (i DeploymentElasticsearchKeystoreMap) ToDeploymentElasticsearchKeystoreMap
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentElasticsearchKeystoreMapOutput)
 }
 
-func (i DeploymentElasticsearchKeystoreMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentElasticsearchKeystore] {
-	return pulumix.Output[map[string]*DeploymentElasticsearchKeystore]{
-		OutputState: i.ToDeploymentElasticsearchKeystoreMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DeploymentElasticsearchKeystoreOutput struct{ *pulumi.OutputState }
 
 func (DeploymentElasticsearchKeystoreOutput) ElementType() reflect.Type {
@@ -344,12 +325,6 @@ func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystore
 
 func (o DeploymentElasticsearchKeystoreOutput) ToDeploymentElasticsearchKeystoreOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreOutput {
 	return o
-}
-
-func (o DeploymentElasticsearchKeystoreOutput) ToOutput(ctx context.Context) pulumix.Output[*DeploymentElasticsearchKeystore] {
-	return pulumix.Output[*DeploymentElasticsearchKeystore]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
@@ -386,12 +361,6 @@ func (o DeploymentElasticsearchKeystoreArrayOutput) ToDeploymentElasticsearchKey
 	return o
 }
 
-func (o DeploymentElasticsearchKeystoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeploymentElasticsearchKeystore] {
-	return pulumix.Output[[]*DeploymentElasticsearchKeystore]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DeploymentElasticsearchKeystoreArrayOutput) Index(i pulumi.IntInput) DeploymentElasticsearchKeystoreOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeploymentElasticsearchKeystore {
 		return vs[0].([]*DeploymentElasticsearchKeystore)[vs[1].(int)]
@@ -410,12 +379,6 @@ func (o DeploymentElasticsearchKeystoreMapOutput) ToDeploymentElasticsearchKeyst
 
 func (o DeploymentElasticsearchKeystoreMapOutput) ToDeploymentElasticsearchKeystoreMapOutputWithContext(ctx context.Context) DeploymentElasticsearchKeystoreMapOutput {
 	return o
-}
-
-func (o DeploymentElasticsearchKeystoreMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeploymentElasticsearchKeystore] {
-	return pulumix.Output[map[string]*DeploymentElasticsearchKeystore]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DeploymentElasticsearchKeystoreMapOutput) MapIndex(k pulumi.StringInput) DeploymentElasticsearchKeystoreOutput {

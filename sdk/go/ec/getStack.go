@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about an existing Elastic Cloud stack.
@@ -140,12 +139,6 @@ func (o GetStackResultOutput) ToGetStackResultOutput() GetStackResultOutput {
 
 func (o GetStackResultOutput) ToGetStackResultOutputWithContext(ctx context.Context) GetStackResultOutput {
 	return o
-}
-
-func (o GetStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackResult] {
-	return pulumix.Output[GetStackResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // To have this version accessible/not accessible by the calling user. This is only relevant for Elasticsearch Service (ESS), not for ECE.
