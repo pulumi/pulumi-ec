@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -37,24 +37,55 @@ class ProviderArgs:
         :param pulumi.Input[bool] verbose_credentials: When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
         :param pulumi.Input[str] verbose_file: Timeout used for individual HTTP calls. Defaults to "1m".
         """
+        ProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            apikey=apikey,
+            endpoint=endpoint,
+            insecure=insecure,
+            password=password,
+            timeout=timeout,
+            username=username,
+            verbose=verbose,
+            verbose_credentials=verbose_credentials,
+            verbose_file=verbose_file,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             apikey: Optional[pulumi.Input[str]] = None,
+             endpoint: Optional[pulumi.Input[str]] = None,
+             insecure: Optional[pulumi.Input[bool]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             timeout: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             verbose: Optional[pulumi.Input[bool]] = None,
+             verbose_credentials: Optional[pulumi.Input[bool]] = None,
+             verbose_file: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if verbose_credentials is None and 'verboseCredentials' in kwargs:
+            verbose_credentials = kwargs['verboseCredentials']
+        if verbose_file is None and 'verboseFile' in kwargs:
+            verbose_file = kwargs['verboseFile']
+
         if apikey is not None:
-            pulumi.set(__self__, "apikey", apikey)
+            _setter("apikey", apikey)
         if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
+            _setter("endpoint", endpoint)
         if insecure is not None:
-            pulumi.set(__self__, "insecure", insecure)
+            _setter("insecure", insecure)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
         if verbose is not None:
-            pulumi.set(__self__, "verbose", verbose)
+            _setter("verbose", verbose)
         if verbose_credentials is not None:
-            pulumi.set(__self__, "verbose_credentials", verbose_credentials)
+            _setter("verbose_credentials", verbose_credentials)
         if verbose_file is not None:
-            pulumi.set(__self__, "verbose_file", verbose_file)
+            _setter("verbose_file", verbose_file)
 
     @property
     @pulumi.getter
@@ -224,6 +255,10 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

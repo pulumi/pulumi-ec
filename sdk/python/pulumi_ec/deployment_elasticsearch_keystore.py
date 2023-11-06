@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeploymentElasticsearchKeystoreArgs', 'DeploymentElasticsearchKeystore']
@@ -25,11 +25,40 @@ class DeploymentElasticsearchKeystoreArgs:
         :param pulumi.Input[str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         :param pulumi.Input[bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
-        pulumi.set(__self__, "deployment_id", deployment_id)
-        pulumi.set(__self__, "setting_name", setting_name)
-        pulumi.set(__self__, "value", value)
+        DeploymentElasticsearchKeystoreArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            deployment_id=deployment_id,
+            setting_name=setting_name,
+            value=value,
+            as_file=as_file,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             deployment_id: Optional[pulumi.Input[str]] = None,
+             setting_name: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[str]] = None,
+             as_file: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if deployment_id is None and 'deploymentId' in kwargs:
+            deployment_id = kwargs['deploymentId']
+        if deployment_id is None:
+            raise TypeError("Missing 'deployment_id' argument")
+        if setting_name is None and 'settingName' in kwargs:
+            setting_name = kwargs['settingName']
+        if setting_name is None:
+            raise TypeError("Missing 'setting_name' argument")
+        if value is None:
+            raise TypeError("Missing 'value' argument")
+        if as_file is None and 'asFile' in kwargs:
+            as_file = kwargs['asFile']
+
+        _setter("deployment_id", deployment_id)
+        _setter("setting_name", setting_name)
+        _setter("value", value)
         if as_file is not None:
-            pulumi.set(__self__, "as_file", as_file)
+            _setter("as_file", as_file)
 
     @property
     @pulumi.getter(name="deploymentId")
@@ -94,14 +123,37 @@ class _DeploymentElasticsearchKeystoreState:
         :param pulumi.Input[str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         :param pulumi.Input[str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         """
+        _DeploymentElasticsearchKeystoreState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            as_file=as_file,
+            deployment_id=deployment_id,
+            setting_name=setting_name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             as_file: Optional[pulumi.Input[bool]] = None,
+             deployment_id: Optional[pulumi.Input[str]] = None,
+             setting_name: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if as_file is None and 'asFile' in kwargs:
+            as_file = kwargs['asFile']
+        if deployment_id is None and 'deploymentId' in kwargs:
+            deployment_id = kwargs['deploymentId']
+        if setting_name is None and 'settingName' in kwargs:
+            setting_name = kwargs['settingName']
+
         if as_file is not None:
-            pulumi.set(__self__, "as_file", as_file)
+            _setter("as_file", as_file)
         if deployment_id is not None:
-            pulumi.set(__self__, "deployment_id", deployment_id)
+            _setter("deployment_id", deployment_id)
         if setting_name is not None:
-            pulumi.set(__self__, "setting_name", setting_name)
+            _setter("setting_name", setting_name)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter(name="asFile")
@@ -299,6 +351,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeploymentElasticsearchKeystoreArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

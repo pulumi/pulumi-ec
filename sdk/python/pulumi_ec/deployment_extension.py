@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeploymentExtensionArgs', 'DeploymentExtension']
@@ -31,18 +31,53 @@ class DeploymentExtensionArgs:
         :param pulumi.Input[str] file_path: Local file path to upload as the extension.
         :param pulumi.Input[str] name: Name of the extension
         """
-        pulumi.set(__self__, "extension_type", extension_type)
-        pulumi.set(__self__, "version", version)
+        DeploymentExtensionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            extension_type=extension_type,
+            version=version,
+            description=description,
+            download_url=download_url,
+            file_hash=file_hash,
+            file_path=file_path,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             extension_type: Optional[pulumi.Input[str]] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             download_url: Optional[pulumi.Input[str]] = None,
+             file_hash: Optional[pulumi.Input[str]] = None,
+             file_path: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if extension_type is None and 'extensionType' in kwargs:
+            extension_type = kwargs['extensionType']
+        if extension_type is None:
+            raise TypeError("Missing 'extension_type' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+        if download_url is None and 'downloadUrl' in kwargs:
+            download_url = kwargs['downloadUrl']
+        if file_hash is None and 'fileHash' in kwargs:
+            file_hash = kwargs['fileHash']
+        if file_path is None and 'filePath' in kwargs:
+            file_path = kwargs['filePath']
+
+        _setter("extension_type", extension_type)
+        _setter("version", version)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if download_url is not None:
-            pulumi.set(__self__, "download_url", download_url)
+            _setter("download_url", download_url)
         if file_hash is not None:
-            pulumi.set(__self__, "file_hash", file_hash)
+            _setter("file_hash", file_hash)
         if file_path is not None:
-            pulumi.set(__self__, "file_path", file_path)
+            _setter("file_path", file_path)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="extensionType")
@@ -155,26 +190,65 @@ class _DeploymentExtensionState:
         :param pulumi.Input[str] url: The extension URL which will be used in the Elastic Cloud deployment plan.
         :param pulumi.Input[str] version: Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
+        _DeploymentExtensionState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            download_url=download_url,
+            extension_type=extension_type,
+            file_hash=file_hash,
+            file_path=file_path,
+            last_modified=last_modified,
+            name=name,
+            size=size,
+            url=url,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             download_url: Optional[pulumi.Input[str]] = None,
+             extension_type: Optional[pulumi.Input[str]] = None,
+             file_hash: Optional[pulumi.Input[str]] = None,
+             file_path: Optional[pulumi.Input[str]] = None,
+             last_modified: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[int]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if download_url is None and 'downloadUrl' in kwargs:
+            download_url = kwargs['downloadUrl']
+        if extension_type is None and 'extensionType' in kwargs:
+            extension_type = kwargs['extensionType']
+        if file_hash is None and 'fileHash' in kwargs:
+            file_hash = kwargs['fileHash']
+        if file_path is None and 'filePath' in kwargs:
+            file_path = kwargs['filePath']
+        if last_modified is None and 'lastModified' in kwargs:
+            last_modified = kwargs['lastModified']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if download_url is not None:
-            pulumi.set(__self__, "download_url", download_url)
+            _setter("download_url", download_url)
         if extension_type is not None:
-            pulumi.set(__self__, "extension_type", extension_type)
+            _setter("extension_type", extension_type)
         if file_hash is not None:
-            pulumi.set(__self__, "file_hash", file_hash)
+            _setter("file_hash", file_hash)
         if file_path is not None:
-            pulumi.set(__self__, "file_path", file_path)
+            _setter("file_path", file_path)
         if last_modified is not None:
-            pulumi.set(__self__, "last_modified", last_modified)
+            _setter("last_modified", last_modified)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if url is not None:
-            pulumi.set(__self__, "url", url)
+            _setter("url", url)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -370,6 +444,10 @@ class DeploymentExtension(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeploymentExtensionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
