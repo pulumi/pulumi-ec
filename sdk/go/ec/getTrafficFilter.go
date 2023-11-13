@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
@@ -123,12 +122,6 @@ func (o GetTrafficFilterResultOutput) ToGetTrafficFilterResultOutput() GetTraffi
 
 func (o GetTrafficFilterResultOutput) ToGetTrafficFilterResultOutputWithContext(ctx context.Context) GetTrafficFilterResultOutput {
 	return o
-}
-
-func (o GetTrafficFilterResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTrafficFilterResult] {
-	return pulumix.Output[GetTrafficFilterResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The id of the traffic filter to select.

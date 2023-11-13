@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
@@ -182,12 +181,6 @@ func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutput() GetDeployment
 
 func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutputWithContext(ctx context.Context) GetDeploymentsResultOutput {
 	return o
-}
-
-func (o GetDeploymentsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsResult] {
-	return pulumix.Output[GetDeploymentsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Filter by APM resource kind status or configuration.
