@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-ec/sdk/go/ec/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
@@ -103,12 +102,6 @@ func (o GetGcpPrivateServiceConnectEndpointResultOutput) ToGetGcpPrivateServiceC
 
 func (o GetGcpPrivateServiceConnectEndpointResultOutput) ToGetGcpPrivateServiceConnectEndpointResultOutputWithContext(ctx context.Context) GetGcpPrivateServiceConnectEndpointResultOutput {
 	return o
-}
-
-func (o GetGcpPrivateServiceConnectEndpointResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetGcpPrivateServiceConnectEndpointResult] {
-	return pulumix.Output[GetGcpPrivateServiceConnectEndpointResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The domain name to point towards the PSC endpoint.
