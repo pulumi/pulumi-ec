@@ -9,8 +9,8 @@ replace (
 
 require (
 	github.com/elastic/terraform-provider-ec v0.9.0
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.19.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.65.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.19.1-0.20231117214246-27a2e69fd393
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.65.1-0.20231117214246-27a2e69fd393
 )
 
 require (
@@ -229,6 +229,7 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
+	github.com/yuin/goldmark v1.5.2 // indirect
 	github.com/zclconf/go-cty v1.14.0 // indirect
 	go.mongodb.org/mongo-driver v1.11.3 // indirect
 	go.opencensus.io v0.24.0 // indirect
