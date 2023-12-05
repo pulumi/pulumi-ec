@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
  *     deploymentId: exampleKeystore.id,
  *     settingName: "gcs.client.default.credentials_file",
- *     value: fs.readFileSync("service-account-key.json"),
+ *     value: fs.readFileSync("service-account-key.json", "utf8"),
  *     asFile: true,
  * });
  * ```
@@ -62,7 +62,7 @@ import * as utilities from "./utilities";
  * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
  *     deploymentId: exampleKeystore.id,
  *     settingName: "gcs.client.default.credentials_file",
- *     value: fs.readFileSync("service-account-key.json"),
+ *     value: fs.readFileSync("service-account-key.json", "utf8"),
  *     asFile: true,
  * });
  * ```
