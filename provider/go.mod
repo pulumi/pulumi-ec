@@ -9,8 +9,8 @@ replace (
 
 require (
 	github.com/elastic/terraform-provider-ec v0.9.0
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.21.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.67.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.21.1-0.20231207031853-2c55739033aa
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.67.1-0.20231207031853-2c55739033aa
 )
 
 require (
