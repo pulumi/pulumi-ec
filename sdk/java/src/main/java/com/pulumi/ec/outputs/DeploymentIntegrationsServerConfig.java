@@ -144,14 +144,14 @@ public final class DeploymentIntegrationsServerConfig {
             return this;
         }
         public DeploymentIntegrationsServerConfig build() {
-            final var o = new DeploymentIntegrationsServerConfig();
-            o.debugEnabled = debugEnabled;
-            o.dockerImage = dockerImage;
-            o.userSettingsJson = userSettingsJson;
-            o.userSettingsOverrideJson = userSettingsOverrideJson;
-            o.userSettingsOverrideYaml = userSettingsOverrideYaml;
-            o.userSettingsYaml = userSettingsYaml;
-            return o;
+            final var _resultValue = new DeploymentIntegrationsServerConfig();
+            _resultValue.debugEnabled = debugEnabled;
+            _resultValue.dockerImage = dockerImage;
+            _resultValue.userSettingsJson = userSettingsJson;
+            _resultValue.userSettingsOverrideJson = userSettingsOverrideJson;
+            _resultValue.userSettingsOverrideYaml = userSettingsOverrideYaml;
+            _resultValue.userSettingsYaml = userSettingsYaml;
+            return _resultValue;
         }
     }
 }

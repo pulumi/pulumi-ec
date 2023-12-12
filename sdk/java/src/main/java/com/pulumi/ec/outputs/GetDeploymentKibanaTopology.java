@@ -104,12 +104,12 @@ public final class GetDeploymentKibanaTopology {
             return this;
         }
         public GetDeploymentKibanaTopology build() {
-            final var o = new GetDeploymentKibanaTopology();
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new GetDeploymentKibanaTopology();
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

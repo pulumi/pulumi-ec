@@ -67,10 +67,10 @@ public final class DeploymentElasticsearchSnapshotSource {
             return this;
         }
         public DeploymentElasticsearchSnapshotSource build() {
-            final var o = new DeploymentElasticsearchSnapshotSource();
-            o.snapshotName = snapshotName;
-            o.sourceElasticsearchClusterId = sourceElasticsearchClusterId;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchSnapshotSource();
+            _resultValue.snapshotName = snapshotName;
+            _resultValue.sourceElasticsearchClusterId = sourceElasticsearchClusterId;
+            return _resultValue;
         }
     }
 }

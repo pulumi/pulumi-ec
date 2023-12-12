@@ -46,9 +46,9 @@ public final class DeploymentElasticsearchSnapshotRepositoryReference {
             return this;
         }
         public DeploymentElasticsearchSnapshotRepositoryReference build() {
-            final var o = new DeploymentElasticsearchSnapshotRepositoryReference();
-            o.repositoryName = repositoryName;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchSnapshotRepositoryReference();
+            _resultValue.repositoryName = repositoryName;
+            return _resultValue;
         }
     }
 }

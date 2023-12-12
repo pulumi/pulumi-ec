@@ -124,13 +124,13 @@ public final class DeploymentTrafficFilterRule {
             return this;
         }
         public DeploymentTrafficFilterRule build() {
-            final var o = new DeploymentTrafficFilterRule();
-            o.azureEndpointGuid = azureEndpointGuid;
-            o.azureEndpointName = azureEndpointName;
-            o.description = description;
-            o.id = id;
-            o.source = source;
-            return o;
+            final var _resultValue = new DeploymentTrafficFilterRule();
+            _resultValue.azureEndpointGuid = azureEndpointGuid;
+            _resultValue.azureEndpointName = azureEndpointName;
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.source = source;
+            return _resultValue;
         }
     }
 }

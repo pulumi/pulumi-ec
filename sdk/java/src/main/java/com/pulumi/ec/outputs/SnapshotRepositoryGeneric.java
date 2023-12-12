@@ -65,10 +65,10 @@ public final class SnapshotRepositoryGeneric {
             return this;
         }
         public SnapshotRepositoryGeneric build() {
-            final var o = new SnapshotRepositoryGeneric();
-            o.settings = settings;
-            o.type = type;
-            return o;
+            final var _resultValue = new SnapshotRepositoryGeneric();
+            _resultValue.settings = settings;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

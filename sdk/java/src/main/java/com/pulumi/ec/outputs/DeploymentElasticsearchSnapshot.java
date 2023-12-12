@@ -68,10 +68,10 @@ public final class DeploymentElasticsearchSnapshot {
             return this;
         }
         public DeploymentElasticsearchSnapshot build() {
-            final var o = new DeploymentElasticsearchSnapshot();
-            o.enabled = enabled;
-            o.repository = repository;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchSnapshot();
+            _resultValue.enabled = enabled;
+            _resultValue.repository = repository;
+            return _resultValue;
         }
     }
 }

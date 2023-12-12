@@ -90,11 +90,11 @@ public final class DeploymentElasticsearchTrustAccount {
             return trustAllowlists(List.of(trustAllowlists));
         }
         public DeploymentElasticsearchTrustAccount build() {
-            final var o = new DeploymentElasticsearchTrustAccount();
-            o.accountId = accountId;
-            o.trustAll = trustAll;
-            o.trustAllowlists = trustAllowlists;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchTrustAccount();
+            _resultValue.accountId = accountId;
+            _resultValue.trustAll = trustAll;
+            _resultValue.trustAllowlists = trustAllowlists;
+            return _resultValue;
         }
     }
 }

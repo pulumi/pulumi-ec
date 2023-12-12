@@ -147,14 +147,14 @@ public final class GetTrafficFilterRuleset {
             return rules(List.of(rules));
         }
         public GetTrafficFilterRuleset build() {
-            final var o = new GetTrafficFilterRuleset();
-            o.description = description;
-            o.id = id;
-            o.includeByDefault = includeByDefault;
-            o.name = name;
-            o.region = region;
-            o.rules = rules;
-            return o;
+            final var _resultValue = new GetTrafficFilterRuleset();
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.includeByDefault = includeByDefault;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.rules = rules;
+            return _resultValue;
         }
     }
 }

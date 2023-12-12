@@ -124,13 +124,13 @@ public final class DeploymentEnterpriseSearchConfig {
             return this;
         }
         public DeploymentEnterpriseSearchConfig build() {
-            final var o = new DeploymentEnterpriseSearchConfig();
-            o.dockerImage = dockerImage;
-            o.userSettingsJson = userSettingsJson;
-            o.userSettingsOverrideJson = userSettingsOverrideJson;
-            o.userSettingsOverrideYaml = userSettingsOverrideYaml;
-            o.userSettingsYaml = userSettingsYaml;
-            return o;
+            final var _resultValue = new DeploymentEnterpriseSearchConfig();
+            _resultValue.dockerImage = dockerImage;
+            _resultValue.userSettingsJson = userSettingsJson;
+            _resultValue.userSettingsOverrideJson = userSettingsOverrideJson;
+            _resultValue.userSettingsOverrideYaml = userSettingsOverrideYaml;
+            _resultValue.userSettingsYaml = userSettingsYaml;
+            return _resultValue;
         }
     }
 }

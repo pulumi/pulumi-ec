@@ -104,12 +104,12 @@ public final class GetDeploymentObservability {
             return this;
         }
         public GetDeploymentObservability build() {
-            final var o = new GetDeploymentObservability();
-            o.deploymentId = deploymentId;
-            o.logs = logs;
-            o.metrics = metrics;
-            o.refId = refId;
-            return o;
+            final var _resultValue = new GetDeploymentObservability();
+            _resultValue.deploymentId = deploymentId;
+            _resultValue.logs = logs;
+            _resultValue.metrics = metrics;
+            _resultValue.refId = refId;
+            return _resultValue;
         }
     }
 }

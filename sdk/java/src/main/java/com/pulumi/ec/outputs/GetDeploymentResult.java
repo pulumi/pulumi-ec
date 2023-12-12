@@ -323,22 +323,22 @@ public final class GetDeploymentResult {
             return trafficFilters(List.of(trafficFilters));
         }
         public GetDeploymentResult build() {
-            final var o = new GetDeploymentResult();
-            o.alias = alias;
-            o.apms = apms;
-            o.deploymentTemplateId = deploymentTemplateId;
-            o.elasticsearches = elasticsearches;
-            o.enterpriseSearches = enterpriseSearches;
-            o.healthy = healthy;
-            o.id = id;
-            o.integrationsServers = integrationsServers;
-            o.kibanas = kibanas;
-            o.name = name;
-            o.observabilities = observabilities;
-            o.region = region;
-            o.tags = tags;
-            o.trafficFilters = trafficFilters;
-            return o;
+            final var _resultValue = new GetDeploymentResult();
+            _resultValue.alias = alias;
+            _resultValue.apms = apms;
+            _resultValue.deploymentTemplateId = deploymentTemplateId;
+            _resultValue.elasticsearches = elasticsearches;
+            _resultValue.enterpriseSearches = enterpriseSearches;
+            _resultValue.healthy = healthy;
+            _resultValue.id = id;
+            _resultValue.integrationsServers = integrationsServers;
+            _resultValue.kibanas = kibanas;
+            _resultValue.name = name;
+            _resultValue.observabilities = observabilities;
+            _resultValue.region = region;
+            _resultValue.tags = tags;
+            _resultValue.trafficFilters = trafficFilters;
+            return _resultValue;
         }
     }
 }

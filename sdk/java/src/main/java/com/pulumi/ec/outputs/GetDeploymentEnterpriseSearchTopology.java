@@ -162,15 +162,15 @@ public final class GetDeploymentEnterpriseSearchTopology {
             return this;
         }
         public GetDeploymentEnterpriseSearchTopology build() {
-            final var o = new GetDeploymentEnterpriseSearchTopology();
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.nodeTypeAppserver = nodeTypeAppserver;
-            o.nodeTypeConnector = nodeTypeConnector;
-            o.nodeTypeWorker = nodeTypeWorker;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new GetDeploymentEnterpriseSearchTopology();
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.nodeTypeAppserver = nodeTypeAppserver;
+            _resultValue.nodeTypeConnector = nodeTypeConnector;
+            _resultValue.nodeTypeWorker = nodeTypeWorker;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

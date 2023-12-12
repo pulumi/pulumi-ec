@@ -223,18 +223,18 @@ public final class GetDeploymentElasticsearch {
             return this;
         }
         public GetDeploymentElasticsearch build() {
-            final var o = new GetDeploymentElasticsearch();
-            o.autoscale = autoscale;
-            o.cloudId = cloudId;
-            o.healthy = healthy;
-            o.httpEndpoint = httpEndpoint;
-            o.httpsEndpoint = httpsEndpoint;
-            o.refId = refId;
-            o.resourceId = resourceId;
-            o.status = status;
-            o.topologies = topologies;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentElasticsearch();
+            _resultValue.autoscale = autoscale;
+            _resultValue.cloudId = cloudId;
+            _resultValue.healthy = healthy;
+            _resultValue.httpEndpoint = httpEndpoint;
+            _resultValue.httpsEndpoint = httpsEndpoint;
+            _resultValue.refId = refId;
+            _resultValue.resourceId = resourceId;
+            _resultValue.status = status;
+            _resultValue.topologies = topologies;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

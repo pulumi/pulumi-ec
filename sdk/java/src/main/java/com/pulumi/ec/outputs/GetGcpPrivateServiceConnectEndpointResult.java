@@ -103,12 +103,12 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
             return this;
         }
         public GetGcpPrivateServiceConnectEndpointResult build() {
-            final var o = new GetGcpPrivateServiceConnectEndpointResult();
-            o.domainName = domainName;
-            o.id = id;
-            o.region = region;
-            o.serviceAttachmentUri = serviceAttachmentUri;
-            return o;
+            final var _resultValue = new GetGcpPrivateServiceConnectEndpointResult();
+            _resultValue.domainName = domainName;
+            _resultValue.id = id;
+            _resultValue.region = region;
+            _resultValue.serviceAttachmentUri = serviceAttachmentUri;
+            return _resultValue;
         }
     }
 }

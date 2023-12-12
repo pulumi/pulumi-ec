@@ -90,11 +90,11 @@ public final class DeploymentElasticsearchTrustExternal {
             return trustAllowlists(List.of(trustAllowlists));
         }
         public DeploymentElasticsearchTrustExternal build() {
-            final var o = new DeploymentElasticsearchTrustExternal();
-            o.relationshipId = relationshipId;
-            o.trustAll = trustAll;
-            o.trustAllowlists = trustAllowlists;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchTrustExternal();
+            _resultValue.relationshipId = relationshipId;
+            _resultValue.trustAll = trustAll;
+            _resultValue.trustAllowlists = trustAllowlists;
+            return _resultValue;
         }
     }
 }

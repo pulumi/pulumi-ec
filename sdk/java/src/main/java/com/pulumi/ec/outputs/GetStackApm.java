@@ -130,13 +130,13 @@ public final class GetStackApm {
             return this;
         }
         public GetStackApm build() {
-            final var o = new GetStackApm();
-            o.capacityConstraintsMax = capacityConstraintsMax;
-            o.capacityConstraintsMin = capacityConstraintsMin;
-            o.compatibleNodeTypes = compatibleNodeTypes;
-            o.denylists = denylists;
-            o.dockerImage = dockerImage;
-            return o;
+            final var _resultValue = new GetStackApm();
+            _resultValue.capacityConstraintsMax = capacityConstraintsMax;
+            _resultValue.capacityConstraintsMin = capacityConstraintsMin;
+            _resultValue.compatibleNodeTypes = compatibleNodeTypes;
+            _resultValue.denylists = denylists;
+            _resultValue.dockerImage = dockerImage;
+            return _resultValue;
         }
     }
 }

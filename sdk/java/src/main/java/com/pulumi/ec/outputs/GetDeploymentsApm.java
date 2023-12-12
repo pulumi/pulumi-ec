@@ -86,11 +86,11 @@ public final class GetDeploymentsApm {
             return this;
         }
         public GetDeploymentsApm build() {
-            final var o = new GetDeploymentsApm();
-            o.healthy = healthy;
-            o.status = status;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentsApm();
+            _resultValue.healthy = healthy;
+            _resultValue.status = status;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

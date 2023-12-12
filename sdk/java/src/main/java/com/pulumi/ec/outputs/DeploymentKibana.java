@@ -168,19 +168,19 @@ public final class DeploymentKibana {
             return this;
         }
         public DeploymentKibana build() {
-            final var o = new DeploymentKibana();
-            o.config = config;
-            o.elasticsearchClusterRefId = elasticsearchClusterRefId;
-            o.httpEndpoint = httpEndpoint;
-            o.httpsEndpoint = httpsEndpoint;
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.refId = refId;
-            o.region = region;
-            o.resourceId = resourceId;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new DeploymentKibana();
+            _resultValue.config = config;
+            _resultValue.elasticsearchClusterRefId = elasticsearchClusterRefId;
+            _resultValue.httpEndpoint = httpEndpoint;
+            _resultValue.httpsEndpoint = httpsEndpoint;
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.refId = refId;
+            _resultValue.region = region;
+            _resultValue.resourceId = resourceId;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

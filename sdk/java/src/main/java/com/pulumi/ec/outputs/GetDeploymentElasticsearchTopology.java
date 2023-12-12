@@ -227,18 +227,18 @@ public final class GetDeploymentElasticsearchTopology {
             return this;
         }
         public GetDeploymentElasticsearchTopology build() {
-            final var o = new GetDeploymentElasticsearchTopology();
-            o.autoscalings = autoscalings;
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.nodeRoles = nodeRoles;
-            o.nodeTypeData = nodeTypeData;
-            o.nodeTypeIngest = nodeTypeIngest;
-            o.nodeTypeMaster = nodeTypeMaster;
-            o.nodeTypeMl = nodeTypeMl;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new GetDeploymentElasticsearchTopology();
+            _resultValue.autoscalings = autoscalings;
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.nodeRoles = nodeRoles;
+            _resultValue.nodeTypeData = nodeTypeData;
+            _resultValue.nodeTypeIngest = nodeTypeIngest;
+            _resultValue.nodeTypeMaster = nodeTypeMaster;
+            _resultValue.nodeTypeMl = nodeTypeMl;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

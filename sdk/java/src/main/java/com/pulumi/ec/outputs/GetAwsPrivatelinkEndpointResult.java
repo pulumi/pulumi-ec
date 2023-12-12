@@ -126,13 +126,13 @@ public final class GetAwsPrivatelinkEndpointResult {
             return zoneIds(List.of(zoneIds));
         }
         public GetAwsPrivatelinkEndpointResult build() {
-            final var o = new GetAwsPrivatelinkEndpointResult();
-            o.domainName = domainName;
-            o.id = id;
-            o.region = region;
-            o.vpcServiceName = vpcServiceName;
-            o.zoneIds = zoneIds;
-            return o;
+            final var _resultValue = new GetAwsPrivatelinkEndpointResult();
+            _resultValue.domainName = domainName;
+            _resultValue.id = id;
+            _resultValue.region = region;
+            _resultValue.vpcServiceName = vpcServiceName;
+            _resultValue.zoneIds = zoneIds;
+            return _resultValue;
         }
     }
 }

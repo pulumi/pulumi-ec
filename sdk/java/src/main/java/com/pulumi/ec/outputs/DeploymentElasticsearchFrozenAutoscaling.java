@@ -124,13 +124,13 @@ public final class DeploymentElasticsearchFrozenAutoscaling {
             return this;
         }
         public DeploymentElasticsearchFrozenAutoscaling build() {
-            final var o = new DeploymentElasticsearchFrozenAutoscaling();
-            o.maxSize = maxSize;
-            o.maxSizeResource = maxSizeResource;
-            o.minSize = minSize;
-            o.minSizeResource = minSizeResource;
-            o.policyOverrideJson = policyOverrideJson;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchFrozenAutoscaling();
+            _resultValue.maxSize = maxSize;
+            _resultValue.maxSizeResource = maxSizeResource;
+            _resultValue.minSize = minSize;
+            _resultValue.minSizeResource = minSizeResource;
+            _resultValue.policyOverrideJson = policyOverrideJson;
+            return _resultValue;
         }
     }
 }

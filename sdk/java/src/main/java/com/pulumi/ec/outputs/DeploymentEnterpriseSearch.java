@@ -202,22 +202,22 @@ public final class DeploymentEnterpriseSearch {
             return this;
         }
         public DeploymentEnterpriseSearch build() {
-            final var o = new DeploymentEnterpriseSearch();
-            o.config = config;
-            o.elasticsearchClusterRefId = elasticsearchClusterRefId;
-            o.httpEndpoint = httpEndpoint;
-            o.httpsEndpoint = httpsEndpoint;
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.nodeTypeAppserver = nodeTypeAppserver;
-            o.nodeTypeConnector = nodeTypeConnector;
-            o.nodeTypeWorker = nodeTypeWorker;
-            o.refId = refId;
-            o.region = region;
-            o.resourceId = resourceId;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new DeploymentEnterpriseSearch();
+            _resultValue.config = config;
+            _resultValue.elasticsearchClusterRefId = elasticsearchClusterRefId;
+            _resultValue.httpEndpoint = httpEndpoint;
+            _resultValue.httpsEndpoint = httpsEndpoint;
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.nodeTypeAppserver = nodeTypeAppserver;
+            _resultValue.nodeTypeConnector = nodeTypeConnector;
+            _resultValue.nodeTypeWorker = nodeTypeWorker;
+            _resultValue.refId = refId;
+            _resultValue.region = region;
+            _resultValue.resourceId = resourceId;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

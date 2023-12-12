@@ -201,18 +201,18 @@ public final class DeploymentElasticsearchMl {
             return this;
         }
         public DeploymentElasticsearchMl build() {
-            final var o = new DeploymentElasticsearchMl();
-            o.autoscaling = autoscaling;
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.nodeRoles = nodeRoles;
-            o.nodeTypeData = nodeTypeData;
-            o.nodeTypeIngest = nodeTypeIngest;
-            o.nodeTypeMaster = nodeTypeMaster;
-            o.nodeTypeMl = nodeTypeMl;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchMl();
+            _resultValue.autoscaling = autoscaling;
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.nodeRoles = nodeRoles;
+            _resultValue.nodeTypeData = nodeTypeData;
+            _resultValue.nodeTypeIngest = nodeTypeIngest;
+            _resultValue.nodeTypeMaster = nodeTypeMaster;
+            _resultValue.nodeTypeMl = nodeTypeMl;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

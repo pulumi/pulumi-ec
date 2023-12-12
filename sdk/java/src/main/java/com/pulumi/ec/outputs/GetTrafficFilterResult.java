@@ -110,12 +110,12 @@ public final class GetTrafficFilterResult {
             return rulesets(List.of(rulesets));
         }
         public GetTrafficFilterResult build() {
-            final var o = new GetTrafficFilterResult();
-            o.id = id;
-            o.name = name;
-            o.region = region;
-            o.rulesets = rulesets;
-            return o;
+            final var _resultValue = new GetTrafficFilterResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.rulesets = rulesets;
+            return _resultValue;
         }
     }
 }

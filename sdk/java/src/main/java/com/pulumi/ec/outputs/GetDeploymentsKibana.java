@@ -86,11 +86,11 @@ public final class GetDeploymentsKibana {
             return this;
         }
         public GetDeploymentsKibana build() {
-            final var o = new GetDeploymentsKibana();
-            o.healthy = healthy;
-            o.status = status;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentsKibana();
+            _resultValue.healthy = healthy;
+            _resultValue.status = status;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

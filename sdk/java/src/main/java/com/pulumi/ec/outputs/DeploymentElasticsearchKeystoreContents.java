@@ -68,10 +68,10 @@ public final class DeploymentElasticsearchKeystoreContents {
             return this;
         }
         public DeploymentElasticsearchKeystoreContents build() {
-            final var o = new DeploymentElasticsearchKeystoreContents();
-            o.asFile = asFile;
-            o.value = value;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchKeystoreContents();
+            _resultValue.asFile = asFile;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

@@ -86,11 +86,11 @@ public final class GetDeploymentsEnterpriseSearch {
             return this;
         }
         public GetDeploymentsEnterpriseSearch build() {
-            final var o = new GetDeploymentsEnterpriseSearch();
-            o.healthy = healthy;
-            o.status = status;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentsEnterpriseSearch();
+            _resultValue.healthy = healthy;
+            _resultValue.status = status;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

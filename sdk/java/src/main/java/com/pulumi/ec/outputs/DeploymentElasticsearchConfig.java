@@ -147,14 +147,14 @@ public final class DeploymentElasticsearchConfig {
             return this;
         }
         public DeploymentElasticsearchConfig build() {
-            final var o = new DeploymentElasticsearchConfig();
-            o.dockerImage = dockerImage;
-            o.plugins = plugins;
-            o.userSettingsJson = userSettingsJson;
-            o.userSettingsOverrideJson = userSettingsOverrideJson;
-            o.userSettingsOverrideYaml = userSettingsOverrideYaml;
-            o.userSettingsYaml = userSettingsYaml;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchConfig();
+            _resultValue.dockerImage = dockerImage;
+            _resultValue.plugins = plugins;
+            _resultValue.userSettingsJson = userSettingsJson;
+            _resultValue.userSettingsOverrideJson = userSettingsOverrideJson;
+            _resultValue.userSettingsOverrideYaml = userSettingsOverrideYaml;
+            _resultValue.userSettingsYaml = userSettingsYaml;
+            return _resultValue;
         }
     }
 }

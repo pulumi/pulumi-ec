@@ -98,12 +98,12 @@ public final class DeploymentElasticsearchRemoteCluster {
             return this;
         }
         public DeploymentElasticsearchRemoteCluster build() {
-            final var o = new DeploymentElasticsearchRemoteCluster();
-            o.alias = alias;
-            o.deploymentId = deploymentId;
-            o.refId = refId;
-            o.skipUnavailable = skipUnavailable;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchRemoteCluster();
+            _resultValue.alias = alias;
+            _resultValue.deploymentId = deploymentId;
+            _resultValue.refId = refId;
+            _resultValue.skipUnavailable = skipUnavailable;
+            return _resultValue;
         }
     }
 }
