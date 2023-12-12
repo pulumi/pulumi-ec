@@ -297,21 +297,21 @@ public final class GetStackResult {
             return this;
         }
         public GetStackResult build() {
-            final var o = new GetStackResult();
-            o.accessible = accessible;
-            o.allowlisted = allowlisted;
-            o.apms = apms;
-            o.elasticsearches = elasticsearches;
-            o.enterpriseSearches = enterpriseSearches;
-            o.id = id;
-            o.kibanas = kibanas;
-            o.lock = lock;
-            o.minUpgradableFrom = minUpgradableFrom;
-            o.region = region;
-            o.upgradableTos = upgradableTos;
-            o.version = version;
-            o.versionRegex = versionRegex;
-            return o;
+            final var _resultValue = new GetStackResult();
+            _resultValue.accessible = accessible;
+            _resultValue.allowlisted = allowlisted;
+            _resultValue.apms = apms;
+            _resultValue.elasticsearches = elasticsearches;
+            _resultValue.enterpriseSearches = enterpriseSearches;
+            _resultValue.id = id;
+            _resultValue.kibanas = kibanas;
+            _resultValue.lock = lock;
+            _resultValue.minUpgradableFrom = minUpgradableFrom;
+            _resultValue.region = region;
+            _resultValue.upgradableTos = upgradableTos;
+            _resultValue.version = version;
+            _resultValue.versionRegex = versionRegex;
+            return _resultValue;
         }
     }
 }

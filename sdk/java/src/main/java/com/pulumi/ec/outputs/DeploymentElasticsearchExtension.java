@@ -103,12 +103,12 @@ public final class DeploymentElasticsearchExtension {
             return this;
         }
         public DeploymentElasticsearchExtension build() {
-            final var o = new DeploymentElasticsearchExtension();
-            o.name = name;
-            o.type = type;
-            o.url = url;
-            o.version = version;
-            return o;
+            final var _resultValue = new DeploymentElasticsearchExtension();
+            _resultValue.name = name;
+            _resultValue.type = type;
+            _resultValue.url = url;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

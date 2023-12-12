@@ -303,21 +303,21 @@ public final class GetDeploymentsResult {
             return this;
         }
         public GetDeploymentsResult build() {
-            final var o = new GetDeploymentsResult();
-            o.apms = apms;
-            o.deploymentTemplateId = deploymentTemplateId;
-            o.deployments = deployments;
-            o.elasticsearches = elasticsearches;
-            o.enterpriseSearches = enterpriseSearches;
-            o.healthy = healthy;
-            o.id = id;
-            o.integrationsServers = integrationsServers;
-            o.kibanas = kibanas;
-            o.namePrefix = namePrefix;
-            o.returnCount = returnCount;
-            o.size = size;
-            o.tags = tags;
-            return o;
+            final var _resultValue = new GetDeploymentsResult();
+            _resultValue.apms = apms;
+            _resultValue.deploymentTemplateId = deploymentTemplateId;
+            _resultValue.deployments = deployments;
+            _resultValue.elasticsearches = elasticsearches;
+            _resultValue.enterpriseSearches = enterpriseSearches;
+            _resultValue.healthy = healthy;
+            _resultValue.id = id;
+            _resultValue.integrationsServers = integrationsServers;
+            _resultValue.kibanas = kibanas;
+            _resultValue.namePrefix = namePrefix;
+            _resultValue.returnCount = returnCount;
+            _resultValue.size = size;
+            _resultValue.tags = tags;
+            return _resultValue;
         }
     }
 }

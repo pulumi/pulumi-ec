@@ -122,13 +122,13 @@ public final class GetDeploymentElasticsearchTopologyAutoscaling {
             return this;
         }
         public GetDeploymentElasticsearchTopologyAutoscaling build() {
-            final var o = new GetDeploymentElasticsearchTopologyAutoscaling();
-            o.maxSize = maxSize;
-            o.maxSizeResource = maxSizeResource;
-            o.minSize = minSize;
-            o.minSizeResource = minSizeResource;
-            o.policyOverrideJson = policyOverrideJson;
-            return o;
+            final var _resultValue = new GetDeploymentElasticsearchTopologyAutoscaling();
+            _resultValue.maxSize = maxSize;
+            _resultValue.maxSizeResource = maxSizeResource;
+            _resultValue.minSize = minSize;
+            _resultValue.minSizeResource = minSizeResource;
+            _resultValue.policyOverrideJson = policyOverrideJson;
+            return _resultValue;
         }
     }
 }

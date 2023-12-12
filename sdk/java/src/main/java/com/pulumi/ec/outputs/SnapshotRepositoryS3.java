@@ -163,15 +163,15 @@ public final class SnapshotRepositoryS3 {
             return this;
         }
         public SnapshotRepositoryS3 build() {
-            final var o = new SnapshotRepositoryS3();
-            o.accessKey = accessKey;
-            o.bucket = bucket;
-            o.endpoint = endpoint;
-            o.pathStyleAccess = pathStyleAccess;
-            o.region = region;
-            o.secretKey = secretKey;
-            o.serverSideEncryption = serverSideEncryption;
-            return o;
+            final var _resultValue = new SnapshotRepositoryS3();
+            _resultValue.accessKey = accessKey;
+            _resultValue.bucket = bucket;
+            _resultValue.endpoint = endpoint;
+            _resultValue.pathStyleAccess = pathStyleAccess;
+            _resultValue.region = region;
+            _resultValue.secretKey = secretKey;
+            _resultValue.serverSideEncryption = serverSideEncryption;
+            return _resultValue;
         }
     }
 }

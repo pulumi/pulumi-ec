@@ -49,10 +49,10 @@ public final class DeploymentIntegrationsServerEndpoints {
             return this;
         }
         public DeploymentIntegrationsServerEndpoints build() {
-            final var o = new DeploymentIntegrationsServerEndpoints();
-            o.apm = apm;
-            o.fleet = fleet;
-            return o;
+            final var _resultValue = new DeploymentIntegrationsServerEndpoints();
+            _resultValue.apm = apm;
+            _resultValue.fleet = fleet;
+            return _resultValue;
         }
     }
 }

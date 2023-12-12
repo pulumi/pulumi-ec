@@ -86,11 +86,11 @@ public final class GetDeploymentsIntegrationsServer {
             return this;
         }
         public GetDeploymentsIntegrationsServer build() {
-            final var o = new GetDeploymentsIntegrationsServer();
-            o.healthy = healthy;
-            o.status = status;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentsIntegrationsServer();
+            _resultValue.healthy = healthy;
+            _resultValue.status = status;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

@@ -416,31 +416,31 @@ public final class DeploymentElasticsearch {
             return this;
         }
         public DeploymentElasticsearch build() {
-            final var o = new DeploymentElasticsearch();
-            o.autoscale = autoscale;
-            o.cloudId = cloudId;
-            o.cold = cold;
-            o.config = config;
-            o.coordinating = coordinating;
-            o.extensions = extensions;
-            o.frozen = frozen;
-            o.hot = hot;
-            o.httpEndpoint = httpEndpoint;
-            o.httpsEndpoint = httpsEndpoint;
-            o.keystoreContents = keystoreContents;
-            o.master = master;
-            o.ml = ml;
-            o.refId = refId;
-            o.region = region;
-            o.remoteClusters = remoteClusters;
-            o.resourceId = resourceId;
-            o.snapshot = snapshot;
-            o.snapshotSource = snapshotSource;
-            o.strategy = strategy;
-            o.trustAccounts = trustAccounts;
-            o.trustExternals = trustExternals;
-            o.warm = warm;
-            return o;
+            final var _resultValue = new DeploymentElasticsearch();
+            _resultValue.autoscale = autoscale;
+            _resultValue.cloudId = cloudId;
+            _resultValue.cold = cold;
+            _resultValue.config = config;
+            _resultValue.coordinating = coordinating;
+            _resultValue.extensions = extensions;
+            _resultValue.frozen = frozen;
+            _resultValue.hot = hot;
+            _resultValue.httpEndpoint = httpEndpoint;
+            _resultValue.httpsEndpoint = httpsEndpoint;
+            _resultValue.keystoreContents = keystoreContents;
+            _resultValue.master = master;
+            _resultValue.ml = ml;
+            _resultValue.refId = refId;
+            _resultValue.region = region;
+            _resultValue.remoteClusters = remoteClusters;
+            _resultValue.resourceId = resourceId;
+            _resultValue.snapshot = snapshot;
+            _resultValue.snapshotSource = snapshotSource;
+            _resultValue.strategy = strategy;
+            _resultValue.trustAccounts = trustAccounts;
+            _resultValue.trustExternals = trustExternals;
+            _resultValue.warm = warm;
+            return _resultValue;
         }
     }
 }

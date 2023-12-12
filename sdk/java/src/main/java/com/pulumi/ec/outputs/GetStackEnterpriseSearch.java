@@ -130,13 +130,13 @@ public final class GetStackEnterpriseSearch {
             return this;
         }
         public GetStackEnterpriseSearch build() {
-            final var o = new GetStackEnterpriseSearch();
-            o.capacityConstraintsMax = capacityConstraintsMax;
-            o.capacityConstraintsMin = capacityConstraintsMin;
-            o.compatibleNodeTypes = compatibleNodeTypes;
-            o.denylists = denylists;
-            o.dockerImage = dockerImage;
-            return o;
+            final var _resultValue = new GetStackEnterpriseSearch();
+            _resultValue.capacityConstraintsMax = capacityConstraintsMax;
+            _resultValue.capacityConstraintsMin = capacityConstraintsMin;
+            _resultValue.compatibleNodeTypes = compatibleNodeTypes;
+            _resultValue.denylists = denylists;
+            _resultValue.dockerImage = dockerImage;
+            return _resultValue;
         }
     }
 }

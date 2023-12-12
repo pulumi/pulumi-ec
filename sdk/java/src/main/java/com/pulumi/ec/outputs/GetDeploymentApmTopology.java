@@ -104,12 +104,12 @@ public final class GetDeploymentApmTopology {
             return this;
         }
         public GetDeploymentApmTopology build() {
-            final var o = new GetDeploymentApmTopology();
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new GetDeploymentApmTopology();
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

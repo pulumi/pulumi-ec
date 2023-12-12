@@ -174,15 +174,15 @@ public final class GetStackElasticsearch {
             return plugins(List.of(plugins));
         }
         public GetStackElasticsearch build() {
-            final var o = new GetStackElasticsearch();
-            o.capacityConstraintsMax = capacityConstraintsMax;
-            o.capacityConstraintsMin = capacityConstraintsMin;
-            o.compatibleNodeTypes = compatibleNodeTypes;
-            o.defaultPlugins = defaultPlugins;
-            o.denylists = denylists;
-            o.dockerImage = dockerImage;
-            o.plugins = plugins;
-            return o;
+            final var _resultValue = new GetStackElasticsearch();
+            _resultValue.capacityConstraintsMax = capacityConstraintsMax;
+            _resultValue.capacityConstraintsMin = capacityConstraintsMin;
+            _resultValue.compatibleNodeTypes = compatibleNodeTypes;
+            _resultValue.defaultPlugins = defaultPlugins;
+            _resultValue.denylists = denylists;
+            _resultValue.dockerImage = dockerImage;
+            _resultValue.plugins = plugins;
+            return _resultValue;
         }
     }
 }

@@ -204,17 +204,17 @@ public final class GetDeploymentKibana {
             return this;
         }
         public GetDeploymentKibana build() {
-            final var o = new GetDeploymentKibana();
-            o.elasticsearchClusterRefId = elasticsearchClusterRefId;
-            o.healthy = healthy;
-            o.httpEndpoint = httpEndpoint;
-            o.httpsEndpoint = httpsEndpoint;
-            o.refId = refId;
-            o.resourceId = resourceId;
-            o.status = status;
-            o.topologies = topologies;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentKibana();
+            _resultValue.elasticsearchClusterRefId = elasticsearchClusterRefId;
+            _resultValue.healthy = healthy;
+            _resultValue.httpEndpoint = httpEndpoint;
+            _resultValue.httpsEndpoint = httpsEndpoint;
+            _resultValue.refId = refId;
+            _resultValue.resourceId = resourceId;
+            _resultValue.status = status;
+            _resultValue.topologies = topologies;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

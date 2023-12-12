@@ -86,11 +86,11 @@ public final class GetDeploymentsElasticsearch {
             return this;
         }
         public GetDeploymentsElasticsearch build() {
-            final var o = new GetDeploymentsElasticsearch();
-            o.healthy = healthy;
-            o.status = status;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDeploymentsElasticsearch();
+            _resultValue.healthy = healthy;
+            _resultValue.status = status;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

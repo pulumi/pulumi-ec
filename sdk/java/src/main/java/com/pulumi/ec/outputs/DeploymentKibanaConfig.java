@@ -124,13 +124,13 @@ public final class DeploymentKibanaConfig {
             return this;
         }
         public DeploymentKibanaConfig build() {
-            final var o = new DeploymentKibanaConfig();
-            o.dockerImage = dockerImage;
-            o.userSettingsJson = userSettingsJson;
-            o.userSettingsOverrideJson = userSettingsOverrideJson;
-            o.userSettingsOverrideYaml = userSettingsOverrideYaml;
-            o.userSettingsYaml = userSettingsYaml;
-            return o;
+            final var _resultValue = new DeploymentKibanaConfig();
+            _resultValue.dockerImage = dockerImage;
+            _resultValue.userSettingsJson = userSettingsJson;
+            _resultValue.userSettingsOverrideJson = userSettingsOverrideJson;
+            _resultValue.userSettingsOverrideYaml = userSettingsOverrideYaml;
+            _resultValue.userSettingsYaml = userSettingsYaml;
+            return _resultValue;
         }
     }
 }

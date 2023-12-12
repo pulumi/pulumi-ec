@@ -84,11 +84,11 @@ public final class GetTrafficFilterRulesetRule {
             return this;
         }
         public GetTrafficFilterRulesetRule build() {
-            final var o = new GetTrafficFilterRulesetRule();
-            o.description = description;
-            o.id = id;
-            o.source = source;
-            return o;
+            final var _resultValue = new GetTrafficFilterRulesetRule();
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.source = source;
+            return _resultValue;
         }
     }
 }

@@ -274,21 +274,21 @@ public final class GetDeploymentsDeployment {
             return this;
         }
         public GetDeploymentsDeployment build() {
-            final var o = new GetDeploymentsDeployment();
-            o.alias = alias;
-            o.apmRefId = apmRefId;
-            o.apmResourceId = apmResourceId;
-            o.deploymentId = deploymentId;
-            o.elasticsearchRefId = elasticsearchRefId;
-            o.elasticsearchResourceId = elasticsearchResourceId;
-            o.enterpriseSearchRefId = enterpriseSearchRefId;
-            o.enterpriseSearchResourceId = enterpriseSearchResourceId;
-            o.integrationsServerRefId = integrationsServerRefId;
-            o.integrationsServerResourceId = integrationsServerResourceId;
-            o.kibanaRefId = kibanaRefId;
-            o.kibanaResourceId = kibanaResourceId;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetDeploymentsDeployment();
+            _resultValue.alias = alias;
+            _resultValue.apmRefId = apmRefId;
+            _resultValue.apmResourceId = apmResourceId;
+            _resultValue.deploymentId = deploymentId;
+            _resultValue.elasticsearchRefId = elasticsearchRefId;
+            _resultValue.elasticsearchResourceId = elasticsearchResourceId;
+            _resultValue.enterpriseSearchRefId = enterpriseSearchRefId;
+            _resultValue.enterpriseSearchResourceId = enterpriseSearchResourceId;
+            _resultValue.integrationsServerRefId = integrationsServerRefId;
+            _resultValue.integrationsServerResourceId = integrationsServerResourceId;
+            _resultValue.kibanaRefId = kibanaRefId;
+            _resultValue.kibanaResourceId = kibanaResourceId;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

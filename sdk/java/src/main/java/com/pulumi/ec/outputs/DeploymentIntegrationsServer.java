@@ -188,20 +188,20 @@ public final class DeploymentIntegrationsServer {
             return this;
         }
         public DeploymentIntegrationsServer build() {
-            final var o = new DeploymentIntegrationsServer();
-            o.config = config;
-            o.elasticsearchClusterRefId = elasticsearchClusterRefId;
-            o.endpoints = endpoints;
-            o.httpEndpoint = httpEndpoint;
-            o.httpsEndpoint = httpsEndpoint;
-            o.instanceConfigurationId = instanceConfigurationId;
-            o.refId = refId;
-            o.region = region;
-            o.resourceId = resourceId;
-            o.size = size;
-            o.sizeResource = sizeResource;
-            o.zoneCount = zoneCount;
-            return o;
+            final var _resultValue = new DeploymentIntegrationsServer();
+            _resultValue.config = config;
+            _resultValue.elasticsearchClusterRefId = elasticsearchClusterRefId;
+            _resultValue.endpoints = endpoints;
+            _resultValue.httpEndpoint = httpEndpoint;
+            _resultValue.httpsEndpoint = httpsEndpoint;
+            _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.refId = refId;
+            _resultValue.region = region;
+            _resultValue.resourceId = resourceId;
+            _resultValue.size = size;
+            _resultValue.sizeResource = sizeResource;
+            _resultValue.zoneCount = zoneCount;
+            return _resultValue;
         }
     }
 }

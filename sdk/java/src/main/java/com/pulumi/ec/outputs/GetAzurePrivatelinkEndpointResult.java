@@ -103,12 +103,12 @@ public final class GetAzurePrivatelinkEndpointResult {
             return this;
         }
         public GetAzurePrivatelinkEndpointResult build() {
-            final var o = new GetAzurePrivatelinkEndpointResult();
-            o.domainName = domainName;
-            o.id = id;
-            o.region = region;
-            o.serviceAlias = serviceAlias;
-            return o;
+            final var _resultValue = new GetAzurePrivatelinkEndpointResult();
+            _resultValue.domainName = domainName;
+            _resultValue.id = id;
+            _resultValue.region = region;
+            _resultValue.serviceAlias = serviceAlias;
+            return _resultValue;
         }
     }
 }
