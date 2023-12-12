@@ -9,8 +9,8 @@ replace (
 
 require (
 	github.com/elastic/terraform-provider-ec v0.9.0
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.21.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.68.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.21.1-0.20231212210504-7a439ad045c6
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.68.1-0.20231212210504-7a439ad045c6
 )
 
 require (
@@ -84,7 +84,7 @@ require (
 	github.com/elastic/cloud-sdk-go v1.13.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/ettle/strcase v0.1.1 // indirect
-	github.com/fatih/color v1.13.0 // indirect
+	github.com/fatih/color v1.15.0 // indirect
 	github.com/gedex/inflector v0.0.0-20170307190818-16278e9db813 // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
