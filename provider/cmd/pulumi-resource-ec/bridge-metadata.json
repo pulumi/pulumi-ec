@@ -5,108 +5,86 @@
                 "current": "ec:index/deployment:Deployment",
                 "fields": {
                     "elasticsearch": {
-                        "elem": {
-                            "fields": {
-                                "cold": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
+                        "fields": {
+                            "cold": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "config": {
+                                "fields": {
+                                    "plugins": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "coordinating": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "extension": {
+                                "maxItemsOne": false
+                            },
+                            "frozen": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "hot": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "master": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "ml": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "remote_cluster": {
+                                "maxItemsOne": false
+                            },
+                            "trust_account": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "trust_allowlist": {
+                                            "maxItemsOne": false
                                         }
                                     }
-                                },
-                                "config": {
-                                    "elem": {
-                                        "fields": {
-                                            "plugins": {
-                                                "maxItemsOne": false
-                                            }
+                                }
+                            },
+                            "trust_external": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "trust_allowlist": {
+                                            "maxItemsOne": false
                                         }
                                     }
-                                },
-                                "coordinating": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "extension": {
-                                    "maxItemsOne": false
-                                },
-                                "frozen": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "hot": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "master": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "ml": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "remote_cluster": {
-                                    "maxItemsOne": false
-                                },
-                                "trust_account": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "elem": {
-                                            "fields": {
-                                                "trust_allowlist": {
-                                                    "maxItemsOne": false
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "trust_external": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "elem": {
-                                            "fields": {
-                                                "trust_allowlist": {
-                                                    "maxItemsOne": false
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "warm": {
-                                    "elem": {
-                                        "fields": {
-                                            "node_roles": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
+                                }
+                            },
+                            "warm": {
+                                "fields": {
+                                    "node_roles": {
+                                        "maxItemsOne": false
                                     }
                                 }
                             }
@@ -156,11 +134,9 @@
                     "apm": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "topology": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "topology": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -168,20 +144,16 @@
                     "elasticsearch": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "topology": {
-                                        "maxItemsOne": false,
-                                        "elem": {
-                                            "elem": {
-                                                "fields": {
-                                                    "autoscaling": {
-                                                        "maxItemsOne": false
-                                                    },
-                                                    "node_roles": {
-                                                        "maxItemsOne": false
-                                                    }
-                                                }
+                            "fields": {
+                                "topology": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "autoscaling": {
+                                                "maxItemsOne": false
+                                            },
+                                            "node_roles": {
+                                                "maxItemsOne": false
                                             }
                                         }
                                     }
@@ -192,11 +164,9 @@
                     "enterprise_search": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "topology": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "topology": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -204,11 +174,9 @@
                     "integrations_server": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "topology": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "topology": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -216,11 +184,9 @@
                     "kibana": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "topology": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "topology": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -265,14 +231,12 @@
                     "apm": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "compatible_node_types": {
-                                        "maxItemsOne": false
-                                    },
-                                    "denylist": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "compatible_node_types": {
+                                    "maxItemsOne": false
+                                },
+                                "denylist": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -280,20 +244,18 @@
                     "elasticsearch": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "compatible_node_types": {
-                                        "maxItemsOne": false
-                                    },
-                                    "default_plugins": {
-                                        "maxItemsOne": false
-                                    },
-                                    "denylist": {
-                                        "maxItemsOne": false
-                                    },
-                                    "plugins": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "compatible_node_types": {
+                                    "maxItemsOne": false
+                                },
+                                "default_plugins": {
+                                    "maxItemsOne": false
+                                },
+                                "denylist": {
+                                    "maxItemsOne": false
+                                },
+                                "plugins": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -301,14 +263,12 @@
                     "enterprise_search": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "compatible_node_types": {
-                                        "maxItemsOne": false
-                                    },
-                                    "denylist": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "compatible_node_types": {
+                                    "maxItemsOne": false
+                                },
+                                "denylist": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -316,14 +276,12 @@
                     "kibana": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "compatible_node_types": {
-                                        "maxItemsOne": false
-                                    },
-                                    "denylist": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "compatible_node_types": {
+                                    "maxItemsOne": false
+                                },
+                                "denylist": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -339,11 +297,9 @@
                     "rulesets": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "rules": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "rules": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -352,6 +308,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "ec:index/deployment:Deployment": "ec_deployment",
