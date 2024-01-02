@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -99,27 +100,42 @@ public final class GetAwsPrivatelinkEndpointResult {
 
         @CustomType.Setter
         public Builder domainName(String domainName) {
-            this.domainName = Objects.requireNonNull(domainName);
+            if (domainName == null) {
+              throw new MissingRequiredPropertyException("GetAwsPrivatelinkEndpointResult", "domainName");
+            }
+            this.domainName = domainName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAwsPrivatelinkEndpointResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetAwsPrivatelinkEndpointResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder vpcServiceName(String vpcServiceName) {
-            this.vpcServiceName = Objects.requireNonNull(vpcServiceName);
+            if (vpcServiceName == null) {
+              throw new MissingRequiredPropertyException("GetAwsPrivatelinkEndpointResult", "vpcServiceName");
+            }
+            this.vpcServiceName = vpcServiceName;
             return this;
         }
         @CustomType.Setter
         public Builder zoneIds(List<String> zoneIds) {
-            this.zoneIds = Objects.requireNonNull(zoneIds);
+            if (zoneIds == null) {
+              throw new MissingRequiredPropertyException("GetAwsPrivatelinkEndpointResult", "zoneIds");
+            }
+            this.zoneIds = zoneIds;
             return this;
         }
         public Builder zoneIds(String... zoneIds) {

@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -128,37 +129,58 @@ public final class GetDeploymentEnterpriseSearchTopology {
 
         @CustomType.Setter
         public Builder instanceConfigurationId(String instanceConfigurationId) {
-            this.instanceConfigurationId = Objects.requireNonNull(instanceConfigurationId);
+            if (instanceConfigurationId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "instanceConfigurationId");
+            }
+            this.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeAppserver(Boolean nodeTypeAppserver) {
-            this.nodeTypeAppserver = Objects.requireNonNull(nodeTypeAppserver);
+            if (nodeTypeAppserver == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "nodeTypeAppserver");
+            }
+            this.nodeTypeAppserver = nodeTypeAppserver;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeConnector(Boolean nodeTypeConnector) {
-            this.nodeTypeConnector = Objects.requireNonNull(nodeTypeConnector);
+            if (nodeTypeConnector == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "nodeTypeConnector");
+            }
+            this.nodeTypeConnector = nodeTypeConnector;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeWorker(Boolean nodeTypeWorker) {
-            this.nodeTypeWorker = Objects.requireNonNull(nodeTypeWorker);
+            if (nodeTypeWorker == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "nodeTypeWorker");
+            }
+            this.nodeTypeWorker = nodeTypeWorker;
             return this;
         }
         @CustomType.Setter
         public Builder size(String size) {
-            this.size = Objects.requireNonNull(size);
+            if (size == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "size");
+            }
+            this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder sizeResource(String sizeResource) {
-            this.sizeResource = Objects.requireNonNull(sizeResource);
+            if (sizeResource == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "sizeResource");
+            }
+            this.sizeResource = sizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder zoneCount(Integer zoneCount) {
-            this.zoneCount = Objects.requireNonNull(zoneCount);
+            if (zoneCount == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentEnterpriseSearchTopology", "zoneCount");
+            }
+            this.zoneCount = zoneCount;
             return this;
         }
         public GetDeploymentEnterpriseSearchTopology build() {

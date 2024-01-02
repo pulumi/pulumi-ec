@@ -133,71 +133,85 @@ public final class DeploymentEnterpriseSearch {
 
         @CustomType.Setter
         public Builder config(@Nullable DeploymentEnterpriseSearchConfig config) {
+
             this.config = config;
             return this;
         }
         @CustomType.Setter
         public Builder elasticsearchClusterRefId(@Nullable String elasticsearchClusterRefId) {
+
             this.elasticsearchClusterRefId = elasticsearchClusterRefId;
             return this;
         }
         @CustomType.Setter
         public Builder httpEndpoint(@Nullable String httpEndpoint) {
+
             this.httpEndpoint = httpEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder httpsEndpoint(@Nullable String httpsEndpoint) {
+
             this.httpsEndpoint = httpsEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
+
             this.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeAppserver(@Nullable Boolean nodeTypeAppserver) {
+
             this.nodeTypeAppserver = nodeTypeAppserver;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeConnector(@Nullable Boolean nodeTypeConnector) {
+
             this.nodeTypeConnector = nodeTypeConnector;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeWorker(@Nullable Boolean nodeTypeWorker) {
+
             this.nodeTypeWorker = nodeTypeWorker;
             return this;
         }
         @CustomType.Setter
         public Builder refId(@Nullable String refId) {
+
             this.refId = refId;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder resourceId(@Nullable String resourceId) {
+
             this.resourceId = resourceId;
             return this;
         }
         @CustomType.Setter
         public Builder size(@Nullable String size) {
+
             this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder sizeResource(@Nullable String sizeResource) {
+
             this.sizeResource = sizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder zoneCount(@Nullable Integer zoneCount) {
+
             this.zoneCount = zoneCount;
             return this;
         }

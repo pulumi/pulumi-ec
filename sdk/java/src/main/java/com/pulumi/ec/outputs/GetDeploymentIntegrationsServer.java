@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.GetDeploymentIntegrationsServerTopology;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -157,42 +158,66 @@ public final class GetDeploymentIntegrationsServer {
 
         @CustomType.Setter
         public Builder elasticsearchClusterRefId(String elasticsearchClusterRefId) {
-            this.elasticsearchClusterRefId = Objects.requireNonNull(elasticsearchClusterRefId);
+            if (elasticsearchClusterRefId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "elasticsearchClusterRefId");
+            }
+            this.elasticsearchClusterRefId = elasticsearchClusterRefId;
             return this;
         }
         @CustomType.Setter
         public Builder healthy(Boolean healthy) {
-            this.healthy = Objects.requireNonNull(healthy);
+            if (healthy == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "healthy");
+            }
+            this.healthy = healthy;
             return this;
         }
         @CustomType.Setter
         public Builder httpEndpoint(String httpEndpoint) {
-            this.httpEndpoint = Objects.requireNonNull(httpEndpoint);
+            if (httpEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "httpEndpoint");
+            }
+            this.httpEndpoint = httpEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder httpsEndpoint(String httpsEndpoint) {
-            this.httpsEndpoint = Objects.requireNonNull(httpsEndpoint);
+            if (httpsEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "httpsEndpoint");
+            }
+            this.httpsEndpoint = httpsEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder refId(String refId) {
-            this.refId = Objects.requireNonNull(refId);
+            if (refId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "refId");
+            }
+            this.refId = refId;
             return this;
         }
         @CustomType.Setter
         public Builder resourceId(String resourceId) {
-            this.resourceId = Objects.requireNonNull(resourceId);
+            if (resourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "resourceId");
+            }
+            this.resourceId = resourceId;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder topologies(List<GetDeploymentIntegrationsServerTopology> topologies) {
-            this.topologies = Objects.requireNonNull(topologies);
+            if (topologies == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "topologies");
+            }
+            this.topologies = topologies;
             return this;
         }
         public Builder topologies(GetDeploymentIntegrationsServerTopology... topologies) {
@@ -200,7 +225,10 @@ public final class GetDeploymentIntegrationsServer {
         }
         @CustomType.Setter
         public Builder version(String version) {
-            this.version = Objects.requireNonNull(version);
+            if (version == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentIntegrationsServer", "version");
+            }
+            this.version = version;
             return this;
         }
         public GetDeploymentIntegrationsServer build() {

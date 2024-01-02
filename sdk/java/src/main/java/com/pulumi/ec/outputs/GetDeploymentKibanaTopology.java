@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -85,22 +86,34 @@ public final class GetDeploymentKibanaTopology {
 
         @CustomType.Setter
         public Builder instanceConfigurationId(String instanceConfigurationId) {
-            this.instanceConfigurationId = Objects.requireNonNull(instanceConfigurationId);
+            if (instanceConfigurationId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentKibanaTopology", "instanceConfigurationId");
+            }
+            this.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
         @CustomType.Setter
         public Builder size(String size) {
-            this.size = Objects.requireNonNull(size);
+            if (size == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentKibanaTopology", "size");
+            }
+            this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder sizeResource(String sizeResource) {
-            this.sizeResource = Objects.requireNonNull(sizeResource);
+            if (sizeResource == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentKibanaTopology", "sizeResource");
+            }
+            this.sizeResource = sizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder zoneCount(Integer zoneCount) {
-            this.zoneCount = Objects.requireNonNull(zoneCount);
+            if (zoneCount == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentKibanaTopology", "zoneCount");
+            }
+            this.zoneCount = zoneCount;
             return this;
         }
         public GetDeploymentKibanaTopology build() {

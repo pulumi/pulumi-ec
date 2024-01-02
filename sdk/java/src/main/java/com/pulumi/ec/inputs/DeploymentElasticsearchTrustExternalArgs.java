@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -162,8 +163,12 @@ public final class DeploymentElasticsearchTrustExternalArgs extends com.pulumi.r
         }
 
         public DeploymentElasticsearchTrustExternalArgs build() {
-            $.relationshipId = Objects.requireNonNull($.relationshipId, "expected parameter 'relationshipId' to be non-null");
-            $.trustAll = Objects.requireNonNull($.trustAll, "expected parameter 'trustAll' to be non-null");
+            if ($.relationshipId == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchTrustExternalArgs", "relationshipId");
+            }
+            if ($.trustAll == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchTrustExternalArgs", "trustAll");
+            }
             return $;
         }
     }

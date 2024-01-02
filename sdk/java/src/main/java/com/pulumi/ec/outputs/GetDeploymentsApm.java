@@ -72,16 +72,19 @@ public final class GetDeploymentsApm {
 
         @CustomType.Setter
         public Builder healthy(@Nullable String healthy) {
+
             this.healthy = healthy;
             return this;
         }
         @CustomType.Setter
         public Builder status(@Nullable String status) {
+
             this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder version(@Nullable String version) {
+
             this.version = version;
             return this;
         }

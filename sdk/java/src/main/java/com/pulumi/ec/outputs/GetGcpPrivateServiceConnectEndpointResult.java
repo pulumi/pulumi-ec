@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -84,22 +85,34 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
 
         @CustomType.Setter
         public Builder domainName(String domainName) {
-            this.domainName = Objects.requireNonNull(domainName);
+            if (domainName == null) {
+              throw new MissingRequiredPropertyException("GetGcpPrivateServiceConnectEndpointResult", "domainName");
+            }
+            this.domainName = domainName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetGcpPrivateServiceConnectEndpointResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetGcpPrivateServiceConnectEndpointResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAttachmentUri(String serviceAttachmentUri) {
-            this.serviceAttachmentUri = Objects.requireNonNull(serviceAttachmentUri);
+            if (serviceAttachmentUri == null) {
+              throw new MissingRequiredPropertyException("GetGcpPrivateServiceConnectEndpointResult", "serviceAttachmentUri");
+            }
+            this.serviceAttachmentUri = serviceAttachmentUri;
             return this;
         }
         public GetGcpPrivateServiceConnectEndpointResult build() {

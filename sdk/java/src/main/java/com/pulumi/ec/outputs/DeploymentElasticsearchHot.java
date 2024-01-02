@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.DeploymentElasticsearchHotAutoscaling;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -149,16 +150,21 @@ public final class DeploymentElasticsearchHot {
 
         @CustomType.Setter
         public Builder autoscaling(DeploymentElasticsearchHotAutoscaling autoscaling) {
-            this.autoscaling = Objects.requireNonNull(autoscaling);
+            if (autoscaling == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchHot", "autoscaling");
+            }
+            this.autoscaling = autoscaling;
             return this;
         }
         @CustomType.Setter
         public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
+
             this.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
         @CustomType.Setter
         public Builder nodeRoles(@Nullable List<String> nodeRoles) {
+
             this.nodeRoles = nodeRoles;
             return this;
         }
@@ -167,36 +173,43 @@ public final class DeploymentElasticsearchHot {
         }
         @CustomType.Setter
         public Builder nodeTypeData(@Nullable String nodeTypeData) {
+
             this.nodeTypeData = nodeTypeData;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeIngest(@Nullable String nodeTypeIngest) {
+
             this.nodeTypeIngest = nodeTypeIngest;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeMaster(@Nullable String nodeTypeMaster) {
+
             this.nodeTypeMaster = nodeTypeMaster;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeMl(@Nullable String nodeTypeMl) {
+
             this.nodeTypeMl = nodeTypeMl;
             return this;
         }
         @CustomType.Setter
         public Builder size(@Nullable String size) {
+
             this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder sizeResource(@Nullable String sizeResource) {
+
             this.sizeResource = sizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder zoneCount(@Nullable Integer zoneCount) {
+
             this.zoneCount = zoneCount;
             return this;
         }

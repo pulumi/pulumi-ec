@@ -8,6 +8,7 @@ import com.pulumi.ec.outputs.GetStackApm;
 import com.pulumi.ec.outputs.GetStackElasticsearch;
 import com.pulumi.ec.outputs.GetStackEnterpriseSearch;
 import com.pulumi.ec.outputs.GetStackKibana;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -218,17 +219,26 @@ public final class GetStackResult {
 
         @CustomType.Setter
         public Builder accessible(Boolean accessible) {
-            this.accessible = Objects.requireNonNull(accessible);
+            if (accessible == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "accessible");
+            }
+            this.accessible = accessible;
             return this;
         }
         @CustomType.Setter
         public Builder allowlisted(Boolean allowlisted) {
-            this.allowlisted = Objects.requireNonNull(allowlisted);
+            if (allowlisted == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "allowlisted");
+            }
+            this.allowlisted = allowlisted;
             return this;
         }
         @CustomType.Setter
         public Builder apms(List<GetStackApm> apms) {
-            this.apms = Objects.requireNonNull(apms);
+            if (apms == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "apms");
+            }
+            this.apms = apms;
             return this;
         }
         public Builder apms(GetStackApm... apms) {
@@ -236,7 +246,10 @@ public final class GetStackResult {
         }
         @CustomType.Setter
         public Builder elasticsearches(List<GetStackElasticsearch> elasticsearches) {
-            this.elasticsearches = Objects.requireNonNull(elasticsearches);
+            if (elasticsearches == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "elasticsearches");
+            }
+            this.elasticsearches = elasticsearches;
             return this;
         }
         public Builder elasticsearches(GetStackElasticsearch... elasticsearches) {
@@ -244,7 +257,10 @@ public final class GetStackResult {
         }
         @CustomType.Setter
         public Builder enterpriseSearches(List<GetStackEnterpriseSearch> enterpriseSearches) {
-            this.enterpriseSearches = Objects.requireNonNull(enterpriseSearches);
+            if (enterpriseSearches == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "enterpriseSearches");
+            }
+            this.enterpriseSearches = enterpriseSearches;
             return this;
         }
         public Builder enterpriseSearches(GetStackEnterpriseSearch... enterpriseSearches) {
@@ -252,12 +268,18 @@ public final class GetStackResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder kibanas(List<GetStackKibana> kibanas) {
-            this.kibanas = Objects.requireNonNull(kibanas);
+            if (kibanas == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "kibanas");
+            }
+            this.kibanas = kibanas;
             return this;
         }
         public Builder kibanas(GetStackKibana... kibanas) {
@@ -265,22 +287,32 @@ public final class GetStackResult {
         }
         @CustomType.Setter
         public Builder lock(@Nullable Boolean lock) {
+
             this.lock = lock;
             return this;
         }
         @CustomType.Setter
         public Builder minUpgradableFrom(String minUpgradableFrom) {
-            this.minUpgradableFrom = Objects.requireNonNull(minUpgradableFrom);
+            if (minUpgradableFrom == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "minUpgradableFrom");
+            }
+            this.minUpgradableFrom = minUpgradableFrom;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder upgradableTos(List<String> upgradableTos) {
-            this.upgradableTos = Objects.requireNonNull(upgradableTos);
+            if (upgradableTos == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "upgradableTos");
+            }
+            this.upgradableTos = upgradableTos;
             return this;
         }
         public Builder upgradableTos(String... upgradableTos) {
@@ -288,12 +320,18 @@ public final class GetStackResult {
         }
         @CustomType.Setter
         public Builder version(String version) {
-            this.version = Objects.requireNonNull(version);
+            if (version == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "version");
+            }
+            this.version = version;
             return this;
         }
         @CustomType.Setter
         public Builder versionRegex(String versionRegex) {
-            this.versionRegex = Objects.requireNonNull(versionRegex);
+            if (versionRegex == null) {
+              throw new MissingRequiredPropertyException("GetStackResult", "versionRegex");
+            }
+            this.versionRegex = versionRegex;
             return this;
         }
         public GetStackResult build() {

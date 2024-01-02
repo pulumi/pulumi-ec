@@ -11,6 +11,7 @@ import com.pulumi.ec.inputs.DeploymentEnterpriseSearchArgs;
 import com.pulumi.ec.inputs.DeploymentIntegrationsServerArgs;
 import com.pulumi.ec.inputs.DeploymentKibanaArgs;
 import com.pulumi.ec.inputs.DeploymentObservabilityArgs;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -629,10 +630,18 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DeploymentArgs build() {
-            $.deploymentTemplateId = Objects.requireNonNull($.deploymentTemplateId, "expected parameter 'deploymentTemplateId' to be non-null");
-            $.elasticsearch = Objects.requireNonNull($.elasticsearch, "expected parameter 'elasticsearch' to be non-null");
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
-            $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
+            if ($.deploymentTemplateId == null) {
+                throw new MissingRequiredPropertyException("DeploymentArgs", "deploymentTemplateId");
+            }
+            if ($.elasticsearch == null) {
+                throw new MissingRequiredPropertyException("DeploymentArgs", "elasticsearch");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("DeploymentArgs", "region");
+            }
+            if ($.version == null) {
+                throw new MissingRequiredPropertyException("DeploymentArgs", "version");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class SnapshotRepositoryGenericArgs extends com.pulumi.resources.Re
         }
 
         public SnapshotRepositoryGenericArgs build() {
-            $.settings = Objects.requireNonNull($.settings, "expected parameter 'settings' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.settings == null) {
+                throw new MissingRequiredPropertyException("SnapshotRepositoryGenericArgs", "settings");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("SnapshotRepositoryGenericArgs", "type");
+            }
             return $;
         }
     }

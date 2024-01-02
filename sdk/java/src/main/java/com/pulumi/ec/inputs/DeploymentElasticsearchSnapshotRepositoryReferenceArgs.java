@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -74,7 +75,9 @@ public final class DeploymentElasticsearchSnapshotRepositoryReferenceArgs extend
         }
 
         public DeploymentElasticsearchSnapshotRepositoryReferenceArgs build() {
-            $.repositoryName = Objects.requireNonNull($.repositoryName, "expected parameter 'repositoryName' to be non-null");
+            if ($.repositoryName == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchSnapshotRepositoryReferenceArgs", "repositoryName");
+            }
             return $;
         }
     }

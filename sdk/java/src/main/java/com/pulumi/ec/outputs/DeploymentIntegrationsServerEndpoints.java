@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -40,12 +41,18 @@ public final class DeploymentIntegrationsServerEndpoints {
 
         @CustomType.Setter
         public Builder apm(String apm) {
-            this.apm = Objects.requireNonNull(apm);
+            if (apm == null) {
+              throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpoints", "apm");
+            }
+            this.apm = apm;
             return this;
         }
         @CustomType.Setter
         public Builder fleet(String fleet) {
-            this.fleet = Objects.requireNonNull(fleet);
+            if (fleet == null) {
+              throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpoints", "fleet");
+            }
+            this.fleet = fleet;
             return this;
         }
         public DeploymentIntegrationsServerEndpoints build() {

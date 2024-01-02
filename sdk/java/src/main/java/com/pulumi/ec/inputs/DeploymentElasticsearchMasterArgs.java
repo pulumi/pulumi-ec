@@ -6,6 +6,7 @@ package com.pulumi.ec.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.DeploymentElasticsearchMasterAutoscalingArgs;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -362,7 +363,9 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
         }
 
         public DeploymentElasticsearchMasterArgs build() {
-            $.autoscaling = Objects.requireNonNull($.autoscaling, "expected parameter 'autoscaling' to be non-null");
+            if ($.autoscaling == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchMasterArgs", "autoscaling");
+            }
             return $;
         }
     }

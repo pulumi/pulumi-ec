@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -113,7 +114,9 @@ public final class DeploymentElasticsearchSnapshotSourceArgs extends com.pulumi.
         }
 
         public DeploymentElasticsearchSnapshotSourceArgs build() {
-            $.sourceElasticsearchClusterId = Objects.requireNonNull($.sourceElasticsearchClusterId, "expected parameter 'sourceElasticsearchClusterId' to be non-null");
+            if ($.sourceElasticsearchClusterId == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchSnapshotSourceArgs", "sourceElasticsearchClusterId");
+            }
             return $;
         }
     }
