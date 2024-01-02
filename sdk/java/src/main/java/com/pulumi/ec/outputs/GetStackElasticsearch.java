@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -128,17 +129,26 @@ public final class GetStackElasticsearch {
 
         @CustomType.Setter
         public Builder capacityConstraintsMax(Integer capacityConstraintsMax) {
-            this.capacityConstraintsMax = Objects.requireNonNull(capacityConstraintsMax);
+            if (capacityConstraintsMax == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "capacityConstraintsMax");
+            }
+            this.capacityConstraintsMax = capacityConstraintsMax;
             return this;
         }
         @CustomType.Setter
         public Builder capacityConstraintsMin(Integer capacityConstraintsMin) {
-            this.capacityConstraintsMin = Objects.requireNonNull(capacityConstraintsMin);
+            if (capacityConstraintsMin == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "capacityConstraintsMin");
+            }
+            this.capacityConstraintsMin = capacityConstraintsMin;
             return this;
         }
         @CustomType.Setter
         public Builder compatibleNodeTypes(List<String> compatibleNodeTypes) {
-            this.compatibleNodeTypes = Objects.requireNonNull(compatibleNodeTypes);
+            if (compatibleNodeTypes == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "compatibleNodeTypes");
+            }
+            this.compatibleNodeTypes = compatibleNodeTypes;
             return this;
         }
         public Builder compatibleNodeTypes(String... compatibleNodeTypes) {
@@ -146,7 +156,10 @@ public final class GetStackElasticsearch {
         }
         @CustomType.Setter
         public Builder defaultPlugins(List<String> defaultPlugins) {
-            this.defaultPlugins = Objects.requireNonNull(defaultPlugins);
+            if (defaultPlugins == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "defaultPlugins");
+            }
+            this.defaultPlugins = defaultPlugins;
             return this;
         }
         public Builder defaultPlugins(String... defaultPlugins) {
@@ -154,7 +167,10 @@ public final class GetStackElasticsearch {
         }
         @CustomType.Setter
         public Builder denylists(List<String> denylists) {
-            this.denylists = Objects.requireNonNull(denylists);
+            if (denylists == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "denylists");
+            }
+            this.denylists = denylists;
             return this;
         }
         public Builder denylists(String... denylists) {
@@ -162,12 +178,18 @@ public final class GetStackElasticsearch {
         }
         @CustomType.Setter
         public Builder dockerImage(String dockerImage) {
-            this.dockerImage = Objects.requireNonNull(dockerImage);
+            if (dockerImage == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "dockerImage");
+            }
+            this.dockerImage = dockerImage;
             return this;
         }
         @CustomType.Setter
         public Builder plugins(List<String> plugins) {
-            this.plugins = Objects.requireNonNull(plugins);
+            if (plugins == null) {
+              throw new MissingRequiredPropertyException("GetStackElasticsearch", "plugins");
+            }
+            this.plugins = plugins;
             return this;
         }
         public Builder plugins(String... plugins) {

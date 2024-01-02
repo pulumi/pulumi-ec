@@ -115,11 +115,13 @@ public final class DeploymentElasticsearchConfig {
 
         @CustomType.Setter
         public Builder dockerImage(@Nullable String dockerImage) {
+
             this.dockerImage = dockerImage;
             return this;
         }
         @CustomType.Setter
         public Builder plugins(@Nullable List<String> plugins) {
+
             this.plugins = plugins;
             return this;
         }
@@ -128,21 +130,25 @@ public final class DeploymentElasticsearchConfig {
         }
         @CustomType.Setter
         public Builder userSettingsJson(@Nullable String userSettingsJson) {
+
             this.userSettingsJson = userSettingsJson;
             return this;
         }
         @CustomType.Setter
         public Builder userSettingsOverrideJson(@Nullable String userSettingsOverrideJson) {
+
             this.userSettingsOverrideJson = userSettingsOverrideJson;
             return this;
         }
         @CustomType.Setter
         public Builder userSettingsOverrideYaml(@Nullable String userSettingsOverrideYaml) {
+
             this.userSettingsOverrideYaml = userSettingsOverrideYaml;
             return this;
         }
         @CustomType.Setter
         public Builder userSettingsYaml(@Nullable String userSettingsYaml) {
+
             this.userSettingsYaml = userSettingsYaml;
             return this;
         }

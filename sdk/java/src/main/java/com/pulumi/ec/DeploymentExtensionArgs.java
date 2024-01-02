@@ -5,6 +5,7 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -298,8 +299,12 @@ public final class DeploymentExtensionArgs extends com.pulumi.resources.Resource
         }
 
         public DeploymentExtensionArgs build() {
-            $.extensionType = Objects.requireNonNull($.extensionType, "expected parameter 'extensionType' to be non-null");
-            $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
+            if ($.extensionType == null) {
+                throw new MissingRequiredPropertyException("DeploymentExtensionArgs", "extensionType");
+            }
+            if ($.version == null) {
+                throw new MissingRequiredPropertyException("DeploymentExtensionArgs", "version");
+            }
             return $;
         }
     }

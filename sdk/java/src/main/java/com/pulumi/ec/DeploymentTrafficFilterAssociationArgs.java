@@ -5,6 +5,7 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class DeploymentTrafficFilterAssociationArgs extends com.pulumi.res
         }
 
         public DeploymentTrafficFilterAssociationArgs build() {
-            $.deploymentId = Objects.requireNonNull($.deploymentId, "expected parameter 'deploymentId' to be non-null");
-            $.trafficFilterId = Objects.requireNonNull($.trafficFilterId, "expected parameter 'trafficFilterId' to be non-null");
+            if ($.deploymentId == null) {
+                throw new MissingRequiredPropertyException("DeploymentTrafficFilterAssociationArgs", "deploymentId");
+            }
+            if ($.trafficFilterId == null) {
+                throw new MissingRequiredPropertyException("DeploymentTrafficFilterAssociationArgs", "trafficFilterId");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -55,21 +56,27 @@ public final class DeploymentObservability {
 
         @CustomType.Setter
         public Builder deploymentId(String deploymentId) {
-            this.deploymentId = Objects.requireNonNull(deploymentId);
+            if (deploymentId == null) {
+              throw new MissingRequiredPropertyException("DeploymentObservability", "deploymentId");
+            }
+            this.deploymentId = deploymentId;
             return this;
         }
         @CustomType.Setter
         public Builder logs(@Nullable Boolean logs) {
+
             this.logs = logs;
             return this;
         }
         @CustomType.Setter
         public Builder metrics(@Nullable Boolean metrics) {
+
             this.metrics = metrics;
             return this;
         }
         @CustomType.Setter
         public Builder refId(@Nullable String refId) {
+
             this.refId = refId;
             return this;
         }

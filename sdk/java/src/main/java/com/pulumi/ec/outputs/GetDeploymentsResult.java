@@ -10,6 +10,7 @@ import com.pulumi.ec.outputs.GetDeploymentsElasticsearch;
 import com.pulumi.ec.outputs.GetDeploymentsEnterpriseSearch;
 import com.pulumi.ec.outputs.GetDeploymentsIntegrationsServer;
 import com.pulumi.ec.outputs.GetDeploymentsKibana;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -221,6 +222,7 @@ public final class GetDeploymentsResult {
 
         @CustomType.Setter
         public Builder apms(@Nullable List<GetDeploymentsApm> apms) {
+
             this.apms = apms;
             return this;
         }
@@ -229,12 +231,16 @@ public final class GetDeploymentsResult {
         }
         @CustomType.Setter
         public Builder deploymentTemplateId(@Nullable String deploymentTemplateId) {
+
             this.deploymentTemplateId = deploymentTemplateId;
             return this;
         }
         @CustomType.Setter
         public Builder deployments(List<GetDeploymentsDeployment> deployments) {
-            this.deployments = Objects.requireNonNull(deployments);
+            if (deployments == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsResult", "deployments");
+            }
+            this.deployments = deployments;
             return this;
         }
         public Builder deployments(GetDeploymentsDeployment... deployments) {
@@ -242,6 +248,7 @@ public final class GetDeploymentsResult {
         }
         @CustomType.Setter
         public Builder elasticsearches(@Nullable List<GetDeploymentsElasticsearch> elasticsearches) {
+
             this.elasticsearches = elasticsearches;
             return this;
         }
@@ -250,6 +257,7 @@ public final class GetDeploymentsResult {
         }
         @CustomType.Setter
         public Builder enterpriseSearches(@Nullable List<GetDeploymentsEnterpriseSearch> enterpriseSearches) {
+
             this.enterpriseSearches = enterpriseSearches;
             return this;
         }
@@ -258,16 +266,21 @@ public final class GetDeploymentsResult {
         }
         @CustomType.Setter
         public Builder healthy(@Nullable String healthy) {
+
             this.healthy = healthy;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder integrationsServers(@Nullable List<GetDeploymentsIntegrationsServer> integrationsServers) {
+
             this.integrationsServers = integrationsServers;
             return this;
         }
@@ -276,6 +289,7 @@ public final class GetDeploymentsResult {
         }
         @CustomType.Setter
         public Builder kibanas(@Nullable List<GetDeploymentsKibana> kibanas) {
+
             this.kibanas = kibanas;
             return this;
         }
@@ -284,21 +298,27 @@ public final class GetDeploymentsResult {
         }
         @CustomType.Setter
         public Builder namePrefix(@Nullable String namePrefix) {
+
             this.namePrefix = namePrefix;
             return this;
         }
         @CustomType.Setter
         public Builder returnCount(Integer returnCount) {
-            this.returnCount = Objects.requireNonNull(returnCount);
+            if (returnCount == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsResult", "returnCount");
+            }
+            this.returnCount = returnCount;
             return this;
         }
         @CustomType.Setter
         public Builder size(@Nullable Integer size) {
+
             this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder tags(@Nullable Map<String,String> tags) {
+
             this.tags = tags;
             return this;
         }

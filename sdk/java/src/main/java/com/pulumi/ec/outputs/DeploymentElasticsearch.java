@@ -19,6 +19,7 @@ import com.pulumi.ec.outputs.DeploymentElasticsearchSnapshotSource;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTrustAccount;
 import com.pulumi.ec.outputs.DeploymentElasticsearchTrustExternal;
 import com.pulumi.ec.outputs.DeploymentElasticsearchWarm;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -290,31 +291,37 @@ public final class DeploymentElasticsearch {
 
         @CustomType.Setter
         public Builder autoscale(@Nullable Boolean autoscale) {
+
             this.autoscale = autoscale;
             return this;
         }
         @CustomType.Setter
         public Builder cloudId(@Nullable String cloudId) {
+
             this.cloudId = cloudId;
             return this;
         }
         @CustomType.Setter
         public Builder cold(@Nullable DeploymentElasticsearchCold cold) {
+
             this.cold = cold;
             return this;
         }
         @CustomType.Setter
         public Builder config(@Nullable DeploymentElasticsearchConfig config) {
+
             this.config = config;
             return this;
         }
         @CustomType.Setter
         public Builder coordinating(@Nullable DeploymentElasticsearchCoordinating coordinating) {
+
             this.coordinating = coordinating;
             return this;
         }
         @CustomType.Setter
         public Builder extensions(@Nullable List<DeploymentElasticsearchExtension> extensions) {
+
             this.extensions = extensions;
             return this;
         }
@@ -323,51 +330,63 @@ public final class DeploymentElasticsearch {
         }
         @CustomType.Setter
         public Builder frozen(@Nullable DeploymentElasticsearchFrozen frozen) {
+
             this.frozen = frozen;
             return this;
         }
         @CustomType.Setter
         public Builder hot(DeploymentElasticsearchHot hot) {
-            this.hot = Objects.requireNonNull(hot);
+            if (hot == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearch", "hot");
+            }
+            this.hot = hot;
             return this;
         }
         @CustomType.Setter
         public Builder httpEndpoint(@Nullable String httpEndpoint) {
+
             this.httpEndpoint = httpEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder httpsEndpoint(@Nullable String httpsEndpoint) {
+
             this.httpsEndpoint = httpsEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder keystoreContents(@Nullable Map<String,DeploymentElasticsearchKeystoreContents> keystoreContents) {
+
             this.keystoreContents = keystoreContents;
             return this;
         }
         @CustomType.Setter
         public Builder master(@Nullable DeploymentElasticsearchMaster master) {
+
             this.master = master;
             return this;
         }
         @CustomType.Setter
         public Builder ml(@Nullable DeploymentElasticsearchMl ml) {
+
             this.ml = ml;
             return this;
         }
         @CustomType.Setter
         public Builder refId(@Nullable String refId) {
+
             this.refId = refId;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder remoteClusters(@Nullable List<DeploymentElasticsearchRemoteCluster> remoteClusters) {
+
             this.remoteClusters = remoteClusters;
             return this;
         }
@@ -376,26 +395,31 @@ public final class DeploymentElasticsearch {
         }
         @CustomType.Setter
         public Builder resourceId(@Nullable String resourceId) {
+
             this.resourceId = resourceId;
             return this;
         }
         @CustomType.Setter
         public Builder snapshot(@Nullable DeploymentElasticsearchSnapshot snapshot) {
+
             this.snapshot = snapshot;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotSource(@Nullable DeploymentElasticsearchSnapshotSource snapshotSource) {
+
             this.snapshotSource = snapshotSource;
             return this;
         }
         @CustomType.Setter
         public Builder strategy(@Nullable String strategy) {
+
             this.strategy = strategy;
             return this;
         }
         @CustomType.Setter
         public Builder trustAccounts(@Nullable List<DeploymentElasticsearchTrustAccount> trustAccounts) {
+
             this.trustAccounts = trustAccounts;
             return this;
         }
@@ -404,6 +428,7 @@ public final class DeploymentElasticsearch {
         }
         @CustomType.Setter
         public Builder trustExternals(@Nullable List<DeploymentElasticsearchTrustExternal> trustExternals) {
+
             this.trustExternals = trustExternals;
             return this;
         }
@@ -412,6 +437,7 @@ public final class DeploymentElasticsearch {
         }
         @CustomType.Setter
         public Builder warm(@Nullable DeploymentElasticsearchWarm warm) {
+
             this.warm = warm;
             return this;
         }

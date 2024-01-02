@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -73,16 +74,23 @@ public final class DeploymentElasticsearchTrustAccount {
 
         @CustomType.Setter
         public Builder accountId(String accountId) {
-            this.accountId = Objects.requireNonNull(accountId);
+            if (accountId == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchTrustAccount", "accountId");
+            }
+            this.accountId = accountId;
             return this;
         }
         @CustomType.Setter
         public Builder trustAll(Boolean trustAll) {
-            this.trustAll = Objects.requireNonNull(trustAll);
+            if (trustAll == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchTrustAccount", "trustAll");
+            }
+            this.trustAll = trustAll;
             return this;
         }
         @CustomType.Setter
         public Builder trustAllowlists(@Nullable List<String> trustAllowlists) {
+
             this.trustAllowlists = trustAllowlists;
             return this;
         }

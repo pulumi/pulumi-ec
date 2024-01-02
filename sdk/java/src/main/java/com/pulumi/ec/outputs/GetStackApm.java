@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -100,17 +101,26 @@ public final class GetStackApm {
 
         @CustomType.Setter
         public Builder capacityConstraintsMax(Integer capacityConstraintsMax) {
-            this.capacityConstraintsMax = Objects.requireNonNull(capacityConstraintsMax);
+            if (capacityConstraintsMax == null) {
+              throw new MissingRequiredPropertyException("GetStackApm", "capacityConstraintsMax");
+            }
+            this.capacityConstraintsMax = capacityConstraintsMax;
             return this;
         }
         @CustomType.Setter
         public Builder capacityConstraintsMin(Integer capacityConstraintsMin) {
-            this.capacityConstraintsMin = Objects.requireNonNull(capacityConstraintsMin);
+            if (capacityConstraintsMin == null) {
+              throw new MissingRequiredPropertyException("GetStackApm", "capacityConstraintsMin");
+            }
+            this.capacityConstraintsMin = capacityConstraintsMin;
             return this;
         }
         @CustomType.Setter
         public Builder compatibleNodeTypes(List<String> compatibleNodeTypes) {
-            this.compatibleNodeTypes = Objects.requireNonNull(compatibleNodeTypes);
+            if (compatibleNodeTypes == null) {
+              throw new MissingRequiredPropertyException("GetStackApm", "compatibleNodeTypes");
+            }
+            this.compatibleNodeTypes = compatibleNodeTypes;
             return this;
         }
         public Builder compatibleNodeTypes(String... compatibleNodeTypes) {
@@ -118,7 +128,10 @@ public final class GetStackApm {
         }
         @CustomType.Setter
         public Builder denylists(List<String> denylists) {
-            this.denylists = Objects.requireNonNull(denylists);
+            if (denylists == null) {
+              throw new MissingRequiredPropertyException("GetStackApm", "denylists");
+            }
+            this.denylists = denylists;
             return this;
         }
         public Builder denylists(String... denylists) {
@@ -126,7 +139,10 @@ public final class GetStackApm {
         }
         @CustomType.Setter
         public Builder dockerImage(String dockerImage) {
-            this.dockerImage = Objects.requireNonNull(dockerImage);
+            if (dockerImage == null) {
+              throw new MissingRequiredPropertyException("GetStackApm", "dockerImage");
+            }
+            this.dockerImage = dockerImage;
             return this;
         }
         public GetStackApm build() {

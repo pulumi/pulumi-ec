@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -42,7 +43,10 @@ public final class DeploymentElasticsearchSnapshotRepositoryReference {
 
         @CustomType.Setter
         public Builder repositoryName(String repositoryName) {
-            this.repositoryName = Objects.requireNonNull(repositoryName);
+            if (repositoryName == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchSnapshotRepositoryReference", "repositoryName");
+            }
+            this.repositoryName = repositoryName;
             return this;
         }
         public DeploymentElasticsearchSnapshotRepositoryReference build() {

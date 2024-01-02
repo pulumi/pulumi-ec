@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -210,67 +211,106 @@ public final class GetDeploymentsDeployment {
 
         @CustomType.Setter
         public Builder alias(String alias) {
-            this.alias = Objects.requireNonNull(alias);
+            if (alias == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "alias");
+            }
+            this.alias = alias;
             return this;
         }
         @CustomType.Setter
         public Builder apmRefId(String apmRefId) {
-            this.apmRefId = Objects.requireNonNull(apmRefId);
+            if (apmRefId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "apmRefId");
+            }
+            this.apmRefId = apmRefId;
             return this;
         }
         @CustomType.Setter
         public Builder apmResourceId(String apmResourceId) {
-            this.apmResourceId = Objects.requireNonNull(apmResourceId);
+            if (apmResourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "apmResourceId");
+            }
+            this.apmResourceId = apmResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder deploymentId(String deploymentId) {
-            this.deploymentId = Objects.requireNonNull(deploymentId);
+            if (deploymentId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "deploymentId");
+            }
+            this.deploymentId = deploymentId;
             return this;
         }
         @CustomType.Setter
         public Builder elasticsearchRefId(String elasticsearchRefId) {
-            this.elasticsearchRefId = Objects.requireNonNull(elasticsearchRefId);
+            if (elasticsearchRefId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "elasticsearchRefId");
+            }
+            this.elasticsearchRefId = elasticsearchRefId;
             return this;
         }
         @CustomType.Setter
         public Builder elasticsearchResourceId(String elasticsearchResourceId) {
-            this.elasticsearchResourceId = Objects.requireNonNull(elasticsearchResourceId);
+            if (elasticsearchResourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "elasticsearchResourceId");
+            }
+            this.elasticsearchResourceId = elasticsearchResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder enterpriseSearchRefId(String enterpriseSearchRefId) {
-            this.enterpriseSearchRefId = Objects.requireNonNull(enterpriseSearchRefId);
+            if (enterpriseSearchRefId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "enterpriseSearchRefId");
+            }
+            this.enterpriseSearchRefId = enterpriseSearchRefId;
             return this;
         }
         @CustomType.Setter
         public Builder enterpriseSearchResourceId(String enterpriseSearchResourceId) {
-            this.enterpriseSearchResourceId = Objects.requireNonNull(enterpriseSearchResourceId);
+            if (enterpriseSearchResourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "enterpriseSearchResourceId");
+            }
+            this.enterpriseSearchResourceId = enterpriseSearchResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder integrationsServerRefId(String integrationsServerRefId) {
-            this.integrationsServerRefId = Objects.requireNonNull(integrationsServerRefId);
+            if (integrationsServerRefId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "integrationsServerRefId");
+            }
+            this.integrationsServerRefId = integrationsServerRefId;
             return this;
         }
         @CustomType.Setter
         public Builder integrationsServerResourceId(String integrationsServerResourceId) {
-            this.integrationsServerResourceId = Objects.requireNonNull(integrationsServerResourceId);
+            if (integrationsServerResourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "integrationsServerResourceId");
+            }
+            this.integrationsServerResourceId = integrationsServerResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder kibanaRefId(String kibanaRefId) {
-            this.kibanaRefId = Objects.requireNonNull(kibanaRefId);
+            if (kibanaRefId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "kibanaRefId");
+            }
+            this.kibanaRefId = kibanaRefId;
             return this;
         }
         @CustomType.Setter
         public Builder kibanaResourceId(String kibanaResourceId) {
-            this.kibanaResourceId = Objects.requireNonNull(kibanaResourceId);
+            if (kibanaResourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "kibanaResourceId");
+            }
+            this.kibanaResourceId = kibanaResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsDeployment", "name");
+            }
+            this.name = name;
             return this;
         }
         public GetDeploymentsDeployment build() {
