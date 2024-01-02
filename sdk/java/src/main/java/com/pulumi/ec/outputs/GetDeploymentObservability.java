@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -85,22 +86,34 @@ public final class GetDeploymentObservability {
 
         @CustomType.Setter
         public Builder deploymentId(String deploymentId) {
-            this.deploymentId = Objects.requireNonNull(deploymentId);
+            if (deploymentId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentObservability", "deploymentId");
+            }
+            this.deploymentId = deploymentId;
             return this;
         }
         @CustomType.Setter
         public Builder logs(Boolean logs) {
-            this.logs = Objects.requireNonNull(logs);
+            if (logs == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentObservability", "logs");
+            }
+            this.logs = logs;
             return this;
         }
         @CustomType.Setter
         public Builder metrics(Boolean metrics) {
-            this.metrics = Objects.requireNonNull(metrics);
+            if (metrics == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentObservability", "metrics");
+            }
+            this.metrics = metrics;
             return this;
         }
         @CustomType.Setter
         public Builder refId(String refId) {
-            this.refId = Objects.requireNonNull(refId);
+            if (refId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentObservability", "refId");
+            }
+            this.refId = refId;
             return this;
         }
         public GetDeploymentObservability build() {

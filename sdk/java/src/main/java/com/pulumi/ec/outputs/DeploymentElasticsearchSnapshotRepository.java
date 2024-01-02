@@ -44,6 +44,7 @@ public final class DeploymentElasticsearchSnapshotRepository {
 
         @CustomType.Setter
         public Builder reference(@Nullable DeploymentElasticsearchSnapshotRepositoryReference reference) {
+
             this.reference = reference;
             return this;
         }

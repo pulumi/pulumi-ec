@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -79,21 +80,29 @@ public final class DeploymentElasticsearchRemoteCluster {
 
         @CustomType.Setter
         public Builder alias(String alias) {
-            this.alias = Objects.requireNonNull(alias);
+            if (alias == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchRemoteCluster", "alias");
+            }
+            this.alias = alias;
             return this;
         }
         @CustomType.Setter
         public Builder deploymentId(String deploymentId) {
-            this.deploymentId = Objects.requireNonNull(deploymentId);
+            if (deploymentId == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchRemoteCluster", "deploymentId");
+            }
+            this.deploymentId = deploymentId;
             return this;
         }
         @CustomType.Setter
         public Builder refId(@Nullable String refId) {
+
             this.refId = refId;
             return this;
         }
         @CustomType.Setter
         public Builder skipUnavailable(@Nullable Boolean skipUnavailable) {
+
             this.skipUnavailable = skipUnavailable;
             return this;
         }

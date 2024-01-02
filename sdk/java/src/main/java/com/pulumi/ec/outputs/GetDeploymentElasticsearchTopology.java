@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.GetDeploymentElasticsearchTopologyAutoscaling;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -172,7 +173,10 @@ public final class GetDeploymentElasticsearchTopology {
 
         @CustomType.Setter
         public Builder autoscalings(List<GetDeploymentElasticsearchTopologyAutoscaling> autoscalings) {
-            this.autoscalings = Objects.requireNonNull(autoscalings);
+            if (autoscalings == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "autoscalings");
+            }
+            this.autoscalings = autoscalings;
             return this;
         }
         public Builder autoscalings(GetDeploymentElasticsearchTopologyAutoscaling... autoscalings) {
@@ -180,12 +184,18 @@ public final class GetDeploymentElasticsearchTopology {
         }
         @CustomType.Setter
         public Builder instanceConfigurationId(String instanceConfigurationId) {
-            this.instanceConfigurationId = Objects.requireNonNull(instanceConfigurationId);
+            if (instanceConfigurationId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "instanceConfigurationId");
+            }
+            this.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
         @CustomType.Setter
         public Builder nodeRoles(List<String> nodeRoles) {
-            this.nodeRoles = Objects.requireNonNull(nodeRoles);
+            if (nodeRoles == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "nodeRoles");
+            }
+            this.nodeRoles = nodeRoles;
             return this;
         }
         public Builder nodeRoles(String... nodeRoles) {
@@ -193,37 +203,58 @@ public final class GetDeploymentElasticsearchTopology {
         }
         @CustomType.Setter
         public Builder nodeTypeData(Boolean nodeTypeData) {
-            this.nodeTypeData = Objects.requireNonNull(nodeTypeData);
+            if (nodeTypeData == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "nodeTypeData");
+            }
+            this.nodeTypeData = nodeTypeData;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeIngest(Boolean nodeTypeIngest) {
-            this.nodeTypeIngest = Objects.requireNonNull(nodeTypeIngest);
+            if (nodeTypeIngest == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "nodeTypeIngest");
+            }
+            this.nodeTypeIngest = nodeTypeIngest;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeMaster(Boolean nodeTypeMaster) {
-            this.nodeTypeMaster = Objects.requireNonNull(nodeTypeMaster);
+            if (nodeTypeMaster == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "nodeTypeMaster");
+            }
+            this.nodeTypeMaster = nodeTypeMaster;
             return this;
         }
         @CustomType.Setter
         public Builder nodeTypeMl(Boolean nodeTypeMl) {
-            this.nodeTypeMl = Objects.requireNonNull(nodeTypeMl);
+            if (nodeTypeMl == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "nodeTypeMl");
+            }
+            this.nodeTypeMl = nodeTypeMl;
             return this;
         }
         @CustomType.Setter
         public Builder size(String size) {
-            this.size = Objects.requireNonNull(size);
+            if (size == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "size");
+            }
+            this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder sizeResource(String sizeResource) {
-            this.sizeResource = Objects.requireNonNull(sizeResource);
+            if (sizeResource == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "sizeResource");
+            }
+            this.sizeResource = sizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder zoneCount(Integer zoneCount) {
-            this.zoneCount = Objects.requireNonNull(zoneCount);
+            if (zoneCount == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopology", "zoneCount");
+            }
+            this.zoneCount = zoneCount;
             return this;
         }
         public GetDeploymentElasticsearchTopology build() {

@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.GetDeploymentElasticsearchTopology;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -171,47 +172,74 @@ public final class GetDeploymentElasticsearch {
 
         @CustomType.Setter
         public Builder autoscale(String autoscale) {
-            this.autoscale = Objects.requireNonNull(autoscale);
+            if (autoscale == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "autoscale");
+            }
+            this.autoscale = autoscale;
             return this;
         }
         @CustomType.Setter
         public Builder cloudId(String cloudId) {
-            this.cloudId = Objects.requireNonNull(cloudId);
+            if (cloudId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "cloudId");
+            }
+            this.cloudId = cloudId;
             return this;
         }
         @CustomType.Setter
         public Builder healthy(Boolean healthy) {
-            this.healthy = Objects.requireNonNull(healthy);
+            if (healthy == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "healthy");
+            }
+            this.healthy = healthy;
             return this;
         }
         @CustomType.Setter
         public Builder httpEndpoint(String httpEndpoint) {
-            this.httpEndpoint = Objects.requireNonNull(httpEndpoint);
+            if (httpEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "httpEndpoint");
+            }
+            this.httpEndpoint = httpEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder httpsEndpoint(String httpsEndpoint) {
-            this.httpsEndpoint = Objects.requireNonNull(httpsEndpoint);
+            if (httpsEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "httpsEndpoint");
+            }
+            this.httpsEndpoint = httpsEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder refId(String refId) {
-            this.refId = Objects.requireNonNull(refId);
+            if (refId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "refId");
+            }
+            this.refId = refId;
             return this;
         }
         @CustomType.Setter
         public Builder resourceId(String resourceId) {
-            this.resourceId = Objects.requireNonNull(resourceId);
+            if (resourceId == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "resourceId");
+            }
+            this.resourceId = resourceId;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder topologies(List<GetDeploymentElasticsearchTopology> topologies) {
-            this.topologies = Objects.requireNonNull(topologies);
+            if (topologies == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "topologies");
+            }
+            this.topologies = topologies;
             return this;
         }
         public Builder topologies(GetDeploymentElasticsearchTopology... topologies) {
@@ -219,7 +247,10 @@ public final class GetDeploymentElasticsearch {
         }
         @CustomType.Setter
         public Builder version(String version) {
-            this.version = Objects.requireNonNull(version);
+            if (version == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearch", "version");
+            }
+            this.version = version;
             return this;
         }
         public GetDeploymentElasticsearch build() {

@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -58,12 +59,16 @@ public final class DeploymentElasticsearchSnapshotSource {
 
         @CustomType.Setter
         public Builder snapshotName(@Nullable String snapshotName) {
+
             this.snapshotName = snapshotName;
             return this;
         }
         @CustomType.Setter
         public Builder sourceElasticsearchClusterId(String sourceElasticsearchClusterId) {
-            this.sourceElasticsearchClusterId = Objects.requireNonNull(sourceElasticsearchClusterId);
+            if (sourceElasticsearchClusterId == null) {
+              throw new MissingRequiredPropertyException("DeploymentElasticsearchSnapshotSource", "sourceElasticsearchClusterId");
+            }
+            this.sourceElasticsearchClusterId = sourceElasticsearchClusterId;
             return this;
         }
         public DeploymentElasticsearchSnapshotSource build() {

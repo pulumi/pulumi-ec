@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -185,10 +186,18 @@ public final class DeploymentElasticsearchExtensionArgs extends com.pulumi.resou
         }
 
         public DeploymentElasticsearchExtensionArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
-            $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchExtensionArgs", "name");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchExtensionArgs", "type");
+            }
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchExtensionArgs", "url");
+            }
+            if ($.version == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchExtensionArgs", "version");
+            }
             return $;
         }
     }

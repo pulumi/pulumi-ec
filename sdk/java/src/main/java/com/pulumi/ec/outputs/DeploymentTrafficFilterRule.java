@@ -100,26 +100,31 @@ public final class DeploymentTrafficFilterRule {
 
         @CustomType.Setter
         public Builder azureEndpointGuid(@Nullable String azureEndpointGuid) {
+
             this.azureEndpointGuid = azureEndpointGuid;
             return this;
         }
         @CustomType.Setter
         public Builder azureEndpointName(@Nullable String azureEndpointName) {
+
             this.azureEndpointName = azureEndpointName;
             return this;
         }
         @CustomType.Setter
         public Builder description(@Nullable String description) {
+
             this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder source(@Nullable String source) {
+
             this.source = source;
             return this;
         }

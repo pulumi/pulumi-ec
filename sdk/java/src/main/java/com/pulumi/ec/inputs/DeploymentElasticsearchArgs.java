@@ -20,6 +20,7 @@ import com.pulumi.ec.inputs.DeploymentElasticsearchSnapshotSourceArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTrustAccountArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchTrustExternalArgs;
 import com.pulumi.ec.inputs.DeploymentElasticsearchWarmArgs;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -736,7 +737,9 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         public DeploymentElasticsearchArgs build() {
-            $.hot = Objects.requireNonNull($.hot, "expected parameter 'hot' to be non-null");
+            if ($.hot == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchArgs", "hot");
+            }
             return $;
         }
     }

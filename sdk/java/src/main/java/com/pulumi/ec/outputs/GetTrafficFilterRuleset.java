@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.GetTrafficFilterRulesetRule;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -115,32 +116,50 @@ public final class GetTrafficFilterRuleset {
 
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRuleset", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRuleset", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder includeByDefault(Boolean includeByDefault) {
-            this.includeByDefault = Objects.requireNonNull(includeByDefault);
+            if (includeByDefault == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRuleset", "includeByDefault");
+            }
+            this.includeByDefault = includeByDefault;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRuleset", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRuleset", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder rules(List<GetTrafficFilterRulesetRule> rules) {
-            this.rules = Objects.requireNonNull(rules);
+            if (rules == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRuleset", "rules");
+            }
+            this.rules = rules;
             return this;
         }
         public Builder rules(GetTrafficFilterRulesetRule... rules) {

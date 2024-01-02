@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -56,12 +57,18 @@ public final class SnapshotRepositoryGeneric {
 
         @CustomType.Setter
         public Builder settings(String settings) {
-            this.settings = Objects.requireNonNull(settings);
+            if (settings == null) {
+              throw new MissingRequiredPropertyException("SnapshotRepositoryGeneric", "settings");
+            }
+            this.settings = settings;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("SnapshotRepositoryGeneric", "type");
+            }
+            this.type = type;
             return this;
         }
         public SnapshotRepositoryGeneric build() {

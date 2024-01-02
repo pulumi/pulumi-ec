@@ -100,26 +100,31 @@ public final class DeploymentElasticsearchColdAutoscaling {
 
         @CustomType.Setter
         public Builder maxSize(@Nullable String maxSize) {
+
             this.maxSize = maxSize;
             return this;
         }
         @CustomType.Setter
         public Builder maxSizeResource(@Nullable String maxSizeResource) {
+
             this.maxSizeResource = maxSizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder minSize(@Nullable String minSize) {
+
             this.minSize = minSize;
             return this;
         }
         @CustomType.Setter
         public Builder minSizeResource(@Nullable String minSizeResource) {
+
             this.minSizeResource = minSizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder policyOverrideJson(@Nullable String policyOverrideJson) {
+
             this.policyOverrideJson = policyOverrideJson;
             return this;
         }

@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -168,8 +169,12 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         public DeploymentElasticsearchRemoteClusterArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.deploymentId = Objects.requireNonNull($.deploymentId, "expected parameter 'deploymentId' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchRemoteClusterArgs", "alias");
+            }
+            if ($.deploymentId == null) {
+                throw new MissingRequiredPropertyException("DeploymentElasticsearchRemoteClusterArgs", "deploymentId");
+            }
             return $;
         }
     }

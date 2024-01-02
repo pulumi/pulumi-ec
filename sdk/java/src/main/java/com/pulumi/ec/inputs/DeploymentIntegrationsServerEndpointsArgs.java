@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -71,8 +72,12 @@ public final class DeploymentIntegrationsServerEndpointsArgs extends com.pulumi.
         }
 
         public DeploymentIntegrationsServerEndpointsArgs build() {
-            $.apm = Objects.requireNonNull($.apm, "expected parameter 'apm' to be non-null");
-            $.fleet = Objects.requireNonNull($.fleet, "expected parameter 'fleet' to be non-null");
+            if ($.apm == null) {
+                throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpointsArgs", "apm");
+            }
+            if ($.fleet == null) {
+                throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpointsArgs", "fleet");
+            }
             return $;
         }
     }

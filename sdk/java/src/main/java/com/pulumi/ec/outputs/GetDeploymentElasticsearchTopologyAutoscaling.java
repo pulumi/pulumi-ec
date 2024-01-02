@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -98,27 +99,42 @@ public final class GetDeploymentElasticsearchTopologyAutoscaling {
 
         @CustomType.Setter
         public Builder maxSize(String maxSize) {
-            this.maxSize = Objects.requireNonNull(maxSize);
+            if (maxSize == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopologyAutoscaling", "maxSize");
+            }
+            this.maxSize = maxSize;
             return this;
         }
         @CustomType.Setter
         public Builder maxSizeResource(String maxSizeResource) {
-            this.maxSizeResource = Objects.requireNonNull(maxSizeResource);
+            if (maxSizeResource == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopologyAutoscaling", "maxSizeResource");
+            }
+            this.maxSizeResource = maxSizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder minSize(String minSize) {
-            this.minSize = Objects.requireNonNull(minSize);
+            if (minSize == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopologyAutoscaling", "minSize");
+            }
+            this.minSize = minSize;
             return this;
         }
         @CustomType.Setter
         public Builder minSizeResource(String minSizeResource) {
-            this.minSizeResource = Objects.requireNonNull(minSizeResource);
+            if (minSizeResource == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopologyAutoscaling", "minSizeResource");
+            }
+            this.minSizeResource = minSizeResource;
             return this;
         }
         @CustomType.Setter
         public Builder policyOverrideJson(String policyOverrideJson) {
-            this.policyOverrideJson = Objects.requireNonNull(policyOverrideJson);
+            if (policyOverrideJson == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentElasticsearchTopologyAutoscaling", "policyOverrideJson");
+            }
+            this.policyOverrideJson = policyOverrideJson;
             return this;
         }
         public GetDeploymentElasticsearchTopologyAutoscaling build() {

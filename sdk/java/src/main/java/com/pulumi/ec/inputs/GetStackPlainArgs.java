@@ -4,6 +4,7 @@
 package com.pulumi.ec.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -120,8 +121,12 @@ public final class GetStackPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetStackPlainArgs build() {
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
-            $.versionRegex = Objects.requireNonNull($.versionRegex, "expected parameter 'versionRegex' to be non-null");
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("GetStackPlainArgs", "region");
+            }
+            if ($.versionRegex == null) {
+                throw new MissingRequiredPropertyException("GetStackPlainArgs", "versionRegex");
+            }
             return $;
         }
     }

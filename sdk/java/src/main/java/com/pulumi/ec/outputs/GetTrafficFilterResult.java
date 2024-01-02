@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ec.outputs.GetTrafficFilterRuleset;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -88,22 +89,28 @@ public final class GetTrafficFilterResult {
 
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder rulesets(List<GetTrafficFilterRuleset> rulesets) {
-            this.rulesets = Objects.requireNonNull(rulesets);
+            if (rulesets == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterResult", "rulesets");
+            }
+            this.rulesets = rulesets;
             return this;
         }
         public Builder rulesets(GetTrafficFilterRuleset... rulesets) {
