@@ -15,16 +15,19 @@
 package ec
 
 import (
-	// Allow us to embed metadata
-	_ "embed"
 	"fmt"
 	"path/filepath"
 
+	// Allow us to embed metadata
+	_ "embed"
+
 	"github.com/elastic/terraform-provider-ec/ec"
-	"github.com/pulumi/pulumi-ec/provider/pkg/version"
+
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+
+	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 )
 
 // all of the token components used below.
