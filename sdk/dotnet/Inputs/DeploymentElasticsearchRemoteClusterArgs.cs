@@ -24,6 +24,9 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
+        /// <summary>
+        /// Remote elasticsearch "ref_id", it is best left to the default value
+        /// </summary>
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 

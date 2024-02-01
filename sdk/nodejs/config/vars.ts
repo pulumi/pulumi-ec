@@ -18,9 +18,6 @@ Object.defineProperty(exports, "apikey", {
     enumerable: true,
 });
 
-/**
- * Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
- */
 export declare const endpoint: string | undefined;
 Object.defineProperty(exports, "endpoint", {
     get() {
