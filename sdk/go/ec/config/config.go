@@ -15,8 +15,6 @@ var _ = internal.GetEnvOrDefault
 func GetApikey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:apikey")
 }
-
-// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 func GetEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:endpoint")
 }

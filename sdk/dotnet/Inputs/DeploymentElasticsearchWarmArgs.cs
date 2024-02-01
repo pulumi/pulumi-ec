@@ -18,6 +18,9 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("autoscaling", required: true)]
         public Input<Inputs.DeploymentElasticsearchWarmAutoscalingArgs> Autoscaling { get; set; } = null!;
 
+        /// <summary>
+        /// Computed Instance Configuration ID of the topology element
+        /// </summary>
         [Input("instanceConfigurationId")]
         public Input<string>? InstanceConfigurationId { get; set; }
 
@@ -57,6 +60,9 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("nodeTypeMl")]
         public Input<string>? NodeTypeMl { get; set; }
 
+        /// <summary>
+        /// Amount of "size_resource" per node in the "&lt;size in GB&gt;g" notation
+        /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
@@ -66,6 +72,9 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("sizeResource")]
         public Input<string>? SizeResource { get; set; }
 
+        /// <summary>
+        /// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        /// </summary>
         [Input("zoneCount")]
         public Input<int>? ZoneCount { get; set; }
 

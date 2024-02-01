@@ -23,6 +23,10 @@ public final class DeploymentElasticsearchRemoteCluster {
      * 
      */
     private String deploymentId;
+    /**
+     * @return Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+     * 
+     */
     private @Nullable String refId;
     /**
      * @return If true, skip the cluster during search when disconnected
@@ -45,6 +49,10 @@ public final class DeploymentElasticsearchRemoteCluster {
     public String deploymentId() {
         return this.deploymentId;
     }
+    /**
+     * @return Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+     * 
+     */
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
