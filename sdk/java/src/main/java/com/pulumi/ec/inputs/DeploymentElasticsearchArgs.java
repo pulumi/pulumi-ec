@@ -49,9 +49,17 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.autoscale);
     }
 
+    /**
+     * The encoded Elasticsearch credentials to use in Beats or Logstash
+     * 
+     */
     @Import(name="cloudId")
     private @Nullable Output<String> cloudId;
 
+    /**
+     * @return The encoded Elasticsearch credentials to use in Beats or Logstash
+     * 
+     */
     public Optional<Output<String>> cloudId() {
         return Optional.ofNullable(this.cloudId);
     }
@@ -146,16 +154,32 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         return this.hot;
     }
 
+    /**
+     * The Elasticsearch resource HTTP endpoint
+     * 
+     */
     @Import(name="httpEndpoint")
     private @Nullable Output<String> httpEndpoint;
 
+    /**
+     * @return The Elasticsearch resource HTTP endpoint
+     * 
+     */
     public Optional<Output<String>> httpEndpoint() {
         return Optional.ofNullable(this.httpEndpoint);
     }
 
+    /**
+     * The Elasticsearch resource HTTPs endpoint
+     * 
+     */
     @Import(name="httpsEndpoint")
     private @Nullable Output<String> httpsEndpoint;
 
+    /**
+     * @return The Elasticsearch resource HTTPs endpoint
+     * 
+     */
     public Optional<Output<String>> httpsEndpoint() {
         return Optional.ofNullable(this.httpsEndpoint);
     }
@@ -220,9 +244,17 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.refId);
     }
 
+    /**
+     * The Elasticsearch resource region
+     * 
+     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
+    /**
+     * @return The Elasticsearch resource region
+     * 
+     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
@@ -242,9 +274,17 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.remoteClusters);
     }
 
+    /**
+     * The Elasticsearch resource unique identifier
+     * 
+     */
     @Import(name="resourceId")
     private @Nullable Output<String> resourceId;
 
+    /**
+     * @return The Elasticsearch resource unique identifier
+     * 
+     */
     public Optional<Output<String>> resourceId() {
         return Optional.ofNullable(this.resourceId);
     }
@@ -271,30 +311,62 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.snapshotSource);
     }
 
+    /**
+     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * 
+     */
     @Import(name="strategy")
     private @Nullable Output<String> strategy;
 
+    /**
+     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * 
+     */
     public Optional<Output<String>> strategy() {
         return Optional.ofNullable(this.strategy);
     }
 
+    /**
+     * Optional Elasticsearch account trust settings.
+     * 
+     */
     @Import(name="trustAccounts")
     private @Nullable Output<List<DeploymentElasticsearchTrustAccountArgs>> trustAccounts;
 
+    /**
+     * @return Optional Elasticsearch account trust settings.
+     * 
+     */
     public Optional<Output<List<DeploymentElasticsearchTrustAccountArgs>>> trustAccounts() {
         return Optional.ofNullable(this.trustAccounts);
     }
 
+    /**
+     * Optional Elasticsearch external trust settings.
+     * 
+     */
     @Import(name="trustExternals")
     private @Nullable Output<List<DeploymentElasticsearchTrustExternalArgs>> trustExternals;
 
+    /**
+     * @return Optional Elasticsearch external trust settings.
+     * 
+     */
     public Optional<Output<List<DeploymentElasticsearchTrustExternalArgs>>> trustExternals() {
         return Optional.ofNullable(this.trustExternals);
     }
 
+    /**
+     * &#39;warm&#39; topology element
+     * 
+     */
     @Import(name="warm")
     private @Nullable Output<DeploymentElasticsearchWarmArgs> warm;
 
+    /**
+     * @return &#39;warm&#39; topology element
+     * 
+     */
     public Optional<Output<DeploymentElasticsearchWarmArgs>> warm() {
         return Optional.ofNullable(this.warm);
     }
@@ -366,11 +438,23 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
             return autoscale(Output.of(autoscale));
         }
 
+        /**
+         * @param cloudId The encoded Elasticsearch credentials to use in Beats or Logstash
+         * 
+         * @return builder
+         * 
+         */
         public Builder cloudId(@Nullable Output<String> cloudId) {
             $.cloudId = cloudId;
             return this;
         }
 
+        /**
+         * @param cloudId The encoded Elasticsearch credentials to use in Beats or Logstash
+         * 
+         * @return builder
+         * 
+         */
         public Builder cloudId(String cloudId) {
             return cloudId(Output.of(cloudId));
         }
@@ -511,20 +595,44 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
             return hot(Output.of(hot));
         }
 
+        /**
+         * @param httpEndpoint The Elasticsearch resource HTTP endpoint
+         * 
+         * @return builder
+         * 
+         */
         public Builder httpEndpoint(@Nullable Output<String> httpEndpoint) {
             $.httpEndpoint = httpEndpoint;
             return this;
         }
 
+        /**
+         * @param httpEndpoint The Elasticsearch resource HTTP endpoint
+         * 
+         * @return builder
+         * 
+         */
         public Builder httpEndpoint(String httpEndpoint) {
             return httpEndpoint(Output.of(httpEndpoint));
         }
 
+        /**
+         * @param httpsEndpoint The Elasticsearch resource HTTPs endpoint
+         * 
+         * @return builder
+         * 
+         */
         public Builder httpsEndpoint(@Nullable Output<String> httpsEndpoint) {
             $.httpsEndpoint = httpsEndpoint;
             return this;
         }
 
+        /**
+         * @param httpsEndpoint The Elasticsearch resource HTTPs endpoint
+         * 
+         * @return builder
+         * 
+         */
         public Builder httpsEndpoint(String httpsEndpoint) {
             return httpsEndpoint(Output.of(httpsEndpoint));
         }
@@ -613,11 +721,23 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
             return refId(Output.of(refId));
         }
 
+        /**
+         * @param region The Elasticsearch resource region
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param region The Elasticsearch resource region
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(String region) {
             return region(Output.of(region));
         }
@@ -653,11 +773,23 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
             return remoteClusters(List.of(remoteClusters));
         }
 
+        /**
+         * @param resourceId The Elasticsearch resource unique identifier
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceId(@Nullable Output<String> resourceId) {
             $.resourceId = resourceId;
             return this;
         }
 
+        /**
+         * @param resourceId The Elasticsearch resource unique identifier
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceId(String resourceId) {
             return resourceId(Output.of(resourceId));
         }
@@ -692,46 +824,106 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
             return snapshotSource(Output.of(snapshotSource));
         }
 
+        /**
+         * @param strategy Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+         * 
+         * @return builder
+         * 
+         */
         public Builder strategy(@Nullable Output<String> strategy) {
             $.strategy = strategy;
             return this;
         }
 
+        /**
+         * @param strategy Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+         * 
+         * @return builder
+         * 
+         */
         public Builder strategy(String strategy) {
             return strategy(Output.of(strategy));
         }
 
+        /**
+         * @param trustAccounts Optional Elasticsearch account trust settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAccounts(@Nullable Output<List<DeploymentElasticsearchTrustAccountArgs>> trustAccounts) {
             $.trustAccounts = trustAccounts;
             return this;
         }
 
+        /**
+         * @param trustAccounts Optional Elasticsearch account trust settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAccounts(List<DeploymentElasticsearchTrustAccountArgs> trustAccounts) {
             return trustAccounts(Output.of(trustAccounts));
         }
 
+        /**
+         * @param trustAccounts Optional Elasticsearch account trust settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustAccounts(DeploymentElasticsearchTrustAccountArgs... trustAccounts) {
             return trustAccounts(List.of(trustAccounts));
         }
 
+        /**
+         * @param trustExternals Optional Elasticsearch external trust settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustExternals(@Nullable Output<List<DeploymentElasticsearchTrustExternalArgs>> trustExternals) {
             $.trustExternals = trustExternals;
             return this;
         }
 
+        /**
+         * @param trustExternals Optional Elasticsearch external trust settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustExternals(List<DeploymentElasticsearchTrustExternalArgs> trustExternals) {
             return trustExternals(Output.of(trustExternals));
         }
 
+        /**
+         * @param trustExternals Optional Elasticsearch external trust settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trustExternals(DeploymentElasticsearchTrustExternalArgs... trustExternals) {
             return trustExternals(List.of(trustExternals));
         }
 
+        /**
+         * @param warm &#39;warm&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
         public Builder warm(@Nullable Output<DeploymentElasticsearchWarmArgs> warm) {
             $.warm = warm;
             return this;
         }
 
+        /**
+         * @param warm &#39;warm&#39; topology element
+         * 
+         * @return builder
+         * 
+         */
         public Builder warm(DeploymentElasticsearchWarmArgs warm) {
             return warm(Output.of(warm));
         }

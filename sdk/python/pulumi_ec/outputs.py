@@ -379,17 +379,26 @@ class DeploymentElasticsearch(dict):
         """
         :param 'DeploymentElasticsearchHotArgs' hot: 'hot' topology element
         :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param str cloud_id: The encoded Elasticsearch credentials to use in Beats or Logstash
         :param 'DeploymentElasticsearchColdArgs' cold: 'cold' topology element
         :param 'DeploymentElasticsearchConfigArgs' config: Elasticsearch settings which will be applied to all topologies
         :param 'DeploymentElasticsearchCoordinatingArgs' coordinating: 'coordinating' topology element
         :param Sequence['DeploymentElasticsearchExtensionArgs'] extensions: Optional Elasticsearch extensions such as custom bundles or plugins.
         :param 'DeploymentElasticsearchFrozenArgs' frozen: 'frozen' topology element
+        :param str http_endpoint: The Elasticsearch resource HTTP endpoint
+        :param str https_endpoint: The Elasticsearch resource HTTPs endpoint
         :param Mapping[str, 'DeploymentElasticsearchKeystoreContentsArgs'] keystore_contents: Keystore contents that are controlled by the deployment resource.
         :param 'DeploymentElasticsearchMasterArgs' master: 'master' topology element
         :param 'DeploymentElasticsearchMlArgs' ml: 'ml' topology element
         :param str ref_id: A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
+        :param str region: The Elasticsearch resource region
         :param Sequence['DeploymentElasticsearchRemoteClusterArgs'] remote_clusters: Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
+        :param str resource_id: The Elasticsearch resource unique identifier
         :param 'DeploymentElasticsearchSnapshotArgs' snapshot: (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+        :param str strategy: Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        :param Sequence['DeploymentElasticsearchTrustAccountArgs'] trust_accounts: Optional Elasticsearch account trust settings.
+        :param Sequence['DeploymentElasticsearchTrustExternalArgs'] trust_externals: Optional Elasticsearch external trust settings.
+        :param 'DeploymentElasticsearchWarmArgs' warm: 'warm' topology element
         """
         pulumi.set(__self__, "hot", hot)
         if autoscale is not None:
@@ -456,6 +465,9 @@ class DeploymentElasticsearch(dict):
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> Optional[str]:
+        """
+        The encoded Elasticsearch credentials to use in Beats or Logstash
+        """
         return pulumi.get(self, "cloud_id")
 
     @property
@@ -501,11 +513,17 @@ class DeploymentElasticsearch(dict):
     @property
     @pulumi.getter(name="httpEndpoint")
     def http_endpoint(self) -> Optional[str]:
+        """
+        The Elasticsearch resource HTTP endpoint
+        """
         return pulumi.get(self, "http_endpoint")
 
     @property
     @pulumi.getter(name="httpsEndpoint")
     def https_endpoint(self) -> Optional[str]:
+        """
+        The Elasticsearch resource HTTPs endpoint
+        """
         return pulumi.get(self, "https_endpoint")
 
     @property
@@ -543,6 +561,9 @@ class DeploymentElasticsearch(dict):
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        The Elasticsearch resource region
+        """
         return pulumi.get(self, "region")
 
     @property
@@ -556,6 +577,9 @@ class DeploymentElasticsearch(dict):
     @property
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> Optional[str]:
+        """
+        The Elasticsearch resource unique identifier
+        """
         return pulumi.get(self, "resource_id")
 
     @property
@@ -574,21 +598,33 @@ class DeploymentElasticsearch(dict):
     @property
     @pulumi.getter
     def strategy(self) -> Optional[str]:
+        """
+        Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        """
         return pulumi.get(self, "strategy")
 
     @property
     @pulumi.getter(name="trustAccounts")
     def trust_accounts(self) -> Optional[Sequence['outputs.DeploymentElasticsearchTrustAccount']]:
+        """
+        Optional Elasticsearch account trust settings.
+        """
         return pulumi.get(self, "trust_accounts")
 
     @property
     @pulumi.getter(name="trustExternals")
     def trust_externals(self) -> Optional[Sequence['outputs.DeploymentElasticsearchTrustExternal']]:
+        """
+        Optional Elasticsearch external trust settings.
+        """
         return pulumi.get(self, "trust_externals")
 
     @property
     @pulumi.getter
     def warm(self) -> Optional['outputs.DeploymentElasticsearchWarm']:
+        """
+        'warm' topology element
+        """
         return pulumi.get(self, "warm")
 
 
@@ -638,12 +674,15 @@ class DeploymentElasticsearchCold(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchColdAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -676,6 +715,9 @@ class DeploymentElasticsearchCold(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -721,6 +763,9 @@ class DeploymentElasticsearchCold(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -734,6 +779,9 @@ class DeploymentElasticsearchCold(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 
@@ -979,12 +1027,15 @@ class DeploymentElasticsearchCoordinating(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchCoordinatingAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -1017,6 +1068,9 @@ class DeploymentElasticsearchCoordinating(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -1062,6 +1116,9 @@ class DeploymentElasticsearchCoordinating(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -1075,6 +1132,9 @@ class DeploymentElasticsearchCoordinating(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 
@@ -1267,12 +1327,15 @@ class DeploymentElasticsearchFrozen(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchFrozenAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -1305,6 +1368,9 @@ class DeploymentElasticsearchFrozen(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -1350,6 +1416,9 @@ class DeploymentElasticsearchFrozen(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -1363,6 +1432,9 @@ class DeploymentElasticsearchFrozen(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 
@@ -1504,12 +1576,15 @@ class DeploymentElasticsearchHot(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchHotAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -1542,6 +1617,9 @@ class DeploymentElasticsearchHot(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -1587,6 +1665,9 @@ class DeploymentElasticsearchHot(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -1600,6 +1681,9 @@ class DeploymentElasticsearchHot(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 
@@ -1788,12 +1872,15 @@ class DeploymentElasticsearchMaster(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchMasterAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -1826,6 +1913,9 @@ class DeploymentElasticsearchMaster(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -1871,6 +1961,9 @@ class DeploymentElasticsearchMaster(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -1884,6 +1977,9 @@ class DeploymentElasticsearchMaster(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 
@@ -2025,12 +2121,15 @@ class DeploymentElasticsearchMl(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchMlAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -2063,6 +2162,9 @@ class DeploymentElasticsearchMl(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -2108,6 +2210,9 @@ class DeploymentElasticsearchMl(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -2121,6 +2226,9 @@ class DeploymentElasticsearchMl(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 
@@ -2247,6 +2355,7 @@ class DeploymentElasticsearchRemoteCluster(dict):
         """
         :param str alias: Alias for this Cross Cluster Search binding
         :param str deployment_id: Remote deployment ID
+        :param str ref_id: Remote elasticsearch "ref_id", it is best left to the default value
         :param bool skip_unavailable: If true, skip the cluster during search when disconnected
         """
         pulumi.set(__self__, "alias", alias)
@@ -2275,6 +2384,9 @@ class DeploymentElasticsearchRemoteCluster(dict):
     @property
     @pulumi.getter(name="refId")
     def ref_id(self) -> Optional[str]:
+        """
+        Remote elasticsearch "ref_id", it is best left to the default value
+        """
         return pulumi.get(self, "ref_id")
 
     @property
@@ -2589,12 +2701,15 @@ class DeploymentElasticsearchWarm(dict):
                  zone_count: Optional[int] = None):
         """
         :param 'DeploymentElasticsearchWarmAutoscalingArgs' autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
+        :param str instance_configuration_id: Computed Instance Configuration ID of the topology element
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
+        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
         :param str size_resource: Optional size type, defaults to "memory".
+        :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
@@ -2627,6 +2742,9 @@ class DeploymentElasticsearchWarm(dict):
     @property
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[str]:
+        """
+        Computed Instance Configuration ID of the topology element
+        """
         return pulumi.get(self, "instance_configuration_id")
 
     @property
@@ -2672,6 +2790,9 @@ class DeploymentElasticsearchWarm(dict):
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
+        """
+        Amount of "size_resource" per node in the "<size in GB>g" notation
+        """
         return pulumi.get(self, "size")
 
     @property
@@ -2685,6 +2806,9 @@ class DeploymentElasticsearchWarm(dict):
     @property
     @pulumi.getter(name="zoneCount")
     def zone_count(self) -> Optional[int]:
+        """
+        Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        """
         return pulumi.get(self, "zone_count")
 
 

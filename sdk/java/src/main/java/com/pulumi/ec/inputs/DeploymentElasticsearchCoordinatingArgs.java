@@ -34,9 +34,17 @@ public final class DeploymentElasticsearchCoordinatingArgs extends com.pulumi.re
         return this.autoscaling;
     }
 
+    /**
+     * Computed Instance Configuration ID of the topology element
+     * 
+     */
     @Import(name="instanceConfigurationId")
     private @Nullable Output<String> instanceConfigurationId;
 
+    /**
+     * @return Computed Instance Configuration ID of the topology element
+     * 
+     */
     public Optional<Output<String>> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
     }
@@ -116,9 +124,17 @@ public final class DeploymentElasticsearchCoordinatingArgs extends com.pulumi.re
         return Optional.ofNullable(this.nodeTypeMl);
     }
 
+    /**
+     * Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * 
+     */
     @Import(name="size")
     private @Nullable Output<String> size;
 
+    /**
+     * @return Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * 
+     */
     public Optional<Output<String>> size() {
         return Optional.ofNullable(this.size);
     }
@@ -138,9 +154,17 @@ public final class DeploymentElasticsearchCoordinatingArgs extends com.pulumi.re
         return Optional.ofNullable(this.sizeResource);
     }
 
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     * 
+     */
     @Import(name="zoneCount")
     private @Nullable Output<Integer> zoneCount;
 
+    /**
+     * @return Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     * 
+     */
     public Optional<Output<Integer>> zoneCount() {
         return Optional.ofNullable(this.zoneCount);
     }
@@ -199,11 +223,23 @@ public final class DeploymentElasticsearchCoordinatingArgs extends com.pulumi.re
             return autoscaling(Output.of(autoscaling));
         }
 
+        /**
+         * @param instanceConfigurationId Computed Instance Configuration ID of the topology element
+         * 
+         * @return builder
+         * 
+         */
         public Builder instanceConfigurationId(@Nullable Output<String> instanceConfigurationId) {
             $.instanceConfigurationId = instanceConfigurationId;
             return this;
         }
 
+        /**
+         * @param instanceConfigurationId Computed Instance Configuration ID of the topology element
+         * 
+         * @return builder
+         * 
+         */
         public Builder instanceConfigurationId(String instanceConfigurationId) {
             return instanceConfigurationId(Output.of(instanceConfigurationId));
         }
@@ -323,11 +359,23 @@ public final class DeploymentElasticsearchCoordinatingArgs extends com.pulumi.re
             return nodeTypeMl(Output.of(nodeTypeMl));
         }
 
+        /**
+         * @param size Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+         * 
+         * @return builder
+         * 
+         */
         public Builder size(@Nullable Output<String> size) {
             $.size = size;
             return this;
         }
 
+        /**
+         * @param size Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+         * 
+         * @return builder
+         * 
+         */
         public Builder size(String size) {
             return size(Output.of(size));
         }
@@ -353,11 +401,23 @@ public final class DeploymentElasticsearchCoordinatingArgs extends com.pulumi.re
             return sizeResource(Output.of(sizeResource));
         }
 
+        /**
+         * @param zoneCount Number of zones that the Elasticsearch cluster will span. This is used to set HA
+         * 
+         * @return builder
+         * 
+         */
         public Builder zoneCount(@Nullable Output<Integer> zoneCount) {
             $.zoneCount = zoneCount;
             return this;
         }
 
+        /**
+         * @param zoneCount Number of zones that the Elasticsearch cluster will span. This is used to set HA
+         * 
+         * @return builder
+         * 
+         */
         public Builder zoneCount(Integer zoneCount) {
             return zoneCount(Output.of(zoneCount));
         }

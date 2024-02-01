@@ -21,6 +21,9 @@ namespace Pulumi.ElasticCloud.Outputs
         /// Remote deployment ID
         /// </summary>
         public readonly string DeploymentId;
+        /// <summary>
+        /// Remote elasticsearch "ref_id", it is best left to the default value
+        /// </summary>
         public readonly string? RefId;
         /// <summary>
         /// If true, skip the cluster during search when disconnected

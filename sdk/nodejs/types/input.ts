@@ -57,6 +57,9 @@ export interface DeploymentElasticsearch {
      * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      */
     autoscale?: pulumi.Input<boolean>;
+    /**
+     * The encoded Elasticsearch credentials to use in Beats or Logstash
+     */
     cloudId?: pulumi.Input<string>;
     /**
      * 'cold' topology element
@@ -82,7 +85,13 @@ export interface DeploymentElasticsearch {
      * 'hot' topology element
      */
     hot: pulumi.Input<inputs.DeploymentElasticsearchHot>;
+    /**
+     * The Elasticsearch resource HTTP endpoint
+     */
     httpEndpoint?: pulumi.Input<string>;
+    /**
+     * The Elasticsearch resource HTTPs endpoint
+     */
     httpsEndpoint?: pulumi.Input<string>;
     /**
      * Keystore contents that are controlled by the deployment resource.
@@ -100,20 +109,38 @@ export interface DeploymentElasticsearch {
      * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      */
     refId?: pulumi.Input<string>;
+    /**
+     * The Elasticsearch resource region
+     */
     region?: pulumi.Input<string>;
     /**
      * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      */
     remoteClusters?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchRemoteCluster>[]>;
+    /**
+     * The Elasticsearch resource unique identifier
+     */
     resourceId?: pulumi.Input<string>;
     /**
      * (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      */
     snapshot?: pulumi.Input<inputs.DeploymentElasticsearchSnapshot>;
     snapshotSource?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotSource>;
+    /**
+     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     */
     strategy?: pulumi.Input<string>;
+    /**
+     * Optional Elasticsearch account trust settings.
+     */
     trustAccounts?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustAccount>[]>;
+    /**
+     * Optional Elasticsearch external trust settings.
+     */
     trustExternals?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustExternal>[]>;
+    /**
+     * 'warm' topology element
+     */
     warm?: pulumi.Input<inputs.DeploymentElasticsearchWarm>;
 }
 
@@ -122,6 +149,9 @@ export interface DeploymentElasticsearchCold {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchColdAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -143,11 +173,17 @@ export interface DeploymentElasticsearchCold {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 
@@ -206,6 +242,9 @@ export interface DeploymentElasticsearchCoordinating {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchCoordinatingAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -227,11 +266,17 @@ export interface DeploymentElasticsearchCoordinating {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 
@@ -282,6 +327,9 @@ export interface DeploymentElasticsearchFrozen {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchFrozenAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -303,11 +351,17 @@ export interface DeploymentElasticsearchFrozen {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 
@@ -339,6 +393,9 @@ export interface DeploymentElasticsearchHot {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchHotAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -360,11 +417,17 @@ export interface DeploymentElasticsearchHot {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 
@@ -407,6 +470,9 @@ export interface DeploymentElasticsearchMaster {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMasterAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -428,11 +494,17 @@ export interface DeploymentElasticsearchMaster {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 
@@ -464,6 +536,9 @@ export interface DeploymentElasticsearchMl {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMlAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -485,11 +560,17 @@ export interface DeploymentElasticsearchMl {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 
@@ -525,6 +606,9 @@ export interface DeploymentElasticsearchRemoteCluster {
      * Remote deployment ID
      */
     deploymentId: pulumi.Input<string>;
+    /**
+     * Remote elasticsearch "refId", it is best left to the default value
+     */
     refId?: pulumi.Input<string>;
     /**
      * If true, skip the cluster during search when disconnected
@@ -603,6 +687,9 @@ export interface DeploymentElasticsearchWarm {
      * Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchWarmAutoscaling>;
+    /**
+     * Computed Instance Configuration ID of the topology element
+     */
     instanceConfigurationId?: pulumi.Input<string>;
     /**
      * The computed list of node roles for the current topology element
@@ -624,11 +711,17 @@ export interface DeploymentElasticsearchWarm {
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
     nodeTypeMl?: pulumi.Input<string>;
+    /**
+     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     */
     size?: pulumi.Input<string>;
     /**
      * Optional size type, defaults to "memory".
      */
     sizeResource?: pulumi.Input<string>;
+    /**
+     * Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     */
     zoneCount?: pulumi.Input<number>;
 }
 

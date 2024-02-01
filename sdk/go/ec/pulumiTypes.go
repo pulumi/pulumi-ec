@@ -538,8 +538,9 @@ func (o DeploymentApmConfigPtrOutput) UserSettingsYaml() pulumi.StringPtrOutput 
 
 type DeploymentElasticsearch struct {
 	// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
-	Autoscale *bool   `pulumi:"autoscale"`
-	CloudId   *string `pulumi:"cloudId"`
+	Autoscale *bool `pulumi:"autoscale"`
+	// The encoded Elasticsearch credentials to use in Beats or Logstash
+	CloudId *string `pulumi:"cloudId"`
 	// 'cold' topology element
 	Cold *DeploymentElasticsearchCold `pulumi:"cold"`
 	// Elasticsearch settings which will be applied to all topologies
@@ -551,9 +552,11 @@ type DeploymentElasticsearch struct {
 	// 'frozen' topology element
 	Frozen *DeploymentElasticsearchFrozen `pulumi:"frozen"`
 	// 'hot' topology element
-	Hot           DeploymentElasticsearchHot `pulumi:"hot"`
-	HttpEndpoint  *string                    `pulumi:"httpEndpoint"`
-	HttpsEndpoint *string                    `pulumi:"httpsEndpoint"`
+	Hot DeploymentElasticsearchHot `pulumi:"hot"`
+	// The Elasticsearch resource HTTP endpoint
+	HttpEndpoint *string `pulumi:"httpEndpoint"`
+	// The Elasticsearch resource HTTPs endpoint
+	HttpsEndpoint *string `pulumi:"httpsEndpoint"`
 	// Keystore contents that are controlled by the deployment resource.
 	KeystoreContents map[string]DeploymentElasticsearchKeystoreContents `pulumi:"keystoreContents"`
 	// 'master' topology element
@@ -561,18 +564,24 @@ type DeploymentElasticsearch struct {
 	// 'ml' topology element
 	Ml *DeploymentElasticsearchMl `pulumi:"ml"`
 	// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-	RefId  *string `pulumi:"refId"`
+	RefId *string `pulumi:"refId"`
+	// The Elasticsearch resource region
 	Region *string `pulumi:"region"`
 	// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 	RemoteClusters []DeploymentElasticsearchRemoteCluster `pulumi:"remoteClusters"`
-	ResourceId     *string                                `pulumi:"resourceId"`
+	// The Elasticsearch resource unique identifier
+	ResourceId *string `pulumi:"resourceId"`
 	// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
 	Snapshot       *DeploymentElasticsearchSnapshot       `pulumi:"snapshot"`
 	SnapshotSource *DeploymentElasticsearchSnapshotSource `pulumi:"snapshotSource"`
-	Strategy       *string                                `pulumi:"strategy"`
-	TrustAccounts  []DeploymentElasticsearchTrustAccount  `pulumi:"trustAccounts"`
+	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+	Strategy *string `pulumi:"strategy"`
+	// Optional Elasticsearch account trust settings.
+	TrustAccounts []DeploymentElasticsearchTrustAccount `pulumi:"trustAccounts"`
+	// Optional Elasticsearch external trust settings.
 	TrustExternals []DeploymentElasticsearchTrustExternal `pulumi:"trustExternals"`
-	Warm           *DeploymentElasticsearchWarm           `pulumi:"warm"`
+	// 'warm' topology element
+	Warm *DeploymentElasticsearchWarm `pulumi:"warm"`
 }
 
 // DeploymentElasticsearchInput is an input type that accepts DeploymentElasticsearchArgs and DeploymentElasticsearchOutput values.
@@ -588,8 +597,9 @@ type DeploymentElasticsearchInput interface {
 
 type DeploymentElasticsearchArgs struct {
 	// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
-	Autoscale pulumi.BoolPtrInput   `pulumi:"autoscale"`
-	CloudId   pulumi.StringPtrInput `pulumi:"cloudId"`
+	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
+	// The encoded Elasticsearch credentials to use in Beats or Logstash
+	CloudId pulumi.StringPtrInput `pulumi:"cloudId"`
 	// 'cold' topology element
 	Cold DeploymentElasticsearchColdPtrInput `pulumi:"cold"`
 	// Elasticsearch settings which will be applied to all topologies
@@ -601,9 +611,11 @@ type DeploymentElasticsearchArgs struct {
 	// 'frozen' topology element
 	Frozen DeploymentElasticsearchFrozenPtrInput `pulumi:"frozen"`
 	// 'hot' topology element
-	Hot           DeploymentElasticsearchHotInput `pulumi:"hot"`
-	HttpEndpoint  pulumi.StringPtrInput           `pulumi:"httpEndpoint"`
-	HttpsEndpoint pulumi.StringPtrInput           `pulumi:"httpsEndpoint"`
+	Hot DeploymentElasticsearchHotInput `pulumi:"hot"`
+	// The Elasticsearch resource HTTP endpoint
+	HttpEndpoint pulumi.StringPtrInput `pulumi:"httpEndpoint"`
+	// The Elasticsearch resource HTTPs endpoint
+	HttpsEndpoint pulumi.StringPtrInput `pulumi:"httpsEndpoint"`
 	// Keystore contents that are controlled by the deployment resource.
 	KeystoreContents DeploymentElasticsearchKeystoreContentsMapInput `pulumi:"keystoreContents"`
 	// 'master' topology element
@@ -611,18 +623,24 @@ type DeploymentElasticsearchArgs struct {
 	// 'ml' topology element
 	Ml DeploymentElasticsearchMlPtrInput `pulumi:"ml"`
 	// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-	RefId  pulumi.StringPtrInput `pulumi:"refId"`
+	RefId pulumi.StringPtrInput `pulumi:"refId"`
+	// The Elasticsearch resource region
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
 	RemoteClusters DeploymentElasticsearchRemoteClusterArrayInput `pulumi:"remoteClusters"`
-	ResourceId     pulumi.StringPtrInput                          `pulumi:"resourceId"`
+	// The Elasticsearch resource unique identifier
+	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
-	Snapshot       DeploymentElasticsearchSnapshotPtrInput        `pulumi:"snapshot"`
-	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput  `pulumi:"snapshotSource"`
-	Strategy       pulumi.StringPtrInput                          `pulumi:"strategy"`
-	TrustAccounts  DeploymentElasticsearchTrustAccountArrayInput  `pulumi:"trustAccounts"`
+	Snapshot       DeploymentElasticsearchSnapshotPtrInput       `pulumi:"snapshot"`
+	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput `pulumi:"snapshotSource"`
+	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+	Strategy pulumi.StringPtrInput `pulumi:"strategy"`
+	// Optional Elasticsearch account trust settings.
+	TrustAccounts DeploymentElasticsearchTrustAccountArrayInput `pulumi:"trustAccounts"`
+	// Optional Elasticsearch external trust settings.
 	TrustExternals DeploymentElasticsearchTrustExternalArrayInput `pulumi:"trustExternals"`
-	Warm           DeploymentElasticsearchWarmPtrInput            `pulumi:"warm"`
+	// 'warm' topology element
+	Warm DeploymentElasticsearchWarmPtrInput `pulumi:"warm"`
 }
 
 func (DeploymentElasticsearchArgs) ElementType() reflect.Type {
@@ -707,6 +725,7 @@ func (o DeploymentElasticsearchOutput) Autoscale() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
+// The encoded Elasticsearch credentials to use in Beats or Logstash
 func (o DeploymentElasticsearchOutput) CloudId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.CloudId }).(pulumi.StringPtrOutput)
 }
@@ -741,10 +760,12 @@ func (o DeploymentElasticsearchOutput) Hot() DeploymentElasticsearchHotOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) DeploymentElasticsearchHot { return v.Hot }).(DeploymentElasticsearchHotOutput)
 }
 
+// The Elasticsearch resource HTTP endpoint
 func (o DeploymentElasticsearchOutput) HttpEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.HttpEndpoint }).(pulumi.StringPtrOutput)
 }
 
+// The Elasticsearch resource HTTPs endpoint
 func (o DeploymentElasticsearchOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.HttpsEndpoint }).(pulumi.StringPtrOutput)
 }
@@ -771,6 +792,7 @@ func (o DeploymentElasticsearchOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
 
+// The Elasticsearch resource region
 func (o DeploymentElasticsearchOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -780,6 +802,7 @@ func (o DeploymentElasticsearchOutput) RemoteClusters() DeploymentElasticsearchR
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchRemoteCluster { return v.RemoteClusters }).(DeploymentElasticsearchRemoteClusterArrayOutput)
 }
 
+// The Elasticsearch resource unique identifier
 func (o DeploymentElasticsearchOutput) ResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
 }
@@ -793,18 +816,22 @@ func (o DeploymentElasticsearchOutput) SnapshotSource() DeploymentElasticsearchS
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource { return v.SnapshotSource }).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
+// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
 func (o DeploymentElasticsearchOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Strategy }).(pulumi.StringPtrOutput)
 }
 
+// Optional Elasticsearch account trust settings.
 func (o DeploymentElasticsearchOutput) TrustAccounts() DeploymentElasticsearchTrustAccountArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchTrustAccount { return v.TrustAccounts }).(DeploymentElasticsearchTrustAccountArrayOutput)
 }
 
+// Optional Elasticsearch external trust settings.
 func (o DeploymentElasticsearchOutput) TrustExternals() DeploymentElasticsearchTrustExternalArrayOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) []DeploymentElasticsearchTrustExternal { return v.TrustExternals }).(DeploymentElasticsearchTrustExternalArrayOutput)
 }
 
+// 'warm' topology element
 func (o DeploymentElasticsearchOutput) Warm() DeploymentElasticsearchWarmPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchWarm { return v.Warm }).(DeploymentElasticsearchWarmPtrOutput)
 }
@@ -843,6 +870,7 @@ func (o DeploymentElasticsearchPtrOutput) Autoscale() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// The encoded Elasticsearch credentials to use in Beats or Logstash
 func (o DeploymentElasticsearchPtrOutput) CloudId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -912,6 +940,7 @@ func (o DeploymentElasticsearchPtrOutput) Hot() DeploymentElasticsearchHotPtrOut
 	}).(DeploymentElasticsearchHotPtrOutput)
 }
 
+// The Elasticsearch resource HTTP endpoint
 func (o DeploymentElasticsearchPtrOutput) HttpEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -921,6 +950,7 @@ func (o DeploymentElasticsearchPtrOutput) HttpEndpoint() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Elasticsearch resource HTTPs endpoint
 func (o DeploymentElasticsearchPtrOutput) HttpsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -970,6 +1000,7 @@ func (o DeploymentElasticsearchPtrOutput) RefId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Elasticsearch resource region
 func (o DeploymentElasticsearchPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -989,6 +1020,7 @@ func (o DeploymentElasticsearchPtrOutput) RemoteClusters() DeploymentElasticsear
 	}).(DeploymentElasticsearchRemoteClusterArrayOutput)
 }
 
+// The Elasticsearch resource unique identifier
 func (o DeploymentElasticsearchPtrOutput) ResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -1017,6 +1049,7 @@ func (o DeploymentElasticsearchPtrOutput) SnapshotSource() DeploymentElasticsear
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
+// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
 func (o DeploymentElasticsearchPtrOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -1026,6 +1059,7 @@ func (o DeploymentElasticsearchPtrOutput) Strategy() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Optional Elasticsearch account trust settings.
 func (o DeploymentElasticsearchPtrOutput) TrustAccounts() DeploymentElasticsearchTrustAccountArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchTrustAccount {
 		if v == nil {
@@ -1035,6 +1069,7 @@ func (o DeploymentElasticsearchPtrOutput) TrustAccounts() DeploymentElasticsearc
 	}).(DeploymentElasticsearchTrustAccountArrayOutput)
 }
 
+// Optional Elasticsearch external trust settings.
 func (o DeploymentElasticsearchPtrOutput) TrustExternals() DeploymentElasticsearchTrustExternalArrayOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) []DeploymentElasticsearchTrustExternal {
 		if v == nil {
@@ -1044,6 +1079,7 @@ func (o DeploymentElasticsearchPtrOutput) TrustExternals() DeploymentElasticsear
 	}).(DeploymentElasticsearchTrustExternalArrayOutput)
 }
 
+// 'warm' topology element
 func (o DeploymentElasticsearchPtrOutput) Warm() DeploymentElasticsearchWarmPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchWarm {
 		if v == nil {
@@ -1055,8 +1091,9 @@ func (o DeploymentElasticsearchPtrOutput) Warm() DeploymentElasticsearchWarmPtrO
 
 type DeploymentElasticsearchCold struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchColdAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchColdAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -1067,10 +1104,12 @@ type DeploymentElasticsearchCold struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchColdInput is an input type that accepts DeploymentElasticsearchColdArgs and DeploymentElasticsearchColdOutput values.
@@ -1086,8 +1125,9 @@ type DeploymentElasticsearchColdInput interface {
 
 type DeploymentElasticsearchColdArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchColdAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                       `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchColdAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -1098,10 +1138,12 @@ type DeploymentElasticsearchColdArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchColdArgs) ElementType() reflect.Type {
@@ -1186,6 +1228,7 @@ func (o DeploymentElasticsearchColdOutput) Autoscaling() DeploymentElasticsearch
 	return o.ApplyT(func(v DeploymentElasticsearchCold) DeploymentElasticsearchColdAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchColdAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchColdOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -1215,6 +1258,7 @@ func (o DeploymentElasticsearchColdOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchColdOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -1224,6 +1268,7 @@ func (o DeploymentElasticsearchColdOutput) SizeResource() pulumi.StringPtrOutput
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchColdOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCold) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -1262,6 +1307,7 @@ func (o DeploymentElasticsearchColdPtrOutput) Autoscaling() DeploymentElasticsea
 	}).(DeploymentElasticsearchColdAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchColdPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1321,6 +1367,7 @@ func (o DeploymentElasticsearchColdPtrOutput) NodeTypeMl() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchColdPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *string {
 		if v == nil {
@@ -1340,6 +1387,7 @@ func (o DeploymentElasticsearchColdPtrOutput) SizeResource() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchColdPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCold) *int {
 		if v == nil {
@@ -1796,8 +1844,9 @@ func (o DeploymentElasticsearchConfigPtrOutput) UserSettingsYaml() pulumi.String
 
 type DeploymentElasticsearchCoordinating struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchCoordinatingAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                                        `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchCoordinatingAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -1808,10 +1857,12 @@ type DeploymentElasticsearchCoordinating struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchCoordinatingInput is an input type that accepts DeploymentElasticsearchCoordinatingArgs and DeploymentElasticsearchCoordinatingOutput values.
@@ -1827,8 +1878,9 @@ type DeploymentElasticsearchCoordinatingInput interface {
 
 type DeploymentElasticsearchCoordinatingArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchCoordinatingAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                               `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchCoordinatingAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -1839,10 +1891,12 @@ type DeploymentElasticsearchCoordinatingArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchCoordinatingArgs) ElementType() reflect.Type {
@@ -1929,6 +1983,7 @@ func (o DeploymentElasticsearchCoordinatingOutput) Autoscaling() DeploymentElast
 	}).(DeploymentElasticsearchCoordinatingAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchCoordinatingOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -1958,6 +2013,7 @@ func (o DeploymentElasticsearchCoordinatingOutput) NodeTypeMl() pulumi.StringPtr
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchCoordinatingOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -1967,6 +2023,7 @@ func (o DeploymentElasticsearchCoordinatingOutput) SizeResource() pulumi.StringP
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchCoordinatingOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinating) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -2005,6 +2062,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) Autoscaling() DeploymentEl
 	}).(DeploymentElasticsearchCoordinatingAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchCoordinatingPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2064,6 +2122,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) NodeTypeMl() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchCoordinatingPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *string {
 		if v == nil {
@@ -2083,6 +2142,7 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) SizeResource() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchCoordinatingPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinating) *int {
 		if v == nil {
@@ -2431,8 +2491,9 @@ func (o DeploymentElasticsearchExtensionArrayOutput) Index(i pulumi.IntInput) De
 
 type DeploymentElasticsearchFrozen struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchFrozenAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                                  `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchFrozenAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -2443,10 +2504,12 @@ type DeploymentElasticsearchFrozen struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchFrozenInput is an input type that accepts DeploymentElasticsearchFrozenArgs and DeploymentElasticsearchFrozenOutput values.
@@ -2462,8 +2525,9 @@ type DeploymentElasticsearchFrozenInput interface {
 
 type DeploymentElasticsearchFrozenArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchFrozenAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchFrozenAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -2474,10 +2538,12 @@ type DeploymentElasticsearchFrozenArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchFrozenArgs) ElementType() reflect.Type {
@@ -2562,6 +2628,7 @@ func (o DeploymentElasticsearchFrozenOutput) Autoscaling() DeploymentElasticsear
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) DeploymentElasticsearchFrozenAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchFrozenAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchFrozenOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -2591,6 +2658,7 @@ func (o DeploymentElasticsearchFrozenOutput) NodeTypeMl() pulumi.StringPtrOutput
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchFrozenOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -2600,6 +2668,7 @@ func (o DeploymentElasticsearchFrozenOutput) SizeResource() pulumi.StringPtrOutp
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchFrozenOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozen) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -2638,6 +2707,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) Autoscaling() DeploymentElastics
 	}).(DeploymentElasticsearchFrozenAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchFrozenPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2697,6 +2767,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) NodeTypeMl() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchFrozenPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *string {
 		if v == nil {
@@ -2716,6 +2787,7 @@ func (o DeploymentElasticsearchFrozenPtrOutput) SizeResource() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchFrozenPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozen) *int {
 		if v == nil {
@@ -2940,8 +3012,9 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) PolicyOverrideJson() 
 
 type DeploymentElasticsearchHot struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchHotAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                               `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchHotAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -2952,10 +3025,12 @@ type DeploymentElasticsearchHot struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchHotInput is an input type that accepts DeploymentElasticsearchHotArgs and DeploymentElasticsearchHotOutput values.
@@ -2971,8 +3046,9 @@ type DeploymentElasticsearchHotInput interface {
 
 type DeploymentElasticsearchHotArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchHotAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                      `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchHotAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -2983,10 +3059,12 @@ type DeploymentElasticsearchHotArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchHotArgs) ElementType() reflect.Type {
@@ -3071,6 +3149,7 @@ func (o DeploymentElasticsearchHotOutput) Autoscaling() DeploymentElasticsearchH
 	return o.ApplyT(func(v DeploymentElasticsearchHot) DeploymentElasticsearchHotAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchHotAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchHotOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -3100,6 +3179,7 @@ func (o DeploymentElasticsearchHotOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchHotOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -3109,6 +3189,7 @@ func (o DeploymentElasticsearchHotOutput) SizeResource() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchHotOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHot) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -3147,6 +3228,7 @@ func (o DeploymentElasticsearchHotPtrOutput) Autoscaling() DeploymentElasticsear
 	}).(DeploymentElasticsearchHotAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchHotPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3206,6 +3288,7 @@ func (o DeploymentElasticsearchHotPtrOutput) NodeTypeMl() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchHotPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *string {
 		if v == nil {
@@ -3225,6 +3308,7 @@ func (o DeploymentElasticsearchHotPtrOutput) SizeResource() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchHotPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHot) *int {
 		if v == nil {
@@ -3555,8 +3639,9 @@ func (o DeploymentElasticsearchKeystoreContentsMapOutput) MapIndex(k pulumi.Stri
 
 type DeploymentElasticsearchMaster struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchMasterAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                                  `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchMasterAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -3567,10 +3652,12 @@ type DeploymentElasticsearchMaster struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchMasterInput is an input type that accepts DeploymentElasticsearchMasterArgs and DeploymentElasticsearchMasterOutput values.
@@ -3586,8 +3673,9 @@ type DeploymentElasticsearchMasterInput interface {
 
 type DeploymentElasticsearchMasterArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchMasterAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                         `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchMasterAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -3598,10 +3686,12 @@ type DeploymentElasticsearchMasterArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchMasterArgs) ElementType() reflect.Type {
@@ -3686,6 +3776,7 @@ func (o DeploymentElasticsearchMasterOutput) Autoscaling() DeploymentElasticsear
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) DeploymentElasticsearchMasterAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchMasterAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchMasterOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -3715,6 +3806,7 @@ func (o DeploymentElasticsearchMasterOutput) NodeTypeMl() pulumi.StringPtrOutput
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchMasterOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -3724,6 +3816,7 @@ func (o DeploymentElasticsearchMasterOutput) SizeResource() pulumi.StringPtrOutp
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchMasterOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMaster) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -3762,6 +3855,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) Autoscaling() DeploymentElastics
 	}).(DeploymentElasticsearchMasterAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchMasterPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3821,6 +3915,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) NodeTypeMl() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchMasterPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *string {
 		if v == nil {
@@ -3840,6 +3935,7 @@ func (o DeploymentElasticsearchMasterPtrOutput) SizeResource() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchMasterPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMaster) *int {
 		if v == nil {
@@ -4064,8 +4160,9 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) PolicyOverrideJson() 
 
 type DeploymentElasticsearchMl struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchMlAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                              `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchMlAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -4076,10 +4173,12 @@ type DeploymentElasticsearchMl struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchMlInput is an input type that accepts DeploymentElasticsearchMlArgs and DeploymentElasticsearchMlOutput values.
@@ -4095,8 +4194,9 @@ type DeploymentElasticsearchMlInput interface {
 
 type DeploymentElasticsearchMlArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchMlAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                     `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchMlAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -4107,10 +4207,12 @@ type DeploymentElasticsearchMlArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchMlArgs) ElementType() reflect.Type {
@@ -4195,6 +4297,7 @@ func (o DeploymentElasticsearchMlOutput) Autoscaling() DeploymentElasticsearchMl
 	return o.ApplyT(func(v DeploymentElasticsearchMl) DeploymentElasticsearchMlAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchMlAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchMlOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -4224,6 +4327,7 @@ func (o DeploymentElasticsearchMlOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchMlOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -4233,6 +4337,7 @@ func (o DeploymentElasticsearchMlOutput) SizeResource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchMlOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMl) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -4271,6 +4376,7 @@ func (o DeploymentElasticsearchMlPtrOutput) Autoscaling() DeploymentElasticsearc
 	}).(DeploymentElasticsearchMlAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchMlPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4330,6 +4436,7 @@ func (o DeploymentElasticsearchMlPtrOutput) NodeTypeMl() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchMlPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *string {
 		if v == nil {
@@ -4349,6 +4456,7 @@ func (o DeploymentElasticsearchMlPtrOutput) SizeResource() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchMlPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMl) *int {
 		if v == nil {
@@ -4575,8 +4683,9 @@ type DeploymentElasticsearchRemoteCluster struct {
 	// Alias for this Cross Cluster Search binding
 	Alias string `pulumi:"alias"`
 	// Remote deployment ID
-	DeploymentId string  `pulumi:"deploymentId"`
-	RefId        *string `pulumi:"refId"`
+	DeploymentId string `pulumi:"deploymentId"`
+	// Remote elasticsearch "refId", it is best left to the default value
+	RefId *string `pulumi:"refId"`
 	// If true, skip the cluster during search when disconnected
 	SkipUnavailable *bool `pulumi:"skipUnavailable"`
 }
@@ -4596,8 +4705,9 @@ type DeploymentElasticsearchRemoteClusterArgs struct {
 	// Alias for this Cross Cluster Search binding
 	Alias pulumi.StringInput `pulumi:"alias"`
 	// Remote deployment ID
-	DeploymentId pulumi.StringInput    `pulumi:"deploymentId"`
-	RefId        pulumi.StringPtrInput `pulumi:"refId"`
+	DeploymentId pulumi.StringInput `pulumi:"deploymentId"`
+	// Remote elasticsearch "refId", it is best left to the default value
+	RefId pulumi.StringPtrInput `pulumi:"refId"`
 	// If true, skip the cluster during search when disconnected
 	SkipUnavailable pulumi.BoolPtrInput `pulumi:"skipUnavailable"`
 }
@@ -4663,6 +4773,7 @@ func (o DeploymentElasticsearchRemoteClusterOutput) DeploymentId() pulumi.String
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) string { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
+// Remote elasticsearch "refId", it is best left to the default value
 func (o DeploymentElasticsearchRemoteClusterOutput) RefId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchRemoteCluster) *string { return v.RefId }).(pulumi.StringPtrOutput)
 }
@@ -5514,8 +5625,9 @@ func (o DeploymentElasticsearchTrustExternalArrayOutput) Index(i pulumi.IntInput
 
 type DeploymentElasticsearchWarm struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchWarmAutoscaling `pulumi:"autoscaling"`
-	InstanceConfigurationId *string                                `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchWarmAutoscaling `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId *string `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles []string `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -5526,10 +5638,12 @@ type DeploymentElasticsearchWarm struct {
 	NodeTypeMaster *string `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl *string `pulumi:"nodeTypeMl"`
-	Size       *string `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size *string `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource *string `pulumi:"sizeResource"`
-	ZoneCount    *int    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount *int `pulumi:"zoneCount"`
 }
 
 // DeploymentElasticsearchWarmInput is an input type that accepts DeploymentElasticsearchWarmArgs and DeploymentElasticsearchWarmOutput values.
@@ -5545,8 +5659,9 @@ type DeploymentElasticsearchWarmInput interface {
 
 type DeploymentElasticsearchWarmArgs struct {
 	// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-	Autoscaling             DeploymentElasticsearchWarmAutoscalingInput `pulumi:"autoscaling"`
-	InstanceConfigurationId pulumi.StringPtrInput                       `pulumi:"instanceConfigurationId"`
+	Autoscaling DeploymentElasticsearchWarmAutoscalingInput `pulumi:"autoscaling"`
+	// Computed Instance Configuration ID of the topology element
+	InstanceConfigurationId pulumi.StringPtrInput `pulumi:"instanceConfigurationId"`
 	// The computed list of node roles for the current topology element
 	NodeRoles pulumi.StringArrayInput `pulumi:"nodeRoles"`
 	// The node type for the Elasticsearch Topology element (data node)
@@ -5557,10 +5672,12 @@ type DeploymentElasticsearchWarmArgs struct {
 	NodeTypeMaster pulumi.StringPtrInput `pulumi:"nodeTypeMaster"`
 	// The node type for the Elasticsearch Topology element (machine learning node)
 	NodeTypeMl pulumi.StringPtrInput `pulumi:"nodeTypeMl"`
-	Size       pulumi.StringPtrInput `pulumi:"size"`
+	// Amount of "sizeResource" per node in the "<size in GB>g" notation
+	Size pulumi.StringPtrInput `pulumi:"size"`
 	// Optional size type, defaults to "memory".
 	SizeResource pulumi.StringPtrInput `pulumi:"sizeResource"`
-	ZoneCount    pulumi.IntPtrInput    `pulumi:"zoneCount"`
+	// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+	ZoneCount pulumi.IntPtrInput `pulumi:"zoneCount"`
 }
 
 func (DeploymentElasticsearchWarmArgs) ElementType() reflect.Type {
@@ -5645,6 +5762,7 @@ func (o DeploymentElasticsearchWarmOutput) Autoscaling() DeploymentElasticsearch
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) DeploymentElasticsearchWarmAutoscaling { return v.Autoscaling }).(DeploymentElasticsearchWarmAutoscalingOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchWarmOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.InstanceConfigurationId }).(pulumi.StringPtrOutput)
 }
@@ -5674,6 +5792,7 @@ func (o DeploymentElasticsearchWarmOutput) NodeTypeMl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.NodeTypeMl }).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchWarmOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
@@ -5683,6 +5802,7 @@ func (o DeploymentElasticsearchWarmOutput) SizeResource() pulumi.StringPtrOutput
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *string { return v.SizeResource }).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchWarmOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarm) *int { return v.ZoneCount }).(pulumi.IntPtrOutput)
 }
@@ -5721,6 +5841,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) Autoscaling() DeploymentElasticsea
 	}).(DeploymentElasticsearchWarmAutoscalingPtrOutput)
 }
 
+// Computed Instance Configuration ID of the topology element
 func (o DeploymentElasticsearchWarmPtrOutput) InstanceConfigurationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -5780,6 +5901,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) NodeTypeMl() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amount of "sizeResource" per node in the "<size in GB>g" notation
 func (o DeploymentElasticsearchWarmPtrOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *string {
 		if v == nil {
@@ -5799,6 +5921,7 @@ func (o DeploymentElasticsearchWarmPtrOutput) SizeResource() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of zones that the Elasticsearch cluster will span. This is used to set HA
 func (o DeploymentElasticsearchWarmPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarm) *int {
 		if v == nil {

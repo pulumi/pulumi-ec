@@ -15,9 +15,6 @@ API Key to use for API authentication. The only valid authentication mechanism f
 """
 
 endpoint: Optional[str]
-"""
-Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-"""
 
 insecure: Optional[bool]
 """
