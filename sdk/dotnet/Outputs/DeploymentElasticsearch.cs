@@ -17,6 +17,9 @@ namespace Pulumi.ElasticCloud.Outputs
         /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         /// </summary>
         public readonly bool? Autoscale;
+        /// <summary>
+        /// The encoded Elasticsearch credentials to use in Beats or Logstash
+        /// </summary>
         public readonly string? CloudId;
         /// <summary>
         /// 'cold' topology element
@@ -42,7 +45,13 @@ namespace Pulumi.ElasticCloud.Outputs
         /// 'hot' topology element
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchHot Hot;
+        /// <summary>
+        /// The Elasticsearch resource HTTP endpoint
+        /// </summary>
         public readonly string? HttpEndpoint;
+        /// <summary>
+        /// The Elasticsearch resource HTTPs endpoint
+        /// </summary>
         public readonly string? HttpsEndpoint;
         /// <summary>
         /// Keystore contents that are controlled by the deployment resource.
@@ -60,20 +69,38 @@ namespace Pulumi.ElasticCloud.Outputs
         /// A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         /// </summary>
         public readonly string? RefId;
+        /// <summary>
+        /// The Elasticsearch resource region
+        /// </summary>
         public readonly string? Region;
         /// <summary>
         /// Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchRemoteCluster> RemoteClusters;
+        /// <summary>
+        /// The Elasticsearch resource unique identifier
+        /// </summary>
         public readonly string? ResourceId;
         /// <summary>
         /// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshot? Snapshot;
         public readonly Outputs.DeploymentElasticsearchSnapshotSource? SnapshotSource;
+        /// <summary>
+        /// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        /// </summary>
         public readonly string? Strategy;
+        /// <summary>
+        /// Optional Elasticsearch account trust settings.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchTrustAccount> TrustAccounts;
+        /// <summary>
+        /// Optional Elasticsearch external trust settings.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentElasticsearchTrustExternal> TrustExternals;
+        /// <summary>
+        /// 'warm' topology element
+        /// </summary>
         public readonly Outputs.DeploymentElasticsearchWarm? Warm;
 
         [OutputConstructor]

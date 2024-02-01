@@ -18,6 +18,9 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("autoscale")]
         public Input<bool>? Autoscale { get; set; }
 
+        /// <summary>
+        /// The encoded Elasticsearch credentials to use in Beats or Logstash
+        /// </summary>
         [Input("cloudId")]
         public Input<string>? CloudId { get; set; }
 
@@ -63,9 +66,15 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("hot", required: true)]
         public Input<Inputs.DeploymentElasticsearchHotGetArgs> Hot { get; set; } = null!;
 
+        /// <summary>
+        /// The Elasticsearch resource HTTP endpoint
+        /// </summary>
         [Input("httpEndpoint")]
         public Input<string>? HttpEndpoint { get; set; }
 
+        /// <summary>
+        /// The Elasticsearch resource HTTPs endpoint
+        /// </summary>
         [Input("httpsEndpoint")]
         public Input<string>? HttpsEndpoint { get; set; }
 
@@ -99,6 +108,9 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 
+        /// <summary>
+        /// The Elasticsearch resource region
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -114,6 +126,9 @@ namespace Pulumi.ElasticCloud.Inputs
             set => _remoteClusters = value;
         }
 
+        /// <summary>
+        /// The Elasticsearch resource unique identifier
+        /// </summary>
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
@@ -126,11 +141,18 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("snapshotSource")]
         public Input<Inputs.DeploymentElasticsearchSnapshotSourceGetArgs>? SnapshotSource { get; set; }
 
+        /// <summary>
+        /// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        /// </summary>
         [Input("strategy")]
         public Input<string>? Strategy { get; set; }
 
         [Input("trustAccounts")]
         private InputList<Inputs.DeploymentElasticsearchTrustAccountGetArgs>? _trustAccounts;
+
+        /// <summary>
+        /// Optional Elasticsearch account trust settings.
+        /// </summary>
         public InputList<Inputs.DeploymentElasticsearchTrustAccountGetArgs> TrustAccounts
         {
             get => _trustAccounts ?? (_trustAccounts = new InputList<Inputs.DeploymentElasticsearchTrustAccountGetArgs>());
@@ -139,12 +161,19 @@ namespace Pulumi.ElasticCloud.Inputs
 
         [Input("trustExternals")]
         private InputList<Inputs.DeploymentElasticsearchTrustExternalGetArgs>? _trustExternals;
+
+        /// <summary>
+        /// Optional Elasticsearch external trust settings.
+        /// </summary>
         public InputList<Inputs.DeploymentElasticsearchTrustExternalGetArgs> TrustExternals
         {
             get => _trustExternals ?? (_trustExternals = new InputList<Inputs.DeploymentElasticsearchTrustExternalGetArgs>());
             set => _trustExternals = value;
         }
 
+        /// <summary>
+        /// 'warm' topology element
+        /// </summary>
         [Input("warm")]
         public Input<Inputs.DeploymentElasticsearchWarmGetArgs>? Warm { get; set; }
 

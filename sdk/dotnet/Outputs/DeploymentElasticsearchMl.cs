@@ -17,6 +17,9 @@ namespace Pulumi.ElasticCloud.Outputs
         /// Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchMlAutoscaling Autoscaling;
+        /// <summary>
+        /// Computed Instance Configuration ID of the topology element
+        /// </summary>
         public readonly string? InstanceConfigurationId;
         /// <summary>
         /// The computed list of node roles for the current topology element
@@ -38,11 +41,17 @@ namespace Pulumi.ElasticCloud.Outputs
         /// The node type for the Elasticsearch Topology element (machine learning node)
         /// </summary>
         public readonly string? NodeTypeMl;
+        /// <summary>
+        /// Amount of "size_resource" per node in the "&lt;size in GB&gt;g" notation
+        /// </summary>
         public readonly string? Size;
         /// <summary>
         /// Optional size type, defaults to "memory".
         /// </summary>
         public readonly string? SizeResource;
+        /// <summary>
+        /// Number of zones that the Elasticsearch cluster will span. This is used to set HA
+        /// </summary>
         public readonly int? ZoneCount;
 
         [OutputConstructor]

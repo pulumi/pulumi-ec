@@ -24,9 +24,6 @@ class _ExportableConfig(types.ModuleType):
 
     @property
     def endpoint(self) -> Optional[str]:
-        """
-        Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-        """
         return __config__.get('endpoint')
 
     @property

@@ -20,6 +20,10 @@ public final class DeploymentElasticsearchCoordinating {
      * 
      */
     private DeploymentElasticsearchCoordinatingAutoscaling autoscaling;
+    /**
+     * @return Computed Instance Configuration ID of the topology element
+     * 
+     */
     private @Nullable String instanceConfigurationId;
     /**
      * @return The computed list of node roles for the current topology element
@@ -46,12 +50,20 @@ public final class DeploymentElasticsearchCoordinating {
      * 
      */
     private @Nullable String nodeTypeMl;
+    /**
+     * @return Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * 
+     */
     private @Nullable String size;
     /**
      * @return Optional size type, defaults to &#34;memory&#34;.
      * 
      */
     private @Nullable String sizeResource;
+    /**
+     * @return Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     * 
+     */
     private @Nullable Integer zoneCount;
 
     private DeploymentElasticsearchCoordinating() {}
@@ -62,6 +74,10 @@ public final class DeploymentElasticsearchCoordinating {
     public DeploymentElasticsearchCoordinatingAutoscaling autoscaling() {
         return this.autoscaling;
     }
+    /**
+     * @return Computed Instance Configuration ID of the topology element
+     * 
+     */
     public Optional<String> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
     }
@@ -100,6 +116,10 @@ public final class DeploymentElasticsearchCoordinating {
     public Optional<String> nodeTypeMl() {
         return Optional.ofNullable(this.nodeTypeMl);
     }
+    /**
+     * @return Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * 
+     */
     public Optional<String> size() {
         return Optional.ofNullable(this.size);
     }
@@ -110,6 +130,10 @@ public final class DeploymentElasticsearchCoordinating {
     public Optional<String> sizeResource() {
         return Optional.ofNullable(this.sizeResource);
     }
+    /**
+     * @return Number of zones that the Elasticsearch cluster will span. This is used to set HA
+     * 
+     */
     public Optional<Integer> zoneCount() {
         return Optional.ofNullable(this.zoneCount);
     }

@@ -35,6 +35,10 @@ public final class DeploymentElasticsearch {
      * 
      */
     private @Nullable Boolean autoscale;
+    /**
+     * @return The encoded Elasticsearch credentials to use in Beats or Logstash
+     * 
+     */
     private @Nullable String cloudId;
     /**
      * @return &#39;cold&#39; topology element
@@ -66,7 +70,15 @@ public final class DeploymentElasticsearch {
      * 
      */
     private DeploymentElasticsearchHot hot;
+    /**
+     * @return The Elasticsearch resource HTTP endpoint
+     * 
+     */
     private @Nullable String httpEndpoint;
+    /**
+     * @return The Elasticsearch resource HTTPs endpoint
+     * 
+     */
     private @Nullable String httpsEndpoint;
     /**
      * @return Keystore contents that are controlled by the deployment resource.
@@ -88,12 +100,20 @@ public final class DeploymentElasticsearch {
      * 
      */
     private @Nullable String refId;
+    /**
+     * @return The Elasticsearch resource region
+     * 
+     */
     private @Nullable String region;
     /**
      * @return Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      * 
      */
     private @Nullable List<DeploymentElasticsearchRemoteCluster> remoteClusters;
+    /**
+     * @return The Elasticsearch resource unique identifier
+     * 
+     */
     private @Nullable String resourceId;
     /**
      * @return (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
@@ -101,9 +121,25 @@ public final class DeploymentElasticsearch {
      */
     private @Nullable DeploymentElasticsearchSnapshot snapshot;
     private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
+    /**
+     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * 
+     */
     private @Nullable String strategy;
+    /**
+     * @return Optional Elasticsearch account trust settings.
+     * 
+     */
     private @Nullable List<DeploymentElasticsearchTrustAccount> trustAccounts;
+    /**
+     * @return Optional Elasticsearch external trust settings.
+     * 
+     */
     private @Nullable List<DeploymentElasticsearchTrustExternal> trustExternals;
+    /**
+     * @return &#39;warm&#39; topology element
+     * 
+     */
     private @Nullable DeploymentElasticsearchWarm warm;
 
     private DeploymentElasticsearch() {}
@@ -114,6 +150,10 @@ public final class DeploymentElasticsearch {
     public Optional<Boolean> autoscale() {
         return Optional.ofNullable(this.autoscale);
     }
+    /**
+     * @return The encoded Elasticsearch credentials to use in Beats or Logstash
+     * 
+     */
     public Optional<String> cloudId() {
         return Optional.ofNullable(this.cloudId);
     }
@@ -159,9 +199,17 @@ public final class DeploymentElasticsearch {
     public DeploymentElasticsearchHot hot() {
         return this.hot;
     }
+    /**
+     * @return The Elasticsearch resource HTTP endpoint
+     * 
+     */
     public Optional<String> httpEndpoint() {
         return Optional.ofNullable(this.httpEndpoint);
     }
+    /**
+     * @return The Elasticsearch resource HTTPs endpoint
+     * 
+     */
     public Optional<String> httpsEndpoint() {
         return Optional.ofNullable(this.httpsEndpoint);
     }
@@ -193,6 +241,10 @@ public final class DeploymentElasticsearch {
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
     }
+    /**
+     * @return The Elasticsearch resource region
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -203,6 +255,10 @@ public final class DeploymentElasticsearch {
     public List<DeploymentElasticsearchRemoteCluster> remoteClusters() {
         return this.remoteClusters == null ? List.of() : this.remoteClusters;
     }
+    /**
+     * @return The Elasticsearch resource unique identifier
+     * 
+     */
     public Optional<String> resourceId() {
         return Optional.ofNullable(this.resourceId);
     }
@@ -216,15 +272,31 @@ public final class DeploymentElasticsearch {
     public Optional<DeploymentElasticsearchSnapshotSource> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
     }
+    /**
+     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * 
+     */
     public Optional<String> strategy() {
         return Optional.ofNullable(this.strategy);
     }
+    /**
+     * @return Optional Elasticsearch account trust settings.
+     * 
+     */
     public List<DeploymentElasticsearchTrustAccount> trustAccounts() {
         return this.trustAccounts == null ? List.of() : this.trustAccounts;
     }
+    /**
+     * @return Optional Elasticsearch external trust settings.
+     * 
+     */
     public List<DeploymentElasticsearchTrustExternal> trustExternals() {
         return this.trustExternals == null ? List.of() : this.trustExternals;
     }
+    /**
+     * @return &#39;warm&#39; topology element
+     * 
+     */
     public Optional<DeploymentElasticsearchWarm> warm() {
         return Optional.ofNullable(this.warm);
     }
