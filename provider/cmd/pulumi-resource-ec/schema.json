@@ -64,8 +64,7 @@
                 "secret": true
             },
             "endpoint": {
-                "type": "string",
-                "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\".\n"
+                "type": "string"
             },
             "insecure": {
                 "type": "boolean",
@@ -198,7 +197,8 @@
                     "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
                 },
                 "cloudId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The encoded Elasticsearch credentials to use in Beats or Logstash\n"
                 },
                 "cold": {
                     "$ref": "#/types/ec:index/DeploymentElasticsearchCold:DeploymentElasticsearchCold",
@@ -228,10 +228,12 @@
                     "description": "'hot' topology element\n"
                 },
                 "httpEndpoint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Elasticsearch resource HTTP endpoint\n"
                 },
                 "httpsEndpoint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Elasticsearch resource HTTPs endpoint\n"
                 },
                 "keystoreContents": {
                     "type": "object",
@@ -253,7 +255,8 @@
                     "description": "A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.\n"
                 },
                 "region": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Elasticsearch resource region\n"
                 },
                 "remoteClusters": {
                     "type": "array",
@@ -263,7 +266,8 @@
                     "description": "Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times\n"
                 },
                 "resourceId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Elasticsearch resource unique identifier\n"
                 },
                 "snapshot": {
                     "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshot:DeploymentElasticsearchSnapshot",
@@ -273,22 +277,26 @@
                     "$ref": "#/types/ec:index/DeploymentElasticsearchSnapshotSource:DeploymentElasticsearchSnapshotSource"
                 },
                 "strategy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all\n"
                 },
                 "trustAccounts": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ec:index/DeploymentElasticsearchTrustAccount:DeploymentElasticsearchTrustAccount"
-                    }
+                    },
+                    "description": "Optional Elasticsearch account trust settings.\n"
                 },
                 "trustExternals": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/ec:index/DeploymentElasticsearchTrustExternal:DeploymentElasticsearchTrustExternal"
-                    }
+                    },
+                    "description": "Optional Elasticsearch external trust settings.\n"
                 },
                 "warm": {
-                    "$ref": "#/types/ec:index/DeploymentElasticsearchWarm:DeploymentElasticsearchWarm"
+                    "$ref": "#/types/ec:index/DeploymentElasticsearchWarm:DeploymentElasticsearchWarm",
+                    "description": "'warm' topology element\n"
                 }
             },
             "type": "object",
@@ -320,7 +328,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -346,14 +355,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
@@ -459,7 +470,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -485,14 +497,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
@@ -586,7 +600,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -612,14 +627,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
@@ -686,7 +703,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -712,14 +730,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
@@ -811,7 +831,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -837,14 +858,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
@@ -911,7 +934,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -937,14 +961,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
@@ -1015,7 +1041,8 @@
                     "description": "Remote deployment ID\n"
                 },
                 "refId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Remote elasticsearch \"ref_id\", it is best left to the default value\n"
                 },
                 "skipUnavailable": {
                     "type": "boolean",
@@ -1169,7 +1196,8 @@
                     "description": "Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.\n"
                 },
                 "instanceConfigurationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Computed Instance Configuration ID of the topology element\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -1195,14 +1223,16 @@
                     "description": "The node type for the Elasticsearch Topology element (machine learning node)\n"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
                     "description": "Optional size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number of zones that the Elasticsearch cluster will span. This is used to set HA\n"
                 }
             },
             "type": "object",
