@@ -141,10 +141,10 @@ class SnapshotRepository(pulumi.CustomResource):
 
         ## Import
 
-        You can import snapshot repositories using the `name`, for example
+        You can import snapshot repositories using the `name`, for example:
 
         ```sh
-         $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
+        $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
         ```
 
         :param str resource_name: The name of the resource.
@@ -166,10 +166,10 @@ class SnapshotRepository(pulumi.CustomResource):
 
         ## Import
 
-        You can import snapshot repositories using the `name`, for example
+        You can import snapshot repositories using the `name`, for example:
 
         ```sh
-         $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
+        $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
         ```
 
         :param str resource_name: The name of the resource.

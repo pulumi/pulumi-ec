@@ -185,12 +185,10 @@ import (
 //
 // ## Import
 //
-// # Traffic filters can be imported using the `id`, for example
+// Traffic filters can be imported using the `id`, for example:
 //
 // ```sh
-//
-//	$ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
-//
+// $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
 // ```
 type DeploymentTrafficFilter struct {
 	pulumi.CustomResourceState
