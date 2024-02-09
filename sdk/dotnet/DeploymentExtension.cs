@@ -20,10 +20,10 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// Extensions can be imported using the `id`, for example
+    /// Extensions can be imported using the `id`, for example:
     /// 
     /// ```sh
-    ///  $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
+    /// $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
     /// ```
     /// </summary>
     [ElasticCloudResourceType("ec:index/deploymentExtension:DeploymentExtension")]
