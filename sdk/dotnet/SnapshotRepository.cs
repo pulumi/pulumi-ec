@@ -16,10 +16,10 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// You can import snapshot repositories using the `name`, for example
+    /// You can import snapshot repositories using the `name`, for example:
     /// 
     /// ```sh
-    ///  $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
+    /// $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
     /// ```
     /// </summary>
     [ElasticCloudResourceType("ec:index/snapshotRepository:SnapshotRepository")]
