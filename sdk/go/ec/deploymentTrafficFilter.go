@@ -46,6 +46,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create an Elastic Cloud deployment
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              *pulumi.String(latest.Version),
@@ -103,6 +104,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create an Elastic Cloud deployment
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.Any(region),
 //				Version:              *pulumi.String(latest.Version),
@@ -160,6 +162,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create an Elastic Cloud deployment
 //			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
 //				Region:               pulumi.Any(region),
 //				Version:              *pulumi.String(latest.Version),
