@@ -44,6 +44,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create an Elastic Cloud deployment
 //			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              *pulumi.String(latest.Version),
@@ -57,6 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the keystore secret entry
 //			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
 //				DeploymentId: exampleKeystore.ID(),
 //				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
@@ -102,6 +104,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create an Elastic Cloud deployment
 //			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              *pulumi.String(latest.Version),
@@ -115,6 +118,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the keystore secret entry
 //			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
 //				DeploymentId: exampleKeystore.ID(),
 //				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
