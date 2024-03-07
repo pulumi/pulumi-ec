@@ -200,6 +200,7 @@ def get_stack(lock: Optional[bool] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -210,6 +211,7 @@ def get_stack(lock: Optional[bool] = None,
     latest_patch = ec.get_stack(region="us-east-1",
         version_regex="7.9.?")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool lock: Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
@@ -251,6 +253,7 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -261,6 +264,7 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
     latest_patch = ec.get_stack(region="us-east-1",
         version_regex="7.9.?")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool lock: Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.

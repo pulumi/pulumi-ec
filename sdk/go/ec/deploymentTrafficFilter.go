@@ -13,8 +13,10 @@ import (
 )
 
 // ## Example Usage
+//
 // ### IP based traffic filter
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,8 +71,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Azure Private Link traffic filter
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -127,9 +132,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ###GCP Private Service Connect traffic filter
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -185,6 +192,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

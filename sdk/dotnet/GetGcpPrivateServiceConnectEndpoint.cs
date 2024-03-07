@@ -14,10 +14,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetGcpPrivateServiceConnectEndpointResult> InvokeAsync(GetGcpPrivateServiceConnectEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGcpPrivateServiceConnectEndpointResult>("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", args ?? new GetGcpPrivateServiceConnectEndpointArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetGcpPrivateServiceConnectEndpointResult> Invoke(GetGcpPrivateServiceConnectEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGcpPrivateServiceConnectEndpointResult>("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", args ?? new GetGcpPrivateServiceConnectEndpointInvokeArgs(), options.WithDefaults());
