@@ -14,10 +14,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -67,8 +66,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDeploymentsResult> InvokeAsync(GetDeploymentsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithDefaults());
@@ -76,10 +74,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -129,8 +126,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());

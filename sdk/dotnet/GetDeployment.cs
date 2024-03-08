@@ -14,10 +14,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about an existing Elastic Cloud deployment.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDeploymentResult> InvokeAsync(GetDeploymentArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about an existing Elastic Cloud deployment.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
