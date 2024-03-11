@@ -87,12 +87,14 @@ def get_azure_privatelink_endpoint(region: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     eastus = ec.get_azure_privatelink_endpoint(region="eastus")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region to retrieve the Private Link configuration for.
@@ -117,12 +119,14 @@ def get_azure_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     eastus = ec.get_azure_privatelink_endpoint(region="eastus")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region to retrieve the Private Link configuration for.

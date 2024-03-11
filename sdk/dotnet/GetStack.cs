@@ -16,10 +16,9 @@ namespace Pulumi.ElasticCloud
         /// 
         ///   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,8 +42,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetStackResult> InvokeAsync(GetStackArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
@@ -54,10 +52,9 @@ namespace Pulumi.ElasticCloud
         /// 
         ///   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -81,8 +78,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());

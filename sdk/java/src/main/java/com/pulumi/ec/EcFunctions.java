@@ -36,6 +36,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -64,6 +66,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAwsPrivatelinkEndpointResult> getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs args) {
@@ -73,6 +76,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -101,6 +106,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAwsPrivatelinkEndpointResult> getAwsPrivatelinkEndpointPlain(GetAwsPrivatelinkEndpointPlainArgs args) {
@@ -110,6 +116,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -138,6 +146,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAwsPrivatelinkEndpointResult> getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs args, InvokeOptions options) {
@@ -147,6 +156,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -175,6 +186,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAwsPrivatelinkEndpointResult> getAwsPrivatelinkEndpointPlain(GetAwsPrivatelinkEndpointPlainArgs args, InvokeOptions options) {
@@ -184,6 +196,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -212,6 +226,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAzurePrivatelinkEndpointResult> getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs args) {
@@ -221,6 +236,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -249,6 +266,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAzurePrivatelinkEndpointResult> getAzurePrivatelinkEndpointPlain(GetAzurePrivatelinkEndpointPlainArgs args) {
@@ -258,6 +276,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -286,6 +306,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAzurePrivatelinkEndpointResult> getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs args, InvokeOptions options) {
@@ -295,6 +316,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -323,6 +346,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAzurePrivatelinkEndpointResult> getAzurePrivatelinkEndpointPlain(GetAzurePrivatelinkEndpointPlainArgs args, InvokeOptions options) {
@@ -332,6 +356,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about an existing Elastic Cloud deployment.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -360,6 +386,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentResult> getDeployment(GetDeploymentArgs args) {
@@ -369,6 +396,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about an existing Elastic Cloud deployment.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -397,6 +426,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentResult> getDeploymentPlain(GetDeploymentPlainArgs args) {
@@ -406,6 +436,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about an existing Elastic Cloud deployment.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -434,6 +466,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentResult> getDeployment(GetDeploymentArgs args, InvokeOptions options) {
@@ -443,6 +476,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about an existing Elastic Cloud deployment.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -471,6 +506,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentResult> getDeploymentPlain(GetDeploymentPlainArgs args, InvokeOptions options) {
@@ -480,6 +516,8 @@ public final class EcFunctions {
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -523,6 +561,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentsResult> getDeployments() {
@@ -532,6 +571,8 @@ public final class EcFunctions {
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -575,6 +616,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain() {
@@ -584,6 +626,8 @@ public final class EcFunctions {
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -627,6 +671,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentsResult> getDeployments(GetDeploymentsArgs args) {
@@ -636,6 +681,8 @@ public final class EcFunctions {
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -679,6 +726,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(GetDeploymentsPlainArgs args) {
@@ -688,6 +736,8 @@ public final class EcFunctions {
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -731,6 +781,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentsResult> getDeployments(GetDeploymentsArgs args, InvokeOptions options) {
@@ -740,6 +791,8 @@ public final class EcFunctions {
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -783,6 +836,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(GetDeploymentsPlainArgs args, InvokeOptions options) {
@@ -792,6 +846,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -820,6 +876,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetGcpPrivateServiceConnectEndpointResult> getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs args) {
@@ -829,6 +886,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -857,6 +916,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetGcpPrivateServiceConnectEndpointResult> getGcpPrivateServiceConnectEndpointPlain(GetGcpPrivateServiceConnectEndpointPlainArgs args) {
@@ -866,6 +926,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -894,6 +956,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetGcpPrivateServiceConnectEndpointResult> getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs args, InvokeOptions options) {
@@ -903,6 +966,8 @@ public final class EcFunctions {
      * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -931,6 +996,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetGcpPrivateServiceConnectEndpointResult> getGcpPrivateServiceConnectEndpointPlain(GetGcpPrivateServiceConnectEndpointPlainArgs args, InvokeOptions options) {
@@ -942,6 +1008,8 @@ public final class EcFunctions {
      *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -977,6 +1045,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetStackResult> getStack(GetStackArgs args) {
@@ -988,6 +1057,8 @@ public final class EcFunctions {
      *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1023,6 +1094,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetStackResult> getStackPlain(GetStackPlainArgs args) {
@@ -1034,6 +1106,8 @@ public final class EcFunctions {
      *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1069,6 +1143,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetStackResult> getStack(GetStackArgs args, InvokeOptions options) {
@@ -1080,6 +1155,8 @@ public final class EcFunctions {
      *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1115,6 +1192,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetStackResult> getStackPlain(GetStackPlainArgs args, InvokeOptions options) {
@@ -1124,6 +1202,8 @@ public final class EcFunctions {
      * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1160,6 +1240,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTrafficFilterResult> getTrafficFilter() {
@@ -1169,6 +1250,8 @@ public final class EcFunctions {
      * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1205,6 +1288,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTrafficFilterResult> getTrafficFilterPlain() {
@@ -1214,6 +1298,8 @@ public final class EcFunctions {
      * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1250,6 +1336,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTrafficFilterResult> getTrafficFilter(GetTrafficFilterArgs args) {
@@ -1259,6 +1346,8 @@ public final class EcFunctions {
      * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1295,6 +1384,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTrafficFilterResult> getTrafficFilterPlain(GetTrafficFilterPlainArgs args) {
@@ -1304,6 +1394,8 @@ public final class EcFunctions {
      * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1340,6 +1432,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTrafficFilterResult> getTrafficFilter(GetTrafficFilterArgs args, InvokeOptions options) {
@@ -1349,6 +1442,8 @@ public final class EcFunctions {
      * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1385,6 +1480,7 @@ public final class EcFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTrafficFilterResult> getTrafficFilterPlain(GetTrafficFilterPlainArgs args, InvokeOptions options) {
