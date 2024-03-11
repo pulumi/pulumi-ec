@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetAwsPrivatelinkEndpoint(ctx *pulumi.Context, args *GetAwsPrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*GetAwsPrivatelinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAwsPrivatelinkEndpointResult

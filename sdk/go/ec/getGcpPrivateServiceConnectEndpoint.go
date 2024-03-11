@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetGcpPrivateServiceConnectEndpoint(ctx *pulumi.Context, args *GetGcpPrivateServiceConnectEndpointArgs, opts ...pulumi.InvokeOption) (*GetGcpPrivateServiceConnectEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGcpPrivateServiceConnectEndpointResult

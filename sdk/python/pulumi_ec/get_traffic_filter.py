@@ -90,6 +90,7 @@ def get_traffic_filter(id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -98,6 +99,7 @@ def get_traffic_filter(id: Optional[str] = None,
     id = ec.get_traffic_filter(id="41d275439f884ce89359039e53eac516")
     region = ec.get_traffic_filter(region="us-east-1")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the ruleset
@@ -128,6 +130,7 @@ def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -136,6 +139,7 @@ def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     id = ec.get_traffic_filter(id="41d275439f884ce89359039e53eac516")
     region = ec.get_traffic_filter(region="us-east-1")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the ruleset

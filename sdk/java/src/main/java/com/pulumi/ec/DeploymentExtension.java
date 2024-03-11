@@ -23,8 +23,10 @@ import javax.annotation.Nullable;
  *   **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
  * 
  * ## Example Usage
+ * 
  * ### With extension file
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -83,8 +85,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### With download URL
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -140,6 +145,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

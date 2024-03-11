@@ -100,6 +100,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -115,6 +116,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
             traffic_filter_id=example_deployment_traffic_filter.id,
             deployment_id=ec_deployment["example"]["id"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -134,6 +136,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -149,6 +152,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
             traffic_filter_id=example_deployment_traffic_filter.id,
             deployment_id=ec_deployment["example"]["id"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

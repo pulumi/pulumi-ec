@@ -206,6 +206,7 @@ def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmA
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -229,6 +230,7 @@ def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmA
             "foo": "bar",
         })
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetDeploymentsApmArgs']] apms: Filter by APM resource kind status or configuration.
@@ -289,6 +291,7 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -312,6 +315,7 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.
             "foo": "bar",
         })
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetDeploymentsApmArgs']] apms: Filter by APM resource kind status or configuration.

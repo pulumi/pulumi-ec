@@ -14,10 +14,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,8 +42,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTrafficFilterResult> InvokeAsync(GetTrafficFilterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTrafficFilterResult>("ec:index/getTrafficFilter:getTrafficFilter", args ?? new GetTrafficFilterArgs(), options.WithDefaults());
@@ -52,10 +50,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -81,8 +78,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTrafficFilterResult> Invoke(GetTrafficFilterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTrafficFilterResult>("ec:index/getTrafficFilter:getTrafficFilter", args ?? new GetTrafficFilterInvokeArgs(), options.WithDefaults());

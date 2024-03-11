@@ -14,10 +14,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAzurePrivatelinkEndpointResult> InvokeAsync(GetAzurePrivatelinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzurePrivatelinkEndpointResult>("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args ?? new GetAzurePrivatelinkEndpointArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAzurePrivatelinkEndpointResult> Invoke(GetAzurePrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAzurePrivatelinkEndpointResult>("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args ?? new GetAzurePrivatelinkEndpointInvokeArgs(), options.WithDefaults());

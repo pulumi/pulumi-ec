@@ -208,12 +208,14 @@ def get_deployment(id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     example = ec.get_deployment(id="f759065e5e64e9f3546f6c44f2743893")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The unique ID of the deployment.
@@ -248,12 +250,14 @@ def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     example = ec.get_deployment(id="f759065e5e64e9f3546f6c44f2743893")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The unique ID of the deployment.
