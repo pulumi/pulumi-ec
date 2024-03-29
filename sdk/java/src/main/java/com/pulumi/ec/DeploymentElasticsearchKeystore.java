@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *             .region(&#34;us-east-1&#34;)
  *             .build());
  * 
+ *         // Create an Elastic Cloud deployment
  *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
@@ -65,6 +66,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // Create the keystore secret entry
  *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
  *             .deploymentId(exampleKeystore.id())
  *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
@@ -113,6 +115,7 @@ import javax.annotation.Nullable;
  *             .region(&#34;us-east-1&#34;)
  *             .build());
  * 
+ *         // Create an Elastic Cloud deployment
  *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
@@ -124,6 +127,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // Create the keystore secret entry
  *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
  *             .deploymentId(exampleKeystore.id())
  *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
