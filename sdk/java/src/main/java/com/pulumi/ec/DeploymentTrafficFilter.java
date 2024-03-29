@@ -66,6 +66,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // Create an Elastic Cloud deployment
  *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
@@ -133,6 +134,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // Create an Elastic Cloud deployment
  *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
  *             .region(region)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
@@ -199,6 +201,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // Create an Elastic Cloud deployment
  *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
  *             .region(region)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
