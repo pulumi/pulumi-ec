@@ -5,6 +5,7 @@ package com.pulumi.ec.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class DeploymentElasticsearchFrozenAutoscalingArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DeploymentElasticsearchFrozenAutoscalingArgs Empty = new DeploymentElasticsearchFrozenAutoscalingArgs();
+
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * 
+     */
+    @Import(name="autoscale")
+    private @Nullable Output<Boolean> autoscale;
+
+    /**
+     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * 
+     */
+    public Optional<Output<Boolean>> autoscale() {
+        return Optional.ofNullable(this.autoscale);
+    }
 
     /**
      * Maximum size value for the maximum autoscaling setting.
@@ -93,6 +109,7 @@ public final class DeploymentElasticsearchFrozenAutoscalingArgs extends com.pulu
     private DeploymentElasticsearchFrozenAutoscalingArgs() {}
 
     private DeploymentElasticsearchFrozenAutoscalingArgs(DeploymentElasticsearchFrozenAutoscalingArgs $) {
+        this.autoscale = $.autoscale;
         this.maxSize = $.maxSize;
         this.maxSizeResource = $.maxSizeResource;
         this.minSize = $.minSize;
@@ -116,6 +133,27 @@ public final class DeploymentElasticsearchFrozenAutoscalingArgs extends com.pulu
 
         public Builder(DeploymentElasticsearchFrozenAutoscalingArgs defaults) {
             $ = new DeploymentElasticsearchFrozenAutoscalingArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoscale(@Nullable Output<Boolean> autoscale) {
+            $.autoscale = autoscale;
+            return this;
+        }
+
+        /**
+         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoscale(Boolean autoscale) {
+            return autoscale(Output.of(autoscale));
         }
 
         /**

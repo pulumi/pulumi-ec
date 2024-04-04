@@ -12,6 +12,8 @@ import java.util.Objects;
 public final class DeploymentIntegrationsServerEndpoints {
     private String apm;
     private String fleet;
+    private String profiling;
+    private String symbols;
 
     private DeploymentIntegrationsServerEndpoints() {}
     public String apm() {
@@ -19,6 +21,12 @@ public final class DeploymentIntegrationsServerEndpoints {
     }
     public String fleet() {
         return this.fleet;
+    }
+    public String profiling() {
+        return this.profiling;
+    }
+    public String symbols() {
+        return this.symbols;
     }
 
     public static Builder builder() {
@@ -32,11 +40,15 @@ public final class DeploymentIntegrationsServerEndpoints {
     public static final class Builder {
         private String apm;
         private String fleet;
+        private String profiling;
+        private String symbols;
         public Builder() {}
         public Builder(DeploymentIntegrationsServerEndpoints defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apm = defaults.apm;
     	      this.fleet = defaults.fleet;
+    	      this.profiling = defaults.profiling;
+    	      this.symbols = defaults.symbols;
         }
 
         @CustomType.Setter
@@ -55,10 +67,28 @@ public final class DeploymentIntegrationsServerEndpoints {
             this.fleet = fleet;
             return this;
         }
+        @CustomType.Setter
+        public Builder profiling(String profiling) {
+            if (profiling == null) {
+              throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpoints", "profiling");
+            }
+            this.profiling = profiling;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder symbols(String symbols) {
+            if (symbols == null) {
+              throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpoints", "symbols");
+            }
+            this.symbols = symbols;
+            return this;
+        }
         public DeploymentIntegrationsServerEndpoints build() {
             final var _resultValue = new DeploymentIntegrationsServerEndpoints();
             _resultValue.apm = apm;
             _resultValue.fleet = fleet;
+            _resultValue.profiling = profiling;
+            _resultValue.symbols = symbols;
             return _resultValue;
         }
     }

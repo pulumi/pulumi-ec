@@ -14,6 +14,68 @@ namespace Pulumi.ElasticCloud
     /// 
     ///   &gt; **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ### Azure
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
+    ///     {
+    ///         Generic = new ElasticCloud.Inputs.SnapshotRepositoryGenericArgs
+    ///         {
+    ///             Type = "azure",
+    ///             Settings = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["container"] = "my_container",
+    ///                 ["client"] = "my_alternate_client",
+    ///                 ["compress"] = false,
+    ///             }),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### GCS
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
+    ///     {
+    ///         Generic = new ElasticCloud.Inputs.SnapshotRepositoryGenericArgs
+    ///         {
+    ///             Type = "gcs",
+    ///             Settings = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["bucket"] = "my_bucket",
+    ///                 ["client"] = "my_alternate_client",
+    ///                 ["compress"] = false,
+    ///             }),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// You can import snapshot repositories using the `name`, for example:

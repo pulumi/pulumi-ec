@@ -14,6 +14,9 @@ export interface DeploymentApm {
     httpEndpoint: string;
     httpsEndpoint: string;
     instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    latestInstanceConfigurationId: string;
+    latestInstanceConfigurationVersion: number;
     refId: string;
     region: string;
     resourceId: string;
@@ -150,9 +153,21 @@ export interface DeploymentElasticsearchCold {
      */
     autoscaling: outputs.DeploymentElasticsearchColdAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -188,6 +203,10 @@ export interface DeploymentElasticsearchCold {
 }
 
 export interface DeploymentElasticsearchColdAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -243,9 +262,21 @@ export interface DeploymentElasticsearchCoordinating {
      */
     autoscaling: outputs.DeploymentElasticsearchCoordinatingAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -281,6 +312,10 @@ export interface DeploymentElasticsearchCoordinating {
 }
 
 export interface DeploymentElasticsearchCoordinatingAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -328,9 +363,21 @@ export interface DeploymentElasticsearchFrozen {
      */
     autoscaling: outputs.DeploymentElasticsearchFrozenAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -367,6 +414,10 @@ export interface DeploymentElasticsearchFrozen {
 
 export interface DeploymentElasticsearchFrozenAutoscaling {
     /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
+    /**
      * Maximum size value for the maximum autoscaling setting.
      */
     maxSize: string;
@@ -394,9 +445,21 @@ export interface DeploymentElasticsearchHot {
      */
     autoscaling: outputs.DeploymentElasticsearchHotAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -432,6 +495,10 @@ export interface DeploymentElasticsearchHot {
 }
 
 export interface DeploymentElasticsearchHotAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -471,9 +538,21 @@ export interface DeploymentElasticsearchMaster {
      */
     autoscaling: outputs.DeploymentElasticsearchMasterAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -510,6 +589,10 @@ export interface DeploymentElasticsearchMaster {
 
 export interface DeploymentElasticsearchMasterAutoscaling {
     /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
+    /**
      * Maximum size value for the maximum autoscaling setting.
      */
     maxSize: string;
@@ -537,9 +620,21 @@ export interface DeploymentElasticsearchMl {
      */
     autoscaling: outputs.DeploymentElasticsearchMlAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -575,6 +670,10 @@ export interface DeploymentElasticsearchMl {
 }
 
 export interface DeploymentElasticsearchMlAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -688,9 +787,21 @@ export interface DeploymentElasticsearchWarm {
      */
     autoscaling: outputs.DeploymentElasticsearchWarmAutoscaling;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId: string;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion: number;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId: string;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion: number;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -727,6 +838,10 @@ export interface DeploymentElasticsearchWarm {
 
 export interface DeploymentElasticsearchWarmAutoscaling {
     /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale: boolean;
+    /**
      * Maximum size value for the maximum autoscaling setting.
      */
     maxSize: string;
@@ -757,6 +872,9 @@ export interface DeploymentEnterpriseSearch {
     httpEndpoint: string;
     httpsEndpoint: string;
     instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    latestInstanceConfigurationId: string;
+    latestInstanceConfigurationVersion: number;
     nodeTypeAppserver: boolean;
     nodeTypeConnector: boolean;
     nodeTypeWorker: boolean;
@@ -807,6 +925,9 @@ export interface DeploymentIntegrationsServer {
     httpEndpoint: string;
     httpsEndpoint: string;
     instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    latestInstanceConfigurationId: string;
+    latestInstanceConfigurationVersion: number;
     refId: string;
     region: string;
     resourceId: string;
@@ -848,6 +969,8 @@ export interface DeploymentIntegrationsServerConfig {
 export interface DeploymentIntegrationsServerEndpoints {
     apm: string;
     fleet: string;
+    profiling: string;
+    symbols: string;
 }
 
 export interface DeploymentKibana {
@@ -859,6 +982,9 @@ export interface DeploymentKibana {
     httpEndpoint: string;
     httpsEndpoint: string;
     instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    latestInstanceConfigurationId: string;
+    latestInstanceConfigurationVersion: number;
     refId: string;
     region: string;
     resourceId: string;
@@ -1293,6 +1419,232 @@ export interface GetDeploymentObservability {
      * Elasticsearch resource kind refId of the destination deployment.
      */
     refId: string;
+}
+
+export interface GetDeploymentTemplatesTemplate {
+    /**
+     * Defines the default configuration for a stateless application (Kibana, Enterprise Search, APM or Integrations Server).
+     */
+    apm: outputs.GetDeploymentTemplatesTemplateApm;
+    /**
+     * Outdated templates are marked as deprecated, but can still be used.
+     */
+    deprecated: boolean;
+    /**
+     * The description of the deployment template.
+     */
+    description: string;
+    /**
+     * Defines the default configuration for Elasticsearch.
+     */
+    elasticsearch: outputs.GetDeploymentTemplatesTemplateElasticsearch;
+    /**
+     * Defines the default configuration for a stateless application (Kibana, Enterprise Search, APM or Integrations Server).
+     */
+    enterpriseSearch: outputs.GetDeploymentTemplatesTemplateEnterpriseSearch;
+    /**
+     * The id of the deployment template.
+     */
+    id: string;
+    /**
+     * Defines the default configuration for a stateless application (Kibana, Enterprise Search, APM or Integrations Server).
+     */
+    integrationsServer: outputs.GetDeploymentTemplatesTemplateIntegrationsServer;
+    /**
+     * Defines the default configuration for a stateless application (Kibana, Enterprise Search, APM or Integrations Server).
+     */
+    kibana: outputs.GetDeploymentTemplatesTemplateKibana;
+    /**
+     * The minimum stack version that can used with this deployment template.
+     */
+    minStackVersion: string;
+    /**
+     * The name of the deployment template.
+     */
+    name: string;
+}
+
+export interface GetDeploymentTemplatesTemplateApm {
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearch {
+    autoscale: boolean;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    cold: outputs.GetDeploymentTemplatesTemplateElasticsearchCold;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    coordinating: outputs.GetDeploymentTemplatesTemplateElasticsearchCoordinating;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    frozen: outputs.GetDeploymentTemplatesTemplateElasticsearchFrozen;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    hot: outputs.GetDeploymentTemplatesTemplateElasticsearchHot;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    master: outputs.GetDeploymentTemplatesTemplateElasticsearchMaster;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    ml: outputs.GetDeploymentTemplatesTemplateElasticsearchMl;
+    /**
+     * Defines the default configuration for each topology.
+     */
+    warm: outputs.GetDeploymentTemplatesTemplateElasticsearchWarm;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchCold {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchColdAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchColdAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchCoordinating {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchCoordinatingAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchCoordinatingAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchFrozen {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchFrozenAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchFrozenAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchHot {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchHotAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchHotAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchMaster {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchMasterAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchMasterAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchMl {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchMlAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchMlAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchWarm {
+    autoscaling: outputs.GetDeploymentTemplatesTemplateElasticsearchWarmAutoscaling;
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateElasticsearchWarmAutoscaling {
+    autoscale: boolean;
+    maxSize: string;
+    maxSizeResource: string;
+    minSize: string;
+    minSizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateEnterpriseSearch {
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateIntegrationsServer {
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
+}
+
+export interface GetDeploymentTemplatesTemplateKibana {
+    availableSizes: string[];
+    defaultSize: string;
+    instanceConfigurationId: string;
+    instanceConfigurationVersion: number;
+    sizeResource: string;
 }
 
 export interface GetDeploymentsApm {

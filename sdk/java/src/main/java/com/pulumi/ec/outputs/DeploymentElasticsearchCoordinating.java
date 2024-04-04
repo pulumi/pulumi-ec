@@ -21,10 +21,25 @@ public final class DeploymentElasticsearchCoordinating {
      */
     private DeploymentElasticsearchCoordinatingAutoscaling autoscaling;
     /**
-     * @return Computed Instance Configuration ID of the topology element
+     * @return Instance Configuration ID of the topology element
      * 
      */
     private @Nullable String instanceConfigurationId;
+    /**
+     * @return Instance Configuration version of the topology element
+     * 
+     */
+    private @Nullable Integer instanceConfigurationVersion;
+    /**
+     * @return Latest Instance Configuration ID available on the deployment template for the topology element
+     * 
+     */
+    private @Nullable String latestInstanceConfigurationId;
+    /**
+     * @return Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * 
+     */
+    private @Nullable Integer latestInstanceConfigurationVersion;
     /**
      * @return The computed list of node roles for the current topology element
      * 
@@ -75,11 +90,32 @@ public final class DeploymentElasticsearchCoordinating {
         return this.autoscaling;
     }
     /**
-     * @return Computed Instance Configuration ID of the topology element
+     * @return Instance Configuration ID of the topology element
      * 
      */
     public Optional<String> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
+    }
+    /**
+     * @return Instance Configuration version of the topology element
+     * 
+     */
+    public Optional<Integer> instanceConfigurationVersion() {
+        return Optional.ofNullable(this.instanceConfigurationVersion);
+    }
+    /**
+     * @return Latest Instance Configuration ID available on the deployment template for the topology element
+     * 
+     */
+    public Optional<String> latestInstanceConfigurationId() {
+        return Optional.ofNullable(this.latestInstanceConfigurationId);
+    }
+    /**
+     * @return Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * 
+     */
+    public Optional<Integer> latestInstanceConfigurationVersion() {
+        return Optional.ofNullable(this.latestInstanceConfigurationVersion);
     }
     /**
      * @return The computed list of node roles for the current topology element
@@ -149,6 +185,9 @@ public final class DeploymentElasticsearchCoordinating {
     public static final class Builder {
         private DeploymentElasticsearchCoordinatingAutoscaling autoscaling;
         private @Nullable String instanceConfigurationId;
+        private @Nullable Integer instanceConfigurationVersion;
+        private @Nullable String latestInstanceConfigurationId;
+        private @Nullable Integer latestInstanceConfigurationVersion;
         private @Nullable List<String> nodeRoles;
         private @Nullable String nodeTypeData;
         private @Nullable String nodeTypeIngest;
@@ -162,6 +201,9 @@ public final class DeploymentElasticsearchCoordinating {
     	      Objects.requireNonNull(defaults);
     	      this.autoscaling = defaults.autoscaling;
     	      this.instanceConfigurationId = defaults.instanceConfigurationId;
+    	      this.instanceConfigurationVersion = defaults.instanceConfigurationVersion;
+    	      this.latestInstanceConfigurationId = defaults.latestInstanceConfigurationId;
+    	      this.latestInstanceConfigurationVersion = defaults.latestInstanceConfigurationVersion;
     	      this.nodeRoles = defaults.nodeRoles;
     	      this.nodeTypeData = defaults.nodeTypeData;
     	      this.nodeTypeIngest = defaults.nodeTypeIngest;
@@ -184,6 +226,24 @@ public final class DeploymentElasticsearchCoordinating {
         public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
 
             this.instanceConfigurationId = instanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder instanceConfigurationVersion(@Nullable Integer instanceConfigurationVersion) {
+
+            this.instanceConfigurationVersion = instanceConfigurationVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder latestInstanceConfigurationId(@Nullable String latestInstanceConfigurationId) {
+
+            this.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder latestInstanceConfigurationVersion(@Nullable Integer latestInstanceConfigurationVersion) {
+
+            this.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             return this;
         }
         @CustomType.Setter
@@ -241,6 +301,9 @@ public final class DeploymentElasticsearchCoordinating {
             final var _resultValue = new DeploymentElasticsearchCoordinating();
             _resultValue.autoscaling = autoscaling;
             _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.instanceConfigurationVersion = instanceConfigurationVersion;
+            _resultValue.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            _resultValue.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             _resultValue.nodeRoles = nodeRoles;
             _resultValue.nodeTypeData = nodeTypeData;
             _resultValue.nodeTypeIngest = nodeTypeIngest;

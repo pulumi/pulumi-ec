@@ -14,6 +14,10 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearchMlAutoscaling
     {
         /// <summary>
+        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        /// </summary>
+        public readonly bool? Autoscale;
+        /// <summary>
         /// Maximum size value for the maximum autoscaling setting.
         /// </summary>
         public readonly string? MaxSize;
@@ -36,6 +40,8 @@ namespace Pulumi.ElasticCloud.Outputs
 
         [OutputConstructor]
         private DeploymentElasticsearchMlAutoscaling(
+            bool? autoscale,
+
             string? maxSize,
 
             string? maxSizeResource,
@@ -46,6 +52,7 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? policyOverrideJson)
         {
+            Autoscale = autoscale;
             MaxSize = maxSize;
             MaxSizeResource = maxSizeResource;
             MinSize = minSize;

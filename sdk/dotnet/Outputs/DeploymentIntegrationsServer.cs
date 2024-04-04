@@ -25,6 +25,9 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
         public readonly string? InstanceConfigurationId;
+        public readonly int? InstanceConfigurationVersion;
+        public readonly string? LatestInstanceConfigurationId;
+        public readonly int? LatestInstanceConfigurationVersion;
         public readonly string? RefId;
         public readonly string? Region;
         public readonly string? ResourceId;
@@ -49,6 +52,12 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? instanceConfigurationId,
 
+            int? instanceConfigurationVersion,
+
+            string? latestInstanceConfigurationId,
+
+            int? latestInstanceConfigurationVersion,
+
             string? refId,
 
             string? region,
@@ -67,6 +76,9 @@ namespace Pulumi.ElasticCloud.Outputs
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
             InstanceConfigurationId = instanceConfigurationId;
+            InstanceConfigurationVersion = instanceConfigurationVersion;
+            LatestInstanceConfigurationId = latestInstanceConfigurationId;
+            LatestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             RefId = refId;
             Region = region;
             ResourceId = resourceId;

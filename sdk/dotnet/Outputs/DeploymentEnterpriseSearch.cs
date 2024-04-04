@@ -21,6 +21,9 @@ namespace Pulumi.ElasticCloud.Outputs
         public readonly string? HttpEndpoint;
         public readonly string? HttpsEndpoint;
         public readonly string? InstanceConfigurationId;
+        public readonly int? InstanceConfigurationVersion;
+        public readonly string? LatestInstanceConfigurationId;
+        public readonly int? LatestInstanceConfigurationVersion;
         public readonly bool? NodeTypeAppserver;
         public readonly bool? NodeTypeConnector;
         public readonly bool? NodeTypeWorker;
@@ -46,6 +49,12 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? instanceConfigurationId,
 
+            int? instanceConfigurationVersion,
+
+            string? latestInstanceConfigurationId,
+
+            int? latestInstanceConfigurationVersion,
+
             bool? nodeTypeAppserver,
 
             bool? nodeTypeConnector,
@@ -69,6 +78,9 @@ namespace Pulumi.ElasticCloud.Outputs
             HttpEndpoint = httpEndpoint;
             HttpsEndpoint = httpsEndpoint;
             InstanceConfigurationId = instanceConfigurationId;
+            InstanceConfigurationVersion = instanceConfigurationVersion;
+            LatestInstanceConfigurationId = latestInstanceConfigurationId;
+            LatestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             NodeTypeAppserver = nodeTypeAppserver;
             NodeTypeConnector = nodeTypeConnector;
             NodeTypeWorker = nodeTypeWorker;

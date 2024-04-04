@@ -13,6 +13,12 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentElasticsearchWarmAutoscalingGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        /// </summary>
+        [Input("autoscale")]
+        public Input<bool>? Autoscale { get; set; }
+
+        /// <summary>
         /// Maximum size value for the maximum autoscaling setting.
         /// </summary>
         [Input("maxSize")]

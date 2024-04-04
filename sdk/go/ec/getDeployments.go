@@ -91,6 +91,8 @@ type GetDeploymentsArgs struct {
 	IntegrationsServers []GetDeploymentsIntegrationsServer `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
 	Kibanas []GetDeploymentsKibana `pulumi:"kibanas"`
+	// The name of the deployment.
+	Name *string `pulumi:"name"`
 	// Prefix to filter the returned deployment list by.
 	NamePrefix *string `pulumi:"namePrefix"`
 	// The maximum number of deployments to return. Defaults to `100`.
@@ -119,6 +121,8 @@ type GetDeploymentsResult struct {
 	IntegrationsServers []GetDeploymentsIntegrationsServer `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
 	Kibanas []GetDeploymentsKibana `pulumi:"kibanas"`
+	// Filter the result by the full deployment name.
+	Name *string `pulumi:"name"`
 	// Prefix to filter the returned deployment list by.
 	NamePrefix *string `pulumi:"namePrefix"`
 	// The number of deployments actually returned.
@@ -158,6 +162,8 @@ type GetDeploymentsOutputArgs struct {
 	IntegrationsServers GetDeploymentsIntegrationsServerArrayInput `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
 	Kibanas GetDeploymentsKibanaArrayInput `pulumi:"kibanas"`
+	// The name of the deployment.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Prefix to filter the returned deployment list by.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 	// The maximum number of deployments to return. Defaults to `100`.
@@ -228,6 +234,11 @@ func (o GetDeploymentsResultOutput) IntegrationsServers() GetDeploymentsIntegrat
 // Filter by Kibana resource kind status or configuration.
 func (o GetDeploymentsResultOutput) Kibanas() GetDeploymentsKibanaArrayOutput {
 	return o.ApplyT(func(v GetDeploymentsResult) []GetDeploymentsKibana { return v.Kibanas }).(GetDeploymentsKibanaArrayOutput)
+}
+
+// Filter the result by the full deployment name.
+func (o GetDeploymentsResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Prefix to filter the returned deployment list by.

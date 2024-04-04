@@ -60,6 +60,27 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.instanceConfigurationId);
     }
 
+    @Import(name="instanceConfigurationVersion")
+    private @Nullable Output<Integer> instanceConfigurationVersion;
+
+    public Optional<Output<Integer>> instanceConfigurationVersion() {
+        return Optional.ofNullable(this.instanceConfigurationVersion);
+    }
+
+    @Import(name="latestInstanceConfigurationId")
+    private @Nullable Output<String> latestInstanceConfigurationId;
+
+    public Optional<Output<String>> latestInstanceConfigurationId() {
+        return Optional.ofNullable(this.latestInstanceConfigurationId);
+    }
+
+    @Import(name="latestInstanceConfigurationVersion")
+    private @Nullable Output<Integer> latestInstanceConfigurationVersion;
+
+    public Optional<Output<Integer>> latestInstanceConfigurationVersion() {
+        return Optional.ofNullable(this.latestInstanceConfigurationVersion);
+    }
+
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
@@ -118,6 +139,9 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
         this.httpEndpoint = $.httpEndpoint;
         this.httpsEndpoint = $.httpsEndpoint;
         this.instanceConfigurationId = $.instanceConfigurationId;
+        this.instanceConfigurationVersion = $.instanceConfigurationVersion;
+        this.latestInstanceConfigurationId = $.latestInstanceConfigurationId;
+        this.latestInstanceConfigurationVersion = $.latestInstanceConfigurationVersion;
         this.refId = $.refId;
         this.region = $.region;
         this.resourceId = $.resourceId;
@@ -199,6 +223,33 @@ public final class DeploymentKibanaArgs extends com.pulumi.resources.ResourceArg
 
         public Builder instanceConfigurationId(String instanceConfigurationId) {
             return instanceConfigurationId(Output.of(instanceConfigurationId));
+        }
+
+        public Builder instanceConfigurationVersion(@Nullable Output<Integer> instanceConfigurationVersion) {
+            $.instanceConfigurationVersion = instanceConfigurationVersion;
+            return this;
+        }
+
+        public Builder instanceConfigurationVersion(Integer instanceConfigurationVersion) {
+            return instanceConfigurationVersion(Output.of(instanceConfigurationVersion));
+        }
+
+        public Builder latestInstanceConfigurationId(@Nullable Output<String> latestInstanceConfigurationId) {
+            $.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            return this;
+        }
+
+        public Builder latestInstanceConfigurationId(String latestInstanceConfigurationId) {
+            return latestInstanceConfigurationId(Output.of(latestInstanceConfigurationId));
+        }
+
+        public Builder latestInstanceConfigurationVersion(@Nullable Output<Integer> latestInstanceConfigurationVersion) {
+            $.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
+            return this;
+        }
+
+        public Builder latestInstanceConfigurationVersion(Integer latestInstanceConfigurationVersion) {
+            return latestInstanceConfigurationVersion(Output.of(latestInstanceConfigurationVersion));
         }
 
         public Builder refId(@Nullable Output<String> refId) {

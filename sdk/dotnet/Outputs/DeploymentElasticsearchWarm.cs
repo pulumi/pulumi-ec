@@ -18,9 +18,21 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchWarmAutoscaling Autoscaling;
         /// <summary>
-        /// Computed Instance Configuration ID of the topology element
+        /// Instance Configuration ID of the topology element
         /// </summary>
         public readonly string? InstanceConfigurationId;
+        /// <summary>
+        /// Instance Configuration version of the topology element
+        /// </summary>
+        public readonly int? InstanceConfigurationVersion;
+        /// <summary>
+        /// Latest Instance Configuration ID available on the deployment template for the topology element
+        /// </summary>
+        public readonly string? LatestInstanceConfigurationId;
+        /// <summary>
+        /// Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        /// </summary>
+        public readonly int? LatestInstanceConfigurationVersion;
         /// <summary>
         /// The computed list of node roles for the current topology element
         /// </summary>
@@ -60,6 +72,12 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? instanceConfigurationId,
 
+            int? instanceConfigurationVersion,
+
+            string? latestInstanceConfigurationId,
+
+            int? latestInstanceConfigurationVersion,
+
             ImmutableArray<string> nodeRoles,
 
             string? nodeTypeData,
@@ -78,6 +96,9 @@ namespace Pulumi.ElasticCloud.Outputs
         {
             Autoscaling = autoscaling;
             InstanceConfigurationId = instanceConfigurationId;
+            InstanceConfigurationVersion = instanceConfigurationVersion;
+            LatestInstanceConfigurationId = latestInstanceConfigurationId;
+            LatestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             NodeRoles = nodeRoles;
             NodeTypeData = nodeTypeData;
             NodeTypeIngest = nodeTypeIngest;

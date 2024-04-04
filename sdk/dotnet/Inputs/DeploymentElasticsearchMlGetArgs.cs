@@ -19,10 +19,28 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<Inputs.DeploymentElasticsearchMlAutoscalingGetArgs> Autoscaling { get; set; } = null!;
 
         /// <summary>
-        /// Computed Instance Configuration ID of the topology element
+        /// Instance Configuration ID of the topology element
         /// </summary>
         [Input("instanceConfigurationId")]
         public Input<string>? InstanceConfigurationId { get; set; }
+
+        /// <summary>
+        /// Instance Configuration version of the topology element
+        /// </summary>
+        [Input("instanceConfigurationVersion")]
+        public Input<int>? InstanceConfigurationVersion { get; set; }
+
+        /// <summary>
+        /// Latest Instance Configuration ID available on the deployment template for the topology element
+        /// </summary>
+        [Input("latestInstanceConfigurationId")]
+        public Input<string>? LatestInstanceConfigurationId { get; set; }
+
+        /// <summary>
+        /// Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        /// </summary>
+        [Input("latestInstanceConfigurationVersion")]
+        public Input<int>? LatestInstanceConfigurationVersion { get; set; }
 
         [Input("nodeRoles")]
         private InputList<string>? _nodeRoles;

@@ -14,6 +14,8 @@ import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
 import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointPlainArgs;
 import com.pulumi.ec.inputs.GetDeploymentArgs;
 import com.pulumi.ec.inputs.GetDeploymentPlainArgs;
+import com.pulumi.ec.inputs.GetDeploymentTemplatesArgs;
+import com.pulumi.ec.inputs.GetDeploymentTemplatesPlainArgs;
 import com.pulumi.ec.inputs.GetDeploymentsArgs;
 import com.pulumi.ec.inputs.GetDeploymentsPlainArgs;
 import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
@@ -25,6 +27,7 @@ import com.pulumi.ec.inputs.GetTrafficFilterPlainArgs;
 import com.pulumi.ec.outputs.GetAwsPrivatelinkEndpointResult;
 import com.pulumi.ec.outputs.GetAzurePrivatelinkEndpointResult;
 import com.pulumi.ec.outputs.GetDeploymentResult;
+import com.pulumi.ec.outputs.GetDeploymentTemplatesResult;
 import com.pulumi.ec.outputs.GetDeploymentsResult;
 import com.pulumi.ec.outputs.GetGcpPrivateServiceConnectEndpointResult;
 import com.pulumi.ec.outputs.GetStackResult;
@@ -511,6 +514,238 @@ public final class EcFunctions {
      */
     public static CompletableFuture<GetDeploymentResult> getDeploymentPlain(GetDeploymentPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ec:index/getDeployment:getDeployment", TypeShape.of(GetDeploymentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of available deployment templates.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentTemplatesArgs;
+     * import com.pulumi.ec.Deployment;
+     * import com.pulumi.ec.DeploymentArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+     * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .version(&#34;8.12.2&#34;)
+     *             .region(data.ec_deployment_templates().all_templates().region())
+     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+     *                 .hot(DeploymentElasticsearchHotArgs.builder()
+     *                     .autoscaling()
+     *                     .build())
+     *                 .build())
+     *             .kibana()
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDeploymentTemplatesResult> getDeploymentTemplates(GetDeploymentTemplatesArgs args) {
+        return getDeploymentTemplates(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of available deployment templates.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentTemplatesArgs;
+     * import com.pulumi.ec.Deployment;
+     * import com.pulumi.ec.DeploymentArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+     * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .version(&#34;8.12.2&#34;)
+     *             .region(data.ec_deployment_templates().all_templates().region())
+     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+     *                 .hot(DeploymentElasticsearchHotArgs.builder()
+     *                     .autoscaling()
+     *                     .build())
+     *                 .build())
+     *             .kibana()
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDeploymentTemplatesResult> getDeploymentTemplatesPlain(GetDeploymentTemplatesPlainArgs args) {
+        return getDeploymentTemplatesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of available deployment templates.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentTemplatesArgs;
+     * import com.pulumi.ec.Deployment;
+     * import com.pulumi.ec.DeploymentArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+     * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .version(&#34;8.12.2&#34;)
+     *             .region(data.ec_deployment_templates().all_templates().region())
+     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+     *                 .hot(DeploymentElasticsearchHotArgs.builder()
+     *                     .autoscaling()
+     *                     .build())
+     *                 .build())
+     *             .kibana()
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDeploymentTemplatesResult> getDeploymentTemplates(GetDeploymentTemplatesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getDeploymentTemplates:getDeploymentTemplates", TypeShape.of(GetDeploymentTemplatesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of available deployment templates.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentTemplatesArgs;
+     * import com.pulumi.ec.Deployment;
+     * import com.pulumi.ec.DeploymentArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+     * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
+     *             .region(&#34;us-east-1&#34;)
+     *             .build());
+     * 
+     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .version(&#34;8.12.2&#34;)
+     *             .region(data.ec_deployment_templates().all_templates().region())
+     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+     *                 .hot(DeploymentElasticsearchHotArgs.builder()
+     *                     .autoscaling()
+     *                     .build())
+     *                 .build())
+     *             .kibana()
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDeploymentTemplatesResult> getDeploymentTemplatesPlain(GetDeploymentTemplatesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ec:index/getDeploymentTemplates:getDeploymentTemplates", TypeShape.of(GetDeploymentTemplatesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.

@@ -208,6 +208,12 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
+        /// The name of the deployment.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
+
+        /// <summary>
         /// Prefix to filter the returned deployment list by.
         /// </summary>
         [Input("namePrefix")]
@@ -312,6 +318,12 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
+        /// The name of the deployment.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
         /// Prefix to filter the returned deployment list by.
         /// </summary>
         [Input("namePrefix")]
@@ -382,6 +394,10 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDeploymentsKibanaResult> Kibanas;
         /// <summary>
+        /// Filter the result by the full deployment name.
+        /// </summary>
+        public readonly string? Name;
+        /// <summary>
         /// Prefix to filter the returned deployment list by.
         /// </summary>
         public readonly string? NamePrefix;
@@ -418,6 +434,8 @@ namespace Pulumi.ElasticCloud
 
             ImmutableArray<Outputs.GetDeploymentsKibanaResult> kibanas,
 
+            string? name,
+
             string? namePrefix,
 
             int returnCount,
@@ -435,6 +453,7 @@ namespace Pulumi.ElasticCloud
             Id = id;
             IntegrationsServers = integrationsServers;
             Kibanas = kibanas;
+            Name = name;
             NamePrefix = namePrefix;
             ReturnCount = returnCount;
             Size = size;

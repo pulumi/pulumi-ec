@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### S3 style
+ * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
@@ -51,6 +53,92 @@ import javax.annotation.Nullable;
  *                 .access_key(&#34;my-access-key&#34;)
  *                 .bucket(&#34;my-bucket&#34;)
  *                 .secret_key(&#34;my-secret-key&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Azure
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.SnapshotRepository;
+ * import com.pulumi.ec.SnapshotRepositoryArgs;
+ * import com.pulumi.ec.inputs.SnapshotRepositoryGenericArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
+ *             .generic(SnapshotRepositoryGenericArgs.builder()
+ *                 .type(&#34;azure&#34;)
+ *                 .settings(serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty(&#34;container&#34;, &#34;my_container&#34;),
+ *                         jsonProperty(&#34;client&#34;, &#34;my_alternate_client&#34;),
+ *                         jsonProperty(&#34;compress&#34;, false)
+ *                     )))
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### GCS
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.SnapshotRepository;
+ * import com.pulumi.ec.SnapshotRepositoryArgs;
+ * import com.pulumi.ec.inputs.SnapshotRepositoryGenericArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
+ *             .generic(SnapshotRepositoryGenericArgs.builder()
+ *                 .type(&#34;gcs&#34;)
+ *                 .settings(serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty(&#34;bucket&#34;, &#34;my_bucket&#34;),
+ *                         jsonProperty(&#34;client&#34;, &#34;my_alternate_client&#34;),
+ *                         jsonProperty(&#34;compress&#34;, false)
+ *                     )))
  *                 .build())
  *             .build());
  * 
