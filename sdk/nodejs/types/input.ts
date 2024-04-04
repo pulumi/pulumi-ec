@@ -14,6 +14,9 @@ export interface DeploymentApm {
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     refId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
@@ -150,9 +153,21 @@ export interface DeploymentElasticsearchCold {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchColdAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -188,6 +203,10 @@ export interface DeploymentElasticsearchCold {
 }
 
 export interface DeploymentElasticsearchColdAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -243,9 +262,21 @@ export interface DeploymentElasticsearchCoordinating {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchCoordinatingAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -281,6 +312,10 @@ export interface DeploymentElasticsearchCoordinating {
 }
 
 export interface DeploymentElasticsearchCoordinatingAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -328,9 +363,21 @@ export interface DeploymentElasticsearchFrozen {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchFrozenAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -367,6 +414,10 @@ export interface DeploymentElasticsearchFrozen {
 
 export interface DeploymentElasticsearchFrozenAutoscaling {
     /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
+    /**
      * Maximum size value for the maximum autoscaling setting.
      */
     maxSize?: pulumi.Input<string>;
@@ -394,9 +445,21 @@ export interface DeploymentElasticsearchHot {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchHotAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -432,6 +495,10 @@ export interface DeploymentElasticsearchHot {
 }
 
 export interface DeploymentElasticsearchHotAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -471,9 +538,21 @@ export interface DeploymentElasticsearchMaster {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMasterAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -510,6 +589,10 @@ export interface DeploymentElasticsearchMaster {
 
 export interface DeploymentElasticsearchMasterAutoscaling {
     /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
+    /**
      * Maximum size value for the maximum autoscaling setting.
      */
     maxSize?: pulumi.Input<string>;
@@ -537,9 +620,21 @@ export interface DeploymentElasticsearchMl {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchMlAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -575,6 +670,10 @@ export interface DeploymentElasticsearchMl {
 }
 
 export interface DeploymentElasticsearchMlAutoscaling {
+    /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
     /**
      * Maximum size value for the maximum autoscaling setting.
      */
@@ -688,9 +787,21 @@ export interface DeploymentElasticsearchWarm {
      */
     autoscaling: pulumi.Input<inputs.DeploymentElasticsearchWarmAutoscaling>;
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      */
     instanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Instance Configuration version of the topology element
+     */
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     */
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     */
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     /**
      * The computed list of node roles for the current topology element
      */
@@ -727,6 +838,10 @@ export interface DeploymentElasticsearchWarm {
 
 export interface DeploymentElasticsearchWarmAutoscaling {
     /**
+     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     */
+    autoscale?: pulumi.Input<boolean>;
+    /**
      * Maximum size value for the maximum autoscaling setting.
      */
     maxSize?: pulumi.Input<string>;
@@ -757,6 +872,9 @@ export interface DeploymentEnterpriseSearch {
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     nodeTypeAppserver?: pulumi.Input<boolean>;
     nodeTypeConnector?: pulumi.Input<boolean>;
     nodeTypeWorker?: pulumi.Input<boolean>;
@@ -807,6 +925,9 @@ export interface DeploymentIntegrationsServer {
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     refId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;
@@ -848,6 +969,8 @@ export interface DeploymentIntegrationsServerConfig {
 export interface DeploymentIntegrationsServerEndpoints {
     apm: pulumi.Input<string>;
     fleet: pulumi.Input<string>;
+    profiling: pulumi.Input<string>;
+    symbols: pulumi.Input<string>;
 }
 
 export interface DeploymentKibana {
@@ -859,6 +982,9 @@ export interface DeploymentKibana {
     httpEndpoint?: pulumi.Input<string>;
     httpsEndpoint?: pulumi.Input<string>;
     instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number>;
     refId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     resourceId?: pulumi.Input<string>;

@@ -35,18 +35,63 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
     }
 
     /**
-     * Computed Instance Configuration ID of the topology element
+     * Instance Configuration ID of the topology element
      * 
      */
     @Import(name="instanceConfigurationId")
     private @Nullable Output<String> instanceConfigurationId;
 
     /**
-     * @return Computed Instance Configuration ID of the topology element
+     * @return Instance Configuration ID of the topology element
      * 
      */
     public Optional<Output<String>> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
+    }
+
+    /**
+     * Instance Configuration version of the topology element
+     * 
+     */
+    @Import(name="instanceConfigurationVersion")
+    private @Nullable Output<Integer> instanceConfigurationVersion;
+
+    /**
+     * @return Instance Configuration version of the topology element
+     * 
+     */
+    public Optional<Output<Integer>> instanceConfigurationVersion() {
+        return Optional.ofNullable(this.instanceConfigurationVersion);
+    }
+
+    /**
+     * Latest Instance Configuration ID available on the deployment template for the topology element
+     * 
+     */
+    @Import(name="latestInstanceConfigurationId")
+    private @Nullable Output<String> latestInstanceConfigurationId;
+
+    /**
+     * @return Latest Instance Configuration ID available on the deployment template for the topology element
+     * 
+     */
+    public Optional<Output<String>> latestInstanceConfigurationId() {
+        return Optional.ofNullable(this.latestInstanceConfigurationId);
+    }
+
+    /**
+     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * 
+     */
+    @Import(name="latestInstanceConfigurationVersion")
+    private @Nullable Output<Integer> latestInstanceConfigurationVersion;
+
+    /**
+     * @return Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * 
+     */
+    public Optional<Output<Integer>> latestInstanceConfigurationVersion() {
+        return Optional.ofNullable(this.latestInstanceConfigurationVersion);
     }
 
     /**
@@ -174,6 +219,9 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
     private DeploymentElasticsearchMasterArgs(DeploymentElasticsearchMasterArgs $) {
         this.autoscaling = $.autoscaling;
         this.instanceConfigurationId = $.instanceConfigurationId;
+        this.instanceConfigurationVersion = $.instanceConfigurationVersion;
+        this.latestInstanceConfigurationId = $.latestInstanceConfigurationId;
+        this.latestInstanceConfigurationVersion = $.latestInstanceConfigurationVersion;
         this.nodeRoles = $.nodeRoles;
         this.nodeTypeData = $.nodeTypeData;
         this.nodeTypeIngest = $.nodeTypeIngest;
@@ -224,7 +272,7 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
         }
 
         /**
-         * @param instanceConfigurationId Computed Instance Configuration ID of the topology element
+         * @param instanceConfigurationId Instance Configuration ID of the topology element
          * 
          * @return builder
          * 
@@ -235,13 +283,76 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
         }
 
         /**
-         * @param instanceConfigurationId Computed Instance Configuration ID of the topology element
+         * @param instanceConfigurationId Instance Configuration ID of the topology element
          * 
          * @return builder
          * 
          */
         public Builder instanceConfigurationId(String instanceConfigurationId) {
             return instanceConfigurationId(Output.of(instanceConfigurationId));
+        }
+
+        /**
+         * @param instanceConfigurationVersion Instance Configuration version of the topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder instanceConfigurationVersion(@Nullable Output<Integer> instanceConfigurationVersion) {
+            $.instanceConfigurationVersion = instanceConfigurationVersion;
+            return this;
+        }
+
+        /**
+         * @param instanceConfigurationVersion Instance Configuration version of the topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder instanceConfigurationVersion(Integer instanceConfigurationVersion) {
+            return instanceConfigurationVersion(Output.of(instanceConfigurationVersion));
+        }
+
+        /**
+         * @param latestInstanceConfigurationId Latest Instance Configuration ID available on the deployment template for the topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder latestInstanceConfigurationId(@Nullable Output<String> latestInstanceConfigurationId) {
+            $.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            return this;
+        }
+
+        /**
+         * @param latestInstanceConfigurationId Latest Instance Configuration ID available on the deployment template for the topology element
+         * 
+         * @return builder
+         * 
+         */
+        public Builder latestInstanceConfigurationId(String latestInstanceConfigurationId) {
+            return latestInstanceConfigurationId(Output.of(latestInstanceConfigurationId));
+        }
+
+        /**
+         * @param latestInstanceConfigurationVersion Latest version available for the Instance Configuration with the latest_instance_configuration_id
+         * 
+         * @return builder
+         * 
+         */
+        public Builder latestInstanceConfigurationVersion(@Nullable Output<Integer> latestInstanceConfigurationVersion) {
+            $.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
+            return this;
+        }
+
+        /**
+         * @param latestInstanceConfigurationVersion Latest version available for the Instance Configuration with the latest_instance_configuration_id
+         * 
+         * @return builder
+         * 
+         */
+        public Builder latestInstanceConfigurationVersion(Integer latestInstanceConfigurationVersion) {
+            return latestInstanceConfigurationVersion(Output.of(latestInstanceConfigurationVersion));
         }
 
         /**

@@ -15,15 +15,23 @@ namespace Pulumi.ElasticCloud.Outputs
     {
         public readonly string Apm;
         public readonly string Fleet;
+        public readonly string Profiling;
+        public readonly string Symbols;
 
         [OutputConstructor]
         private DeploymentIntegrationsServerEndpoints(
             string apm,
 
-            string fleet)
+            string fleet,
+
+            string profiling,
+
+            string symbols)
         {
             Apm = apm;
             Fleet = fleet;
+            Profiling = profiling;
+            Symbols = symbols;
         }
     }
 }

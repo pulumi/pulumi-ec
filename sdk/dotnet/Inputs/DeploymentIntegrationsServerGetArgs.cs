@@ -36,6 +36,15 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("instanceConfigurationId")]
         public Input<string>? InstanceConfigurationId { get; set; }
 
+        [Input("instanceConfigurationVersion")]
+        public Input<int>? InstanceConfigurationVersion { get; set; }
+
+        [Input("latestInstanceConfigurationId")]
+        public Input<string>? LatestInstanceConfigurationId { get; set; }
+
+        [Input("latestInstanceConfigurationVersion")]
+        public Input<int>? LatestInstanceConfigurationVersion { get; set; }
+
         [Input("refId")]
         public Input<string>? RefId { get; set; }
 

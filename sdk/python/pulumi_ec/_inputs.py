@@ -63,6 +63,9 @@ class DeploymentApmArgs:
                  http_endpoint: Optional[pulumi.Input[str]] = None,
                  https_endpoint: Optional[pulumi.Input[str]] = None,
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  ref_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_id: Optional[pulumi.Input[str]] = None,
@@ -83,6 +86,12 @@ class DeploymentApmArgs:
             pulumi.set(__self__, "https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if ref_id is not None:
             pulumi.set(__self__, "ref_id", ref_id)
         if region is not None:
@@ -143,6 +152,33 @@ class DeploymentApmArgs:
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="refId")
@@ -680,6 +716,9 @@ class DeploymentElasticsearchColdArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -690,7 +729,10 @@ class DeploymentElasticsearchColdArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -703,6 +745,12 @@ class DeploymentElasticsearchColdArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -736,13 +784,49 @@ class DeploymentElasticsearchColdArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -844,18 +928,22 @@ class DeploymentElasticsearchColdArgs:
 @pulumi.input_type
 class DeploymentElasticsearchColdAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -866,6 +954,18 @@ class DeploymentElasticsearchColdAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -1036,6 +1136,9 @@ class DeploymentElasticsearchCoordinatingArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -1046,7 +1149,10 @@ class DeploymentElasticsearchCoordinatingArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -1059,6 +1165,12 @@ class DeploymentElasticsearchCoordinatingArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -1092,13 +1204,49 @@ class DeploymentElasticsearchCoordinatingArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -1200,18 +1348,22 @@ class DeploymentElasticsearchCoordinatingArgs:
 @pulumi.input_type
 class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -1222,6 +1374,18 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -1356,6 +1520,9 @@ class DeploymentElasticsearchFrozenArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -1366,7 +1533,10 @@ class DeploymentElasticsearchFrozenArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -1379,6 +1549,12 @@ class DeploymentElasticsearchFrozenArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -1412,13 +1588,49 @@ class DeploymentElasticsearchFrozenArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -1520,18 +1732,22 @@ class DeploymentElasticsearchFrozenArgs:
 @pulumi.input_type
 class DeploymentElasticsearchFrozenAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -1542,6 +1758,18 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -1609,6 +1837,9 @@ class DeploymentElasticsearchHotArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -1619,7 +1850,10 @@ class DeploymentElasticsearchHotArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -1632,6 +1866,12 @@ class DeploymentElasticsearchHotArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -1665,13 +1905,49 @@ class DeploymentElasticsearchHotArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -1773,18 +2049,22 @@ class DeploymentElasticsearchHotArgs:
 @pulumi.input_type
 class DeploymentElasticsearchHotAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -1795,6 +2075,18 @@ class DeploymentElasticsearchHotAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -1900,6 +2192,9 @@ class DeploymentElasticsearchMasterArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -1910,7 +2205,10 @@ class DeploymentElasticsearchMasterArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -1923,6 +2221,12 @@ class DeploymentElasticsearchMasterArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -1956,13 +2260,49 @@ class DeploymentElasticsearchMasterArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -2064,18 +2404,22 @@ class DeploymentElasticsearchMasterArgs:
 @pulumi.input_type
 class DeploymentElasticsearchMasterAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -2086,6 +2430,18 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -2153,6 +2509,9 @@ class DeploymentElasticsearchMlArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -2163,7 +2522,10 @@ class DeploymentElasticsearchMlArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -2176,6 +2538,12 @@ class DeploymentElasticsearchMlArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -2209,13 +2577,49 @@ class DeploymentElasticsearchMlArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -2317,18 +2721,22 @@ class DeploymentElasticsearchMlArgs:
 @pulumi.input_type
 class DeploymentElasticsearchMlAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -2339,6 +2747,18 @@ class DeploymentElasticsearchMlAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -2702,6 +3122,9 @@ class DeploymentElasticsearchWarmArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs'],
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  node_type_data: Optional[pulumi.Input[str]] = None,
                  node_type_ingest: Optional[pulumi.Input[str]] = None,
@@ -2712,7 +3135,10 @@ class DeploymentElasticsearchWarmArgs:
                  zone_count: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        :param pulumi.Input[str] instance_configuration_id: Computed Instance Configuration ID of the topology element
+        :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
+        :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
+        :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
@@ -2725,6 +3151,12 @@ class DeploymentElasticsearchWarmArgs:
         pulumi.set(__self__, "autoscaling", autoscaling)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_roles is not None:
             pulumi.set(__self__, "node_roles", node_roles)
         if node_type_data is not None:
@@ -2758,13 +3190,49 @@ class DeploymentElasticsearchWarmArgs:
     @pulumi.getter(name="instanceConfigurationId")
     def instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Computed Instance Configuration ID of the topology element
+        Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance Configuration version of the topology element
+        """
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Latest Instance Configuration ID available on the deployment template for the topology element
+        """
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        """
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeRoles")
@@ -2866,18 +3334,22 @@ class DeploymentElasticsearchWarmArgs:
 @pulumi.input_type
 class DeploymentElasticsearchWarmAutoscalingArgs:
     def __init__(__self__, *,
+                 autoscale: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[str]] = None,
                  max_size_resource: Optional[pulumi.Input[str]] = None,
                  min_size: Optional[pulumi.Input[str]] = None,
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
         :param pulumi.Input[str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if max_size_resource is not None:
@@ -2888,6 +3360,18 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
             pulumi.set(__self__, "min_size_resource", min_size_resource)
         if policy_override_json is not None:
             pulumi.set(__self__, "policy_override_json", policy_override_json)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        """
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoscale", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -2958,6 +3442,9 @@ class DeploymentEnterpriseSearchArgs:
                  http_endpoint: Optional[pulumi.Input[str]] = None,
                  https_endpoint: Optional[pulumi.Input[str]] = None,
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  node_type_appserver: Optional[pulumi.Input[bool]] = None,
                  node_type_connector: Optional[pulumi.Input[bool]] = None,
                  node_type_worker: Optional[pulumi.Input[bool]] = None,
@@ -2981,6 +3468,12 @@ class DeploymentEnterpriseSearchArgs:
             pulumi.set(__self__, "https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if node_type_appserver is not None:
             pulumi.set(__self__, "node_type_appserver", node_type_appserver)
         if node_type_connector is not None:
@@ -3047,6 +3540,33 @@ class DeploymentEnterpriseSearchArgs:
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="nodeTypeAppserver")
@@ -3229,6 +3749,9 @@ class DeploymentIntegrationsServerArgs:
                  http_endpoint: Optional[pulumi.Input[str]] = None,
                  https_endpoint: Optional[pulumi.Input[str]] = None,
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  ref_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_id: Optional[pulumi.Input[str]] = None,
@@ -3252,6 +3775,12 @@ class DeploymentIntegrationsServerArgs:
             pulumi.set(__self__, "https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if ref_id is not None:
             pulumi.set(__self__, "ref_id", ref_id)
         if region is not None:
@@ -3324,6 +3853,33 @@ class DeploymentIntegrationsServerArgs:
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="refId")
@@ -3490,9 +4046,13 @@ class DeploymentIntegrationsServerConfigArgs:
 class DeploymentIntegrationsServerEndpointsArgs:
     def __init__(__self__, *,
                  apm: pulumi.Input[str],
-                 fleet: pulumi.Input[str]):
+                 fleet: pulumi.Input[str],
+                 profiling: pulumi.Input[str],
+                 symbols: pulumi.Input[str]):
         pulumi.set(__self__, "apm", apm)
         pulumi.set(__self__, "fleet", fleet)
+        pulumi.set(__self__, "profiling", profiling)
+        pulumi.set(__self__, "symbols", symbols)
 
     @property
     @pulumi.getter
@@ -3512,6 +4072,24 @@ class DeploymentIntegrationsServerEndpointsArgs:
     def fleet(self, value: pulumi.Input[str]):
         pulumi.set(self, "fleet", value)
 
+    @property
+    @pulumi.getter
+    def profiling(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "profiling")
+
+    @profiling.setter
+    def profiling(self, value: pulumi.Input[str]):
+        pulumi.set(self, "profiling", value)
+
+    @property
+    @pulumi.getter
+    def symbols(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "symbols")
+
+    @symbols.setter
+    def symbols(self, value: pulumi.Input[str]):
+        pulumi.set(self, "symbols", value)
+
 
 @pulumi.input_type
 class DeploymentKibanaArgs:
@@ -3521,6 +4099,9 @@ class DeploymentKibanaArgs:
                  http_endpoint: Optional[pulumi.Input[str]] = None,
                  https_endpoint: Optional[pulumi.Input[str]] = None,
                  instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 instance_configuration_version: Optional[pulumi.Input[int]] = None,
+                 latest_instance_configuration_id: Optional[pulumi.Input[str]] = None,
+                 latest_instance_configuration_version: Optional[pulumi.Input[int]] = None,
                  ref_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_id: Optional[pulumi.Input[str]] = None,
@@ -3541,6 +4122,12 @@ class DeploymentKibanaArgs:
             pulumi.set(__self__, "https_endpoint", https_endpoint)
         if instance_configuration_id is not None:
             pulumi.set(__self__, "instance_configuration_id", instance_configuration_id)
+        if instance_configuration_version is not None:
+            pulumi.set(__self__, "instance_configuration_version", instance_configuration_version)
+        if latest_instance_configuration_id is not None:
+            pulumi.set(__self__, "latest_instance_configuration_id", latest_instance_configuration_id)
+        if latest_instance_configuration_version is not None:
+            pulumi.set(__self__, "latest_instance_configuration_version", latest_instance_configuration_version)
         if ref_id is not None:
             pulumi.set(__self__, "ref_id", ref_id)
         if region is not None:
@@ -3601,6 +4188,33 @@ class DeploymentKibanaArgs:
     @instance_configuration_id.setter
     def instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="instanceConfigurationVersion")
+    def instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "instance_configuration_version")
+
+    @instance_configuration_version.setter
+    def instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_configuration_version", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationId")
+    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "latest_instance_configuration_id")
+
+    @latest_instance_configuration_id.setter
+    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "latest_instance_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="latestInstanceConfigurationVersion")
+    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "latest_instance_configuration_version")
+
+    @latest_instance_configuration_version.setter
+    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_instance_configuration_version", value)
 
     @property
     @pulumi.getter(name="refId")

@@ -51,6 +51,7 @@ export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOp
         "healthy": args.healthy,
         "integrationsServers": args.integrationsServers,
         "kibanas": args.kibanas,
+        "name": args.name,
         "namePrefix": args.namePrefix,
         "size": args.size,
         "tags": args.tags,
@@ -89,6 +90,10 @@ export interface GetDeploymentsArgs {
      * Filter by Kibana resource kind status or configuration.
      */
     kibanas?: inputs.GetDeploymentsKibana[];
+    /**
+     * The name of the deployment.
+     */
+    name?: string;
     /**
      * Prefix to filter the returned deployment list by.
      */
@@ -143,6 +148,10 @@ export interface GetDeploymentsResult {
      * Filter by Kibana resource kind status or configuration.
      */
     readonly kibanas?: outputs.GetDeploymentsKibana[];
+    /**
+     * Filter the result by the full deployment name.
+     */
+    readonly name?: string;
     /**
      * Prefix to filter the returned deployment list by.
      */
@@ -229,6 +238,10 @@ export interface GetDeploymentsOutputArgs {
      * Filter by Kibana resource kind status or configuration.
      */
     kibanas?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsKibanaArgs>[]>;
+    /**
+     * The name of the deployment.
+     */
+    name?: pulumi.Input<string>;
     /**
      * Prefix to filter the returned deployment list by.
      */

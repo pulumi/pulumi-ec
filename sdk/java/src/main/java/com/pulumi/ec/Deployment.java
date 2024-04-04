@@ -42,6 +42,8 @@ import javax.annotation.Nullable;
  * 
  * ### With Cross Cluster Search settings
  * 
+ * ### With Keystore
+ * 
  * ## Import
  * 
  * ~&gt; **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
@@ -126,7 +128,9 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     /**
      * Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
      * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
+     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
+     * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
+     * Please follow the official Terraform recommendations regarding senstaive data in state.
      * 
      */
     @Export(name="elasticsearchPassword", refs={String.class}, tree="[0]")
@@ -135,7 +139,9 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     /**
      * @return Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
      * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
+     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
+     * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
+     * Please follow the official Terraform recommendations regarding senstaive data in state.
      * 
      */
     public Output<String> elasticsearchPassword() {
@@ -198,6 +204,26 @@ public class Deployment extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<DeploymentKibana>> kibana() {
         return Codegen.optional(this.kibana);
+    }
+    /**
+     * When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
+     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * 
+     */
+    @Export(name="migrateToLatestHardware", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> migrateToLatestHardware;
+
+    /**
+     * @return When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
+     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * 
+     */
+    public Output<Optional<Boolean>> migrateToLatestHardware() {
+        return Codegen.optional(this.migrateToLatestHardware);
     }
     /**
      * Extension name.

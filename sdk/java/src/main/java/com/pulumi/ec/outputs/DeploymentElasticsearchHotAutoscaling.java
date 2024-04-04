@@ -4,6 +4,7 @@
 package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +12,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DeploymentElasticsearchHotAutoscaling {
+    /**
+     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * 
+     */
+    private @Nullable Boolean autoscale;
     /**
      * @return Maximum size value for the maximum autoscaling setting.
      * 
@@ -38,6 +44,13 @@ public final class DeploymentElasticsearchHotAutoscaling {
     private @Nullable String policyOverrideJson;
 
     private DeploymentElasticsearchHotAutoscaling() {}
+    /**
+     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * 
+     */
+    public Optional<Boolean> autoscale() {
+        return Optional.ofNullable(this.autoscale);
+    }
     /**
      * @return Maximum size value for the maximum autoscaling setting.
      * 
@@ -83,6 +96,7 @@ public final class DeploymentElasticsearchHotAutoscaling {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean autoscale;
         private @Nullable String maxSize;
         private @Nullable String maxSizeResource;
         private @Nullable String minSize;
@@ -91,6 +105,7 @@ public final class DeploymentElasticsearchHotAutoscaling {
         public Builder() {}
         public Builder(DeploymentElasticsearchHotAutoscaling defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.autoscale = defaults.autoscale;
     	      this.maxSize = defaults.maxSize;
     	      this.maxSizeResource = defaults.maxSizeResource;
     	      this.minSize = defaults.minSize;
@@ -98,6 +113,12 @@ public final class DeploymentElasticsearchHotAutoscaling {
     	      this.policyOverrideJson = defaults.policyOverrideJson;
         }
 
+        @CustomType.Setter
+        public Builder autoscale(@Nullable Boolean autoscale) {
+
+            this.autoscale = autoscale;
+            return this;
+        }
         @CustomType.Setter
         public Builder maxSize(@Nullable String maxSize) {
 
@@ -130,6 +151,7 @@ public final class DeploymentElasticsearchHotAutoscaling {
         }
         public DeploymentElasticsearchHotAutoscaling build() {
             final var _resultValue = new DeploymentElasticsearchHotAutoscaling();
+            _resultValue.autoscale = autoscale;
             _resultValue.maxSize = maxSize;
             _resultValue.maxSizeResource = maxSizeResource;
             _resultValue.minSize = minSize;

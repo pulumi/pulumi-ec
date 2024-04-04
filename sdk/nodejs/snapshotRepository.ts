@@ -11,6 +11,44 @@ import * as utilities from "./utilities";
  *
  *   > **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository.
  *
+ * ## Example Usage
+ *
+ * ### Azure
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const _this = new ec.SnapshotRepository("this", {generic: {
+ *     type: "azure",
+ *     settings: JSON.stringify({
+ *         container: "my_container",
+ *         client: "my_alternate_client",
+ *         compress: false,
+ *     }),
+ * }});
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### GCS
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const _this = new ec.SnapshotRepository("this", {generic: {
+ *     type: "gcs",
+ *     settings: JSON.stringify({
+ *         bucket: "my_bucket",
+ *         client: "my_alternate_client",
+ *         compress: false,
+ *     }),
+ * }});
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * You can import snapshot repositories using the `name`, for example:

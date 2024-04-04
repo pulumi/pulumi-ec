@@ -139,6 +139,46 @@ class SnapshotRepository(pulumi.CustomResource):
 
           > **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository.
 
+        ## Example Usage
+
+        ### Azure
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumi_ec as ec
+
+        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
+            type="azure",
+            settings=json.dumps({
+                "container": "my_container",
+                "client": "my_alternate_client",
+                "compress": False,
+            }),
+        ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### GCS
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumi_ec as ec
+
+        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
+            type="gcs",
+            settings=json.dumps({
+                "bucket": "my_bucket",
+                "client": "my_alternate_client",
+                "compress": False,
+            }),
+        ))
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         You can import snapshot repositories using the `name`, for example:
@@ -163,6 +203,46 @@ class SnapshotRepository(pulumi.CustomResource):
         Manages Elastic Cloud Enterprise snapshot repositories.
 
           > **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository.
+
+        ## Example Usage
+
+        ### Azure
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumi_ec as ec
+
+        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
+            type="azure",
+            settings=json.dumps({
+                "container": "my_container",
+                "client": "my_alternate_client",
+                "compress": False,
+            }),
+        ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### GCS
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import json
+        import pulumi_ec as ec
+
+        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
+            type="gcs",
+            settings=json.dumps({
+                "bucket": "my_bucket",
+                "client": "my_alternate_client",
+                "compress": False,
+            }),
+        ))
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

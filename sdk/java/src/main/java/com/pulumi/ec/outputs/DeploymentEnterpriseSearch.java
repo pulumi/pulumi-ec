@@ -23,6 +23,9 @@ public final class DeploymentEnterpriseSearch {
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
     private @Nullable String instanceConfigurationId;
+    private @Nullable Integer instanceConfigurationVersion;
+    private @Nullable String latestInstanceConfigurationId;
+    private @Nullable Integer latestInstanceConfigurationVersion;
     private @Nullable Boolean nodeTypeAppserver;
     private @Nullable Boolean nodeTypeConnector;
     private @Nullable Boolean nodeTypeWorker;
@@ -56,6 +59,15 @@ public final class DeploymentEnterpriseSearch {
     }
     public Optional<String> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
+    }
+    public Optional<Integer> instanceConfigurationVersion() {
+        return Optional.ofNullable(this.instanceConfigurationVersion);
+    }
+    public Optional<String> latestInstanceConfigurationId() {
+        return Optional.ofNullable(this.latestInstanceConfigurationId);
+    }
+    public Optional<Integer> latestInstanceConfigurationVersion() {
+        return Optional.ofNullable(this.latestInstanceConfigurationVersion);
     }
     public Optional<Boolean> nodeTypeAppserver() {
         return Optional.ofNullable(this.nodeTypeAppserver);
@@ -103,6 +115,9 @@ public final class DeploymentEnterpriseSearch {
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
         private @Nullable String instanceConfigurationId;
+        private @Nullable Integer instanceConfigurationVersion;
+        private @Nullable String latestInstanceConfigurationId;
+        private @Nullable Integer latestInstanceConfigurationVersion;
         private @Nullable Boolean nodeTypeAppserver;
         private @Nullable Boolean nodeTypeConnector;
         private @Nullable Boolean nodeTypeWorker;
@@ -120,6 +135,9 @@ public final class DeploymentEnterpriseSearch {
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
     	      this.instanceConfigurationId = defaults.instanceConfigurationId;
+    	      this.instanceConfigurationVersion = defaults.instanceConfigurationVersion;
+    	      this.latestInstanceConfigurationId = defaults.latestInstanceConfigurationId;
+    	      this.latestInstanceConfigurationVersion = defaults.latestInstanceConfigurationVersion;
     	      this.nodeTypeAppserver = defaults.nodeTypeAppserver;
     	      this.nodeTypeConnector = defaults.nodeTypeConnector;
     	      this.nodeTypeWorker = defaults.nodeTypeWorker;
@@ -159,6 +177,24 @@ public final class DeploymentEnterpriseSearch {
         public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
 
             this.instanceConfigurationId = instanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder instanceConfigurationVersion(@Nullable Integer instanceConfigurationVersion) {
+
+            this.instanceConfigurationVersion = instanceConfigurationVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder latestInstanceConfigurationId(@Nullable String latestInstanceConfigurationId) {
+
+            this.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder latestInstanceConfigurationVersion(@Nullable Integer latestInstanceConfigurationVersion) {
+
+            this.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             return this;
         }
         @CustomType.Setter
@@ -222,6 +258,9 @@ public final class DeploymentEnterpriseSearch {
             _resultValue.httpEndpoint = httpEndpoint;
             _resultValue.httpsEndpoint = httpsEndpoint;
             _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.instanceConfigurationVersion = instanceConfigurationVersion;
+            _resultValue.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            _resultValue.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             _resultValue.nodeTypeAppserver = nodeTypeAppserver;
             _resultValue.nodeTypeConnector = nodeTypeConnector;
             _resultValue.nodeTypeWorker = nodeTypeWorker;

@@ -23,6 +23,7 @@
         "getAwsPrivatelinkEndpoint.ts",
         "getAzurePrivatelinkEndpoint.ts",
         "getDeployment.ts",
+        "getDeploymentTemplates.ts",
         "getDeployments.ts",
         "getGcpPrivateServiceConnectEndpoint.ts",
         "getStack.ts",

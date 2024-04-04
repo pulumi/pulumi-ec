@@ -28,6 +28,9 @@ public final class DeploymentIntegrationsServer {
     private @Nullable String httpEndpoint;
     private @Nullable String httpsEndpoint;
     private @Nullable String instanceConfigurationId;
+    private @Nullable Integer instanceConfigurationVersion;
+    private @Nullable String latestInstanceConfigurationId;
+    private @Nullable Integer latestInstanceConfigurationVersion;
     private @Nullable String refId;
     private @Nullable String region;
     private @Nullable String resourceId;
@@ -65,6 +68,15 @@ public final class DeploymentIntegrationsServer {
     }
     public Optional<String> instanceConfigurationId() {
         return Optional.ofNullable(this.instanceConfigurationId);
+    }
+    public Optional<Integer> instanceConfigurationVersion() {
+        return Optional.ofNullable(this.instanceConfigurationVersion);
+    }
+    public Optional<String> latestInstanceConfigurationId() {
+        return Optional.ofNullable(this.latestInstanceConfigurationId);
+    }
+    public Optional<Integer> latestInstanceConfigurationVersion() {
+        return Optional.ofNullable(this.latestInstanceConfigurationVersion);
     }
     public Optional<String> refId() {
         return Optional.ofNullable(this.refId);
@@ -104,6 +116,9 @@ public final class DeploymentIntegrationsServer {
         private @Nullable String httpEndpoint;
         private @Nullable String httpsEndpoint;
         private @Nullable String instanceConfigurationId;
+        private @Nullable Integer instanceConfigurationVersion;
+        private @Nullable String latestInstanceConfigurationId;
+        private @Nullable Integer latestInstanceConfigurationVersion;
         private @Nullable String refId;
         private @Nullable String region;
         private @Nullable String resourceId;
@@ -119,6 +134,9 @@ public final class DeploymentIntegrationsServer {
     	      this.httpEndpoint = defaults.httpEndpoint;
     	      this.httpsEndpoint = defaults.httpsEndpoint;
     	      this.instanceConfigurationId = defaults.instanceConfigurationId;
+    	      this.instanceConfigurationVersion = defaults.instanceConfigurationVersion;
+    	      this.latestInstanceConfigurationId = defaults.latestInstanceConfigurationId;
+    	      this.latestInstanceConfigurationVersion = defaults.latestInstanceConfigurationVersion;
     	      this.refId = defaults.refId;
     	      this.region = defaults.region;
     	      this.resourceId = defaults.resourceId;
@@ -161,6 +179,24 @@ public final class DeploymentIntegrationsServer {
         public Builder instanceConfigurationId(@Nullable String instanceConfigurationId) {
 
             this.instanceConfigurationId = instanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder instanceConfigurationVersion(@Nullable Integer instanceConfigurationVersion) {
+
+            this.instanceConfigurationVersion = instanceConfigurationVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder latestInstanceConfigurationId(@Nullable String latestInstanceConfigurationId) {
+
+            this.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder latestInstanceConfigurationVersion(@Nullable Integer latestInstanceConfigurationVersion) {
+
+            this.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             return this;
         }
         @CustomType.Setter
@@ -207,6 +243,9 @@ public final class DeploymentIntegrationsServer {
             _resultValue.httpEndpoint = httpEndpoint;
             _resultValue.httpsEndpoint = httpsEndpoint;
             _resultValue.instanceConfigurationId = instanceConfigurationId;
+            _resultValue.instanceConfigurationVersion = instanceConfigurationVersion;
+            _resultValue.latestInstanceConfigurationId = latestInstanceConfigurationId;
+            _resultValue.latestInstanceConfigurationVersion = latestInstanceConfigurationVersion;
             _resultValue.refId = refId;
             _resultValue.region = region;
             _resultValue.resourceId = resourceId;

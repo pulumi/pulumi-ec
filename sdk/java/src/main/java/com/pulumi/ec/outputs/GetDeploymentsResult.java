@@ -67,6 +67,11 @@ public final class GetDeploymentsResult {
      */
     private @Nullable List<GetDeploymentsKibana> kibanas;
     /**
+     * @return Filter the result by the full deployment name.
+     * 
+     */
+    private @Nullable String name;
+    /**
      * @return Prefix to filter the returned deployment list by.
      * 
      */
@@ -152,6 +157,13 @@ public final class GetDeploymentsResult {
         return this.kibanas == null ? List.of() : this.kibanas;
     }
     /**
+     * @return Filter the result by the full deployment name.
+     * 
+     */
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
+    }
+    /**
      * @return Prefix to filter the returned deployment list by.
      * 
      */
@@ -198,6 +210,7 @@ public final class GetDeploymentsResult {
         private String id;
         private @Nullable List<GetDeploymentsIntegrationsServer> integrationsServers;
         private @Nullable List<GetDeploymentsKibana> kibanas;
+        private @Nullable String name;
         private @Nullable String namePrefix;
         private Integer returnCount;
         private @Nullable Integer size;
@@ -214,6 +227,7 @@ public final class GetDeploymentsResult {
     	      this.id = defaults.id;
     	      this.integrationsServers = defaults.integrationsServers;
     	      this.kibanas = defaults.kibanas;
+    	      this.name = defaults.name;
     	      this.namePrefix = defaults.namePrefix;
     	      this.returnCount = defaults.returnCount;
     	      this.size = defaults.size;
@@ -297,6 +311,12 @@ public final class GetDeploymentsResult {
             return kibanas(List.of(kibanas));
         }
         @CustomType.Setter
+        public Builder name(@Nullable String name) {
+
+            this.name = name;
+            return this;
+        }
+        @CustomType.Setter
         public Builder namePrefix(@Nullable String namePrefix) {
 
             this.namePrefix = namePrefix;
@@ -333,6 +353,7 @@ public final class GetDeploymentsResult {
             _resultValue.id = id;
             _resultValue.integrationsServers = integrationsServers;
             _resultValue.kibanas = kibanas;
+            _resultValue.name = name;
             _resultValue.namePrefix = namePrefix;
             _resultValue.returnCount = returnCount;
             _resultValue.size = size;

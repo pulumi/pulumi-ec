@@ -45,6 +45,11 @@ export const getDeployment: typeof import("./getDeployment").getDeployment = nul
 export const getDeploymentOutput: typeof import("./getDeployment").getDeploymentOutput = null as any;
 utilities.lazyLoad(exports, ["getDeployment","getDeploymentOutput"], () => require("./getDeployment"));
 
+export { GetDeploymentTemplatesArgs, GetDeploymentTemplatesResult, GetDeploymentTemplatesOutputArgs } from "./getDeploymentTemplates";
+export const getDeploymentTemplates: typeof import("./getDeploymentTemplates").getDeploymentTemplates = null as any;
+export const getDeploymentTemplatesOutput: typeof import("./getDeploymentTemplates").getDeploymentTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["getDeploymentTemplates","getDeploymentTemplatesOutput"], () => require("./getDeploymentTemplates"));
+
 export { GetDeploymentsArgs, GetDeploymentsResult, GetDeploymentsOutputArgs } from "./getDeployments";
 export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
 export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;

@@ -28,11 +28,27 @@ public final class DeploymentIntegrationsServerEndpointsArgs extends com.pulumi.
         return this.fleet;
     }
 
+    @Import(name="profiling", required=true)
+    private Output<String> profiling;
+
+    public Output<String> profiling() {
+        return this.profiling;
+    }
+
+    @Import(name="symbols", required=true)
+    private Output<String> symbols;
+
+    public Output<String> symbols() {
+        return this.symbols;
+    }
+
     private DeploymentIntegrationsServerEndpointsArgs() {}
 
     private DeploymentIntegrationsServerEndpointsArgs(DeploymentIntegrationsServerEndpointsArgs $) {
         this.apm = $.apm;
         this.fleet = $.fleet;
+        this.profiling = $.profiling;
+        this.symbols = $.symbols;
     }
 
     public static Builder builder() {
@@ -71,12 +87,36 @@ public final class DeploymentIntegrationsServerEndpointsArgs extends com.pulumi.
             return fleet(Output.of(fleet));
         }
 
+        public Builder profiling(Output<String> profiling) {
+            $.profiling = profiling;
+            return this;
+        }
+
+        public Builder profiling(String profiling) {
+            return profiling(Output.of(profiling));
+        }
+
+        public Builder symbols(Output<String> symbols) {
+            $.symbols = symbols;
+            return this;
+        }
+
+        public Builder symbols(String symbols) {
+            return symbols(Output.of(symbols));
+        }
+
         public DeploymentIntegrationsServerEndpointsArgs build() {
             if ($.apm == null) {
                 throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpointsArgs", "apm");
             }
             if ($.fleet == null) {
                 throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpointsArgs", "fleet");
+            }
+            if ($.profiling == null) {
+                throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpointsArgs", "profiling");
+            }
+            if ($.symbols == null) {
+                throw new MissingRequiredPropertyException("DeploymentIntegrationsServerEndpointsArgs", "symbols");
             }
             return $;
         }

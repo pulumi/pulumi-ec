@@ -15,6 +15,92 @@ import (
 //
 //	> **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository.
 //
+// ## Example Usage
+//
+// ### Azure
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"container": "my_container",
+//				"client":    "my_alternate_client",
+//				"compress":  false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = ec.NewSnapshotRepository(ctx, "this", &ec.SnapshotRepositoryArgs{
+//				Generic: &ec.SnapshotRepositoryGenericArgs{
+//					Type:     pulumi.String("azure"),
+//					Settings: pulumi.String(json0),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### GCS
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"bucket":   "my_bucket",
+//				"client":   "my_alternate_client",
+//				"compress": false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = ec.NewSnapshotRepository(ctx, "this", &ec.SnapshotRepositoryArgs{
+//				Generic: &ec.SnapshotRepositoryGenericArgs{
+//					Type:     pulumi.String("gcs"),
+//					Settings: pulumi.String(json0),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // You can import snapshot repositories using the `name`, for example:

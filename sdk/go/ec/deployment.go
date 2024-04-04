@@ -30,6 +30,8 @@ import (
 //
 // ### With Cross Cluster Search settings
 //
+// ### With Keystore
+//
 // ## Import
 //
 // ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
@@ -59,7 +61,9 @@ type Deployment struct {
 	Elasticsearch DeploymentElasticsearchOutput `pulumi:"elasticsearch"`
 	// Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
 	// <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-	// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+	// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+	// deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+	// Please follow the official Terraform recommendations regarding senstaive data in state.
 	ElasticsearchPassword pulumi.StringOutput `pulumi:"elasticsearchPassword"`
 	// Username for authenticating to the Elasticsearch resource.
 	ElasticsearchUsername pulumi.StringOutput `pulumi:"elasticsearchUsername"`
@@ -70,6 +74,11 @@ type Deployment struct {
 	// Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
 	// block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrOutput `pulumi:"kibana"`
+	// When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	MigrateToLatestHardware pulumi.BoolPtrOutput `pulumi:"migrateToLatestHardware"`
 	// Extension name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
@@ -149,7 +158,9 @@ type deploymentState struct {
 	Elasticsearch *DeploymentElasticsearch `pulumi:"elasticsearch"`
 	// Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
 	// <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-	// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+	// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+	// deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+	// Please follow the official Terraform recommendations regarding senstaive data in state.
 	ElasticsearchPassword *string `pulumi:"elasticsearchPassword"`
 	// Username for authenticating to the Elasticsearch resource.
 	ElasticsearchUsername *string `pulumi:"elasticsearchUsername"`
@@ -160,6 +171,11 @@ type deploymentState struct {
 	// Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
 	// block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
+	// When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	MigrateToLatestHardware *bool `pulumi:"migrateToLatestHardware"`
 	// Extension name.
 	Name *string `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
@@ -193,7 +209,9 @@ type DeploymentState struct {
 	Elasticsearch DeploymentElasticsearchPtrInput
 	// Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
 	// <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-	// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+	// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+	// deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+	// Please follow the official Terraform recommendations regarding senstaive data in state.
 	ElasticsearchPassword pulumi.StringPtrInput
 	// Username for authenticating to the Elasticsearch resource.
 	ElasticsearchUsername pulumi.StringPtrInput
@@ -204,6 +222,11 @@ type DeploymentState struct {
 	// Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
 	// block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrInput
+	// When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	MigrateToLatestHardware pulumi.BoolPtrInput
 	// Extension name.
 	Name pulumi.StringPtrInput
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
@@ -245,6 +268,11 @@ type deploymentArgs struct {
 	// Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
 	// block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
+	// When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	MigrateToLatestHardware *bool `pulumi:"migrateToLatestHardware"`
 	// Extension name.
 	Name *string `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
@@ -283,6 +311,11 @@ type DeploymentArgs struct {
 	// Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
 	// block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrInput
+	// When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	MigrateToLatestHardware pulumi.BoolPtrInput
 	// Extension name.
 	Name pulumi.StringPtrInput
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
@@ -417,7 +450,9 @@ func (o DeploymentOutput) Elasticsearch() DeploymentElasticsearchOutput {
 
 // Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
 // <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+// import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+// deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+// Please follow the official Terraform recommendations regarding senstaive data in state.
 func (o DeploymentOutput) ElasticsearchPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ElasticsearchPassword }).(pulumi.StringOutput)
 }
@@ -441,6 +476,14 @@ func (o DeploymentOutput) IntegrationsServer() DeploymentIntegrationsServerPtrOu
 // block, since not doing so might cause issues when modifying or upgrading the deployment.
 func (o DeploymentOutput) Kibana() DeploymentKibanaPtrOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentKibanaPtrOutput { return v.Kibana }).(DeploymentKibanaPtrOutput)
+}
+
+// When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+// with node types. To use this field, the deployment needs to be migrated to node roles first.
+func (o DeploymentOutput) MigrateToLatestHardware() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.BoolPtrOutput { return v.MigrateToLatestHardware }).(pulumi.BoolPtrOutput)
 }
 
 // Extension name.

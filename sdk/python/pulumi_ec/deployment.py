@@ -25,6 +25,7 @@ class DeploymentArgs:
                  enterprise_search: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']] = None,
                  integrations_server: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']] = None,
                  kibana: Optional[pulumi.Input['DeploymentKibanaArgs']] = None,
+                 migrate_to_latest_hardware: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input['DeploymentObservabilityArgs']] = None,
                  request_id: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,10 @@ class DeploymentArgs:
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+               topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+               with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
@@ -67,6 +72,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "integrations_server", integrations_server)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
+        if migrate_to_latest_hardware is not None:
+            pulumi.set(__self__, "migrate_to_latest_hardware", migrate_to_latest_hardware)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if observability is not None:
@@ -191,6 +198,21 @@ class DeploymentArgs:
         pulumi.set(self, "kibana", value)
 
     @property
+    @pulumi.getter(name="migrateToLatestHardware")
+    def migrate_to_latest_hardware(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+        <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+        topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+        with node types. To use this field, the deployment needs to be migrated to node roles first.
+        """
+        return pulumi.get(self, "migrate_to_latest_hardware")
+
+    @migrate_to_latest_hardware.setter
+    def migrate_to_latest_hardware(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "migrate_to_latest_hardware", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -278,6 +300,7 @@ class _DeploymentState:
                  enterprise_search: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']] = None,
                  integrations_server: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']] = None,
                  kibana: Optional[pulumi.Input['DeploymentKibanaArgs']] = None,
+                 migrate_to_latest_hardware: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input['DeploymentObservabilityArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -294,12 +317,18 @@ class _DeploymentState:
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[str] elasticsearch_password: Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
                <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-               import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+               import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+               deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+               Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+               topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+               with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
@@ -332,6 +361,8 @@ class _DeploymentState:
             pulumi.set(__self__, "integrations_server", integrations_server)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
+        if migrate_to_latest_hardware is not None:
+            pulumi.set(__self__, "migrate_to_latest_hardware", migrate_to_latest_hardware)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if observability is not None:
@@ -412,7 +443,9 @@ class _DeploymentState:
         """
         Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
         <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-        import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+        import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+        deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+        Please follow the official Terraform recommendations regarding senstaive data in state.
         """
         return pulumi.get(self, "elasticsearch_password")
 
@@ -468,6 +501,21 @@ class _DeploymentState:
     @kibana.setter
     def kibana(self, value: Optional[pulumi.Input['DeploymentKibanaArgs']]):
         pulumi.set(self, "kibana", value)
+
+    @property
+    @pulumi.getter(name="migrateToLatestHardware")
+    def migrate_to_latest_hardware(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+        <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+        topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+        with node types. To use this field, the deployment needs to be migrated to node roles first.
+        """
+        return pulumi.get(self, "migrate_to_latest_hardware")
+
+    @migrate_to_latest_hardware.setter
+    def migrate_to_latest_hardware(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "migrate_to_latest_hardware", value)
 
     @property
     @pulumi.getter
@@ -581,6 +629,7 @@ class Deployment(pulumi.CustomResource):
                  enterprise_search: Optional[pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']]] = None,
                  integrations_server: Optional[pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']]] = None,
                  kibana: Optional[pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']]] = None,
+                 migrate_to_latest_hardware: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -609,6 +658,8 @@ class Deployment(pulumi.CustomResource):
 
         ### With Cross Cluster Search settings
 
+        ### With Keystore
+
         ## Import
 
         ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
@@ -635,6 +686,10 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+               topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+               with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
@@ -671,6 +726,8 @@ class Deployment(pulumi.CustomResource):
         It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
 
         ### With Cross Cluster Search settings
+
+        ### With Keystore
 
         ## Import
 
@@ -710,6 +767,7 @@ class Deployment(pulumi.CustomResource):
                  enterprise_search: Optional[pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']]] = None,
                  integrations_server: Optional[pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']]] = None,
                  kibana: Optional[pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']]] = None,
+                 migrate_to_latest_hardware: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  observability: Optional[pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -738,6 +796,7 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["enterprise_search"] = enterprise_search
             __props__.__dict__["integrations_server"] = integrations_server
             __props__.__dict__["kibana"] = kibana
+            __props__.__dict__["migrate_to_latest_hardware"] = migrate_to_latest_hardware
             __props__.__dict__["name"] = name
             __props__.__dict__["observability"] = observability
             if region is None and not opts.urn:
@@ -775,6 +834,7 @@ class Deployment(pulumi.CustomResource):
             enterprise_search: Optional[pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']]] = None,
             integrations_server: Optional[pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']]] = None,
             kibana: Optional[pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']]] = None,
+            migrate_to_latest_hardware: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             observability: Optional[pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -796,12 +856,18 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DeploymentElasticsearchArgs']] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[str] elasticsearch_password: Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
                <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-               import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+               import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+               deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+               Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input[pulumi.InputType['DeploymentEnterpriseSearchArgs']] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input[pulumi.InputType['DeploymentIntegrationsServerArgs']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input[pulumi.InputType['DeploymentKibanaArgs']] kibana: Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
                block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+               topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+               with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[str] name: Extension name.
         :param pulumi.Input[pulumi.InputType['DeploymentObservabilityArgs']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
                current deployment itself by setting observability.deployment_id to `self`.
@@ -828,6 +894,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["enterprise_search"] = enterprise_search
         __props__.__dict__["integrations_server"] = integrations_server
         __props__.__dict__["kibana"] = kibana
+        __props__.__dict__["migrate_to_latest_hardware"] = migrate_to_latest_hardware
         __props__.__dict__["name"] = name
         __props__.__dict__["observability"] = observability
         __props__.__dict__["region"] = region
@@ -881,7 +948,9 @@ class Deployment(pulumi.CustomResource):
         """
         Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
         <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-        import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+        import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
+        deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
+        Please follow the official Terraform recommendations regarding senstaive data in state.
         """
         return pulumi.get(self, "elasticsearch_password")
 
@@ -917,6 +986,17 @@ class Deployment(pulumi.CustomResource):
         block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
+
+    @property
+    @pulumi.getter(name="migrateToLatestHardware")
+    def migrate_to_latest_hardware(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+        <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
+        topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+        with node types. To use this field, the deployment needs to be migrated to node roles first.
+        """
+        return pulumi.get(self, "migrate_to_latest_hardware")
 
     @property
     @pulumi.getter

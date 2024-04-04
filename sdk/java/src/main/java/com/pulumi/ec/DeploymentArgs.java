@@ -133,6 +133,27 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
+     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * 
+     */
+    @Import(name="migrateToLatestHardware")
+    private @Nullable Output<Boolean> migrateToLatestHardware;
+
+    /**
+     * @return When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
+     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * 
+     */
+    public Optional<Output<Boolean>> migrateToLatestHardware() {
+        return Optional.ofNullable(this.migrateToLatestHardware);
+    }
+
+    /**
      * Extension name.
      * 
      */
@@ -268,6 +289,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         this.enterpriseSearch = $.enterpriseSearch;
         this.integrationsServer = $.integrationsServer;
         this.kibana = $.kibana;
+        this.migrateToLatestHardware = $.migrateToLatestHardware;
         this.name = $.name;
         this.observability = $.observability;
         this.region = $.region;
@@ -443,6 +465,33 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder kibana(DeploymentKibanaArgs kibana) {
             return kibana(Output.of(kibana));
+        }
+
+        /**
+         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+         * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
+         * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+         * with node types. To use this field, the deployment needs to be migrated to node roles first.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder migrateToLatestHardware(@Nullable Output<Boolean> migrateToLatestHardware) {
+            $.migrateToLatestHardware = migrateToLatestHardware;
+            return this;
+        }
+
+        /**
+         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+         * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
+         * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+         * with node types. To use this field, the deployment needs to be migrated to node roles first.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder migrateToLatestHardware(Boolean migrateToLatestHardware) {
+            return migrateToLatestHardware(Output.of(migrateToLatestHardware));
         }
 
         /**

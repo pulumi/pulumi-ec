@@ -18,6 +18,12 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("fleet", required: true)]
         public Input<string> Fleet { get; set; } = null!;
 
+        [Input("profiling", required: true)]
+        public Input<string> Profiling { get; set; } = null!;
+
+        [Input("symbols", required: true)]
+        public Input<string> Symbols { get; set; } = null!;
+
         public DeploymentIntegrationsServerEndpointsGetArgs()
         {
         }

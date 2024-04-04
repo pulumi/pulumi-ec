@@ -128,6 +128,21 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
+     * The name of the deployment.
+     * 
+     */
+    @Import(name="name")
+    private @Nullable String name;
+
+    /**
+     * @return The name of the deployment.
+     * 
+     */
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
+    }
+
+    /**
      * Prefix to filter the returned deployment list by.
      * 
      */
@@ -182,6 +197,7 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         this.healthy = $.healthy;
         this.integrationsServers = $.integrationsServers;
         this.kibanas = $.kibanas;
+        this.name = $.name;
         this.namePrefix = $.namePrefix;
         this.size = $.size;
         this.tags = $.tags;
@@ -330,6 +346,17 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
          */
         public Builder kibanas(GetDeploymentsKibana... kibanas) {
             return kibanas(List.of(kibanas));
+        }
+
+        /**
+         * @param name The name of the deployment.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder name(@Nullable String name) {
+            $.name = name;
+            return this;
         }
 
         /**
