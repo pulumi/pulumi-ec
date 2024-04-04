@@ -199,6 +199,99 @@
                     }
                 }
             },
+            "ec_deployment_templates": {
+                "current": "ec:index/getDeploymentTemplates:getDeploymentTemplates",
+                "fields": {
+                    "templates": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "apm": {
+                                    "fields": {
+                                        "available_sizes": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                },
+                                "elasticsearch": {
+                                    "fields": {
+                                        "cold": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        },
+                                        "coordinating": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        },
+                                        "frozen": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        },
+                                        "hot": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        },
+                                        "master": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        },
+                                        "ml": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        },
+                                        "warm": {
+                                            "fields": {
+                                                "available_sizes": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "enterprise_search": {
+                                    "fields": {
+                                        "available_sizes": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                },
+                                "integrations_server": {
+                                    "fields": {
+                                        "available_sizes": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                },
+                                "kibana": {
+                                    "fields": {
+                                        "available_sizes": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "ec_deployments": {
                 "current": "ec:index/getDeployments:getDeployments",
                 "fields": {
