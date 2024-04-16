@@ -205,11 +205,11 @@ def get_stack(lock: Optional[bool] = None,
     import pulumi
     import pulumi_ec as ec
 
-    latest = ec.get_stack(lock=True,
+    latest = ec.get_stack(version_regex="latest",
         region="us-east-1",
-        version_regex="latest")
-    latest_patch = ec.get_stack(region="us-east-1",
-        version_regex="7.9.?")
+        lock=True)
+    latest_patch = ec.get_stack(version_regex="7.9.?",
+        region="us-east-1")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -258,11 +258,11 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi
     import pulumi_ec as ec
 
-    latest = ec.get_stack(lock=True,
+    latest = ec.get_stack(version_regex="latest",
         region="us-east-1",
-        version_regex="latest")
-    latest_patch = ec.get_stack(region="us-east-1",
-        version_regex="7.9.?")
+        lock=True)
+    latest_patch = ec.get_stack(version_regex="7.9.?",
+        region="us-east-1")
     ```
     <!--End PulumiCodeChooser -->
 

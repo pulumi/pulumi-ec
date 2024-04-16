@@ -49,9 +49,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
+ *             .name(&#34;my-snapshot-repository&#34;)
  *             .s3(SnapshotRepositoryS3Args.builder()
- *                 .access_key(&#34;my-access-key&#34;)
  *                 .bucket(&#34;my-bucket&#34;)
+ *                 .access_key(&#34;my-access-key&#34;)
  *                 .secret_key(&#34;my-secret-key&#34;)
  *                 .build())
  *             .build());
@@ -88,6 +89,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
+ *             .name(&#34;my-snapshot-repository&#34;)
  *             .generic(SnapshotRepositoryGenericArgs.builder()
  *                 .type(&#34;azure&#34;)
  *                 .settings(serializeJson(
@@ -131,6 +133,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
+ *             .name(&#34;my-snapshot-repository&#34;)
  *             .generic(SnapshotRepositoryGenericArgs.builder()
  *                 .type(&#34;gcs&#34;)
  *                 .settings(serializeJson(

@@ -37,6 +37,7 @@ import (
 //				return err
 //			}
 //			example, err := ec.NewDeploymentTrafficFilter(ctx, "example", &ec.DeploymentTrafficFilterArgs{
+//				Name:   pulumi.String("my traffic filter name"),
 //				Region: pulumi.String("us-east-1"),
 //				Type:   pulumi.String("ip"),
 //				Rules: ec.DeploymentTrafficFilterRuleArray{
@@ -49,7 +50,8 @@ import (
 //				return err
 //			}
 //			// Create an Elastic Cloud deployment
-//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//			_, err = ec.NewDeployment(ctx, "example_minimal", &ec.DeploymentArgs{
+//				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
@@ -97,6 +99,7 @@ import (
 //				return err
 //			}
 //			azure, err := ec.NewDeploymentTrafficFilter(ctx, "azure", &ec.DeploymentTrafficFilterArgs{
+//				Name:   pulumi.String("my traffic filter name"),
 //				Region: pulumi.Any(region),
 //				Type:   pulumi.String("azure_private_endpoint"),
 //				Rules: ec.DeploymentTrafficFilterRuleArray{
@@ -110,7 +113,8 @@ import (
 //				return err
 //			}
 //			// Create an Elastic Cloud deployment
-//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//			_, err = ec.NewDeployment(ctx, "example_minimal", &ec.DeploymentArgs{
+//				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.Any(region),
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("azure-io-optimized-v3"),
@@ -157,7 +161,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			gcpPsc, err := ec.NewDeploymentTrafficFilter(ctx, "gcpPsc", &ec.DeploymentTrafficFilterArgs{
+//			gcpPsc, err := ec.NewDeploymentTrafficFilter(ctx, "gcp_psc", &ec.DeploymentTrafficFilterArgs{
+//				Name:   pulumi.String("my traffic filter name"),
 //				Region: pulumi.Any(region),
 //				Type:   pulumi.String("gcp_private_service_connect_endpoint"),
 //				Rules: ec.DeploymentTrafficFilterRuleArray{
@@ -170,7 +175,8 @@ import (
 //				return err
 //			}
 //			// Create an Elastic Cloud deployment
-//			_, err = ec.NewDeployment(ctx, "exampleMinimal", &ec.DeploymentArgs{
+//			_, err = ec.NewDeployment(ctx, "example_minimal", &ec.DeploymentArgs{
+//				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.Any(region),
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("gcp-storage-optimized"),

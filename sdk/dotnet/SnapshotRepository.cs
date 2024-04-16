@@ -30,6 +30,7 @@ namespace Pulumi.ElasticCloud
     /// {
     ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
     ///     {
+    ///         Name = "my-snapshot-repository",
     ///         Generic = new ElasticCloud.Inputs.SnapshotRepositoryGenericArgs
     ///         {
     ///             Type = "azure",
@@ -60,6 +61,7 @@ namespace Pulumi.ElasticCloud
     /// {
     ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
     ///     {
+    ///         Name = "my-snapshot-repository",
     ///         Generic = new ElasticCloud.Inputs.SnapshotRepositoryGenericArgs
     ///         {
     ///             Type = "gcs",

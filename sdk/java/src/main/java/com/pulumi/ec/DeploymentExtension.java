@@ -24,69 +24,6 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### With extension file
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.ec.DeploymentExtension;
- * import com.pulumi.ec.DeploymentExtensionArgs;
- * import com.pulumi.ec.EcFunctions;
- * import com.pulumi.ec.inputs.GetStackArgs;
- * import com.pulumi.ec.Deployment;
- * import com.pulumi.ec.DeploymentArgs;
- * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
- * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
- * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var filePath = &#34;/path/to/plugin.zip&#34;;
- * 
- *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
- *             .description(&#34;my extension&#34;)
- *             .version(&#34;*&#34;)
- *             .extensionType(&#34;bundle&#34;)
- *             .filePath(filePath)
- *             .fileHash(computeFileBase64Sha256(filePath))
- *             .build());
- * 
- *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
- *             .versionRegex(&#34;latest&#34;)
- *             .region(&#34;us-east-1&#34;)
- *             .build());
- * 
- *         var withExtension = new Deployment(&#34;withExtension&#34;, DeploymentArgs.builder()        
- *             .region(&#34;us-east-1&#34;)
- *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
- *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
- *             .elasticsearch(DeploymentElasticsearchArgs.builder()
- *                 .hot(DeploymentElasticsearchHotArgs.builder()
- *                     .autoscaling()
- *                     .build())
- *                 .extension(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
  * ### With download URL
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -119,6 +56,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
+ *             .name(&#34;my_extension&#34;)
  *             .description(&#34;my extension&#34;)
  *             .version(&#34;*&#34;)
  *             .extensionType(&#34;bundle&#34;)
@@ -131,6 +69,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var withExtension = new Deployment(&#34;withExtension&#34;, DeploymentArgs.builder()        
+ *             .name(&#34;my_example_deployment&#34;)
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)

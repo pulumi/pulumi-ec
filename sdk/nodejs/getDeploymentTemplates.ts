@@ -19,10 +19,11 @@ import * as utilities from "./utilities";
  * const example = ec.getDeploymentTemplates({
  *     region: "us-east-1",
  * });
- * const myDeployment = new ec.Deployment("myDeployment", {
+ * const myDeployment = new ec.Deployment("my_deployment", {
+ *     name: "My Deployment",
  *     version: "8.12.2",
- *     region: data.ec_deployment_templates.all_templates.region,
- *     deploymentTemplateId: data.ec_deployment_templates.all_templates.templates[0].id,
+ *     region: allTemplates.region,
+ *     deploymentTemplateId: allTemplates.templates[0].id,
  *     elasticsearch: {
  *         hot: {
  *             autoscaling: {},
@@ -104,10 +105,11 @@ export interface GetDeploymentTemplatesResult {
  * const example = ec.getDeploymentTemplates({
  *     region: "us-east-1",
  * });
- * const myDeployment = new ec.Deployment("myDeployment", {
+ * const myDeployment = new ec.Deployment("my_deployment", {
+ *     name: "My Deployment",
  *     version: "8.12.2",
- *     region: data.ec_deployment_templates.all_templates.region,
- *     deploymentTemplateId: data.ec_deployment_templates.all_templates.templates[0].id,
+ *     region: allTemplates.region,
+ *     deploymentTemplateId: allTemplates.templates[0].id,
  *     elasticsearch: {
  *         hot: {
  *             autoscaling: {},

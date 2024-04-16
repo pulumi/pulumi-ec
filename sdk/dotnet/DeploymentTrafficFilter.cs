@@ -31,6 +31,7 @@ namespace Pulumi.ElasticCloud
     /// 
     ///     var example = new ElasticCloud.DeploymentTrafficFilter("example", new()
     ///     {
+    ///         Name = "my traffic filter name",
     ///         Region = "us-east-1",
     ///         Type = "ip",
     ///         Rules = new[]
@@ -43,8 +44,9 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     var exampleMinimal = new ElasticCloud.Deployment("example_minimal", new()
     ///     {
+    ///         Name = "my_example_deployment",
     ///         Region = "us-east-1",
     ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
     ///         DeploymentTemplateId = "aws-io-optimized-v2",
@@ -87,6 +89,7 @@ namespace Pulumi.ElasticCloud
     /// 
     ///     var azure = new ElasticCloud.DeploymentTrafficFilter("azure", new()
     ///     {
+    ///         Name = "my traffic filter name",
     ///         Region = region,
     ///         Type = "azure_private_endpoint",
     ///         Rules = new[]
@@ -100,8 +103,9 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     var exampleMinimal = new ElasticCloud.Deployment("example_minimal", new()
     ///     {
+    ///         Name = "my_example_deployment",
     ///         Region = region,
     ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
     ///         DeploymentTemplateId = "azure-io-optimized-v3",
@@ -142,8 +146,9 @@ namespace Pulumi.ElasticCloud
     ///         Region = region,
     ///     });
     /// 
-    ///     var gcpPsc = new ElasticCloud.DeploymentTrafficFilter("gcpPsc", new()
+    ///     var gcpPsc = new ElasticCloud.DeploymentTrafficFilter("gcp_psc", new()
     ///     {
+    ///         Name = "my traffic filter name",
     ///         Region = region,
     ///         Type = "gcp_private_service_connect_endpoint",
     ///         Rules = new[]
@@ -156,8 +161,9 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleMinimal = new ElasticCloud.Deployment("exampleMinimal", new()
+    ///     var exampleMinimal = new ElasticCloud.Deployment("example_minimal", new()
     ///     {
+    ///         Name = "my_example_deployment",
     ///         Region = region,
     ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
     ///         DeploymentTemplateId = "gcp-storage-optimized",

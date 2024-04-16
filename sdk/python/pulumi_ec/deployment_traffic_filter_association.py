@@ -105,16 +105,17 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         import pulumi
         import pulumi_ec as ec
 
-        example_deployment = ec.get_deployment(id="320b7b540dfc967a7a649c18e2fce4ed")
-        example_deployment_traffic_filter = ec.DeploymentTrafficFilter("exampleDeploymentTrafficFilter",
+        example = ec.get_deployment(id="320b7b540dfc967a7a649c18e2fce4ed")
+        example_deployment_traffic_filter = ec.DeploymentTrafficFilter("example",
+            name="my traffic filter name",
             region="us-east-1",
             type="ip",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
                 source="0.0.0.0/0",
             )])
-        example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation",
+        example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("example",
             traffic_filter_id=example_deployment_traffic_filter.id,
-            deployment_id=ec_deployment["example"]["id"])
+            deployment_id=example_ec_deployment["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -141,16 +142,17 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         import pulumi
         import pulumi_ec as ec
 
-        example_deployment = ec.get_deployment(id="320b7b540dfc967a7a649c18e2fce4ed")
-        example_deployment_traffic_filter = ec.DeploymentTrafficFilter("exampleDeploymentTrafficFilter",
+        example = ec.get_deployment(id="320b7b540dfc967a7a649c18e2fce4ed")
+        example_deployment_traffic_filter = ec.DeploymentTrafficFilter("example",
+            name="my traffic filter name",
             region="us-east-1",
             type="ip",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
                 source="0.0.0.0/0",
             )])
-        example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation",
+        example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("example",
             traffic_filter_id=example_deployment_traffic_filter.id,
-            deployment_id=ec_deployment["example"]["id"])
+            deployment_id=example_ec_deployment["id"])
         ```
         <!--End PulumiCodeChooser -->
 

@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var example = new DeploymentTrafficFilter(&#34;example&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .name(&#34;my traffic filter name&#34;)
  *             .region(&#34;us-east-1&#34;)
  *             .type(&#34;ip&#34;)
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
@@ -68,6 +69,7 @@ import javax.annotation.Nullable;
  * 
  *         // Create an Elastic Cloud deployment
  *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .name(&#34;my_example_deployment&#34;)
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
@@ -126,6 +128,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var azure = new DeploymentTrafficFilter(&#34;azure&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .name(&#34;my traffic filter name&#34;)
  *             .region(region)
  *             .type(&#34;azure_private_endpoint&#34;)
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
@@ -136,6 +139,7 @@ import javax.annotation.Nullable;
  * 
  *         // Create an Elastic Cloud deployment
  *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .name(&#34;my_example_deployment&#34;)
  *             .region(region)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;azure-io-optimized-v3&#34;)
@@ -194,6 +198,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var gcpPsc = new DeploymentTrafficFilter(&#34;gcpPsc&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .name(&#34;my traffic filter name&#34;)
  *             .region(region)
  *             .type(&#34;gcp_private_service_connect_endpoint&#34;)
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
@@ -203,6 +208,7 @@ import javax.annotation.Nullable;
  * 
  *         // Create an Elastic Cloud deployment
  *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
+ *             .name(&#34;my_example_deployment&#34;)
  *             .region(region)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;gcp-storage-optimized&#34;)

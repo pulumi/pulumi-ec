@@ -553,9 +553,10 @@ public final class EcFunctions {
      *             .build());
      * 
      *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .name(&#34;My Deployment&#34;)
      *             .version(&#34;8.12.2&#34;)
-     *             .region(data.ec_deployment_templates().all_templates().region())
-     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .region(allTemplates.region())
+     *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
      *                     .autoscaling()
@@ -611,9 +612,10 @@ public final class EcFunctions {
      *             .build());
      * 
      *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .name(&#34;My Deployment&#34;)
      *             .version(&#34;8.12.2&#34;)
-     *             .region(data.ec_deployment_templates().all_templates().region())
-     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .region(allTemplates.region())
+     *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
      *                     .autoscaling()
@@ -669,9 +671,10 @@ public final class EcFunctions {
      *             .build());
      * 
      *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .name(&#34;My Deployment&#34;)
      *             .version(&#34;8.12.2&#34;)
-     *             .region(data.ec_deployment_templates().all_templates().region())
-     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .region(allTemplates.region())
+     *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
      *                     .autoscaling()
@@ -727,9 +730,10 @@ public final class EcFunctions {
      *             .build());
      * 
      *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
+     *             .name(&#34;My Deployment&#34;)
      *             .version(&#34;8.12.2&#34;)
-     *             .region(data.ec_deployment_templates().all_templates().region())
-     *             .deploymentTemplateId(data.ec_deployment_templates().all_templates().templates()[0].id())
+     *             .region(allTemplates.region())
+     *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
      *                     .autoscaling()
@@ -775,22 +779,22 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix(&#34;test&#34;)
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .size(200)
+     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
-     *             .namePrefix(&#34;test&#34;)
-     *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version(&#34;8.0.0&#34;)
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy(&#34;true&#34;)
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -830,22 +834,22 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix(&#34;test&#34;)
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .size(200)
+     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
-     *             .namePrefix(&#34;test&#34;)
-     *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version(&#34;8.0.0&#34;)
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy(&#34;true&#34;)
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -885,22 +889,22 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix(&#34;test&#34;)
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .size(200)
+     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
-     *             .namePrefix(&#34;test&#34;)
-     *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version(&#34;8.0.0&#34;)
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy(&#34;true&#34;)
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -940,22 +944,22 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix(&#34;test&#34;)
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .size(200)
+     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
-     *             .namePrefix(&#34;test&#34;)
-     *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version(&#34;8.0.0&#34;)
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy(&#34;true&#34;)
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -995,22 +999,22 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix(&#34;test&#34;)
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .size(200)
+     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
-     *             .namePrefix(&#34;test&#34;)
-     *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version(&#34;8.0.0&#34;)
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy(&#34;true&#34;)
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -1050,22 +1054,22 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix(&#34;test&#34;)
      *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .size(200)
+     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
      *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
-     *                 .build())
-     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
      *                 .status(&#34;started&#34;)
      *                 .build())
-     *             .namePrefix(&#34;test&#34;)
-     *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version(&#34;8.0.0&#34;)
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy(&#34;true&#34;)
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -1267,14 +1271,14 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .lock(true)
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;latest&#34;)
+     *             .region(&#34;us-east-1&#34;)
+     *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;7.9.?&#34;)
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }
@@ -1316,14 +1320,14 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .lock(true)
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;latest&#34;)
+     *             .region(&#34;us-east-1&#34;)
+     *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;7.9.?&#34;)
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }
@@ -1365,14 +1369,14 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .lock(true)
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;latest&#34;)
+     *             .region(&#34;us-east-1&#34;)
+     *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;7.9.?&#34;)
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }
@@ -1414,14 +1418,14 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .lock(true)
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;latest&#34;)
+     *             .region(&#34;us-east-1&#34;)
+     *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
      *             .versionRegex(&#34;7.9.?&#34;)
+     *             .region(&#34;us-east-1&#34;)
      *             .build());
      * 
      *     }

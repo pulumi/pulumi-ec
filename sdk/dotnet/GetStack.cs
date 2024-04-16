@@ -29,15 +29,15 @@ namespace Pulumi.ElasticCloud
         /// {
         ///     var latest = ElasticCloud.GetStack.Invoke(new()
         ///     {
-        ///         Lock = true,
-        ///         Region = "us-east-1",
         ///         VersionRegex = "latest",
+        ///         Region = "us-east-1",
+        ///         Lock = true,
         ///     });
         /// 
         ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
         ///     {
-        ///         Region = "us-east-1",
         ///         VersionRegex = "7.9.?",
+        ///         Region = "us-east-1",
         ///     });
         /// 
         /// });
@@ -65,15 +65,15 @@ namespace Pulumi.ElasticCloud
         /// {
         ///     var latest = ElasticCloud.GetStack.Invoke(new()
         ///     {
-        ///         Lock = true,
-        ///         Region = "us-east-1",
         ///         VersionRegex = "latest",
+        ///         Region = "us-east-1",
+        ///         Lock = true,
         ///     });
         /// 
         ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
         ///     {
-        ///         Region = "us-east-1",
         ///         VersionRegex = "7.9.?",
+        ///         Region = "us-east-1",
         ///     });
         /// 
         /// });

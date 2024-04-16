@@ -20,14 +20,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const _this = new ec.SnapshotRepository("this", {generic: {
- *     type: "azure",
- *     settings: JSON.stringify({
- *         container: "my_container",
- *         client: "my_alternate_client",
- *         compress: false,
- *     }),
- * }});
+ * const _this = new ec.SnapshotRepository("this", {
+ *     name: "my-snapshot-repository",
+ *     generic: {
+ *         type: "azure",
+ *         settings: JSON.stringify({
+ *             container: "my_container",
+ *             client: "my_alternate_client",
+ *             compress: false,
+ *         }),
+ *     },
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *
@@ -38,14 +41,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const _this = new ec.SnapshotRepository("this", {generic: {
- *     type: "gcs",
- *     settings: JSON.stringify({
- *         bucket: "my_bucket",
- *         client: "my_alternate_client",
- *         compress: false,
- *     }),
- * }});
+ * const _this = new ec.SnapshotRepository("this", {
+ *     name: "my-snapshot-repository",
+ *     generic: {
+ *         type: "gcs",
+ *         settings: JSON.stringify({
+ *             bucket: "my_bucket",
+ *             client: "my_alternate_client",
+ *             compress: false,
+ *         }),
+ *     },
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *
