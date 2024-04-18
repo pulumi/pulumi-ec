@@ -18,6 +18,136 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * ### Basic
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystore;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         // Create an Elastic Cloud deployment
+ *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         // Create the keystore secret entry
+ *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
+ *             .deploymentId(exampleKeystore.id())
+ *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
+ *             .value(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;service-account-key.json&#34;)
+ *                 .build()).result())
+ *             .asFile(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Adding credentials to use GCS as a snapshot repository
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystore;
+ * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex(&#34;latest&#34;)
+ *             .region(&#34;us-east-1&#34;)
+ *             .build());
+ * 
+ *         // Create an Elastic Cloud deployment
+ *         var exampleKeystore = new Deployment(&#34;exampleKeystore&#34;, DeploymentArgs.builder()        
+ *             .region(&#34;us-east-1&#34;)
+ *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
+ *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling()
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         // Create the keystore secret entry
+ *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
+ *             .deploymentId(exampleKeystore.id())
+ *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
+ *             .value(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;service-account-key.json&#34;)
+ *                 .build()).result())
+ *             .asFile(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * This resource cannot be imported
+ * 
  */
 @ResourceType(type="ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore")
 public class DeploymentElasticsearchKeystore extends com.pulumi.resources.CustomResource {

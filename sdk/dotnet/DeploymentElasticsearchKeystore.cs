@@ -11,6 +11,108 @@ namespace Pulumi.ElasticCloud
 {
     /// <summary>
     /// ## Example Usage
+    /// 
+    /// ### Basic
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
+    /// 
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleKeystore = new ElasticCloud.Deployment("example_keystore", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create the keystore secret entry
+    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcs_credential", new()
+    ///     {
+    ///         DeploymentId = exampleKeystore.Id,
+    ///         SettingName = "gcs.client.default.credentials_file",
+    ///         Value = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "service-account-key.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         AsFile = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Adding credentials to use GCS as a snapshot repository
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
+    /// 
+    ///     // Create an Elastic Cloud deployment
+    ///     var exampleKeystore = new ElasticCloud.Deployment("example_keystore", new()
+    ///     {
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create the keystore secret entry
+    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcs_credential", new()
+    ///     {
+    ///         DeploymentId = exampleKeystore.Id,
+    ///         SettingName = "gcs.client.default.credentials_file",
+    ///         Value = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "service-account-key.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         AsFile = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// This resource cannot be imported
     /// </summary>
     [ElasticCloudResourceType("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore")]
     public partial class DeploymentElasticsearchKeystore : global::Pulumi.CustomResource

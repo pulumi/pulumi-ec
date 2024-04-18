@@ -6,6 +6,80 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ * import * as std from "@pulumi/std";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * // Create an Elastic Cloud deployment
+ * const exampleKeystore = new ec.Deployment("example_keystore", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
+ * });
+ * // Create the keystore secret entry
+ * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcs_credential", {
+ *     deploymentId: exampleKeystore.id,
+ *     settingName: "gcs.client.default.credentials_file",
+ *     value: std.file({
+ *         input: "service-account-key.json",
+ *     }).then(invoke => invoke.result),
+ *     asFile: true,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Adding credentials to use GCS as a snapshot repository
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ * import * as std from "@pulumi/std";
+ *
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * // Create an Elastic Cloud deployment
+ * const exampleKeystore = new ec.Deployment("example_keystore", {
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *     },
+ * });
+ * // Create the keystore secret entry
+ * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcs_credential", {
+ *     deploymentId: exampleKeystore.id,
+ *     settingName: "gcs.client.default.credentials_file",
+ *     value: std.file({
+ *         input: "service-account-key.json",
+ *     }).then(invoke => invoke.result),
+ *     asFile: true,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * This resource cannot be imported
  */
 export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
     /**
