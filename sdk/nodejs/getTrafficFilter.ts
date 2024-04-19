@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     region: "us-east-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTrafficFilter(args?: GetTrafficFilterArgs, opts?: pulumi.InvokeOptions): Promise<GetTrafficFilterResult> {
     args = args || {};
@@ -83,7 +81,6 @@ export interface GetTrafficFilterResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -98,7 +95,6 @@ export interface GetTrafficFilterResult {
  *     region: "us-east-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTrafficFilterResult> {
     return pulumi.output(args).apply((a: any) => getTrafficFilter(a, opts))

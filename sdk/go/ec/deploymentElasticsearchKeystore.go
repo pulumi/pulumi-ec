@@ -16,7 +16,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -75,11 +74,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Adding credentials to use GCS as a snapshot repository
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -138,7 +135,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

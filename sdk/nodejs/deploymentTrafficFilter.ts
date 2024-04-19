@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### IP based traffic filter
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -41,11 +40,9 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Azure Private Link traffic filter
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -77,11 +74,9 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ###GCP Private Service Connect traffic filter
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -112,7 +107,6 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

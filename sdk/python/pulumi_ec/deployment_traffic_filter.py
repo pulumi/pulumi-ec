@@ -236,7 +236,6 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
 
         ### IP based traffic filter
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -262,11 +261,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Azure Private Link traffic filter
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -294,11 +291,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ###GCP Private Service Connect traffic filter
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -325,7 +320,6 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -355,7 +349,6 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
 
         ### IP based traffic filter
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -381,11 +374,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Azure Private Link traffic filter
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -413,11 +404,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ###GCP Private Service Connect traffic filter
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -444,7 +433,6 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             ),
             kibana=ec.DeploymentKibanaArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

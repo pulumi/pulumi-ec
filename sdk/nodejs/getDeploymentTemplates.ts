@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -31,7 +30,6 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDeploymentTemplates(args: GetDeploymentTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentTemplatesResult> {
 
@@ -96,7 +94,6 @@ export interface GetDeploymentTemplatesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -116,7 +113,6 @@ export interface GetDeploymentTemplatesResult {
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDeploymentTemplatesOutput(args: GetDeploymentTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentTemplatesResult> {
     return pulumi.output(args).apply((a: any) => getDeploymentTemplates(a, opts))

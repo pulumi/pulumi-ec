@@ -103,7 +103,6 @@ def get_deployment_templates(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -120,7 +119,6 @@ def get_deployment_templates(id: Optional[str] = None,
         ),
         kibana=ec.DeploymentKibanaArgs())
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The id of the deployment template.
@@ -155,7 +153,6 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -172,7 +169,6 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
         ),
         kibana=ec.DeploymentKibanaArgs())
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The id of the deployment template.
