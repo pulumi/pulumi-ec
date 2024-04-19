@@ -244,13 +244,15 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         latest = ec.get_stack(version_regex="latest",
             region="us-east-1")
         example = ec.DeploymentTrafficFilter("example",
+            name="my traffic filter name",
             region="us-east-1",
             type="ip",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
                 source="0.0.0.0/0",
             )])
         # Create an Elastic Cloud deployment
-        example_minimal = ec.Deployment("exampleMinimal",
+        example_minimal = ec.Deployment("example_minimal",
+            name="my_example_deployment",
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
@@ -275,6 +277,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         latest = ec.get_stack(version_regex="latest",
             region=region)
         azure = ec.DeploymentTrafficFilter("azure",
+            name="my traffic filter name",
             region=region,
             type="azure_private_endpoint",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
@@ -282,7 +285,8 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                 azure_endpoint_guid="78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
             )])
         # Create an Elastic Cloud deployment
-        example_minimal = ec.Deployment("exampleMinimal",
+        example_minimal = ec.Deployment("example_minimal",
+            name="my_example_deployment",
             region=region,
             version=latest.version,
             deployment_template_id="azure-io-optimized-v3",
@@ -306,14 +310,16 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         region = asia_east1
         latest = ec.get_stack(version_regex="latest",
             region=region)
-        gcp_psc = ec.DeploymentTrafficFilter("gcpPsc",
+        gcp_psc = ec.DeploymentTrafficFilter("gcp_psc",
+            name="my traffic filter name",
             region=region,
             type="gcp_private_service_connect_endpoint",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
                 source="18446744072646845332",
             )])
         # Create an Elastic Cloud deployment
-        example_minimal = ec.Deployment("exampleMinimal",
+        example_minimal = ec.Deployment("example_minimal",
+            name="my_example_deployment",
             region=region,
             version=latest.version,
             deployment_template_id="gcp-storage-optimized",
@@ -363,13 +369,15 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         latest = ec.get_stack(version_regex="latest",
             region="us-east-1")
         example = ec.DeploymentTrafficFilter("example",
+            name="my traffic filter name",
             region="us-east-1",
             type="ip",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
                 source="0.0.0.0/0",
             )])
         # Create an Elastic Cloud deployment
-        example_minimal = ec.Deployment("exampleMinimal",
+        example_minimal = ec.Deployment("example_minimal",
+            name="my_example_deployment",
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
@@ -394,6 +402,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         latest = ec.get_stack(version_regex="latest",
             region=region)
         azure = ec.DeploymentTrafficFilter("azure",
+            name="my traffic filter name",
             region=region,
             type="azure_private_endpoint",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
@@ -401,7 +410,8 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                 azure_endpoint_guid="78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
             )])
         # Create an Elastic Cloud deployment
-        example_minimal = ec.Deployment("exampleMinimal",
+        example_minimal = ec.Deployment("example_minimal",
+            name="my_example_deployment",
             region=region,
             version=latest.version,
             deployment_template_id="azure-io-optimized-v3",
@@ -425,14 +435,16 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         region = asia_east1
         latest = ec.get_stack(version_regex="latest",
             region=region)
-        gcp_psc = ec.DeploymentTrafficFilter("gcpPsc",
+        gcp_psc = ec.DeploymentTrafficFilter("gcp_psc",
+            name="my traffic filter name",
             region=region,
             type="gcp_private_service_connect_endpoint",
             rules=[ec.DeploymentTrafficFilterRuleArgs(
                 source="18446744072646845332",
             )])
         # Create an Elastic Cloud deployment
-        example_minimal = ec.Deployment("exampleMinimal",
+        example_minimal = ec.Deployment("example_minimal",
+            name="my_example_deployment",
             region=region,
             version=latest.version,
             deployment_template_id="gcp-storage-optimized",

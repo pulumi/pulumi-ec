@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  *     region: "us-east-1",
  * });
  * const example = new ec.DeploymentTrafficFilter("example", {
+ *     name: "my traffic filter name",
  *     region: "us-east-1",
  *     type: "ip",
  *     rules: [{
@@ -28,7 +29,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Create an Elastic Cloud deployment
- * const exampleMinimal = new ec.Deployment("exampleMinimal", {
+ * const exampleMinimal = new ec.Deployment("example_minimal", {
+ *     name: "my_example_deployment",
  *     region: "us-east-1",
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "aws-io-optimized-v2",
@@ -56,6 +58,7 @@ import * as utilities from "./utilities";
  *     region: region,
  * });
  * const azure = new ec.DeploymentTrafficFilter("azure", {
+ *     name: "my traffic filter name",
  *     region: region,
  *     type: "azure_private_endpoint",
  *     rules: [{
@@ -64,7 +67,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Create an Elastic Cloud deployment
- * const exampleMinimal = new ec.Deployment("exampleMinimal", {
+ * const exampleMinimal = new ec.Deployment("example_minimal", {
+ *     name: "my_example_deployment",
  *     region: region,
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "azure-io-optimized-v3",
@@ -91,7 +95,8 @@ import * as utilities from "./utilities";
  *     versionRegex: "latest",
  *     region: region,
  * });
- * const gcpPsc = new ec.DeploymentTrafficFilter("gcpPsc", {
+ * const gcpPsc = new ec.DeploymentTrafficFilter("gcp_psc", {
+ *     name: "my traffic filter name",
  *     region: region,
  *     type: "gcp_private_service_connect_endpoint",
  *     rules: [{
@@ -99,7 +104,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Create an Elastic Cloud deployment
- * const exampleMinimal = new ec.Deployment("exampleMinimal", {
+ * const exampleMinimal = new ec.Deployment("example_minimal", {
+ *     name: "my_example_deployment",
  *     region: region,
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "gcp-storage-optimized",

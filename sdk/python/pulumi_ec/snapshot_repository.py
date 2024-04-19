@@ -149,14 +149,16 @@ class SnapshotRepository(pulumi.CustomResource):
         import json
         import pulumi_ec as ec
 
-        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
-            type="azure",
-            settings=json.dumps({
-                "container": "my_container",
-                "client": "my_alternate_client",
-                "compress": False,
-            }),
-        ))
+        this = ec.SnapshotRepository("this",
+            name="my-snapshot-repository",
+            generic=ec.SnapshotRepositoryGenericArgs(
+                type="azure",
+                settings=json.dumps({
+                    "container": "my_container",
+                    "client": "my_alternate_client",
+                    "compress": False,
+                }),
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -168,14 +170,16 @@ class SnapshotRepository(pulumi.CustomResource):
         import json
         import pulumi_ec as ec
 
-        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
-            type="gcs",
-            settings=json.dumps({
-                "bucket": "my_bucket",
-                "client": "my_alternate_client",
-                "compress": False,
-            }),
-        ))
+        this = ec.SnapshotRepository("this",
+            name="my-snapshot-repository",
+            generic=ec.SnapshotRepositoryGenericArgs(
+                type="gcs",
+                settings=json.dumps({
+                    "bucket": "my_bucket",
+                    "client": "my_alternate_client",
+                    "compress": False,
+                }),
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -214,14 +218,16 @@ class SnapshotRepository(pulumi.CustomResource):
         import json
         import pulumi_ec as ec
 
-        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
-            type="azure",
-            settings=json.dumps({
-                "container": "my_container",
-                "client": "my_alternate_client",
-                "compress": False,
-            }),
-        ))
+        this = ec.SnapshotRepository("this",
+            name="my-snapshot-repository",
+            generic=ec.SnapshotRepositoryGenericArgs(
+                type="azure",
+                settings=json.dumps({
+                    "container": "my_container",
+                    "client": "my_alternate_client",
+                    "compress": False,
+                }),
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -233,14 +239,16 @@ class SnapshotRepository(pulumi.CustomResource):
         import json
         import pulumi_ec as ec
 
-        this = ec.SnapshotRepository("this", generic=ec.SnapshotRepositoryGenericArgs(
-            type="gcs",
-            settings=json.dumps({
-                "bucket": "my_bucket",
-                "client": "my_alternate_client",
-                "compress": False,
-            }),
-        ))
+        this = ec.SnapshotRepository("this",
+            name="my-snapshot-repository",
+            generic=ec.SnapshotRepositoryGenericArgs(
+                type="gcs",
+                settings=json.dumps({
+                    "bucket": "my_bucket",
+                    "client": "my_alternate_client",
+                    "compress": False,
+                }),
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

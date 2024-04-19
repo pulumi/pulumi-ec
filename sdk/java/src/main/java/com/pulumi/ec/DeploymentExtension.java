@@ -58,11 +58,14 @@ import javax.annotation.Nullable;
  *         final var filePath = &#34;/path/to/plugin.zip&#34;;
  * 
  *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
+ *             .name(&#34;my_extension&#34;)
  *             .description(&#34;my extension&#34;)
  *             .version(&#34;*&#34;)
  *             .extensionType(&#34;bundle&#34;)
  *             .filePath(filePath)
- *             .fileHash(computeFileBase64Sha256(filePath))
+ *             .fileHash(StdFunctions.filebase64sha256(Filebase64sha256Args.builder()
+ *                 .input(filePath)
+ *                 .build()).result())
  *             .build());
  * 
  *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
@@ -71,6 +74,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var withExtension = new Deployment(&#34;withExtension&#34;, DeploymentArgs.builder()        
+ *             .name(&#34;my_example_deployment&#34;)
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
@@ -119,6 +123,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var exampleExtension = new DeploymentExtension(&#34;exampleExtension&#34;, DeploymentExtensionArgs.builder()        
+ *             .name(&#34;my_extension&#34;)
  *             .description(&#34;my extension&#34;)
  *             .version(&#34;*&#34;)
  *             .extensionType(&#34;bundle&#34;)
@@ -131,6 +136,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var withExtension = new Deployment(&#34;withExtension&#34;, DeploymentArgs.builder()        
+ *             .name(&#34;my_example_deployment&#34;)
  *             .region(&#34;us-east-1&#34;)
  *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
  *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)

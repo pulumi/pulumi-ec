@@ -13,14 +13,14 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  *
  * const latest = ec.getStack({
  *     versionRegex: "latest",
  *     region: "us-east-1",
  * });
  * // Create an Elastic Cloud deployment
- * const exampleKeystore = new ec.Deployment("exampleKeystore", {
+ * const exampleKeystore = new ec.Deployment("example_keystore", {
  *     region: "us-east-1",
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "aws-io-optimized-v2",
@@ -31,10 +31,12 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Create the keystore secret entry
- * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
+ * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcs_credential", {
  *     deploymentId: exampleKeystore.id,
  *     settingName: "gcs.client.default.credentials_file",
- *     value: fs.readFileSync("service-account-key.json", "utf8"),
+ *     value: std.file({
+ *         input: "service-account-key.json",
+ *     }).then(invoke => invoke.result),
  *     asFile: true,
  * });
  * ```
@@ -46,14 +48,14 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  *
  * const latest = ec.getStack({
  *     versionRegex: "latest",
  *     region: "us-east-1",
  * });
  * // Create an Elastic Cloud deployment
- * const exampleKeystore = new ec.Deployment("exampleKeystore", {
+ * const exampleKeystore = new ec.Deployment("example_keystore", {
  *     region: "us-east-1",
  *     version: latest.then(latest => latest.version),
  *     deploymentTemplateId: "aws-io-optimized-v2",
@@ -64,10 +66,12 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Create the keystore secret entry
- * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcsCredential", {
+ * const gcsCredential = new ec.DeploymentElasticsearchKeystore("gcs_credential", {
  *     deploymentId: exampleKeystore.id,
  *     settingName: "gcs.client.default.credentials_file",
- *     value: fs.readFileSync("service-account-key.json", "utf8"),
+ *     value: std.file({
+ *         input: "service-account-key.json",
+ *     }).then(invoke => invoke.result),
  *     asFile: true,
  * });
  * ```

@@ -171,11 +171,12 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ec as ec
+        import pulumi_std as std
 
         latest = ec.get_stack(version_regex="latest",
             region="us-east-1")
         # Create an Elastic Cloud deployment
-        example_keystore = ec.Deployment("exampleKeystore",
+        example_keystore = ec.Deployment("example_keystore",
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
@@ -185,10 +186,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                 ),
             ))
         # Create the keystore secret entry
-        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
             setting_name="gcs.client.default.credentials_file",
-            value=(lambda path: open(path).read())("service-account-key.json"),
+            value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
         <!--End PulumiCodeChooser -->
@@ -199,11 +200,12 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ec as ec
+        import pulumi_std as std
 
         latest = ec.get_stack(version_regex="latest",
             region="us-east-1")
         # Create an Elastic Cloud deployment
-        example_keystore = ec.Deployment("exampleKeystore",
+        example_keystore = ec.Deployment("example_keystore",
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
@@ -213,10 +215,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                 ),
             ))
         # Create the keystore secret entry
-        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
             setting_name="gcs.client.default.credentials_file",
-            value=(lambda path: open(path).read())("service-account-key.json"),
+            value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
         <!--End PulumiCodeChooser -->
@@ -247,11 +249,12 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ec as ec
+        import pulumi_std as std
 
         latest = ec.get_stack(version_regex="latest",
             region="us-east-1")
         # Create an Elastic Cloud deployment
-        example_keystore = ec.Deployment("exampleKeystore",
+        example_keystore = ec.Deployment("example_keystore",
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
@@ -261,10 +264,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                 ),
             ))
         # Create the keystore secret entry
-        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
             setting_name="gcs.client.default.credentials_file",
-            value=(lambda path: open(path).read())("service-account-key.json"),
+            value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
         <!--End PulumiCodeChooser -->
@@ -275,11 +278,12 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ec as ec
+        import pulumi_std as std
 
         latest = ec.get_stack(version_regex="latest",
             region="us-east-1")
         # Create an Elastic Cloud deployment
-        example_keystore = ec.Deployment("exampleKeystore",
+        example_keystore = ec.Deployment("example_keystore",
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
@@ -289,10 +293,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
                 ),
             ))
         # Create the keystore secret entry
-        gcs_credential = ec.DeploymentElasticsearchKeystore("gcsCredential",
+        gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
             setting_name="gcs.client.default.credentials_file",
-            value=(lambda path: open(path).read())("service-account-key.json"),
+            value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
         <!--End PulumiCodeChooser -->

@@ -19,13 +19,13 @@ import * as utilities from "./utilities";
  * import * as ec from "@pulumi/ec";
  *
  * const latest = ec.getStack({
- *     lock: true,
- *     region: "us-east-1",
  *     versionRegex: "latest",
+ *     region: "us-east-1",
+ *     lock: true,
  * });
  * const latestPatch = ec.getStack({
- *     region: "us-east-1",
  *     versionRegex: "7.9.?",
+ *     region: "us-east-1",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -128,13 +128,13 @@ export interface GetStackResult {
  * import * as ec from "@pulumi/ec";
  *
  * const latest = ec.getStack({
- *     lock: true,
- *     region: "us-east-1",
  *     versionRegex: "latest",
+ *     region: "us-east-1",
+ *     lock: true,
  * });
  * const latestPatch = ec.getStack({
- *     region: "us-east-1",
  *     versionRegex: "7.9.?",
+ *     region: "us-east-1",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

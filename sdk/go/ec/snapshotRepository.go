@@ -44,6 +44,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = ec.NewSnapshotRepository(ctx, "this", &ec.SnapshotRepositoryArgs{
+//				Name: pulumi.String("my-snapshot-repository"),
 //				Generic: &ec.SnapshotRepositoryGenericArgs{
 //					Type:     pulumi.String("azure"),
 //					Settings: pulumi.String(json0),
@@ -86,6 +87,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = ec.NewSnapshotRepository(ctx, "this", &ec.SnapshotRepositoryArgs{
+//				Name: pulumi.String("my-snapshot-repository"),
 //				Generic: &ec.SnapshotRepositoryGenericArgs{
 //					Type:     pulumi.String("gcs"),
 //					Settings: pulumi.String(json0),

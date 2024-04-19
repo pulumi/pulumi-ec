@@ -30,11 +30,12 @@ namespace Pulumi.ElasticCloud
         ///         Region = "us-east-1",
         ///     });
         /// 
-        ///     var myDeployment = new ElasticCloud.Deployment("myDeployment", new()
+        ///     var myDeployment = new ElasticCloud.Deployment("my_deployment", new()
         ///     {
+        ///         Name = "My Deployment",
         ///         Version = "8.12.2",
-        ///         Region = data.Ec_deployment_templates.All_templates.Region,
-        ///         DeploymentTemplateId = data.Ec_deployment_templates.All_templates.Templates[0].Id,
+        ///         Region = allTemplates.Region,
+        ///         DeploymentTemplateId = allTemplates.Templates[0].Id,
         ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
         ///         {
         ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
@@ -71,11 +72,12 @@ namespace Pulumi.ElasticCloud
         ///         Region = "us-east-1",
         ///     });
         /// 
-        ///     var myDeployment = new ElasticCloud.Deployment("myDeployment", new()
+        ///     var myDeployment = new ElasticCloud.Deployment("my_deployment", new()
         ///     {
+        ///         Name = "My Deployment",
         ///         Version = "8.12.2",
-        ///         Region = data.Ec_deployment_templates.All_templates.Region,
-        ///         DeploymentTemplateId = data.Ec_deployment_templates.All_templates.Templates[0].Id,
+        ///         Region = allTemplates.Region,
+        ///         DeploymentTemplateId = allTemplates.Templates[0].Id,
         ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
         ///         {
         ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs

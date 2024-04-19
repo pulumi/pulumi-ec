@@ -43,11 +43,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         final var exampleDeployment = EcFunctions.getDeployment(GetDeploymentArgs.builder()
+ *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
  *             .id(&#34;320b7b540dfc967a7a649c18e2fce4ed&#34;)
  *             .build());
  * 
  *         var exampleDeploymentTrafficFilter = new DeploymentTrafficFilter(&#34;exampleDeploymentTrafficFilter&#34;, DeploymentTrafficFilterArgs.builder()        
+ *             .name(&#34;my traffic filter name&#34;)
  *             .region(&#34;us-east-1&#34;)
  *             .type(&#34;ip&#34;)
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
@@ -57,7 +58,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation(&#34;exampleDeploymentTrafficFilterAssociation&#34;, DeploymentTrafficFilterAssociationArgs.builder()        
  *             .trafficFilterId(exampleDeploymentTrafficFilter.id())
- *             .deploymentId(ec_deployment.example().id())
+ *             .deploymentId(exampleEcDeployment.id())
  *             .build());
  * 
  *     }

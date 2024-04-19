@@ -21,13 +21,14 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleDeployment = ElasticCloud.GetDeployment.Invoke(new()
+    ///     var example = ElasticCloud.GetDeployment.Invoke(new()
     ///     {
     ///         Id = "320b7b540dfc967a7a649c18e2fce4ed",
     ///     });
     /// 
-    ///     var exampleDeploymentTrafficFilter = new ElasticCloud.DeploymentTrafficFilter("exampleDeploymentTrafficFilter", new()
+    ///     var exampleDeploymentTrafficFilter = new ElasticCloud.DeploymentTrafficFilter("example", new()
     ///     {
+    ///         Name = "my traffic filter name",
     ///         Region = "us-east-1",
     ///         Type = "ip",
     ///         Rules = new[]
@@ -39,10 +40,10 @@ namespace Pulumi.ElasticCloud
     ///         },
     ///     });
     /// 
-    ///     var exampleDeploymentTrafficFilterAssociation = new ElasticCloud.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", new()
+    ///     var exampleDeploymentTrafficFilterAssociation = new ElasticCloud.DeploymentTrafficFilterAssociation("example", new()
     ///     {
     ///         TrafficFilterId = exampleDeploymentTrafficFilter.Id,
-    ///         DeploymentId = ec_deployment.Example.Id,
+    ///         DeploymentId = exampleEcDeployment.Id,
     ///     });
     /// 
     /// });

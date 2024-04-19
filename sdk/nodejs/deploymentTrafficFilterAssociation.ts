@@ -12,19 +12,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const exampleDeployment = ec.getDeployment({
+ * const example = ec.getDeployment({
  *     id: "320b7b540dfc967a7a649c18e2fce4ed",
  * });
- * const exampleDeploymentTrafficFilter = new ec.DeploymentTrafficFilter("exampleDeploymentTrafficFilter", {
+ * const exampleDeploymentTrafficFilter = new ec.DeploymentTrafficFilter("example", {
+ *     name: "my traffic filter name",
  *     region: "us-east-1",
  *     type: "ip",
  *     rules: [{
  *         source: "0.0.0.0/0",
  *     }],
  * });
- * const exampleDeploymentTrafficFilterAssociation = new ec.DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", {
+ * const exampleDeploymentTrafficFilterAssociation = new ec.DeploymentTrafficFilterAssociation("example", {
  *     trafficFilterId: exampleDeploymentTrafficFilter.id,
- *     deploymentId: ec_deployment.example.id,
+ *     deploymentId: exampleEcDeployment.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

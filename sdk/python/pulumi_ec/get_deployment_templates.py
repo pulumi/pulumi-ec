@@ -109,10 +109,11 @@ def get_deployment_templates(id: Optional[str] = None,
     import pulumi_ec as ec
 
     example = ec.get_deployment_templates(region="us-east-1")
-    my_deployment = ec.Deployment("myDeployment",
+    my_deployment = ec.Deployment("my_deployment",
+        name="My Deployment",
         version="8.12.2",
-        region=data["ec_deployment_templates"]["all_templates"]["region"],
-        deployment_template_id=data["ec_deployment_templates"]["all_templates"]["templates"][0]["id"],
+        region=all_templates["region"],
+        deployment_template_id=all_templates["templates"][0]["id"],
         elasticsearch=ec.DeploymentElasticsearchArgs(
             hot=ec.DeploymentElasticsearchHotArgs(
                 autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
@@ -161,10 +162,11 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi_ec as ec
 
     example = ec.get_deployment_templates(region="us-east-1")
-    my_deployment = ec.Deployment("myDeployment",
+    my_deployment = ec.Deployment("my_deployment",
+        name="My Deployment",
         version="8.12.2",
-        region=data["ec_deployment_templates"]["all_templates"]["region"],
-        deployment_template_id=data["ec_deployment_templates"]["all_templates"]["templates"][0]["id"],
+        region=all_templates["region"],
+        deployment_template_id=all_templates["templates"][0]["id"],
         elasticsearch=ec.DeploymentElasticsearchArgs(
             hot=ec.DeploymentElasticsearchHotArgs(
                 autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),

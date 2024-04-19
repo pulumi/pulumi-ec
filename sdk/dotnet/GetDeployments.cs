@@ -27,26 +27,18 @@ namespace Pulumi.ElasticCloud
         /// {
         ///     var example = ElasticCloud.GetDeployments.Invoke(new()
         ///     {
+        ///         NamePrefix = "test",
         ///         DeploymentTemplateId = "azure-compute-optimized",
+        ///         Size = 200,
+        ///         Tags = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
         ///         Elasticsearches = new[]
         ///         {
         ///             new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
         ///             {
         ///                 Healthy = "true",
-        ///             },
-        ///         },
-        ///         EnterpriseSearches = new[]
-        ///         {
-        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
-        ///             {
-        ///                 Healthy = "true",
-        ///             },
-        ///         },
-        ///         IntegrationsServers = new[]
-        ///         {
-        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
-        ///             {
-        ///                 Version = "8.0.0",
         ///             },
         ///         },
         ///         Kibanas = new[]
@@ -56,11 +48,19 @@ namespace Pulumi.ElasticCloud
         ///                 Status = "started",
         ///             },
         ///         },
-        ///         NamePrefix = "test",
-        ///         Size = 200,
-        ///         Tags = 
+        ///         IntegrationsServers = new[]
         ///         {
-        ///             { "foo", "bar" },
+        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///             {
+        ///                 Version = "8.0.0",
+        ///             },
+        ///         },
+        ///         EnterpriseSearches = new[]
+        ///         {
+        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
         ///         },
         ///     });
         /// 
@@ -87,26 +87,18 @@ namespace Pulumi.ElasticCloud
         /// {
         ///     var example = ElasticCloud.GetDeployments.Invoke(new()
         ///     {
+        ///         NamePrefix = "test",
         ///         DeploymentTemplateId = "azure-compute-optimized",
+        ///         Size = 200,
+        ///         Tags = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
         ///         Elasticsearches = new[]
         ///         {
         ///             new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
         ///             {
         ///                 Healthy = "true",
-        ///             },
-        ///         },
-        ///         EnterpriseSearches = new[]
-        ///         {
-        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
-        ///             {
-        ///                 Healthy = "true",
-        ///             },
-        ///         },
-        ///         IntegrationsServers = new[]
-        ///         {
-        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
-        ///             {
-        ///                 Version = "8.0.0",
         ///             },
         ///         },
         ///         Kibanas = new[]
@@ -116,11 +108,19 @@ namespace Pulumi.ElasticCloud
         ///                 Status = "started",
         ///             },
         ///         },
-        ///         NamePrefix = "test",
-        ///         Size = 200,
-        ///         Tags = 
+        ///         IntegrationsServers = new[]
         ///         {
-        ///             { "foo", "bar" },
+        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///             {
+        ///                 Version = "8.0.0",
+        ///             },
+        ///         },
+        ///         EnterpriseSearches = new[]
+        ///         {
+        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
         ///         },
         ///     });
         /// 

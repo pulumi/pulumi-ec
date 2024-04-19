@@ -17,10 +17,10 @@ namespace Pulumi.ElasticCloud
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -31,7 +31,7 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new()
+    ///     var exampleKeystore = new ElasticCloud.Deployment("example_keystore", new()
     ///     {
     ///         Region = "us-east-1",
     ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
@@ -46,11 +46,14 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create the keystore secret entry
-    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcsCredential", new()
+    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcs_credential", new()
     ///     {
     ///         DeploymentId = exampleKeystore.Id,
     ///         SettingName = "gcs.client.default.credentials_file",
-    ///         Value = File.ReadAllText("service-account-key.json"),
+    ///         Value = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "service-account-key.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         AsFile = true,
     ///     });
     /// 
@@ -63,10 +66,10 @@ namespace Pulumi.ElasticCloud
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
     /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -77,7 +80,7 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleKeystore = new ElasticCloud.Deployment("exampleKeystore", new()
+    ///     var exampleKeystore = new ElasticCloud.Deployment("example_keystore", new()
     ///     {
     ///         Region = "us-east-1",
     ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
@@ -92,11 +95,14 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create the keystore secret entry
-    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcsCredential", new()
+    ///     var gcsCredential = new ElasticCloud.DeploymentElasticsearchKeystore("gcs_credential", new()
     ///     {
     ///         DeploymentId = exampleKeystore.Id,
     ///         SettingName = "gcs.client.default.credentials_file",
-    ///         Value = File.ReadAllText("service-account-key.json"),
+    ///         Value = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "service-account-key.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         AsFile = true,
     ///     });
     /// 

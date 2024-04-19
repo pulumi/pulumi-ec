@@ -70,7 +70,9 @@ import javax.annotation.Nullable;
  *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
  *             .deploymentId(exampleKeystore.id())
  *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
- *             .value(Files.readString(Paths.get(&#34;service-account-key.json&#34;)))
+ *             .value(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;service-account-key.json&#34;)
+ *                 .build()).result())
  *             .asFile(true)
  *             .build());
  * 
@@ -131,7 +133,9 @@ import javax.annotation.Nullable;
  *         var gcsCredential = new DeploymentElasticsearchKeystore(&#34;gcsCredential&#34;, DeploymentElasticsearchKeystoreArgs.builder()        
  *             .deploymentId(exampleKeystore.id())
  *             .settingName(&#34;gcs.client.default.credentials_file&#34;)
- *             .value(Files.readString(Paths.get(&#34;service-account-key.json&#34;)))
+ *             .value(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;service-account-key.json&#34;)
+ *                 .build()).result())
  *             .asFile(true)
  *             .build());
  * 

@@ -34,10 +34,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ec.NewDeployment(ctx, "myDeployment", &ec.DeploymentArgs{
+//			_, err = ec.NewDeployment(ctx, "my_deployment", &ec.DeploymentArgs{
+//				Name:                 pulumi.String("My Deployment"),
 //				Version:              pulumi.String("8.12.2"),
-//				Region:               pulumi.Any(data.Ec_deployment_templates.All_templates.Region),
-//				DeploymentTemplateId: pulumi.Any(data.Ec_deployment_templates.All_templates.Templates[0].Id),
+//				Region:               pulumi.Any(allTemplates.Region),
+//				DeploymentTemplateId: pulumi.Any(allTemplates.Templates[0].Id),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
 //						Autoscaling: nil,

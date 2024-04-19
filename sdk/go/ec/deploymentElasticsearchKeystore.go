@@ -22,20 +22,11 @@ import (
 //
 // import (
 //
-//	"os"
-//
 //	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
@@ -47,7 +38,7 @@ import (
 //				return err
 //			}
 //			// Create an Elastic Cloud deployment
-//			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+//			exampleKeystore, err := ec.NewDeployment(ctx, "example_keystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
@@ -60,11 +51,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "service-account-key.json",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			// Create the keystore secret entry
-//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
+//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcs_credential", &ec.DeploymentElasticsearchKeystoreArgs{
 //				DeploymentId: exampleKeystore.ID(),
 //				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
-//				Value:        readFileOrPanic("service-account-key.json"),
+//				Value:        invokeFile.Result,
 //				AsFile:       pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -85,20 +82,11 @@ import (
 //
 // import (
 //
-//	"os"
-//
 //	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
@@ -110,7 +98,7 @@ import (
 //				return err
 //			}
 //			// Create an Elastic Cloud deployment
-//			exampleKeystore, err := ec.NewDeployment(ctx, "exampleKeystore", &ec.DeploymentArgs{
+//			exampleKeystore, err := ec.NewDeployment(ctx, "example_keystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
@@ -123,11 +111,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "service-account-key.json",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			// Create the keystore secret entry
-//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcsCredential", &ec.DeploymentElasticsearchKeystoreArgs{
+//			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcs_credential", &ec.DeploymentElasticsearchKeystoreArgs{
 //				DeploymentId: exampleKeystore.ID(),
 //				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
-//				Value:        readFileOrPanic("service-account-key.json"),
+//				Value:        invokeFile.Result,
 //				AsFile:       pulumi.Bool(true),
 //			})
 //			if err != nil {

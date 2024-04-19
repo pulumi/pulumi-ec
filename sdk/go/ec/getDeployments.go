@@ -29,20 +29,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ec.GetDeployments(ctx, &ec.GetDeploymentsArgs{
+//				NamePrefix:           pulumi.StringRef("test"),
 //				DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
+//				Size:                 pulumi.IntRef(200),
+//				Tags: map[string]interface{}{
+//					"foo": "bar",
+//				},
 //				Elasticsearches: []ec.GetDeploymentsElasticsearch{
 //					{
 //						Healthy: pulumi.StringRef("true"),
-//					},
-//				},
-//				EnterpriseSearches: []ec.GetDeploymentsEnterpriseSearch{
-//					{
-//						Healthy: pulumi.StringRef("true"),
-//					},
-//				},
-//				IntegrationsServers: []ec.GetDeploymentsIntegrationsServer{
-//					{
-//						Version: pulumi.StringRef("8.0.0"),
 //					},
 //				},
 //				Kibanas: []ec.GetDeploymentsKibana{
@@ -50,10 +45,15 @@ import (
 //						Status: pulumi.StringRef("started"),
 //					},
 //				},
-//				NamePrefix: pulumi.StringRef("test"),
-//				Size:       pulumi.IntRef(200),
-//				Tags: map[string]interface{}{
-//					"foo": "bar",
+//				IntegrationsServers: []ec.GetDeploymentsIntegrationsServer{
+//					{
+//						Version: pulumi.StringRef("8.0.0"),
+//					},
+//				},
+//				EnterpriseSearches: []ec.GetDeploymentsEnterpriseSearch{
+//					{
+//						Healthy: pulumi.StringRef("true"),
+//					},
 //				},
 //			}, nil)
 //			if err != nil {

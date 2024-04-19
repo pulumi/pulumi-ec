@@ -17,24 +17,24 @@ import * as utilities from "./utilities";
  * import * as ec from "@pulumi/ec";
  *
  * const example = ec.getDeployments({
- *     deploymentTemplateId: "azure-compute-optimized",
- *     elasticsearches: [{
- *         healthy: "true",
- *     }],
- *     enterpriseSearches: [{
- *         healthy: "true",
- *     }],
- *     integrationsServers: [{
- *         version: "8.0.0",
- *     }],
- *     kibanas: [{
- *         status: "started",
- *     }],
  *     namePrefix: "test",
+ *     deploymentTemplateId: "azure-compute-optimized",
  *     size: 200,
  *     tags: {
  *         foo: "bar",
  *     },
+ *     elasticsearches: [{
+ *         healthy: "true",
+ *     }],
+ *     kibanas: [{
+ *         status: "started",
+ *     }],
+ *     integrationsServers: [{
+ *         version: "8.0.0",
+ *     }],
+ *     enterpriseSearches: [{
+ *         healthy: "true",
+ *     }],
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -180,24 +180,24 @@ export interface GetDeploymentsResult {
  * import * as ec from "@pulumi/ec";
  *
  * const example = ec.getDeployments({
- *     deploymentTemplateId: "azure-compute-optimized",
- *     elasticsearches: [{
- *         healthy: "true",
- *     }],
- *     enterpriseSearches: [{
- *         healthy: "true",
- *     }],
- *     integrationsServers: [{
- *         version: "8.0.0",
- *     }],
- *     kibanas: [{
- *         status: "started",
- *     }],
  *     namePrefix: "test",
+ *     deploymentTemplateId: "azure-compute-optimized",
  *     size: 200,
  *     tags: {
  *         foo: "bar",
  *     },
+ *     elasticsearches: [{
+ *         healthy: "true",
+ *     }],
+ *     kibanas: [{
+ *         status: "started",
+ *     }],
+ *     integrationsServers: [{
+ *         version: "8.0.0",
+ *     }],
+ *     enterpriseSearches: [{
+ *         healthy: "true",
+ *     }],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

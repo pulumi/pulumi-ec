@@ -31,16 +31,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ec.GetStack(ctx, &ec.GetStackArgs{
-//				Lock:         pulumi.BoolRef(true),
-//				Region:       "us-east-1",
 //				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//				Lock:         pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = ec.GetStack(ctx, &ec.GetStackArgs{
-//				Region:       "us-east-1",
 //				VersionRegex: "7.9.?",
+//				Region:       "us-east-1",
 //			}, nil)
 //			if err != nil {
 //				return err

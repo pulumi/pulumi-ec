@@ -33,7 +33,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleDeploymentTrafficFilter, err := ec.NewDeploymentTrafficFilter(ctx, "exampleDeploymentTrafficFilter", &ec.DeploymentTrafficFilterArgs{
+//			exampleDeploymentTrafficFilter, err := ec.NewDeploymentTrafficFilter(ctx, "example", &ec.DeploymentTrafficFilterArgs{
+//				Name:   pulumi.String("my traffic filter name"),
 //				Region: pulumi.String("us-east-1"),
 //				Type:   pulumi.String("ip"),
 //				Rules: ec.DeploymentTrafficFilterRuleArray{
@@ -45,9 +46,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ec.NewDeploymentTrafficFilterAssociation(ctx, "exampleDeploymentTrafficFilterAssociation", &ec.DeploymentTrafficFilterAssociationArgs{
+//			_, err = ec.NewDeploymentTrafficFilterAssociation(ctx, "example", &ec.DeploymentTrafficFilterAssociationArgs{
 //				TrafficFilterId: exampleDeploymentTrafficFilter.ID(),
-//				DeploymentId:    pulumi.Any(ec_deployment.Example.Id),
+//				DeploymentId:    pulumi.Any(exampleEcDeployment.Id),
 //			})
 //			if err != nil {
 //				return err

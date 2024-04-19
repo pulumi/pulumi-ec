@@ -224,24 +224,24 @@ def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmA
     import pulumi
     import pulumi_ec as ec
 
-    example = ec.get_deployments(deployment_template_id="azure-compute-optimized",
+    example = ec.get_deployments(name_prefix="test",
+        deployment_template_id="azure-compute-optimized",
+        size=200,
+        tags={
+            "foo": "bar",
+        },
         elasticsearches=[ec.GetDeploymentsElasticsearchArgs(
             healthy="true",
-        )],
-        enterprise_searches=[ec.GetDeploymentsEnterpriseSearchArgs(
-            healthy="true",
-        )],
-        integrations_servers=[ec.GetDeploymentsIntegrationsServerArgs(
-            version="8.0.0",
         )],
         kibanas=[ec.GetDeploymentsKibanaArgs(
             status="started",
         )],
-        name_prefix="test",
-        size=200,
-        tags={
-            "foo": "bar",
-        })
+        integrations_servers=[ec.GetDeploymentsIntegrationsServerArgs(
+            version="8.0.0",
+        )],
+        enterprise_searches=[ec.GetDeploymentsEnterpriseSearchArgs(
+            healthy="true",
+        )])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -313,24 +313,24 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.
     import pulumi
     import pulumi_ec as ec
 
-    example = ec.get_deployments(deployment_template_id="azure-compute-optimized",
+    example = ec.get_deployments(name_prefix="test",
+        deployment_template_id="azure-compute-optimized",
+        size=200,
+        tags={
+            "foo": "bar",
+        },
         elasticsearches=[ec.GetDeploymentsElasticsearchArgs(
             healthy="true",
-        )],
-        enterprise_searches=[ec.GetDeploymentsEnterpriseSearchArgs(
-            healthy="true",
-        )],
-        integrations_servers=[ec.GetDeploymentsIntegrationsServerArgs(
-            version="8.0.0",
         )],
         kibanas=[ec.GetDeploymentsKibanaArgs(
             status="started",
         )],
-        name_prefix="test",
-        size=200,
-        tags={
-            "foo": "bar",
-        })
+        integrations_servers=[ec.GetDeploymentsIntegrationsServerArgs(
+            version="8.0.0",
+        )],
+        enterprise_searches=[ec.GetDeploymentsEnterpriseSearchArgs(
+            healthy="true",
+        )])
     ```
     <!--End PulumiCodeChooser -->
 
