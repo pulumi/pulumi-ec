@@ -268,7 +268,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The Elasticsearch resource region\n"
+                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
                 },
                 "remoteClusters": {
                     "type": "array",
@@ -353,7 +353,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -380,11 +380,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -419,7 +419,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -460,7 +460,7 @@
             "properties": {
                 "dockerImage": {
                     "type": "string",
-                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
+                    "description": "Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.\n"
                 },
                 "plugins": {
                     "type": "array",
@@ -471,19 +471,19 @@
                 },
                 "userSettingsJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "JSON-formatted user level \"elasticsearch.yml\" setting overrides\n"
                 },
                 "userSettingsOverrideJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "JSON-formatted admin (ECE) level \"elasticsearch.yml\" setting overrides\n"
                 },
                 "userSettingsOverrideYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "YAML-formatted admin (ECE) level \"elasticsearch.yml\" setting overrides\n"
                 },
                 "userSettingsYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "YAML-formatted user level \"elasticsearch.yml\" setting overrides\n"
                 }
             },
             "type": "object",
@@ -515,7 +515,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -542,11 +542,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -581,7 +581,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -665,7 +665,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -692,11 +692,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -731,7 +731,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -788,7 +788,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -815,11 +815,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -854,7 +854,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -936,7 +936,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -963,11 +963,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -1002,7 +1002,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -1059,7 +1059,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -1086,11 +1086,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -1125,7 +1125,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -1341,7 +1341,7 @@
                 },
                 "latestInstanceConfigurationVersion": {
                     "type": "integer",
-                    "description": "Latest version available for the Instance Configuration with the latest_instance_configuration_id\n"
+                    "description": "Latest version available for the Instance Configuration with the latest*instance*configuration_id\n"
                 },
                 "nodeRoles": {
                     "type": "array",
@@ -1368,11 +1368,11 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\u003csize in GB\u003eg\" notation\n"
+                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
-                    "description": "Optional size type, defaults to \"memory\".\n"
+                    "description": "Size type, defaults to \"memory\".\n"
                 },
                 "zoneCount": {
                     "type": "integer",
@@ -1407,7 +1407,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Enable or disable autoscaling. Defaults to the setting coming from the deployment template.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -1528,7 +1528,7 @@
             "properties": {
                 "dockerImage": {
                     "type": "string",
-                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
+                    "description": "Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.\n"
                 },
                 "userSettingsJson": {
                     "type": "string",
@@ -1626,11 +1626,11 @@
             "properties": {
                 "debugEnabled": {
                     "type": "boolean",
-                    "description": "Optionally enable debug mode for APM servers - defaults to false\n"
+                    "description": "Optionally enable debug mode for Integrations Server instances - defaults to false\n"
                 },
                 "dockerImage": {
                     "type": "string",
-                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
+                    "description": "Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.\n"
                 },
                 "userSettingsJson": {
                     "type": "string",
@@ -1753,7 +1753,7 @@
             "properties": {
                 "dockerImage": {
                     "type": "string",
-                    "description": "Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.\n"
+                    "description": "Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.\n"
                 },
                 "userSettingsJson": {
                     "type": "string",
@@ -2094,7 +2094,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of \"size_resource\" per topology element in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -2428,7 +2428,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of size_resource in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -3633,11 +3633,11 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "The description of the ruleset.\n"
+                    "description": "The description of the rule.\n"
                 },
                 "id": {
                     "type": "string",
-                    "description": "The ID of the ruleset\n"
+                    "description": "The ID of the rule\n"
                 },
                 "source": {
                     "type": "string",
@@ -3746,7 +3746,7 @@
             "properties": {
                 "alias": {
                     "type": "string",
-                    "description": "Alias for this Cross Cluster Search binding\n"
+                    "description": "Deployment alias, affects the format of the resource URLs.\n"
                 },
                 "apm": {
                     "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -3791,7 +3791,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Extension name.\n"
+                    "description": "Name for the deployment\n"
                 },
                 "observability": {
                     "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
@@ -3799,7 +3799,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)\ninstallations, set to `\"ece-region\".\n"
+                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
                 },
                 "requestId": {
                     "type": "string",
@@ -3825,7 +3825,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
+                    "description": "Elastic Stack version to use for all of the deployment resources.\n"
                 }
             },
             "required": [
@@ -3844,7 +3844,7 @@
             "inputProperties": {
                 "alias": {
                     "type": "string",
-                    "description": "Alias for this Cross Cluster Search binding\n"
+                    "description": "Deployment alias, affects the format of the resource URLs.\n"
                 },
                 "apm": {
                     "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -3876,7 +3876,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Extension name.\n"
+                    "description": "Name for the deployment\n"
                 },
                 "observability": {
                     "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
@@ -3884,7 +3884,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)\ninstallations, set to `\"ece-region\".\n"
+                    "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
                 },
                 "requestId": {
                     "type": "string",
@@ -3910,7 +3910,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
+                    "description": "Elastic Stack version to use for all of the deployment resources.\n"
                 }
             },
             "requiredInputs": [
@@ -3924,7 +3924,7 @@
                 "properties": {
                     "alias": {
                         "type": "string",
-                        "description": "Alias for this Cross Cluster Search binding\n"
+                        "description": "Deployment alias, affects the format of the resource URLs.\n"
                     },
                     "apm": {
                         "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -3969,7 +3969,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Extension name.\n"
+                        "description": "Name for the deployment\n"
                     },
                     "observability": {
                         "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
@@ -3977,7 +3977,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)\ninstallations, set to `\"ece-region\".\n"
+                        "description": "Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `\"ece-region\".\n"
                     },
                     "requestId": {
                         "type": "string",
@@ -4003,7 +4003,7 @@
                     },
                     "version": {
                         "type": "string",
-                        "description": "Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.\n"
+                        "description": "Elastic Stack version to use for all of the deployment resources.\n"
                     }
                 },
                 "type": "object"
@@ -4224,7 +4224,7 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "Description of this individual rule\n"
+                    "description": "Ruleset description\n"
                 },
                 "includeByDefault": {
                     "type": "boolean",
@@ -4259,7 +4259,7 @@
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "Description of this individual rule\n"
+                    "description": "Ruleset description\n"
                 },
                 "includeByDefault": {
                     "type": "boolean",
@@ -4294,7 +4294,7 @@
                 "properties": {
                     "description": {
                         "type": "string",
-                        "description": "Description of this individual rule\n"
+                        "description": "Ruleset description\n"
                     },
                     "includeByDefault": {
                         "type": "boolean",
@@ -4643,7 +4643,7 @@
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The id of the deployment template.\n"
+                        "description": "Filters for a deployment template with this id.\n"
                     },
                     "region": {
                         "type": "string",
@@ -4729,7 +4729,7 @@
                     },
                     "healthy": {
                         "type": "string",
-                        "description": "Overall health status of the resource instances.\n"
+                        "description": "Filter the result set by their health status.\n"
                     },
                     "integrationsServers": {
                         "type": "array",
@@ -4747,7 +4747,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the deployment.\n"
+                        "description": "Filter the result by the full deployment name.\n"
                     },
                     "namePrefix": {
                         "type": "string",
@@ -5019,15 +5019,15 @@
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The ID of the ruleset\n"
+                        "description": "The id of the traffic filter to select.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the ruleset.\n"
+                        "description": "The exact name of the traffic filter to select.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "The ruleset can be attached only to deployments in the specific region.\n"
+                        "description": "Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`\n"
                     }
                 },
                 "type": "object"
