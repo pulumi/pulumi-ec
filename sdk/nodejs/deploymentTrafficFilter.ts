@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### IP based traffic filter
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -43,11 +42,9 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Azure Private Link traffic filter
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -81,11 +78,9 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ###GCP Private Service Connect traffic filter
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -118,7 +113,6 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -157,7 +151,7 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
     }
 
     /**
-     * Description of this individual rule
+     * Ruleset description
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -225,7 +219,7 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
  */
 export interface DeploymentTrafficFilterState {
     /**
-     * Description of this individual rule
+     * Ruleset description
      */
     description?: pulumi.Input<string>;
     /**
@@ -255,7 +249,7 @@ export interface DeploymentTrafficFilterState {
  */
 export interface DeploymentTrafficFilterArgs {
     /**
-     * Description of this individual rule
+     * Ruleset description
      */
     description?: pulumi.Input<string>;
     /**

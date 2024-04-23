@@ -37,7 +37,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? LatestInstanceConfigurationId { get; set; }
 
         /// <summary>
-        /// Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        /// Latest version available for the Instance Configuration with the latest*instance*configuration_id
         /// </summary>
         [Input("latestInstanceConfigurationVersion")]
         public Input<int>? LatestInstanceConfigurationVersion { get; set; }
@@ -79,13 +79,13 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? NodeTypeMl { get; set; }
 
         /// <summary>
-        /// Amount of "size_resource" per node in the "&lt;size in GB&gt;g" notation
+        /// Amount of "size_resource" per node in the "\n\ng" notation
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
         /// <summary>
-        /// Optional size type, defaults to "memory".
+        /// Size type, defaults to "memory".
         /// </summary>
         [Input("sizeResource")]
         public Input<string>? SizeResource { get; set; }

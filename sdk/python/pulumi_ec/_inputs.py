@@ -382,7 +382,7 @@ class DeploymentElasticsearchArgs:
         :param pulumi.Input['DeploymentElasticsearchMasterArgs'] master: 'master' topology element
         :param pulumi.Input['DeploymentElasticsearchMlArgs'] ml: 'ml' topology element
         :param pulumi.Input[str] ref_id: A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-        :param pulumi.Input[str] region: The Elasticsearch resource region
+        :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]] remote_clusters: Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         :param pulumi.Input[str] resource_id: The Elasticsearch resource unique identifier
         :param pulumi.Input['DeploymentElasticsearchSnapshotArgs'] snapshot: (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
@@ -609,7 +609,7 @@ class DeploymentElasticsearchArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The Elasticsearch resource region
+        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
@@ -732,14 +732,14 @@ class DeploymentElasticsearchColdArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -820,7 +820,7 @@ class DeploymentElasticsearchColdArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -892,7 +892,7 @@ class DeploymentElasticsearchColdArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -904,7 +904,7 @@ class DeploymentElasticsearchColdArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -935,7 +935,7 @@ class DeploymentElasticsearchColdAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -959,7 +959,7 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -1038,12 +1038,12 @@ class DeploymentElasticsearchConfigArgs:
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] docker_image: Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] plugins: List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
-        :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        :param pulumi.Input[str] user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param pulumi.Input[str] user_settings_json: JSON-formatted user level "elasticsearch.yml" setting overrides
+        :param pulumi.Input[str] user_settings_override_json: JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
+        :param pulumi.Input[str] user_settings_override_yaml: YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
+        :param pulumi.Input[str] user_settings_yaml: YAML-formatted user level "elasticsearch.yml" setting overrides
         """
         if docker_image is not None:
             pulumi.set(__self__, "docker_image", docker_image)
@@ -1062,7 +1062,7 @@ class DeploymentElasticsearchConfigArgs:
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -1086,7 +1086,7 @@ class DeploymentElasticsearchConfigArgs:
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[pulumi.Input[str]]:
         """
-        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        JSON-formatted user level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_json")
 
@@ -1098,7 +1098,7 @@ class DeploymentElasticsearchConfigArgs:
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[pulumi.Input[str]]:
         """
-        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_override_json")
 
@@ -1110,7 +1110,7 @@ class DeploymentElasticsearchConfigArgs:
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[pulumi.Input[str]]:
         """
-        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
@@ -1122,7 +1122,7 @@ class DeploymentElasticsearchConfigArgs:
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[pulumi.Input[str]]:
         """
-        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        YAML-formatted user level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_yaml")
 
@@ -1152,14 +1152,14 @@ class DeploymentElasticsearchCoordinatingArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1240,7 +1240,7 @@ class DeploymentElasticsearchCoordinatingArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -1312,7 +1312,7 @@ class DeploymentElasticsearchCoordinatingArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -1324,7 +1324,7 @@ class DeploymentElasticsearchCoordinatingArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -1355,7 +1355,7 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -1379,7 +1379,7 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -1536,14 +1536,14 @@ class DeploymentElasticsearchFrozenArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1624,7 +1624,7 @@ class DeploymentElasticsearchFrozenArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -1696,7 +1696,7 @@ class DeploymentElasticsearchFrozenArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -1708,7 +1708,7 @@ class DeploymentElasticsearchFrozenArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -1739,7 +1739,7 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -1763,7 +1763,7 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -1853,14 +1853,14 @@ class DeploymentElasticsearchHotArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1941,7 +1941,7 @@ class DeploymentElasticsearchHotArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -2013,7 +2013,7 @@ class DeploymentElasticsearchHotArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -2025,7 +2025,7 @@ class DeploymentElasticsearchHotArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -2056,7 +2056,7 @@ class DeploymentElasticsearchHotAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -2080,7 +2080,7 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -2208,14 +2208,14 @@ class DeploymentElasticsearchMasterArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -2296,7 +2296,7 @@ class DeploymentElasticsearchMasterArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -2368,7 +2368,7 @@ class DeploymentElasticsearchMasterArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -2380,7 +2380,7 @@ class DeploymentElasticsearchMasterArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -2411,7 +2411,7 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -2435,7 +2435,7 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -2525,14 +2525,14 @@ class DeploymentElasticsearchMlArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -2613,7 +2613,7 @@ class DeploymentElasticsearchMlArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -2685,7 +2685,7 @@ class DeploymentElasticsearchMlArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -2697,7 +2697,7 @@ class DeploymentElasticsearchMlArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -2728,7 +2728,7 @@ class DeploymentElasticsearchMlAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -2752,7 +2752,7 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -3138,14 +3138,14 @@ class DeploymentElasticsearchWarmArgs:
         :param pulumi.Input[str] instance_configuration_id: Instance Configuration ID of the topology element
         :param pulumi.Input[int] instance_configuration_version: Instance Configuration version of the topology element
         :param pulumi.Input[str] latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param pulumi.Input[int] latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_roles: The computed list of node roles for the current topology element
         :param pulumi.Input[str] node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param pulumi.Input[str] node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param pulumi.Input[str] node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param pulumi.Input[str] node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param pulumi.Input[str] size_resource: Optional size type, defaults to "memory".
+        :param pulumi.Input[str] size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param pulumi.Input[str] size_resource: Size type, defaults to "memory".
         :param pulumi.Input[int] zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -3226,7 +3226,7 @@ class DeploymentElasticsearchWarmArgs:
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[pulumi.Input[int]]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -3298,7 +3298,7 @@ class DeploymentElasticsearchWarmArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -3310,7 +3310,7 @@ class DeploymentElasticsearchWarmArgs:
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -3341,7 +3341,7 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
                  min_size_resource: Optional[pulumi.Input[str]] = None,
                  policy_override_json: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param pulumi.Input[bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[str] max_size: Maximum size value for the maximum autoscaling setting.
         :param pulumi.Input[str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param pulumi.Input[str] min_size: Minimum size value for the minimum autoscaling setting.
@@ -3365,7 +3365,7 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @pulumi.getter
     def autoscale(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -3662,7 +3662,7 @@ class DeploymentEnterpriseSearchConfigArgs:
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
@@ -3683,7 +3683,7 @@ class DeploymentEnterpriseSearchConfigArgs:
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -3949,8 +3949,8 @@ class DeploymentIntegrationsServerConfigArgs:
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] debug_enabled: Optionally enable debug mode for APM servers - defaults to false
-        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[bool] debug_enabled: Optionally enable debug mode for Integrations Server instances - defaults to false
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
@@ -3973,7 +3973,7 @@ class DeploymentIntegrationsServerConfigArgs:
     @pulumi.getter(name="debugEnabled")
     def debug_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Optionally enable debug mode for APM servers - defaults to false
+        Optionally enable debug mode for Integrations Server instances - defaults to false
         """
         return pulumi.get(self, "debug_enabled")
 
@@ -3985,7 +3985,7 @@ class DeploymentIntegrationsServerConfigArgs:
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -4283,7 +4283,7 @@ class DeploymentKibanaConfigArgs:
                  user_settings_override_yaml: Optional[pulumi.Input[str]] = None,
                  user_settings_yaml: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param pulumi.Input[str] docker_image: Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         :param pulumi.Input[str] user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         :param pulumi.Input[str] user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
@@ -4304,7 +4304,7 @@ class DeploymentKibanaConfigArgs:
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[pulumi.Input[str]]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 

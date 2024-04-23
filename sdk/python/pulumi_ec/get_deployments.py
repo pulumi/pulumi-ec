@@ -219,7 +219,6 @@ def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmA
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -243,17 +242,16 @@ def get_deployments(apms: Optional[Sequence[pulumi.InputType['GetDeploymentsApmA
             healthy="true",
         )])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetDeploymentsApmArgs']] apms: Filter by APM resource kind status or configuration.
     :param str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
     :param Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
-    :param str healthy: Overall health status of the resource instances.
+    :param str healthy: Filter the result set by their health status.
     :param Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']] kibanas: Filter by Kibana resource kind status or configuration.
-    :param str name: The name of the deployment.
+    :param str name: Filter the result by the full deployment name.
     :param str name_prefix: Prefix to filter the returned deployment list by.
     :param int size: The maximum number of deployments to return. Defaults to `100`.
     :param Mapping[str, str] tags: Filter the result set by their assigned tags.
@@ -308,7 +306,6 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -332,17 +329,16 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[pulumi.
             healthy="true",
         )])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetDeploymentsApmArgs']] apms: Filter by APM resource kind status or configuration.
     :param str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
     :param Sequence[pulumi.InputType['GetDeploymentsElasticsearchArgs']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsEnterpriseSearchArgs']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
-    :param str healthy: Overall health status of the resource instances.
+    :param str healthy: Filter the result set by their health status.
     :param Sequence[pulumi.InputType['GetDeploymentsIntegrationsServerArgs']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
     :param Sequence[pulumi.InputType['GetDeploymentsKibanaArgs']] kibanas: Filter by Kibana resource kind status or configuration.
-    :param str name: The name of the deployment.
+    :param str name: Filter the result by the full deployment name.
     :param str name_prefix: Prefix to filter the returned deployment list by.
     :param int size: The maximum number of deployments to return. Defaults to `100`.
     :param Mapping[str, str] tags: Filter the result set by their assigned tags.

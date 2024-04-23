@@ -99,14 +99,12 @@ def get_aws_privatelink_endpoint(region: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     us_east_1 = ec.get_aws_privatelink_endpoint(region="us-east-1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region to retrieve the Private Link configuration for.
@@ -132,14 +130,12 @@ def get_aws_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     us_east_1 = ec.get_aws_privatelink_endpoint(region="us-east-1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region to retrieve the Private Link configuration for.

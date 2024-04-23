@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentEnterpriseSearchConfig {
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
      * 
      */
     private @Nullable String dockerImage;
@@ -39,7 +39,7 @@ public final class DeploymentEnterpriseSearchConfig {
 
     private DeploymentEnterpriseSearchConfig() {}
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
      * 
      */
     public Optional<String> dockerImage() {

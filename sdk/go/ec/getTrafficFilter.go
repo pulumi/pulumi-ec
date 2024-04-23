@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,7 +50,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetTrafficFilter(ctx *pulumi.Context, args *GetTrafficFilterArgs, opts ...pulumi.InvokeOption) (*GetTrafficFilterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTrafficFilterResult
@@ -64,11 +62,11 @@ func GetTrafficFilter(ctx *pulumi.Context, args *GetTrafficFilterArgs, opts ...p
 
 // A collection of arguments for invoking getTrafficFilter.
 type GetTrafficFilterArgs struct {
-	// The ID of the ruleset
+	// The id of the traffic filter to select.
 	Id *string `pulumi:"id"`
-	// The name of the ruleset.
+	// The exact name of the traffic filter to select.
 	Name *string `pulumi:"name"`
-	// The ruleset can be attached only to deployments in the specific region.
+	// Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
 	Region *string `pulumi:"region"`
 }
 
@@ -99,11 +97,11 @@ func GetTrafficFilterOutput(ctx *pulumi.Context, args GetTrafficFilterOutputArgs
 
 // A collection of arguments for invoking getTrafficFilter.
 type GetTrafficFilterOutputArgs struct {
-	// The ID of the ruleset
+	// The id of the traffic filter to select.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the ruleset.
+	// The exact name of the traffic filter to select.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ruleset can be attached only to deployments in the specific region.
+	// Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 

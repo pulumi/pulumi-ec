@@ -16,7 +16,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -66,7 +65,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDeploymentsResult> InvokeAsync(GetDeploymentsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsArgs(), options.WithDefaults());
@@ -76,7 +74,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -126,7 +123,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());
@@ -178,7 +174,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Overall health status of the resource instances.
+        /// Filter the result set by their health status.
         /// </summary>
         [Input("healthy")]
         public string? Healthy { get; set; }
@@ -208,7 +204,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// The name of the deployment.
+        /// Filter the result by the full deployment name.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -288,7 +284,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Overall health status of the resource instances.
+        /// Filter the result set by their health status.
         /// </summary>
         [Input("healthy")]
         public Input<string>? Healthy { get; set; }
@@ -318,7 +314,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// The name of the deployment.
+        /// Filter the result by the full deployment name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

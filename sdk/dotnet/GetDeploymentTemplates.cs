@@ -16,7 +16,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -48,7 +47,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDeploymentTemplatesResult> InvokeAsync(GetDeploymentTemplatesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentTemplatesResult>("ec:index/getDeploymentTemplates:getDeploymentTemplates", args ?? new GetDeploymentTemplatesArgs(), options.WithDefaults());
@@ -58,7 +56,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -90,7 +87,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDeploymentTemplatesResult> Invoke(GetDeploymentTemplatesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentTemplatesResult>("ec:index/getDeploymentTemplates:getDeploymentTemplates", args ?? new GetDeploymentTemplatesInvokeArgs(), options.WithDefaults());
@@ -100,7 +96,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetDeploymentTemplatesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The id of the deployment template.
+        /// Filters for a deployment template with this id.
         /// </summary>
         [Input("id")]
         public string? Id { get; set; }
@@ -132,7 +128,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetDeploymentTemplatesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The id of the deployment template.
+        /// Filters for a deployment template with this id.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

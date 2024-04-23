@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentIntegrationsServerConfig {
     /**
-     * @return Optionally enable debug mode for APM servers - defaults to false
+     * @return Optionally enable debug mode for Integrations Server instances - defaults to false
      * 
      */
     private @Nullable Boolean debugEnabled;
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
      * 
      */
     private @Nullable String dockerImage;
@@ -45,14 +45,14 @@ public final class DeploymentIntegrationsServerConfig {
 
     private DeploymentIntegrationsServerConfig() {}
     /**
-     * @return Optionally enable debug mode for APM servers - defaults to false
+     * @return Optionally enable debug mode for Integrations Server instances - defaults to false
      * 
      */
     public Optional<Boolean> debugEnabled() {
         return Optional.ofNullable(this.debugEnabled);
     }
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
      * 
      */
     public Optional<String> dockerImage() {

@@ -109,7 +109,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? RefId { get; set; }
 
         /// <summary>
-        /// The Elasticsearch resource region
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

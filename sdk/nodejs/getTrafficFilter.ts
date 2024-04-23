@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     region: "us-east-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTrafficFilter(args?: GetTrafficFilterArgs, opts?: pulumi.InvokeOptions): Promise<GetTrafficFilterResult> {
     args = args || {};
@@ -44,15 +42,15 @@ export function getTrafficFilter(args?: GetTrafficFilterArgs, opts?: pulumi.Invo
  */
 export interface GetTrafficFilterArgs {
     /**
-     * The ID of the ruleset
+     * The id of the traffic filter to select.
      */
     id?: string;
     /**
-     * The name of the ruleset.
+     * The exact name of the traffic filter to select.
      */
     name?: string;
     /**
-     * The ruleset can be attached only to deployments in the specific region.
+     * Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
      */
     region?: string;
 }
@@ -83,7 +81,6 @@ export interface GetTrafficFilterResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -98,7 +95,6 @@ export interface GetTrafficFilterResult {
  *     region: "us-east-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTrafficFilterResult> {
     return pulumi.output(args).apply((a: any) => getTrafficFilter(a, opts))
@@ -109,15 +105,15 @@ export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?:
  */
 export interface GetTrafficFilterOutputArgs {
     /**
-     * The ID of the ruleset
+     * The id of the traffic filter to select.
      */
     id?: pulumi.Input<string>;
     /**
-     * The name of the ruleset.
+     * The exact name of the traffic filter to select.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ruleset can be attached only to deployments in the specific region.
+     * Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
      */
     region?: pulumi.Input<string>;
 }

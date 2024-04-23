@@ -14,7 +14,7 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentEnterpriseSearchConfig
     {
         /// <summary>
-        /// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        /// Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         /// </summary>
         public readonly string? DockerImage;
         /// <summary>

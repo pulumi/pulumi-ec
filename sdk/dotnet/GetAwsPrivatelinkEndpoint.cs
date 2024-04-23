@@ -16,7 +16,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAwsPrivatelinkEndpointResult> InvokeAsync(GetAwsPrivatelinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAwsPrivatelinkEndpointResult>("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args ?? new GetAwsPrivatelinkEndpointArgs(), options.WithDefaults());
@@ -42,7 +40,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAwsPrivatelinkEndpointResult> Invoke(GetAwsPrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAwsPrivatelinkEndpointResult>("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args ?? new GetAwsPrivatelinkEndpointInvokeArgs(), options.WithDefaults());

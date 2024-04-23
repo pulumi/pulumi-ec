@@ -11,12 +11,12 @@ import java.util.Objects;
 @CustomType
 public final class GetTrafficFilterRulesetRule {
     /**
-     * @return The description of the ruleset.
+     * @return The description of the rule.
      * 
      */
     private String description;
     /**
-     * @return The ID of the ruleset
+     * @return The ID of the rule
      * 
      */
     private String id;
@@ -28,14 +28,14 @@ public final class GetTrafficFilterRulesetRule {
 
     private GetTrafficFilterRulesetRule() {}
     /**
-     * @return The description of the ruleset.
+     * @return The description of the rule.
      * 
      */
     public String description() {
         return this.description;
     }
     /**
-     * @return The ID of the ruleset
+     * @return The ID of the rule
      * 
      */
     public String id() {

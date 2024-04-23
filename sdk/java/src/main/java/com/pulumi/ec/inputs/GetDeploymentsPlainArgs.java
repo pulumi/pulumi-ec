@@ -83,14 +83,14 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * Overall health status of the resource instances.
+     * Filter the result set by their health status.
      * 
      */
     @Import(name="healthy")
     private @Nullable String healthy;
 
     /**
-     * @return Overall health status of the resource instances.
+     * @return Filter the result set by their health status.
      * 
      */
     public Optional<String> healthy() {
@@ -128,14 +128,14 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * The name of the deployment.
+     * Filter the result by the full deployment name.
      * 
      */
     @Import(name="name")
     private @Nullable String name;
 
     /**
-     * @return The name of the deployment.
+     * @return Filter the result by the full deployment name.
      * 
      */
     public Optional<String> name() {
@@ -296,7 +296,7 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param healthy Overall health status of the resource instances.
+         * @param healthy Filter the result set by their health status.
          * 
          * @return builder
          * 
@@ -349,7 +349,7 @@ public final class GetDeploymentsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param name The name of the deployment.
+         * @param name Filter the result by the full deployment name.
          * 
          * @return builder
          * 

@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentElasticsearchFrozenAutoscaling {
     /**
-     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * @return Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      * 
      */
     private @Nullable Boolean autoscale;
@@ -45,7 +45,7 @@ public final class DeploymentElasticsearchFrozenAutoscaling {
 
     private DeploymentElasticsearchFrozenAutoscaling() {}
     /**
-     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * @return Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      * 
      */
     public Optional<Boolean> autoscale() {

@@ -36,7 +36,7 @@ public final class DeploymentElasticsearchHot {
      */
     private @Nullable String latestInstanceConfigurationId;
     /**
-     * @return Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * @return Latest version available for the Instance Configuration with the latest*instance*configuration_id
      * 
      */
     private @Nullable Integer latestInstanceConfigurationVersion;
@@ -66,12 +66,12 @@ public final class DeploymentElasticsearchHot {
      */
     private @Nullable String nodeTypeMl;
     /**
-     * @return Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * @return Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     private @Nullable String size;
     /**
-     * @return Optional size type, defaults to &#34;memory&#34;.
+     * @return Size type, defaults to &#34;memory&#34;.
      * 
      */
     private @Nullable String sizeResource;
@@ -111,7 +111,7 @@ public final class DeploymentElasticsearchHot {
         return Optional.ofNullable(this.latestInstanceConfigurationId);
     }
     /**
-     * @return Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * @return Latest version available for the Instance Configuration with the latest*instance*configuration_id
      * 
      */
     public Optional<Integer> latestInstanceConfigurationVersion() {
@@ -153,14 +153,14 @@ public final class DeploymentElasticsearchHot {
         return Optional.ofNullable(this.nodeTypeMl);
     }
     /**
-     * @return Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * @return Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     public Optional<String> size() {
         return Optional.ofNullable(this.size);
     }
     /**
-     * @return Optional size type, defaults to &#34;memory&#34;.
+     * @return Size type, defaults to &#34;memory&#34;.
      * 
      */
     public Optional<String> sizeResource() {
