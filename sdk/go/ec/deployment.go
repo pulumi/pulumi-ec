@@ -50,7 +50,7 @@ import (
 type Deployment struct {
 	pulumi.CustomResourceState
 
-	// Alias for this Cross Cluster Search binding
+	// Deployment alias, affects the format of the resource URLs.
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm            DeploymentApmPtrOutput `pulumi:"apm"`
@@ -79,13 +79,12 @@ type Deployment struct {
 	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
 	// with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware pulumi.BoolPtrOutput `pulumi:"migrateToLatestHardware"`
-	// Extension name.
+	// Name for the deployment
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
 	// current deployment itself by setting observability.deployment_id to `self`.
 	Observability DeploymentObservabilityPtrOutput `pulumi:"observability"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
-	// installations, set to `"ece-region".
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
 	// returned as part of the error.
@@ -96,7 +95,7 @@ type Deployment struct {
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// List of traffic filters rule identifiers that will be applied to the deployment.
 	TrafficFilters pulumi.StringArrayOutput `pulumi:"trafficFilters"`
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	// Elastic Stack version to use for all of the deployment resources.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -147,7 +146,7 @@ func GetDeployment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Deployment resources.
 type deploymentState struct {
-	// Alias for this Cross Cluster Search binding
+	// Deployment alias, affects the format of the resource URLs.
 	Alias *string `pulumi:"alias"`
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm            *DeploymentApm `pulumi:"apm"`
@@ -176,13 +175,12 @@ type deploymentState struct {
 	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
 	// with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware *bool `pulumi:"migrateToLatestHardware"`
-	// Extension name.
+	// Name for the deployment
 	Name *string `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
 	// current deployment itself by setting observability.deployment_id to `self`.
 	Observability *DeploymentObservability `pulumi:"observability"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
-	// installations, set to `"ece-region".
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region *string `pulumi:"region"`
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
 	// returned as part of the error.
@@ -193,12 +191,12 @@ type deploymentState struct {
 	Tags map[string]string `pulumi:"tags"`
 	// List of traffic filters rule identifiers that will be applied to the deployment.
 	TrafficFilters []string `pulumi:"trafficFilters"`
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	// Elastic Stack version to use for all of the deployment resources.
 	Version *string `pulumi:"version"`
 }
 
 type DeploymentState struct {
-	// Alias for this Cross Cluster Search binding
+	// Deployment alias, affects the format of the resource URLs.
 	Alias pulumi.StringPtrInput
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm            DeploymentApmPtrInput
@@ -227,13 +225,12 @@ type DeploymentState struct {
 	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
 	// with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware pulumi.BoolPtrInput
-	// Extension name.
+	// Name for the deployment
 	Name pulumi.StringPtrInput
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
 	// current deployment itself by setting observability.deployment_id to `self`.
 	Observability DeploymentObservabilityPtrInput
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
-	// installations, set to `"ece-region".
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringPtrInput
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
 	// returned as part of the error.
@@ -244,7 +241,7 @@ type DeploymentState struct {
 	Tags pulumi.StringMapInput
 	// List of traffic filters rule identifiers that will be applied to the deployment.
 	TrafficFilters pulumi.StringArrayInput
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	// Elastic Stack version to use for all of the deployment resources.
 	Version pulumi.StringPtrInput
 }
 
@@ -253,7 +250,7 @@ func (DeploymentState) ElementType() reflect.Type {
 }
 
 type deploymentArgs struct {
-	// Alias for this Cross Cluster Search binding
+	// Deployment alias, affects the format of the resource URLs.
 	Alias *string `pulumi:"alias"`
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm *DeploymentApm `pulumi:"apm"`
@@ -273,13 +270,12 @@ type deploymentArgs struct {
 	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
 	// with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware *bool `pulumi:"migrateToLatestHardware"`
-	// Extension name.
+	// Name for the deployment
 	Name *string `pulumi:"name"`
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
 	// current deployment itself by setting observability.deployment_id to `self`.
 	Observability *DeploymentObservability `pulumi:"observability"`
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
-	// installations, set to `"ece-region".
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region string `pulumi:"region"`
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
 	// returned as part of the error.
@@ -290,13 +286,13 @@ type deploymentArgs struct {
 	Tags map[string]string `pulumi:"tags"`
 	// List of traffic filters rule identifiers that will be applied to the deployment.
 	TrafficFilters []string `pulumi:"trafficFilters"`
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	// Elastic Stack version to use for all of the deployment resources.
 	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a Deployment resource.
 type DeploymentArgs struct {
-	// Alias for this Cross Cluster Search binding
+	// Deployment alias, affects the format of the resource URLs.
 	Alias pulumi.StringPtrInput
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm DeploymentApmPtrInput
@@ -316,13 +312,12 @@ type DeploymentArgs struct {
 	// topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
 	// with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware pulumi.BoolPtrInput
-	// Extension name.
+	// Name for the deployment
 	Name pulumi.StringPtrInput
 	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
 	// current deployment itself by setting observability.deployment_id to `self`.
 	Observability DeploymentObservabilityPtrInput
-	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
-	// installations, set to `"ece-region".
+	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringInput
 	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
 	// returned as part of the error.
@@ -333,7 +328,7 @@ type DeploymentArgs struct {
 	Tags pulumi.StringMapInput
 	// List of traffic filters rule identifiers that will be applied to the deployment.
 	TrafficFilters pulumi.StringArrayInput
-	// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+	// Elastic Stack version to use for all of the deployment resources.
 	Version pulumi.StringInput
 }
 
@@ -424,7 +419,7 @@ func (o DeploymentOutput) ToDeploymentOutputWithContext(ctx context.Context) Dep
 	return o
 }
 
-// Alias for this Cross Cluster Search binding
+// Deployment alias, affects the format of the resource URLs.
 func (o DeploymentOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
@@ -486,7 +481,7 @@ func (o DeploymentOutput) MigrateToLatestHardware() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.BoolPtrOutput { return v.MigrateToLatestHardware }).(pulumi.BoolPtrOutput)
 }
 
-// Extension name.
+// Name for the deployment
 func (o DeploymentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -497,8 +492,7 @@ func (o DeploymentOutput) Observability() DeploymentObservabilityPtrOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentObservabilityPtrOutput { return v.Observability }).(DeploymentObservabilityPtrOutput)
 }
 
-// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE)
-// installations, set to `"ece-region".
+// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 func (o DeploymentOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -524,7 +518,7 @@ func (o DeploymentOutput) TrafficFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringArrayOutput { return v.TrafficFilters }).(pulumi.StringArrayOutput)
 }
 
-// Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
+// Elastic Stack version to use for all of the deployment resources.
 func (o DeploymentOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

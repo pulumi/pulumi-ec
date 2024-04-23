@@ -13,7 +13,7 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentElasticsearchFrozenAutoscalingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        /// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         /// </summary>
         [Input("autoscale")]
         public Input<bool>? Autoscale { get; set; }

@@ -14,7 +14,6 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ### IP based traffic filter
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -66,11 +65,9 @@ namespace Pulumi.ElasticCloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Azure Private Link traffic filter
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -125,11 +122,9 @@ namespace Pulumi.ElasticCloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ###GCP Private Service Connect traffic filter
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -183,7 +178,6 @@ namespace Pulumi.ElasticCloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -197,7 +191,7 @@ namespace Pulumi.ElasticCloud
     public partial class DeploymentTrafficFilter : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Description of this individual rule
+        /// Ruleset description
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -279,7 +273,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of this individual rule
+        /// Ruleset description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -329,7 +323,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentTrafficFilterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of this individual rule
+        /// Ruleset description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

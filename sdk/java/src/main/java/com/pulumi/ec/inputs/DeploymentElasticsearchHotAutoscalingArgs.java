@@ -17,14 +17,14 @@ public final class DeploymentElasticsearchHotAutoscalingArgs extends com.pulumi.
     public static final DeploymentElasticsearchHotAutoscalingArgs Empty = new DeploymentElasticsearchHotAutoscalingArgs();
 
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      * 
      */
     @Import(name="autoscale")
     private @Nullable Output<Boolean> autoscale;
 
     /**
-     * @return Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * @return Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      * 
      */
     public Optional<Output<Boolean>> autoscale() {
@@ -136,7 +136,7 @@ public final class DeploymentElasticsearchHotAutoscalingArgs extends com.pulumi.
         }
 
         /**
-         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+         * @param autoscale Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
          * 
          * @return builder
          * 
@@ -147,7 +147,7 @@ public final class DeploymentElasticsearchHotAutoscalingArgs extends com.pulumi.
         }
 
         /**
-         * @param autoscale Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+         * @param autoscale Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
          * 
          * @return builder
          * 

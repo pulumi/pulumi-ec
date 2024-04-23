@@ -16,7 +16,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAzurePrivatelinkEndpointResult> InvokeAsync(GetAzurePrivatelinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzurePrivatelinkEndpointResult>("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args ?? new GetAzurePrivatelinkEndpointArgs(), options.WithDefaults());
@@ -42,7 +40,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.ElasticCloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAzurePrivatelinkEndpointResult> Invoke(GetAzurePrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAzurePrivatelinkEndpointResult>("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args ?? new GetAzurePrivatelinkEndpointInvokeArgs(), options.WithDefaults());

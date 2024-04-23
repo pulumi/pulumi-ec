@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -40,11 +39,9 @@ import * as utilities from "./utilities";
  *     asFile: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Adding credentials to use GCS as a snapshot repository
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -75,7 +72,6 @@ import * as utilities from "./utilities";
  *     asFile: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

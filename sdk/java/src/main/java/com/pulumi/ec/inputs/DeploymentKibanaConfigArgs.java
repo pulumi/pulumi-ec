@@ -16,14 +16,14 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
     public static final DeploymentKibanaConfigArgs Empty = new DeploymentKibanaConfigArgs();
 
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
      * 
      */
     @Import(name="dockerImage")
     private @Nullable Output<String> dockerImage;
 
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
      * 
      */
     public Optional<Output<String>> dockerImage() {
@@ -119,7 +119,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * @param dockerImage Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class DeploymentKibanaConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * @param dockerImage Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
          * 
          * @return builder
          * 

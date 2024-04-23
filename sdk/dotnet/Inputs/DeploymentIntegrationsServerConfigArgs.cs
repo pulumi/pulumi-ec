@@ -13,13 +13,13 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentIntegrationsServerConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optionally enable debug mode for APM servers - defaults to false
+        /// Optionally enable debug mode for Integrations Server instances - defaults to false
         /// </summary>
         [Input("debugEnabled")]
         public Input<bool>? DebugEnabled { get; set; }
 
         /// <summary>
-        /// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        /// Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
         /// </summary>
         [Input("dockerImage")]
         public Input<string>? DockerImage { get; set; }

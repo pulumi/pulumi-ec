@@ -167,7 +167,6 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -192,11 +191,9 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Adding credentials to use GCS as a snapshot repository
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -221,7 +218,6 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -245,7 +241,6 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -270,11 +265,9 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Adding credentials to use GCS as a snapshot repository
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_ec as ec
@@ -299,7 +292,6 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             value=std.file(input="service-account-key.json").result,
             as_file=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

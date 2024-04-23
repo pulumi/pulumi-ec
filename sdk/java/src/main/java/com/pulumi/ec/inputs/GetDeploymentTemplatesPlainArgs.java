@@ -17,14 +17,14 @@ public final class GetDeploymentTemplatesPlainArgs extends com.pulumi.resources.
     public static final GetDeploymentTemplatesPlainArgs Empty = new GetDeploymentTemplatesPlainArgs();
 
     /**
-     * The id of the deployment template.
+     * Filters for a deployment template with this id.
      * 
      */
     @Import(name="id")
     private @Nullable String id;
 
     /**
-     * @return The id of the deployment template.
+     * @return Filters for a deployment template with this id.
      * 
      */
     public Optional<String> id() {
@@ -104,7 +104,7 @@ public final class GetDeploymentTemplatesPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param id The id of the deployment template.
+         * @param id Filters for a deployment template with this id.
          * 
          * @return builder
          * 

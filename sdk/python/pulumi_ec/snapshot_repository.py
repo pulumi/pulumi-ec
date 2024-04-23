@@ -143,7 +143,6 @@ class SnapshotRepository(pulumi.CustomResource):
 
         ### Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -160,11 +159,9 @@ class SnapshotRepository(pulumi.CustomResource):
                 }),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### GCS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -181,7 +178,6 @@ class SnapshotRepository(pulumi.CustomResource):
                 }),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -212,7 +208,6 @@ class SnapshotRepository(pulumi.CustomResource):
 
         ### Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -229,11 +224,9 @@ class SnapshotRepository(pulumi.CustomResource):
                 }),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### GCS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -250,7 +243,6 @@ class SnapshotRepository(pulumi.CustomResource):
                 }),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

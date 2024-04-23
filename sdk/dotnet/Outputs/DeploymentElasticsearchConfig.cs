@@ -14,7 +14,7 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearchConfig
     {
         /// <summary>
-        /// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        /// Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         /// </summary>
         public readonly string? DockerImage;
         /// <summary>
@@ -22,19 +22,19 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Plugins;
         /// <summary>
-        /// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        /// JSON-formatted user level "elasticsearch.yml" setting overrides
         /// </summary>
         public readonly string? UserSettingsJson;
         /// <summary>
-        /// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        /// JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         /// </summary>
         public readonly string? UserSettingsOverrideJson;
         /// <summary>
-        /// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        /// YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         /// </summary>
         public readonly string? UserSettingsOverrideYaml;
         /// <summary>
-        /// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        /// YAML-formatted user level "elasticsearch.yml" setting overrides
         /// </summary>
         public readonly string? UserSettingsYaml;
 

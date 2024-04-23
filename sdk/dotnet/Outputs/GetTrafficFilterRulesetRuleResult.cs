@@ -14,11 +14,11 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class GetTrafficFilterRulesetRuleResult
     {
         /// <summary>
-        /// The description of the ruleset.
+        /// The description of the rule.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The ID of the ruleset
+        /// The ID of the rule
         /// </summary>
         public readonly string Id;
         /// <summary>

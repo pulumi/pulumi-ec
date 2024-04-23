@@ -17,14 +17,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     public static final DeploymentIntegrationsServerConfigArgs Empty = new DeploymentIntegrationsServerConfigArgs();
 
     /**
-     * Optionally enable debug mode for APM servers - defaults to false
+     * Optionally enable debug mode for Integrations Server instances - defaults to false
      * 
      */
     @Import(name="debugEnabled")
     private @Nullable Output<Boolean> debugEnabled;
 
     /**
-     * @return Optionally enable debug mode for APM servers - defaults to false
+     * @return Optionally enable debug mode for Integrations Server instances - defaults to false
      * 
      */
     public Optional<Output<Boolean>> debugEnabled() {
@@ -32,14 +32,14 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
     }
 
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
      * 
      */
     @Import(name="dockerImage")
     private @Nullable Output<String> dockerImage;
 
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
      * 
      */
     public Optional<Output<String>> dockerImage() {
@@ -136,7 +136,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param debugEnabled Optionally enable debug mode for APM servers - defaults to false
+         * @param debugEnabled Optionally enable debug mode for Integrations Server instances - defaults to false
          * 
          * @return builder
          * 
@@ -147,7 +147,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param debugEnabled Optionally enable debug mode for APM servers - defaults to false
+         * @param debugEnabled Optionally enable debug mode for Integrations Server instances - defaults to false
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * @param dockerImage Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class DeploymentIntegrationsServerConfigArgs extends com.pulumi.res
         }
 
         /**
-         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * @param dockerImage Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
          * 
          * @return builder
          * 

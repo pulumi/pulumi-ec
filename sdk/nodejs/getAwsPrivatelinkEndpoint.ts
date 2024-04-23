@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     region: "us-east-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAwsPrivatelinkEndpoint(args: GetAwsPrivatelinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsPrivatelinkEndpointResult> {
 
@@ -68,7 +66,6 @@ export interface GetAwsPrivatelinkEndpointResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -77,7 +74,6 @@ export interface GetAwsPrivatelinkEndpointResult {
  *     region: "us-east-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAwsPrivatelinkEndpointOutput(args: GetAwsPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsPrivatelinkEndpointResult> {
     return pulumi.output(args).apply((a: any) => getAwsPrivatelinkEndpoint(a, opts))

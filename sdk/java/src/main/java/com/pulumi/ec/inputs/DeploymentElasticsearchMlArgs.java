@@ -80,14 +80,14 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      * 
      */
     @Import(name="latestInstanceConfigurationVersion")
     private @Nullable Output<Integer> latestInstanceConfigurationVersion;
 
     /**
-     * @return Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * @return Latest version available for the Instance Configuration with the latest*instance*configuration_id
      * 
      */
     public Optional<Output<Integer>> latestInstanceConfigurationVersion() {
@@ -170,14 +170,14 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     @Import(name="size")
     private @Nullable Output<String> size;
 
     /**
-     * @return Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+     * @return Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     public Optional<Output<String>> size() {
@@ -185,14 +185,14 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Optional size type, defaults to &#34;memory&#34;.
+     * Size type, defaults to &#34;memory&#34;.
      * 
      */
     @Import(name="sizeResource")
     private @Nullable Output<String> sizeResource;
 
     /**
-     * @return Optional size type, defaults to &#34;memory&#34;.
+     * @return Size type, defaults to &#34;memory&#34;.
      * 
      */
     public Optional<Output<String>> sizeResource() {
@@ -335,7 +335,7 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param latestInstanceConfigurationVersion Latest version available for the Instance Configuration with the latest_instance_configuration_id
+         * @param latestInstanceConfigurationVersion Latest version available for the Instance Configuration with the latest*instance*configuration_id
          * 
          * @return builder
          * 
@@ -346,7 +346,7 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param latestInstanceConfigurationVersion Latest version available for the Instance Configuration with the latest_instance_configuration_id
+         * @param latestInstanceConfigurationVersion Latest version available for the Instance Configuration with the latest*instance*configuration_id
          * 
          * @return builder
          * 
@@ -471,7 +471,7 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param size Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+         * @param size Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
          * 
          * @return builder
          * 
@@ -482,7 +482,7 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param size Amount of &#34;size_resource&#34; per node in the &#34;&lt;size in GB&gt;g&#34; notation
+         * @param size Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
          * 
          * @return builder
          * 
@@ -492,7 +492,7 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param sizeResource Optional size type, defaults to &#34;memory&#34;.
+         * @param sizeResource Size type, defaults to &#34;memory&#34;.
          * 
          * @return builder
          * 
@@ -503,7 +503,7 @@ public final class DeploymentElasticsearchMlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param sizeResource Optional size type, defaults to &#34;memory&#34;.
+         * @param sizeResource Size type, defaults to &#34;memory&#34;.
          * 
          * @return builder
          * 

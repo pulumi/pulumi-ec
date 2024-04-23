@@ -101,7 +101,7 @@ public final class DeploymentElasticsearch {
      */
     private @Nullable String refId;
     /**
-     * @return The Elasticsearch resource region
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     private @Nullable String region;
@@ -242,7 +242,7 @@ public final class DeploymentElasticsearch {
         return Optional.ofNullable(this.refId);
     }
     /**
-     * @return The Elasticsearch resource region
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<String> region() {

@@ -14,7 +14,7 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearchHotAutoscaling
     {
         /// <summary>
-        /// Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        /// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         /// </summary>
         public readonly bool? Autoscale;
         /// <summary>

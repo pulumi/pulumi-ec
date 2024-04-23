@@ -20,14 +20,14 @@ public final class DeploymentTrafficFilterArgs extends com.pulumi.resources.Reso
     public static final DeploymentTrafficFilterArgs Empty = new DeploymentTrafficFilterArgs();
 
     /**
-     * Description of this individual rule
+     * Ruleset description
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of this individual rule
+     * @return Ruleset description
      * 
      */
     public Optional<Output<String>> description() {
@@ -139,7 +139,7 @@ public final class DeploymentTrafficFilterArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param description Description of this individual rule
+         * @param description Ruleset description
          * 
          * @return builder
          * 
@@ -150,7 +150,7 @@ public final class DeploymentTrafficFilterArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param description Description of this individual rule
+         * @param description Ruleset description
          * 
          * @return builder
          * 

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -20,7 +19,6 @@ import * as utilities from "./utilities";
  *     id: "f759065e5e64e9f3546f6c44f2743893",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDeployment(args: GetDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentResult> {
 
@@ -106,7 +104,6 @@ export interface GetDeploymentResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -115,7 +112,6 @@ export interface GetDeploymentResult {
  *     id: "f759065e5e64e9f3546f6c44f2743893",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDeploymentOutput(args: GetDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentResult> {
     return pulumi.output(args).apply((a: any) => getDeployment(a, opts))

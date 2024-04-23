@@ -30,7 +30,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? LatestInstanceConfigurationId;
         /// <summary>
-        /// Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        /// Latest version available for the Instance Configuration with the latest*instance*configuration_id
         /// </summary>
         public readonly int? LatestInstanceConfigurationVersion;
         /// <summary>
@@ -54,11 +54,11 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? NodeTypeMl;
         /// <summary>
-        /// Amount of "size_resource" per node in the "&lt;size in GB&gt;g" notation
+        /// Amount of "size_resource" per node in the "\n\ng" notation
         /// </summary>
         public readonly string? Size;
         /// <summary>
-        /// Optional size type, defaults to "memory".
+        /// Size type, defaults to "memory".
         /// </summary>
         public readonly string? SizeResource;
         /// <summary>

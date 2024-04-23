@@ -113,7 +113,7 @@ export interface DeploymentElasticsearch {
      */
     refId: string;
     /**
-     * The Elasticsearch resource region
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
     region: string;
     /**
@@ -165,7 +165,7 @@ export interface DeploymentElasticsearchCold {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -189,11 +189,11 @@ export interface DeploymentElasticsearchCold {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -204,7 +204,7 @@ export interface DeploymentElasticsearchCold {
 
 export interface DeploymentElasticsearchColdAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -231,7 +231,7 @@ export interface DeploymentElasticsearchColdAutoscaling {
 
 export interface DeploymentElasticsearchConfig {
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     * Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
      */
     dockerImage?: string;
     /**
@@ -239,19 +239,19 @@ export interface DeploymentElasticsearchConfig {
      */
     plugins: string[];
     /**
-     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     * JSON-formatted user level "elasticsearch.yml" setting overrides
      */
     userSettingsJson?: string;
     /**
-     * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     * JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
      */
     userSettingsOverrideJson?: string;
     /**
-     * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+     * YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
      */
     userSettingsOverrideYaml?: string;
     /**
-     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+     * YAML-formatted user level "elasticsearch.yml" setting overrides
      */
     userSettingsYaml?: string;
 }
@@ -274,7 +274,7 @@ export interface DeploymentElasticsearchCoordinating {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -298,11 +298,11 @@ export interface DeploymentElasticsearchCoordinating {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -313,7 +313,7 @@ export interface DeploymentElasticsearchCoordinating {
 
 export interface DeploymentElasticsearchCoordinatingAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -375,7 +375,7 @@ export interface DeploymentElasticsearchFrozen {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -399,11 +399,11 @@ export interface DeploymentElasticsearchFrozen {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -414,7 +414,7 @@ export interface DeploymentElasticsearchFrozen {
 
 export interface DeploymentElasticsearchFrozenAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -457,7 +457,7 @@ export interface DeploymentElasticsearchHot {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -481,11 +481,11 @@ export interface DeploymentElasticsearchHot {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -496,7 +496,7 @@ export interface DeploymentElasticsearchHot {
 
 export interface DeploymentElasticsearchHotAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -550,7 +550,7 @@ export interface DeploymentElasticsearchMaster {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -574,11 +574,11 @@ export interface DeploymentElasticsearchMaster {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -589,7 +589,7 @@ export interface DeploymentElasticsearchMaster {
 
 export interface DeploymentElasticsearchMasterAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -632,7 +632,7 @@ export interface DeploymentElasticsearchMl {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -656,11 +656,11 @@ export interface DeploymentElasticsearchMl {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -671,7 +671,7 @@ export interface DeploymentElasticsearchMl {
 
 export interface DeploymentElasticsearchMlAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -799,7 +799,7 @@ export interface DeploymentElasticsearchWarm {
      */
     latestInstanceConfigurationId: string;
     /**
-     * Latest version available for the Instance Configuration with the latest_instance_configuration_id
+     * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
     latestInstanceConfigurationVersion: number;
     /**
@@ -823,11 +823,11 @@ export interface DeploymentElasticsearchWarm {
      */
     nodeTypeMl: string;
     /**
-     * Amount of "sizeResource" per node in the "<size in GB>g" notation
+     * Amount of "sizeResource" per node in the "\n\ng" notation
      */
     size: string;
     /**
-     * Optional size type, defaults to "memory".
+     * Size type, defaults to "memory".
      */
     sizeResource: string;
     /**
@@ -838,7 +838,7 @@ export interface DeploymentElasticsearchWarm {
 
 export interface DeploymentElasticsearchWarmAutoscaling {
     /**
-     * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+     * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
     autoscale: boolean;
     /**
@@ -891,7 +891,7 @@ export interface DeploymentEnterpriseSearch {
 
 export interface DeploymentEnterpriseSearchConfig {
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     * Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
      */
     dockerImage?: string;
     /**
@@ -941,11 +941,11 @@ export interface DeploymentIntegrationsServer {
 
 export interface DeploymentIntegrationsServerConfig {
     /**
-     * Optionally enable debug mode for APM servers - defaults to false
+     * Optionally enable debug mode for Integrations Server instances - defaults to false
      */
     debugEnabled: boolean;
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     * Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
      */
     dockerImage?: string;
     /**
@@ -998,7 +998,7 @@ export interface DeploymentKibana {
 
 export interface DeploymentKibanaConfig {
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+     * Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
      */
     dockerImage?: string;
     /**
@@ -1180,7 +1180,7 @@ export interface GetDeploymentElasticsearchTopology {
      */
     nodeTypeMl: boolean;
     /**
-     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     * Amount of "sizeResource" per topology element in Gigabytes. For example "4g".
      */
     size: string;
     /**
@@ -1389,7 +1389,7 @@ export interface GetDeploymentKibanaTopology {
      */
     instanceConfigurationId: string;
     /**
-     * Amount of "sizeResource" in Gigabytes. For example "4g".
+     * Amount of sizeResource in Gigabytes. For example "4g".
      */
     size: string;
     /**
@@ -1906,11 +1906,11 @@ export interface GetTrafficFilterRuleset {
 
 export interface GetTrafficFilterRulesetRule {
     /**
-     * The description of the ruleset.
+     * The description of the rule.
      */
     description: string;
     /**
-     * The ID of the ruleset
+     * The ID of the rule
      */
     id: string;
     /**
