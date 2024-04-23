@@ -87,14 +87,12 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     us_central1 = ec.get_gcp_private_service_connect_endpoint(region="us-central1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region to retrieve the Prive Link configuration for.
@@ -119,14 +117,12 @@ def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Inpu
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
 
     us_central1 = ec.get_gcp_private_service_connect_endpoint(region="us-central1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region to retrieve the Prive Link configuration for.

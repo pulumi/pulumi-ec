@@ -13,7 +13,7 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class DeploymentKibanaConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        /// Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         /// </summary>
         [Input("dockerImage")]
         public Input<string>? DockerImage { get; set; }

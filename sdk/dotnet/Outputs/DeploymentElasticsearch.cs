@@ -70,7 +70,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? RefId;
         /// <summary>
-        /// The Elasticsearch resource region
+        /// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         /// </summary>
         public readonly string? Region;
         /// <summary>

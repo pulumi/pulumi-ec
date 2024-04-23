@@ -16,7 +16,6 @@ import (
 //
 // ### IP based traffic filter
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,11 +72,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Azure Private Link traffic filter
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -136,11 +133,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ###GCP Private Service Connect traffic filter
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -198,7 +193,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -210,7 +204,7 @@ import (
 type DeploymentTrafficFilter struct {
 	pulumi.CustomResourceState
 
-	// Description of this individual rule
+	// Ruleset description
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolOutput `pulumi:"includeByDefault"`
@@ -260,7 +254,7 @@ func GetDeploymentTrafficFilter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeploymentTrafficFilter resources.
 type deploymentTrafficFilterState struct {
-	// Description of this individual rule
+	// Ruleset description
 	Description *string `pulumi:"description"`
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault *bool `pulumi:"includeByDefault"`
@@ -275,7 +269,7 @@ type deploymentTrafficFilterState struct {
 }
 
 type DeploymentTrafficFilterState struct {
-	// Description of this individual rule
+	// Ruleset description
 	Description pulumi.StringPtrInput
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolPtrInput
@@ -294,7 +288,7 @@ func (DeploymentTrafficFilterState) ElementType() reflect.Type {
 }
 
 type deploymentTrafficFilterArgs struct {
-	// Description of this individual rule
+	// Ruleset description
 	Description *string `pulumi:"description"`
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault *bool `pulumi:"includeByDefault"`
@@ -310,7 +304,7 @@ type deploymentTrafficFilterArgs struct {
 
 // The set of arguments for constructing a DeploymentTrafficFilter resource.
 type DeploymentTrafficFilterArgs struct {
-	// Description of this individual rule
+	// Ruleset description
 	Description pulumi.StringPtrInput
 	// Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
 	IncludeByDefault pulumi.BoolPtrInput
@@ -411,7 +405,7 @@ func (o DeploymentTrafficFilterOutput) ToDeploymentTrafficFilterOutputWithContex
 	return o
 }
 
-// Description of this individual rule
+// Ruleset description
 func (o DeploymentTrafficFilterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentTrafficFilter) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }

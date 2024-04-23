@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     region: "us-central1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getGcpPrivateServiceConnectEndpoint(args: GetGcpPrivateServiceConnectEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetGcpPrivateServiceConnectEndpointResult> {
 
@@ -64,7 +62,6 @@ export interface GetGcpPrivateServiceConnectEndpointResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -73,7 +70,6 @@ export interface GetGcpPrivateServiceConnectEndpointResult {
  *     region: "us-central1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getGcpPrivateServiceConnectEndpointOutput(args: GetGcpPrivateServiceConnectEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGcpPrivateServiceConnectEndpointResult> {
     return pulumi.output(args).apply((a: any) => getGcpPrivateServiceConnectEndpoint(a, opts))

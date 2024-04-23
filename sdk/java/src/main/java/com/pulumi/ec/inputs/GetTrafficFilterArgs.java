@@ -16,14 +16,14 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
     public static final GetTrafficFilterArgs Empty = new GetTrafficFilterArgs();
 
     /**
-     * The ID of the ruleset
+     * The id of the traffic filter to select.
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return The ID of the ruleset
+     * @return The id of the traffic filter to select.
      * 
      */
     public Optional<Output<String>> id() {
@@ -31,14 +31,14 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
     }
 
     /**
-     * The name of the ruleset.
+     * The exact name of the traffic filter to select.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the ruleset.
+     * @return The exact name of the traffic filter to select.
      * 
      */
     public Optional<Output<String>> name() {
@@ -46,14 +46,14 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
     }
 
     /**
-     * The ruleset can be attached only to deployments in the specific region.
+     * Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The ruleset can be attached only to deployments in the specific region.
+     * @return Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
      * 
      */
     public Optional<Output<String>> region() {
@@ -87,7 +87,7 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param id The ID of the ruleset
+         * @param id The id of the traffic filter to select.
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param id The ID of the ruleset
+         * @param id The id of the traffic filter to select.
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param name The name of the ruleset.
+         * @param name The exact name of the traffic filter to select.
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param name The name of the ruleset.
+         * @param name The exact name of the traffic filter to select.
          * 
          * @return builder
          * 
@@ -129,7 +129,7 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param region The ruleset can be attached only to deployments in the specific region.
+         * @param region Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class GetTrafficFilterArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param region The ruleset can be attached only to deployments in the specific region.
+         * @param region Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
          * 
          * @return builder
          * 

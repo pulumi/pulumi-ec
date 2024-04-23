@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -64,7 +63,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDeployments(ctx *pulumi.Context, args *GetDeploymentsArgs, opts ...pulumi.InvokeOption) (*GetDeploymentsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDeploymentsResult
@@ -85,13 +83,13 @@ type GetDeploymentsArgs struct {
 	Elasticsearches []GetDeploymentsElasticsearch `pulumi:"elasticsearches"`
 	// Filter by Enterprise Search resource kind status or configuration.
 	EnterpriseSearches []GetDeploymentsEnterpriseSearch `pulumi:"enterpriseSearches"`
-	// Overall health status of the resource instances.
+	// Filter the result set by their health status.
 	Healthy *string `pulumi:"healthy"`
 	// Filter by Integrations Server resource kind status or configuration.
 	IntegrationsServers []GetDeploymentsIntegrationsServer `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
 	Kibanas []GetDeploymentsKibana `pulumi:"kibanas"`
-	// The name of the deployment.
+	// Filter the result by the full deployment name.
 	Name *string `pulumi:"name"`
 	// Prefix to filter the returned deployment list by.
 	NamePrefix *string `pulumi:"namePrefix"`
@@ -156,13 +154,13 @@ type GetDeploymentsOutputArgs struct {
 	Elasticsearches GetDeploymentsElasticsearchArrayInput `pulumi:"elasticsearches"`
 	// Filter by Enterprise Search resource kind status or configuration.
 	EnterpriseSearches GetDeploymentsEnterpriseSearchArrayInput `pulumi:"enterpriseSearches"`
-	// Overall health status of the resource instances.
+	// Filter the result set by their health status.
 	Healthy pulumi.StringPtrInput `pulumi:"healthy"`
 	// Filter by Integrations Server resource kind status or configuration.
 	IntegrationsServers GetDeploymentsIntegrationsServerArrayInput `pulumi:"integrationsServers"`
 	// Filter by Kibana resource kind status or configuration.
 	Kibanas GetDeploymentsKibanaArrayInput `pulumi:"kibanas"`
-	// The name of the deployment.
+	// Filter the result by the full deployment name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Prefix to filter the returned deployment list by.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`

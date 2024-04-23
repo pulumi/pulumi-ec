@@ -245,14 +245,14 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The Elasticsearch resource region
+     * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The Elasticsearch resource region
+     * @return Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
      * 
      */
     public Optional<Output<String>> region() {
@@ -722,7 +722,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param region The Elasticsearch resource region
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 
@@ -733,7 +733,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param region The Elasticsearch resource region
+         * @param region Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `&#34;ece-region&#34;.
          * 
          * @return builder
          * 

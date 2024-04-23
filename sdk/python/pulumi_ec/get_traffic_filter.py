@@ -90,7 +90,6 @@ def get_traffic_filter(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -99,12 +98,11 @@ def get_traffic_filter(id: Optional[str] = None,
     id = ec.get_traffic_filter(id="41d275439f884ce89359039e53eac516")
     region = ec.get_traffic_filter(region="us-east-1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
-    :param str id: The ID of the ruleset
-    :param str name: The name of the ruleset.
-    :param str region: The ruleset can be attached only to deployments in the specific region.
+    :param str id: The id of the traffic filter to select.
+    :param str name: The exact name of the traffic filter to select.
+    :param str region: Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
     """
     __args__ = dict()
     __args__['id'] = id
@@ -130,7 +128,6 @@ def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -139,11 +136,10 @@ def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     id = ec.get_traffic_filter(id="41d275439f884ce89359039e53eac516")
     region = ec.get_traffic_filter(region="us-east-1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
-    :param str id: The ID of the ruleset
-    :param str name: The name of the ruleset.
-    :param str region: The ruleset can be attached only to deployments in the specific region.
+    :param str id: The id of the traffic filter to select.
+    :param str name: The exact name of the traffic filter to select.
+    :param str region: Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
     """
     ...

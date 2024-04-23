@@ -103,7 +103,6 @@ def get_deployment_templates(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -121,10 +120,9 @@ def get_deployment_templates(id: Optional[str] = None,
         ),
         kibana=ec.DeploymentKibanaArgs())
     ```
-    <!--End PulumiCodeChooser -->
 
 
-    :param str id: The id of the deployment template.
+    :param str id: Filters for a deployment template with this id.
     :param str region: Region to select. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
     :param bool show_deprecated: Enable to also show deprecated deployment templates. (Set to false by default.)
     :param str stack_version: Filters for deployment templates compatible with this stack version.
@@ -156,7 +154,6 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ec as ec
@@ -174,10 +171,9 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
         ),
         kibana=ec.DeploymentKibanaArgs())
     ```
-    <!--End PulumiCodeChooser -->
 
 
-    :param str id: The id of the deployment template.
+    :param str id: Filters for a deployment template with this id.
     :param str region: Region to select. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
     :param bool show_deprecated: Enable to also show deprecated deployment templates. (Set to false by default.)
     :param str stack_version: Filters for deployment templates compatible with this stack version.

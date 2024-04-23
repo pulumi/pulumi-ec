@@ -441,7 +441,7 @@ class DeploymentElasticsearch(dict):
         :param 'DeploymentElasticsearchMasterArgs' master: 'master' topology element
         :param 'DeploymentElasticsearchMlArgs' ml: 'ml' topology element
         :param str ref_id: A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-        :param str region: The Elasticsearch resource region
+        :param str region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param Sequence['DeploymentElasticsearchRemoteClusterArgs'] remote_clusters: Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         :param str resource_id: The Elasticsearch resource unique identifier
         :param 'DeploymentElasticsearchSnapshotArgs' snapshot: (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
@@ -612,7 +612,7 @@ class DeploymentElasticsearch(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The Elasticsearch resource region
+        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
@@ -736,14 +736,14 @@ class DeploymentElasticsearchCold(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -808,7 +808,7 @@ class DeploymentElasticsearchCold(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -856,7 +856,7 @@ class DeploymentElasticsearchCold(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -864,7 +864,7 @@ class DeploymentElasticsearchCold(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -912,7 +912,7 @@ class DeploymentElasticsearchColdAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -936,7 +936,7 @@ class DeploymentElasticsearchColdAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -1016,12 +1016,12 @@ class DeploymentElasticsearchConfig(dict):
                  user_settings_override_yaml: Optional[str] = None,
                  user_settings_yaml: Optional[str] = None):
         """
-        :param str docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param str docker_image: Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         :param Sequence[str] plugins: List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
-        :param str user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        :param str user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        :param str user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        :param str user_settings_yaml: An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        :param str user_settings_json: JSON-formatted user level "elasticsearch.yml" setting overrides
+        :param str user_settings_override_json: JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
+        :param str user_settings_override_yaml: YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
+        :param str user_settings_yaml: YAML-formatted user level "elasticsearch.yml" setting overrides
         """
         if docker_image is not None:
             pulumi.set(__self__, "docker_image", docker_image)
@@ -1040,7 +1040,7 @@ class DeploymentElasticsearchConfig(dict):
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[str]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -1056,7 +1056,7 @@ class DeploymentElasticsearchConfig(dict):
     @pulumi.getter(name="userSettingsJson")
     def user_settings_json(self) -> Optional[str]:
         """
-        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        JSON-formatted user level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_json")
 
@@ -1064,7 +1064,7 @@ class DeploymentElasticsearchConfig(dict):
     @pulumi.getter(name="userSettingsOverrideJson")
     def user_settings_override_json(self) -> Optional[str]:
         """
-        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_override_json")
 
@@ -1072,7 +1072,7 @@ class DeploymentElasticsearchConfig(dict):
     @pulumi.getter(name="userSettingsOverrideYaml")
     def user_settings_override_yaml(self) -> Optional[str]:
         """
-        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
+        YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
@@ -1080,7 +1080,7 @@ class DeploymentElasticsearchConfig(dict):
     @pulumi.getter(name="userSettingsYaml")
     def user_settings_yaml(self) -> Optional[str]:
         """
-        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
+        YAML-formatted user level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_yaml")
 
@@ -1143,14 +1143,14 @@ class DeploymentElasticsearchCoordinating(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1215,7 +1215,7 @@ class DeploymentElasticsearchCoordinating(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -1263,7 +1263,7 @@ class DeploymentElasticsearchCoordinating(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -1271,7 +1271,7 @@ class DeploymentElasticsearchCoordinating(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -1319,7 +1319,7 @@ class DeploymentElasticsearchCoordinatingAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -1343,7 +1343,7 @@ class DeploymentElasticsearchCoordinatingAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -1497,14 +1497,14 @@ class DeploymentElasticsearchFrozen(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1569,7 +1569,7 @@ class DeploymentElasticsearchFrozen(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -1617,7 +1617,7 @@ class DeploymentElasticsearchFrozen(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -1625,7 +1625,7 @@ class DeploymentElasticsearchFrozen(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -1673,7 +1673,7 @@ class DeploymentElasticsearchFrozenAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -1697,7 +1697,7 @@ class DeploymentElasticsearchFrozenAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -1800,14 +1800,14 @@ class DeploymentElasticsearchHot(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1872,7 +1872,7 @@ class DeploymentElasticsearchHot(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -1920,7 +1920,7 @@ class DeploymentElasticsearchHot(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -1928,7 +1928,7 @@ class DeploymentElasticsearchHot(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -1976,7 +1976,7 @@ class DeploymentElasticsearchHotAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -2000,7 +2000,7 @@ class DeploymentElasticsearchHotAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -2150,14 +2150,14 @@ class DeploymentElasticsearchMaster(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -2222,7 +2222,7 @@ class DeploymentElasticsearchMaster(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -2270,7 +2270,7 @@ class DeploymentElasticsearchMaster(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -2278,7 +2278,7 @@ class DeploymentElasticsearchMaster(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -2326,7 +2326,7 @@ class DeploymentElasticsearchMasterAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -2350,7 +2350,7 @@ class DeploymentElasticsearchMasterAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -2453,14 +2453,14 @@ class DeploymentElasticsearchMl(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -2525,7 +2525,7 @@ class DeploymentElasticsearchMl(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -2573,7 +2573,7 @@ class DeploymentElasticsearchMl(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -2581,7 +2581,7 @@ class DeploymentElasticsearchMl(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -2629,7 +2629,7 @@ class DeploymentElasticsearchMlAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -2653,7 +2653,7 @@ class DeploymentElasticsearchMlAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -3087,14 +3087,14 @@ class DeploymentElasticsearchWarm(dict):
         :param str instance_configuration_id: Instance Configuration ID of the topology element
         :param int instance_configuration_version: Instance Configuration version of the topology element
         :param str latest_instance_configuration_id: Latest Instance Configuration ID available on the deployment template for the topology element
-        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        :param int latest_instance_configuration_version: Latest version available for the Instance Configuration with the latest*instance*configuration_id
         :param Sequence[str] node_roles: The computed list of node roles for the current topology element
         :param str node_type_data: The node type for the Elasticsearch Topology element (data node)
         :param str node_type_ingest: The node type for the Elasticsearch Topology element (ingest node)
         :param str node_type_master: The node type for the Elasticsearch Topology element (master node)
         :param str node_type_ml: The node type for the Elasticsearch Topology element (machine learning node)
-        :param str size: Amount of "size_resource" per node in the "<size in GB>g" notation
-        :param str size_resource: Optional size type, defaults to "memory".
+        :param str size: Amount of "size_resource" per node in the "\\n\\ng" notation
+        :param str size_resource: Size type, defaults to "memory".
         :param int zone_count: Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         pulumi.set(__self__, "autoscaling", autoscaling)
@@ -3159,7 +3159,7 @@ class DeploymentElasticsearchWarm(dict):
     @pulumi.getter(name="latestInstanceConfigurationVersion")
     def latest_instance_configuration_version(self) -> Optional[int]:
         """
-        Latest version available for the Instance Configuration with the latest_instance_configuration_id
+        Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
@@ -3207,7 +3207,7 @@ class DeploymentElasticsearchWarm(dict):
     @pulumi.getter
     def size(self) -> Optional[str]:
         """
-        Amount of "size_resource" per node in the "<size in GB>g" notation
+        Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
@@ -3215,7 +3215,7 @@ class DeploymentElasticsearchWarm(dict):
     @pulumi.getter(name="sizeResource")
     def size_resource(self) -> Optional[str]:
         """
-        Optional size type, defaults to "memory".
+        Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
@@ -3263,7 +3263,7 @@ class DeploymentElasticsearchWarmAutoscaling(dict):
                  min_size_resource: Optional[str] = None,
                  policy_override_json: Optional[str] = None):
         """
-        :param bool autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        :param bool autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param str max_size: Maximum size value for the maximum autoscaling setting.
         :param str max_size_resource: Maximum resource type for the maximum autoscaling setting.
         :param str min_size: Minimum size value for the minimum autoscaling setting.
@@ -3287,7 +3287,7 @@ class DeploymentElasticsearchWarmAutoscaling(dict):
     @pulumi.getter
     def autoscale(self) -> Optional[bool]:
         """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
+        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
@@ -3560,7 +3560,7 @@ class DeploymentEnterpriseSearchConfig(dict):
                  user_settings_override_yaml: Optional[str] = None,
                  user_settings_yaml: Optional[str] = None):
         """
-        :param str docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param str docker_image: Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         :param str user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         :param str user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         :param str user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
@@ -3581,7 +3581,7 @@ class DeploymentEnterpriseSearchConfig(dict):
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[str]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -3831,8 +3831,8 @@ class DeploymentIntegrationsServerConfig(dict):
                  user_settings_override_yaml: Optional[str] = None,
                  user_settings_yaml: Optional[str] = None):
         """
-        :param bool debug_enabled: Optionally enable debug mode for APM servers - defaults to false
-        :param str docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param bool debug_enabled: Optionally enable debug mode for Integrations Server instances - defaults to false
+        :param str docker_image: Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
         :param str user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         :param str user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         :param str user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
@@ -3855,7 +3855,7 @@ class DeploymentIntegrationsServerConfig(dict):
     @pulumi.getter(name="debugEnabled")
     def debug_enabled(self) -> Optional[bool]:
         """
-        Optionally enable debug mode for APM servers - defaults to false
+        Optionally enable debug mode for Integrations Server instances - defaults to false
         """
         return pulumi.get(self, "debug_enabled")
 
@@ -3863,7 +3863,7 @@ class DeploymentIntegrationsServerConfig(dict):
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[str]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -4131,7 +4131,7 @@ class DeploymentKibanaConfig(dict):
                  user_settings_override_yaml: Optional[str] = None,
                  user_settings_yaml: Optional[str] = None):
         """
-        :param str docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        :param str docker_image: Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         :param str user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         :param str user_settings_override_json: An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         :param str user_settings_override_yaml: An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
@@ -4152,7 +4152,7 @@ class DeploymentKibanaConfig(dict):
     @pulumi.getter(name="dockerImage")
     def docker_image(self) -> Optional[str]:
         """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
+        Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
@@ -4767,7 +4767,7 @@ class GetDeploymentElasticsearchTopologyResult(dict):
         :param bool node_type_ingest: Defines whether this node can run an ingest pipeline (\\n\\n).
         :param bool node_type_master: Defines whether this node can be elected master (\\n\\n).
         :param bool node_type_ml: Defines whether this node can run ML jobs (\\n\\n).
-        :param str size: Amount of "size_resource" in Gigabytes. For example "4g".
+        :param str size: Amount of "size_resource" per topology element in Gigabytes. For example "4g".
         :param str size_resource: Type of resource ("memory" or "storage")
         :param int zone_count: Number of zones in which nodes will be placed.
         """
@@ -4842,7 +4842,7 @@ class GetDeploymentElasticsearchTopologyResult(dict):
     @pulumi.getter
     def size(self) -> str:
         """
-        Amount of "size_resource" in Gigabytes. For example "4g".
+        Amount of "size_resource" per topology element in Gigabytes. For example "4g".
         """
         return pulumi.get(self, "size")
 
@@ -5387,7 +5387,7 @@ class GetDeploymentKibanaTopologyResult(dict):
                  zone_count: int):
         """
         :param str instance_configuration_id: Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.
-        :param str size: Amount of "size_resource" in Gigabytes. For example "4g".
+        :param str size: Amount of size_resource in Gigabytes. For example "4g".
         :param str size_resource: Type of resource ("memory" or "storage")
         :param int zone_count: Number of zones in which nodes will be placed.
         """
@@ -5408,7 +5408,7 @@ class GetDeploymentKibanaTopologyResult(dict):
     @pulumi.getter
     def size(self) -> str:
         """
-        Amount of "size_resource" in Gigabytes. For example "4g".
+        Amount of size_resource in Gigabytes. For example "4g".
         """
         return pulumi.get(self, "size")
 
@@ -7172,8 +7172,8 @@ class GetTrafficFilterRulesetRuleResult(dict):
                  id: str,
                  source: str):
         """
-        :param str description: The description of the ruleset.
-        :param str id: The ID of the ruleset
+        :param str description: The description of the rule.
+        :param str id: The ID of the rule
         :param str source: Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
         """
         pulumi.set(__self__, "description", description)
@@ -7184,7 +7184,7 @@ class GetTrafficFilterRulesetRuleResult(dict):
     @pulumi.getter
     def description(self) -> str:
         """
-        The description of the ruleset.
+        The description of the rule.
         """
         return pulumi.get(self, "description")
 
@@ -7192,7 +7192,7 @@ class GetTrafficFilterRulesetRuleResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the ruleset
+        The ID of the rule
         """
         return pulumi.get(self, "id")
 

@@ -17,14 +17,14 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
     public static final DeploymentElasticsearchConfigArgs Empty = new DeploymentElasticsearchConfigArgs();
 
     /**
-     * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
      * 
      */
     @Import(name="dockerImage")
     private @Nullable Output<String> dockerImage;
 
     /**
-     * @return Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+     * @return Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
      * 
      */
     public Optional<Output<String>> dockerImage() {
@@ -47,14 +47,14 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
     }
 
     /**
-     * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * JSON-formatted user level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     @Import(name="userSettingsJson")
     private @Nullable Output<String> userSettingsJson;
 
     /**
-     * @return An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * @return JSON-formatted user level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     public Optional<Output<String>> userSettingsJson() {
@@ -62,14 +62,14 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
     }
 
     /**
-     * An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * JSON-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     @Import(name="userSettingsOverrideJson")
     private @Nullable Output<String> userSettingsOverrideJson;
 
     /**
-     * @return An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * @return JSON-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     public Optional<Output<String>> userSettingsOverrideJson() {
@@ -77,14 +77,14 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
     }
 
     /**
-     * An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * YAML-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     @Import(name="userSettingsOverrideYaml")
     private @Nullable Output<String> userSettingsOverrideYaml;
 
     /**
-     * @return An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+     * @return YAML-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     public Optional<Output<String>> userSettingsOverrideYaml() {
@@ -92,14 +92,14 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
     }
 
     /**
-     * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * YAML-formatted user level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     @Import(name="userSettingsYaml")
     private @Nullable Output<String> userSettingsYaml;
 
     /**
-     * @return An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+     * @return YAML-formatted user level &#34;elasticsearch.yml&#34; setting overrides
      * 
      */
     public Optional<Output<String>> userSettingsYaml() {
@@ -136,7 +136,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * @param dockerImage Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
          * 
          * @return builder
          * 
@@ -147,7 +147,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param dockerImage Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you&#39;re doing.
+         * @param dockerImage Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
          * 
          * @return builder
          * 
@@ -188,7 +188,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsJson An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * @param userSettingsJson JSON-formatted user level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -199,7 +199,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsJson An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*yaml&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (This field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * @param userSettingsJson JSON-formatted user level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -209,7 +209,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsOverrideJson An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -220,7 +220,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsOverrideJson An arbitrary JSON object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*yaml&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * @param userSettingsOverrideJson JSON-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -230,7 +230,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsOverrideYaml An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -241,7 +241,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsOverrideYaml An arbitrary YAML object allowing ECE admins owners to set clusters&#39; parameters (only one of this and &#39;user*settings*override*json&#39; is allowed), ie in addition to the documented &#39;system*settings&#39;. (This field together with &#39;system*settings&#39; and &#39;user*settings*&#39; defines the total set of resource settings)
+         * @param userSettingsOverrideYaml YAML-formatted admin (ECE) level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -251,7 +251,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsYaml An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * @param userSettingsYaml YAML-formatted user level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 
@@ -262,7 +262,7 @@ public final class DeploymentElasticsearchConfigArgs extends com.pulumi.resource
         }
 
         /**
-         * @param userSettingsYaml An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and &#39;user*settings*json&#39; is allowed), provided they are on the whitelist (&#39;user*settings*whitelist&#39;) and not on the blacklist (&#39;user*settings*blacklist&#39;). (These field together with &#39;user*settings*override*&#39; and &#39;system_settings&#39; defines the total set of resource settings)
+         * @param userSettingsYaml YAML-formatted user level &#34;elasticsearch.yml&#34; setting overrides
          * 
          * @return builder
          * 

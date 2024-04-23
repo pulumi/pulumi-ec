@@ -18,14 +18,14 @@ public final class GetDeploymentTemplatesArgs extends com.pulumi.resources.Invok
     public static final GetDeploymentTemplatesArgs Empty = new GetDeploymentTemplatesArgs();
 
     /**
-     * The id of the deployment template.
+     * Filters for a deployment template with this id.
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return The id of the deployment template.
+     * @return Filters for a deployment template with this id.
      * 
      */
     public Optional<Output<String>> id() {
@@ -105,7 +105,7 @@ public final class GetDeploymentTemplatesArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param id The id of the deployment template.
+         * @param id Filters for a deployment template with this id.
          * 
          * @return builder
          * 
@@ -116,7 +116,7 @@ public final class GetDeploymentTemplatesArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param id The id of the deployment template.
+         * @param id Filters for a deployment template with this id.
          * 
          * @return builder
          * 

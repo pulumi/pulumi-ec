@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     region: "eastus",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAzurePrivatelinkEndpoint(args: GetAzurePrivatelinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetAzurePrivatelinkEndpointResult> {
 
@@ -64,7 +62,6 @@ export interface GetAzurePrivatelinkEndpointResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -73,7 +70,6 @@ export interface GetAzurePrivatelinkEndpointResult {
  *     region: "eastus",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAzurePrivatelinkEndpointOutput(args: GetAzurePrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzurePrivatelinkEndpointResult> {
     return pulumi.output(args).apply((a: any) => getAzurePrivatelinkEndpoint(a, opts))

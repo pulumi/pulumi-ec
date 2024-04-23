@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDeploymentTemplates(ctx *pulumi.Context, args *GetDeploymentTemplatesArgs, opts ...pulumi.InvokeOption) (*GetDeploymentTemplatesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDeploymentTemplatesResult
@@ -67,7 +65,7 @@ func GetDeploymentTemplates(ctx *pulumi.Context, args *GetDeploymentTemplatesArg
 
 // A collection of arguments for invoking getDeploymentTemplates.
 type GetDeploymentTemplatesArgs struct {
-	// The id of the deployment template.
+	// Filters for a deployment template with this id.
 	Id *string `pulumi:"id"`
 	// Region to select. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
 	Region string `pulumi:"region"`
@@ -106,7 +104,7 @@ func GetDeploymentTemplatesOutput(ctx *pulumi.Context, args GetDeploymentTemplat
 
 // A collection of arguments for invoking getDeploymentTemplates.
 type GetDeploymentTemplatesOutputArgs struct {
-	// The id of the deployment template.
+	// Filters for a deployment template with this id.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Region to select. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
 	Region pulumi.StringInput `pulumi:"region"`

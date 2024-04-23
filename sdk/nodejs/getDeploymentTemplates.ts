@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -32,7 +31,6 @@ import * as utilities from "./utilities";
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDeploymentTemplates(args: GetDeploymentTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentTemplatesResult> {
 
@@ -50,7 +48,7 @@ export function getDeploymentTemplates(args: GetDeploymentTemplatesArgs, opts?: 
  */
 export interface GetDeploymentTemplatesArgs {
     /**
-     * The id of the deployment template.
+     * Filters for a deployment template with this id.
      */
     id?: string;
     /**
@@ -97,7 +95,6 @@ export interface GetDeploymentTemplatesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
@@ -118,7 +115,6 @@ export interface GetDeploymentTemplatesResult {
  *     kibana: {},
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDeploymentTemplatesOutput(args: GetDeploymentTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentTemplatesResult> {
     return pulumi.output(args).apply((a: any) => getDeploymentTemplates(a, opts))
@@ -129,7 +125,7 @@ export function getDeploymentTemplatesOutput(args: GetDeploymentTemplatesOutputA
  */
 export interface GetDeploymentTemplatesOutputArgs {
     /**
-     * The id of the deployment template.
+     * Filters for a deployment template with this id.
      */
     id?: pulumi.Input<string>;
     /**

@@ -84,14 +84,14 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Overall health status of the resource instances.
+     * Filter the result set by their health status.
      * 
      */
     @Import(name="healthy")
     private @Nullable Output<String> healthy;
 
     /**
-     * @return Overall health status of the resource instances.
+     * @return Filter the result set by their health status.
      * 
      */
     public Optional<Output<String>> healthy() {
@@ -129,14 +129,14 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The name of the deployment.
+     * Filter the result by the full deployment name.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the deployment.
+     * @return Filter the result by the full deployment name.
      * 
      */
     public Optional<Output<String>> name() {
@@ -337,7 +337,7 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param healthy Overall health status of the resource instances.
+         * @param healthy Filter the result set by their health status.
          * 
          * @return builder
          * 
@@ -348,7 +348,7 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param healthy Overall health status of the resource instances.
+         * @param healthy Filter the result set by their health status.
          * 
          * @return builder
          * 
@@ -420,7 +420,7 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The name of the deployment.
+         * @param name Filter the result by the full deployment name.
          * 
          * @return builder
          * 
@@ -431,7 +431,7 @@ public final class GetDeploymentsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The name of the deployment.
+         * @param name Filter the result by the full deployment name.
          * 
          * @return builder
          * 

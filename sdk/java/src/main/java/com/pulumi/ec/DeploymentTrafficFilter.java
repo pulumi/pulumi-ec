@@ -238,14 +238,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="ec:index/deploymentTrafficFilter:DeploymentTrafficFilter")
 public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource {
     /**
-     * Description of this individual rule
+     * Ruleset description
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return Description of this individual rule
+     * @return Ruleset description
      * 
      */
     public Output<Optional<String>> description() {
