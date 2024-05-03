@@ -91,25 +91,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.elasticsearch);
     }
 
-    /**
-     * Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-     * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-     * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-     * Please follow the official Terraform recommendations regarding senstaive data in state.
-     * 
-     */
     @Import(name="elasticsearchPassword")
     private @Nullable Output<String> elasticsearchPassword;
 
-    /**
-     * @return Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-     * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-     * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-     * Please follow the official Terraform recommendations regarding senstaive data in state.
-     * 
-     */
     public Optional<Output<String>> elasticsearchPassword() {
         return Optional.ofNullable(this.elasticsearchPassword);
     }
@@ -160,7 +144,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
@@ -168,7 +152,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<DeploymentKibanaArgs> kibana;
 
     /**
-     * @return Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * @return Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
@@ -177,9 +161,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
      * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      * 
      */
@@ -187,9 +171,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> migrateToLatestHardware;
 
     /**
-     * @return When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * @return When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
      * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      * 
      */
@@ -456,31 +440,11 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
             return elasticsearch(Output.of(elasticsearch));
         }
 
-        /**
-         * @param elasticsearchPassword Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-         * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-         * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-         * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-         * Please follow the official Terraform recommendations regarding senstaive data in state.
-         * 
-         * @return builder
-         * 
-         */
         public Builder elasticsearchPassword(@Nullable Output<String> elasticsearchPassword) {
             $.elasticsearchPassword = elasticsearchPassword;
             return this;
         }
 
-        /**
-         * @param elasticsearchPassword Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-         * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-         * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-         * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-         * Please follow the official Terraform recommendations regarding senstaive data in state.
-         * 
-         * @return builder
-         * 
-         */
         public Builder elasticsearchPassword(String elasticsearchPassword) {
             return elasticsearchPassword(Output.of(elasticsearchPassword));
         }
@@ -549,7 +513,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kibana Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+         * @param kibana Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
          * block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
@@ -561,7 +525,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kibana Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+         * @param kibana Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
          * block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
@@ -572,9 +536,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
          * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-         * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+         * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
          * with node types. To use this field, the deployment needs to be migrated to node roles first.
          * 
          * @return builder
@@ -586,9 +550,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
          * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-         * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+         * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
          * with node types. To use this field, the deployment needs to be migrated to node roles first.
          * 
          * @return builder
