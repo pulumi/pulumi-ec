@@ -3,6 +3,7 @@
         "resources": {
             "ec_deployment": {
                 "current": "ec:index/deployment:Deployment",
+                "majorVersion": 1,
                 "fields": {
                     "elasticsearch": {
                         "fields": {
@@ -96,13 +97,16 @@
                 }
             },
             "ec_deployment_elasticsearch_keystore": {
-                "current": "ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore"
+                "current": "ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore",
+                "majorVersion": 1
             },
             "ec_deployment_extension": {
-                "current": "ec:index/deploymentExtension:DeploymentExtension"
+                "current": "ec:index/deploymentExtension:DeploymentExtension",
+                "majorVersion": 1
             },
             "ec_deployment_traffic_filter": {
                 "current": "ec:index/deploymentTrafficFilter:DeploymentTrafficFilter",
+                "majorVersion": 1,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false
@@ -110,15 +114,18 @@
                 }
             },
             "ec_deployment_traffic_filter_association": {
-                "current": "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation"
+                "current": "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation",
+                "majorVersion": 1
             },
             "ec_snapshot_repository": {
-                "current": "ec:index/snapshotRepository:SnapshotRepository"
+                "current": "ec:index/snapshotRepository:SnapshotRepository",
+                "majorVersion": 1
             }
         },
         "datasources": {
             "ec_aws_privatelink_endpoint": {
                 "current": "ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint",
+                "majorVersion": 1,
                 "fields": {
                     "zone_ids": {
                         "maxItemsOne": false
@@ -126,10 +133,12 @@
                 }
             },
             "ec_azure_privatelink_endpoint": {
-                "current": "ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint"
+                "current": "ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint",
+                "majorVersion": 1
             },
             "ec_deployment": {
                 "current": "ec:index/getDeployment:getDeployment",
+                "majorVersion": 1,
                 "fields": {
                     "apm": {
                         "maxItemsOne": false,
@@ -201,6 +210,7 @@
             },
             "ec_deployment_templates": {
                 "current": "ec:index/getDeploymentTemplates:getDeploymentTemplates",
+                "majorVersion": 1,
                 "fields": {
                     "templates": {
                         "maxItemsOne": false,
@@ -294,6 +304,7 @@
             },
             "ec_deployments": {
                 "current": "ec:index/getDeployments:getDeployments",
+                "majorVersion": 1,
                 "fields": {
                     "apm": {
                         "maxItemsOne": false
@@ -316,10 +327,12 @@
                 }
             },
             "ec_gcp_private_service_connect_endpoint": {
-                "current": "ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint"
+                "current": "ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint",
+                "majorVersion": 1
             },
             "ec_stack": {
                 "current": "ec:index/getStack:getStack",
+                "majorVersion": 1,
                 "fields": {
                     "apm": {
                         "maxItemsOne": false,
@@ -386,6 +399,7 @@
             },
             "ec_traffic_filter": {
                 "current": "ec:index/getTrafficFilter:getTrafficFilter",
+                "majorVersion": 1,
                 "fields": {
                     "rulesets": {
                         "maxItemsOne": false,
