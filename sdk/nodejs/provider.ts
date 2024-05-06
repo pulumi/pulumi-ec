@@ -29,9 +29,6 @@ export class Provider extends pulumi.ProviderResource {
      * API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
      */
     public readonly apikey!: pulumi.Output<string | undefined>;
-    /**
-     * Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-     */
     public readonly endpoint!: pulumi.Output<string | undefined>;
     /**
      * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
@@ -88,9 +85,6 @@ export interface ProviderArgs {
      * API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
      */
     apikey?: pulumi.Input<string>;
-    /**
-     * Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-     */
     endpoint?: pulumi.Input<string>;
     /**
      * Allow the provider to skip TLS validation on its outgoing HTTP calls.
