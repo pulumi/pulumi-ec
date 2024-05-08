@@ -88,13 +88,6 @@ export class Deployment extends pulumi.CustomResource {
      * Elasticsearch cluster definition
      */
     public readonly elasticsearch!: pulumi.Output<outputs.DeploymentElasticsearch>;
-    /**
-     * Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
-     * <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
-     * deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
-     * Please follow the official Terraform recommendations regarding senstaive data in state.
-     */
     public /*out*/ readonly elasticsearchPassword!: pulumi.Output<string>;
     /**
      * Username for authenticating to the Elasticsearch resource.
@@ -109,14 +102,14 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly integrationsServer!: pulumi.Output<outputs.DeploymentIntegrationsServer | undefined>;
     /**
-     * Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     public readonly kibana!: pulumi.Output<outputs.DeploymentKibana | undefined>;
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+     * When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
      * <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-     * topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     public readonly migrateToLatestHardware!: pulumi.Output<boolean | undefined>;
@@ -134,12 +127,12 @@ export class Deployment extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
      * returned as part of the error.
      */
     public readonly requestId!: pulumi.Output<string>;
     /**
-     * Explicitly resets the elasticsearch_password when true
+     * Explicitly resets the elasticsearchPassword when true
      */
     public readonly resetElasticsearchPassword!: pulumi.Output<boolean | undefined>;
     /**
@@ -249,13 +242,6 @@ export interface DeploymentState {
      * Elasticsearch cluster definition
      */
     elasticsearch?: pulumi.Input<inputs.DeploymentElasticsearch>;
-    /**
-     * Password for authenticating to the Elasticsearch resource. ~> **Note on deployment credentials** The
-     * <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes. ~> **Note on
-     * deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text.
-     * Please follow the official Terraform recommendations regarding senstaive data in state.
-     */
     elasticsearchPassword?: pulumi.Input<string>;
     /**
      * Username for authenticating to the Elasticsearch resource.
@@ -270,14 +256,14 @@ export interface DeploymentState {
      */
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
-     * Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+     * When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
      * <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-     * topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     migrateToLatestHardware?: pulumi.Input<boolean>;
@@ -295,12 +281,12 @@ export interface DeploymentState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
      * returned as part of the error.
      */
     requestId?: pulumi.Input<string>;
     /**
-     * Explicitly resets the elasticsearch_password when true
+     * Explicitly resets the elasticsearchPassword when true
      */
     resetElasticsearchPassword?: pulumi.Input<boolean>;
     /**
@@ -346,14 +332,14 @@ export interface DeploymentArgs {
      */
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
-     * Kibana cluster definition. -> **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. ~> **Note** If the
+     * When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
      * <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-     * topology element, that element will not be updated. ~> **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     migrateToLatestHardware?: pulumi.Input<boolean>;
@@ -371,12 +357,12 @@ export interface DeploymentArgs {
      */
     region: pulumi.Input<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
      * returned as part of the error.
      */
     requestId?: pulumi.Input<string>;
     /**
-     * Explicitly resets the elasticsearch_password when true
+     * Explicitly resets the elasticsearchPassword when true
      */
     resetElasticsearchPassword?: pulumi.Input<boolean>;
     /**

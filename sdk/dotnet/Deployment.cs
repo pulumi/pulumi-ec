@@ -76,13 +76,6 @@ namespace Pulumi.ElasticCloud
         [Output("elasticsearch")]
         public Output<Outputs.DeploymentElasticsearch> Elasticsearch { get; private set; } = null!;
 
-        /// <summary>
-        /// Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-        /// &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-        /// import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-        /// deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-        /// Please follow the official Terraform recommendations regarding senstaive data in state.
-        /// </summary>
         [Output("elasticsearchPassword")]
         public Output<string> ElasticsearchPassword { get; private set; } = null!;
 
@@ -105,16 +98,16 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.DeploymentIntegrationsServer?> IntegrationsServer { get; private set; } = null!;
 
         /// <summary>
-        /// Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+        /// Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
         /// block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Output("kibana")]
         public Output<Outputs.DeploymentKibana?> Kibana { get; private set; } = null!;
 
         /// <summary>
-        /// When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+        /// When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
         /// &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-        /// topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+        /// topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
         /// with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Output("migrateToLatestHardware")]
@@ -258,16 +251,16 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentIntegrationsServerArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
-        /// Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+        /// Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
         /// block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Input("kibana")]
         public Input<Inputs.DeploymentKibanaArgs>? Kibana { get; set; }
 
         /// <summary>
-        /// When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+        /// When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
         /// &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-        /// topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+        /// topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
         /// with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Input("migrateToLatestHardware")]
@@ -381,14 +374,6 @@ namespace Pulumi.ElasticCloud
 
         [Input("elasticsearchPassword")]
         private Input<string>? _elasticsearchPassword;
-
-        /// <summary>
-        /// Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-        /// &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-        /// import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-        /// deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-        /// Please follow the official Terraform recommendations regarding senstaive data in state.
-        /// </summary>
         public Input<string>? ElasticsearchPassword
         {
             get => _elasticsearchPassword;
@@ -418,16 +403,16 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentIntegrationsServerGetArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
-        /// Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+        /// Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
         /// block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Input("kibana")]
         public Input<Inputs.DeploymentKibanaGetArgs>? Kibana { get; set; }
 
         /// <summary>
-        /// When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+        /// When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
         /// &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-        /// topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+        /// topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
         /// with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Input("migrateToLatestHardware")]
