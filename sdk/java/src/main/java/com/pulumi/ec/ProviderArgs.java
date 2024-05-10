@@ -31,17 +31,9 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.apikey);
     }
 
-    /**
-     * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
-     * 
-     */
     @Import(name="endpoint")
     private @Nullable Output<String> endpoint;
 
-    /**
-     * @return Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
-     * 
-     */
     public Optional<Output<String>> endpoint() {
         return Optional.ofNullable(this.endpoint);
     }
@@ -208,23 +200,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return apikey(Output.of(apikey));
         }
 
-        /**
-         * @param endpoint Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder endpoint(@Nullable Output<String> endpoint) {
             $.endpoint = endpoint;
             return this;
         }
 
-        /**
-         * @param endpoint Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder endpoint(String endpoint) {
             return endpoint(Output.of(endpoint));
         }

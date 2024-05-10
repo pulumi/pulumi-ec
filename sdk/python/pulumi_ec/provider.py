@@ -26,7 +26,6 @@ class ProviderArgs:
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
-        :param pulumi.Input[str] endpoint: Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         :param pulumi.Input[bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
         :param pulumi.Input[str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
                Private.
@@ -71,9 +70,6 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
-        """
-        Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -191,7 +187,6 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
-        :param pulumi.Input[str] endpoint: Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         :param pulumi.Input[bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
         :param pulumi.Input[str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
                Private.
@@ -275,9 +270,6 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[Optional[str]]:
-        """
-        Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-        """
         return pulumi.get(self, "endpoint")
 
     @property

@@ -24,9 +24,6 @@ namespace Pulumi.ElasticCloud
         [Output("apikey")]
         public Output<string?> Apikey { get; private set; } = null!;
 
-        /// <summary>
-        /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-        /// </summary>
         [Output("endpoint")]
         public Output<string?> Endpoint { get; private set; } = null!;
 
@@ -105,9 +102,6 @@ namespace Pulumi.ElasticCloud
             }
         }
 
-        /// <summary>
-        /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
-        /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 

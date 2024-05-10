@@ -17,7 +17,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,26 +45,27 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
- *             .id(&#34;320b7b540dfc967a7a649c18e2fce4ed&#34;)
+ *             .id("320b7b540dfc967a7a649c18e2fce4ed")
  *             .build());
  * 
- *         var exampleDeploymentTrafficFilter = new DeploymentTrafficFilter(&#34;exampleDeploymentTrafficFilter&#34;, DeploymentTrafficFilterArgs.builder()        
- *             .name(&#34;my traffic filter name&#34;)
- *             .region(&#34;us-east-1&#34;)
- *             .type(&#34;ip&#34;)
+ *         var exampleDeploymentTrafficFilter = new DeploymentTrafficFilter("exampleDeploymentTrafficFilter", DeploymentTrafficFilterArgs.builder()        
+ *             .name("my traffic filter name")
+ *             .region("us-east-1")
+ *             .type("ip")
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
- *                 .source(&#34;0.0.0.0/0&#34;)
+ *                 .source("0.0.0.0/0")
  *                 .build())
  *             .build());
  * 
- *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation(&#34;exampleDeploymentTrafficFilterAssociation&#34;, DeploymentTrafficFilterAssociationArgs.builder()        
+ *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", DeploymentTrafficFilterAssociationArgs.builder()        
  *             .trafficFilterId(exampleDeploymentTrafficFilter.id())
  *             .deploymentId(exampleEcDeployment.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

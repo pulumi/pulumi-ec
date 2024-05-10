@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ### IP based traffic filter
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,25 +55,25 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
- *             .versionRegex(&#34;latest&#34;)
- *             .region(&#34;us-east-1&#34;)
+ *             .versionRegex("latest")
+ *             .region("us-east-1")
  *             .build());
  * 
- *         var example = new DeploymentTrafficFilter(&#34;example&#34;, DeploymentTrafficFilterArgs.builder()        
- *             .name(&#34;my traffic filter name&#34;)
- *             .region(&#34;us-east-1&#34;)
- *             .type(&#34;ip&#34;)
+ *         var example = new DeploymentTrafficFilter("example", DeploymentTrafficFilterArgs.builder()        
+ *             .name("my traffic filter name")
+ *             .region("us-east-1")
+ *             .type("ip")
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
- *                 .source(&#34;0.0.0.0/0&#34;)
+ *                 .source("0.0.0.0/0")
  *                 .build())
  *             .build());
  * 
  *         // Create an Elastic Cloud deployment
- *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
- *             .name(&#34;my_example_deployment&#34;)
- *             .region(&#34;us-east-1&#34;)
- *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
- *             .deploymentTemplateId(&#34;aws-io-optimized-v2&#34;)
+ *         var exampleMinimal = new Deployment("exampleMinimal", DeploymentArgs.builder()        
+ *             .name("my_example_deployment")
+ *             .region("us-east-1")
+ *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .deploymentTemplateId("aws-io-optimized-v2")
  *             .trafficFilters(example.id())
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
@@ -84,13 +85,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Azure Private Link traffic filter
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -123,26 +126,26 @@ import javax.annotation.Nullable;
  *         final var region = azure_australiaeast;
  * 
  *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
- *             .versionRegex(&#34;latest&#34;)
+ *             .versionRegex("latest")
  *             .region(region)
  *             .build());
  * 
- *         var azure = new DeploymentTrafficFilter(&#34;azure&#34;, DeploymentTrafficFilterArgs.builder()        
- *             .name(&#34;my traffic filter name&#34;)
+ *         var azure = new DeploymentTrafficFilter("azure", DeploymentTrafficFilterArgs.builder()        
+ *             .name("my traffic filter name")
  *             .region(region)
- *             .type(&#34;azure_private_endpoint&#34;)
+ *             .type("azure_private_endpoint")
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
- *                 .azureEndpointName(&#34;my-azure-pl&#34;)
- *                 .azureEndpointGuid(&#34;78c64959-fd88-41cc-81ac-1cfcdb1ac32e&#34;)
+ *                 .azureEndpointName("my-azure-pl")
+ *                 .azureEndpointGuid("78c64959-fd88-41cc-81ac-1cfcdb1ac32e")
  *                 .build())
  *             .build());
  * 
  *         // Create an Elastic Cloud deployment
- *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
- *             .name(&#34;my_example_deployment&#34;)
+ *         var exampleMinimal = new Deployment("exampleMinimal", DeploymentArgs.builder()        
+ *             .name("my_example_deployment")
  *             .region(region)
- *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
- *             .deploymentTemplateId(&#34;azure-io-optimized-v3&#34;)
+ *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .deploymentTemplateId("azure-io-optimized-v3")
  *             .trafficFilters(azure.id())
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
@@ -154,13 +157,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ###GCP Private Service Connect traffic filter
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -193,25 +198,25 @@ import javax.annotation.Nullable;
  *         final var region = asia_east1;
  * 
  *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
- *             .versionRegex(&#34;latest&#34;)
+ *             .versionRegex("latest")
  *             .region(region)
  *             .build());
  * 
- *         var gcpPsc = new DeploymentTrafficFilter(&#34;gcpPsc&#34;, DeploymentTrafficFilterArgs.builder()        
- *             .name(&#34;my traffic filter name&#34;)
+ *         var gcpPsc = new DeploymentTrafficFilter("gcpPsc", DeploymentTrafficFilterArgs.builder()        
+ *             .name("my traffic filter name")
  *             .region(region)
- *             .type(&#34;gcp_private_service_connect_endpoint&#34;)
+ *             .type("gcp_private_service_connect_endpoint")
  *             .rules(DeploymentTrafficFilterRuleArgs.builder()
- *                 .source(&#34;18446744072646845332&#34;)
+ *                 .source("18446744072646845332")
  *                 .build())
  *             .build());
  * 
  *         // Create an Elastic Cloud deployment
- *         var exampleMinimal = new Deployment(&#34;exampleMinimal&#34;, DeploymentArgs.builder()        
- *             .name(&#34;my_example_deployment&#34;)
+ *         var exampleMinimal = new Deployment("exampleMinimal", DeploymentArgs.builder()        
+ *             .name("my_example_deployment")
  *             .region(region)
- *             .version(latest.applyValue(getStackResult -&gt; getStackResult.version()))
- *             .deploymentTemplateId(&#34;gcp-storage-optimized&#34;)
+ *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .deploymentTemplateId("gcp-storage-optimized")
  *             .trafficFilters(gcpPsc.id())
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
@@ -223,7 +228,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
