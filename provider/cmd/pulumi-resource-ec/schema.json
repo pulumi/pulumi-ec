@@ -3666,8 +3666,7 @@
                 "secret": true
             },
             "endpoint": {
-                "type": "string",
-                "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\".\n"
+                "type": "string"
             },
             "insecure": {
                 "type": "boolean",
@@ -3706,8 +3705,7 @@
                 "secret": true
             },
             "endpoint": {
-                "type": "string",
-                "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\".\n"
+                "type": "string"
             },
             "insecure": {
                 "type": "boolean",
@@ -3766,7 +3764,6 @@
                 },
                 "elasticsearchPassword": {
                     "type": "string",
-                    "description": "Password for authenticating to the Elasticsearch resource. ~\u003e **Note on deployment credentials** The\n\u003ccode\u003eelastic\u003c/code\u003e user credentials are only available whilst creating a deployment. Importing a deployment will not\nimport the \u003ccode\u003eelasticsearch_username\u003c/code\u003e or \u003ccode\u003eelasticsearch_password\u003c/code\u003e attributes. ~\u003e **Note on\ndeployment credentials in state** The \u003ccode\u003eelastic\u003c/code\u003e user credentials are stored in the state file as plain text.\nPlease follow the official Terraform recommendations regarding senstaive data in state.\n",
                     "secret": true
                 },
                 "elasticsearchUsername": {
@@ -3783,11 +3780,11 @@
                 },
                 "kibana": {
                     "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
-                    "description": "Kibana cluster definition. -\u003e **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana\nblock, since not doing so might cause issues when modifying or upgrading the deployment.\n"
+                    "description": "Kibana cluster definition. \u003e **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana\nblock, since not doing so might cause issues when modifying or upgrading the deployment.\n"
                 },
                 "migrateToLatestHardware": {
                     "type": "boolean",
-                    "description": "When set to true, the deployment will be updated according to the latest deployment template values. ~\u003e **Note** If the\n\u003ccode\u003einstance_configuration_id\u003c/code\u003e or \u003ccode\u003einstance_configuration_version\u003c/code\u003e fields are set for a specific\ntopology element, that element will not be updated. ~\u003e **Note** Hardware migrations are not supported for deployments\nwith node types. To use this field, the deployment needs to be migrated to node roles first.\n"
+                    "description": "When set to true, the deployment will be updated according to the latest deployment template values. \u003e **Note** If the\n\u003ccode\u003einstance_configuration_id\u003c/code\u003e or \u003ccode\u003einstance_configuration_version\u003c/code\u003e fields are set for a specific\ntopology element, that element will not be updated. \u003e **Note** Hardware migrations are not supported for deployments\nwith node types. To use this field, the deployment needs to be migrated to node roles first.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3868,11 +3865,11 @@
                 },
                 "kibana": {
                     "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
-                    "description": "Kibana cluster definition. -\u003e **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana\nblock, since not doing so might cause issues when modifying or upgrading the deployment.\n"
+                    "description": "Kibana cluster definition. \u003e **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana\nblock, since not doing so might cause issues when modifying or upgrading the deployment.\n"
                 },
                 "migrateToLatestHardware": {
                     "type": "boolean",
-                    "description": "When set to true, the deployment will be updated according to the latest deployment template values. ~\u003e **Note** If the\n\u003ccode\u003einstance_configuration_id\u003c/code\u003e or \u003ccode\u003einstance_configuration_version\u003c/code\u003e fields are set for a specific\ntopology element, that element will not be updated. ~\u003e **Note** Hardware migrations are not supported for deployments\nwith node types. To use this field, the deployment needs to be migrated to node roles first.\n"
+                    "description": "When set to true, the deployment will be updated according to the latest deployment template values. \u003e **Note** If the\n\u003ccode\u003einstance_configuration_id\u003c/code\u003e or \u003ccode\u003einstance_configuration_version\u003c/code\u003e fields are set for a specific\ntopology element, that element will not be updated. \u003e **Note** Hardware migrations are not supported for deployments\nwith node types. To use this field, the deployment needs to be migrated to node roles first.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3944,7 +3941,6 @@
                     },
                     "elasticsearchPassword": {
                         "type": "string",
-                        "description": "Password for authenticating to the Elasticsearch resource. ~\u003e **Note on deployment credentials** The\n\u003ccode\u003eelastic\u003c/code\u003e user credentials are only available whilst creating a deployment. Importing a deployment will not\nimport the \u003ccode\u003eelasticsearch_username\u003c/code\u003e or \u003ccode\u003eelasticsearch_password\u003c/code\u003e attributes. ~\u003e **Note on\ndeployment credentials in state** The \u003ccode\u003eelastic\u003c/code\u003e user credentials are stored in the state file as plain text.\nPlease follow the official Terraform recommendations regarding senstaive data in state.\n",
                         "secret": true
                     },
                     "elasticsearchUsername": {
@@ -3961,11 +3957,11 @@
                     },
                     "kibana": {
                         "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
-                        "description": "Kibana cluster definition. -\u003e **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana\nblock, since not doing so might cause issues when modifying or upgrading the deployment.\n"
+                        "description": "Kibana cluster definition. \u003e **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana\nblock, since not doing so might cause issues when modifying or upgrading the deployment.\n"
                     },
                     "migrateToLatestHardware": {
                         "type": "boolean",
-                        "description": "When set to true, the deployment will be updated according to the latest deployment template values. ~\u003e **Note** If the\n\u003ccode\u003einstance_configuration_id\u003c/code\u003e or \u003ccode\u003einstance_configuration_version\u003c/code\u003e fields are set for a specific\ntopology element, that element will not be updated. ~\u003e **Note** Hardware migrations are not supported for deployments\nwith node types. To use this field, the deployment needs to be migrated to node roles first.\n"
+                        "description": "When set to true, the deployment will be updated according to the latest deployment template values. \u003e **Note** If the\n\u003ccode\u003einstance_configuration_id\u003c/code\u003e or \u003ccode\u003einstance_configuration_version\u003c/code\u003e fields are set for a specific\ntopology element, that element will not be updated. \u003e **Note** Hardware migrations are not supported for deployments\nwith node types. To use this field, the deployment needs to be migrated to node roles first.\n"
                     },
                     "name": {
                         "type": "string",
