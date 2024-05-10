@@ -41,7 +41,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -63,12 +64,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -81,7 +83,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -103,12 +106,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -121,7 +125,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -143,12 +148,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -161,7 +167,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -183,12 +190,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -201,7 +209,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -223,12 +232,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *             .region("eastus")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -241,7 +251,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -263,12 +274,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *             .region("eastus")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -281,7 +293,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -303,12 +316,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *             .region("eastus")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -321,7 +335,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -343,12 +358,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
-     *             .region(&#34;eastus&#34;)
+     *             .region("eastus")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -361,7 +377,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -383,12 +400,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
-     *             .id(&#34;f759065e5e64e9f3546f6c44f2743893&#34;)
+     *             .id("f759065e5e64e9f3546f6c44f2743893")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -401,7 +419,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -423,12 +442,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
-     *             .id(&#34;f759065e5e64e9f3546f6c44f2743893&#34;)
+     *             .id("f759065e5e64e9f3546f6c44f2743893")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -441,7 +461,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -463,12 +484,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
-     *             .id(&#34;f759065e5e64e9f3546f6c44f2743893&#34;)
+     *             .id("f759065e5e64e9f3546f6c44f2743893")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -481,7 +503,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -503,12 +526,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
-     *             .id(&#34;f759065e5e64e9f3546f6c44f2743893&#34;)
+     *             .id("f759065e5e64e9f3546f6c44f2743893")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -521,7 +545,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -549,12 +574,12 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
-     *             .name(&#34;My Deployment&#34;)
-     *             .version(&#34;8.12.2&#34;)
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *             .name("My Deployment")
+     *             .version("8.12.2")
      *             .region(allTemplates.region())
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
@@ -567,7 +592,8 @@ public final class EcFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -580,7 +606,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -608,12 +635,12 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
-     *             .name(&#34;My Deployment&#34;)
-     *             .version(&#34;8.12.2&#34;)
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *             .name("My Deployment")
+     *             .version("8.12.2")
      *             .region(allTemplates.region())
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
@@ -626,7 +653,8 @@ public final class EcFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -639,7 +667,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -667,12 +696,12 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
-     *             .name(&#34;My Deployment&#34;)
-     *             .version(&#34;8.12.2&#34;)
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *             .name("My Deployment")
+     *             .version("8.12.2")
      *             .region(allTemplates.region())
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
@@ -685,7 +714,8 @@ public final class EcFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -698,7 +728,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -726,12 +757,12 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment(&#34;myDeployment&#34;, DeploymentArgs.builder()        
-     *             .name(&#34;My Deployment&#34;)
-     *             .version(&#34;8.12.2&#34;)
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *             .name("My Deployment")
+     *             .version("8.12.2")
      *             .region(allTemplates.region())
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
@@ -744,7 +775,8 @@ public final class EcFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -757,7 +789,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -779,27 +812,28 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
-     *             .namePrefix(&#34;test&#34;)
-     *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
      *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .tags(Map.of("foo", "bar"))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
-     *                 .status(&#34;started&#34;)
+     *                 .status("started")
      *                 .build())
      *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
+     *                 .version("8.0.0")
      *                 .build())
      *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -812,7 +846,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -834,27 +869,28 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
-     *             .namePrefix(&#34;test&#34;)
-     *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
      *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .tags(Map.of("foo", "bar"))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
-     *                 .status(&#34;started&#34;)
+     *                 .status("started")
      *                 .build())
      *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
+     *                 .version("8.0.0")
      *                 .build())
      *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -867,7 +903,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -889,27 +926,28 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
-     *             .namePrefix(&#34;test&#34;)
-     *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
      *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .tags(Map.of("foo", "bar"))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
-     *                 .status(&#34;started&#34;)
+     *                 .status("started")
      *                 .build())
      *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
+     *                 .version("8.0.0")
      *                 .build())
      *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -922,7 +960,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -944,27 +983,28 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
-     *             .namePrefix(&#34;test&#34;)
-     *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
      *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .tags(Map.of("foo", "bar"))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
-     *                 .status(&#34;started&#34;)
+     *                 .status("started")
      *                 .build())
      *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
+     *                 .version("8.0.0")
      *                 .build())
      *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -977,7 +1017,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -999,27 +1040,28 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
-     *             .namePrefix(&#34;test&#34;)
-     *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
      *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .tags(Map.of("foo", "bar"))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
-     *                 .status(&#34;started&#34;)
+     *                 .status("started")
      *                 .build())
      *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
+     *                 .version("8.0.0")
      *                 .build())
      *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1032,7 +1074,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1054,27 +1097,28 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
-     *             .namePrefix(&#34;test&#34;)
-     *             .deploymentTemplateId(&#34;azure-compute-optimized&#34;)
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
      *             .size(200)
-     *             .tags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .tags(Map.of("foo", "bar"))
      *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .kibanas(GetDeploymentsKibanaArgs.builder()
-     *                 .status(&#34;started&#34;)
+     *                 .status("started")
      *                 .build())
      *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
-     *                 .version(&#34;8.0.0&#34;)
+     *                 .version("8.0.0")
      *                 .build())
      *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
-     *                 .healthy(&#34;true&#34;)
+     *                 .healthy("true")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1087,7 +1131,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1109,12 +1154,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-central1 = EcFunctions.getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs.builder()
-     *             .region(&#34;us-central1&#34;)
+     *             .region("us-central1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1127,7 +1173,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1149,12 +1196,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-central1 = EcFunctions.getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs.builder()
-     *             .region(&#34;us-central1&#34;)
+     *             .region("us-central1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1167,7 +1215,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1189,12 +1238,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-central1 = EcFunctions.getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs.builder()
-     *             .region(&#34;us-central1&#34;)
+     *             .region("us-central1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1207,7 +1257,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1229,12 +1280,13 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var us-central1 = EcFunctions.getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs.builder()
-     *             .region(&#34;us-central1&#34;)
+     *             .region("us-central1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1249,7 +1301,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1271,19 +1324,20 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;latest&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("latest")
+     *             .region("us-east-1")
      *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;7.9.?&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("7.9.?")
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1298,7 +1352,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1320,19 +1375,20 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;latest&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("latest")
+     *             .region("us-east-1")
      *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;7.9.?&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("7.9.?")
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1347,7 +1403,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1369,19 +1426,20 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;latest&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("latest")
+     *             .region("us-east-1")
      *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;7.9.?&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("7.9.?")
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1396,7 +1454,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1418,19 +1477,20 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;latest&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("latest")
+     *             .region("us-east-1")
      *             .lock(true)
      *             .build());
      * 
      *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
-     *             .versionRegex(&#34;7.9.?&#34;)
-     *             .region(&#34;us-east-1&#34;)
+     *             .versionRegex("7.9.?")
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1443,7 +1503,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1465,20 +1526,21 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .name(&#34;example-filter&#34;)
+     *             .name("example-filter")
      *             .build());
      * 
      *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .id("41d275439f884ce89359039e53eac516")
      *             .build());
      * 
      *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1491,7 +1553,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1513,20 +1576,21 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .name(&#34;example-filter&#34;)
+     *             .name("example-filter")
      *             .build());
      * 
      *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .id("41d275439f884ce89359039e53eac516")
      *             .build());
      * 
      *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1539,7 +1603,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1561,20 +1626,21 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .name(&#34;example-filter&#34;)
+     *             .name("example-filter")
      *             .build());
      * 
      *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .id("41d275439f884ce89359039e53eac516")
      *             .build());
      * 
      *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1587,7 +1653,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1609,20 +1676,21 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .name(&#34;example-filter&#34;)
+     *             .name("example-filter")
      *             .build());
      * 
      *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .id("41d275439f884ce89359039e53eac516")
      *             .build());
      * 
      *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1635,7 +1703,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1657,20 +1726,21 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .name(&#34;example-filter&#34;)
+     *             .name("example-filter")
      *             .build());
      * 
      *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .id("41d275439f884ce89359039e53eac516")
      *             .build());
      * 
      *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1683,7 +1753,8 @@ public final class EcFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1705,20 +1776,21 @@ public final class EcFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .name(&#34;example-filter&#34;)
+     *             .name("example-filter")
      *             .build());
      * 
      *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .id(&#34;41d275439f884ce89359039e53eac516&#34;)
+     *             .id("41d275439f884ce89359039e53eac516")
      *             .build());
      * 
      *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
-     *             .region(&#34;us-east-1&#34;)
+     *             .region("us-east-1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

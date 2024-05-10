@@ -125,25 +125,9 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     public Output<DeploymentElasticsearch> elasticsearch() {
         return this.elasticsearch;
     }
-    /**
-     * Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-     * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-     * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-     * Please follow the official Terraform recommendations regarding senstaive data in state.
-     * 
-     */
     @Export(name="elasticsearchPassword", refs={String.class}, tree="[0]")
     private Output<String> elasticsearchPassword;
 
-    /**
-     * @return Password for authenticating to the Elasticsearch resource. ~&gt; **Note on deployment credentials** The
-     * &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not
-     * import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes. ~&gt; **Note on
-     * deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text.
-     * Please follow the official Terraform recommendations regarding senstaive data in state.
-     * 
-     */
     public Output<String> elasticsearchPassword() {
         return this.elasticsearchPassword;
     }
@@ -190,7 +174,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.integrationsServer);
     }
     /**
-     * Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
@@ -198,7 +182,7 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ DeploymentKibana> kibana;
 
     /**
-     * @return Kibana cluster definition. -&gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
+     * @return Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
      * block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
@@ -206,9 +190,9 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.kibana);
     }
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
      * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      * 
      */
@@ -216,9 +200,9 @@ public class Deployment extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> migrateToLatestHardware;
 
     /**
-     * @return When set to true, the deployment will be updated according to the latest deployment template values. ~&gt; **Note** If the
+     * @return When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
      * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-     * topology element, that element will not be updated. ~&gt; **Note** Hardware migrations are not supported for deployments
+     * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
      * with node types. To use this field, the deployment needs to be migrated to node roles first.
      * 
      */

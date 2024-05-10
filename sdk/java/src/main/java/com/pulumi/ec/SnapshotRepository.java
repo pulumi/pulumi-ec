@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ### S3 style
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,24 +49,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
- *             .name(&#34;my-snapshot-repository&#34;)
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()        
+ *             .name("my-snapshot-repository")
  *             .s3(SnapshotRepositoryS3Args.builder()
- *                 .bucket(&#34;my-bucket&#34;)
- *                 .access_key(&#34;my-access-key&#34;)
- *                 .secret_key(&#34;my-secret-key&#34;)
+ *                 .bucket("my-bucket")
+ *                 .access_key("my-access-key")
+ *                 .secret_key("my-secret-key")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Azure
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -88,28 +91,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
- *             .name(&#34;my-snapshot-repository&#34;)
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()        
+ *             .name("my-snapshot-repository")
  *             .generic(SnapshotRepositoryGenericArgs.builder()
- *                 .type(&#34;azure&#34;)
+ *                 .type("azure")
  *                 .settings(serializeJson(
  *                     jsonObject(
- *                         jsonProperty(&#34;container&#34;, &#34;my_container&#34;),
- *                         jsonProperty(&#34;client&#34;, &#34;my_alternate_client&#34;),
- *                         jsonProperty(&#34;compress&#34;, false)
+ *                         jsonProperty("container", "my_container"),
+ *                         jsonProperty("client", "my_alternate_client"),
+ *                         jsonProperty("compress", false)
  *                     )))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### GCS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -132,22 +137,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new SnapshotRepository(&#34;this&#34;, SnapshotRepositoryArgs.builder()        
- *             .name(&#34;my-snapshot-repository&#34;)
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()        
+ *             .name("my-snapshot-repository")
  *             .generic(SnapshotRepositoryGenericArgs.builder()
- *                 .type(&#34;gcs&#34;)
+ *                 .type("gcs")
  *                 .settings(serializeJson(
  *                     jsonObject(
- *                         jsonProperty(&#34;bucket&#34;, &#34;my_bucket&#34;),
- *                         jsonProperty(&#34;client&#34;, &#34;my_alternate_client&#34;),
- *                         jsonProperty(&#34;compress&#34;, false)
+ *                         jsonProperty("bucket", "my_bucket"),
+ *                         jsonProperty("client", "my_alternate_client"),
+ *                         jsonProperty("compress", false)
  *                     )))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
