@@ -577,7 +577,7 @@ public final class EcFunctions {
      *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()
      *             .name("My Deployment")
      *             .version("8.12.2")
      *             .region(allTemplates.region())
@@ -638,7 +638,7 @@ public final class EcFunctions {
      *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()
      *             .name("My Deployment")
      *             .version("8.12.2")
      *             .region(allTemplates.region())
@@ -699,7 +699,7 @@ public final class EcFunctions {
      *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()
      *             .name("My Deployment")
      *             .version("8.12.2")
      *             .region(allTemplates.region())
@@ -760,7 +760,7 @@ public final class EcFunctions {
      *             .region("us-east-1")
      *             .build());
      * 
-     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()        
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()
      *             .name("My Deployment")
      *             .version("8.12.2")
      *             .region(allTemplates.region())

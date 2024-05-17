@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         final var filePath = "/path/to/plugin.zip";
  * 
- *         var exampleExtension = new DeploymentExtension("exampleExtension", DeploymentExtensionArgs.builder()        
+ *         var exampleExtension = new DeploymentExtension("exampleExtension", DeploymentExtensionArgs.builder()
  *             .name("my_extension")
  *             .description("my extension")
  *             .version("*")
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .region("us-east-1")
  *             .build());
  * 
- *         var withExtension = new Deployment("withExtension", DeploymentArgs.builder()        
+ *         var withExtension = new Deployment("withExtension", DeploymentArgs.builder()
  *             .name("my_example_deployment")
  *             .region("us-east-1")
  *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
@@ -125,7 +125,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleExtension = new DeploymentExtension("exampleExtension", DeploymentExtensionArgs.builder()        
+ *         var exampleExtension = new DeploymentExtension("exampleExtension", DeploymentExtensionArgs.builder()
  *             .name("my_extension")
  *             .description("my extension")
  *             .version("*")
@@ -138,7 +138,7 @@ import javax.annotation.Nullable;
  *             .region("us-east-1")
  *             .build());
  * 
- *         var withExtension = new Deployment("withExtension", DeploymentArgs.builder()        
+ *         var withExtension = new Deployment("withExtension", DeploymentArgs.builder()
  *             .name("my_example_deployment")
  *             .region("us-east-1")
  *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
