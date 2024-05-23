@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create an Elastic Cloud deployment
- *         var exampleKeystore = new Deployment("exampleKeystore", DeploymentArgs.builder()        
+ *         var exampleKeystore = new Deployment("exampleKeystore", DeploymentArgs.builder()
  *             .region("us-east-1")
  *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
  *             .deploymentTemplateId("aws-io-optimized-v2")
@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the keystore secret entry
- *         var gcsCredential = new DeploymentElasticsearchKeystore("gcsCredential", DeploymentElasticsearchKeystoreArgs.builder()        
+ *         var gcsCredential = new DeploymentElasticsearchKeystore("gcsCredential", DeploymentElasticsearchKeystoreArgs.builder()
  *             .deploymentId(exampleKeystore.id())
  *             .settingName("gcs.client.default.credentials_file")
  *             .value(StdFunctions.file(FileArgs.builder()
@@ -121,7 +121,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create an Elastic Cloud deployment
- *         var exampleKeystore = new Deployment("exampleKeystore", DeploymentArgs.builder()        
+ *         var exampleKeystore = new Deployment("exampleKeystore", DeploymentArgs.builder()
  *             .region("us-east-1")
  *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
  *             .deploymentTemplateId("aws-io-optimized-v2")
@@ -133,7 +133,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the keystore secret entry
- *         var gcsCredential = new DeploymentElasticsearchKeystore("gcsCredential", DeploymentElasticsearchKeystoreArgs.builder()        
+ *         var gcsCredential = new DeploymentElasticsearchKeystore("gcsCredential", DeploymentElasticsearchKeystoreArgs.builder()
  *             .deploymentId(exampleKeystore.id())
  *             .settingName("gcs.client.default.credentials_file")
  *             .value(StdFunctions.file(FileArgs.builder()

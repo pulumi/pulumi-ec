@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .id("320b7b540dfc967a7a649c18e2fce4ed")
  *             .build());
  * 
- *         var exampleDeploymentTrafficFilter = new DeploymentTrafficFilter("exampleDeploymentTrafficFilter", DeploymentTrafficFilterArgs.builder()        
+ *         var exampleDeploymentTrafficFilter = new DeploymentTrafficFilter("exampleDeploymentTrafficFilter", DeploymentTrafficFilterArgs.builder()
  *             .name("my traffic filter name")
  *             .region("us-east-1")
  *             .type("ip")
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", DeploymentTrafficFilterAssociationArgs.builder()        
+ *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", DeploymentTrafficFilterAssociationArgs.builder()
  *             .trafficFilterId(exampleDeploymentTrafficFilter.id())
  *             .deploymentId(exampleEcDeployment.id())
  *             .build());
