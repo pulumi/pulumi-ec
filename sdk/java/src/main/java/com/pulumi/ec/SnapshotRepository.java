@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()        
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()
  *             .name("my-snapshot-repository")
  *             .s3(SnapshotRepositoryS3Args.builder()
  *                 .bucket("my-bucket")
@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()        
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()
  *             .name("my-snapshot-repository")
  *             .generic(SnapshotRepositoryGenericArgs.builder()
  *                 .type("azure")
@@ -137,7 +137,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()        
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()
  *             .name("my-snapshot-repository")
  *             .generic(SnapshotRepositoryGenericArgs.builder()
  *                 .type("gcs")
