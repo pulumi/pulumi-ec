@@ -60,7 +60,7 @@ import (
 //			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcs_credential", &ec.DeploymentElasticsearchKeystoreArgs{
 //				DeploymentId: exampleKeystore.ID(),
 //				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
-//				Value:        invokeFile.Result,
+//				Value:        pulumi.String(invokeFile.Result),
 //				AsFile:       pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -118,7 +118,7 @@ import (
 //			_, err = ec.NewDeploymentElasticsearchKeystore(ctx, "gcs_credential", &ec.DeploymentElasticsearchKeystoreArgs{
 //				DeploymentId: exampleKeystore.ID(),
 //				SettingName:  pulumi.String("gcs.client.default.credentials_file"),
-//				Value:        invokeFile.Result,
+//				Value:        pulumi.String(invokeFile.Result),
 //				AsFile:       pulumi.Bool(true),
 //			})
 //			if err != nil {
