@@ -109,9 +109,9 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
             name="my traffic filter name",
             region="us-east-1",
             type="ip",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                source="0.0.0.0/0",
-            )])
+            rules=[{
+                "source": "0.0.0.0/0",
+            }])
         example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("example",
             traffic_filter_id=example_deployment_traffic_filter.id,
             deployment_id=example_ec_deployment["id"])
@@ -144,9 +144,9 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
             name="my traffic filter name",
             region="us-east-1",
             type="ip",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                source="0.0.0.0/0",
-            )])
+            rules=[{
+                "source": "0.0.0.0/0",
+            }])
         example_deployment_traffic_filter_association = ec.DeploymentTrafficFilterAssociation("example",
             traffic_filter_id=example_deployment_traffic_filter.id,
             deployment_id=example_ec_deployment["id"])

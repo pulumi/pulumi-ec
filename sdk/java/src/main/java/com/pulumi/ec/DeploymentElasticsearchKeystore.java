@@ -216,7 +216,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DeploymentElasticsearchKeystore(String name) {
+    public DeploymentElasticsearchKeystore(java.lang.String name) {
         this(name, DeploymentElasticsearchKeystoreArgs.Empty);
     }
     /**
@@ -224,7 +224,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DeploymentElasticsearchKeystore(String name, DeploymentElasticsearchKeystoreArgs args) {
+    public DeploymentElasticsearchKeystore(java.lang.String name, DeploymentElasticsearchKeystoreArgs args) {
         this(name, args, null);
     }
     /**
@@ -233,15 +233,22 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DeploymentElasticsearchKeystore(String name, DeploymentElasticsearchKeystoreArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", name, args == null ? DeploymentElasticsearchKeystoreArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public DeploymentElasticsearchKeystore(java.lang.String name, DeploymentElasticsearchKeystoreArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DeploymentElasticsearchKeystore(String name, Output<String> id, @Nullable DeploymentElasticsearchKeystoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", name, state, makeResourceOptions(options, id));
+    private DeploymentElasticsearchKeystore(java.lang.String name, Output<java.lang.String> id, @Nullable DeploymentElasticsearchKeystoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static DeploymentElasticsearchKeystoreArgs makeArgs(DeploymentElasticsearchKeystoreArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DeploymentElasticsearchKeystoreArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -260,7 +267,7 @@ public class DeploymentElasticsearchKeystore extends com.pulumi.resources.Custom
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DeploymentElasticsearchKeystore get(String name, Output<String> id, @Nullable DeploymentElasticsearchKeystoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DeploymentElasticsearchKeystore get(java.lang.String name, Output<java.lang.String> id, @Nullable DeploymentElasticsearchKeystoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DeploymentElasticsearchKeystore(name, id, state, options);
     }
 }
