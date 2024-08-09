@@ -113,12 +113,12 @@ def get_deployment_templates(id: Optional[str] = None,
         version="8.12.2",
         region=all_templates["region"],
         deployment_template_id=all_templates["templates"][0]["id"],
-        elasticsearch=ec.DeploymentElasticsearchArgs(
-            hot=ec.DeploymentElasticsearchHotArgs(
-                autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-            ),
-        ),
-        kibana=ec.DeploymentKibanaArgs())
+        elasticsearch={
+            "hot": {
+                "autoscaling": {},
+            },
+        },
+        kibana={})
     ```
 
 
@@ -164,12 +164,12 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
         version="8.12.2",
         region=all_templates["region"],
         deployment_template_id=all_templates["templates"][0]["id"],
-        elasticsearch=ec.DeploymentElasticsearchArgs(
-            hot=ec.DeploymentElasticsearchHotArgs(
-                autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-            ),
-        ),
-        kibana=ec.DeploymentKibanaArgs())
+        elasticsearch={
+            "hot": {
+                "autoscaling": {},
+            },
+        },
+        kibana={})
     ```
 
 

@@ -332,7 +332,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DeploymentTrafficFilter(String name) {
+    public DeploymentTrafficFilter(java.lang.String name) {
         this(name, DeploymentTrafficFilterArgs.Empty);
     }
     /**
@@ -340,7 +340,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DeploymentTrafficFilter(String name, DeploymentTrafficFilterArgs args) {
+    public DeploymentTrafficFilter(java.lang.String name, DeploymentTrafficFilterArgs args) {
         this(name, args, null);
     }
     /**
@@ -349,15 +349,22 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DeploymentTrafficFilter(String name, DeploymentTrafficFilterArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter", name, args == null ? DeploymentTrafficFilterArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public DeploymentTrafficFilter(java.lang.String name, DeploymentTrafficFilterArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DeploymentTrafficFilter(String name, Output<String> id, @Nullable DeploymentTrafficFilterState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter", name, state, makeResourceOptions(options, id));
+    private DeploymentTrafficFilter(java.lang.String name, Output<java.lang.String> id, @Nullable DeploymentTrafficFilterState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static DeploymentTrafficFilterArgs makeArgs(DeploymentTrafficFilterArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DeploymentTrafficFilterArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -373,7 +380,7 @@ public class DeploymentTrafficFilter extends com.pulumi.resources.CustomResource
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DeploymentTrafficFilter get(String name, Output<String> id, @Nullable DeploymentTrafficFilterState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DeploymentTrafficFilter get(java.lang.String name, Output<java.lang.String> id, @Nullable DeploymentTrafficFilterState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DeploymentTrafficFilter(name, id, state, options);
     }
 }

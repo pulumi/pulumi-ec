@@ -313,7 +313,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DeploymentExtension(String name) {
+    public DeploymentExtension(java.lang.String name) {
         this(name, DeploymentExtensionArgs.Empty);
     }
     /**
@@ -321,7 +321,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DeploymentExtension(String name, DeploymentExtensionArgs args) {
+    public DeploymentExtension(java.lang.String name, DeploymentExtensionArgs args) {
         this(name, args, null);
     }
     /**
@@ -330,15 +330,22 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DeploymentExtension(String name, DeploymentExtensionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/deploymentExtension:DeploymentExtension", name, args == null ? DeploymentExtensionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public DeploymentExtension(java.lang.String name, DeploymentExtensionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/deploymentExtension:DeploymentExtension", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DeploymentExtension(String name, Output<String> id, @Nullable DeploymentExtensionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/deploymentExtension:DeploymentExtension", name, state, makeResourceOptions(options, id));
+    private DeploymentExtension(java.lang.String name, Output<java.lang.String> id, @Nullable DeploymentExtensionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/deploymentExtension:DeploymentExtension", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static DeploymentExtensionArgs makeArgs(DeploymentExtensionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DeploymentExtensionArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -354,7 +361,7 @@ public class DeploymentExtension extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DeploymentExtension get(String name, Output<String> id, @Nullable DeploymentExtensionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DeploymentExtension get(java.lang.String name, Output<java.lang.String> id, @Nullable DeploymentExtensionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DeploymentExtension(name, id, state, options);
     }
 }

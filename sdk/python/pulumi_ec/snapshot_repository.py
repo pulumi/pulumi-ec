@@ -130,9 +130,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 generic: Optional[pulumi.Input[pulumi.InputType['SnapshotRepositoryGenericArgs']]] = None,
+                 generic: Optional[pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 s3: Optional[pulumi.Input[pulumi.InputType['SnapshotRepositoryS3Args']]] = None,
+                 s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
                  __props__=None):
         """
         Manages Elastic Cloud Enterprise snapshot repositories.
@@ -150,14 +150,14 @@ class SnapshotRepository(pulumi.CustomResource):
 
         this = ec.SnapshotRepository("this",
             name="my-snapshot-repository",
-            generic=ec.SnapshotRepositoryGenericArgs(
-                type="azure",
-                settings=json.dumps({
+            generic={
+                "type": "azure",
+                "settings": json.dumps({
                     "container": "my_container",
                     "client": "my_alternate_client",
                     "compress": False,
                 }),
-            ))
+            })
         ```
 
         ### GCS
@@ -169,14 +169,14 @@ class SnapshotRepository(pulumi.CustomResource):
 
         this = ec.SnapshotRepository("this",
             name="my-snapshot-repository",
-            generic=ec.SnapshotRepositoryGenericArgs(
-                type="gcs",
-                settings=json.dumps({
+            generic={
+                "type": "gcs",
+                "settings": json.dumps({
                     "bucket": "my_bucket",
                     "client": "my_alternate_client",
                     "compress": False,
                 }),
-            ))
+            })
         ```
 
         ## Import
@@ -189,9 +189,9 @@ class SnapshotRepository(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SnapshotRepositoryGenericArgs']] generic: Generic repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']] generic: Generic repository settings.
         :param pulumi.Input[str] name: The name of the snapshot repository configuration.
-        :param pulumi.Input[pulumi.InputType['SnapshotRepositoryS3Args']] s3: S3 repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']] s3: S3 repository settings.
         """
         ...
     @overload
@@ -215,14 +215,14 @@ class SnapshotRepository(pulumi.CustomResource):
 
         this = ec.SnapshotRepository("this",
             name="my-snapshot-repository",
-            generic=ec.SnapshotRepositoryGenericArgs(
-                type="azure",
-                settings=json.dumps({
+            generic={
+                "type": "azure",
+                "settings": json.dumps({
                     "container": "my_container",
                     "client": "my_alternate_client",
                     "compress": False,
                 }),
-            ))
+            })
         ```
 
         ### GCS
@@ -234,14 +234,14 @@ class SnapshotRepository(pulumi.CustomResource):
 
         this = ec.SnapshotRepository("this",
             name="my-snapshot-repository",
-            generic=ec.SnapshotRepositoryGenericArgs(
-                type="gcs",
-                settings=json.dumps({
+            generic={
+                "type": "gcs",
+                "settings": json.dumps({
                     "bucket": "my_bucket",
                     "client": "my_alternate_client",
                     "compress": False,
                 }),
-            ))
+            })
         ```
 
         ## Import
@@ -267,9 +267,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 generic: Optional[pulumi.Input[pulumi.InputType['SnapshotRepositoryGenericArgs']]] = None,
+                 generic: Optional[pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 s3: Optional[pulumi.Input[pulumi.InputType['SnapshotRepositoryS3Args']]] = None,
+                 s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -292,9 +292,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            generic: Optional[pulumi.Input[pulumi.InputType['SnapshotRepositoryGenericArgs']]] = None,
+            generic: Optional[pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            s3: Optional[pulumi.Input[pulumi.InputType['SnapshotRepositoryS3Args']]] = None) -> 'SnapshotRepository':
+            s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None) -> 'SnapshotRepository':
         """
         Get an existing SnapshotRepository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -302,9 +302,9 @@ class SnapshotRepository(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SnapshotRepositoryGenericArgs']] generic: Generic repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']] generic: Generic repository settings.
         :param pulumi.Input[str] name: The name of the snapshot repository configuration.
-        :param pulumi.Input[pulumi.InputType['SnapshotRepositoryS3Args']] s3: S3 repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']] s3: S3 repository settings.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
