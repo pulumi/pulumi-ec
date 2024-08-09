@@ -179,11 +179,11 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ))
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            })
         # Create the keystore secret entry
         gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
@@ -206,11 +206,11 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ))
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            })
         # Create the keystore secret entry
         gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
@@ -253,11 +253,11 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ))
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            })
         # Create the keystore secret entry
         gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,
@@ -280,11 +280,11 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
             region="us-east-1",
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ))
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            })
         # Create the keystore secret entry
         gcs_credential = ec.DeploymentElasticsearchKeystore("gcs_credential",
             deployment_id=example_keystore.id,

@@ -228,7 +228,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  include_by_default: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -246,9 +246,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             name="my traffic filter name",
             region="us-east-1",
             type="ip",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                source="0.0.0.0/0",
-            )])
+            rules=[{
+                "source": "0.0.0.0/0",
+            }])
         # Create an Elastic Cloud deployment
         example_minimal = ec.Deployment("example_minimal",
             name="my_example_deployment",
@@ -256,12 +256,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
             traffic_filters=[example.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ),
-            kibana=ec.DeploymentKibanaArgs())
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            },
+            kibana={})
         ```
 
         ### Azure Private Link traffic filter
@@ -277,10 +277,10 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             name="my traffic filter name",
             region=region,
             type="azure_private_endpoint",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                azure_endpoint_name="my-azure-pl",
-                azure_endpoint_guid="78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
-            )])
+            rules=[{
+                "azure_endpoint_name": "my-azure-pl",
+                "azure_endpoint_guid": "78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
+            }])
         # Create an Elastic Cloud deployment
         example_minimal = ec.Deployment("example_minimal",
             name="my_example_deployment",
@@ -288,12 +288,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="azure-io-optimized-v3",
             traffic_filters=[azure.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ),
-            kibana=ec.DeploymentKibanaArgs())
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            },
+            kibana={})
         ```
 
         ###GCP Private Service Connect traffic filter
@@ -309,9 +309,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             name="my traffic filter name",
             region=region,
             type="gcp_private_service_connect_endpoint",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                source="18446744072646845332",
-            )])
+            rules=[{
+                "source": "18446744072646845332",
+            }])
         # Create an Elastic Cloud deployment
         example_minimal = ec.Deployment("example_minimal",
             name="my_example_deployment",
@@ -319,12 +319,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="gcp-storage-optimized",
             traffic_filters=[gcp_psc.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ),
-            kibana=ec.DeploymentKibanaArgs())
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            },
+            kibana={})
         ```
 
         ## Import
@@ -341,7 +341,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]] rules: Set of rules, which the ruleset is made of.
         :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         ...
@@ -365,9 +365,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             name="my traffic filter name",
             region="us-east-1",
             type="ip",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                source="0.0.0.0/0",
-            )])
+            rules=[{
+                "source": "0.0.0.0/0",
+            }])
         # Create an Elastic Cloud deployment
         example_minimal = ec.Deployment("example_minimal",
             name="my_example_deployment",
@@ -375,12 +375,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="aws-io-optimized-v2",
             traffic_filters=[example.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ),
-            kibana=ec.DeploymentKibanaArgs())
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            },
+            kibana={})
         ```
 
         ### Azure Private Link traffic filter
@@ -396,10 +396,10 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             name="my traffic filter name",
             region=region,
             type="azure_private_endpoint",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                azure_endpoint_name="my-azure-pl",
-                azure_endpoint_guid="78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
-            )])
+            rules=[{
+                "azure_endpoint_name": "my-azure-pl",
+                "azure_endpoint_guid": "78c64959-fd88-41cc-81ac-1cfcdb1ac32e",
+            }])
         # Create an Elastic Cloud deployment
         example_minimal = ec.Deployment("example_minimal",
             name="my_example_deployment",
@@ -407,12 +407,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="azure-io-optimized-v3",
             traffic_filters=[azure.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ),
-            kibana=ec.DeploymentKibanaArgs())
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            },
+            kibana={})
         ```
 
         ###GCP Private Service Connect traffic filter
@@ -428,9 +428,9 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             name="my traffic filter name",
             region=region,
             type="gcp_private_service_connect_endpoint",
-            rules=[ec.DeploymentTrafficFilterRuleArgs(
-                source="18446744072646845332",
-            )])
+            rules=[{
+                "source": "18446744072646845332",
+            }])
         # Create an Elastic Cloud deployment
         example_minimal = ec.Deployment("example_minimal",
             name="my_example_deployment",
@@ -438,12 +438,12 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             version=latest.version,
             deployment_template_id="gcp-storage-optimized",
             traffic_filters=[gcp_psc.id],
-            elasticsearch=ec.DeploymentElasticsearchArgs(
-                hot=ec.DeploymentElasticsearchHotArgs(
-                    autoscaling=ec.DeploymentElasticsearchHotAutoscalingArgs(),
-                ),
-            ),
-            kibana=ec.DeploymentKibanaArgs())
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+            },
+            kibana={})
         ```
 
         ## Import
@@ -473,7 +473,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  include_by_default: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -508,7 +508,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             include_by_default: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]]] = None,
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'DeploymentTrafficFilter':
         """
         Get an existing DeploymentTrafficFilter resource's state with the given name, id, and optional extra
@@ -521,7 +521,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param pulumi.Input[bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[str] name: Name of the ruleset
         :param pulumi.Input[str] region: Filter region, the ruleset can only be attached to deployments in the specific region
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeploymentTrafficFilterRuleArgs']]]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]] rules: Set of rules, which the ruleset is made of.
         :param pulumi.Input[str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

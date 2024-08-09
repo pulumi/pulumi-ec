@@ -214,7 +214,7 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SnapshotRepository(String name) {
+    public SnapshotRepository(java.lang.String name) {
         this(name, SnapshotRepositoryArgs.Empty);
     }
     /**
@@ -222,7 +222,7 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SnapshotRepository(String name, @Nullable SnapshotRepositoryArgs args) {
+    public SnapshotRepository(java.lang.String name, @Nullable SnapshotRepositoryArgs args) {
         this(name, args, null);
     }
     /**
@@ -231,15 +231,22 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SnapshotRepository(String name, @Nullable SnapshotRepositoryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/snapshotRepository:SnapshotRepository", name, args == null ? SnapshotRepositoryArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public SnapshotRepository(java.lang.String name, @Nullable SnapshotRepositoryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/snapshotRepository:SnapshotRepository", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SnapshotRepository(String name, Output<String> id, @Nullable SnapshotRepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("ec:index/snapshotRepository:SnapshotRepository", name, state, makeResourceOptions(options, id));
+    private SnapshotRepository(java.lang.String name, Output<java.lang.String> id, @Nullable SnapshotRepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("ec:index/snapshotRepository:SnapshotRepository", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static SnapshotRepositoryArgs makeArgs(@Nullable SnapshotRepositoryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SnapshotRepositoryArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -255,7 +262,7 @@ public class SnapshotRepository extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SnapshotRepository get(String name, Output<String> id, @Nullable SnapshotRepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SnapshotRepository get(java.lang.String name, Output<java.lang.String> id, @Nullable SnapshotRepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SnapshotRepository(name, id, state, options);
     }
 }
