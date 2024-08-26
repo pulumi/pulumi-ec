@@ -17,6 +17,7 @@ package ec
 import (
 	"fmt"
 	"path/filepath"
+	"regexp"
 
 	// Allow us to embed metadata
 	_ "embed"
@@ -26,6 +27,7 @@ import (
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 )
@@ -59,6 +61,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:   "https://github.com/pulumi/pulumi-ec",
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+		DocRules:     &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -115,4 +118,39 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustApplyAutoAliases()
 
 	return prov
+}
+
+func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(
+		defaults,
+		skipSectionHeadersEdit("index.md"),
+	)
+}
+
+// Removes sections that include TF-specific recommendations
+func skipSectionHeadersEdit(docFile string) tfbridge.DocsEdit {
+	headerSkipRegexps := getHeadersToSkip()
+	return tfbridge.DocsEdit{
+		Path: docFile,
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+				for _, header := range headerSkipRegexps {
+					if header.Match([]byte(headerText)) {
+						return true
+					}
+				}
+				return false
+			})
+		},
+	}
+}
+
+// List of headers to skip for this provider
+func getHeadersToSkip() []*regexp.Regexp {
+	headerSkipRegexps := []*regexp.Regexp{
+		regexp.MustCompile("Version guidance"),
+		regexp.MustCompile("Minimum Terraform version"),
+		regexp.MustCompile("Releases"),
+	}
+	return headerSkipRegexps
 }
