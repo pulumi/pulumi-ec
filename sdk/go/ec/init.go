@@ -31,6 +31,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DeploymentTrafficFilter{}
 	case "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation":
 		r = &DeploymentTrafficFilterAssociation{}
+	case "ec:index/elasticsearchProject:ElasticsearchProject":
+		r = &ElasticsearchProject{}
+	case "ec:index/observabilityProject:ObservabilityProject":
+		r = &ObservabilityProject{}
+	case "ec:index/securityProject:SecurityProject":
+		r = &SecurityProject{}
 	case "ec:index/snapshotRepository:SnapshotRepository":
 		r = &SnapshotRepository{}
 	default:
@@ -87,6 +93,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ec",
 		"index/deploymentTrafficFilterAssociation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ec",
+		"index/elasticsearchProject",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ec",
+		"index/observabilityProject",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ec",
+		"index/securityProject",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

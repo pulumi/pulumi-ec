@@ -25,14 +25,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     public static final DeploymentState Empty = new DeploymentState();
 
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Deployment alias, affects the format of the resource URLs. Set to an empty value (&#34;&#34;) to disable the alias.
      * 
      */
     @Import(name="alias")
     private @Nullable Output<String> alias;
 
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Deployment alias, affects the format of the resource URLs. Set to an empty value (&#34;&#34;) to disable the alias.
      * 
      */
     public Optional<Output<String>> alias() {
@@ -348,7 +348,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param alias Deployment alias, affects the format of the resource URLs.
+         * @param alias Deployment alias, affects the format of the resource URLs. Set to an empty value (&#34;&#34;) to disable the alias.
          * 
          * @return builder
          * 
@@ -359,7 +359,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param alias Deployment alias, affects the format of the resource URLs.
+         * @param alias Deployment alias, affects the format of the resource URLs. Set to an empty value (&#34;&#34;) to disable the alias.
          * 
          * @return builder
          * 

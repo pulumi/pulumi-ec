@@ -47,6 +47,17 @@ __all__ = [
     'DeploymentKibanaConfig',
     'DeploymentObservability',
     'DeploymentTrafficFilterRule',
+    'ElasticsearchProjectCredentials',
+    'ElasticsearchProjectEndpoints',
+    'ElasticsearchProjectMetadata',
+    'ElasticsearchProjectSearchLake',
+    'ObservabilityProjectCredentials',
+    'ObservabilityProjectEndpoints',
+    'ObservabilityProjectMetadata',
+    'SecurityProjectCredentials',
+    'SecurityProjectEndpoints',
+    'SecurityProjectMetadata',
+    'SecurityProjectProductType',
     'SnapshotRepositoryGeneric',
     'SnapshotRepositoryS3',
     'GetDeploymentApmResult',
@@ -4328,6 +4339,578 @@ class DeploymentTrafficFilterRule(dict):
         Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
         """
         return pulumi.get(self, "source")
+
+
+@pulumi.output_type
+class ElasticsearchProjectCredentials(dict):
+    def __init__(__self__, *,
+                 password: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str password: Basic auth password that can be used to access the Elasticsearch API.
+        :param str username: Basic auth username that can be used to access the Elasticsearch API.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        Basic auth password that can be used to access the Elasticsearch API.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        Basic auth username that can be used to access the Elasticsearch API.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class ElasticsearchProjectEndpoints(dict):
+    def __init__(__self__, *,
+                 elasticsearch: Optional[str] = None,
+                 kibana: Optional[str] = None):
+        """
+        :param str elasticsearch: The endpoint to access elasticsearch.
+        :param str kibana: The endpoint to access kibana.
+        """
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if kibana is not None:
+            pulumi.set(__self__, "kibana", kibana)
+
+    @property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[str]:
+        """
+        The endpoint to access elasticsearch.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @property
+    @pulumi.getter
+    def kibana(self) -> Optional[str]:
+        """
+        The endpoint to access kibana.
+        """
+        return pulumi.get(self, "kibana")
+
+
+@pulumi.output_type
+class ElasticsearchProjectMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "createdBy":
+            suggest = "created_by"
+        elif key == "organizationId":
+            suggest = "organization_id"
+        elif key == "suspendedAt":
+            suggest = "suspended_at"
+        elif key == "suspendedReason":
+            suggest = "suspended_reason"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ElasticsearchProjectMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ElasticsearchProjectMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ElasticsearchProjectMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 created_by: Optional[str] = None,
+                 organization_id: Optional[str] = None,
+                 suspended_at: Optional[str] = None,
+                 suspended_reason: Optional[str] = None):
+        """
+        :param str created_at: Date and time when the project was created.
+        :param str created_by: ID of the user.
+        :param str organization_id: The Organization ID who owns the project.
+        :param str suspended_at: Date and time when the project was suspended.
+        :param str suspended_reason: Reason why the project was suspended.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if created_by is not None:
+            pulumi.set(__self__, "created_by", created_by)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
+        if suspended_at is not None:
+            pulumi.set(__self__, "suspended_at", suspended_at)
+        if suspended_reason is not None:
+            pulumi.set(__self__, "suspended_reason", suspended_reason)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        Date and time when the project was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> Optional[str]:
+        """
+        ID of the user.
+        """
+        return pulumi.get(self, "created_by")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[str]:
+        """
+        The Organization ID who owns the project.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="suspendedAt")
+    def suspended_at(self) -> Optional[str]:
+        """
+        Date and time when the project was suspended.
+        """
+        return pulumi.get(self, "suspended_at")
+
+    @property
+    @pulumi.getter(name="suspendedReason")
+    def suspended_reason(self) -> Optional[str]:
+        """
+        Reason why the project was suspended.
+        """
+        return pulumi.get(self, "suspended_reason")
+
+
+@pulumi.output_type
+class ElasticsearchProjectSearchLake(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "boostWindow":
+            suggest = "boost_window"
+        elif key == "searchPower":
+            suggest = "search_power"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ElasticsearchProjectSearchLake. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ElasticsearchProjectSearchLake.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ElasticsearchProjectSearchLake.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 boost_window: Optional[int] = None,
+                 search_power: Optional[int] = None):
+        """
+        :param int boost_window: Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+        :param int search_power: Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+        """
+        if boost_window is not None:
+            pulumi.set(__self__, "boost_window", boost_window)
+        if search_power is not None:
+            pulumi.set(__self__, "search_power", search_power)
+
+    @property
+    @pulumi.getter(name="boostWindow")
+    def boost_window(self) -> Optional[int]:
+        """
+        Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+        """
+        return pulumi.get(self, "boost_window")
+
+    @property
+    @pulumi.getter(name="searchPower")
+    def search_power(self) -> Optional[int]:
+        """
+        Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+        """
+        return pulumi.get(self, "search_power")
+
+
+@pulumi.output_type
+class ObservabilityProjectCredentials(dict):
+    def __init__(__self__, *,
+                 password: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str password: Basic auth password that can be used to access the Elasticsearch API.
+        :param str username: Basic auth username that can be used to access the Elasticsearch API.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        Basic auth password that can be used to access the Elasticsearch API.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        Basic auth username that can be used to access the Elasticsearch API.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class ObservabilityProjectEndpoints(dict):
+    def __init__(__self__, *,
+                 apm: Optional[str] = None,
+                 elasticsearch: Optional[str] = None,
+                 kibana: Optional[str] = None):
+        """
+        :param str apm: The endpoint to access apm.
+        :param str elasticsearch: The endpoint to access elasticsearch.
+        :param str kibana: The endpoint to access kibana.
+        """
+        if apm is not None:
+            pulumi.set(__self__, "apm", apm)
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if kibana is not None:
+            pulumi.set(__self__, "kibana", kibana)
+
+    @property
+    @pulumi.getter
+    def apm(self) -> Optional[str]:
+        """
+        The endpoint to access apm.
+        """
+        return pulumi.get(self, "apm")
+
+    @property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[str]:
+        """
+        The endpoint to access elasticsearch.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @property
+    @pulumi.getter
+    def kibana(self) -> Optional[str]:
+        """
+        The endpoint to access kibana.
+        """
+        return pulumi.get(self, "kibana")
+
+
+@pulumi.output_type
+class ObservabilityProjectMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "createdBy":
+            suggest = "created_by"
+        elif key == "organizationId":
+            suggest = "organization_id"
+        elif key == "suspendedAt":
+            suggest = "suspended_at"
+        elif key == "suspendedReason":
+            suggest = "suspended_reason"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ObservabilityProjectMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ObservabilityProjectMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ObservabilityProjectMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 created_by: Optional[str] = None,
+                 organization_id: Optional[str] = None,
+                 suspended_at: Optional[str] = None,
+                 suspended_reason: Optional[str] = None):
+        """
+        :param str created_at: Date and time when the project was created.
+        :param str created_by: ID of the user.
+        :param str organization_id: The Organization ID who owns the project.
+        :param str suspended_at: Date and time when the project was suspended.
+        :param str suspended_reason: Reason why the project was suspended.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if created_by is not None:
+            pulumi.set(__self__, "created_by", created_by)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
+        if suspended_at is not None:
+            pulumi.set(__self__, "suspended_at", suspended_at)
+        if suspended_reason is not None:
+            pulumi.set(__self__, "suspended_reason", suspended_reason)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        Date and time when the project was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> Optional[str]:
+        """
+        ID of the user.
+        """
+        return pulumi.get(self, "created_by")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[str]:
+        """
+        The Organization ID who owns the project.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="suspendedAt")
+    def suspended_at(self) -> Optional[str]:
+        """
+        Date and time when the project was suspended.
+        """
+        return pulumi.get(self, "suspended_at")
+
+    @property
+    @pulumi.getter(name="suspendedReason")
+    def suspended_reason(self) -> Optional[str]:
+        """
+        Reason why the project was suspended.
+        """
+        return pulumi.get(self, "suspended_reason")
+
+
+@pulumi.output_type
+class SecurityProjectCredentials(dict):
+    def __init__(__self__, *,
+                 password: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str password: Basic auth password that can be used to access the Elasticsearch API.
+        :param str username: Basic auth username that can be used to access the Elasticsearch API.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        Basic auth password that can be used to access the Elasticsearch API.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        Basic auth username that can be used to access the Elasticsearch API.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class SecurityProjectEndpoints(dict):
+    def __init__(__self__, *,
+                 elasticsearch: Optional[str] = None,
+                 kibana: Optional[str] = None):
+        """
+        :param str elasticsearch: The endpoint to access elasticsearch.
+        :param str kibana: The endpoint to access kibana.
+        """
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if kibana is not None:
+            pulumi.set(__self__, "kibana", kibana)
+
+    @property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[str]:
+        """
+        The endpoint to access elasticsearch.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @property
+    @pulumi.getter
+    def kibana(self) -> Optional[str]:
+        """
+        The endpoint to access kibana.
+        """
+        return pulumi.get(self, "kibana")
+
+
+@pulumi.output_type
+class SecurityProjectMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "createdBy":
+            suggest = "created_by"
+        elif key == "organizationId":
+            suggest = "organization_id"
+        elif key == "suspendedAt":
+            suggest = "suspended_at"
+        elif key == "suspendedReason":
+            suggest = "suspended_reason"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecurityProjectMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecurityProjectMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecurityProjectMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 created_by: Optional[str] = None,
+                 organization_id: Optional[str] = None,
+                 suspended_at: Optional[str] = None,
+                 suspended_reason: Optional[str] = None):
+        """
+        :param str created_at: Date and time when the project was created.
+        :param str created_by: ID of the user.
+        :param str organization_id: The Organization ID who owns the project.
+        :param str suspended_at: Date and time when the project was suspended.
+        :param str suspended_reason: Reason why the project was suspended.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if created_by is not None:
+            pulumi.set(__self__, "created_by", created_by)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
+        if suspended_at is not None:
+            pulumi.set(__self__, "suspended_at", suspended_at)
+        if suspended_reason is not None:
+            pulumi.set(__self__, "suspended_reason", suspended_reason)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        Date and time when the project was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> Optional[str]:
+        """
+        ID of the user.
+        """
+        return pulumi.get(self, "created_by")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[str]:
+        """
+        The Organization ID who owns the project.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="suspendedAt")
+    def suspended_at(self) -> Optional[str]:
+        """
+        Date and time when the project was suspended.
+        """
+        return pulumi.get(self, "suspended_at")
+
+    @property
+    @pulumi.getter(name="suspendedReason")
+    def suspended_reason(self) -> Optional[str]:
+        """
+        Reason why the project was suspended.
+        """
+        return pulumi.get(self, "suspended_reason")
+
+
+@pulumi.output_type
+class SecurityProjectProductType(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "productLine":
+            suggest = "product_line"
+        elif key == "productTier":
+            suggest = "product_tier"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecurityProjectProductType. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecurityProjectProductType.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecurityProjectProductType.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 product_line: str,
+                 product_tier: str):
+        """
+        :param str product_line: The identifier of the Security Solution product line.
+        :param str product_tier: The identifier of the Security Solution product tier.
+        """
+        pulumi.set(__self__, "product_line", product_line)
+        pulumi.set(__self__, "product_tier", product_tier)
+
+    @property
+    @pulumi.getter(name="productLine")
+    def product_line(self) -> str:
+        """
+        The identifier of the Security Solution product line.
+        """
+        return pulumi.get(self, "product_line")
+
+    @property
+    @pulumi.getter(name="productTier")
+    def product_tier(self) -> str:
+        """
+        The identifier of the Security Solution product tier.
+        """
+        return pulumi.get(self, "product_tier")
 
 
 @pulumi.output_type

@@ -64,14 +64,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="ec:index/deployment:Deployment")
 public class Deployment extends com.pulumi.resources.CustomResource {
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Deployment alias, affects the format of the resource URLs. Set to an empty value (&#34;&#34;) to disable the alias.
      * 
      */
     @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
-     * @return Deployment alias, affects the format of the resource URLs.
+     * @return Deployment alias, affects the format of the resource URLs. Set to an empty value (&#34;&#34;) to disable the alias.
      * 
      */
     public Output<String> alias() {

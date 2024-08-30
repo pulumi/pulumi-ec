@@ -8940,6 +8940,1862 @@ func (o DeploymentTrafficFilterRuleArrayOutput) Index(i pulumi.IntInput) Deploym
 	}).(DeploymentTrafficFilterRuleOutput)
 }
 
+type ElasticsearchProjectCredentials struct {
+	// Basic auth password that can be used to access the Elasticsearch API.
+	Password *string `pulumi:"password"`
+	// Basic auth username that can be used to access the Elasticsearch API.
+	Username *string `pulumi:"username"`
+}
+
+// ElasticsearchProjectCredentialsInput is an input type that accepts ElasticsearchProjectCredentialsArgs and ElasticsearchProjectCredentialsOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectCredentialsInput` via:
+//
+//	ElasticsearchProjectCredentialsArgs{...}
+type ElasticsearchProjectCredentialsInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectCredentialsOutput() ElasticsearchProjectCredentialsOutput
+	ToElasticsearchProjectCredentialsOutputWithContext(context.Context) ElasticsearchProjectCredentialsOutput
+}
+
+type ElasticsearchProjectCredentialsArgs struct {
+	// Basic auth password that can be used to access the Elasticsearch API.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Basic auth username that can be used to access the Elasticsearch API.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ElasticsearchProjectCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectCredentials)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectCredentialsArgs) ToElasticsearchProjectCredentialsOutput() ElasticsearchProjectCredentialsOutput {
+	return i.ToElasticsearchProjectCredentialsOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectCredentialsArgs) ToElasticsearchProjectCredentialsOutputWithContext(ctx context.Context) ElasticsearchProjectCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectCredentialsOutput)
+}
+
+func (i ElasticsearchProjectCredentialsArgs) ToElasticsearchProjectCredentialsPtrOutput() ElasticsearchProjectCredentialsPtrOutput {
+	return i.ToElasticsearchProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectCredentialsArgs) ToElasticsearchProjectCredentialsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectCredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectCredentialsOutput).ToElasticsearchProjectCredentialsPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectCredentialsPtrInput is an input type that accepts ElasticsearchProjectCredentialsArgs, ElasticsearchProjectCredentialsPtr and ElasticsearchProjectCredentialsPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectCredentialsPtrInput` via:
+//
+//	        ElasticsearchProjectCredentialsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectCredentialsPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectCredentialsPtrOutput() ElasticsearchProjectCredentialsPtrOutput
+	ToElasticsearchProjectCredentialsPtrOutputWithContext(context.Context) ElasticsearchProjectCredentialsPtrOutput
+}
+
+type elasticsearchProjectCredentialsPtrType ElasticsearchProjectCredentialsArgs
+
+func ElasticsearchProjectCredentialsPtr(v *ElasticsearchProjectCredentialsArgs) ElasticsearchProjectCredentialsPtrInput {
+	return (*elasticsearchProjectCredentialsPtrType)(v)
+}
+
+func (*elasticsearchProjectCredentialsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectCredentials)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectCredentialsPtrType) ToElasticsearchProjectCredentialsPtrOutput() ElasticsearchProjectCredentialsPtrOutput {
+	return i.ToElasticsearchProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectCredentialsPtrType) ToElasticsearchProjectCredentialsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectCredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectCredentialsPtrOutput)
+}
+
+type ElasticsearchProjectCredentialsOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectCredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectCredentials)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectCredentialsOutput) ToElasticsearchProjectCredentialsOutput() ElasticsearchProjectCredentialsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectCredentialsOutput) ToElasticsearchProjectCredentialsOutputWithContext(ctx context.Context) ElasticsearchProjectCredentialsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectCredentialsOutput) ToElasticsearchProjectCredentialsPtrOutput() ElasticsearchProjectCredentialsPtrOutput {
+	return o.ToElasticsearchProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectCredentialsOutput) ToElasticsearchProjectCredentialsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectCredentialsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectCredentials) *ElasticsearchProjectCredentials {
+		return &v
+	}).(ElasticsearchProjectCredentialsPtrOutput)
+}
+
+// Basic auth password that can be used to access the Elasticsearch API.
+func (o ElasticsearchProjectCredentialsOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectCredentials) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Basic auth username that can be used to access the Elasticsearch API.
+func (o ElasticsearchProjectCredentialsOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectCredentials) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectCredentialsPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectCredentialsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectCredentials)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectCredentialsPtrOutput) ToElasticsearchProjectCredentialsPtrOutput() ElasticsearchProjectCredentialsPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectCredentialsPtrOutput) ToElasticsearchProjectCredentialsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectCredentialsPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectCredentialsPtrOutput) Elem() ElasticsearchProjectCredentialsOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectCredentials) ElasticsearchProjectCredentials {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectCredentials
+		return ret
+	}).(ElasticsearchProjectCredentialsOutput)
+}
+
+// Basic auth password that can be used to access the Elasticsearch API.
+func (o ElasticsearchProjectCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectCredentials) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Basic auth username that can be used to access the Elasticsearch API.
+func (o ElasticsearchProjectCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectCredentials) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectEndpoints struct {
+	// The endpoint to access elasticsearch.
+	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The endpoint to access kibana.
+	Kibana *string `pulumi:"kibana"`
+}
+
+// ElasticsearchProjectEndpointsInput is an input type that accepts ElasticsearchProjectEndpointsArgs and ElasticsearchProjectEndpointsOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectEndpointsInput` via:
+//
+//	ElasticsearchProjectEndpointsArgs{...}
+type ElasticsearchProjectEndpointsInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectEndpointsOutput() ElasticsearchProjectEndpointsOutput
+	ToElasticsearchProjectEndpointsOutputWithContext(context.Context) ElasticsearchProjectEndpointsOutput
+}
+
+type ElasticsearchProjectEndpointsArgs struct {
+	// The endpoint to access elasticsearch.
+	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The endpoint to access kibana.
+	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
+}
+
+func (ElasticsearchProjectEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectEndpoints)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectEndpointsArgs) ToElasticsearchProjectEndpointsOutput() ElasticsearchProjectEndpointsOutput {
+	return i.ToElasticsearchProjectEndpointsOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectEndpointsArgs) ToElasticsearchProjectEndpointsOutputWithContext(ctx context.Context) ElasticsearchProjectEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectEndpointsOutput)
+}
+
+func (i ElasticsearchProjectEndpointsArgs) ToElasticsearchProjectEndpointsPtrOutput() ElasticsearchProjectEndpointsPtrOutput {
+	return i.ToElasticsearchProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectEndpointsArgs) ToElasticsearchProjectEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectEndpointsOutput).ToElasticsearchProjectEndpointsPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectEndpointsPtrInput is an input type that accepts ElasticsearchProjectEndpointsArgs, ElasticsearchProjectEndpointsPtr and ElasticsearchProjectEndpointsPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectEndpointsPtrInput` via:
+//
+//	        ElasticsearchProjectEndpointsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectEndpointsPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectEndpointsPtrOutput() ElasticsearchProjectEndpointsPtrOutput
+	ToElasticsearchProjectEndpointsPtrOutputWithContext(context.Context) ElasticsearchProjectEndpointsPtrOutput
+}
+
+type elasticsearchProjectEndpointsPtrType ElasticsearchProjectEndpointsArgs
+
+func ElasticsearchProjectEndpointsPtr(v *ElasticsearchProjectEndpointsArgs) ElasticsearchProjectEndpointsPtrInput {
+	return (*elasticsearchProjectEndpointsPtrType)(v)
+}
+
+func (*elasticsearchProjectEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectEndpoints)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectEndpointsPtrType) ToElasticsearchProjectEndpointsPtrOutput() ElasticsearchProjectEndpointsPtrOutput {
+	return i.ToElasticsearchProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectEndpointsPtrType) ToElasticsearchProjectEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectEndpointsPtrOutput)
+}
+
+type ElasticsearchProjectEndpointsOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectEndpoints)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectEndpointsOutput) ToElasticsearchProjectEndpointsOutput() ElasticsearchProjectEndpointsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectEndpointsOutput) ToElasticsearchProjectEndpointsOutputWithContext(ctx context.Context) ElasticsearchProjectEndpointsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectEndpointsOutput) ToElasticsearchProjectEndpointsPtrOutput() ElasticsearchProjectEndpointsPtrOutput {
+	return o.ToElasticsearchProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectEndpointsOutput) ToElasticsearchProjectEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectEndpoints) *ElasticsearchProjectEndpoints {
+		return &v
+	}).(ElasticsearchProjectEndpointsPtrOutput)
+}
+
+// The endpoint to access elasticsearch.
+func (o ElasticsearchProjectEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access kibana.
+func (o ElasticsearchProjectEndpointsOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectEndpoints)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectEndpointsPtrOutput) ToElasticsearchProjectEndpointsPtrOutput() ElasticsearchProjectEndpointsPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectEndpointsPtrOutput) ToElasticsearchProjectEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectEndpointsPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectEndpointsPtrOutput) Elem() ElasticsearchProjectEndpointsOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectEndpoints) ElasticsearchProjectEndpoints {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectEndpoints
+		return ret
+	}).(ElasticsearchProjectEndpointsOutput)
+}
+
+// The endpoint to access elasticsearch.
+func (o ElasticsearchProjectEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access kibana.
+func (o ElasticsearchProjectEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kibana
+	}).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectMetadata struct {
+	// Date and time when the project was created.
+	CreatedAt *string `pulumi:"createdAt"`
+	// ID of the user.
+	CreatedBy *string `pulumi:"createdBy"`
+	// The Organization ID who owns the project.
+	OrganizationId *string `pulumi:"organizationId"`
+	// Date and time when the project was suspended.
+	SuspendedAt *string `pulumi:"suspendedAt"`
+	// Reason why the project was suspended.
+	SuspendedReason *string `pulumi:"suspendedReason"`
+}
+
+// ElasticsearchProjectMetadataInput is an input type that accepts ElasticsearchProjectMetadataArgs and ElasticsearchProjectMetadataOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMetadataInput` via:
+//
+//	ElasticsearchProjectMetadataArgs{...}
+type ElasticsearchProjectMetadataInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMetadataOutput() ElasticsearchProjectMetadataOutput
+	ToElasticsearchProjectMetadataOutputWithContext(context.Context) ElasticsearchProjectMetadataOutput
+}
+
+type ElasticsearchProjectMetadataArgs struct {
+	// Date and time when the project was created.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// ID of the user.
+	CreatedBy pulumi.StringPtrInput `pulumi:"createdBy"`
+	// The Organization ID who owns the project.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// Date and time when the project was suspended.
+	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
+	// Reason why the project was suspended.
+	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
+}
+
+func (ElasticsearchProjectMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMetadata)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectMetadataArgs) ToElasticsearchProjectMetadataOutput() ElasticsearchProjectMetadataOutput {
+	return i.ToElasticsearchProjectMetadataOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMetadataArgs) ToElasticsearchProjectMetadataOutputWithContext(ctx context.Context) ElasticsearchProjectMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMetadataOutput)
+}
+
+func (i ElasticsearchProjectMetadataArgs) ToElasticsearchProjectMetadataPtrOutput() ElasticsearchProjectMetadataPtrOutput {
+	return i.ToElasticsearchProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMetadataArgs) ToElasticsearchProjectMetadataPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMetadataOutput).ToElasticsearchProjectMetadataPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectMetadataPtrInput is an input type that accepts ElasticsearchProjectMetadataArgs, ElasticsearchProjectMetadataPtr and ElasticsearchProjectMetadataPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMetadataPtrInput` via:
+//
+//	        ElasticsearchProjectMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectMetadataPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMetadataPtrOutput() ElasticsearchProjectMetadataPtrOutput
+	ToElasticsearchProjectMetadataPtrOutputWithContext(context.Context) ElasticsearchProjectMetadataPtrOutput
+}
+
+type elasticsearchProjectMetadataPtrType ElasticsearchProjectMetadataArgs
+
+func ElasticsearchProjectMetadataPtr(v *ElasticsearchProjectMetadataArgs) ElasticsearchProjectMetadataPtrInput {
+	return (*elasticsearchProjectMetadataPtrType)(v)
+}
+
+func (*elasticsearchProjectMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMetadata)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectMetadataPtrType) ToElasticsearchProjectMetadataPtrOutput() ElasticsearchProjectMetadataPtrOutput {
+	return i.ToElasticsearchProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectMetadataPtrType) ToElasticsearchProjectMetadataPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMetadataPtrOutput)
+}
+
+type ElasticsearchProjectMetadataOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMetadata)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMetadataOutput) ToElasticsearchProjectMetadataOutput() ElasticsearchProjectMetadataOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMetadataOutput) ToElasticsearchProjectMetadataOutputWithContext(ctx context.Context) ElasticsearchProjectMetadataOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMetadataOutput) ToElasticsearchProjectMetadataPtrOutput() ElasticsearchProjectMetadataPtrOutput {
+	return o.ToElasticsearchProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectMetadataOutput) ToElasticsearchProjectMetadataPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectMetadata) *ElasticsearchProjectMetadata {
+		return &v
+	}).(ElasticsearchProjectMetadataPtrOutput)
+}
+
+// Date and time when the project was created.
+func (o ElasticsearchProjectMetadataOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// ID of the user.
+func (o ElasticsearchProjectMetadataOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.CreatedBy }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID who owns the project.
+func (o ElasticsearchProjectMetadataOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+// Date and time when the project was suspended.
+func (o ElasticsearchProjectMetadataOutput) SuspendedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.SuspendedAt }).(pulumi.StringPtrOutput)
+}
+
+// Reason why the project was suspended.
+func (o ElasticsearchProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMetadata)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMetadataPtrOutput) ToElasticsearchProjectMetadataPtrOutput() ElasticsearchProjectMetadataPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMetadataPtrOutput) ToElasticsearchProjectMetadataPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMetadataPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMetadataPtrOutput) Elem() ElasticsearchProjectMetadataOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) ElasticsearchProjectMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectMetadata
+		return ret
+	}).(ElasticsearchProjectMetadataOutput)
+}
+
+// Date and time when the project was created.
+func (o ElasticsearchProjectMetadataPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the user.
+func (o ElasticsearchProjectMetadataPtrOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBy
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID who owns the project.
+func (o ElasticsearchProjectMetadataPtrOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrganizationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Date and time when the project was suspended.
+func (o ElasticsearchProjectMetadataPtrOutput) SuspendedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SuspendedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// Reason why the project was suspended.
+func (o ElasticsearchProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SuspendedReason
+	}).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectSearchLake struct {
+	// Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+	BoostWindow *int `pulumi:"boostWindow"`
+	// Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+	SearchPower *int `pulumi:"searchPower"`
+}
+
+// ElasticsearchProjectSearchLakeInput is an input type that accepts ElasticsearchProjectSearchLakeArgs and ElasticsearchProjectSearchLakeOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectSearchLakeInput` via:
+//
+//	ElasticsearchProjectSearchLakeArgs{...}
+type ElasticsearchProjectSearchLakeInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectSearchLakeOutput() ElasticsearchProjectSearchLakeOutput
+	ToElasticsearchProjectSearchLakeOutputWithContext(context.Context) ElasticsearchProjectSearchLakeOutput
+}
+
+type ElasticsearchProjectSearchLakeArgs struct {
+	// Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+	BoostWindow pulumi.IntPtrInput `pulumi:"boostWindow"`
+	// Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+	SearchPower pulumi.IntPtrInput `pulumi:"searchPower"`
+}
+
+func (ElasticsearchProjectSearchLakeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectSearchLake)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectSearchLakeArgs) ToElasticsearchProjectSearchLakeOutput() ElasticsearchProjectSearchLakeOutput {
+	return i.ToElasticsearchProjectSearchLakeOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectSearchLakeArgs) ToElasticsearchProjectSearchLakeOutputWithContext(ctx context.Context) ElasticsearchProjectSearchLakeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectSearchLakeOutput)
+}
+
+func (i ElasticsearchProjectSearchLakeArgs) ToElasticsearchProjectSearchLakePtrOutput() ElasticsearchProjectSearchLakePtrOutput {
+	return i.ToElasticsearchProjectSearchLakePtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectSearchLakeArgs) ToElasticsearchProjectSearchLakePtrOutputWithContext(ctx context.Context) ElasticsearchProjectSearchLakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectSearchLakeOutput).ToElasticsearchProjectSearchLakePtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectSearchLakePtrInput is an input type that accepts ElasticsearchProjectSearchLakeArgs, ElasticsearchProjectSearchLakePtr and ElasticsearchProjectSearchLakePtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectSearchLakePtrInput` via:
+//
+//	        ElasticsearchProjectSearchLakeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectSearchLakePtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectSearchLakePtrOutput() ElasticsearchProjectSearchLakePtrOutput
+	ToElasticsearchProjectSearchLakePtrOutputWithContext(context.Context) ElasticsearchProjectSearchLakePtrOutput
+}
+
+type elasticsearchProjectSearchLakePtrType ElasticsearchProjectSearchLakeArgs
+
+func ElasticsearchProjectSearchLakePtr(v *ElasticsearchProjectSearchLakeArgs) ElasticsearchProjectSearchLakePtrInput {
+	return (*elasticsearchProjectSearchLakePtrType)(v)
+}
+
+func (*elasticsearchProjectSearchLakePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectSearchLake)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectSearchLakePtrType) ToElasticsearchProjectSearchLakePtrOutput() ElasticsearchProjectSearchLakePtrOutput {
+	return i.ToElasticsearchProjectSearchLakePtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectSearchLakePtrType) ToElasticsearchProjectSearchLakePtrOutputWithContext(ctx context.Context) ElasticsearchProjectSearchLakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectSearchLakePtrOutput)
+}
+
+type ElasticsearchProjectSearchLakeOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectSearchLakeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectSearchLake)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectSearchLakeOutput) ToElasticsearchProjectSearchLakeOutput() ElasticsearchProjectSearchLakeOutput {
+	return o
+}
+
+func (o ElasticsearchProjectSearchLakeOutput) ToElasticsearchProjectSearchLakeOutputWithContext(ctx context.Context) ElasticsearchProjectSearchLakeOutput {
+	return o
+}
+
+func (o ElasticsearchProjectSearchLakeOutput) ToElasticsearchProjectSearchLakePtrOutput() ElasticsearchProjectSearchLakePtrOutput {
+	return o.ToElasticsearchProjectSearchLakePtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectSearchLakeOutput) ToElasticsearchProjectSearchLakePtrOutputWithContext(ctx context.Context) ElasticsearchProjectSearchLakePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectSearchLake) *ElasticsearchProjectSearchLake {
+		return &v
+	}).(ElasticsearchProjectSearchLakePtrOutput)
+}
+
+// Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+func (o ElasticsearchProjectSearchLakeOutput) BoostWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectSearchLake) *int { return v.BoostWindow }).(pulumi.IntPtrOutput)
+}
+
+// Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+func (o ElasticsearchProjectSearchLakeOutput) SearchPower() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectSearchLake) *int { return v.SearchPower }).(pulumi.IntPtrOutput)
+}
+
+type ElasticsearchProjectSearchLakePtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectSearchLakePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectSearchLake)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectSearchLakePtrOutput) ToElasticsearchProjectSearchLakePtrOutput() ElasticsearchProjectSearchLakePtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectSearchLakePtrOutput) ToElasticsearchProjectSearchLakePtrOutputWithContext(ctx context.Context) ElasticsearchProjectSearchLakePtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectSearchLakePtrOutput) Elem() ElasticsearchProjectSearchLakeOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectSearchLake) ElasticsearchProjectSearchLake {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectSearchLake
+		return ret
+	}).(ElasticsearchProjectSearchLakeOutput)
+}
+
+// Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+func (o ElasticsearchProjectSearchLakePtrOutput) BoostWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectSearchLake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BoostWindow
+	}).(pulumi.IntPtrOutput)
+}
+
+// Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+func (o ElasticsearchProjectSearchLakePtrOutput) SearchPower() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectSearchLake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SearchPower
+	}).(pulumi.IntPtrOutput)
+}
+
+type ObservabilityProjectCredentials struct {
+	// Basic auth password that can be used to access the Elasticsearch API.
+	Password *string `pulumi:"password"`
+	// Basic auth username that can be used to access the Elasticsearch API.
+	Username *string `pulumi:"username"`
+}
+
+// ObservabilityProjectCredentialsInput is an input type that accepts ObservabilityProjectCredentialsArgs and ObservabilityProjectCredentialsOutput values.
+// You can construct a concrete instance of `ObservabilityProjectCredentialsInput` via:
+//
+//	ObservabilityProjectCredentialsArgs{...}
+type ObservabilityProjectCredentialsInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectCredentialsOutput() ObservabilityProjectCredentialsOutput
+	ToObservabilityProjectCredentialsOutputWithContext(context.Context) ObservabilityProjectCredentialsOutput
+}
+
+type ObservabilityProjectCredentialsArgs struct {
+	// Basic auth password that can be used to access the Elasticsearch API.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Basic auth username that can be used to access the Elasticsearch API.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ObservabilityProjectCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectCredentials)(nil)).Elem()
+}
+
+func (i ObservabilityProjectCredentialsArgs) ToObservabilityProjectCredentialsOutput() ObservabilityProjectCredentialsOutput {
+	return i.ToObservabilityProjectCredentialsOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectCredentialsArgs) ToObservabilityProjectCredentialsOutputWithContext(ctx context.Context) ObservabilityProjectCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectCredentialsOutput)
+}
+
+func (i ObservabilityProjectCredentialsArgs) ToObservabilityProjectCredentialsPtrOutput() ObservabilityProjectCredentialsPtrOutput {
+	return i.ToObservabilityProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectCredentialsArgs) ToObservabilityProjectCredentialsPtrOutputWithContext(ctx context.Context) ObservabilityProjectCredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectCredentialsOutput).ToObservabilityProjectCredentialsPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectCredentialsPtrInput is an input type that accepts ObservabilityProjectCredentialsArgs, ObservabilityProjectCredentialsPtr and ObservabilityProjectCredentialsPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectCredentialsPtrInput` via:
+//
+//	        ObservabilityProjectCredentialsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectCredentialsPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectCredentialsPtrOutput() ObservabilityProjectCredentialsPtrOutput
+	ToObservabilityProjectCredentialsPtrOutputWithContext(context.Context) ObservabilityProjectCredentialsPtrOutput
+}
+
+type observabilityProjectCredentialsPtrType ObservabilityProjectCredentialsArgs
+
+func ObservabilityProjectCredentialsPtr(v *ObservabilityProjectCredentialsArgs) ObservabilityProjectCredentialsPtrInput {
+	return (*observabilityProjectCredentialsPtrType)(v)
+}
+
+func (*observabilityProjectCredentialsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectCredentials)(nil)).Elem()
+}
+
+func (i *observabilityProjectCredentialsPtrType) ToObservabilityProjectCredentialsPtrOutput() ObservabilityProjectCredentialsPtrOutput {
+	return i.ToObservabilityProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectCredentialsPtrType) ToObservabilityProjectCredentialsPtrOutputWithContext(ctx context.Context) ObservabilityProjectCredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectCredentialsPtrOutput)
+}
+
+type ObservabilityProjectCredentialsOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectCredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectCredentials)(nil)).Elem()
+}
+
+func (o ObservabilityProjectCredentialsOutput) ToObservabilityProjectCredentialsOutput() ObservabilityProjectCredentialsOutput {
+	return o
+}
+
+func (o ObservabilityProjectCredentialsOutput) ToObservabilityProjectCredentialsOutputWithContext(ctx context.Context) ObservabilityProjectCredentialsOutput {
+	return o
+}
+
+func (o ObservabilityProjectCredentialsOutput) ToObservabilityProjectCredentialsPtrOutput() ObservabilityProjectCredentialsPtrOutput {
+	return o.ToObservabilityProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectCredentialsOutput) ToObservabilityProjectCredentialsPtrOutputWithContext(ctx context.Context) ObservabilityProjectCredentialsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectCredentials) *ObservabilityProjectCredentials {
+		return &v
+	}).(ObservabilityProjectCredentialsPtrOutput)
+}
+
+// Basic auth password that can be used to access the Elasticsearch API.
+func (o ObservabilityProjectCredentialsOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectCredentials) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Basic auth username that can be used to access the Elasticsearch API.
+func (o ObservabilityProjectCredentialsOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectCredentials) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectCredentialsPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectCredentialsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectCredentials)(nil)).Elem()
+}
+
+func (o ObservabilityProjectCredentialsPtrOutput) ToObservabilityProjectCredentialsPtrOutput() ObservabilityProjectCredentialsPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectCredentialsPtrOutput) ToObservabilityProjectCredentialsPtrOutputWithContext(ctx context.Context) ObservabilityProjectCredentialsPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectCredentialsPtrOutput) Elem() ObservabilityProjectCredentialsOutput {
+	return o.ApplyT(func(v *ObservabilityProjectCredentials) ObservabilityProjectCredentials {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectCredentials
+		return ret
+	}).(ObservabilityProjectCredentialsOutput)
+}
+
+// Basic auth password that can be used to access the Elasticsearch API.
+func (o ObservabilityProjectCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectCredentials) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Basic auth username that can be used to access the Elasticsearch API.
+func (o ObservabilityProjectCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectCredentials) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectEndpoints struct {
+	// The endpoint to access apm.
+	Apm *string `pulumi:"apm"`
+	// The endpoint to access elasticsearch.
+	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The endpoint to access kibana.
+	Kibana *string `pulumi:"kibana"`
+}
+
+// ObservabilityProjectEndpointsInput is an input type that accepts ObservabilityProjectEndpointsArgs and ObservabilityProjectEndpointsOutput values.
+// You can construct a concrete instance of `ObservabilityProjectEndpointsInput` via:
+//
+//	ObservabilityProjectEndpointsArgs{...}
+type ObservabilityProjectEndpointsInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectEndpointsOutput() ObservabilityProjectEndpointsOutput
+	ToObservabilityProjectEndpointsOutputWithContext(context.Context) ObservabilityProjectEndpointsOutput
+}
+
+type ObservabilityProjectEndpointsArgs struct {
+	// The endpoint to access apm.
+	Apm pulumi.StringPtrInput `pulumi:"apm"`
+	// The endpoint to access elasticsearch.
+	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The endpoint to access kibana.
+	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
+}
+
+func (ObservabilityProjectEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectEndpoints)(nil)).Elem()
+}
+
+func (i ObservabilityProjectEndpointsArgs) ToObservabilityProjectEndpointsOutput() ObservabilityProjectEndpointsOutput {
+	return i.ToObservabilityProjectEndpointsOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectEndpointsArgs) ToObservabilityProjectEndpointsOutputWithContext(ctx context.Context) ObservabilityProjectEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectEndpointsOutput)
+}
+
+func (i ObservabilityProjectEndpointsArgs) ToObservabilityProjectEndpointsPtrOutput() ObservabilityProjectEndpointsPtrOutput {
+	return i.ToObservabilityProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectEndpointsArgs) ToObservabilityProjectEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectEndpointsOutput).ToObservabilityProjectEndpointsPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectEndpointsPtrInput is an input type that accepts ObservabilityProjectEndpointsArgs, ObservabilityProjectEndpointsPtr and ObservabilityProjectEndpointsPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectEndpointsPtrInput` via:
+//
+//	        ObservabilityProjectEndpointsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectEndpointsPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectEndpointsPtrOutput() ObservabilityProjectEndpointsPtrOutput
+	ToObservabilityProjectEndpointsPtrOutputWithContext(context.Context) ObservabilityProjectEndpointsPtrOutput
+}
+
+type observabilityProjectEndpointsPtrType ObservabilityProjectEndpointsArgs
+
+func ObservabilityProjectEndpointsPtr(v *ObservabilityProjectEndpointsArgs) ObservabilityProjectEndpointsPtrInput {
+	return (*observabilityProjectEndpointsPtrType)(v)
+}
+
+func (*observabilityProjectEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectEndpoints)(nil)).Elem()
+}
+
+func (i *observabilityProjectEndpointsPtrType) ToObservabilityProjectEndpointsPtrOutput() ObservabilityProjectEndpointsPtrOutput {
+	return i.ToObservabilityProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectEndpointsPtrType) ToObservabilityProjectEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectEndpointsPtrOutput)
+}
+
+type ObservabilityProjectEndpointsOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectEndpoints)(nil)).Elem()
+}
+
+func (o ObservabilityProjectEndpointsOutput) ToObservabilityProjectEndpointsOutput() ObservabilityProjectEndpointsOutput {
+	return o
+}
+
+func (o ObservabilityProjectEndpointsOutput) ToObservabilityProjectEndpointsOutputWithContext(ctx context.Context) ObservabilityProjectEndpointsOutput {
+	return o
+}
+
+func (o ObservabilityProjectEndpointsOutput) ToObservabilityProjectEndpointsPtrOutput() ObservabilityProjectEndpointsPtrOutput {
+	return o.ToObservabilityProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectEndpointsOutput) ToObservabilityProjectEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectEndpoints) *ObservabilityProjectEndpoints {
+		return &v
+	}).(ObservabilityProjectEndpointsPtrOutput)
+}
+
+// The endpoint to access apm.
+func (o ObservabilityProjectEndpointsOutput) Apm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectEndpoints) *string { return v.Apm }).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access elasticsearch.
+func (o ObservabilityProjectEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access kibana.
+func (o ObservabilityProjectEndpointsOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectEndpoints)(nil)).Elem()
+}
+
+func (o ObservabilityProjectEndpointsPtrOutput) ToObservabilityProjectEndpointsPtrOutput() ObservabilityProjectEndpointsPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectEndpointsPtrOutput) ToObservabilityProjectEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectEndpointsPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectEndpointsPtrOutput) Elem() ObservabilityProjectEndpointsOutput {
+	return o.ApplyT(func(v *ObservabilityProjectEndpoints) ObservabilityProjectEndpoints {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectEndpoints
+		return ret
+	}).(ObservabilityProjectEndpointsOutput)
+}
+
+// The endpoint to access apm.
+func (o ObservabilityProjectEndpointsPtrOutput) Apm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Apm
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access elasticsearch.
+func (o ObservabilityProjectEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access kibana.
+func (o ObservabilityProjectEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kibana
+	}).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectMetadata struct {
+	// Date and time when the project was created.
+	CreatedAt *string `pulumi:"createdAt"`
+	// ID of the user.
+	CreatedBy *string `pulumi:"createdBy"`
+	// The Organization ID who owns the project.
+	OrganizationId *string `pulumi:"organizationId"`
+	// Date and time when the project was suspended.
+	SuspendedAt *string `pulumi:"suspendedAt"`
+	// Reason why the project was suspended.
+	SuspendedReason *string `pulumi:"suspendedReason"`
+}
+
+// ObservabilityProjectMetadataInput is an input type that accepts ObservabilityProjectMetadataArgs and ObservabilityProjectMetadataOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMetadataInput` via:
+//
+//	ObservabilityProjectMetadataArgs{...}
+type ObservabilityProjectMetadataInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMetadataOutput() ObservabilityProjectMetadataOutput
+	ToObservabilityProjectMetadataOutputWithContext(context.Context) ObservabilityProjectMetadataOutput
+}
+
+type ObservabilityProjectMetadataArgs struct {
+	// Date and time when the project was created.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// ID of the user.
+	CreatedBy pulumi.StringPtrInput `pulumi:"createdBy"`
+	// The Organization ID who owns the project.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// Date and time when the project was suspended.
+	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
+	// Reason why the project was suspended.
+	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
+}
+
+func (ObservabilityProjectMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMetadata)(nil)).Elem()
+}
+
+func (i ObservabilityProjectMetadataArgs) ToObservabilityProjectMetadataOutput() ObservabilityProjectMetadataOutput {
+	return i.ToObservabilityProjectMetadataOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMetadataArgs) ToObservabilityProjectMetadataOutputWithContext(ctx context.Context) ObservabilityProjectMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMetadataOutput)
+}
+
+func (i ObservabilityProjectMetadataArgs) ToObservabilityProjectMetadataPtrOutput() ObservabilityProjectMetadataPtrOutput {
+	return i.ToObservabilityProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMetadataArgs) ToObservabilityProjectMetadataPtrOutputWithContext(ctx context.Context) ObservabilityProjectMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMetadataOutput).ToObservabilityProjectMetadataPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectMetadataPtrInput is an input type that accepts ObservabilityProjectMetadataArgs, ObservabilityProjectMetadataPtr and ObservabilityProjectMetadataPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMetadataPtrInput` via:
+//
+//	        ObservabilityProjectMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectMetadataPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMetadataPtrOutput() ObservabilityProjectMetadataPtrOutput
+	ToObservabilityProjectMetadataPtrOutputWithContext(context.Context) ObservabilityProjectMetadataPtrOutput
+}
+
+type observabilityProjectMetadataPtrType ObservabilityProjectMetadataArgs
+
+func ObservabilityProjectMetadataPtr(v *ObservabilityProjectMetadataArgs) ObservabilityProjectMetadataPtrInput {
+	return (*observabilityProjectMetadataPtrType)(v)
+}
+
+func (*observabilityProjectMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMetadata)(nil)).Elem()
+}
+
+func (i *observabilityProjectMetadataPtrType) ToObservabilityProjectMetadataPtrOutput() ObservabilityProjectMetadataPtrOutput {
+	return i.ToObservabilityProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectMetadataPtrType) ToObservabilityProjectMetadataPtrOutputWithContext(ctx context.Context) ObservabilityProjectMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMetadataPtrOutput)
+}
+
+type ObservabilityProjectMetadataOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMetadata)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMetadataOutput) ToObservabilityProjectMetadataOutput() ObservabilityProjectMetadataOutput {
+	return o
+}
+
+func (o ObservabilityProjectMetadataOutput) ToObservabilityProjectMetadataOutputWithContext(ctx context.Context) ObservabilityProjectMetadataOutput {
+	return o
+}
+
+func (o ObservabilityProjectMetadataOutput) ToObservabilityProjectMetadataPtrOutput() ObservabilityProjectMetadataPtrOutput {
+	return o.ToObservabilityProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectMetadataOutput) ToObservabilityProjectMetadataPtrOutputWithContext(ctx context.Context) ObservabilityProjectMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectMetadata) *ObservabilityProjectMetadata {
+		return &v
+	}).(ObservabilityProjectMetadataPtrOutput)
+}
+
+// Date and time when the project was created.
+func (o ObservabilityProjectMetadataOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// ID of the user.
+func (o ObservabilityProjectMetadataOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.CreatedBy }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID who owns the project.
+func (o ObservabilityProjectMetadataOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+// Date and time when the project was suspended.
+func (o ObservabilityProjectMetadataOutput) SuspendedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.SuspendedAt }).(pulumi.StringPtrOutput)
+}
+
+// Reason why the project was suspended.
+func (o ObservabilityProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMetadata)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMetadataPtrOutput) ToObservabilityProjectMetadataPtrOutput() ObservabilityProjectMetadataPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMetadataPtrOutput) ToObservabilityProjectMetadataPtrOutputWithContext(ctx context.Context) ObservabilityProjectMetadataPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMetadataPtrOutput) Elem() ObservabilityProjectMetadataOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) ObservabilityProjectMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectMetadata
+		return ret
+	}).(ObservabilityProjectMetadataOutput)
+}
+
+// Date and time when the project was created.
+func (o ObservabilityProjectMetadataPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the user.
+func (o ObservabilityProjectMetadataPtrOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBy
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID who owns the project.
+func (o ObservabilityProjectMetadataPtrOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrganizationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Date and time when the project was suspended.
+func (o ObservabilityProjectMetadataPtrOutput) SuspendedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SuspendedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// Reason why the project was suspended.
+func (o ObservabilityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SuspendedReason
+	}).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectCredentials struct {
+	// Basic auth password that can be used to access the Elasticsearch API.
+	Password *string `pulumi:"password"`
+	// Basic auth username that can be used to access the Elasticsearch API.
+	Username *string `pulumi:"username"`
+}
+
+// SecurityProjectCredentialsInput is an input type that accepts SecurityProjectCredentialsArgs and SecurityProjectCredentialsOutput values.
+// You can construct a concrete instance of `SecurityProjectCredentialsInput` via:
+//
+//	SecurityProjectCredentialsArgs{...}
+type SecurityProjectCredentialsInput interface {
+	pulumi.Input
+
+	ToSecurityProjectCredentialsOutput() SecurityProjectCredentialsOutput
+	ToSecurityProjectCredentialsOutputWithContext(context.Context) SecurityProjectCredentialsOutput
+}
+
+type SecurityProjectCredentialsArgs struct {
+	// Basic auth password that can be used to access the Elasticsearch API.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Basic auth username that can be used to access the Elasticsearch API.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (SecurityProjectCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectCredentials)(nil)).Elem()
+}
+
+func (i SecurityProjectCredentialsArgs) ToSecurityProjectCredentialsOutput() SecurityProjectCredentialsOutput {
+	return i.ToSecurityProjectCredentialsOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectCredentialsArgs) ToSecurityProjectCredentialsOutputWithContext(ctx context.Context) SecurityProjectCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectCredentialsOutput)
+}
+
+func (i SecurityProjectCredentialsArgs) ToSecurityProjectCredentialsPtrOutput() SecurityProjectCredentialsPtrOutput {
+	return i.ToSecurityProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectCredentialsArgs) ToSecurityProjectCredentialsPtrOutputWithContext(ctx context.Context) SecurityProjectCredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectCredentialsOutput).ToSecurityProjectCredentialsPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectCredentialsPtrInput is an input type that accepts SecurityProjectCredentialsArgs, SecurityProjectCredentialsPtr and SecurityProjectCredentialsPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectCredentialsPtrInput` via:
+//
+//	        SecurityProjectCredentialsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectCredentialsPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectCredentialsPtrOutput() SecurityProjectCredentialsPtrOutput
+	ToSecurityProjectCredentialsPtrOutputWithContext(context.Context) SecurityProjectCredentialsPtrOutput
+}
+
+type securityProjectCredentialsPtrType SecurityProjectCredentialsArgs
+
+func SecurityProjectCredentialsPtr(v *SecurityProjectCredentialsArgs) SecurityProjectCredentialsPtrInput {
+	return (*securityProjectCredentialsPtrType)(v)
+}
+
+func (*securityProjectCredentialsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectCredentials)(nil)).Elem()
+}
+
+func (i *securityProjectCredentialsPtrType) ToSecurityProjectCredentialsPtrOutput() SecurityProjectCredentialsPtrOutput {
+	return i.ToSecurityProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectCredentialsPtrType) ToSecurityProjectCredentialsPtrOutputWithContext(ctx context.Context) SecurityProjectCredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectCredentialsPtrOutput)
+}
+
+type SecurityProjectCredentialsOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectCredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectCredentials)(nil)).Elem()
+}
+
+func (o SecurityProjectCredentialsOutput) ToSecurityProjectCredentialsOutput() SecurityProjectCredentialsOutput {
+	return o
+}
+
+func (o SecurityProjectCredentialsOutput) ToSecurityProjectCredentialsOutputWithContext(ctx context.Context) SecurityProjectCredentialsOutput {
+	return o
+}
+
+func (o SecurityProjectCredentialsOutput) ToSecurityProjectCredentialsPtrOutput() SecurityProjectCredentialsPtrOutput {
+	return o.ToSecurityProjectCredentialsPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectCredentialsOutput) ToSecurityProjectCredentialsPtrOutputWithContext(ctx context.Context) SecurityProjectCredentialsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectCredentials) *SecurityProjectCredentials {
+		return &v
+	}).(SecurityProjectCredentialsPtrOutput)
+}
+
+// Basic auth password that can be used to access the Elasticsearch API.
+func (o SecurityProjectCredentialsOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectCredentials) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Basic auth username that can be used to access the Elasticsearch API.
+func (o SecurityProjectCredentialsOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectCredentials) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectCredentialsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectCredentialsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectCredentials)(nil)).Elem()
+}
+
+func (o SecurityProjectCredentialsPtrOutput) ToSecurityProjectCredentialsPtrOutput() SecurityProjectCredentialsPtrOutput {
+	return o
+}
+
+func (o SecurityProjectCredentialsPtrOutput) ToSecurityProjectCredentialsPtrOutputWithContext(ctx context.Context) SecurityProjectCredentialsPtrOutput {
+	return o
+}
+
+func (o SecurityProjectCredentialsPtrOutput) Elem() SecurityProjectCredentialsOutput {
+	return o.ApplyT(func(v *SecurityProjectCredentials) SecurityProjectCredentials {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectCredentials
+		return ret
+	}).(SecurityProjectCredentialsOutput)
+}
+
+// Basic auth password that can be used to access the Elasticsearch API.
+func (o SecurityProjectCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectCredentials) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Basic auth username that can be used to access the Elasticsearch API.
+func (o SecurityProjectCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectCredentials) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectEndpoints struct {
+	// The endpoint to access elasticsearch.
+	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The endpoint to access kibana.
+	Kibana *string `pulumi:"kibana"`
+}
+
+// SecurityProjectEndpointsInput is an input type that accepts SecurityProjectEndpointsArgs and SecurityProjectEndpointsOutput values.
+// You can construct a concrete instance of `SecurityProjectEndpointsInput` via:
+//
+//	SecurityProjectEndpointsArgs{...}
+type SecurityProjectEndpointsInput interface {
+	pulumi.Input
+
+	ToSecurityProjectEndpointsOutput() SecurityProjectEndpointsOutput
+	ToSecurityProjectEndpointsOutputWithContext(context.Context) SecurityProjectEndpointsOutput
+}
+
+type SecurityProjectEndpointsArgs struct {
+	// The endpoint to access elasticsearch.
+	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The endpoint to access kibana.
+	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
+}
+
+func (SecurityProjectEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectEndpoints)(nil)).Elem()
+}
+
+func (i SecurityProjectEndpointsArgs) ToSecurityProjectEndpointsOutput() SecurityProjectEndpointsOutput {
+	return i.ToSecurityProjectEndpointsOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectEndpointsArgs) ToSecurityProjectEndpointsOutputWithContext(ctx context.Context) SecurityProjectEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectEndpointsOutput)
+}
+
+func (i SecurityProjectEndpointsArgs) ToSecurityProjectEndpointsPtrOutput() SecurityProjectEndpointsPtrOutput {
+	return i.ToSecurityProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectEndpointsArgs) ToSecurityProjectEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectEndpointsOutput).ToSecurityProjectEndpointsPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectEndpointsPtrInput is an input type that accepts SecurityProjectEndpointsArgs, SecurityProjectEndpointsPtr and SecurityProjectEndpointsPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectEndpointsPtrInput` via:
+//
+//	        SecurityProjectEndpointsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectEndpointsPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectEndpointsPtrOutput() SecurityProjectEndpointsPtrOutput
+	ToSecurityProjectEndpointsPtrOutputWithContext(context.Context) SecurityProjectEndpointsPtrOutput
+}
+
+type securityProjectEndpointsPtrType SecurityProjectEndpointsArgs
+
+func SecurityProjectEndpointsPtr(v *SecurityProjectEndpointsArgs) SecurityProjectEndpointsPtrInput {
+	return (*securityProjectEndpointsPtrType)(v)
+}
+
+func (*securityProjectEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectEndpoints)(nil)).Elem()
+}
+
+func (i *securityProjectEndpointsPtrType) ToSecurityProjectEndpointsPtrOutput() SecurityProjectEndpointsPtrOutput {
+	return i.ToSecurityProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectEndpointsPtrType) ToSecurityProjectEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectEndpointsPtrOutput)
+}
+
+type SecurityProjectEndpointsOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectEndpoints)(nil)).Elem()
+}
+
+func (o SecurityProjectEndpointsOutput) ToSecurityProjectEndpointsOutput() SecurityProjectEndpointsOutput {
+	return o
+}
+
+func (o SecurityProjectEndpointsOutput) ToSecurityProjectEndpointsOutputWithContext(ctx context.Context) SecurityProjectEndpointsOutput {
+	return o
+}
+
+func (o SecurityProjectEndpointsOutput) ToSecurityProjectEndpointsPtrOutput() SecurityProjectEndpointsPtrOutput {
+	return o.ToSecurityProjectEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectEndpointsOutput) ToSecurityProjectEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectEndpoints) *SecurityProjectEndpoints {
+		return &v
+	}).(SecurityProjectEndpointsPtrOutput)
+}
+
+// The endpoint to access elasticsearch.
+func (o SecurityProjectEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access kibana.
+func (o SecurityProjectEndpointsOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectEndpoints)(nil)).Elem()
+}
+
+func (o SecurityProjectEndpointsPtrOutput) ToSecurityProjectEndpointsPtrOutput() SecurityProjectEndpointsPtrOutput {
+	return o
+}
+
+func (o SecurityProjectEndpointsPtrOutput) ToSecurityProjectEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectEndpointsPtrOutput {
+	return o
+}
+
+func (o SecurityProjectEndpointsPtrOutput) Elem() SecurityProjectEndpointsOutput {
+	return o.ApplyT(func(v *SecurityProjectEndpoints) SecurityProjectEndpoints {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectEndpoints
+		return ret
+	}).(SecurityProjectEndpointsOutput)
+}
+
+// The endpoint to access elasticsearch.
+func (o SecurityProjectEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access kibana.
+func (o SecurityProjectEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kibana
+	}).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectMetadata struct {
+	// Date and time when the project was created.
+	CreatedAt *string `pulumi:"createdAt"`
+	// ID of the user.
+	CreatedBy *string `pulumi:"createdBy"`
+	// The Organization ID who owns the project.
+	OrganizationId *string `pulumi:"organizationId"`
+	// Date and time when the project was suspended.
+	SuspendedAt *string `pulumi:"suspendedAt"`
+	// Reason why the project was suspended.
+	SuspendedReason *string `pulumi:"suspendedReason"`
+}
+
+// SecurityProjectMetadataInput is an input type that accepts SecurityProjectMetadataArgs and SecurityProjectMetadataOutput values.
+// You can construct a concrete instance of `SecurityProjectMetadataInput` via:
+//
+//	SecurityProjectMetadataArgs{...}
+type SecurityProjectMetadataInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMetadataOutput() SecurityProjectMetadataOutput
+	ToSecurityProjectMetadataOutputWithContext(context.Context) SecurityProjectMetadataOutput
+}
+
+type SecurityProjectMetadataArgs struct {
+	// Date and time when the project was created.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// ID of the user.
+	CreatedBy pulumi.StringPtrInput `pulumi:"createdBy"`
+	// The Organization ID who owns the project.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// Date and time when the project was suspended.
+	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
+	// Reason why the project was suspended.
+	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
+}
+
+func (SecurityProjectMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMetadata)(nil)).Elem()
+}
+
+func (i SecurityProjectMetadataArgs) ToSecurityProjectMetadataOutput() SecurityProjectMetadataOutput {
+	return i.ToSecurityProjectMetadataOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMetadataArgs) ToSecurityProjectMetadataOutputWithContext(ctx context.Context) SecurityProjectMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMetadataOutput)
+}
+
+func (i SecurityProjectMetadataArgs) ToSecurityProjectMetadataPtrOutput() SecurityProjectMetadataPtrOutput {
+	return i.ToSecurityProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMetadataArgs) ToSecurityProjectMetadataPtrOutputWithContext(ctx context.Context) SecurityProjectMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMetadataOutput).ToSecurityProjectMetadataPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectMetadataPtrInput is an input type that accepts SecurityProjectMetadataArgs, SecurityProjectMetadataPtr and SecurityProjectMetadataPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectMetadataPtrInput` via:
+//
+//	        SecurityProjectMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectMetadataPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMetadataPtrOutput() SecurityProjectMetadataPtrOutput
+	ToSecurityProjectMetadataPtrOutputWithContext(context.Context) SecurityProjectMetadataPtrOutput
+}
+
+type securityProjectMetadataPtrType SecurityProjectMetadataArgs
+
+func SecurityProjectMetadataPtr(v *SecurityProjectMetadataArgs) SecurityProjectMetadataPtrInput {
+	return (*securityProjectMetadataPtrType)(v)
+}
+
+func (*securityProjectMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMetadata)(nil)).Elem()
+}
+
+func (i *securityProjectMetadataPtrType) ToSecurityProjectMetadataPtrOutput() SecurityProjectMetadataPtrOutput {
+	return i.ToSecurityProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectMetadataPtrType) ToSecurityProjectMetadataPtrOutputWithContext(ctx context.Context) SecurityProjectMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMetadataPtrOutput)
+}
+
+type SecurityProjectMetadataOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMetadata)(nil)).Elem()
+}
+
+func (o SecurityProjectMetadataOutput) ToSecurityProjectMetadataOutput() SecurityProjectMetadataOutput {
+	return o
+}
+
+func (o SecurityProjectMetadataOutput) ToSecurityProjectMetadataOutputWithContext(ctx context.Context) SecurityProjectMetadataOutput {
+	return o
+}
+
+func (o SecurityProjectMetadataOutput) ToSecurityProjectMetadataPtrOutput() SecurityProjectMetadataPtrOutput {
+	return o.ToSecurityProjectMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectMetadataOutput) ToSecurityProjectMetadataPtrOutputWithContext(ctx context.Context) SecurityProjectMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectMetadata) *SecurityProjectMetadata {
+		return &v
+	}).(SecurityProjectMetadataPtrOutput)
+}
+
+// Date and time when the project was created.
+func (o SecurityProjectMetadataOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// ID of the user.
+func (o SecurityProjectMetadataOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.CreatedBy }).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID who owns the project.
+func (o SecurityProjectMetadataOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+// Date and time when the project was suspended.
+func (o SecurityProjectMetadataOutput) SuspendedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.SuspendedAt }).(pulumi.StringPtrOutput)
+}
+
+// Reason why the project was suspended.
+func (o SecurityProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMetadata)(nil)).Elem()
+}
+
+func (o SecurityProjectMetadataPtrOutput) ToSecurityProjectMetadataPtrOutput() SecurityProjectMetadataPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMetadataPtrOutput) ToSecurityProjectMetadataPtrOutputWithContext(ctx context.Context) SecurityProjectMetadataPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMetadataPtrOutput) Elem() SecurityProjectMetadataOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) SecurityProjectMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectMetadata
+		return ret
+	}).(SecurityProjectMetadataOutput)
+}
+
+// Date and time when the project was created.
+func (o SecurityProjectMetadataPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the user.
+func (o SecurityProjectMetadataPtrOutput) CreatedBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBy
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Organization ID who owns the project.
+func (o SecurityProjectMetadataPtrOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrganizationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Date and time when the project was suspended.
+func (o SecurityProjectMetadataPtrOutput) SuspendedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SuspendedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// Reason why the project was suspended.
+func (o SecurityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SuspendedReason
+	}).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectProductType struct {
+	// The identifier of the Security Solution product line.
+	ProductLine string `pulumi:"productLine"`
+	// The identifier of the Security Solution product tier.
+	ProductTier string `pulumi:"productTier"`
+}
+
+// SecurityProjectProductTypeInput is an input type that accepts SecurityProjectProductTypeArgs and SecurityProjectProductTypeOutput values.
+// You can construct a concrete instance of `SecurityProjectProductTypeInput` via:
+//
+//	SecurityProjectProductTypeArgs{...}
+type SecurityProjectProductTypeInput interface {
+	pulumi.Input
+
+	ToSecurityProjectProductTypeOutput() SecurityProjectProductTypeOutput
+	ToSecurityProjectProductTypeOutputWithContext(context.Context) SecurityProjectProductTypeOutput
+}
+
+type SecurityProjectProductTypeArgs struct {
+	// The identifier of the Security Solution product line.
+	ProductLine pulumi.StringInput `pulumi:"productLine"`
+	// The identifier of the Security Solution product tier.
+	ProductTier pulumi.StringInput `pulumi:"productTier"`
+}
+
+func (SecurityProjectProductTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectProductType)(nil)).Elem()
+}
+
+func (i SecurityProjectProductTypeArgs) ToSecurityProjectProductTypeOutput() SecurityProjectProductTypeOutput {
+	return i.ToSecurityProjectProductTypeOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectProductTypeArgs) ToSecurityProjectProductTypeOutputWithContext(ctx context.Context) SecurityProjectProductTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectProductTypeOutput)
+}
+
+// SecurityProjectProductTypeArrayInput is an input type that accepts SecurityProjectProductTypeArray and SecurityProjectProductTypeArrayOutput values.
+// You can construct a concrete instance of `SecurityProjectProductTypeArrayInput` via:
+//
+//	SecurityProjectProductTypeArray{ SecurityProjectProductTypeArgs{...} }
+type SecurityProjectProductTypeArrayInput interface {
+	pulumi.Input
+
+	ToSecurityProjectProductTypeArrayOutput() SecurityProjectProductTypeArrayOutput
+	ToSecurityProjectProductTypeArrayOutputWithContext(context.Context) SecurityProjectProductTypeArrayOutput
+}
+
+type SecurityProjectProductTypeArray []SecurityProjectProductTypeInput
+
+func (SecurityProjectProductTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecurityProjectProductType)(nil)).Elem()
+}
+
+func (i SecurityProjectProductTypeArray) ToSecurityProjectProductTypeArrayOutput() SecurityProjectProductTypeArrayOutput {
+	return i.ToSecurityProjectProductTypeArrayOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectProductTypeArray) ToSecurityProjectProductTypeArrayOutputWithContext(ctx context.Context) SecurityProjectProductTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectProductTypeArrayOutput)
+}
+
+type SecurityProjectProductTypeOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectProductTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectProductType)(nil)).Elem()
+}
+
+func (o SecurityProjectProductTypeOutput) ToSecurityProjectProductTypeOutput() SecurityProjectProductTypeOutput {
+	return o
+}
+
+func (o SecurityProjectProductTypeOutput) ToSecurityProjectProductTypeOutputWithContext(ctx context.Context) SecurityProjectProductTypeOutput {
+	return o
+}
+
+// The identifier of the Security Solution product line.
+func (o SecurityProjectProductTypeOutput) ProductLine() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityProjectProductType) string { return v.ProductLine }).(pulumi.StringOutput)
+}
+
+// The identifier of the Security Solution product tier.
+func (o SecurityProjectProductTypeOutput) ProductTier() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityProjectProductType) string { return v.ProductTier }).(pulumi.StringOutput)
+}
+
+type SecurityProjectProductTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectProductTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecurityProjectProductType)(nil)).Elem()
+}
+
+func (o SecurityProjectProductTypeArrayOutput) ToSecurityProjectProductTypeArrayOutput() SecurityProjectProductTypeArrayOutput {
+	return o
+}
+
+func (o SecurityProjectProductTypeArrayOutput) ToSecurityProjectProductTypeArrayOutputWithContext(ctx context.Context) SecurityProjectProductTypeArrayOutput {
+	return o
+}
+
+func (o SecurityProjectProductTypeArrayOutput) Index(i pulumi.IntInput) SecurityProjectProductTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityProjectProductType {
+		return vs[0].([]SecurityProjectProductType)[vs[1].(int)]
+	}).(SecurityProjectProductTypeOutput)
+}
+
 type SnapshotRepositoryGeneric struct {
 	// An arbitrary JSON object containing the repository settings.
 	Settings string `pulumi:"settings"`
@@ -14515,6 +16371,28 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentObservabilityPtrInput)(nil)).Elem(), DeploymentObservabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterRuleInput)(nil)).Elem(), DeploymentTrafficFilterRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentTrafficFilterRuleArrayInput)(nil)).Elem(), DeploymentTrafficFilterRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectCredentialsInput)(nil)).Elem(), ElasticsearchProjectCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectCredentialsPtrInput)(nil)).Elem(), ElasticsearchProjectCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectEndpointsInput)(nil)).Elem(), ElasticsearchProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectEndpointsPtrInput)(nil)).Elem(), ElasticsearchProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataPtrInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectSearchLakeInput)(nil)).Elem(), ElasticsearchProjectSearchLakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectSearchLakePtrInput)(nil)).Elem(), ElasticsearchProjectSearchLakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectCredentialsInput)(nil)).Elem(), ObservabilityProjectCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectCredentialsPtrInput)(nil)).Elem(), ObservabilityProjectCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectEndpointsInput)(nil)).Elem(), ObservabilityProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectEndpointsPtrInput)(nil)).Elem(), ObservabilityProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataPtrInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectCredentialsInput)(nil)).Elem(), SecurityProjectCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectCredentialsPtrInput)(nil)).Elem(), SecurityProjectCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectEndpointsInput)(nil)).Elem(), SecurityProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectEndpointsPtrInput)(nil)).Elem(), SecurityProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataPtrInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectProductTypeInput)(nil)).Elem(), SecurityProjectProductTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectProductTypeArrayInput)(nil)).Elem(), SecurityProjectProductTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryGenericInput)(nil)).Elem(), SnapshotRepositoryGenericArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryGenericPtrInput)(nil)).Elem(), SnapshotRepositoryGenericArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryS3Input)(nil)).Elem(), SnapshotRepositoryS3Args{})
@@ -14660,6 +16538,28 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentObservabilityPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterRuleOutput{})
 	pulumi.RegisterOutputType(DeploymentTrafficFilterRuleArrayOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectCredentialsOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectCredentialsPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectEndpointsOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectEndpointsPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMetadataOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectSearchLakeOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectSearchLakePtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectCredentialsOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectCredentialsPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectEndpointsOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectEndpointsPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMetadataOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectCredentialsOutput{})
+	pulumi.RegisterOutputType(SecurityProjectCredentialsPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectEndpointsOutput{})
+	pulumi.RegisterOutputType(SecurityProjectEndpointsPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMetadataOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectProductTypeOutput{})
+	pulumi.RegisterOutputType(SecurityProjectProductTypeArrayOutput{})
 	pulumi.RegisterOutputType(SnapshotRepositoryGenericOutput{})
 	pulumi.RegisterOutputType(SnapshotRepositoryGenericPtrOutput{})
 	pulumi.RegisterOutputType(SnapshotRepositoryS3Output{})

@@ -103,7 +103,7 @@ export interface DeploymentElasticsearch {
     /**
      * 'master' topology element
      */
-    master?: outputs.DeploymentElasticsearchMaster;
+    master: outputs.DeploymentElasticsearchMaster;
     /**
      * 'ml' topology element
      */
@@ -1049,6 +1049,62 @@ export interface DeploymentTrafficFilterRule {
     source?: string;
 }
 
+export interface ElasticsearchProjectCredentials {
+    /**
+     * Basic auth password that can be used to access the Elasticsearch API.
+     */
+    password: string;
+    /**
+     * Basic auth username that can be used to access the Elasticsearch API.
+     */
+    username: string;
+}
+
+export interface ElasticsearchProjectEndpoints {
+    /**
+     * The endpoint to access elasticsearch.
+     */
+    elasticsearch: string;
+    /**
+     * The endpoint to access kibana.
+     */
+    kibana: string;
+}
+
+export interface ElasticsearchProjectMetadata {
+    /**
+     * Date and time when the project was created.
+     */
+    createdAt: string;
+    /**
+     * ID of the user.
+     */
+    createdBy: string;
+    /**
+     * The Organization ID who owns the project.
+     */
+    organizationId: string;
+    /**
+     * Date and time when the project was suspended.
+     */
+    suspendedAt: string;
+    /**
+     * Reason why the project was suspended.
+     */
+    suspendedReason: string;
+}
+
+export interface ElasticsearchProjectSearchLake {
+    /**
+     * Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+     */
+    boostWindow: number;
+    /**
+     * Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
+     */
+    searchPower: number;
+}
+
 export interface GetDeploymentApm {
     /**
      * The locally-unique user-specified id of an APM Resource.
@@ -1917,6 +1973,111 @@ export interface GetTrafficFilterRulesetRule {
      * Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
      */
     source: string;
+}
+
+export interface ObservabilityProjectCredentials {
+    /**
+     * Basic auth password that can be used to access the Elasticsearch API.
+     */
+    password: string;
+    /**
+     * Basic auth username that can be used to access the Elasticsearch API.
+     */
+    username: string;
+}
+
+export interface ObservabilityProjectEndpoints {
+    /**
+     * The endpoint to access apm.
+     */
+    apm: string;
+    /**
+     * The endpoint to access elasticsearch.
+     */
+    elasticsearch: string;
+    /**
+     * The endpoint to access kibana.
+     */
+    kibana: string;
+}
+
+export interface ObservabilityProjectMetadata {
+    /**
+     * Date and time when the project was created.
+     */
+    createdAt: string;
+    /**
+     * ID of the user.
+     */
+    createdBy: string;
+    /**
+     * The Organization ID who owns the project.
+     */
+    organizationId: string;
+    /**
+     * Date and time when the project was suspended.
+     */
+    suspendedAt: string;
+    /**
+     * Reason why the project was suspended.
+     */
+    suspendedReason: string;
+}
+
+export interface SecurityProjectCredentials {
+    /**
+     * Basic auth password that can be used to access the Elasticsearch API.
+     */
+    password: string;
+    /**
+     * Basic auth username that can be used to access the Elasticsearch API.
+     */
+    username: string;
+}
+
+export interface SecurityProjectEndpoints {
+    /**
+     * The endpoint to access elasticsearch.
+     */
+    elasticsearch: string;
+    /**
+     * The endpoint to access kibana.
+     */
+    kibana: string;
+}
+
+export interface SecurityProjectMetadata {
+    /**
+     * Date and time when the project was created.
+     */
+    createdAt: string;
+    /**
+     * ID of the user.
+     */
+    createdBy: string;
+    /**
+     * The Organization ID who owns the project.
+     */
+    organizationId: string;
+    /**
+     * Date and time when the project was suspended.
+     */
+    suspendedAt: string;
+    /**
+     * Reason why the project was suspended.
+     */
+    suspendedReason: string;
+}
+
+export interface SecurityProjectProductType {
+    /**
+     * The identifier of the Security Solution product line.
+     */
+    productLine: string;
+    /**
+     * The identifier of the Security Solution product tier.
+     */
+    productTier: string;
 }
 
 export interface SnapshotRepositoryGeneric {
