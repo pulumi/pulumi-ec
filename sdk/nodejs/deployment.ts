@@ -72,7 +72,7 @@ export class Deployment extends pulumi.CustomResource {
     }
 
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
      */
     public readonly alias!: pulumi.Output<string>;
     /**
@@ -226,7 +226,7 @@ export class Deployment extends pulumi.CustomResource {
  */
 export interface DeploymentState {
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
      */
     alias?: pulumi.Input<string>;
     /**
@@ -308,7 +308,7 @@ export interface DeploymentState {
  */
 export interface DeploymentArgs {
     /**
-     * Deployment alias, affects the format of the resource URLs.
+     * Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
      */
     alias?: pulumi.Input<string>;
     /**

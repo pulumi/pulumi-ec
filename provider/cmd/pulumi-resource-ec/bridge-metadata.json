@@ -117,6 +117,23 @@
                 "current": "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation",
                 "majorVersion": 1
             },
+            "ec_elasticsearch_project": {
+                "current": "ec:index/elasticsearchProject:ElasticsearchProject",
+                "majorVersion": 1
+            },
+            "ec_observability_project": {
+                "current": "ec:index/observabilityProject:ObservabilityProject",
+                "majorVersion": 1
+            },
+            "ec_security_project": {
+                "current": "ec:index/securityProject:SecurityProject",
+                "majorVersion": 1,
+                "fields": {
+                    "product_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ec_snapshot_repository": {
                 "current": "ec:index/snapshotRepository:SnapshotRepository",
                 "majorVersion": 1

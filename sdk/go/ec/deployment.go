@@ -50,7 +50,7 @@ import (
 type Deployment struct {
 	pulumi.CustomResourceState
 
-	// Deployment alias, affects the format of the resource URLs.
+	// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm            DeploymentApmPtrOutput `pulumi:"apm"`
@@ -141,7 +141,7 @@ func GetDeployment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Deployment resources.
 type deploymentState struct {
-	// Deployment alias, affects the format of the resource URLs.
+	// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 	Alias *string `pulumi:"alias"`
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm            *DeploymentApm `pulumi:"apm"`
@@ -186,7 +186,7 @@ type deploymentState struct {
 }
 
 type DeploymentState struct {
-	// Deployment alias, affects the format of the resource URLs.
+	// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 	Alias pulumi.StringPtrInput
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm            DeploymentApmPtrInput
@@ -235,7 +235,7 @@ func (DeploymentState) ElementType() reflect.Type {
 }
 
 type deploymentArgs struct {
-	// Deployment alias, affects the format of the resource URLs.
+	// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 	Alias *string `pulumi:"alias"`
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm *DeploymentApm `pulumi:"apm"`
@@ -277,7 +277,7 @@ type deploymentArgs struct {
 
 // The set of arguments for constructing a Deployment resource.
 type DeploymentArgs struct {
-	// Deployment alias, affects the format of the resource URLs.
+	// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 	Alias pulumi.StringPtrInput
 	// **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
 	Apm DeploymentApmPtrInput
@@ -404,7 +404,7 @@ func (o DeploymentOutput) ToDeploymentOutputWithContext(ctx context.Context) Dep
 	return o
 }
 
-// Deployment alias, affects the format of the resource URLs.
+// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 func (o DeploymentOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }

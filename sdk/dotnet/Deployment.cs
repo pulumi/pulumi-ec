@@ -50,7 +50,7 @@ namespace Pulumi.ElasticCloud
     public partial class Deployment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
@@ -215,7 +215,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
@@ -337,7 +337,7 @@ namespace Pulumi.ElasticCloud
     public sealed class DeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Deployment alias, affects the format of the resource URLs.
+        /// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }

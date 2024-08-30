@@ -30,6 +30,11 @@ export type DeploymentTrafficFilterAssociation = import("./deploymentTrafficFilt
 export const DeploymentTrafficFilterAssociation: typeof import("./deploymentTrafficFilterAssociation").DeploymentTrafficFilterAssociation = null as any;
 utilities.lazyLoad(exports, ["DeploymentTrafficFilterAssociation"], () => require("./deploymentTrafficFilterAssociation"));
 
+export { ElasticsearchProjectArgs, ElasticsearchProjectState } from "./elasticsearchProject";
+export type ElasticsearchProject = import("./elasticsearchProject").ElasticsearchProject;
+export const ElasticsearchProject: typeof import("./elasticsearchProject").ElasticsearchProject = null as any;
+utilities.lazyLoad(exports, ["ElasticsearchProject"], () => require("./elasticsearchProject"));
+
 export { GetAwsPrivatelinkEndpointArgs, GetAwsPrivatelinkEndpointResult, GetAwsPrivatelinkEndpointOutputArgs } from "./getAwsPrivatelinkEndpoint";
 export const getAwsPrivatelinkEndpoint: typeof import("./getAwsPrivatelinkEndpoint").getAwsPrivatelinkEndpoint = null as any;
 export const getAwsPrivatelinkEndpointOutput: typeof import("./getAwsPrivatelinkEndpoint").getAwsPrivatelinkEndpointOutput = null as any;
@@ -70,10 +75,20 @@ export const getTrafficFilter: typeof import("./getTrafficFilter").getTrafficFil
 export const getTrafficFilterOutput: typeof import("./getTrafficFilter").getTrafficFilterOutput = null as any;
 utilities.lazyLoad(exports, ["getTrafficFilter","getTrafficFilterOutput"], () => require("./getTrafficFilter"));
 
+export { ObservabilityProjectArgs, ObservabilityProjectState } from "./observabilityProject";
+export type ObservabilityProject = import("./observabilityProject").ObservabilityProject;
+export const ObservabilityProject: typeof import("./observabilityProject").ObservabilityProject = null as any;
+utilities.lazyLoad(exports, ["ObservabilityProject"], () => require("./observabilityProject"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { SecurityProjectArgs, SecurityProjectState } from "./securityProject";
+export type SecurityProject = import("./securityProject").SecurityProject;
+export const SecurityProject: typeof import("./securityProject").SecurityProject = null as any;
+utilities.lazyLoad(exports, ["SecurityProject"], () => require("./securityProject"));
 
 export { SnapshotRepositoryArgs, SnapshotRepositoryState } from "./snapshotRepository";
 export type SnapshotRepository = import("./snapshotRepository").SnapshotRepository;
@@ -104,6 +119,12 @@ const _module = {
                 return new DeploymentTrafficFilter(name, <any>undefined, { urn })
             case "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation":
                 return new DeploymentTrafficFilterAssociation(name, <any>undefined, { urn })
+            case "ec:index/elasticsearchProject:ElasticsearchProject":
+                return new ElasticsearchProject(name, <any>undefined, { urn })
+            case "ec:index/observabilityProject:ObservabilityProject":
+                return new ObservabilityProject(name, <any>undefined, { urn })
+            case "ec:index/securityProject:SecurityProject":
+                return new SecurityProject(name, <any>undefined, { urn })
             case "ec:index/snapshotRepository:SnapshotRepository":
                 return new SnapshotRepository(name, <any>undefined, { urn })
             default:
@@ -116,6 +137,9 @@ pulumi.runtime.registerResourceModule("ec", "index/deploymentElasticsearchKeysto
 pulumi.runtime.registerResourceModule("ec", "index/deploymentExtension", _module)
 pulumi.runtime.registerResourceModule("ec", "index/deploymentTrafficFilter", _module)
 pulumi.runtime.registerResourceModule("ec", "index/deploymentTrafficFilterAssociation", _module)
+pulumi.runtime.registerResourceModule("ec", "index/elasticsearchProject", _module)
+pulumi.runtime.registerResourceModule("ec", "index/observabilityProject", _module)
+pulumi.runtime.registerResourceModule("ec", "index/securityProject", _module)
 pulumi.runtime.registerResourceModule("ec", "index/snapshotRepository", _module)
 pulumi.runtime.registerResourcePackage("ec", {
     version: utilities.getVersion(),

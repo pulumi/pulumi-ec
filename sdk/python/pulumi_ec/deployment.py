@@ -38,7 +38,7 @@ class DeploymentArgs:
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[str] version: Elastic Stack version to use for all of the deployment resources.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -138,7 +138,7 @@ class DeploymentArgs:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Deployment alias, affects the format of the resource URLs.
+        Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         """
         return pulumi.get(self, "alias")
 
@@ -309,7 +309,7 @@ class _DeploymentState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
@@ -376,7 +376,7 @@ class _DeploymentState:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Deployment alias, affects the format of the resource URLs.
+        Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         """
         return pulumi.get(self, "alias")
 
@@ -662,7 +662,7 @@ class Deployment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
@@ -833,7 +833,7 @@ class Deployment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs.
+        :param pulumi.Input[str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
@@ -886,7 +886,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
         """
-        Deployment alias, affects the format of the resource URLs.
+        Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         """
         return pulumi.get(self, "alias")
 
