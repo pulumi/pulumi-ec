@@ -327,6 +327,7 @@
                         "hot",
                         "httpEndpoint",
                         "httpsEndpoint",
+                        "master",
                         "refId",
                         "region",
                         "resourceId",
@@ -1839,6 +1840,283 @@
                     ]
                 }
             }
+        },
+        "ec:index/ElasticsearchProjectCredentials:ElasticsearchProjectCredentials": {
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "description": "Basic auth password that can be used to access the Elasticsearch API.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Basic auth username that can be used to access the Elasticsearch API.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "password",
+                        "username"
+                    ]
+                }
+            }
+        },
+        "ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints": {
+            "properties": {
+                "elasticsearch": {
+                    "type": "string",
+                    "description": "The endpoint to access elasticsearch.\n"
+                },
+                "kibana": {
+                    "type": "string",
+                    "description": "The endpoint to access kibana.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "elasticsearch",
+                        "kibana"
+                    ]
+                }
+            }
+        },
+        "ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time when the project was created.\n"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "description": "ID of the user.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The Organization ID who owns the project.\n"
+                },
+                "suspendedAt": {
+                    "type": "string",
+                    "description": "Date and time when the project was suspended.\n"
+                },
+                "suspendedReason": {
+                    "type": "string",
+                    "description": "Reason why the project was suspended.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "createdBy",
+                        "organizationId",
+                        "suspendedAt",
+                        "suspendedReason"
+                    ]
+                }
+            }
+        },
+        "ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake": {
+            "properties": {
+                "boostWindow": {
+                    "type": "integer",
+                    "description": "Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.\n"
+                },
+                "searchPower": {
+                    "type": "integer",
+                    "description": "Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "boostWindow",
+                        "searchPower"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectCredentials:ObservabilityProjectCredentials": {
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "description": "Basic auth password that can be used to access the Elasticsearch API.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Basic auth username that can be used to access the Elasticsearch API.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "password",
+                        "username"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectEndpoints:ObservabilityProjectEndpoints": {
+            "properties": {
+                "apm": {
+                    "type": "string",
+                    "description": "The endpoint to access apm.\n"
+                },
+                "elasticsearch": {
+                    "type": "string",
+                    "description": "The endpoint to access elasticsearch.\n"
+                },
+                "kibana": {
+                    "type": "string",
+                    "description": "The endpoint to access kibana.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "apm",
+                        "elasticsearch",
+                        "kibana"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time when the project was created.\n"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "description": "ID of the user.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The Organization ID who owns the project.\n"
+                },
+                "suspendedAt": {
+                    "type": "string",
+                    "description": "Date and time when the project was suspended.\n"
+                },
+                "suspendedReason": {
+                    "type": "string",
+                    "description": "Reason why the project was suspended.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "createdBy",
+                        "organizationId",
+                        "suspendedAt",
+                        "suspendedReason"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectCredentials:SecurityProjectCredentials": {
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "description": "Basic auth password that can be used to access the Elasticsearch API.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Basic auth username that can be used to access the Elasticsearch API.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "password",
+                        "username"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectEndpoints:SecurityProjectEndpoints": {
+            "properties": {
+                "elasticsearch": {
+                    "type": "string",
+                    "description": "The endpoint to access elasticsearch.\n"
+                },
+                "kibana": {
+                    "type": "string",
+                    "description": "The endpoint to access kibana.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "elasticsearch",
+                        "kibana"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectMetadata:SecurityProjectMetadata": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time when the project was created.\n"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "description": "ID of the user.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The Organization ID who owns the project.\n"
+                },
+                "suspendedAt": {
+                    "type": "string",
+                    "description": "Date and time when the project was suspended.\n"
+                },
+                "suspendedReason": {
+                    "type": "string",
+                    "description": "Reason why the project was suspended.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "createdBy",
+                        "organizationId",
+                        "suspendedAt",
+                        "suspendedReason"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectProductType:SecurityProjectProductType": {
+            "properties": {
+                "productLine": {
+                    "type": "string",
+                    "description": "The identifier of the Security Solution product line.\n"
+                },
+                "productTier": {
+                    "type": "string",
+                    "description": "The identifier of the Security Solution product tier.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "productLine",
+                "productTier"
+            ]
         },
         "ec:index/SnapshotRepositoryGeneric:SnapshotRepositoryGeneric": {
             "properties": {
@@ -3748,7 +4026,7 @@
             "properties": {
                 "alias": {
                     "type": "string",
-                    "description": "Deployment alias, affects the format of the resource URLs.\n"
+                    "description": "Deployment alias, affects the format of the resource URLs. Set to an empty value (\"\") to disable the alias.\n"
                 },
                 "apm": {
                     "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -3845,7 +4123,7 @@
             "inputProperties": {
                 "alias": {
                     "type": "string",
-                    "description": "Deployment alias, affects the format of the resource URLs.\n"
+                    "description": "Deployment alias, affects the format of the resource URLs. Set to an empty value (\"\") to disable the alias.\n"
                 },
                 "apm": {
                     "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -3925,7 +4203,7 @@
                 "properties": {
                     "alias": {
                         "type": "string",
-                        "description": "Deployment alias, affects the format of the resource URLs.\n"
+                        "description": "Deployment alias, affects the format of the resource URLs. Set to an empty value (\"\") to disable the alias.\n"
                     },
                     "apm": {
                         "$ref": "#/types/ec:index/DeploymentApm:DeploymentApm",
@@ -4363,6 +4641,370 @@
                     "trafficFilterId": {
                         "type": "string",
                         "description": "Required traffic filter ruleset ID to tie to a deployment\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/elasticsearchProject:ElasticsearchProject": {
+            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ElasticsearchProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ElasticsearchProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.ElasticsearchProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewElasticsearchProject(ctx, \"my_project\", \u0026ec.ElasticsearchProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ElasticsearchProject;\nimport com.pulumi.ec.ElasticsearchProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ElasticsearchProject(\"myProject\", ElasticsearchProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ElasticsearchProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the `id`, for example:\n\n```sh\n$ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n",
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                },
+                "credentials": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectCredentials:ElasticsearchProjectCredentials",
+                    "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                },
+                "endpoints": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints",
+                    "description": "The endpoints to access the different apps of the project.\n"
+                },
+                "metadata": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
+                    "description": "Additional details about the project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for a project.\n"
+                },
+                "optimizedFor": {
+                    "type": "string",
+                    "description": "The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.\n"
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "searchLake": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake",
+                    "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "the type of the project\n"
+                }
+            },
+            "required": [
+                "alias",
+                "cloudId",
+                "credentials",
+                "endpoints",
+                "metadata",
+                "name",
+                "optimizedFor",
+                "regionId",
+                "searchLake",
+                "type"
+            ],
+            "inputProperties": {
+                "alias": {
+                    "type": "string",
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for a project.\n"
+                },
+                "optimizedFor": {
+                    "type": "string",
+                    "description": "The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.\n"
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "searchLake": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake",
+                    "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch.\n"
+                }
+            },
+            "requiredInputs": [
+                "regionId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ElasticsearchProject resources.\n",
+                "properties": {
+                    "alias": {
+                        "type": "string",
+                        "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                    },
+                    "cloudId": {
+                        "type": "string",
+                        "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                    },
+                    "credentials": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectCredentials:ElasticsearchProjectCredentials",
+                        "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                    },
+                    "endpoints": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints",
+                        "description": "The endpoints to access the different apps of the project.\n"
+                    },
+                    "metadata": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
+                        "description": "Additional details about the project.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Descriptive name for a project.\n"
+                    },
+                    "optimizedFor": {
+                        "type": "string",
+                        "description": "The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.\n"
+                    },
+                    "regionId": {
+                        "type": "string",
+                        "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                    },
+                    "searchLake": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake",
+                        "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "the type of the project\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/observabilityProject:ObservabilityProject": {
+            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ObservabilityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ObservabilityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.ObservabilityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewObservabilityProject(ctx, \"my_project\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ObservabilityProject(\"myProject\", ObservabilityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ObservabilityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the `id`, for example:\n\n```sh\n$ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n",
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                },
+                "credentials": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectCredentials:ObservabilityProjectCredentials",
+                    "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                },
+                "endpoints": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectEndpoints:ObservabilityProjectEndpoints",
+                    "description": "The endpoints to access the different apps of the project.\n"
+                },
+                "metadata": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
+                    "description": "Additional details about the project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for a project.\n"
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "the type of the project\n"
+                }
+            },
+            "required": [
+                "alias",
+                "cloudId",
+                "credentials",
+                "endpoints",
+                "metadata",
+                "name",
+                "regionId",
+                "type"
+            ],
+            "inputProperties": {
+                "alias": {
+                    "type": "string",
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for a project.\n"
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                }
+            },
+            "requiredInputs": [
+                "regionId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ObservabilityProject resources.\n",
+                "properties": {
+                    "alias": {
+                        "type": "string",
+                        "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                    },
+                    "cloudId": {
+                        "type": "string",
+                        "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                    },
+                    "credentials": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectCredentials:ObservabilityProjectCredentials",
+                        "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                    },
+                    "endpoints": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectEndpoints:ObservabilityProjectEndpoints",
+                        "description": "The endpoints to access the different apps of the project.\n"
+                    },
+                    "metadata": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
+                        "description": "Additional details about the project.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Descriptive name for a project.\n"
+                    },
+                    "regionId": {
+                        "type": "string",
+                        "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "the type of the project\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/securityProject:SecurityProject": {
+            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.SecurityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.SecurityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.SecurityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewSecurityProject(ctx, \"my_project\", \u0026ec.SecurityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.SecurityProject;\nimport com.pulumi.ec.SecurityProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new SecurityProject(\"myProject\", SecurityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:SecurityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the `id`, for example:\n\n```sh\n$ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n",
+            "properties": {
+                "adminFeaturesPackage": {
+                    "type": "string",
+                    "description": "admin features package (BYOK, BYOIDP, CCS, CCR)\n"
+                },
+                "alias": {
+                    "type": "string",
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                },
+                "credentials": {
+                    "$ref": "#/types/ec:index/SecurityProjectCredentials:SecurityProjectCredentials",
+                    "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                },
+                "endpoints": {
+                    "$ref": "#/types/ec:index/SecurityProjectEndpoints:SecurityProjectEndpoints",
+                    "description": "The endpoints to access the different apps of the project.\n"
+                },
+                "metadata": {
+                    "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
+                    "description": "Additional details about the project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for a project.\n"
+                },
+                "productTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/SecurityProjectProductType:SecurityProjectProductType"
+                    }
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "the type of the project\n"
+                }
+            },
+            "required": [
+                "adminFeaturesPackage",
+                "alias",
+                "cloudId",
+                "credentials",
+                "endpoints",
+                "metadata",
+                "name",
+                "productTypes",
+                "regionId",
+                "type"
+            ],
+            "inputProperties": {
+                "adminFeaturesPackage": {
+                    "type": "string",
+                    "description": "admin features package (BYOK, BYOIDP, CCS, CCR)\n"
+                },
+                "alias": {
+                    "type": "string",
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for a project.\n"
+                },
+                "productTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/SecurityProjectProductType:SecurityProjectProductType"
+                    }
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                }
+            },
+            "requiredInputs": [
+                "regionId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecurityProject resources.\n",
+                "properties": {
+                    "adminFeaturesPackage": {
+                        "type": "string",
+                        "description": "admin features package (BYOK, BYOIDP, CCS, CCR)\n"
+                    },
+                    "alias": {
+                        "type": "string",
+                        "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                    },
+                    "cloudId": {
+                        "type": "string",
+                        "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                    },
+                    "credentials": {
+                        "$ref": "#/types/ec:index/SecurityProjectCredentials:SecurityProjectCredentials",
+                        "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                    },
+                    "endpoints": {
+                        "$ref": "#/types/ec:index/SecurityProjectEndpoints:SecurityProjectEndpoints",
+                        "description": "The endpoints to access the different apps of the project.\n"
+                    },
+                    "metadata": {
+                        "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
+                        "description": "Additional details about the project.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Descriptive name for a project.\n"
+                    },
+                    "productTypes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/SecurityProjectProductType:SecurityProjectProductType"
+                        }
+                    },
+                    "regionId": {
+                        "type": "string",
+                        "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "the type of the project\n"
                     }
                 },
                 "type": "object"
