@@ -13,7 +13,7 @@ import (
 
 // Use this data source to retrieve information about an existing Elastic Cloud stack.
 //
-//	> **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+// > **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
 //
 // ## Example Usage
 //

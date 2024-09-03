@@ -10,10 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
-    /// Manages Elastic Cloud Enterprise snapshot repositories.
-    /// 
-    ///   &gt; **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository.
-    /// 
     /// ## Example Usage
     /// 
     /// ### Azure
