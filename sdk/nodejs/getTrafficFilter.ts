@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  */
 export function getTrafficFilter(args?: GetTrafficFilterArgs, opts?: pulumi.InvokeOptions): Promise<GetTrafficFilterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getTrafficFilter:getTrafficFilter", {
         "id": args.id,
@@ -97,7 +96,13 @@ export interface GetTrafficFilterResult {
  * ```
  */
 export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTrafficFilterResult> {
-    return pulumi.output(args).apply((a: any) => getTrafficFilter(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ec:index/getTrafficFilter:getTrafficFilter", {
+        "id": args.id,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getGcpPrivateServiceConnectEndpoint(args: GetGcpPrivateServiceConnectEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetGcpPrivateServiceConnectEndpointResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", {
         "region": args.region,
@@ -72,7 +71,10 @@ export interface GetGcpPrivateServiceConnectEndpointResult {
  * ```
  */
 export function getGcpPrivateServiceConnectEndpointOutput(args: GetGcpPrivateServiceConnectEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGcpPrivateServiceConnectEndpointResult> {
-    return pulumi.output(args).apply((a: any) => getGcpPrivateServiceConnectEndpoint(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", {
+        "region": args.region,
+    }, opts);
 }
 
 /**
