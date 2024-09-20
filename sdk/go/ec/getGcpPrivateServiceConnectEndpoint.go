@@ -68,14 +68,20 @@ type GetGcpPrivateServiceConnectEndpointResult struct {
 
 func GetGcpPrivateServiceConnectEndpointOutput(ctx *pulumi.Context, args GetGcpPrivateServiceConnectEndpointOutputArgs, opts ...pulumi.InvokeOption) GetGcpPrivateServiceConnectEndpointResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetGcpPrivateServiceConnectEndpointResult, error) {
+		ApplyT(func(v interface{}) (GetGcpPrivateServiceConnectEndpointResultOutput, error) {
 			args := v.(GetGcpPrivateServiceConnectEndpointArgs)
-			r, err := GetGcpPrivateServiceConnectEndpoint(ctx, &args, opts...)
-			var s GetGcpPrivateServiceConnectEndpointResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetGcpPrivateServiceConnectEndpointResult
+			secret, err := ctx.InvokePackageRaw("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", args, &rv, "", opts...)
+			if err != nil {
+				return GetGcpPrivateServiceConnectEndpointResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetGcpPrivateServiceConnectEndpointResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetGcpPrivateServiceConnectEndpointResultOutput), nil
+			}
+			return output, nil
 		}).(GetGcpPrivateServiceConnectEndpointResultOutput)
 }
 

@@ -39,7 +39,6 @@ import * as utilities from "./utilities";
  */
 export function getDeployments(args?: GetDeploymentsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getDeployments:getDeployments", {
         "apms": args.apms,
@@ -199,7 +198,21 @@ export interface GetDeploymentsResult {
  * ```
  */
 export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
-    return pulumi.output(args).apply((a: any) => getDeployments(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ec:index/getDeployments:getDeployments", {
+        "apms": args.apms,
+        "deploymentTemplateId": args.deploymentTemplateId,
+        "elasticsearches": args.elasticsearches,
+        "enterpriseSearches": args.enterpriseSearches,
+        "healthy": args.healthy,
+        "integrationsServers": args.integrationsServers,
+        "kibanas": args.kibanas,
+        "name": args.name,
+        "namePrefix": args.namePrefix,
+        "size": args.size,
+        "tags": args.tags,
+    }, opts);
 }
 
 /**

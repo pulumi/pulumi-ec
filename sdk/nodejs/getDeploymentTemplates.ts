@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDeploymentTemplates(args: GetDeploymentTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<GetDeploymentTemplatesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ec:index/getDeploymentTemplates:getDeploymentTemplates", {
         "id": args.id,
@@ -117,7 +116,13 @@ export interface GetDeploymentTemplatesResult {
  * ```
  */
 export function getDeploymentTemplatesOutput(args: GetDeploymentTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentTemplatesResult> {
-    return pulumi.output(args).apply((a: any) => getDeploymentTemplates(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ec:index/getDeploymentTemplates:getDeploymentTemplates", {
+        "id": args.id,
+        "region": args.region,
+        "showDeprecated": args.showDeprecated,
+        "stackVersion": args.stackVersion,
+    }, opts);
 }
 
 /**
