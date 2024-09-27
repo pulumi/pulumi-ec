@@ -10165,6 +10165,666 @@ func (o ObservabilityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+type OrganizationMembers struct {
+	// Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
+	DeploymentRoles []OrganizationMembersDeploymentRole `pulumi:"deploymentRoles"`
+	// Email address of the user.
+	Email *string `pulumi:"email"`
+	// Set to true while the user has not yet accepted their invitation to the organization.
+	InvitationPending *bool `pulumi:"invitationPending"`
+	// The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
+	OrganizationRole *string `pulumi:"organizationRole"`
+	// Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
+	ProjectElasticsearchRoles []OrganizationMembersProjectElasticsearchRole `pulumi:"projectElasticsearchRoles"`
+	// Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
+	ProjectObservabilityRoles []OrganizationMembersProjectObservabilityRole `pulumi:"projectObservabilityRoles"`
+	// Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
+	ProjectSecurityRoles []OrganizationMembersProjectSecurityRole `pulumi:"projectSecurityRoles"`
+	// User ID.
+	UserId *string `pulumi:"userId"`
+}
+
+// OrganizationMembersInput is an input type that accepts OrganizationMembersArgs and OrganizationMembersOutput values.
+// You can construct a concrete instance of `OrganizationMembersInput` via:
+//
+//	OrganizationMembersArgs{...}
+type OrganizationMembersInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersOutput() OrganizationMembersOutput
+	ToOrganizationMembersOutputWithContext(context.Context) OrganizationMembersOutput
+}
+
+type OrganizationMembersArgs struct {
+	// Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
+	DeploymentRoles OrganizationMembersDeploymentRoleArrayInput `pulumi:"deploymentRoles"`
+	// Email address of the user.
+	Email pulumi.StringPtrInput `pulumi:"email"`
+	// Set to true while the user has not yet accepted their invitation to the organization.
+	InvitationPending pulumi.BoolPtrInput `pulumi:"invitationPending"`
+	// The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
+	OrganizationRole pulumi.StringPtrInput `pulumi:"organizationRole"`
+	// Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
+	ProjectElasticsearchRoles OrganizationMembersProjectElasticsearchRoleArrayInput `pulumi:"projectElasticsearchRoles"`
+	// Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
+	ProjectObservabilityRoles OrganizationMembersProjectObservabilityRoleArrayInput `pulumi:"projectObservabilityRoles"`
+	// Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
+	ProjectSecurityRoles OrganizationMembersProjectSecurityRoleArrayInput `pulumi:"projectSecurityRoles"`
+	// User ID.
+	UserId pulumi.StringPtrInput `pulumi:"userId"`
+}
+
+func (OrganizationMembersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembers)(nil)).Elem()
+}
+
+func (i OrganizationMembersArgs) ToOrganizationMembersOutput() OrganizationMembersOutput {
+	return i.ToOrganizationMembersOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersArgs) ToOrganizationMembersOutputWithContext(ctx context.Context) OrganizationMembersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersOutput)
+}
+
+// OrganizationMembersMapInput is an input type that accepts OrganizationMembersMap and OrganizationMembersMapOutput values.
+// You can construct a concrete instance of `OrganizationMembersMapInput` via:
+//
+//	OrganizationMembersMap{ "key": OrganizationMembersArgs{...} }
+type OrganizationMembersMapInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersMapOutput() OrganizationMembersMapOutput
+	ToOrganizationMembersMapOutputWithContext(context.Context) OrganizationMembersMapOutput
+}
+
+type OrganizationMembersMap map[string]OrganizationMembersInput
+
+func (OrganizationMembersMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]OrganizationMembers)(nil)).Elem()
+}
+
+func (i OrganizationMembersMap) ToOrganizationMembersMapOutput() OrganizationMembersMapOutput {
+	return i.ToOrganizationMembersMapOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersMap) ToOrganizationMembersMapOutputWithContext(ctx context.Context) OrganizationMembersMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersMapOutput)
+}
+
+type OrganizationMembersOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembers)(nil)).Elem()
+}
+
+func (o OrganizationMembersOutput) ToOrganizationMembersOutput() OrganizationMembersOutput {
+	return o
+}
+
+func (o OrganizationMembersOutput) ToOrganizationMembersOutputWithContext(ctx context.Context) OrganizationMembersOutput {
+	return o
+}
+
+// Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
+func (o OrganizationMembersOutput) DeploymentRoles() OrganizationMembersDeploymentRoleArrayOutput {
+	return o.ApplyT(func(v OrganizationMembers) []OrganizationMembersDeploymentRole { return v.DeploymentRoles }).(OrganizationMembersDeploymentRoleArrayOutput)
+}
+
+// Email address of the user.
+func (o OrganizationMembersOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationMembers) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+// Set to true while the user has not yet accepted their invitation to the organization.
+func (o OrganizationMembersOutput) InvitationPending() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OrganizationMembers) *bool { return v.InvitationPending }).(pulumi.BoolPtrOutput)
+}
+
+// The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
+func (o OrganizationMembersOutput) OrganizationRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationMembers) *string { return v.OrganizationRole }).(pulumi.StringPtrOutput)
+}
+
+// Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
+func (o OrganizationMembersOutput) ProjectElasticsearchRoles() OrganizationMembersProjectElasticsearchRoleArrayOutput {
+	return o.ApplyT(func(v OrganizationMembers) []OrganizationMembersProjectElasticsearchRole {
+		return v.ProjectElasticsearchRoles
+	}).(OrganizationMembersProjectElasticsearchRoleArrayOutput)
+}
+
+// Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
+func (o OrganizationMembersOutput) ProjectObservabilityRoles() OrganizationMembersProjectObservabilityRoleArrayOutput {
+	return o.ApplyT(func(v OrganizationMembers) []OrganizationMembersProjectObservabilityRole {
+		return v.ProjectObservabilityRoles
+	}).(OrganizationMembersProjectObservabilityRoleArrayOutput)
+}
+
+// Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
+func (o OrganizationMembersOutput) ProjectSecurityRoles() OrganizationMembersProjectSecurityRoleArrayOutput {
+	return o.ApplyT(func(v OrganizationMembers) []OrganizationMembersProjectSecurityRole { return v.ProjectSecurityRoles }).(OrganizationMembersProjectSecurityRoleArrayOutput)
+}
+
+// User ID.
+func (o OrganizationMembersOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationMembers) *string { return v.UserId }).(pulumi.StringPtrOutput)
+}
+
+type OrganizationMembersMapOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]OrganizationMembers)(nil)).Elem()
+}
+
+func (o OrganizationMembersMapOutput) ToOrganizationMembersMapOutput() OrganizationMembersMapOutput {
+	return o
+}
+
+func (o OrganizationMembersMapOutput) ToOrganizationMembersMapOutputWithContext(ctx context.Context) OrganizationMembersMapOutput {
+	return o
+}
+
+func (o OrganizationMembersMapOutput) MapIndex(k pulumi.StringInput) OrganizationMembersOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) OrganizationMembers {
+		return vs[0].(map[string]OrganizationMembers)[vs[1].(string)]
+	}).(OrganizationMembersOutput)
+}
+
+type OrganizationMembersDeploymentRole struct {
+	// Role applies to all deployments in the organization.
+	AllDeployments *bool `pulumi:"allDeployments"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
+	ApplicationRoles []string `pulumi:"applicationRoles"`
+	// Role applies to deployments listed here.
+	DeploymentIds []string `pulumi:"deploymentIds"`
+	// Assigned role. Must be on of `viewer`, `editor` or `admin`.
+	Role string `pulumi:"role"`
+}
+
+// OrganizationMembersDeploymentRoleInput is an input type that accepts OrganizationMembersDeploymentRoleArgs and OrganizationMembersDeploymentRoleOutput values.
+// You can construct a concrete instance of `OrganizationMembersDeploymentRoleInput` via:
+//
+//	OrganizationMembersDeploymentRoleArgs{...}
+type OrganizationMembersDeploymentRoleInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersDeploymentRoleOutput() OrganizationMembersDeploymentRoleOutput
+	ToOrganizationMembersDeploymentRoleOutputWithContext(context.Context) OrganizationMembersDeploymentRoleOutput
+}
+
+type OrganizationMembersDeploymentRoleArgs struct {
+	// Role applies to all deployments in the organization.
+	AllDeployments pulumi.BoolPtrInput `pulumi:"allDeployments"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
+	ApplicationRoles pulumi.StringArrayInput `pulumi:"applicationRoles"`
+	// Role applies to deployments listed here.
+	DeploymentIds pulumi.StringArrayInput `pulumi:"deploymentIds"`
+	// Assigned role. Must be on of `viewer`, `editor` or `admin`.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (OrganizationMembersDeploymentRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersDeploymentRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersDeploymentRoleArgs) ToOrganizationMembersDeploymentRoleOutput() OrganizationMembersDeploymentRoleOutput {
+	return i.ToOrganizationMembersDeploymentRoleOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersDeploymentRoleArgs) ToOrganizationMembersDeploymentRoleOutputWithContext(ctx context.Context) OrganizationMembersDeploymentRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersDeploymentRoleOutput)
+}
+
+// OrganizationMembersDeploymentRoleArrayInput is an input type that accepts OrganizationMembersDeploymentRoleArray and OrganizationMembersDeploymentRoleArrayOutput values.
+// You can construct a concrete instance of `OrganizationMembersDeploymentRoleArrayInput` via:
+//
+//	OrganizationMembersDeploymentRoleArray{ OrganizationMembersDeploymentRoleArgs{...} }
+type OrganizationMembersDeploymentRoleArrayInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersDeploymentRoleArrayOutput() OrganizationMembersDeploymentRoleArrayOutput
+	ToOrganizationMembersDeploymentRoleArrayOutputWithContext(context.Context) OrganizationMembersDeploymentRoleArrayOutput
+}
+
+type OrganizationMembersDeploymentRoleArray []OrganizationMembersDeploymentRoleInput
+
+func (OrganizationMembersDeploymentRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersDeploymentRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersDeploymentRoleArray) ToOrganizationMembersDeploymentRoleArrayOutput() OrganizationMembersDeploymentRoleArrayOutput {
+	return i.ToOrganizationMembersDeploymentRoleArrayOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersDeploymentRoleArray) ToOrganizationMembersDeploymentRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersDeploymentRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersDeploymentRoleArrayOutput)
+}
+
+type OrganizationMembersDeploymentRoleOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersDeploymentRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersDeploymentRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersDeploymentRoleOutput) ToOrganizationMembersDeploymentRoleOutput() OrganizationMembersDeploymentRoleOutput {
+	return o
+}
+
+func (o OrganizationMembersDeploymentRoleOutput) ToOrganizationMembersDeploymentRoleOutputWithContext(ctx context.Context) OrganizationMembersDeploymentRoleOutput {
+	return o
+}
+
+// Role applies to all deployments in the organization.
+func (o OrganizationMembersDeploymentRoleOutput) AllDeployments() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OrganizationMembersDeploymentRole) *bool { return v.AllDeployments }).(pulumi.BoolPtrOutput)
+}
+
+// If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
+func (o OrganizationMembersDeploymentRoleOutput) ApplicationRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersDeploymentRole) []string { return v.ApplicationRoles }).(pulumi.StringArrayOutput)
+}
+
+// Role applies to deployments listed here.
+func (o OrganizationMembersDeploymentRoleOutput) DeploymentIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersDeploymentRole) []string { return v.DeploymentIds }).(pulumi.StringArrayOutput)
+}
+
+// Assigned role. Must be on of `viewer`, `editor` or `admin`.
+func (o OrganizationMembersDeploymentRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationMembersDeploymentRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type OrganizationMembersDeploymentRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersDeploymentRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersDeploymentRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersDeploymentRoleArrayOutput) ToOrganizationMembersDeploymentRoleArrayOutput() OrganizationMembersDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersDeploymentRoleArrayOutput) ToOrganizationMembersDeploymentRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersDeploymentRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersDeploymentRoleArrayOutput) Index(i pulumi.IntInput) OrganizationMembersDeploymentRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrganizationMembersDeploymentRole {
+		return vs[0].([]OrganizationMembersDeploymentRole)[vs[1].(int)]
+	}).(OrganizationMembersDeploymentRoleOutput)
+}
+
+type OrganizationMembersProjectElasticsearchRole struct {
+	// Role applies to all projects in the organization.
+	AllProjects *bool `pulumi:"allProjects"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+	ApplicationRoles []string `pulumi:"applicationRoles"`
+	// Role applies to projects listed here.
+	ProjectIds []string `pulumi:"projectIds"`
+	// Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
+	Role string `pulumi:"role"`
+}
+
+// OrganizationMembersProjectElasticsearchRoleInput is an input type that accepts OrganizationMembersProjectElasticsearchRoleArgs and OrganizationMembersProjectElasticsearchRoleOutput values.
+// You can construct a concrete instance of `OrganizationMembersProjectElasticsearchRoleInput` via:
+//
+//	OrganizationMembersProjectElasticsearchRoleArgs{...}
+type OrganizationMembersProjectElasticsearchRoleInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersProjectElasticsearchRoleOutput() OrganizationMembersProjectElasticsearchRoleOutput
+	ToOrganizationMembersProjectElasticsearchRoleOutputWithContext(context.Context) OrganizationMembersProjectElasticsearchRoleOutput
+}
+
+type OrganizationMembersProjectElasticsearchRoleArgs struct {
+	// Role applies to all projects in the organization.
+	AllProjects pulumi.BoolPtrInput `pulumi:"allProjects"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+	ApplicationRoles pulumi.StringArrayInput `pulumi:"applicationRoles"`
+	// Role applies to projects listed here.
+	ProjectIds pulumi.StringArrayInput `pulumi:"projectIds"`
+	// Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (OrganizationMembersProjectElasticsearchRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersProjectElasticsearchRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersProjectElasticsearchRoleArgs) ToOrganizationMembersProjectElasticsearchRoleOutput() OrganizationMembersProjectElasticsearchRoleOutput {
+	return i.ToOrganizationMembersProjectElasticsearchRoleOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersProjectElasticsearchRoleArgs) ToOrganizationMembersProjectElasticsearchRoleOutputWithContext(ctx context.Context) OrganizationMembersProjectElasticsearchRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersProjectElasticsearchRoleOutput)
+}
+
+// OrganizationMembersProjectElasticsearchRoleArrayInput is an input type that accepts OrganizationMembersProjectElasticsearchRoleArray and OrganizationMembersProjectElasticsearchRoleArrayOutput values.
+// You can construct a concrete instance of `OrganizationMembersProjectElasticsearchRoleArrayInput` via:
+//
+//	OrganizationMembersProjectElasticsearchRoleArray{ OrganizationMembersProjectElasticsearchRoleArgs{...} }
+type OrganizationMembersProjectElasticsearchRoleArrayInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersProjectElasticsearchRoleArrayOutput() OrganizationMembersProjectElasticsearchRoleArrayOutput
+	ToOrganizationMembersProjectElasticsearchRoleArrayOutputWithContext(context.Context) OrganizationMembersProjectElasticsearchRoleArrayOutput
+}
+
+type OrganizationMembersProjectElasticsearchRoleArray []OrganizationMembersProjectElasticsearchRoleInput
+
+func (OrganizationMembersProjectElasticsearchRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersProjectElasticsearchRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersProjectElasticsearchRoleArray) ToOrganizationMembersProjectElasticsearchRoleArrayOutput() OrganizationMembersProjectElasticsearchRoleArrayOutput {
+	return i.ToOrganizationMembersProjectElasticsearchRoleArrayOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersProjectElasticsearchRoleArray) ToOrganizationMembersProjectElasticsearchRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersProjectElasticsearchRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersProjectElasticsearchRoleArrayOutput)
+}
+
+type OrganizationMembersProjectElasticsearchRoleOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersProjectElasticsearchRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersProjectElasticsearchRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersProjectElasticsearchRoleOutput) ToOrganizationMembersProjectElasticsearchRoleOutput() OrganizationMembersProjectElasticsearchRoleOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectElasticsearchRoleOutput) ToOrganizationMembersProjectElasticsearchRoleOutputWithContext(ctx context.Context) OrganizationMembersProjectElasticsearchRoleOutput {
+	return o
+}
+
+// Role applies to all projects in the organization.
+func (o OrganizationMembersProjectElasticsearchRoleOutput) AllProjects() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectElasticsearchRole) *bool { return v.AllProjects }).(pulumi.BoolPtrOutput)
+}
+
+// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+func (o OrganizationMembersProjectElasticsearchRoleOutput) ApplicationRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectElasticsearchRole) []string { return v.ApplicationRoles }).(pulumi.StringArrayOutput)
+}
+
+// Role applies to projects listed here.
+func (o OrganizationMembersProjectElasticsearchRoleOutput) ProjectIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectElasticsearchRole) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
+}
+
+// Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
+func (o OrganizationMembersProjectElasticsearchRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectElasticsearchRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type OrganizationMembersProjectElasticsearchRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersProjectElasticsearchRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersProjectElasticsearchRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersProjectElasticsearchRoleArrayOutput) ToOrganizationMembersProjectElasticsearchRoleArrayOutput() OrganizationMembersProjectElasticsearchRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectElasticsearchRoleArrayOutput) ToOrganizationMembersProjectElasticsearchRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersProjectElasticsearchRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectElasticsearchRoleArrayOutput) Index(i pulumi.IntInput) OrganizationMembersProjectElasticsearchRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrganizationMembersProjectElasticsearchRole {
+		return vs[0].([]OrganizationMembersProjectElasticsearchRole)[vs[1].(int)]
+	}).(OrganizationMembersProjectElasticsearchRoleOutput)
+}
+
+type OrganizationMembersProjectObservabilityRole struct {
+	// Role applies to all projects in the organization.
+	AllProjects *bool `pulumi:"allProjects"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+	ApplicationRoles []string `pulumi:"applicationRoles"`
+	// Role applies to projects listed here.
+	ProjectIds []string `pulumi:"projectIds"`
+	// Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+	Role string `pulumi:"role"`
+}
+
+// OrganizationMembersProjectObservabilityRoleInput is an input type that accepts OrganizationMembersProjectObservabilityRoleArgs and OrganizationMembersProjectObservabilityRoleOutput values.
+// You can construct a concrete instance of `OrganizationMembersProjectObservabilityRoleInput` via:
+//
+//	OrganizationMembersProjectObservabilityRoleArgs{...}
+type OrganizationMembersProjectObservabilityRoleInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersProjectObservabilityRoleOutput() OrganizationMembersProjectObservabilityRoleOutput
+	ToOrganizationMembersProjectObservabilityRoleOutputWithContext(context.Context) OrganizationMembersProjectObservabilityRoleOutput
+}
+
+type OrganizationMembersProjectObservabilityRoleArgs struct {
+	// Role applies to all projects in the organization.
+	AllProjects pulumi.BoolPtrInput `pulumi:"allProjects"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+	ApplicationRoles pulumi.StringArrayInput `pulumi:"applicationRoles"`
+	// Role applies to projects listed here.
+	ProjectIds pulumi.StringArrayInput `pulumi:"projectIds"`
+	// Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (OrganizationMembersProjectObservabilityRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersProjectObservabilityRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersProjectObservabilityRoleArgs) ToOrganizationMembersProjectObservabilityRoleOutput() OrganizationMembersProjectObservabilityRoleOutput {
+	return i.ToOrganizationMembersProjectObservabilityRoleOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersProjectObservabilityRoleArgs) ToOrganizationMembersProjectObservabilityRoleOutputWithContext(ctx context.Context) OrganizationMembersProjectObservabilityRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersProjectObservabilityRoleOutput)
+}
+
+// OrganizationMembersProjectObservabilityRoleArrayInput is an input type that accepts OrganizationMembersProjectObservabilityRoleArray and OrganizationMembersProjectObservabilityRoleArrayOutput values.
+// You can construct a concrete instance of `OrganizationMembersProjectObservabilityRoleArrayInput` via:
+//
+//	OrganizationMembersProjectObservabilityRoleArray{ OrganizationMembersProjectObservabilityRoleArgs{...} }
+type OrganizationMembersProjectObservabilityRoleArrayInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersProjectObservabilityRoleArrayOutput() OrganizationMembersProjectObservabilityRoleArrayOutput
+	ToOrganizationMembersProjectObservabilityRoleArrayOutputWithContext(context.Context) OrganizationMembersProjectObservabilityRoleArrayOutput
+}
+
+type OrganizationMembersProjectObservabilityRoleArray []OrganizationMembersProjectObservabilityRoleInput
+
+func (OrganizationMembersProjectObservabilityRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersProjectObservabilityRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersProjectObservabilityRoleArray) ToOrganizationMembersProjectObservabilityRoleArrayOutput() OrganizationMembersProjectObservabilityRoleArrayOutput {
+	return i.ToOrganizationMembersProjectObservabilityRoleArrayOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersProjectObservabilityRoleArray) ToOrganizationMembersProjectObservabilityRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersProjectObservabilityRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersProjectObservabilityRoleArrayOutput)
+}
+
+type OrganizationMembersProjectObservabilityRoleOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersProjectObservabilityRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersProjectObservabilityRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersProjectObservabilityRoleOutput) ToOrganizationMembersProjectObservabilityRoleOutput() OrganizationMembersProjectObservabilityRoleOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectObservabilityRoleOutput) ToOrganizationMembersProjectObservabilityRoleOutputWithContext(ctx context.Context) OrganizationMembersProjectObservabilityRoleOutput {
+	return o
+}
+
+// Role applies to all projects in the organization.
+func (o OrganizationMembersProjectObservabilityRoleOutput) AllProjects() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectObservabilityRole) *bool { return v.AllProjects }).(pulumi.BoolPtrOutput)
+}
+
+// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+func (o OrganizationMembersProjectObservabilityRoleOutput) ApplicationRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectObservabilityRole) []string { return v.ApplicationRoles }).(pulumi.StringArrayOutput)
+}
+
+// Role applies to projects listed here.
+func (o OrganizationMembersProjectObservabilityRoleOutput) ProjectIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectObservabilityRole) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
+}
+
+// Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+func (o OrganizationMembersProjectObservabilityRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectObservabilityRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type OrganizationMembersProjectObservabilityRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersProjectObservabilityRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersProjectObservabilityRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersProjectObservabilityRoleArrayOutput) ToOrganizationMembersProjectObservabilityRoleArrayOutput() OrganizationMembersProjectObservabilityRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectObservabilityRoleArrayOutput) ToOrganizationMembersProjectObservabilityRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersProjectObservabilityRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectObservabilityRoleArrayOutput) Index(i pulumi.IntInput) OrganizationMembersProjectObservabilityRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrganizationMembersProjectObservabilityRole {
+		return vs[0].([]OrganizationMembersProjectObservabilityRole)[vs[1].(int)]
+	}).(OrganizationMembersProjectObservabilityRoleOutput)
+}
+
+type OrganizationMembersProjectSecurityRole struct {
+	// Role applies to all projects in the organization.
+	AllProjects *bool `pulumi:"allProjects"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+	ApplicationRoles []string `pulumi:"applicationRoles"`
+	// Role applies to projects listed here.
+	ProjectIds []string `pulumi:"projectIds"`
+	// Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
+	Role string `pulumi:"role"`
+}
+
+// OrganizationMembersProjectSecurityRoleInput is an input type that accepts OrganizationMembersProjectSecurityRoleArgs and OrganizationMembersProjectSecurityRoleOutput values.
+// You can construct a concrete instance of `OrganizationMembersProjectSecurityRoleInput` via:
+//
+//	OrganizationMembersProjectSecurityRoleArgs{...}
+type OrganizationMembersProjectSecurityRoleInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersProjectSecurityRoleOutput() OrganizationMembersProjectSecurityRoleOutput
+	ToOrganizationMembersProjectSecurityRoleOutputWithContext(context.Context) OrganizationMembersProjectSecurityRoleOutput
+}
+
+type OrganizationMembersProjectSecurityRoleArgs struct {
+	// Role applies to all projects in the organization.
+	AllProjects pulumi.BoolPtrInput `pulumi:"allProjects"`
+	// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+	ApplicationRoles pulumi.StringArrayInput `pulumi:"applicationRoles"`
+	// Role applies to projects listed here.
+	ProjectIds pulumi.StringArrayInput `pulumi:"projectIds"`
+	// Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (OrganizationMembersProjectSecurityRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersProjectSecurityRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersProjectSecurityRoleArgs) ToOrganizationMembersProjectSecurityRoleOutput() OrganizationMembersProjectSecurityRoleOutput {
+	return i.ToOrganizationMembersProjectSecurityRoleOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersProjectSecurityRoleArgs) ToOrganizationMembersProjectSecurityRoleOutputWithContext(ctx context.Context) OrganizationMembersProjectSecurityRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersProjectSecurityRoleOutput)
+}
+
+// OrganizationMembersProjectSecurityRoleArrayInput is an input type that accepts OrganizationMembersProjectSecurityRoleArray and OrganizationMembersProjectSecurityRoleArrayOutput values.
+// You can construct a concrete instance of `OrganizationMembersProjectSecurityRoleArrayInput` via:
+//
+//	OrganizationMembersProjectSecurityRoleArray{ OrganizationMembersProjectSecurityRoleArgs{...} }
+type OrganizationMembersProjectSecurityRoleArrayInput interface {
+	pulumi.Input
+
+	ToOrganizationMembersProjectSecurityRoleArrayOutput() OrganizationMembersProjectSecurityRoleArrayOutput
+	ToOrganizationMembersProjectSecurityRoleArrayOutputWithContext(context.Context) OrganizationMembersProjectSecurityRoleArrayOutput
+}
+
+type OrganizationMembersProjectSecurityRoleArray []OrganizationMembersProjectSecurityRoleInput
+
+func (OrganizationMembersProjectSecurityRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersProjectSecurityRole)(nil)).Elem()
+}
+
+func (i OrganizationMembersProjectSecurityRoleArray) ToOrganizationMembersProjectSecurityRoleArrayOutput() OrganizationMembersProjectSecurityRoleArrayOutput {
+	return i.ToOrganizationMembersProjectSecurityRoleArrayOutputWithContext(context.Background())
+}
+
+func (i OrganizationMembersProjectSecurityRoleArray) ToOrganizationMembersProjectSecurityRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersProjectSecurityRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationMembersProjectSecurityRoleArrayOutput)
+}
+
+type OrganizationMembersProjectSecurityRoleOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersProjectSecurityRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationMembersProjectSecurityRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersProjectSecurityRoleOutput) ToOrganizationMembersProjectSecurityRoleOutput() OrganizationMembersProjectSecurityRoleOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectSecurityRoleOutput) ToOrganizationMembersProjectSecurityRoleOutputWithContext(ctx context.Context) OrganizationMembersProjectSecurityRoleOutput {
+	return o
+}
+
+// Role applies to all projects in the organization.
+func (o OrganizationMembersProjectSecurityRoleOutput) AllProjects() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectSecurityRole) *bool { return v.AllProjects }).(pulumi.BoolPtrOutput)
+}
+
+// If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+func (o OrganizationMembersProjectSecurityRoleOutput) ApplicationRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectSecurityRole) []string { return v.ApplicationRoles }).(pulumi.StringArrayOutput)
+}
+
+// Role applies to projects listed here.
+func (o OrganizationMembersProjectSecurityRoleOutput) ProjectIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectSecurityRole) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
+}
+
+// Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
+func (o OrganizationMembersProjectSecurityRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationMembersProjectSecurityRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type OrganizationMembersProjectSecurityRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (OrganizationMembersProjectSecurityRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationMembersProjectSecurityRole)(nil)).Elem()
+}
+
+func (o OrganizationMembersProjectSecurityRoleArrayOutput) ToOrganizationMembersProjectSecurityRoleArrayOutput() OrganizationMembersProjectSecurityRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectSecurityRoleArrayOutput) ToOrganizationMembersProjectSecurityRoleArrayOutputWithContext(ctx context.Context) OrganizationMembersProjectSecurityRoleArrayOutput {
+	return o
+}
+
+func (o OrganizationMembersProjectSecurityRoleArrayOutput) Index(i pulumi.IntInput) OrganizationMembersProjectSecurityRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrganizationMembersProjectSecurityRole {
+		return vs[0].([]OrganizationMembersProjectSecurityRole)[vs[1].(int)]
+	}).(OrganizationMembersProjectSecurityRoleOutput)
+}
+
 type SecurityProjectCredentials struct {
 	// Basic auth password that can be used to access the Elasticsearch API.
 	Password *string `pulumi:"password"`
@@ -16385,6 +17045,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectEndpointsPtrInput)(nil)).Elem(), ObservabilityProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataPtrInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersInput)(nil)).Elem(), OrganizationMembersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersMapInput)(nil)).Elem(), OrganizationMembersMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersDeploymentRoleInput)(nil)).Elem(), OrganizationMembersDeploymentRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersDeploymentRoleArrayInput)(nil)).Elem(), OrganizationMembersDeploymentRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersProjectElasticsearchRoleInput)(nil)).Elem(), OrganizationMembersProjectElasticsearchRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersProjectElasticsearchRoleArrayInput)(nil)).Elem(), OrganizationMembersProjectElasticsearchRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersProjectObservabilityRoleInput)(nil)).Elem(), OrganizationMembersProjectObservabilityRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersProjectObservabilityRoleArrayInput)(nil)).Elem(), OrganizationMembersProjectObservabilityRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersProjectSecurityRoleInput)(nil)).Elem(), OrganizationMembersProjectSecurityRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersProjectSecurityRoleArrayInput)(nil)).Elem(), OrganizationMembersProjectSecurityRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectCredentialsInput)(nil)).Elem(), SecurityProjectCredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectCredentialsPtrInput)(nil)).Elem(), SecurityProjectCredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectEndpointsInput)(nil)).Elem(), SecurityProjectEndpointsArgs{})
@@ -16552,6 +17222,16 @@ func init() {
 	pulumi.RegisterOutputType(ObservabilityProjectEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersMapOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersDeploymentRoleOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersDeploymentRoleArrayOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersProjectElasticsearchRoleOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersProjectElasticsearchRoleArrayOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersProjectObservabilityRoleOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersProjectObservabilityRoleArrayOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersProjectSecurityRoleOutput{})
+	pulumi.RegisterOutputType(OrganizationMembersProjectSecurityRoleArrayOutput{})
 	pulumi.RegisterOutputType(SecurityProjectCredentialsOutput{})
 	pulumi.RegisterOutputType(SecurityProjectCredentialsPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectEndpointsOutput{})

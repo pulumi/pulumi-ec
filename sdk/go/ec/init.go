@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ElasticsearchProject{}
 	case "ec:index/observabilityProject:ObservabilityProject":
 		r = &ObservabilityProject{}
+	case "ec:index/organization:Organization":
+		r = &Organization{}
 	case "ec:index/securityProject:SecurityProject":
 		r = &SecurityProject{}
 	case "ec:index/snapshotRepository:SnapshotRepository":
@@ -103,6 +105,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ec",
 		"index/observabilityProject",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ec",
+		"index/organization",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

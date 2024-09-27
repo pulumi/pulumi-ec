@@ -31,6 +31,7 @@
         "getTrafficFilter.ts",
         "index.ts",
         "observabilityProject.ts",
+        "organization.ts",
         "provider.ts",
         "securityProject.ts",
         "snapshotRepository.ts",

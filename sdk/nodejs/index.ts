@@ -80,6 +80,11 @@ export type ObservabilityProject = import("./observabilityProject").Observabilit
 export const ObservabilityProject: typeof import("./observabilityProject").ObservabilityProject = null as any;
 utilities.lazyLoad(exports, ["ObservabilityProject"], () => require("./observabilityProject"));
 
+export { OrganizationArgs, OrganizationState } from "./organization";
+export type Organization = import("./organization").Organization;
+export const Organization: typeof import("./organization").Organization = null as any;
+utilities.lazyLoad(exports, ["Organization"], () => require("./organization"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -123,6 +128,8 @@ const _module = {
                 return new ElasticsearchProject(name, <any>undefined, { urn })
             case "ec:index/observabilityProject:ObservabilityProject":
                 return new ObservabilityProject(name, <any>undefined, { urn })
+            case "ec:index/organization:Organization":
+                return new Organization(name, <any>undefined, { urn })
             case "ec:index/securityProject:SecurityProject":
                 return new SecurityProject(name, <any>undefined, { urn })
             case "ec:index/snapshotRepository:SnapshotRepository":
@@ -139,6 +146,7 @@ pulumi.runtime.registerResourceModule("ec", "index/deploymentTrafficFilter", _mo
 pulumi.runtime.registerResourceModule("ec", "index/deploymentTrafficFilterAssociation", _module)
 pulumi.runtime.registerResourceModule("ec", "index/elasticsearchProject", _module)
 pulumi.runtime.registerResourceModule("ec", "index/observabilityProject", _module)
+pulumi.runtime.registerResourceModule("ec", "index/organization", _module)
 pulumi.runtime.registerResourceModule("ec", "index/securityProject", _module)
 pulumi.runtime.registerResourceModule("ec", "index/snapshotRepository", _module)
 pulumi.runtime.registerResourcePackage("ec", {

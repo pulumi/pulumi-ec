@@ -53,6 +53,11 @@ __all__ = [
     'ObservabilityProjectCredentialsArgs',
     'ObservabilityProjectEndpointsArgs',
     'ObservabilityProjectMetadataArgs',
+    'OrganizationMembersArgs',
+    'OrganizationMembersDeploymentRoleArgs',
+    'OrganizationMembersProjectElasticsearchRoleArgs',
+    'OrganizationMembersProjectObservabilityRoleArgs',
+    'OrganizationMembersProjectSecurityRoleArgs',
     'SecurityProjectCredentialsArgs',
     'SecurityProjectEndpointsArgs',
     'SecurityProjectMetadataArgs',
@@ -4894,6 +4899,421 @@ class ObservabilityProjectMetadataArgs:
     @suspended_reason.setter
     def suspended_reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "suspended_reason", value)
+
+
+@pulumi.input_type
+class OrganizationMembersArgs:
+    def __init__(__self__, *,
+                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]] = None,
+                 email: Optional[pulumi.Input[str]] = None,
+                 invitation_pending: Optional[pulumi.Input[bool]] = None,
+                 organization_role: Optional[pulumi.Input[str]] = None,
+                 project_elasticsearch_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]] = None,
+                 project_observability_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]] = None,
+                 project_security_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]] deployment_roles: Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
+        :param pulumi.Input[str] email: Email address of the user.
+        :param pulumi.Input[bool] invitation_pending: Set to true while the user has not yet accepted their invitation to the organization.
+        :param pulumi.Input[str] organization_role: The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]] project_elasticsearch_roles: Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]] project_observability_roles: Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]] project_security_roles: Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
+        :param pulumi.Input[str] user_id: User ID.
+        """
+        if deployment_roles is not None:
+            pulumi.set(__self__, "deployment_roles", deployment_roles)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if invitation_pending is not None:
+            pulumi.set(__self__, "invitation_pending", invitation_pending)
+        if organization_role is not None:
+            pulumi.set(__self__, "organization_role", organization_role)
+        if project_elasticsearch_roles is not None:
+            pulumi.set(__self__, "project_elasticsearch_roles", project_elasticsearch_roles)
+        if project_observability_roles is not None:
+            pulumi.set(__self__, "project_observability_roles", project_observability_roles)
+        if project_security_roles is not None:
+            pulumi.set(__self__, "project_security_roles", project_security_roles)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="deploymentRoles")
+    def deployment_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]:
+        """
+        Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
+        """
+        return pulumi.get(self, "deployment_roles")
+
+    @deployment_roles.setter
+    def deployment_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]):
+        pulumi.set(self, "deployment_roles", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Email address of the user.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="invitationPending")
+    def invitation_pending(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to true while the user has not yet accepted their invitation to the organization.
+        """
+        return pulumi.get(self, "invitation_pending")
+
+    @invitation_pending.setter
+    def invitation_pending(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "invitation_pending", value)
+
+    @property
+    @pulumi.getter(name="organizationRole")
+    def organization_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
+        """
+        return pulumi.get(self, "organization_role")
+
+    @organization_role.setter
+    def organization_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "organization_role", value)
+
+    @property
+    @pulumi.getter(name="projectElasticsearchRoles")
+    def project_elasticsearch_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]:
+        """
+        Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
+        """
+        return pulumi.get(self, "project_elasticsearch_roles")
+
+    @project_elasticsearch_roles.setter
+    def project_elasticsearch_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]):
+        pulumi.set(self, "project_elasticsearch_roles", value)
+
+    @property
+    @pulumi.getter(name="projectObservabilityRoles")
+    def project_observability_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]:
+        """
+        Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
+        """
+        return pulumi.get(self, "project_observability_roles")
+
+    @project_observability_roles.setter
+    def project_observability_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]):
+        pulumi.set(self, "project_observability_roles", value)
+
+    @property
+    @pulumi.getter(name="projectSecurityRoles")
+    def project_security_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]:
+        """
+        Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
+        """
+        return pulumi.get(self, "project_security_roles")
+
+    @project_security_roles.setter
+    def project_security_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]):
+        pulumi.set(self, "project_security_roles", value)
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        User ID.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_id", value)
+
+
+@pulumi.input_type
+class OrganizationMembersDeploymentRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 all_deployments: Optional[pulumi.Input[bool]] = None,
+                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 deployment_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] role: Assigned role. Must be on of `viewer`, `editor` or `admin`.
+        :param pulumi.Input[bool] all_deployments: Role applies to all deployments in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] application_roles: If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] deployment_ids: Role applies to deployments listed here.
+        """
+        pulumi.set(__self__, "role", role)
+        if all_deployments is not None:
+            pulumi.set(__self__, "all_deployments", all_deployments)
+        if application_roles is not None:
+            pulumi.set(__self__, "application_roles", application_roles)
+        if deployment_ids is not None:
+            pulumi.set(__self__, "deployment_ids", deployment_ids)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        Assigned role. Must be on of `viewer`, `editor` or `admin`.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="allDeployments")
+    def all_deployments(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Role applies to all deployments in the organization.
+        """
+        return pulumi.get(self, "all_deployments")
+
+    @all_deployments.setter
+    def all_deployments(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "all_deployments", value)
+
+    @property
+    @pulumi.getter(name="applicationRoles")
+    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
+        """
+        return pulumi.get(self, "application_roles")
+
+    @application_roles.setter
+    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "application_roles", value)
+
+    @property
+    @pulumi.getter(name="deploymentIds")
+    def deployment_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Role applies to deployments listed here.
+        """
+        return pulumi.get(self, "deployment_ids")
+
+    @deployment_ids.setter
+    def deployment_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "deployment_ids", value)
+
+
+@pulumi.input_type
+class OrganizationMembersProjectElasticsearchRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 all_projects: Optional[pulumi.Input[bool]] = None,
+                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] role: Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
+        :param pulumi.Input[bool] all_projects: Role applies to all projects in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] application_roles: If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: Role applies to projects listed here.
+        """
+        pulumi.set(__self__, "role", role)
+        if all_projects is not None:
+            pulumi.set(__self__, "all_projects", all_projects)
+        if application_roles is not None:
+            pulumi.set(__self__, "application_roles", application_roles)
+        if project_ids is not None:
+            pulumi.set(__self__, "project_ids", project_ids)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Role applies to all projects in the organization.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @all_projects.setter
+    def all_projects(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "all_projects", value)
+
+    @property
+    @pulumi.getter(name="applicationRoles")
+    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+        """
+        return pulumi.get(self, "application_roles")
+
+    @application_roles.setter
+    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "application_roles", value)
+
+    @property
+    @pulumi.getter(name="projectIds")
+    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Role applies to projects listed here.
+        """
+        return pulumi.get(self, "project_ids")
+
+    @project_ids.setter
+    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "project_ids", value)
+
+
+@pulumi.input_type
+class OrganizationMembersProjectObservabilityRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 all_projects: Optional[pulumi.Input[bool]] = None,
+                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] role: Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+        :param pulumi.Input[bool] all_projects: Role applies to all projects in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] application_roles: If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: Role applies to projects listed here.
+        """
+        pulumi.set(__self__, "role", role)
+        if all_projects is not None:
+            pulumi.set(__self__, "all_projects", all_projects)
+        if application_roles is not None:
+            pulumi.set(__self__, "application_roles", application_roles)
+        if project_ids is not None:
+            pulumi.set(__self__, "project_ids", project_ids)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Role applies to all projects in the organization.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @all_projects.setter
+    def all_projects(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "all_projects", value)
+
+    @property
+    @pulumi.getter(name="applicationRoles")
+    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+        """
+        return pulumi.get(self, "application_roles")
+
+    @application_roles.setter
+    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "application_roles", value)
+
+    @property
+    @pulumi.getter(name="projectIds")
+    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Role applies to projects listed here.
+        """
+        return pulumi.get(self, "project_ids")
+
+    @project_ids.setter
+    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "project_ids", value)
+
+
+@pulumi.input_type
+class OrganizationMembersProjectSecurityRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 all_projects: Optional[pulumi.Input[bool]] = None,
+                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] role: Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
+        :param pulumi.Input[bool] all_projects: Role applies to all projects in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] application_roles: If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: Role applies to projects listed here.
+        """
+        pulumi.set(__self__, "role", role)
+        if all_projects is not None:
+            pulumi.set(__self__, "all_projects", all_projects)
+        if application_roles is not None:
+            pulumi.set(__self__, "application_roles", application_roles)
+        if project_ids is not None:
+            pulumi.set(__self__, "project_ids", project_ids)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Role applies to all projects in the organization.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @all_projects.setter
+    def all_projects(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "all_projects", value)
+
+    @property
+    @pulumi.getter(name="applicationRoles")
+    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+        """
+        return pulumi.get(self, "application_roles")
+
+    @application_roles.setter
+    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "application_roles", value)
+
+    @property
+    @pulumi.getter(name="projectIds")
+    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Role applies to projects listed here.
+        """
+        return pulumi.get(self, "project_ids")
+
+    @project_ids.setter
+    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "project_ids", value)
 
 
 @pulumi.input_type

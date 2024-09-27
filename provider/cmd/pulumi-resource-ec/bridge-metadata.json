@@ -125,6 +125,70 @@
                 "current": "ec:index/observabilityProject:ObservabilityProject",
                 "majorVersion": 1
             },
+            "ec_organization": {
+                "current": "ec:index/organization:Organization",
+                "majorVersion": 1,
+                "fields": {
+                    "members": {
+                        "elem": {
+                            "fields": {
+                                "deployment_roles": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "application_roles": {
+                                                "maxItemsOne": false
+                                            },
+                                            "deployment_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "project_elasticsearch_roles": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "application_roles": {
+                                                "maxItemsOne": false
+                                            },
+                                            "project_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "project_observability_roles": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "application_roles": {
+                                                "maxItemsOne": false
+                                            },
+                                            "project_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "project_security_roles": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "application_roles": {
+                                                "maxItemsOne": false
+                                            },
+                                            "project_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "ec_security_project": {
                 "current": "ec:index/securityProject:SecurityProject",
                 "majorVersion": 1,
