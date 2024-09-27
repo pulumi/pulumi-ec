@@ -20,6 +20,7 @@ from .get_gcp_private_service_connect_endpoint import *
 from .get_stack import *
 from .get_traffic_filter import *
 from .observability_project import *
+from .organization import *
 from .provider import *
 from .security_project import *
 from .snapshot_repository import *
@@ -90,6 +91,14 @@ _utilities.register(
   "fqn": "pulumi_ec",
   "classes": {
    "ec:index/observabilityProject:ObservabilityProject": "ObservabilityProject"
+  }
+ },
+ {
+  "pkg": "ec",
+  "mod": "index/organization",
+  "fqn": "pulumi_ec",
+  "classes": {
+   "ec:index/organization:Organization": "Organization"
   }
  },
  {

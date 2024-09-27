@@ -1304,6 +1304,117 @@ export interface ObservabilityProjectMetadata {
     suspendedReason?: pulumi.Input<string>;
 }
 
+export interface OrganizationMembers {
+    /**
+     * Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
+     */
+    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersDeploymentRole>[]>;
+    /**
+     * Email address of the user.
+     */
+    email?: pulumi.Input<string>;
+    /**
+     * Set to true while the user has not yet accepted their invitation to the organization.
+     */
+    invitationPending?: pulumi.Input<boolean>;
+    /**
+     * The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
+     */
+    organizationRole?: pulumi.Input<string>;
+    /**
+     * Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
+     */
+    projectElasticsearchRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectElasticsearchRole>[]>;
+    /**
+     * Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
+     */
+    projectObservabilityRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectObservabilityRole>[]>;
+    /**
+     * Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
+     */
+    projectSecurityRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectSecurityRole>[]>;
+    /**
+     * User ID.
+     */
+    userId?: pulumi.Input<string>;
+}
+
+export interface OrganizationMembersDeploymentRole {
+    /**
+     * Role applies to all deployments in the organization.
+     */
+    allDeployments?: pulumi.Input<boolean>;
+    /**
+     * If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
+     */
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Role applies to deployments listed here.
+     */
+    deploymentIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Assigned role. Must be on of `viewer`, `editor` or `admin`.
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface OrganizationMembersProjectElasticsearchRole {
+    /**
+     * Role applies to all projects in the organization.
+     */
+    allProjects?: pulumi.Input<boolean>;
+    /**
+     * If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+     */
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Role applies to projects listed here.
+     */
+    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface OrganizationMembersProjectObservabilityRole {
+    /**
+     * Role applies to all projects in the organization.
+     */
+    allProjects?: pulumi.Input<boolean>;
+    /**
+     * If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+     */
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Role applies to projects listed here.
+     */
+    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface OrganizationMembersProjectSecurityRole {
+    /**
+     * Role applies to all projects in the organization.
+     */
+    allProjects?: pulumi.Input<boolean>;
+    /**
+     * If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
+     */
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Role applies to projects listed here.
+     */
+    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
+     */
+    role: pulumi.Input<string>;
+}
+
 export interface SecurityProjectCredentials {
     /**
      * Basic auth password that can be used to access the Elasticsearch API.
