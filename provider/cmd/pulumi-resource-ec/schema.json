@@ -2023,6 +2023,187 @@
                 }
             }
         },
+        "ec:index/OrganizationMembers:OrganizationMembers": {
+            "properties": {
+                "deploymentRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/OrganizationMembersDeploymentRole:OrganizationMembersDeploymentRole"
+                    },
+                    "description": "Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address of the user.\n"
+                },
+                "invitationPending": {
+                    "type": "boolean",
+                    "description": "Set to true while the user has not yet accepted their invitation to the organization.\n"
+                },
+                "organizationRole": {
+                    "type": "string",
+                    "description": "The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)\n"
+                },
+                "projectElasticsearchRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/OrganizationMembersProjectElasticsearchRole:OrganizationMembersProjectElasticsearchRole"
+                    },
+                    "description": "Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)\n"
+                },
+                "projectObservabilityRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/OrganizationMembersProjectObservabilityRole:OrganizationMembersProjectObservabilityRole"
+                    },
+                    "description": "Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)\n"
+                },
+                "projectSecurityRoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/OrganizationMembersProjectSecurityRole:OrganizationMembersProjectSecurityRole"
+                    },
+                    "description": "Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User ID.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "email",
+                        "invitationPending",
+                        "projectElasticsearchRoles",
+                        "projectObservabilityRoles",
+                        "projectSecurityRoles",
+                        "userId"
+                    ]
+                }
+            }
+        },
+        "ec:index/OrganizationMembersDeploymentRole:OrganizationMembersDeploymentRole": {
+            "properties": {
+                "allDeployments": {
+                    "type": "boolean",
+                    "description": "Role applies to all deployments in the organization.\n"
+                },
+                "applicationRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.\n"
+                },
+                "deploymentIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Role applies to deployments listed here.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Assigned role. Must be on of `viewer`, `editor` or `admin`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "role"
+            ]
+        },
+        "ec:index/OrganizationMembersProjectElasticsearchRole:OrganizationMembersProjectElasticsearchRole": {
+            "properties": {
+                "allProjects": {
+                    "type": "boolean",
+                    "description": "Role applies to all projects in the organization.\n"
+                },
+                "applicationRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.\n"
+                },
+                "projectIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Role applies to projects listed here.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Assigned role. (Allowed values: `admin`, `developer`, `viewer`)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "role"
+            ]
+        },
+        "ec:index/OrganizationMembersProjectObservabilityRole:OrganizationMembersProjectObservabilityRole": {
+            "properties": {
+                "allProjects": {
+                    "type": "boolean",
+                    "description": "Role applies to all projects in the organization.\n"
+                },
+                "applicationRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.\n"
+                },
+                "projectIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Role applies to projects listed here.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Assigned role. (Allowed values: `admin`, `editor`, `viewer`)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "role"
+            ]
+        },
+        "ec:index/OrganizationMembersProjectSecurityRole:OrganizationMembersProjectSecurityRole": {
+            "properties": {
+                "allProjects": {
+                    "type": "boolean",
+                    "description": "Role applies to all projects in the organization.\n"
+                },
+                "applicationRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.\n"
+                },
+                "projectIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Role applies to projects listed here.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "role"
+            ]
+        },
         "ec:index/SecurityProjectCredentials:SecurityProjectCredentials": {
             "properties": {
                 "password": {
@@ -4871,6 +5052,39 @@
                     "type": {
                         "type": "string",
                         "description": "the type of the project\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/organization:Organization": {
+            "properties": {
+                "members": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/ec:index/OrganizationMembers:OrganizationMembers"
+                    },
+                    "description": "Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.\n"
+                }
+            },
+            "inputProperties": {
+                "members": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/ec:index/OrganizationMembers:OrganizationMembers"
+                    },
+                    "description": "Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Organization resources.\n",
+                "properties": {
+                    "members": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/types/ec:index/OrganizationMembers:OrganizationMembers"
+                        },
+                        "description": "Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.\n"
                     }
                 },
                 "type": "object"
