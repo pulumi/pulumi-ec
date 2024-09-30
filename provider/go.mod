@@ -10,7 +10,7 @@ replace (
 )
 
 require (
-	github.com/elastic/terraform-provider-ec v0.12.0
+	github.com/elastic/terraform-provider-ec v0.12.1
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.44.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.91.1
 )
