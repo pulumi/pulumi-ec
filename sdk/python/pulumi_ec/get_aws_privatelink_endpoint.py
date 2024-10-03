@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -120,9 +125,6 @@ def get_aws_privatelink_endpoint(region: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         vpc_service_name=pulumi.get(__ret__, 'vpc_service_name'),
         zone_ids=pulumi.get(__ret__, 'zone_ids'))
-
-
-@_utilities.lift_output_func(get_aws_privatelink_endpoint)
 def get_aws_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAwsPrivatelinkEndpointResult]:
     """
@@ -140,4 +142,13 @@ def get_aws_privatelink_endpoint_output(region: Optional[pulumi.Input[str]] = No
 
     :param str region: Region to retrieve the Private Link configuration for.
     """
-    ...
+    __args__ = dict()
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint', __args__, opts=opts, typ=GetAwsPrivatelinkEndpointResult)
+    return __ret__.apply(lambda __response__: GetAwsPrivatelinkEndpointResult(
+        domain_name=pulumi.get(__response__, 'domain_name'),
+        id=pulumi.get(__response__, 'id'),
+        region=pulumi.get(__response__, 'region'),
+        vpc_service_name=pulumi.get(__response__, 'vpc_service_name'),
+        zone_ids=pulumi.get(__response__, 'zone_ids')))

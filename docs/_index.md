@@ -14,6 +14,8 @@ The ec provider is available as a package in all Pulumi languages:
 * Java: [`com.pulumi/ec`](https://central.sonatype.com/artifact/com.pulumi/ec)
 ## Overview
 
+---
+## page_title: "Provider: Elastic Cloud"
 The Elastic Cloud Pulumi provider can be used to configure and manage Elastic Cloud deployments using the Elastic Cloud
 APIs. Use the navigation to the left to read about data sources and resources supported by the Elastic Cloud provider. Elastic Cloud APIs are available for:
 
