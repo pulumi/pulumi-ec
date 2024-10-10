@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -107,9 +112,6 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         service_attachment_uri=pulumi.get(__ret__, 'service_attachment_uri'))
-
-
-@_utilities.lift_output_func(get_gcp_private_service_connect_endpoint)
 def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGcpPrivateServiceConnectEndpointResult]:
     """
@@ -127,4 +129,12 @@ def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Inpu
 
     :param str region: Region to retrieve the Prive Link configuration for.
     """
-    ...
+    __args__ = dict()
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint', __args__, opts=opts, typ=GetGcpPrivateServiceConnectEndpointResult)
+    return __ret__.apply(lambda __response__: GetGcpPrivateServiceConnectEndpointResult(
+        domain_name=pulumi.get(__response__, 'domain_name'),
+        id=pulumi.get(__response__, 'id'),
+        region=pulumi.get(__response__, 'region'),
+        service_attachment_uri=pulumi.get(__response__, 'service_attachment_uri')))

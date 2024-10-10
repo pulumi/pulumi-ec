@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -237,9 +242,6 @@ def get_stack(lock: Optional[bool] = None,
         upgradable_tos=pulumi.get(__ret__, 'upgradable_tos'),
         version=pulumi.get(__ret__, 'version'),
         version_regex=pulumi.get(__ret__, 'version_regex'))
-
-
-@_utilities.lift_output_func(get_stack)
 def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
                      region: Optional[pulumi.Input[str]] = None,
                      version_regex: Optional[pulumi.Input[str]] = None,
@@ -267,4 +269,23 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str region: Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
     :param str version_regex: Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
     """
-    ...
+    __args__ = dict()
+    __args__['lock'] = lock
+    __args__['region'] = region
+    __args__['versionRegex'] = version_regex
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ec:index/getStack:getStack', __args__, opts=opts, typ=GetStackResult)
+    return __ret__.apply(lambda __response__: GetStackResult(
+        accessible=pulumi.get(__response__, 'accessible'),
+        allowlisted=pulumi.get(__response__, 'allowlisted'),
+        apms=pulumi.get(__response__, 'apms'),
+        elasticsearches=pulumi.get(__response__, 'elasticsearches'),
+        enterprise_searches=pulumi.get(__response__, 'enterprise_searches'),
+        id=pulumi.get(__response__, 'id'),
+        kibanas=pulumi.get(__response__, 'kibanas'),
+        lock=pulumi.get(__response__, 'lock'),
+        min_upgradable_from=pulumi.get(__response__, 'min_upgradable_from'),
+        region=pulumi.get(__response__, 'region'),
+        upgradable_tos=pulumi.get(__response__, 'upgradable_tos'),
+        version=pulumi.get(__response__, 'version'),
+        version_regex=pulumi.get(__response__, 'version_regex')))
