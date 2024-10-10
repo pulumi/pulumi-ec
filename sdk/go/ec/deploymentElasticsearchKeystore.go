@@ -43,7 +43,7 @@ import (
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
-//						Autoscaling: nil,
+//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
 //					},
 //				},
 //			})
@@ -101,7 +101,7 @@ import (
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
-//						Autoscaling: nil,
+//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
 //					},
 //				},
 //			})
