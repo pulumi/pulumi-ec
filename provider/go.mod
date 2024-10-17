@@ -12,7 +12,7 @@ replace (
 require (
 	github.com/elastic/terraform-provider-ec v0.12.1
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.45.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.92.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.93.0
 )
 
 require (
