@@ -1,4 +1,5 @@
 ---
+# *** WARNING: This file was auto-generated. Do not edit by hand unless you're certain you know what you are doing! ***
 title: Ec Provider
 meta_desc: Provides an overview on how to configure the Pulumi Ec provider.
 layout: package
