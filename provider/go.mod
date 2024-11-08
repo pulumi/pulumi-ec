@@ -11,7 +11,6 @@ replace (
 
 require (
 	github.com/elastic/terraform-provider-ec v0.12.1
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.47.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.94.0
 )
 
@@ -32,6 +31,7 @@ require (
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
+	github.com/apparentlymart/go-dump v0.0.0-20190214190832-042adf3cf4a0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
