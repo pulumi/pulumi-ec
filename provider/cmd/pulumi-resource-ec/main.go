@@ -22,7 +22,7 @@ import (
 	// We import embed so we can embed the schema as a json file
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	ec "github.com/pulumi/pulumi-ec/provider"
 )
