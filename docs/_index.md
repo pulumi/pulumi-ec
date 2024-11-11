@@ -1,12 +1,12 @@
 ---
 # *** WARNING: This file was auto-generated. Do not edit by hand unless you're certain you know what you are doing! ***
-title: Ec Provider
-meta_desc: Provides an overview on how to configure the Pulumi Ec provider.
+title: Elasticcloud (Ec) Provider
+meta_desc: Provides an overview on how to configure the Pulumi Elasticcloud (Ec) provider.
 layout: package
 ---
 ## Installation
 
-The ec provider is available as a package in all Pulumi languages:
+The ElasticCloud (EC) provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/ec`](https://www.npmjs.com/package/@pulumi/ec)
 * Python: [`pulumi-ec`](https://pypi.org/project/pulumi-ec/)
