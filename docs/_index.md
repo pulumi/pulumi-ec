@@ -1,7 +1,7 @@
 ---
 # *** WARNING: This file was auto-generated. Do not edit by hand unless you're certain you know what you are doing! ***
-title: Elasticcloud (Ec) Provider
-meta_desc: Provides an overview on how to configure the Pulumi Elasticcloud (Ec) provider.
+title: ElasticCloud (EC) Provider
+meta_desc: Provides an overview on how to configure the Pulumi ElasticCloud (EC) provider.
 layout: package
 ---
 ## Installation
