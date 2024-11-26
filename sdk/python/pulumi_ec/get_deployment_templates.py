@@ -4,14 +4,9 @@
 
 import copy
 import warnings
-import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-if sys.version_info >= (3, 11):
-    from typing import NotRequired, TypedDict, TypeAlias
-else:
-    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -146,6 +141,9 @@ def get_deployment_templates(id: Optional[str] = None,
         show_deprecated=pulumi.get(__ret__, 'show_deprecated'),
         stack_version=pulumi.get(__ret__, 'stack_version'),
         templates=pulumi.get(__ret__, 'templates'))
+
+
+@_utilities.lift_output_func(get_deployment_templates)
 def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                     region: Optional[pulumi.Input[str]] = None,
                                     show_deprecated: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -180,16 +178,4 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
     :param bool show_deprecated: Enable to also show deprecated deployment templates. (Set to false by default.)
     :param str stack_version: Filters for deployment templates compatible with this stack version.
     """
-    __args__ = dict()
-    __args__['id'] = id
-    __args__['region'] = region
-    __args__['showDeprecated'] = show_deprecated
-    __args__['stackVersion'] = stack_version
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ec:index/getDeploymentTemplates:getDeploymentTemplates', __args__, opts=opts, typ=GetDeploymentTemplatesResult)
-    return __ret__.apply(lambda __response__: GetDeploymentTemplatesResult(
-        id=pulumi.get(__response__, 'id'),
-        region=pulumi.get(__response__, 'region'),
-        show_deprecated=pulumi.get(__response__, 'show_deprecated'),
-        stack_version=pulumi.get(__response__, 'stack_version'),
-        templates=pulumi.get(__response__, 'templates')))
+    ...

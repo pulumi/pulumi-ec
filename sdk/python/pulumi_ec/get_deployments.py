@@ -4,14 +4,9 @@
 
 import copy
 import warnings
-import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-if sys.version_info >= (3, 11):
-    from typing import NotRequired, TypedDict, TypeAlias
-else:
-    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -291,6 +286,9 @@ def get_deployments(apms: Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetD
         return_count=pulumi.get(__ret__, 'return_count'),
         size=pulumi.get(__ret__, 'size'),
         tags=pulumi.get(__ret__, 'tags'))
+
+
+@_utilities.lift_output_func(get_deployments)
 def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']]]]] = None,
                            deployment_template_id: Optional[pulumi.Input[Optional[str]]] = None,
                            elasticsearches: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']]]]] = None,
@@ -345,32 +343,4 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[Union['
     :param int size: The maximum number of deployments to return. Defaults to `100`.
     :param Mapping[str, str] tags: Filter the result set by their assigned tags.
     """
-    __args__ = dict()
-    __args__['apms'] = apms
-    __args__['deploymentTemplateId'] = deployment_template_id
-    __args__['elasticsearches'] = elasticsearches
-    __args__['enterpriseSearches'] = enterprise_searches
-    __args__['healthy'] = healthy
-    __args__['integrationsServers'] = integrations_servers
-    __args__['kibanas'] = kibanas
-    __args__['name'] = name
-    __args__['namePrefix'] = name_prefix
-    __args__['size'] = size
-    __args__['tags'] = tags
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ec:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult)
-    return __ret__.apply(lambda __response__: GetDeploymentsResult(
-        apms=pulumi.get(__response__, 'apms'),
-        deployment_template_id=pulumi.get(__response__, 'deployment_template_id'),
-        deployments=pulumi.get(__response__, 'deployments'),
-        elasticsearches=pulumi.get(__response__, 'elasticsearches'),
-        enterprise_searches=pulumi.get(__response__, 'enterprise_searches'),
-        healthy=pulumi.get(__response__, 'healthy'),
-        id=pulumi.get(__response__, 'id'),
-        integrations_servers=pulumi.get(__response__, 'integrations_servers'),
-        kibanas=pulumi.get(__response__, 'kibanas'),
-        name=pulumi.get(__response__, 'name'),
-        name_prefix=pulumi.get(__response__, 'name_prefix'),
-        return_count=pulumi.get(__response__, 'return_count'),
-        size=pulumi.get(__response__, 'size'),
-        tags=pulumi.get(__response__, 'tags')))
+    ...

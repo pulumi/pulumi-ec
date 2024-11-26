@@ -59,10 +59,10 @@ import (
 //				},
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
-//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
+//						Autoscaling: nil,
 //					},
 //				},
-//				Kibana: &ec.DeploymentKibanaArgs{},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err
@@ -120,10 +120,10 @@ import (
 //				},
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
-//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
+//						Autoscaling: nil,
 //					},
 //				},
-//				Kibana: &ec.DeploymentKibanaArgs{},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err
@@ -180,10 +180,10 @@ import (
 //				},
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
-//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
+//						Autoscaling: nil,
 //					},
 //				},
-//				Kibana: &ec.DeploymentKibanaArgs{},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err

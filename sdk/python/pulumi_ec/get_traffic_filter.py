@@ -4,14 +4,9 @@
 
 import copy
 import warnings
-import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-if sys.version_info >= (3, 11):
-    from typing import NotRequired, TypedDict, TypeAlias
-else:
-    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -121,6 +116,9 @@ def get_traffic_filter(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'),
         rulesets=pulumi.get(__ret__, 'rulesets'))
+
+
+@_utilities.lift_output_func(get_traffic_filter)
 def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                               name: Optional[pulumi.Input[Optional[str]]] = None,
                               region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -144,14 +142,4 @@ def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name: The exact name of the traffic filter to select.
     :param str region: Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
     """
-    __args__ = dict()
-    __args__['id'] = id
-    __args__['name'] = name
-    __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ec:index/getTrafficFilter:getTrafficFilter', __args__, opts=opts, typ=GetTrafficFilterResult)
-    return __ret__.apply(lambda __response__: GetTrafficFilterResult(
-        id=pulumi.get(__response__, 'id'),
-        name=pulumi.get(__response__, 'name'),
-        region=pulumi.get(__response__, 'region'),
-        rulesets=pulumi.get(__response__, 'rulesets')))
+    ...

@@ -4,163 +4,72 @@
 
 import copy
 import warnings
-import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-if sys.version_info >= (3, 11):
-    from typing import NotRequired, TypedDict, TypeAlias
-else:
-    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'DeploymentApmArgs',
-    'DeploymentApmArgsDict',
     'DeploymentApmConfigArgs',
-    'DeploymentApmConfigArgsDict',
     'DeploymentElasticsearchArgs',
-    'DeploymentElasticsearchArgsDict',
     'DeploymentElasticsearchColdArgs',
-    'DeploymentElasticsearchColdArgsDict',
     'DeploymentElasticsearchColdAutoscalingArgs',
-    'DeploymentElasticsearchColdAutoscalingArgsDict',
     'DeploymentElasticsearchConfigArgs',
-    'DeploymentElasticsearchConfigArgsDict',
     'DeploymentElasticsearchCoordinatingArgs',
-    'DeploymentElasticsearchCoordinatingArgsDict',
     'DeploymentElasticsearchCoordinatingAutoscalingArgs',
-    'DeploymentElasticsearchCoordinatingAutoscalingArgsDict',
     'DeploymentElasticsearchExtensionArgs',
-    'DeploymentElasticsearchExtensionArgsDict',
     'DeploymentElasticsearchFrozenArgs',
-    'DeploymentElasticsearchFrozenArgsDict',
     'DeploymentElasticsearchFrozenAutoscalingArgs',
-    'DeploymentElasticsearchFrozenAutoscalingArgsDict',
     'DeploymentElasticsearchHotArgs',
-    'DeploymentElasticsearchHotArgsDict',
     'DeploymentElasticsearchHotAutoscalingArgs',
-    'DeploymentElasticsearchHotAutoscalingArgsDict',
     'DeploymentElasticsearchKeystoreContentsArgs',
-    'DeploymentElasticsearchKeystoreContentsArgsDict',
     'DeploymentElasticsearchMasterArgs',
-    'DeploymentElasticsearchMasterArgsDict',
     'DeploymentElasticsearchMasterAutoscalingArgs',
-    'DeploymentElasticsearchMasterAutoscalingArgsDict',
     'DeploymentElasticsearchMlArgs',
-    'DeploymentElasticsearchMlArgsDict',
     'DeploymentElasticsearchMlAutoscalingArgs',
-    'DeploymentElasticsearchMlAutoscalingArgsDict',
     'DeploymentElasticsearchRemoteClusterArgs',
-    'DeploymentElasticsearchRemoteClusterArgsDict',
     'DeploymentElasticsearchSnapshotArgs',
-    'DeploymentElasticsearchSnapshotArgsDict',
     'DeploymentElasticsearchSnapshotRepositoryArgs',
-    'DeploymentElasticsearchSnapshotRepositoryArgsDict',
     'DeploymentElasticsearchSnapshotRepositoryReferenceArgs',
-    'DeploymentElasticsearchSnapshotRepositoryReferenceArgsDict',
     'DeploymentElasticsearchSnapshotSourceArgs',
-    'DeploymentElasticsearchSnapshotSourceArgsDict',
     'DeploymentElasticsearchTrustAccountArgs',
-    'DeploymentElasticsearchTrustAccountArgsDict',
     'DeploymentElasticsearchTrustExternalArgs',
-    'DeploymentElasticsearchTrustExternalArgsDict',
     'DeploymentElasticsearchWarmArgs',
-    'DeploymentElasticsearchWarmArgsDict',
     'DeploymentElasticsearchWarmAutoscalingArgs',
-    'DeploymentElasticsearchWarmAutoscalingArgsDict',
     'DeploymentEnterpriseSearchArgs',
-    'DeploymentEnterpriseSearchArgsDict',
     'DeploymentEnterpriseSearchConfigArgs',
-    'DeploymentEnterpriseSearchConfigArgsDict',
     'DeploymentIntegrationsServerArgs',
-    'DeploymentIntegrationsServerArgsDict',
     'DeploymentIntegrationsServerConfigArgs',
-    'DeploymentIntegrationsServerConfigArgsDict',
     'DeploymentIntegrationsServerEndpointsArgs',
-    'DeploymentIntegrationsServerEndpointsArgsDict',
     'DeploymentKibanaArgs',
-    'DeploymentKibanaArgsDict',
     'DeploymentKibanaConfigArgs',
-    'DeploymentKibanaConfigArgsDict',
     'DeploymentObservabilityArgs',
-    'DeploymentObservabilityArgsDict',
     'DeploymentTrafficFilterRuleArgs',
-    'DeploymentTrafficFilterRuleArgsDict',
     'ElasticsearchProjectCredentialsArgs',
-    'ElasticsearchProjectCredentialsArgsDict',
     'ElasticsearchProjectEndpointsArgs',
-    'ElasticsearchProjectEndpointsArgsDict',
     'ElasticsearchProjectMetadataArgs',
-    'ElasticsearchProjectMetadataArgsDict',
     'ElasticsearchProjectSearchLakeArgs',
-    'ElasticsearchProjectSearchLakeArgsDict',
     'ObservabilityProjectCredentialsArgs',
-    'ObservabilityProjectCredentialsArgsDict',
     'ObservabilityProjectEndpointsArgs',
-    'ObservabilityProjectEndpointsArgsDict',
     'ObservabilityProjectMetadataArgs',
-    'ObservabilityProjectMetadataArgsDict',
     'OrganizationMembersArgs',
-    'OrganizationMembersArgsDict',
     'OrganizationMembersDeploymentRoleArgs',
-    'OrganizationMembersDeploymentRoleArgsDict',
     'OrganizationMembersProjectElasticsearchRoleArgs',
-    'OrganizationMembersProjectElasticsearchRoleArgsDict',
     'OrganizationMembersProjectObservabilityRoleArgs',
-    'OrganizationMembersProjectObservabilityRoleArgsDict',
     'OrganizationMembersProjectSecurityRoleArgs',
-    'OrganizationMembersProjectSecurityRoleArgsDict',
     'SecurityProjectCredentialsArgs',
-    'SecurityProjectCredentialsArgsDict',
     'SecurityProjectEndpointsArgs',
-    'SecurityProjectEndpointsArgsDict',
     'SecurityProjectMetadataArgs',
-    'SecurityProjectMetadataArgsDict',
     'SecurityProjectProductTypeArgs',
-    'SecurityProjectProductTypeArgsDict',
     'SnapshotRepositoryGenericArgs',
-    'SnapshotRepositoryGenericArgsDict',
     'SnapshotRepositoryS3Args',
-    'SnapshotRepositoryS3ArgsDict',
     'GetDeploymentsApmArgs',
-    'GetDeploymentsApmArgsDict',
     'GetDeploymentsElasticsearchArgs',
-    'GetDeploymentsElasticsearchArgsDict',
     'GetDeploymentsEnterpriseSearchArgs',
-    'GetDeploymentsEnterpriseSearchArgsDict',
     'GetDeploymentsIntegrationsServerArgs',
-    'GetDeploymentsIntegrationsServerArgsDict',
     'GetDeploymentsKibanaArgs',
-    'GetDeploymentsKibanaArgsDict',
 ]
-
-MYPY = False
-
-if not MYPY:
-    class DeploymentApmArgsDict(TypedDict):
-        config: NotRequired[pulumi.Input['DeploymentApmConfigArgsDict']]
-        """
-        Optionally define the Apm configuration options for the APM Server
-        """
-        elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[str]]
-        http_endpoint: NotRequired[pulumi.Input[str]]
-        https_endpoint: NotRequired[pulumi.Input[str]]
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        ref_id: NotRequired[pulumi.Input[str]]
-        region: NotRequired[pulumi.Input[str]]
-        resource_id: NotRequired[pulumi.Input[str]]
-        size: NotRequired[pulumi.Input[str]]
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Optional size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-elif False:
-    DeploymentApmArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentApmArgs:
@@ -345,35 +254,6 @@ class DeploymentApmArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentApmConfigArgsDict(TypedDict):
-        debug_enabled: NotRequired[pulumi.Input[bool]]
-        """
-        Optionally enable debug mode for APM servers - defaults to false
-        """
-        docker_image: NotRequired[pulumi.Input[str]]
-        """
-        Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
-        """
-        user_settings_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-        user_settings_override_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_override_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-elif False:
-    DeploymentApmConfigArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentApmConfigArgs:
     def __init__(__self__, *,
@@ -476,100 +356,6 @@ class DeploymentApmConfigArgs:
     def user_settings_yaml(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchArgsDict(TypedDict):
-        hot: pulumi.Input['DeploymentElasticsearchHotArgsDict']
-        """
-        'hot' topology element
-        """
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
-        """
-        cloud_id: NotRequired[pulumi.Input[str]]
-        """
-        The encoded Elasticsearch credentials to use in Beats or Logstash
-        """
-        cold: NotRequired[pulumi.Input['DeploymentElasticsearchColdArgsDict']]
-        """
-        'cold' topology element
-        """
-        config: NotRequired[pulumi.Input['DeploymentElasticsearchConfigArgsDict']]
-        """
-        Elasticsearch settings which will be applied to all topologies
-        """
-        coordinating: NotRequired[pulumi.Input['DeploymentElasticsearchCoordinatingArgsDict']]
-        """
-        'coordinating' topology element
-        """
-        extensions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgsDict']]]]
-        """
-        Optional Elasticsearch extensions such as custom bundles or plugins.
-        """
-        frozen: NotRequired[pulumi.Input['DeploymentElasticsearchFrozenArgsDict']]
-        """
-        'frozen' topology element
-        """
-        http_endpoint: NotRequired[pulumi.Input[str]]
-        """
-        The Elasticsearch resource HTTP endpoint
-        """
-        https_endpoint: NotRequired[pulumi.Input[str]]
-        """
-        The Elasticsearch resource HTTPs endpoint
-        """
-        keystore_contents: NotRequired[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgsDict']]]]
-        """
-        Keystore contents that are controlled by the deployment resource.
-        """
-        master: NotRequired[pulumi.Input['DeploymentElasticsearchMasterArgsDict']]
-        """
-        'master' topology element
-        """
-        ml: NotRequired[pulumi.Input['DeploymentElasticsearchMlArgsDict']]
-        """
-        'ml' topology element
-        """
-        ref_id: NotRequired[pulumi.Input[str]]
-        """
-        A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
-        """
-        region: NotRequired[pulumi.Input[str]]
-        """
-        Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        """
-        remote_clusters: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgsDict']]]]
-        """
-        Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
-        """
-        resource_id: NotRequired[pulumi.Input[str]]
-        """
-        The Elasticsearch resource unique identifier
-        """
-        snapshot: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotArgsDict']]
-        """
-        (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
-        """
-        snapshot_source: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotSourceArgsDict']]
-        strategy: NotRequired[pulumi.Input[str]]
-        """
-        Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
-        """
-        trust_accounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgsDict']]]]
-        """
-        Optional Elasticsearch account trust settings.
-        """
-        trust_externals: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgsDict']]]]
-        """
-        Optional Elasticsearch external trust settings.
-        """
-        warm: NotRequired[pulumi.Input['DeploymentElasticsearchWarmArgsDict']]
-        """
-        'warm' topology element
-        """
-elif False:
-    DeploymentElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchArgs:
@@ -941,63 +727,6 @@ class DeploymentElasticsearchArgs:
         pulumi.set(self, "warm", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchColdArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchColdAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchColdArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchColdArgs:
     def __init__(__self__, *,
@@ -1212,35 +941,6 @@ class DeploymentElasticsearchColdArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchColdAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchColdAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchColdAutoscalingArgs:
     def __init__(__self__, *,
@@ -1344,35 +1044,6 @@ class DeploymentElasticsearchColdAutoscalingArgs:
         pulumi.set(self, "policy_override_json", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchConfigArgsDict(TypedDict):
-        docker_image: NotRequired[pulumi.Input[str]]
-        """
-        Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
-        """
-        plugins: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
-        """
-        user_settings_json: NotRequired[pulumi.Input[str]]
-        """
-        JSON-formatted user level "elasticsearch.yml" setting overrides
-        """
-        user_settings_override_json: NotRequired[pulumi.Input[str]]
-        """
-        JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
-        """
-        user_settings_override_yaml: NotRequired[pulumi.Input[str]]
-        """
-        YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
-        """
-        user_settings_yaml: NotRequired[pulumi.Input[str]]
-        """
-        YAML-formatted user level "elasticsearch.yml" setting overrides
-        """
-elif False:
-    DeploymentElasticsearchConfigArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchConfigArgs:
     def __init__(__self__, *,
@@ -1475,63 +1146,6 @@ class DeploymentElasticsearchConfigArgs:
     def user_settings_yaml(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchCoordinatingArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchCoordinatingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchCoordinatingArgs:
@@ -1747,35 +1361,6 @@ class DeploymentElasticsearchCoordinatingArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchCoordinatingAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchCoordinatingAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     def __init__(__self__, *,
@@ -1879,27 +1464,6 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
         pulumi.set(self, "policy_override_json", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchExtensionArgsDict(TypedDict):
-        name: pulumi.Input[str]
-        """
-        Extension name.
-        """
-        type: pulumi.Input[str]
-        """
-        Extension type, only `bundle` or `plugin` are supported.
-        """
-        url: pulumi.Input[str]
-        """
-        Bundle or plugin URL, the extension URL can be obtained from the `ec_deployment_extension.<name>.url` attribute or the API and cannot be a random HTTP address that is hosted elsewhere.
-        """
-        version: pulumi.Input[str]
-        """
-        Elasticsearch compatibility version. Bundles should specify major or minor versions with wildcards, such as `7.*` or `*` but **plugins must use full version notation down to the patch level**, such as `7.10.1` and wildcards are not allowed.
-        """
-elif False:
-    DeploymentElasticsearchExtensionArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchExtensionArgs:
     def __init__(__self__, *,
@@ -1966,63 +1530,6 @@ class DeploymentElasticsearchExtensionArgs:
     def version(self, value: pulumi.Input[str]):
         pulumi.set(self, "version", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchFrozenArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchFrozenArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchFrozenArgs:
@@ -2238,35 +1745,6 @@ class DeploymentElasticsearchFrozenArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchFrozenAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchFrozenAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchFrozenAutoscalingArgs:
     def __init__(__self__, *,
@@ -2369,63 +1847,6 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     def policy_override_json(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_override_json", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchHotArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchHotAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchHotArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchHotArgs:
@@ -2641,35 +2062,6 @@ class DeploymentElasticsearchHotArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchHotAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchHotAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchHotAutoscalingArgs:
     def __init__(__self__, *,
@@ -2773,19 +2165,6 @@ class DeploymentElasticsearchHotAutoscalingArgs:
         pulumi.set(self, "policy_override_json", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchKeystoreContentsArgsDict(TypedDict):
-        value: pulumi.Input[str]
-        """
-        Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
-        """
-        as_file: NotRequired[pulumi.Input[bool]]
-        """
-        If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
-        """
-elif False:
-    DeploymentElasticsearchKeystoreContentsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchKeystoreContentsArgs:
     def __init__(__self__, *,
@@ -2823,63 +2202,6 @@ class DeploymentElasticsearchKeystoreContentsArgs:
     def as_file(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "as_file", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchMasterArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchMasterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchMasterArgs:
@@ -3095,35 +2417,6 @@ class DeploymentElasticsearchMasterArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchMasterAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchMasterAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchMasterAutoscalingArgs:
     def __init__(__self__, *,
@@ -3226,63 +2519,6 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     def policy_override_json(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_override_json", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchMlArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchMlAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchMlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchMlArgs:
@@ -3498,35 +2734,6 @@ class DeploymentElasticsearchMlArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchMlAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchMlAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchMlAutoscalingArgs:
     def __init__(__self__, *,
@@ -3630,27 +2837,6 @@ class DeploymentElasticsearchMlAutoscalingArgs:
         pulumi.set(self, "policy_override_json", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchRemoteClusterArgsDict(TypedDict):
-        alias: pulumi.Input[str]
-        """
-        Alias for this Cross Cluster Search binding
-        """
-        deployment_id: pulumi.Input[str]
-        """
-        Remote deployment ID
-        """
-        ref_id: NotRequired[pulumi.Input[str]]
-        """
-        Remote elasticsearch "ref_id", it is best left to the default value
-        """
-        skip_unavailable: NotRequired[pulumi.Input[bool]]
-        """
-        If true, skip the cluster during search when disconnected
-        """
-elif False:
-    DeploymentElasticsearchRemoteClusterArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchRemoteClusterArgs:
     def __init__(__self__, *,
@@ -3720,19 +2906,6 @@ class DeploymentElasticsearchRemoteClusterArgs:
         pulumi.set(self, "skip_unavailable", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchSnapshotArgsDict(TypedDict):
-        enabled: pulumi.Input[bool]
-        """
-        Indicates if Snapshotting is enabled.
-        """
-        repository: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgsDict']]
-        """
-        Snapshot repository configuration
-        """
-elif False:
-    DeploymentElasticsearchSnapshotArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchSnapshotArgs:
     def __init__(__self__, *,
@@ -3771,15 +2944,6 @@ class DeploymentElasticsearchSnapshotArgs:
         pulumi.set(self, "repository", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchSnapshotRepositoryArgsDict(TypedDict):
-        reference: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgsDict']]
-        """
-        Cluster snapshot reference repository settings, containing the repository name in ECE fashion
-        """
-elif False:
-    DeploymentElasticsearchSnapshotRepositoryArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchSnapshotRepositoryArgs:
     def __init__(__self__, *,
@@ -3803,15 +2967,6 @@ class DeploymentElasticsearchSnapshotRepositoryArgs:
         pulumi.set(self, "reference", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchSnapshotRepositoryReferenceArgsDict(TypedDict):
-        repository_name: pulumi.Input[str]
-        """
-        ECE snapshot repository name, from the '/platform/configuration/snapshots/repositories' endpoint
-        """
-elif False:
-    DeploymentElasticsearchSnapshotRepositoryReferenceArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchSnapshotRepositoryReferenceArgs:
     def __init__(__self__, *,
@@ -3833,19 +2988,6 @@ class DeploymentElasticsearchSnapshotRepositoryReferenceArgs:
     def repository_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "repository_name", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchSnapshotSourceArgsDict(TypedDict):
-        source_elasticsearch_cluster_id: pulumi.Input[str]
-        """
-        ID of the Elasticsearch cluster that will be used as the source of the snapshot
-        """
-        snapshot_name: NotRequired[pulumi.Input[str]]
-        """
-        Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
-        """
-elif False:
-    DeploymentElasticsearchSnapshotSourceArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchSnapshotSourceArgs:
@@ -3884,23 +3026,6 @@ class DeploymentElasticsearchSnapshotSourceArgs:
     def snapshot_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "snapshot_name", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchTrustAccountArgsDict(TypedDict):
-        account_id: pulumi.Input[str]
-        """
-        The ID of the Account.
-        """
-        trust_all: pulumi.Input[bool]
-        """
-        If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
-        """
-        trust_allowlists: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The list of clusters to trust. Only used when `trust_all` is false.
-        """
-elif False:
-    DeploymentElasticsearchTrustAccountArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchTrustAccountArgs:
@@ -3955,23 +3080,6 @@ class DeploymentElasticsearchTrustAccountArgs:
         pulumi.set(self, "trust_allowlists", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchTrustExternalArgsDict(TypedDict):
-        relationship_id: pulumi.Input[str]
-        """
-        The ID of the external trust relationship.
-        """
-        trust_all: pulumi.Input[bool]
-        """
-        If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
-        """
-        trust_allowlists: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The list of clusters to trust. Only used when `trust_all` is false.
-        """
-elif False:
-    DeploymentElasticsearchTrustExternalArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchTrustExternalArgs:
     def __init__(__self__, *,
@@ -4024,63 +3132,6 @@ class DeploymentElasticsearchTrustExternalArgs:
     def trust_allowlists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "trust_allowlists", value)
 
-
-if not MYPY:
-    class DeploymentElasticsearchWarmArgsDict(TypedDict):
-        autoscaling: pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgsDict']
-        """
-        Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
-        """
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Instance Configuration ID of the topology element
-        """
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Instance Configuration version of the topology element
-        """
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        """
-        Latest Instance Configuration ID available on the deployment template for the topology element
-        """
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        """
-        Latest version available for the Instance Configuration with the latest*instance*configuration_id
-        """
-        node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        The computed list of node roles for the current topology element
-        """
-        node_type_data: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (data node)
-        """
-        node_type_ingest: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (ingest node)
-        """
-        node_type_master: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (master node)
-        """
-        node_type_ml: NotRequired[pulumi.Input[str]]
-        """
-        The node type for the Elasticsearch Topology element (machine learning node)
-        """
-        size: NotRequired[pulumi.Input[str]]
-        """
-        Amount of "size_resource" per node in the "\\n\\ng" notation
-        """
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-        """
-        Number of zones that the Elasticsearch cluster will span. This is used to set HA
-        """
-elif False:
-    DeploymentElasticsearchWarmArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentElasticsearchWarmArgs:
@@ -4296,35 +3347,6 @@ class DeploymentElasticsearchWarmArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentElasticsearchWarmAutoscalingArgsDict(TypedDict):
-        autoscale: NotRequired[pulumi.Input[bool]]
-        """
-        Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        """
-        max_size: NotRequired[pulumi.Input[str]]
-        """
-        Maximum size value for the maximum autoscaling setting.
-        """
-        max_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Maximum resource type for the maximum autoscaling setting.
-        """
-        min_size: NotRequired[pulumi.Input[str]]
-        """
-        Minimum size value for the minimum autoscaling setting.
-        """
-        min_size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Minimum resource type for the minimum autoscaling setting.
-        """
-        policy_override_json: NotRequired[pulumi.Input[str]]
-        """
-        Computed policy overrides set directly via the API or other clients.
-        """
-elif False:
-    DeploymentElasticsearchWarmAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentElasticsearchWarmAutoscalingArgs:
     def __init__(__self__, *,
@@ -4427,34 +3449,6 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     def policy_override_json(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_override_json", value)
 
-
-if not MYPY:
-    class DeploymentEnterpriseSearchArgsDict(TypedDict):
-        config: NotRequired[pulumi.Input['DeploymentEnterpriseSearchConfigArgsDict']]
-        """
-        Optionally define the Enterprise Search configuration options for the Enterprise Search Server
-        """
-        elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[str]]
-        http_endpoint: NotRequired[pulumi.Input[str]]
-        https_endpoint: NotRequired[pulumi.Input[str]]
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        node_type_appserver: NotRequired[pulumi.Input[bool]]
-        node_type_connector: NotRequired[pulumi.Input[bool]]
-        node_type_worker: NotRequired[pulumi.Input[bool]]
-        ref_id: NotRequired[pulumi.Input[str]]
-        region: NotRequired[pulumi.Input[str]]
-        resource_id: NotRequired[pulumi.Input[str]]
-        size: NotRequired[pulumi.Input[str]]
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Optional size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-elif False:
-    DeploymentEnterpriseSearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentEnterpriseSearchArgs:
@@ -4675,31 +3669,6 @@ class DeploymentEnterpriseSearchArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentEnterpriseSearchConfigArgsDict(TypedDict):
-        docker_image: NotRequired[pulumi.Input[str]]
-        """
-        Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
-        """
-        user_settings_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-        user_settings_override_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_override_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-elif False:
-    DeploymentEnterpriseSearchConfigArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentEnterpriseSearchConfigArgs:
     def __init__(__self__, *,
@@ -4786,35 +3755,6 @@ class DeploymentEnterpriseSearchConfigArgs:
     def user_settings_yaml(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
-
-if not MYPY:
-    class DeploymentIntegrationsServerArgsDict(TypedDict):
-        config: NotRequired[pulumi.Input['DeploymentIntegrationsServerConfigArgsDict']]
-        """
-        Optionally define the Integrations Server configuration options for the IntegrationsServer Server
-        """
-        elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[str]]
-        endpoints: NotRequired[pulumi.Input['DeploymentIntegrationsServerEndpointsArgsDict']]
-        """
-        URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
-        """
-        http_endpoint: NotRequired[pulumi.Input[str]]
-        https_endpoint: NotRequired[pulumi.Input[str]]
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        ref_id: NotRequired[pulumi.Input[str]]
-        region: NotRequired[pulumi.Input[str]]
-        resource_id: NotRequired[pulumi.Input[str]]
-        size: NotRequired[pulumi.Input[str]]
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Optional size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-elif False:
-    DeploymentIntegrationsServerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentIntegrationsServerArgs:
@@ -5015,35 +3955,6 @@ class DeploymentIntegrationsServerArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentIntegrationsServerConfigArgsDict(TypedDict):
-        debug_enabled: NotRequired[pulumi.Input[bool]]
-        """
-        Optionally enable debug mode for Integrations Server instances - defaults to false
-        """
-        docker_image: NotRequired[pulumi.Input[str]]
-        """
-        Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
-        """
-        user_settings_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-        user_settings_override_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_override_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-elif False:
-    DeploymentIntegrationsServerConfigArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentIntegrationsServerConfigArgs:
     def __init__(__self__, *,
@@ -5147,15 +4058,6 @@ class DeploymentIntegrationsServerConfigArgs:
         pulumi.set(self, "user_settings_yaml", value)
 
 
-if not MYPY:
-    class DeploymentIntegrationsServerEndpointsArgsDict(TypedDict):
-        apm: pulumi.Input[str]
-        fleet: pulumi.Input[str]
-        profiling: pulumi.Input[str]
-        symbols: pulumi.Input[str]
-elif False:
-    DeploymentIntegrationsServerEndpointsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentIntegrationsServerEndpointsArgs:
     def __init__(__self__, *,
@@ -5204,31 +4106,6 @@ class DeploymentIntegrationsServerEndpointsArgs:
     def symbols(self, value: pulumi.Input[str]):
         pulumi.set(self, "symbols", value)
 
-
-if not MYPY:
-    class DeploymentKibanaArgsDict(TypedDict):
-        config: NotRequired[pulumi.Input['DeploymentKibanaConfigArgsDict']]
-        """
-        Optionally define the Kibana configuration options for the Kibana Server
-        """
-        elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[str]]
-        http_endpoint: NotRequired[pulumi.Input[str]]
-        https_endpoint: NotRequired[pulumi.Input[str]]
-        instance_configuration_id: NotRequired[pulumi.Input[str]]
-        instance_configuration_version: NotRequired[pulumi.Input[int]]
-        latest_instance_configuration_id: NotRequired[pulumi.Input[str]]
-        latest_instance_configuration_version: NotRequired[pulumi.Input[int]]
-        ref_id: NotRequired[pulumi.Input[str]]
-        region: NotRequired[pulumi.Input[str]]
-        resource_id: NotRequired[pulumi.Input[str]]
-        size: NotRequired[pulumi.Input[str]]
-        size_resource: NotRequired[pulumi.Input[str]]
-        """
-        Optional size type, defaults to "memory".
-        """
-        zone_count: NotRequired[pulumi.Input[int]]
-elif False:
-    DeploymentKibanaArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentKibanaArgs:
@@ -5413,31 +4290,6 @@ class DeploymentKibanaArgs:
         pulumi.set(self, "zone_count", value)
 
 
-if not MYPY:
-    class DeploymentKibanaConfigArgsDict(TypedDict):
-        docker_image: NotRequired[pulumi.Input[str]]
-        """
-        Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
-        """
-        user_settings_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-        user_settings_override_json: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_override_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
-        """
-        user_settings_yaml: NotRequired[pulumi.Input[str]]
-        """
-        An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
-        """
-elif False:
-    DeploymentKibanaConfigArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentKibanaConfigArgs:
     def __init__(__self__, *,
@@ -5525,15 +4377,6 @@ class DeploymentKibanaConfigArgs:
         pulumi.set(self, "user_settings_yaml", value)
 
 
-if not MYPY:
-    class DeploymentObservabilityArgsDict(TypedDict):
-        deployment_id: pulumi.Input[str]
-        logs: NotRequired[pulumi.Input[bool]]
-        metrics: NotRequired[pulumi.Input[bool]]
-        ref_id: NotRequired[pulumi.Input[str]]
-elif False:
-    DeploymentObservabilityArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class DeploymentObservabilityArgs:
     def __init__(__self__, *,
@@ -5585,31 +4428,6 @@ class DeploymentObservabilityArgs:
     def ref_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ref_id", value)
 
-
-if not MYPY:
-    class DeploymentTrafficFilterRuleArgsDict(TypedDict):
-        azure_endpoint_guid: NotRequired[pulumi.Input[str]]
-        """
-        Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
-        """
-        azure_endpoint_name: NotRequired[pulumi.Input[str]]
-        """
-        Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
-        """
-        description: NotRequired[pulumi.Input[str]]
-        """
-        Description of this individual rule
-        """
-        id: NotRequired[pulumi.Input[str]]
-        """
-        Computed rule ID
-        """
-        source: NotRequired[pulumi.Input[str]]
-        """
-        Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
-        """
-elif False:
-    DeploymentTrafficFilterRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DeploymentTrafficFilterRuleArgs:
@@ -5698,19 +4516,6 @@ class DeploymentTrafficFilterRuleArgs:
         pulumi.set(self, "source", value)
 
 
-if not MYPY:
-    class ElasticsearchProjectCredentialsArgsDict(TypedDict):
-        password: NotRequired[pulumi.Input[str]]
-        """
-        Basic auth password that can be used to access the Elasticsearch API.
-        """
-        username: NotRequired[pulumi.Input[str]]
-        """
-        Basic auth username that can be used to access the Elasticsearch API.
-        """
-elif False:
-    ElasticsearchProjectCredentialsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class ElasticsearchProjectCredentialsArgs:
     def __init__(__self__, *,
@@ -5750,19 +4555,6 @@ class ElasticsearchProjectCredentialsArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class ElasticsearchProjectEndpointsArgsDict(TypedDict):
-        elasticsearch: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access elasticsearch.
-        """
-        kibana: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access kibana.
-        """
-elif False:
-    ElasticsearchProjectEndpointsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class ElasticsearchProjectEndpointsArgs:
     def __init__(__self__, *,
@@ -5801,31 +4593,6 @@ class ElasticsearchProjectEndpointsArgs:
     def kibana(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kibana", value)
 
-
-if not MYPY:
-    class ElasticsearchProjectMetadataArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[str]]
-        """
-        Date and time when the project was created.
-        """
-        created_by: NotRequired[pulumi.Input[str]]
-        """
-        ID of the user.
-        """
-        organization_id: NotRequired[pulumi.Input[str]]
-        """
-        The Organization ID who owns the project.
-        """
-        suspended_at: NotRequired[pulumi.Input[str]]
-        """
-        Date and time when the project was suspended.
-        """
-        suspended_reason: NotRequired[pulumi.Input[str]]
-        """
-        Reason why the project was suspended.
-        """
-elif False:
-    ElasticsearchProjectMetadataArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ElasticsearchProjectMetadataArgs:
@@ -5914,19 +4681,6 @@ class ElasticsearchProjectMetadataArgs:
         pulumi.set(self, "suspended_reason", value)
 
 
-if not MYPY:
-    class ElasticsearchProjectSearchLakeArgsDict(TypedDict):
-        boost_window: NotRequired[pulumi.Input[int]]
-        """
-        Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
-        """
-        search_power: NotRequired[pulumi.Input[int]]
-        """
-        Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
-        """
-elif False:
-    ElasticsearchProjectSearchLakeArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class ElasticsearchProjectSearchLakeArgs:
     def __init__(__self__, *,
@@ -5966,19 +4720,6 @@ class ElasticsearchProjectSearchLakeArgs:
         pulumi.set(self, "search_power", value)
 
 
-if not MYPY:
-    class ObservabilityProjectCredentialsArgsDict(TypedDict):
-        password: NotRequired[pulumi.Input[str]]
-        """
-        Basic auth password that can be used to access the Elasticsearch API.
-        """
-        username: NotRequired[pulumi.Input[str]]
-        """
-        Basic auth username that can be used to access the Elasticsearch API.
-        """
-elif False:
-    ObservabilityProjectCredentialsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class ObservabilityProjectCredentialsArgs:
     def __init__(__self__, *,
@@ -6017,23 +4758,6 @@ class ObservabilityProjectCredentialsArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
-
-if not MYPY:
-    class ObservabilityProjectEndpointsArgsDict(TypedDict):
-        apm: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access apm.
-        """
-        elasticsearch: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access elasticsearch.
-        """
-        kibana: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access kibana.
-        """
-elif False:
-    ObservabilityProjectEndpointsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ObservabilityProjectEndpointsArgs:
@@ -6089,31 +4813,6 @@ class ObservabilityProjectEndpointsArgs:
     def kibana(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kibana", value)
 
-
-if not MYPY:
-    class ObservabilityProjectMetadataArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[str]]
-        """
-        Date and time when the project was created.
-        """
-        created_by: NotRequired[pulumi.Input[str]]
-        """
-        ID of the user.
-        """
-        organization_id: NotRequired[pulumi.Input[str]]
-        """
-        The Organization ID who owns the project.
-        """
-        suspended_at: NotRequired[pulumi.Input[str]]
-        """
-        Date and time when the project was suspended.
-        """
-        suspended_reason: NotRequired[pulumi.Input[str]]
-        """
-        Reason why the project was suspended.
-        """
-elif False:
-    ObservabilityProjectMetadataArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ObservabilityProjectMetadataArgs:
@@ -6201,43 +4900,6 @@ class ObservabilityProjectMetadataArgs:
     def suspended_reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "suspended_reason", value)
 
-
-if not MYPY:
-    class OrganizationMembersArgsDict(TypedDict):
-        deployment_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgsDict']]]]
-        """
-        Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
-        """
-        email: NotRequired[pulumi.Input[str]]
-        """
-        Email address of the user.
-        """
-        invitation_pending: NotRequired[pulumi.Input[bool]]
-        """
-        Set to true while the user has not yet accepted their invitation to the organization.
-        """
-        organization_role: NotRequired[pulumi.Input[str]]
-        """
-        The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
-        """
-        project_elasticsearch_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgsDict']]]]
-        """
-        Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
-        """
-        project_observability_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgsDict']]]]
-        """
-        Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
-        """
-        project_security_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgsDict']]]]
-        """
-        Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
-        """
-        user_id: NotRequired[pulumi.Input[str]]
-        """
-        User ID.
-        """
-elif False:
-    OrganizationMembersArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OrganizationMembersArgs:
@@ -6374,27 +5036,6 @@ class OrganizationMembersArgs:
         pulumi.set(self, "user_id", value)
 
 
-if not MYPY:
-    class OrganizationMembersDeploymentRoleArgsDict(TypedDict):
-        role: pulumi.Input[str]
-        """
-        Assigned role. Must be on of `viewer`, `editor` or `admin`.
-        """
-        all_deployments: NotRequired[pulumi.Input[bool]]
-        """
-        Role applies to all deployments in the organization.
-        """
-        application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
-        """
-        deployment_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        Role applies to deployments listed here.
-        """
-elif False:
-    OrganizationMembersDeploymentRoleArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class OrganizationMembersDeploymentRoleArgs:
     def __init__(__self__, *,
@@ -6464,27 +5105,6 @@ class OrganizationMembersDeploymentRoleArgs:
     def deployment_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "deployment_ids", value)
 
-
-if not MYPY:
-    class OrganizationMembersProjectElasticsearchRoleArgsDict(TypedDict):
-        role: pulumi.Input[str]
-        """
-        Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
-        """
-        all_projects: NotRequired[pulumi.Input[bool]]
-        """
-        Role applies to all projects in the organization.
-        """
-        application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
-        """
-        project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        Role applies to projects listed here.
-        """
-elif False:
-    OrganizationMembersProjectElasticsearchRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OrganizationMembersProjectElasticsearchRoleArgs:
@@ -6556,27 +5176,6 @@ class OrganizationMembersProjectElasticsearchRoleArgs:
         pulumi.set(self, "project_ids", value)
 
 
-if not MYPY:
-    class OrganizationMembersProjectObservabilityRoleArgsDict(TypedDict):
-        role: pulumi.Input[str]
-        """
-        Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
-        """
-        all_projects: NotRequired[pulumi.Input[bool]]
-        """
-        Role applies to all projects in the organization.
-        """
-        application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
-        """
-        project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        Role applies to projects listed here.
-        """
-elif False:
-    OrganizationMembersProjectObservabilityRoleArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class OrganizationMembersProjectObservabilityRoleArgs:
     def __init__(__self__, *,
@@ -6646,27 +5245,6 @@ class OrganizationMembersProjectObservabilityRoleArgs:
     def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "project_ids", value)
 
-
-if not MYPY:
-    class OrganizationMembersProjectSecurityRoleArgsDict(TypedDict):
-        role: pulumi.Input[str]
-        """
-        Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
-        """
-        all_projects: NotRequired[pulumi.Input[bool]]
-        """
-        Role applies to all projects in the organization.
-        """
-        application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
-        """
-        project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        """
-        Role applies to projects listed here.
-        """
-elif False:
-    OrganizationMembersProjectSecurityRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OrganizationMembersProjectSecurityRoleArgs:
@@ -6738,19 +5316,6 @@ class OrganizationMembersProjectSecurityRoleArgs:
         pulumi.set(self, "project_ids", value)
 
 
-if not MYPY:
-    class SecurityProjectCredentialsArgsDict(TypedDict):
-        password: NotRequired[pulumi.Input[str]]
-        """
-        Basic auth password that can be used to access the Elasticsearch API.
-        """
-        username: NotRequired[pulumi.Input[str]]
-        """
-        Basic auth username that can be used to access the Elasticsearch API.
-        """
-elif False:
-    SecurityProjectCredentialsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class SecurityProjectCredentialsArgs:
     def __init__(__self__, *,
@@ -6790,19 +5355,6 @@ class SecurityProjectCredentialsArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class SecurityProjectEndpointsArgsDict(TypedDict):
-        elasticsearch: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access elasticsearch.
-        """
-        kibana: NotRequired[pulumi.Input[str]]
-        """
-        The endpoint to access kibana.
-        """
-elif False:
-    SecurityProjectEndpointsArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class SecurityProjectEndpointsArgs:
     def __init__(__self__, *,
@@ -6841,31 +5393,6 @@ class SecurityProjectEndpointsArgs:
     def kibana(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kibana", value)
 
-
-if not MYPY:
-    class SecurityProjectMetadataArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[str]]
-        """
-        Date and time when the project was created.
-        """
-        created_by: NotRequired[pulumi.Input[str]]
-        """
-        ID of the user.
-        """
-        organization_id: NotRequired[pulumi.Input[str]]
-        """
-        The Organization ID who owns the project.
-        """
-        suspended_at: NotRequired[pulumi.Input[str]]
-        """
-        Date and time when the project was suspended.
-        """
-        suspended_reason: NotRequired[pulumi.Input[str]]
-        """
-        Reason why the project was suspended.
-        """
-elif False:
-    SecurityProjectMetadataArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecurityProjectMetadataArgs:
@@ -6954,19 +5481,6 @@ class SecurityProjectMetadataArgs:
         pulumi.set(self, "suspended_reason", value)
 
 
-if not MYPY:
-    class SecurityProjectProductTypeArgsDict(TypedDict):
-        product_line: pulumi.Input[str]
-        """
-        The identifier of the Security Solution product line.
-        """
-        product_tier: pulumi.Input[str]
-        """
-        The identifier of the Security Solution product tier.
-        """
-elif False:
-    SecurityProjectProductTypeArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class SecurityProjectProductTypeArgs:
     def __init__(__self__, *,
@@ -7004,19 +5518,6 @@ class SecurityProjectProductTypeArgs:
         pulumi.set(self, "product_tier", value)
 
 
-if not MYPY:
-    class SnapshotRepositoryGenericArgsDict(TypedDict):
-        settings: pulumi.Input[str]
-        """
-        An arbitrary JSON object containing the repository settings.
-        """
-        type: pulumi.Input[str]
-        """
-        Repository type
-        """
-elif False:
-    SnapshotRepositoryGenericArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class SnapshotRepositoryGenericArgs:
     def __init__(__self__, *,
@@ -7053,39 +5554,6 @@ class SnapshotRepositoryGenericArgs:
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
 
-
-if not MYPY:
-    class SnapshotRepositoryS3ArgsDict(TypedDict):
-        bucket: pulumi.Input[str]
-        """
-        Name of the S3 bucket to use for snapshots.
-        """
-        access_key: NotRequired[pulumi.Input[str]]
-        """
-        An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
-        """
-        endpoint: NotRequired[pulumi.Input[str]]
-        """
-        The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-        """
-        path_style_access: NotRequired[pulumi.Input[bool]]
-        """
-        Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
-        """
-        region: NotRequired[pulumi.Input[str]]
-        """
-        Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
-        """
-        secret_key: NotRequired[pulumi.Input[str]]
-        """
-        An S3 secret key. If set, the access_key setting must also be specified.
-        """
-        server_side_encryption: NotRequired[pulumi.Input[bool]]
-        """
-        When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
-        """
-elif False:
-    SnapshotRepositoryS3ArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SnapshotRepositoryS3Args:
@@ -7205,23 +5673,6 @@ class SnapshotRepositoryS3Args:
         pulumi.set(self, "server_side_encryption", value)
 
 
-if not MYPY:
-    class GetDeploymentsApmArgsDict(TypedDict):
-        healthy: NotRequired[str]
-        """
-        Overall health status of the resource instances.
-        """
-        status: NotRequired[str]
-        """
-        Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
-        """
-        version: NotRequired[str]
-        """
-        Elastic stack version.
-        """
-elif False:
-    GetDeploymentsApmArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class GetDeploymentsApmArgs:
     def __init__(__self__, *,
@@ -7276,23 +5727,6 @@ class GetDeploymentsApmArgs:
     def version(self, value: Optional[str]):
         pulumi.set(self, "version", value)
 
-
-if not MYPY:
-    class GetDeploymentsElasticsearchArgsDict(TypedDict):
-        healthy: NotRequired[str]
-        """
-        Overall health status of the resource instances.
-        """
-        status: NotRequired[str]
-        """
-        Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
-        """
-        version: NotRequired[str]
-        """
-        Elastic stack version.
-        """
-elif False:
-    GetDeploymentsElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetDeploymentsElasticsearchArgs:
@@ -7349,23 +5783,6 @@ class GetDeploymentsElasticsearchArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class GetDeploymentsEnterpriseSearchArgsDict(TypedDict):
-        healthy: NotRequired[str]
-        """
-        Overall health status of the resource instances.
-        """
-        status: NotRequired[str]
-        """
-        Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
-        """
-        version: NotRequired[str]
-        """
-        Elastic stack version.
-        """
-elif False:
-    GetDeploymentsEnterpriseSearchArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class GetDeploymentsEnterpriseSearchArgs:
     def __init__(__self__, *,
@@ -7421,23 +5838,6 @@ class GetDeploymentsEnterpriseSearchArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class GetDeploymentsIntegrationsServerArgsDict(TypedDict):
-        healthy: NotRequired[str]
-        """
-        Overall health status of the resource instances.
-        """
-        status: NotRequired[str]
-        """
-        Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
-        """
-        version: NotRequired[str]
-        """
-        Elastic stack version.
-        """
-elif False:
-    GetDeploymentsIntegrationsServerArgsDict: TypeAlias = Mapping[str, Any]
-
 @pulumi.input_type
 class GetDeploymentsIntegrationsServerArgs:
     def __init__(__self__, *,
@@ -7492,23 +5892,6 @@ class GetDeploymentsIntegrationsServerArgs:
     def version(self, value: Optional[str]):
         pulumi.set(self, "version", value)
 
-
-if not MYPY:
-    class GetDeploymentsKibanaArgsDict(TypedDict):
-        healthy: NotRequired[str]
-        """
-        Overall health status of the resource instances.
-        """
-        status: NotRequired[str]
-        """
-        Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
-        """
-        version: NotRequired[str]
-        """
-        Elastic stack version.
-        """
-elif False:
-    GetDeploymentsKibanaArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetDeploymentsKibanaArgs:

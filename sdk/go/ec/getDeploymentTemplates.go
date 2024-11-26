@@ -40,10 +40,10 @@ import (
 //				DeploymentTemplateId: pulumi.Any(allTemplates.Templates[0].Id),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
-//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
+//						Autoscaling: nil,
 //					},
 //				},
-//				Kibana: &ec.DeploymentKibanaArgs{},
+//				Kibana: nil,
 //			})
 //			if err != nil {
 //				return err

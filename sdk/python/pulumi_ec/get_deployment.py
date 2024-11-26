@@ -4,14 +4,9 @@
 
 import copy
 import warnings
-import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-if sys.version_info >= (3, 11):
-    from typing import NotRequired, TypedDict, TypeAlias
-else:
-    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -243,6 +238,9 @@ def get_deployment(id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'),
         traffic_filters=pulumi.get(__ret__, 'traffic_filters'))
+
+
+@_utilities.lift_output_func(get_deployment)
 def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentResult]:
     """
@@ -260,22 +258,4 @@ def get_deployment_output(id: Optional[pulumi.Input[str]] = None,
 
     :param str id: The unique ID of the deployment.
     """
-    __args__ = dict()
-    __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ec:index/getDeployment:getDeployment', __args__, opts=opts, typ=GetDeploymentResult)
-    return __ret__.apply(lambda __response__: GetDeploymentResult(
-        alias=pulumi.get(__response__, 'alias'),
-        apms=pulumi.get(__response__, 'apms'),
-        deployment_template_id=pulumi.get(__response__, 'deployment_template_id'),
-        elasticsearches=pulumi.get(__response__, 'elasticsearches'),
-        enterprise_searches=pulumi.get(__response__, 'enterprise_searches'),
-        healthy=pulumi.get(__response__, 'healthy'),
-        id=pulumi.get(__response__, 'id'),
-        integrations_servers=pulumi.get(__response__, 'integrations_servers'),
-        kibanas=pulumi.get(__response__, 'kibanas'),
-        name=pulumi.get(__response__, 'name'),
-        observabilities=pulumi.get(__response__, 'observabilities'),
-        region=pulumi.get(__response__, 'region'),
-        tags=pulumi.get(__response__, 'tags'),
-        traffic_filters=pulumi.get(__response__, 'traffic_filters')))
+    ...
