@@ -95,7 +95,7 @@ export interface GetTrafficFilterResult {
  * });
  * ```
  */
-export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTrafficFilterResult> {
+export function getTrafficFilterOutput(args?: GetTrafficFilterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTrafficFilterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ec:index/getTrafficFilter:getTrafficFilter", {

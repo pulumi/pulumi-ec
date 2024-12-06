@@ -197,7 +197,7 @@ export interface GetDeploymentsResult {
  * });
  * ```
  */
-export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
+export function getDeploymentsOutput(args?: GetDeploymentsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDeploymentsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ec:index/getDeployments:getDeployments", {

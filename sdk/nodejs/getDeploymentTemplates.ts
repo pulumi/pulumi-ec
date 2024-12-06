@@ -115,7 +115,7 @@ export interface GetDeploymentTemplatesResult {
  * });
  * ```
  */
-export function getDeploymentTemplatesOutput(args: GetDeploymentTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentTemplatesResult> {
+export function getDeploymentTemplatesOutput(args: GetDeploymentTemplatesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDeploymentTemplatesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ec:index/getDeploymentTemplates:getDeploymentTemplates", {
         "id": args.id,

@@ -302,7 +302,7 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[Union['
                            name_prefix: Optional[pulumi.Input[Optional[str]]] = None,
                            size: Optional[pulumi.Input[Optional[int]]] = None,
                            tags: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentsResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentsResult]:
     """
     Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
 
@@ -357,7 +357,7 @@ def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[Union['
     __args__['namePrefix'] = name_prefix
     __args__['size'] = size
     __args__['tags'] = tags
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ec:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult)
     return __ret__.apply(lambda __response__: GetDeploymentsResult(
         apms=pulumi.get(__response__, 'apms'),

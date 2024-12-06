@@ -70,7 +70,7 @@ export interface GetAzurePrivatelinkEndpointResult {
  * });
  * ```
  */
-export function getAzurePrivatelinkEndpointOutput(args: GetAzurePrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzurePrivatelinkEndpointResult> {
+export function getAzurePrivatelinkEndpointOutput(args: GetAzurePrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAzurePrivatelinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", {
         "region": args.region,
