@@ -245,7 +245,7 @@ def get_stack(lock: Optional[bool] = None,
 def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
                      region: Optional[pulumi.Input[str]] = None,
                      version_regex: Optional[pulumi.Input[str]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStackResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStackResult]:
     """
     Use this data source to retrieve information about an existing Elastic Cloud stack.
 
@@ -273,7 +273,7 @@ def get_stack_output(lock: Optional[pulumi.Input[Optional[bool]]] = None,
     __args__['lock'] = lock
     __args__['region'] = region
     __args__['versionRegex'] = version_regex
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ec:index/getStack:getStack', __args__, opts=opts, typ=GetStackResult)
     return __ret__.apply(lambda __response__: GetStackResult(
         accessible=pulumi.get(__response__, 'accessible'),
