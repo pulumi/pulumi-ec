@@ -150,7 +150,7 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
                                     region: Optional[pulumi.Input[str]] = None,
                                     show_deprecated: Optional[pulumi.Input[Optional[bool]]] = None,
                                     stack_version: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentTemplatesResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentTemplatesResult]:
     """
     Use this data source to retrieve a list of available deployment templates.
 
@@ -185,7 +185,7 @@ def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[str]]] = 
     __args__['region'] = region
     __args__['showDeprecated'] = show_deprecated
     __args__['stackVersion'] = stack_version
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ec:index/getDeploymentTemplates:getDeploymentTemplates', __args__, opts=opts, typ=GetDeploymentTemplatesResult)
     return __ret__.apply(lambda __response__: GetDeploymentTemplatesResult(
         id=pulumi.get(__response__, 'id'),
