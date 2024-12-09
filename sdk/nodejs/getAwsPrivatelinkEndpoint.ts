@@ -74,7 +74,7 @@ export interface GetAwsPrivatelinkEndpointResult {
  * });
  * ```
  */
-export function getAwsPrivatelinkEndpointOutput(args: GetAwsPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsPrivatelinkEndpointResult> {
+export function getAwsPrivatelinkEndpointOutput(args: GetAwsPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAwsPrivatelinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", {
         "region": args.region,
