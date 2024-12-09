@@ -113,7 +113,7 @@ def get_gcp_private_service_connect_endpoint(region: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         service_attachment_uri=pulumi.get(__ret__, 'service_attachment_uri'))
 def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Input[str]] = None,
-                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGcpPrivateServiceConnectEndpointResult]:
+                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGcpPrivateServiceConnectEndpointResult]:
     """
     Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
 
@@ -131,7 +131,7 @@ def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Inpu
     """
     __args__ = dict()
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint', __args__, opts=opts, typ=GetGcpPrivateServiceConnectEndpointResult)
     return __ret__.apply(lambda __response__: GetGcpPrivateServiceConnectEndpointResult(
         domain_name=pulumi.get(__response__, 'domain_name'),
