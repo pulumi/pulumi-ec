@@ -90,6 +90,46 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetDeploymentTemplatesResult> Invoke(GetDeploymentTemplatesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentTemplatesResult>("ec:index/getDeploymentTemplates:getDeploymentTemplates", args ?? new GetDeploymentTemplatesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve a list of available deployment templates.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = ElasticCloud.GetDeploymentTemplates.Invoke(new()
+        ///     {
+        ///         Region = "us-east-1",
+        ///     });
+        /// 
+        ///     var myDeployment = new ElasticCloud.Deployment("my_deployment", new()
+        ///     {
+        ///         Name = "My Deployment",
+        ///         Version = "8.12.2",
+        ///         Region = allTemplates.Region,
+        ///         DeploymentTemplateId = allTemplates.Templates[0].Id,
+        ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+        ///         {
+        ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+        ///             {
+        ///                 Autoscaling = null,
+        ///             },
+        ///         },
+        ///         Kibana = null,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDeploymentTemplatesResult> Invoke(GetDeploymentTemplatesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentTemplatesResult>("ec:index/getDeploymentTemplates:getDeploymentTemplates", args ?? new GetDeploymentTemplatesInvokeArgs(), options.WithDefaults());
     }
 
 

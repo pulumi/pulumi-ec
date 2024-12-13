@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.ec.Utilities;
 import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
 import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointPlainArgs;
@@ -159,6 +160,48 @@ public final class EcFunctions {
      * 
      */
     public static Output<GetAwsPrivatelinkEndpointResult> getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", TypeShape.of(GetAwsPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var us-east-1 = EcFunctions.getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs.builder()
+     *             .region("us-east-1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAwsPrivatelinkEndpointResult> getAwsPrivatelinkEndpoint(GetAwsPrivatelinkEndpointArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", TypeShape.of(GetAwsPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -368,6 +411,48 @@ public final class EcFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAzurePrivatelinkEndpointResult> getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", TypeShape.of(GetAzurePrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var eastus = EcFunctions.getAzurePrivatelinkEndpoint(GetAzurePrivatelinkEndpointArgs.builder()
+     *             .region("eastus")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAzurePrivatelinkEndpointResult> getAzurePrivatelinkEndpointPlain(GetAzurePrivatelinkEndpointPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", TypeShape.of(GetAzurePrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
     }
@@ -495,6 +580,48 @@ public final class EcFunctions {
      * 
      */
     public static Output<GetDeploymentResult> getDeployment(GetDeploymentArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getDeployment:getDeployment", TypeShape.of(GetDeploymentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about an existing Elastic Cloud deployment.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeployment(GetDeploymentArgs.builder()
+     *             .id("f759065e5e64e9f3546f6c44f2743893")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDeploymentResult> getDeployment(GetDeploymentArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ec:index/getDeployment:getDeployment", TypeShape.of(GetDeploymentResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -720,6 +847,67 @@ public final class EcFunctions {
      * 
      */
     public static Output<GetDeploymentTemplatesResult> getDeploymentTemplates(GetDeploymentTemplatesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getDeploymentTemplates:getDeploymentTemplates", TypeShape.of(GetDeploymentTemplatesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of available deployment templates.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentTemplatesArgs;
+     * import com.pulumi.ec.Deployment;
+     * import com.pulumi.ec.DeploymentArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+     * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+     * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeploymentTemplates(GetDeploymentTemplatesArgs.builder()
+     *             .region("us-east-1")
+     *             .build());
+     * 
+     *         var myDeployment = new Deployment("myDeployment", DeploymentArgs.builder()
+     *             .name("My Deployment")
+     *             .version("8.12.2")
+     *             .region(allTemplates.region())
+     *             .deploymentTemplateId(allTemplates.templates()[0].id())
+     *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+     *                 .hot(DeploymentElasticsearchHotArgs.builder()
+     *                     .autoscaling()
+     *                     .build())
+     *                 .build())
+     *             .kibana()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDeploymentTemplatesResult> getDeploymentTemplates(GetDeploymentTemplatesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ec:index/getDeploymentTemplates:getDeploymentTemplates", TypeShape.of(GetDeploymentTemplatesResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1122,6 +1310,63 @@ public final class EcFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDeploymentsResult> getDeployments(GetDeploymentsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getDeployments:getDeployments", TypeShape.of(GetDeploymentsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = EcFunctions.getDeployments(GetDeploymentsArgs.builder()
+     *             .namePrefix("test")
+     *             .deploymentTemplateId("azure-compute-optimized")
+     *             .size(200)
+     *             .tags(Map.of("foo", "bar"))
+     *             .elasticsearches(GetDeploymentsElasticsearchArgs.builder()
+     *                 .healthy("true")
+     *                 .build())
+     *             .kibanas(GetDeploymentsKibanaArgs.builder()
+     *                 .status("started")
+     *                 .build())
+     *             .integrationsServers(GetDeploymentsIntegrationsServerArgs.builder()
+     *                 .version("8.0.0")
+     *                 .build())
+     *             .enterpriseSearches(GetDeploymentsEnterpriseSearchArgs.builder()
+     *                 .healthy("true")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(GetDeploymentsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ec:index/getDeployments:getDeployments", TypeShape.of(GetDeploymentsResult.class), args, Utilities.withVersion(options));
     }
@@ -1249,6 +1494,48 @@ public final class EcFunctions {
      * 
      */
     public static Output<GetGcpPrivateServiceConnectEndpointResult> getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", TypeShape.of(GetGcpPrivateServiceConnectEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var us-central1 = EcFunctions.getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs.builder()
+     *             .region("us-central1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGcpPrivateServiceConnectEndpointResult> getGcpPrivateServiceConnectEndpoint(GetGcpPrivateServiceConnectEndpointArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", TypeShape.of(GetGcpPrivateServiceConnectEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1444,6 +1731,57 @@ public final class EcFunctions {
      * 
      */
     public static Output<GetStackResult> getStack(GetStackArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getStack:getStack", TypeShape.of(GetStackResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about an existing Elastic Cloud stack.
+     * 
+     *   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetStackArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+     *             .versionRegex("latest")
+     *             .region("us-east-1")
+     *             .lock(true)
+     *             .build());
+     * 
+     *         final var latestPatch = EcFunctions.getStack(GetStackArgs.builder()
+     *             .versionRegex("7.9.?")
+     *             .region("us-east-1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStackResult> getStack(GetStackArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ec:index/getStack:getStack", TypeShape.of(GetStackResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1745,6 +2083,56 @@ public final class EcFunctions {
      * 
      */
     public static Output<GetTrafficFilterResult> getTrafficFilter(GetTrafficFilterArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ec:index/getTrafficFilter:getTrafficFilter", TypeShape.of(GetTrafficFilterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ec.EcFunctions;
+     * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var name = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .name("example-filter")
+     *             .build());
+     * 
+     *         final var id = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .id("41d275439f884ce89359039e53eac516")
+     *             .build());
+     * 
+     *         final var region = EcFunctions.getTrafficFilter(GetTrafficFilterArgs.builder()
+     *             .region("us-east-1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetTrafficFilterResult> getTrafficFilter(GetTrafficFilterArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ec:index/getTrafficFilter:getTrafficFilter", TypeShape.of(GetTrafficFilterResult.class), args, Utilities.withVersion(options));
     }
     /**

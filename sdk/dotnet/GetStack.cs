@@ -78,6 +78,40 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about an existing Elastic Cloud stack.
+        /// 
+        ///   &gt; **Note on regions** Before you start, you might want to check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions available in Elasticsearch Service (ESS).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var latest = ElasticCloud.GetStack.Invoke(new()
+        ///     {
+        ///         VersionRegex = "latest",
+        ///         Region = "us-east-1",
+        ///         Lock = true,
+        ///     });
+        /// 
+        ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
+        ///     {
+        ///         VersionRegex = "7.9.?",
+        ///         Region = "us-east-1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStackResult>("ec:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
     }
 
 

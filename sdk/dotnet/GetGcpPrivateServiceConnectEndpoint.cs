@@ -58,6 +58,30 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetGcpPrivateServiceConnectEndpointResult> Invoke(GetGcpPrivateServiceConnectEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGcpPrivateServiceConnectEndpointResult>("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", args ?? new GetGcpPrivateServiceConnectEndpointInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var us_central1 = ElasticCloud.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
+        ///     {
+        ///         Region = "us-central1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetGcpPrivateServiceConnectEndpointResult> Invoke(GetGcpPrivateServiceConnectEndpointInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetGcpPrivateServiceConnectEndpointResult>("ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint", args ?? new GetGcpPrivateServiceConnectEndpointInvokeArgs(), options.WithDefaults());
     }
 
 

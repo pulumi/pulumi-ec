@@ -69,21 +69,11 @@ type GetAwsPrivatelinkEndpointResult struct {
 }
 
 func GetAwsPrivatelinkEndpointOutput(ctx *pulumi.Context, args GetAwsPrivatelinkEndpointOutputArgs, opts ...pulumi.InvokeOption) GetAwsPrivatelinkEndpointResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAwsPrivatelinkEndpointResultOutput, error) {
 			args := v.(GetAwsPrivatelinkEndpointArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAwsPrivatelinkEndpointResult
-			secret, err := ctx.InvokePackageRaw("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args, &rv, "", opts...)
-			if err != nil {
-				return GetAwsPrivatelinkEndpointResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAwsPrivatelinkEndpointResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAwsPrivatelinkEndpointResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args, GetAwsPrivatelinkEndpointResultOutput{}, options).(GetAwsPrivatelinkEndpointResultOutput), nil
 		}).(GetAwsPrivatelinkEndpointResultOutput)
 }
 
