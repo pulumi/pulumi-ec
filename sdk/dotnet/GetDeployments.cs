@@ -126,6 +126,64 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = ElasticCloud.GetDeployments.Invoke(new()
+        ///     {
+        ///         NamePrefix = "test",
+        ///         DeploymentTemplateId = "azure-compute-optimized",
+        ///         Size = 200,
+        ///         Tags = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///         Elasticsearches = new[]
+        ///         {
+        ///             new ElasticCloud.Inputs.GetDeploymentsElasticsearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
+        ///         },
+        ///         Kibanas = new[]
+        ///         {
+        ///             new ElasticCloud.Inputs.GetDeploymentsKibanaInputArgs
+        ///             {
+        ///                 Status = "started",
+        ///             },
+        ///         },
+        ///         IntegrationsServers = new[]
+        ///         {
+        ///             new ElasticCloud.Inputs.GetDeploymentsIntegrationsServerInputArgs
+        ///             {
+        ///                 Version = "8.0.0",
+        ///             },
+        ///         },
+        ///         EnterpriseSearches = new[]
+        ///         {
+        ///             new ElasticCloud.Inputs.GetDeploymentsEnterpriseSearchInputArgs
+        ///             {
+        ///                 Healthy = "true",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDeploymentsResult> Invoke(GetDeploymentsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("ec:index/getDeployments:getDeployments", args ?? new GetDeploymentsInvokeArgs(), options.WithDefaults());
     }
 
 

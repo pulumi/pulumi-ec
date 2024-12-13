@@ -58,6 +58,30 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about an existing Elastic Cloud deployment.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = ElasticCloud.GetDeployment.Invoke(new()
+        ///     {
+        ///         Id = "f759065e5e64e9f3546f6c44f2743893",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDeploymentResult> Invoke(GetDeploymentInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentResult>("ec:index/getDeployment:getDeployment", args ?? new GetDeploymentInvokeArgs(), options.WithDefaults());
     }
 
 

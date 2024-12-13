@@ -90,21 +90,11 @@ type GetDeploymentTemplatesResult struct {
 }
 
 func GetDeploymentTemplatesOutput(ctx *pulumi.Context, args GetDeploymentTemplatesOutputArgs, opts ...pulumi.InvokeOption) GetDeploymentTemplatesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetDeploymentTemplatesResultOutput, error) {
 			args := v.(GetDeploymentTemplatesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetDeploymentTemplatesResult
-			secret, err := ctx.InvokePackageRaw("ec:index/getDeploymentTemplates:getDeploymentTemplates", args, &rv, "", opts...)
-			if err != nil {
-				return GetDeploymentTemplatesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetDeploymentTemplatesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetDeploymentTemplatesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ec:index/getDeploymentTemplates:getDeploymentTemplates", args, GetDeploymentTemplatesResultOutput{}, options).(GetDeploymentTemplatesResultOutput), nil
 		}).(GetDeploymentTemplatesResultOutput)
 }
 

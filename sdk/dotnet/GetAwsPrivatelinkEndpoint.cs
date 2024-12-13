@@ -58,6 +58,30 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetAwsPrivatelinkEndpointResult> Invoke(GetAwsPrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAwsPrivatelinkEndpointResult>("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args ?? new GetAwsPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about the AWS Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vpc.html).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var us_east_1 = ElasticCloud.GetAwsPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         Region = "us-east-1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAwsPrivatelinkEndpointResult> Invoke(GetAwsPrivatelinkEndpointInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAwsPrivatelinkEndpointResult>("ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint", args ?? new GetAwsPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
     }
 
 

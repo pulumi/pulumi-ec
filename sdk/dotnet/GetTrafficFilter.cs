@@ -78,6 +78,40 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetTrafficFilterResult> Invoke(GetTrafficFilterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTrafficFilterResult>("ec:index/getTrafficFilter:getTrafficFilter", args ?? new GetTrafficFilterInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var name = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     {
+        ///         Name = "example-filter",
+        ///     });
+        /// 
+        ///     var id = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     {
+        ///         Id = "41d275439f884ce89359039e53eac516",
+        ///     });
+        /// 
+        ///     var region = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     {
+        ///         Region = "us-east-1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTrafficFilterResult> Invoke(GetTrafficFilterInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTrafficFilterResult>("ec:index/getTrafficFilter:getTrafficFilter", args ?? new GetTrafficFilterInvokeArgs(), options.WithDefaults());
     }
 
 
