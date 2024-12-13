@@ -58,6 +58,30 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public static Output<GetAzurePrivatelinkEndpointResult> Invoke(GetAzurePrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAzurePrivatelinkEndpointResult>("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args ?? new GetAzurePrivatelinkEndpointInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using ElasticCloud = Pulumi.ElasticCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var eastus = ElasticCloud.GetAzurePrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         Region = "eastus",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAzurePrivatelinkEndpointResult> Invoke(GetAzurePrivatelinkEndpointInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAzurePrivatelinkEndpointResult>("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args ?? new GetAzurePrivatelinkEndpointInvokeArgs(), options.WithDefaults());
     }
 
 

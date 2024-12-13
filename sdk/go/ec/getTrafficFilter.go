@@ -83,21 +83,11 @@ type GetTrafficFilterResult struct {
 }
 
 func GetTrafficFilterOutput(ctx *pulumi.Context, args GetTrafficFilterOutputArgs, opts ...pulumi.InvokeOption) GetTrafficFilterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetTrafficFilterResultOutput, error) {
 			args := v.(GetTrafficFilterArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetTrafficFilterResult
-			secret, err := ctx.InvokePackageRaw("ec:index/getTrafficFilter:getTrafficFilter", args, &rv, "", opts...)
-			if err != nil {
-				return GetTrafficFilterResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetTrafficFilterResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetTrafficFilterResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ec:index/getTrafficFilter:getTrafficFilter", args, GetTrafficFilterResultOutput{}, options).(GetTrafficFilterResultOutput), nil
 		}).(GetTrafficFilterResultOutput)
 }
 
