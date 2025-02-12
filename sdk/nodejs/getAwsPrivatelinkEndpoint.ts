@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const us-east-1 = ec.getAwsPrivatelinkEndpoint({
+ * const us_east_1 = ec.getAwsPrivatelinkEndpoint({
  *     region: "us-east-1",
  * });
  * ```
@@ -69,7 +69,7 @@ export interface GetAwsPrivatelinkEndpointResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const us-east-1 = ec.getAwsPrivatelinkEndpoint({
+ * const us_east_1 = ec.getAwsPrivatelinkEndpoint({
  *     region: "us-east-1",
  * });
  * ```

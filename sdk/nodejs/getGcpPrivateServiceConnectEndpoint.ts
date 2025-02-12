@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const us-central1 = ec.getGcpPrivateServiceConnectEndpoint({
+ * const us_central1 = ec.getGcpPrivateServiceConnectEndpoint({
  *     region: "us-central1",
  * });
  * ```
@@ -65,7 +65,7 @@ export interface GetGcpPrivateServiceConnectEndpointResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ec from "@pulumi/ec";
  *
- * const us-central1 = ec.getGcpPrivateServiceConnectEndpoint({
+ * const us_central1 = ec.getGcpPrivateServiceConnectEndpoint({
  *     region: "us-central1",
  * });
  * ```
