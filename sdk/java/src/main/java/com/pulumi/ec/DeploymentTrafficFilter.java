@@ -72,15 +72,17 @@ import javax.annotation.Nullable;
  *         var exampleMinimal = new Deployment("exampleMinimal", DeploymentArgs.builder()
  *             .name("my_example_deployment")
  *             .region("us-east-1")
- *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .version(latest.version())
  *             .deploymentTemplateId("aws-io-optimized-v2")
  *             .trafficFilters(example.id())
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
- *                     .autoscaling()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
  *                     .build())
  *                 .build())
- *             .kibana()
+ *             .kibana(DeploymentKibanaArgs.builder()
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -144,15 +146,17 @@ import javax.annotation.Nullable;
  *         var exampleMinimal = new Deployment("exampleMinimal", DeploymentArgs.builder()
  *             .name("my_example_deployment")
  *             .region(region)
- *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .version(latest.version())
  *             .deploymentTemplateId("azure-io-optimized-v3")
  *             .trafficFilters(azure.id())
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
- *                     .autoscaling()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
  *                     .build())
  *                 .build())
- *             .kibana()
+ *             .kibana(DeploymentKibanaArgs.builder()
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -215,15 +219,17 @@ import javax.annotation.Nullable;
  *         var exampleMinimal = new Deployment("exampleMinimal", DeploymentArgs.builder()
  *             .name("my_example_deployment")
  *             .region(region)
- *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .version(latest.version())
  *             .deploymentTemplateId("gcp-storage-optimized")
  *             .trafficFilters(gcpPsc.id())
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
- *                     .autoscaling()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
  *                     .build())
  *                 .build())
- *             .kibana()
+ *             .kibana(DeploymentKibanaArgs.builder()
+ *                 .build())
  *             .build());
  * 
  *     }
