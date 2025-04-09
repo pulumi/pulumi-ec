@@ -711,10 +711,12 @@ public final class EcFunctions {
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
-     *                     .autoscaling()
+     *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+     *                         .build())
      *                     .build())
      *                 .build())
-     *             .kibana()
+     *             .kibana(DeploymentKibanaArgs.builder()
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -772,10 +774,12 @@ public final class EcFunctions {
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
-     *                     .autoscaling()
+     *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+     *                         .build())
      *                     .build())
      *                 .build())
-     *             .kibana()
+     *             .kibana(DeploymentKibanaArgs.builder()
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -833,10 +837,12 @@ public final class EcFunctions {
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
-     *                     .autoscaling()
+     *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+     *                         .build())
      *                     .build())
      *                 .build())
-     *             .kibana()
+     *             .kibana(DeploymentKibanaArgs.builder()
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -894,10 +900,12 @@ public final class EcFunctions {
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
-     *                     .autoscaling()
+     *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+     *                         .build())
      *                     .build())
      *                 .build())
-     *             .kibana()
+     *             .kibana(DeploymentKibanaArgs.builder()
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -955,10 +963,12 @@ public final class EcFunctions {
      *             .deploymentTemplateId(allTemplates.templates()[0].id())
      *             .elasticsearch(DeploymentElasticsearchArgs.builder()
      *                 .hot(DeploymentElasticsearchHotArgs.builder()
-     *                     .autoscaling()
+     *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+     *                         .build())
      *                     .build())
      *                 .build())
-     *             .kibana()
+     *             .kibana(DeploymentKibanaArgs.builder()
+     *                 .build())
      *             .build());
      * 
      *     }
