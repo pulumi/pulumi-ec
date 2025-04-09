@@ -37,6 +37,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import com.pulumi.ec.DeploymentElasticsearchKeystore;
  * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -58,11 +60,12 @@ import javax.annotation.Nullable;
  *         // Create an Elastic Cloud deployment
  *         var exampleKeystore = new Deployment("exampleKeystore", DeploymentArgs.builder()
  *             .region("us-east-1")
- *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .version(latest.version())
  *             .deploymentTemplateId("aws-io-optimized-v2")
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
- *                     .autoscaling()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
  *                     .build())
  *                 .build())
  *             .build());
@@ -102,6 +105,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
  * import com.pulumi.ec.DeploymentElasticsearchKeystore;
  * import com.pulumi.ec.DeploymentElasticsearchKeystoreArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -123,11 +128,12 @@ import javax.annotation.Nullable;
  *         // Create an Elastic Cloud deployment
  *         var exampleKeystore = new Deployment("exampleKeystore", DeploymentArgs.builder()
  *             .region("us-east-1")
- *             .version(latest.applyValue(getStackResult -> getStackResult.version()))
+ *             .version(latest.version())
  *             .deploymentTemplateId("aws-io-optimized-v2")
  *             .elasticsearch(DeploymentElasticsearchArgs.builder()
  *                 .hot(DeploymentElasticsearchHotArgs.builder()
- *                     .autoscaling()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
  *                     .build())
  *                 .build())
  *             .build());
