@@ -68,6 +68,9 @@ class _OrganizationState:
 
 
 class Organization(pulumi.CustomResource):
+
+    pulumi_type = "ec:index/organization:Organization"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

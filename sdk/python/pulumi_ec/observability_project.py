@@ -211,6 +211,9 @@ class _ObservabilityProjectState:
 
 
 class ObservabilityProject(pulumi.CustomResource):
+
+    pulumi_type = "ec:index/observabilityProject:ObservabilityProject"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
