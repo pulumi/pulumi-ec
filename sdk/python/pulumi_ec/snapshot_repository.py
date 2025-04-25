@@ -132,6 +132,9 @@ class _SnapshotRepositoryState:
 
 
 class SnapshotRepository(pulumi.CustomResource):
+
+    pulumi_type = "ec:index/snapshotRepository:SnapshotRepository"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

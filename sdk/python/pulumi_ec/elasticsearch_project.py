@@ -275,6 +275,9 @@ class _ElasticsearchProjectState:
 
 
 class ElasticsearchProject(pulumi.CustomResource):
+
+    pulumi_type = "ec:index/elasticsearchProject:ElasticsearchProject"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

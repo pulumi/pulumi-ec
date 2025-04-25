@@ -226,6 +226,9 @@ class _DeploymentTrafficFilterState:
 
 
 class DeploymentTrafficFilter(pulumi.CustomResource):
+
+    pulumi_type = "ec:index/deploymentTrafficFilter:DeploymentTrafficFilter"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
