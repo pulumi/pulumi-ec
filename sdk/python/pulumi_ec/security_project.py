@@ -267,6 +267,9 @@ class _SecurityProjectState:
 
 
 class SecurityProject(pulumi.CustomResource):
+
+    pulumi_type = "ec:index/securityProject:SecurityProject"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
