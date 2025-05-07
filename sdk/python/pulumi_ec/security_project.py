@@ -266,10 +266,8 @@ class _SecurityProjectState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("ec:index/securityProject:SecurityProject")
 class SecurityProject(pulumi.CustomResource):
-
-    pulumi_type = "ec:index/securityProject:SecurityProject"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

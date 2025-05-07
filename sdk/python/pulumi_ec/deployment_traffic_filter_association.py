@@ -95,10 +95,8 @@ class _DeploymentTrafficFilterAssociationState:
         pulumi.set(self, "traffic_filter_id", value)
 
 
+@pulumi.type_token("ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation")
 class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
-
-    pulumi_type = "ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

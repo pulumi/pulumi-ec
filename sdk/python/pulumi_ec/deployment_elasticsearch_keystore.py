@@ -158,10 +158,8 @@ class _DeploymentElasticsearchKeystoreState:
         pulumi.set(self, "value", value)
 
 
+@pulumi.type_token("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore")
 class DeploymentElasticsearchKeystore(pulumi.CustomResource):
-
-    pulumi_type = "ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
