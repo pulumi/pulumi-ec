@@ -607,10 +607,8 @@ class _DeploymentState:
         pulumi.set(self, "version", value)
 
 
+@pulumi.type_token("ec:index/deployment:Deployment")
 class Deployment(pulumi.CustomResource):
-
-    pulumi_type = "ec:index/deployment:Deployment"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

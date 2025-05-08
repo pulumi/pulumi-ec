@@ -131,10 +131,8 @@ class _SnapshotRepositoryState:
         pulumi.set(self, "s3", value)
 
 
+@pulumi.type_token("ec:index/snapshotRepository:SnapshotRepository")
 class SnapshotRepository(pulumi.CustomResource):
-
-    pulumi_type = "ec:index/snapshotRepository:SnapshotRepository"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
