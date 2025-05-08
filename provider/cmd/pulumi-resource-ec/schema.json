@@ -4193,6 +4193,9 @@
                 "type": "string",
                 "description": "Timeout used for individual HTTP calls. Defaults to \"1m\".\n"
             }
+        },
+        "methods": {
+            "terraformConfig": "pulumi:providers:ec/terraformConfig"
         }
     },
     "resources": {
@@ -5907,6 +5910,35 @@
                 },
                 "required": [
                     "rulesets"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:ec/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:ec"
+                    }
+                },
+                "type": "pulumi:providers:ec/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }
