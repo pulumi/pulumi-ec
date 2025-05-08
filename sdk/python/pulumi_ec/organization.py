@@ -67,10 +67,8 @@ class _OrganizationState:
         pulumi.set(self, "members", value)
 
 
+@pulumi.type_token("ec:index/organization:Organization")
 class Organization(pulumi.CustomResource):
-
-    pulumi_type = "ec:index/organization:Organization"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
