@@ -5920,7 +5920,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:ec"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:ec/terraformConfig",
