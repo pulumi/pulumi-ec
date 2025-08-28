@@ -108,19 +108,19 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
     /**
      * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      */
-    public readonly asFile!: pulumi.Output<boolean>;
+    declare public readonly asFile: pulumi.Output<boolean>;
     /**
      * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      */
-    public readonly deploymentId!: pulumi.Output<string>;
+    declare public readonly deploymentId: pulumi.Output<string>;
     /**
      * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
-    public readonly settingName!: pulumi.Output<string>;
+    declare public readonly settingName: pulumi.Output<string>;
     /**
      * Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      */
-    public readonly value!: pulumi.Output<string>;
+    declare public readonly value: pulumi.Output<string>;
 
     /**
      * Create a DeploymentElasticsearchKeystore resource with the given unique name, arguments, and options.
@@ -135,24 +135,24 @@ export class DeploymentElasticsearchKeystore extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentElasticsearchKeystoreState | undefined;
-            resourceInputs["asFile"] = state ? state.asFile : undefined;
-            resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
-            resourceInputs["settingName"] = state ? state.settingName : undefined;
-            resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["asFile"] = state?.asFile;
+            resourceInputs["deploymentId"] = state?.deploymentId;
+            resourceInputs["settingName"] = state?.settingName;
+            resourceInputs["value"] = state?.value;
         } else {
             const args = argsOrState as DeploymentElasticsearchKeystoreArgs | undefined;
-            if ((!args || args.deploymentId === undefined) && !opts.urn) {
+            if (args?.deploymentId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deploymentId'");
             }
-            if ((!args || args.settingName === undefined) && !opts.urn) {
+            if (args?.settingName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settingName'");
             }
-            if ((!args || args.value === undefined) && !opts.urn) {
+            if (args?.value === undefined && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            resourceInputs["asFile"] = args ? args.asFile : undefined;
-            resourceInputs["deploymentId"] = args ? args.deploymentId : undefined;
-            resourceInputs["settingName"] = args ? args.settingName : undefined;
+            resourceInputs["asFile"] = args?.asFile;
+            resourceInputs["deploymentId"] = args?.deploymentId;
+            resourceInputs["settingName"] = args?.settingName;
             resourceInputs["value"] = args?.value ? pulumi.secret(args.value) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

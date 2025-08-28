@@ -44,16 +44,14 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.endpoint);
     }
     /**
-     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
-     * @return Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * @return Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     public Output<Optional<String>> password() {
@@ -74,16 +72,14 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.timeout);
     }
     /**
-     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     /**
-     * @return Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * @return Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     public Output<Optional<String>> username() {

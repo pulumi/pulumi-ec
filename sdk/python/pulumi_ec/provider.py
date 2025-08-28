@@ -32,11 +32,9 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
         :param pulumi.Input[_builtins.bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
-        :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-               Private.
+        :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.str] timeout: Timeout used for individual HTTP calls. Defaults to "1m".
-        :param pulumi.Input[_builtins.str] username: Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-               Private.
+        :param pulumi.Input[_builtins.str] username: Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.bool] verbose: When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
         :param pulumi.Input[_builtins.bool] verbose_credentials: When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
         :param pulumi.Input[_builtins.str] verbose_file: Timeout used for individual HTTP calls. Defaults to "1m".
@@ -97,8 +95,7 @@ class ProviderArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        Private.
+        Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return pulumi.get(self, "password")
 
@@ -122,8 +119,7 @@ class ProviderArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        Private.
+        Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return pulumi.get(self, "username")
 
@@ -194,11 +190,9 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
         :param pulumi.Input[_builtins.bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
-        :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-               Private.
+        :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.str] timeout: Timeout used for individual HTTP calls. Defaults to "1m".
-        :param pulumi.Input[_builtins.str] username: Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-               Private.
+        :param pulumi.Input[_builtins.str] username: Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.bool] verbose: When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
         :param pulumi.Input[_builtins.bool] verbose_credentials: When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
         :param pulumi.Input[_builtins.str] verbose_file: Timeout used for individual HTTP calls. Defaults to "1m".
@@ -282,8 +276,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        Private.
+        Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return pulumi.get(self, "password")
 
@@ -299,8 +292,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        Private.
+        Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return pulumi.get(self, "username")
 

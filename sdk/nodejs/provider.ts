@@ -28,26 +28,24 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
      */
-    public readonly apikey!: pulumi.Output<string | undefined>;
-    public readonly endpoint!: pulumi.Output<string | undefined>;
+    declare public readonly apikey: pulumi.Output<string | undefined>;
+    declare public readonly endpoint: pulumi.Output<string | undefined>;
     /**
-     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
-    /**
-     * Timeout used for individual HTTP calls. Defaults to "1m".
-     */
-    public readonly timeout!: pulumi.Output<string | undefined>;
-    /**
-     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
-     */
-    public readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * Timeout used for individual HTTP calls. Defaults to "1m".
      */
-    public readonly verboseFile!: pulumi.Output<string | undefined>;
+    declare public readonly timeout: pulumi.Output<string | undefined>;
+    /**
+     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
+     */
+    declare public readonly username: pulumi.Output<string | undefined>;
+    /**
+     * Timeout used for individual HTTP calls. Defaults to "1m".
+     */
+    declare public readonly verboseFile: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -61,14 +59,14 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apikey"] = args?.apikey ? pulumi.secret(args.apikey) : undefined;
-            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
-            resourceInputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
+            resourceInputs["endpoint"] = args?.endpoint;
+            resourceInputs["insecure"] = pulumi.output(args?.insecure).apply(JSON.stringify);
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
-            resourceInputs["verbose"] = pulumi.output(args ? args.verbose : undefined).apply(JSON.stringify);
-            resourceInputs["verboseCredentials"] = pulumi.output(args ? args.verboseCredentials : undefined).apply(JSON.stringify);
-            resourceInputs["verboseFile"] = args ? args.verboseFile : undefined;
+            resourceInputs["timeout"] = args?.timeout;
+            resourceInputs["username"] = args?.username;
+            resourceInputs["verbose"] = pulumi.output(args?.verbose).apply(JSON.stringify);
+            resourceInputs["verboseCredentials"] = pulumi.output(args?.verboseCredentials).apply(JSON.stringify);
+            resourceInputs["verboseFile"] = args?.verboseFile;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apikey", "password"] };
@@ -100,8 +98,7 @@ export interface ProviderArgs {
      */
     insecure?: pulumi.Input<boolean>;
     /**
-     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */
     password?: pulumi.Input<string>;
     /**
@@ -109,8 +106,7 @@ export interface ProviderArgs {
      */
     timeout?: pulumi.Input<string>;
     /**
-     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */
     username?: pulumi.Input<string>;
     /**

@@ -28,8 +28,7 @@ namespace Pulumi.ElasticCloud
         public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        /// Private.
+        /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -41,8 +40,7 @@ namespace Pulumi.ElasticCloud
         public Output<string?> Timeout { get; private set; } = null!;
 
         /// <summary>
-        /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        /// Private.
+        /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         /// </summary>
         [Output("username")]
         public Output<string?> Username { get; private set; } = null!;
@@ -121,8 +119,7 @@ namespace Pulumi.ElasticCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        /// Private.
+        /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         /// </summary>
         public Input<string>? Password
         {
@@ -141,8 +138,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Timeout { get; set; }
 
         /// <summary>
-        /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        /// Private.
+        /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

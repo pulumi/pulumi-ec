@@ -28,8 +28,7 @@ Allow the provider to skip TLS validation on its outgoing HTTP calls.
 
 password: Optional[str]
 """
-Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-Private.
+Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 """
 
 timeout: Optional[str]
@@ -39,8 +38,7 @@ Timeout used for individual HTTP calls. Defaults to "1m".
 
 username: Optional[str]
 """
-Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-Private.
+Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 """
 
 verbose: Optional[bool]

@@ -52,43 +52,43 @@ export class DeploymentExtension extends pulumi.CustomResource {
     /**
      * Description for the extension
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * The URL to download the extension archive.
      */
-    public readonly downloadUrl!: pulumi.Output<string>;
+    declare public readonly downloadUrl: pulumi.Output<string>;
     /**
      * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      */
-    public readonly extensionType!: pulumi.Output<string>;
+    declare public readonly extensionType: pulumi.Output<string>;
     /**
      * Hash value of the file. Triggers re-uploading the file on change.
      */
-    public readonly fileHash!: pulumi.Output<string | undefined>;
+    declare public readonly fileHash: pulumi.Output<string | undefined>;
     /**
      * Local file path to upload as the extension.
      */
-    public readonly filePath!: pulumi.Output<string | undefined>;
+    declare public readonly filePath: pulumi.Output<string | undefined>;
     /**
      * The datatime the extension was last modified.
      */
-    public /*out*/ readonly lastModified!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastModified: pulumi.Output<string>;
     /**
      * Name of the extension
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The size of the extension file in bytes.
      */
-    public /*out*/ readonly size!: pulumi.Output<number>;
+    declare public /*out*/ readonly size: pulumi.Output<number>;
     /**
      * The extension URL which will be used in the Elastic Cloud deployment plan.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
     /**
      * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
 
     /**
      * Create a DeploymentExtension resource with the given unique name, arguments, and options.
@@ -103,31 +103,31 @@ export class DeploymentExtension extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentExtensionState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["downloadUrl"] = state ? state.downloadUrl : undefined;
-            resourceInputs["extensionType"] = state ? state.extensionType : undefined;
-            resourceInputs["fileHash"] = state ? state.fileHash : undefined;
-            resourceInputs["filePath"] = state ? state.filePath : undefined;
-            resourceInputs["lastModified"] = state ? state.lastModified : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["downloadUrl"] = state?.downloadUrl;
+            resourceInputs["extensionType"] = state?.extensionType;
+            resourceInputs["fileHash"] = state?.fileHash;
+            resourceInputs["filePath"] = state?.filePath;
+            resourceInputs["lastModified"] = state?.lastModified;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["size"] = state?.size;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as DeploymentExtensionArgs | undefined;
-            if ((!args || args.extensionType === undefined) && !opts.urn) {
+            if (args?.extensionType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'extensionType'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["downloadUrl"] = args ? args.downloadUrl : undefined;
-            resourceInputs["extensionType"] = args ? args.extensionType : undefined;
-            resourceInputs["fileHash"] = args ? args.fileHash : undefined;
-            resourceInputs["filePath"] = args ? args.filePath : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["downloadUrl"] = args?.downloadUrl;
+            resourceInputs["extensionType"] = args?.extensionType;
+            resourceInputs["fileHash"] = args?.fileHash;
+            resourceInputs["filePath"] = args?.filePath;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["version"] = args?.version;
             resourceInputs["lastModified"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;

@@ -98,17 +98,18 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.DeploymentIntegrationsServer?> IntegrationsServer { get; private set; } = null!;
 
         /// <summary>
-        /// Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-        /// block, since not doing so might cause issues when modifying or upgrading the deployment.
+        /// Kibana cluster definition.
+        /// 
+        /// &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Output("kibana")]
         public Output<Outputs.DeploymentKibana?> Kibana { get; private set; } = null!;
 
         /// <summary>
-        /// When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-        /// &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-        /// topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-        /// with node types. To use this field, the deployment needs to be migrated to node roles first.
+        /// When set to true, the deployment will be updated according to the latest deployment template values.
+        /// 
+        /// &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+        /// &gt; **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Output("migrateToLatestHardware")]
         public Output<bool?> MigrateToLatestHardware { get; private set; } = null!;
@@ -120,8 +121,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-        /// current deployment itself by setting observability.deployment_id to `self`.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         /// </summary>
         [Output("observability")]
         public Output<Outputs.DeploymentObservability?> Observability { get; private set; } = null!;
@@ -133,8 +133,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-        /// returned as part of the error.
+        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         /// </summary>
         [Output("requestId")]
         public Output<string> RequestId { get; private set; } = null!;
@@ -251,17 +250,18 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentIntegrationsServerArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
-        /// Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-        /// block, since not doing so might cause issues when modifying or upgrading the deployment.
+        /// Kibana cluster definition.
+        /// 
+        /// &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Input("kibana")]
         public Input<Inputs.DeploymentKibanaArgs>? Kibana { get; set; }
 
         /// <summary>
-        /// When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-        /// &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-        /// topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-        /// with node types. To use this field, the deployment needs to be migrated to node roles first.
+        /// When set to true, the deployment will be updated according to the latest deployment template values.
+        /// 
+        /// &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+        /// &gt; **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Input("migrateToLatestHardware")]
         public Input<bool>? MigrateToLatestHardware { get; set; }
@@ -273,8 +273,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-        /// current deployment itself by setting observability.deployment_id to `self`.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         /// </summary>
         [Input("observability")]
         public Input<Inputs.DeploymentObservabilityArgs>? Observability { get; set; }
@@ -286,8 +285,7 @@ namespace Pulumi.ElasticCloud
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-        /// returned as part of the error.
+        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         /// </summary>
         [Input("requestId")]
         public Input<string>? RequestId { get; set; }
@@ -403,17 +401,18 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentIntegrationsServerGetArgs>? IntegrationsServer { get; set; }
 
         /// <summary>
-        /// Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-        /// block, since not doing so might cause issues when modifying or upgrading the deployment.
+        /// Kibana cluster definition.
+        /// 
+        /// &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         /// </summary>
         [Input("kibana")]
         public Input<Inputs.DeploymentKibanaGetArgs>? Kibana { get; set; }
 
         /// <summary>
-        /// When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-        /// &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-        /// topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-        /// with node types. To use this field, the deployment needs to be migrated to node roles first.
+        /// When set to true, the deployment will be updated according to the latest deployment template values.
+        /// 
+        /// &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+        /// &gt; **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Input("migrateToLatestHardware")]
         public Input<bool>? MigrateToLatestHardware { get; set; }
@@ -425,8 +424,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-        /// current deployment itself by setting observability.deployment_id to `self`.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         /// </summary>
         [Input("observability")]
         public Input<Inputs.DeploymentObservabilityGetArgs>? Observability { get; set; }
@@ -438,8 +436,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-        /// returned as part of the error.
+        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         /// </summary>
         [Input("requestId")]
         public Input<string>? RequestId { get; set; }

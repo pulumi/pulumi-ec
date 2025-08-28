@@ -153,27 +153,27 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
     /**
      * Ruleset description
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      */
-    public readonly includeByDefault!: pulumi.Output<boolean>;
+    declare public readonly includeByDefault: pulumi.Output<boolean>;
     /**
      * Name of the ruleset
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Filter region, the ruleset can only be attached to deployments in the specific region
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Set of rules, which the ruleset is made of.
      */
-    public readonly rules!: pulumi.Output<outputs.DeploymentTrafficFilterRule[] | undefined>;
+    declare public readonly rules: pulumi.Output<outputs.DeploymentTrafficFilterRule[] | undefined>;
     /**
      * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a DeploymentTrafficFilter resource with the given unique name, arguments, and options.
@@ -188,26 +188,26 @@ export class DeploymentTrafficFilter extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentTrafficFilterState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["includeByDefault"] = state ? state.includeByDefault : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["includeByDefault"] = state?.includeByDefault;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rules"] = state?.rules;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as DeploymentTrafficFilterArgs | undefined;
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["includeByDefault"] = args ? args.includeByDefault : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["includeByDefault"] = args?.includeByDefault;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rules"] = args?.rules;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeploymentTrafficFilter.__pulumiType, name, resourceInputs, opts);
