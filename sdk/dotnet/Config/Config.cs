@@ -61,8 +61,7 @@ namespace Pulumi.ElasticCloud
 
         private static readonly __Value<string?> _password = new __Value<string?>(() => __config.Get("password"));
         /// <summary>
-        /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        /// Private.
+        /// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         /// </summary>
         public static string? Password
         {
@@ -82,8 +81,7 @@ namespace Pulumi.ElasticCloud
 
         private static readonly __Value<string?> _username = new __Value<string?>(() => __config.Get("username"));
         /// <summary>
-        /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        /// Private.
+        /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         /// </summary>
         public static string? Username
         {

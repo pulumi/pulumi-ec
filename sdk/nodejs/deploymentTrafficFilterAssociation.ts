@@ -63,11 +63,11 @@ export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
     /**
      * Required deployment ID where the traffic filter will be associated
      */
-    public readonly deploymentId!: pulumi.Output<string>;
+    declare public readonly deploymentId: pulumi.Output<string>;
     /**
      * Required traffic filter ruleset ID to tie to a deployment
      */
-    public readonly trafficFilterId!: pulumi.Output<string>;
+    declare public readonly trafficFilterId: pulumi.Output<string>;
 
     /**
      * Create a DeploymentTrafficFilterAssociation resource with the given unique name, arguments, and options.
@@ -82,18 +82,18 @@ export class DeploymentTrafficFilterAssociation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentTrafficFilterAssociationState | undefined;
-            resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
-            resourceInputs["trafficFilterId"] = state ? state.trafficFilterId : undefined;
+            resourceInputs["deploymentId"] = state?.deploymentId;
+            resourceInputs["trafficFilterId"] = state?.trafficFilterId;
         } else {
             const args = argsOrState as DeploymentTrafficFilterAssociationArgs | undefined;
-            if ((!args || args.deploymentId === undefined) && !opts.urn) {
+            if (args?.deploymentId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deploymentId'");
             }
-            if ((!args || args.trafficFilterId === undefined) && !opts.urn) {
+            if (args?.trafficFilterId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'trafficFilterId'");
             }
-            resourceInputs["deploymentId"] = args ? args.deploymentId : undefined;
-            resourceInputs["trafficFilterId"] = args ? args.trafficFilterId : undefined;
+            resourceInputs["deploymentId"] = args?.deploymentId;
+            resourceInputs["trafficFilterId"] = args?.trafficFilterId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeploymentTrafficFilterAssociation.__pulumiType, name, resourceInputs, opts);

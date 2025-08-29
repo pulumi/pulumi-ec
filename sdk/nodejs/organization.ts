@@ -37,7 +37,7 @@ export class Organization extends pulumi.CustomResource {
     /**
      * Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
      */
-    public readonly members!: pulumi.Output<{[key: string]: outputs.OrganizationMembers} | undefined>;
+    declare public readonly members: pulumi.Output<{[key: string]: outputs.OrganizationMembers} | undefined>;
 
     /**
      * Create a Organization resource with the given unique name, arguments, and options.
@@ -52,10 +52,10 @@ export class Organization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrganizationState | undefined;
-            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["members"] = state?.members;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
-            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["members"] = args?.members;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Organization.__pulumiType, name, resourceInputs, opts);

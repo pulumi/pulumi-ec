@@ -86,15 +86,15 @@ export class SnapshotRepository extends pulumi.CustomResource {
     /**
      * Generic repository settings.
      */
-    public readonly generic!: pulumi.Output<outputs.SnapshotRepositoryGeneric | undefined>;
+    declare public readonly generic: pulumi.Output<outputs.SnapshotRepositoryGeneric | undefined>;
     /**
      * The name of the snapshot repository configuration.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * S3 repository settings.
      */
-    public readonly s3!: pulumi.Output<outputs.SnapshotRepositoryS3 | undefined>;
+    declare public readonly s3: pulumi.Output<outputs.SnapshotRepositoryS3 | undefined>;
 
     /**
      * Create a SnapshotRepository resource with the given unique name, arguments, and options.
@@ -109,14 +109,14 @@ export class SnapshotRepository extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SnapshotRepositoryState | undefined;
-            resourceInputs["generic"] = state ? state.generic : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["s3"] = state ? state.s3 : undefined;
+            resourceInputs["generic"] = state?.generic;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["s3"] = state?.s3;
         } else {
             const args = argsOrState as SnapshotRepositoryArgs | undefined;
-            resourceInputs["generic"] = args ? args.generic : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["s3"] = args ? args.s3 : undefined;
+            resourceInputs["generic"] = args?.generic;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["s3"] = args?.s3;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SnapshotRepository.__pulumiType, name, resourceInputs, opts);

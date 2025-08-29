@@ -24,8 +24,7 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "ec:insecure")
 }
 
-// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-// Private.
+// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:password")
 }
@@ -35,8 +34,7 @@ func GetTimeout(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:timeout")
 }
 
-// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-// Private.
+// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 func GetUsername(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:username")
 }

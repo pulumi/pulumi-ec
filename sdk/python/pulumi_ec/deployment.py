@@ -47,17 +47,16 @@ class DeploymentArgs:
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
-        :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-               block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-               topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-               with node types. To use this field, the deployment needs to be migrated to node roles first.
+        :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
+               
+               > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
-        :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-               current deployment itself by setting observability.deployment_id to `self`.
-        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-               returned as part of the error.
+        :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
+        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[_builtins.bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
@@ -191,8 +190,9 @@ class DeploymentArgs:
     @pulumi.getter
     def kibana(self) -> Optional[pulumi.Input['DeploymentKibanaArgs']]:
         """
-        Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-        block, since not doing so might cause issues when modifying or upgrading the deployment.
+        Kibana cluster definition.
+
+        > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
 
@@ -204,10 +204,10 @@ class DeploymentArgs:
     @pulumi.getter(name="migrateToLatestHardware")
     def migrate_to_latest_hardware(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-        <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-        topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-        with node types. To use this field, the deployment needs to be migrated to node roles first.
+        When set to true, the deployment will be updated according to the latest deployment template values.
+
+        > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+        > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         """
         return pulumi.get(self, "migrate_to_latest_hardware")
 
@@ -231,8 +231,7 @@ class DeploymentArgs:
     @pulumi.getter
     def observability(self) -> Optional[pulumi.Input['DeploymentObservabilityArgs']]:
         """
-        Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-        current deployment itself by setting observability.deployment_id to `self`.
+        Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         """
         return pulumi.get(self, "observability")
 
@@ -244,8 +243,7 @@ class DeploymentArgs:
     @pulumi.getter(name="requestId")
     def request_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-        returned as part of the error.
+        Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         """
         return pulumi.get(self, "request_id")
 
@@ -321,18 +319,17 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
-        :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-               block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-               topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-               with node types. To use this field, the deployment needs to be migrated to node roles first.
+        :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
+               
+               > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
-        :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-               current deployment itself by setting observability.deployment_id to `self`.
+        :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-               returned as part of the error.
+        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[_builtins.bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
@@ -483,8 +480,9 @@ class _DeploymentState:
     @pulumi.getter
     def kibana(self) -> Optional[pulumi.Input['DeploymentKibanaArgs']]:
         """
-        Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-        block, since not doing so might cause issues when modifying or upgrading the deployment.
+        Kibana cluster definition.
+
+        > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
 
@@ -496,10 +494,10 @@ class _DeploymentState:
     @pulumi.getter(name="migrateToLatestHardware")
     def migrate_to_latest_hardware(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-        <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-        topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-        with node types. To use this field, the deployment needs to be migrated to node roles first.
+        When set to true, the deployment will be updated according to the latest deployment template values.
+
+        > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+        > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         """
         return pulumi.get(self, "migrate_to_latest_hardware")
 
@@ -523,8 +521,7 @@ class _DeploymentState:
     @pulumi.getter
     def observability(self) -> Optional[pulumi.Input['DeploymentObservabilityArgs']]:
         """
-        Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-        current deployment itself by setting observability.deployment_id to `self`.
+        Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         """
         return pulumi.get(self, "observability")
 
@@ -548,8 +545,7 @@ class _DeploymentState:
     @pulumi.getter(name="requestId")
     def request_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-        returned as part of the error.
+        Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         """
         return pulumi.get(self, "request_id")
 
@@ -674,18 +670,17 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
-        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-               block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-               topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-               with node types. To use this field, the deployment needs to be migrated to node roles first.
+        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
+               
+               > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
-        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-               current deployment itself by setting observability.deployment_id to `self`.
+        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-               returned as part of the error.
+        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[_builtins.bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
@@ -846,18 +841,17 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
-        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-               block, since not doing so might cause issues when modifying or upgrading the deployment.
-        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-               <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-               topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-               with node types. To use this field, the deployment needs to be migrated to node roles first.
+        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition.
+               
+               > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
+        :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
+               
+               > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
-        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-               current deployment itself by setting observability.deployment_id to `self`.
+        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
-        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-               returned as part of the error.
+        :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[_builtins.bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Optional map of deployment tags
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filters: List of traffic filters rule identifiers that will be applied to the deployment.
@@ -958,8 +952,9 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def kibana(self) -> pulumi.Output[Optional['outputs.DeploymentKibana']]:
         """
-        Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-        block, since not doing so might cause issues when modifying or upgrading the deployment.
+        Kibana cluster definition.
+
+        > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         """
         return pulumi.get(self, "kibana")
 
@@ -967,10 +962,10 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="migrateToLatestHardware")
     def migrate_to_latest_hardware(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-        <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-        topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-        with node types. To use this field, the deployment needs to be migrated to node roles first.
+        When set to true, the deployment will be updated according to the latest deployment template values.
+
+        > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+        > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         """
         return pulumi.get(self, "migrate_to_latest_hardware")
 
@@ -986,8 +981,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter
     def observability(self) -> pulumi.Output[Optional['outputs.DeploymentObservability']]:
         """
-        Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-        current deployment itself by setting observability.deployment_id to `self`.
+        Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         """
         return pulumi.get(self, "observability")
 
@@ -1003,8 +997,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="requestId")
     def request_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-        returned as part of the error.
+        Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         """
         return pulumi.get(self, "request_id")
 

@@ -41,8 +41,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def password(self) -> Optional[str]:
         """
-        Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        Private.
+        Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return __config__.get('password')
 
@@ -56,8 +55,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def username(self) -> Optional[str]:
         """
-        Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-        Private.
+        Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return __config__.get('username')
 

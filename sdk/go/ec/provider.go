@@ -21,13 +21,11 @@ type Provider struct {
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
 	Apikey   pulumi.StringPtrOutput `pulumi:"apikey"`
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
-	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-	// Private.
+	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	Timeout pulumi.StringPtrOutput `pulumi:"timeout"`
-	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-	// Private.
+	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Username pulumi.StringPtrOutput `pulumi:"username"`
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	VerboseFile pulumi.StringPtrOutput `pulumi:"verboseFile"`
@@ -66,13 +64,11 @@ type providerArgs struct {
 	Endpoint *string `pulumi:"endpoint"`
 	// Allow the provider to skip TLS validation on its outgoing HTTP calls.
 	Insecure *bool `pulumi:"insecure"`
-	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-	// Private.
+	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Password *string `pulumi:"password"`
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	Timeout *string `pulumi:"timeout"`
-	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-	// Private.
+	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Username *string `pulumi:"username"`
 	// When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
 	Verbose *bool `pulumi:"verbose"`
@@ -89,13 +85,11 @@ type ProviderArgs struct {
 	Endpoint pulumi.StringPtrInput
 	// Allow the provider to skip TLS validation on its outgoing HTTP calls.
 	Insecure pulumi.BoolPtrInput
-	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-	// Private.
+	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Password pulumi.StringPtrInput
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	Timeout pulumi.StringPtrInput
-	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-	// Private.
+	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Username pulumi.StringPtrInput
 	// When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
 	Verbose pulumi.BoolPtrInput
@@ -174,8 +168,7 @@ func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
-// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-// Private.
+// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 func (o ProviderOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -185,8 +178,7 @@ func (o ProviderOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Timeout }).(pulumi.StringPtrOutput)
 }
 
-// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-// Private.
+// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 func (o ProviderOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }

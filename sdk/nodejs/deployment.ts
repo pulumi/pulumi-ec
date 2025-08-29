@@ -74,79 +74,78 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      */
-    public readonly apm!: pulumi.Output<outputs.DeploymentApm | undefined>;
-    public /*out*/ readonly apmSecretToken!: pulumi.Output<string>;
+    declare public readonly apm: pulumi.Output<outputs.DeploymentApm | undefined>;
+    declare public /*out*/ readonly apmSecretToken: pulumi.Output<string>;
     /**
      * Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      */
-    public readonly deploymentTemplateId!: pulumi.Output<string>;
+    declare public readonly deploymentTemplateId: pulumi.Output<string>;
     /**
      * Elasticsearch cluster definition
      */
-    public readonly elasticsearch!: pulumi.Output<outputs.DeploymentElasticsearch>;
-    public /*out*/ readonly elasticsearchPassword!: pulumi.Output<string>;
+    declare public readonly elasticsearch: pulumi.Output<outputs.DeploymentElasticsearch>;
+    declare public /*out*/ readonly elasticsearchPassword: pulumi.Output<string>;
     /**
      * Username for authenticating to the Elasticsearch resource.
      */
-    public /*out*/ readonly elasticsearchUsername!: pulumi.Output<string>;
+    declare public /*out*/ readonly elasticsearchUsername: pulumi.Output<string>;
     /**
      * Enterprise Search cluster definition.
      */
-    public readonly enterpriseSearch!: pulumi.Output<outputs.DeploymentEnterpriseSearch | undefined>;
+    declare public readonly enterpriseSearch: pulumi.Output<outputs.DeploymentEnterpriseSearch | undefined>;
     /**
      * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
      */
-    public readonly integrationsServer!: pulumi.Output<outputs.DeploymentIntegrationsServer | undefined>;
+    declare public readonly integrationsServer: pulumi.Output<outputs.DeploymentIntegrationsServer | undefined>;
     /**
-     * Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-     * block, since not doing so might cause issues when modifying or upgrading the deployment.
+     * Kibana cluster definition.
+     *
+     * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
-    public readonly kibana!: pulumi.Output<outputs.DeploymentKibana | undefined>;
+    declare public readonly kibana: pulumi.Output<outputs.DeploymentKibana | undefined>;
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-     * <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-     * topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * When set to true, the deployment will be updated according to the latest deployment template values.
+     *
+     * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+     * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
-    public readonly migrateToLatestHardware!: pulumi.Output<boolean | undefined>;
+    declare public readonly migrateToLatestHardware: pulumi.Output<boolean | undefined>;
     /**
      * Name for the deployment
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-     * current deployment itself by setting observability.deployment_id to `self`.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      */
-    public readonly observability!: pulumi.Output<outputs.DeploymentObservability | undefined>;
+    declare public readonly observability: pulumi.Output<outputs.DeploymentObservability | undefined>;
     /**
      * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-     * returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      */
-    public readonly requestId!: pulumi.Output<string>;
+    declare public readonly requestId: pulumi.Output<string>;
     /**
      * Explicitly resets the elasticsearchPassword when true
      */
-    public readonly resetElasticsearchPassword!: pulumi.Output<boolean | undefined>;
+    declare public readonly resetElasticsearchPassword: pulumi.Output<boolean | undefined>;
     /**
      * Optional map of deployment tags
      */
-    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * List of traffic filters rule identifiers that will be applied to the deployment.
      */
-    public readonly trafficFilters!: pulumi.Output<string[]>;
+    declare public readonly trafficFilters: pulumi.Output<string[]>;
     /**
      * Elastic Stack version to use for all of the deployment resources.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
 
     /**
      * Create a Deployment resource with the given unique name, arguments, and options.
@@ -161,55 +160,55 @@ export class Deployment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["apm"] = state ? state.apm : undefined;
-            resourceInputs["apmSecretToken"] = state ? state.apmSecretToken : undefined;
-            resourceInputs["deploymentTemplateId"] = state ? state.deploymentTemplateId : undefined;
-            resourceInputs["elasticsearch"] = state ? state.elasticsearch : undefined;
-            resourceInputs["elasticsearchPassword"] = state ? state.elasticsearchPassword : undefined;
-            resourceInputs["elasticsearchUsername"] = state ? state.elasticsearchUsername : undefined;
-            resourceInputs["enterpriseSearch"] = state ? state.enterpriseSearch : undefined;
-            resourceInputs["integrationsServer"] = state ? state.integrationsServer : undefined;
-            resourceInputs["kibana"] = state ? state.kibana : undefined;
-            resourceInputs["migrateToLatestHardware"] = state ? state.migrateToLatestHardware : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["observability"] = state ? state.observability : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["requestId"] = state ? state.requestId : undefined;
-            resourceInputs["resetElasticsearchPassword"] = state ? state.resetElasticsearchPassword : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["trafficFilters"] = state ? state.trafficFilters : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["apm"] = state?.apm;
+            resourceInputs["apmSecretToken"] = state?.apmSecretToken;
+            resourceInputs["deploymentTemplateId"] = state?.deploymentTemplateId;
+            resourceInputs["elasticsearch"] = state?.elasticsearch;
+            resourceInputs["elasticsearchPassword"] = state?.elasticsearchPassword;
+            resourceInputs["elasticsearchUsername"] = state?.elasticsearchUsername;
+            resourceInputs["enterpriseSearch"] = state?.enterpriseSearch;
+            resourceInputs["integrationsServer"] = state?.integrationsServer;
+            resourceInputs["kibana"] = state?.kibana;
+            resourceInputs["migrateToLatestHardware"] = state?.migrateToLatestHardware;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["observability"] = state?.observability;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["requestId"] = state?.requestId;
+            resourceInputs["resetElasticsearchPassword"] = state?.resetElasticsearchPassword;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["trafficFilters"] = state?.trafficFilters;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as DeploymentArgs | undefined;
-            if ((!args || args.deploymentTemplateId === undefined) && !opts.urn) {
+            if (args?.deploymentTemplateId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deploymentTemplateId'");
             }
-            if ((!args || args.elasticsearch === undefined) && !opts.urn) {
+            if (args?.elasticsearch === undefined && !opts.urn) {
                 throw new Error("Missing required property 'elasticsearch'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["apm"] = args ? args.apm : undefined;
-            resourceInputs["deploymentTemplateId"] = args ? args.deploymentTemplateId : undefined;
-            resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
-            resourceInputs["enterpriseSearch"] = args ? args.enterpriseSearch : undefined;
-            resourceInputs["integrationsServer"] = args ? args.integrationsServer : undefined;
-            resourceInputs["kibana"] = args ? args.kibana : undefined;
-            resourceInputs["migrateToLatestHardware"] = args ? args.migrateToLatestHardware : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["observability"] = args ? args.observability : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["requestId"] = args ? args.requestId : undefined;
-            resourceInputs["resetElasticsearchPassword"] = args ? args.resetElasticsearchPassword : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["trafficFilters"] = args ? args.trafficFilters : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["apm"] = args?.apm;
+            resourceInputs["deploymentTemplateId"] = args?.deploymentTemplateId;
+            resourceInputs["elasticsearch"] = args?.elasticsearch;
+            resourceInputs["enterpriseSearch"] = args?.enterpriseSearch;
+            resourceInputs["integrationsServer"] = args?.integrationsServer;
+            resourceInputs["kibana"] = args?.kibana;
+            resourceInputs["migrateToLatestHardware"] = args?.migrateToLatestHardware;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["observability"] = args?.observability;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["requestId"] = args?.requestId;
+            resourceInputs["resetElasticsearchPassword"] = args?.resetElasticsearchPassword;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["trafficFilters"] = args?.trafficFilters;
+            resourceInputs["version"] = args?.version;
             resourceInputs["apmSecretToken"] = undefined /*out*/;
             resourceInputs["elasticsearchPassword"] = undefined /*out*/;
             resourceInputs["elasticsearchUsername"] = undefined /*out*/;
@@ -256,15 +255,16 @@ export interface DeploymentState {
      */
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
-     * Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-     * block, since not doing so might cause issues when modifying or upgrading the deployment.
+     * Kibana cluster definition.
+     *
+     * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-     * <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-     * topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * When set to true, the deployment will be updated according to the latest deployment template values.
+     *
+     * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+     * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     migrateToLatestHardware?: pulumi.Input<boolean>;
     /**
@@ -272,8 +272,7 @@ export interface DeploymentState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-     * current deployment itself by setting observability.deployment_id to `self`.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
@@ -281,8 +280,7 @@ export interface DeploymentState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-     * returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      */
     requestId?: pulumi.Input<string>;
     /**
@@ -332,15 +330,16 @@ export interface DeploymentArgs {
      */
     integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
     /**
-     * Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-     * block, since not doing so might cause issues when modifying or upgrading the deployment.
+     * Kibana cluster definition.
+     *
+     * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
     kibana?: pulumi.Input<inputs.DeploymentKibana>;
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-     * <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-     * topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * When set to true, the deployment will be updated according to the latest deployment template values.
+     *
+     * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+     * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     migrateToLatestHardware?: pulumi.Input<boolean>;
     /**
@@ -348,8 +347,7 @@ export interface DeploymentArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-     * current deployment itself by setting observability.deployment_id to `self`.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      */
     observability?: pulumi.Input<inputs.DeploymentObservability>;
     /**
@@ -357,8 +355,7 @@ export interface DeploymentArgs {
      */
     region: pulumi.Input<string>;
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-     * returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      */
     requestId?: pulumi.Input<string>;
     /**

@@ -29,8 +29,7 @@ public final class Config {
         return Codegen.booleanProp("insecure").config(config).get();
     }
 /**
- * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
- * Private.
+ * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
  * 
  */
     public Optional<String> password() {
@@ -44,8 +43,7 @@ public final class Config {
         return Codegen.stringProp("timeout").config(config).get();
     }
 /**
- * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
- * Private.
+ * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
  * 
  */
     public Optional<String> username() {
