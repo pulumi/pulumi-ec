@@ -144,16 +144,18 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-     * block, since not doing so might cause issues when modifying or upgrading the deployment.
+     * Kibana cluster definition.
+     * 
+     * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
     @Import(name="kibana")
     private @Nullable Output<DeploymentKibanaArgs> kibana;
 
     /**
-     * @return Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-     * block, since not doing so might cause issues when modifying or upgrading the deployment.
+     * @return Kibana cluster definition.
+     * 
+     * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      * 
      */
     public Optional<Output<DeploymentKibanaArgs>> kibana() {
@@ -161,20 +163,20 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-     * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-     * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * When set to true, the deployment will be updated according to the latest deployment template values.
+     * 
+     * &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+     * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      * 
      */
     @Import(name="migrateToLatestHardware")
     private @Nullable Output<Boolean> migrateToLatestHardware;
 
     /**
-     * @return When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-     * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-     * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-     * with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * @return When set to true, the deployment will be updated according to the latest deployment template values.
+     * 
+     * &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+     * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      * 
      */
     public Optional<Output<Boolean>> migrateToLatestHardware() {
@@ -197,16 +199,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-     * current deployment itself by setting observability.deployment_id to `self`.
+     * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      * 
      */
     @Import(name="observability")
     private @Nullable Output<DeploymentObservabilityArgs> observability;
 
     /**
-     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-     * current deployment itself by setting observability.deployment_id to `self`.
+     * @return Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      * 
      */
     public Optional<Output<DeploymentObservabilityArgs>> observability() {
@@ -229,16 +229,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-     * returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
      * 
      */
     @Import(name="requestId")
     private @Nullable Output<String> requestId;
 
     /**
-     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-     * returned as part of the error.
+     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
      * 
      */
     public Optional<Output<String>> requestId() {
@@ -513,8 +511,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kibana Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-         * block, since not doing so might cause issues when modifying or upgrading the deployment.
+         * @param kibana Kibana cluster definition.
+         * 
+         * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
          * 
@@ -525,8 +524,9 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kibana Kibana cluster definition. &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-         * block, since not doing so might cause issues when modifying or upgrading the deployment.
+         * @param kibana Kibana cluster definition.
+         * 
+         * &gt; **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
          * 
          * @return builder
          * 
@@ -536,10 +536,10 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-         * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-         * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-         * with node types. To use this field, the deployment needs to be migrated to node roles first.
+         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values.
+         * 
+         * &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+         * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
          * 
          * @return builder
          * 
@@ -550,10 +550,10 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values. &gt; **Note** If the
-         * &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific
-         * topology element, that element will not be updated. &gt; **Note** Hardware migrations are not supported for deployments
-         * with node types. To use this field, the deployment needs to be migrated to node roles first.
+         * @param migrateToLatestHardware When set to true, the deployment will be updated according to the latest deployment template values.
+         * 
+         * &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
+         * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
          * 
          * @return builder
          * 
@@ -584,8 +584,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-         * current deployment itself by setting observability.deployment_id to `self`.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
          * 
          * @return builder
          * 
@@ -596,8 +595,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-         * current deployment itself by setting observability.deployment_id to `self`.
+         * @param observability Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
          * 
          * @return builder
          * 
@@ -628,8 +626,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-         * returned as part of the error.
+         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
          * 
          * @return builder
          * 
@@ -640,8 +637,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is
-         * returned as part of the error.
+         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
          * 
          * @return builder
          * 

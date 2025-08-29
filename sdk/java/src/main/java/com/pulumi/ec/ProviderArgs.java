@@ -54,16 +54,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * @return Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     public Optional<Output<String>> password() {
@@ -86,16 +84,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-     * Private.
+     * @return Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      * 
      */
     public Optional<Output<String>> username() {
@@ -231,8 +227,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-         * Private.
+         * @param password Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
          * 
          * @return builder
          * 
@@ -243,8 +238,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-         * Private.
+         * @param password Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
          * 
          * @return builder
          * 
@@ -275,8 +269,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param username Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-         * Private.
+         * @param username Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
          * 
          * @return builder
          * 
@@ -287,8 +280,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param username Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
-         * Private.
+         * @param username Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
          * 
          * @return builder
          * 

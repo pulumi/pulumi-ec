@@ -38,8 +38,7 @@ Object.defineProperty(exports, "insecure", {
 });
 
 /**
- * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
- * Private.
+ * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
  */
 export declare const password: string | undefined;
 Object.defineProperty(exports, "password", {
@@ -61,8 +60,7 @@ Object.defineProperty(exports, "timeout", {
 });
 
 /**
- * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service
- * Private.
+ * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
  */
 export declare const username: string | undefined;
 Object.defineProperty(exports, "username", {

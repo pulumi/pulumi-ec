@@ -66,23 +66,22 @@ type Deployment struct {
 	EnterpriseSearch DeploymentEnterpriseSearchPtrOutput `pulumi:"enterpriseSearch"`
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
 	IntegrationsServer DeploymentIntegrationsServerPtrOutput `pulumi:"integrationsServer"`
-	// Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-	// block, since not doing so might cause issues when modifying or upgrading the deployment.
+	// Kibana cluster definition.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrOutput `pulumi:"kibana"`
-	// When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-	// topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	// When set to true, the deployment will be updated according to the latest deployment template values.
+	//
+	// > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+	// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware pulumi.BoolPtrOutput `pulumi:"migrateToLatestHardware"`
 	// Name for the deployment
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-	// current deployment itself by setting observability.deployment_id to `self`.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
 	Observability DeploymentObservabilityPtrOutput `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-	// returned as part of the error.
+	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId pulumi.StringOutput `pulumi:"requestId"`
 	// Explicitly resets the elasticsearchPassword when true
 	ResetElasticsearchPassword pulumi.BoolPtrOutput `pulumi:"resetElasticsearchPassword"`
@@ -157,23 +156,22 @@ type deploymentState struct {
 	EnterpriseSearch *DeploymentEnterpriseSearch `pulumi:"enterpriseSearch"`
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
 	IntegrationsServer *DeploymentIntegrationsServer `pulumi:"integrationsServer"`
-	// Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-	// block, since not doing so might cause issues when modifying or upgrading the deployment.
+	// Kibana cluster definition.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
-	// When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-	// topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	// When set to true, the deployment will be updated according to the latest deployment template values.
+	//
+	// > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+	// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware *bool `pulumi:"migrateToLatestHardware"`
 	// Name for the deployment
 	Name *string `pulumi:"name"`
-	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-	// current deployment itself by setting observability.deployment_id to `self`.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
 	Observability *DeploymentObservability `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region *string `pulumi:"region"`
-	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-	// returned as part of the error.
+	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId *string `pulumi:"requestId"`
 	// Explicitly resets the elasticsearchPassword when true
 	ResetElasticsearchPassword *bool `pulumi:"resetElasticsearchPassword"`
@@ -202,23 +200,22 @@ type DeploymentState struct {
 	EnterpriseSearch DeploymentEnterpriseSearchPtrInput
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
 	IntegrationsServer DeploymentIntegrationsServerPtrInput
-	// Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-	// block, since not doing so might cause issues when modifying or upgrading the deployment.
+	// Kibana cluster definition.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrInput
-	// When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-	// topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	// When set to true, the deployment will be updated according to the latest deployment template values.
+	//
+	// > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+	// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware pulumi.BoolPtrInput
 	// Name for the deployment
 	Name pulumi.StringPtrInput
-	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-	// current deployment itself by setting observability.deployment_id to `self`.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
 	Observability DeploymentObservabilityPtrInput
 	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringPtrInput
-	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-	// returned as part of the error.
+	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId pulumi.StringPtrInput
 	// Explicitly resets the elasticsearchPassword when true
 	ResetElasticsearchPassword pulumi.BoolPtrInput
@@ -247,23 +244,22 @@ type deploymentArgs struct {
 	EnterpriseSearch *DeploymentEnterpriseSearch `pulumi:"enterpriseSearch"`
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
 	IntegrationsServer *DeploymentIntegrationsServer `pulumi:"integrationsServer"`
-	// Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-	// block, since not doing so might cause issues when modifying or upgrading the deployment.
+	// Kibana cluster definition.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana *DeploymentKibana `pulumi:"kibana"`
-	// When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-	// topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	// When set to true, the deployment will be updated according to the latest deployment template values.
+	//
+	// > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+	// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware *bool `pulumi:"migrateToLatestHardware"`
 	// Name for the deployment
 	Name *string `pulumi:"name"`
-	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-	// current deployment itself by setting observability.deployment_id to `self`.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
 	Observability *DeploymentObservability `pulumi:"observability"`
 	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region string `pulumi:"region"`
-	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-	// returned as part of the error.
+	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId *string `pulumi:"requestId"`
 	// Explicitly resets the elasticsearchPassword when true
 	ResetElasticsearchPassword *bool `pulumi:"resetElasticsearchPassword"`
@@ -289,23 +285,22 @@ type DeploymentArgs struct {
 	EnterpriseSearch DeploymentEnterpriseSearchPtrInput
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
 	IntegrationsServer DeploymentIntegrationsServerPtrInput
-	// Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-	// block, since not doing so might cause issues when modifying or upgrading the deployment.
+	// Kibana cluster definition.
+	//
+	// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 	Kibana DeploymentKibanaPtrInput
-	// When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-	// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-	// topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-	// with node types. To use this field, the deployment needs to be migrated to node roles first.
+	// When set to true, the deployment will be updated according to the latest deployment template values.
+	//
+	// > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+	// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
 	MigrateToLatestHardware pulumi.BoolPtrInput
 	// Name for the deployment
 	Name pulumi.StringPtrInput
-	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-	// current deployment itself by setting observability.deployment_id to `self`.
+	// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
 	Observability DeploymentObservabilityPtrInput
 	// Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
 	Region pulumi.StringInput
-	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-	// returned as part of the error.
+	// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 	RequestId pulumi.StringPtrInput
 	// Explicitly resets the elasticsearchPassword when true
 	ResetElasticsearchPassword pulumi.BoolPtrInput
@@ -447,16 +442,17 @@ func (o DeploymentOutput) IntegrationsServer() DeploymentIntegrationsServerPtrOu
 	return o.ApplyT(func(v *Deployment) DeploymentIntegrationsServerPtrOutput { return v.IntegrationsServer }).(DeploymentIntegrationsServerPtrOutput)
 }
 
-// Kibana cluster definition. > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana
-// block, since not doing so might cause issues when modifying or upgrading the deployment.
+// Kibana cluster definition.
+//
+// > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
 func (o DeploymentOutput) Kibana() DeploymentKibanaPtrOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentKibanaPtrOutput { return v.Kibana }).(DeploymentKibanaPtrOutput)
 }
 
-// When set to true, the deployment will be updated according to the latest deployment template values. > **Note** If the
-// <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific
-// topology element, that element will not be updated. > **Note** Hardware migrations are not supported for deployments
-// with node types. To use this field, the deployment needs to be migrated to node roles first.
+// When set to true, the deployment will be updated according to the latest deployment template values.
+//
+// > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
+// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
 func (o DeploymentOutput) MigrateToLatestHardware() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.BoolPtrOutput { return v.MigrateToLatestHardware }).(pulumi.BoolPtrOutput)
 }
@@ -466,8 +462,7 @@ func (o DeploymentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the
-// current deployment itself by setting observability.deployment_id to `self`.
+// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
 func (o DeploymentOutput) Observability() DeploymentObservabilityPtrOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentObservabilityPtrOutput { return v.Observability }).(DeploymentObservabilityPtrOutput)
 }
@@ -477,8 +472,7 @@ func (o DeploymentOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is
-// returned as part of the error.
+// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
 func (o DeploymentOutput) RequestId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.RequestId }).(pulumi.StringOutput)
 }

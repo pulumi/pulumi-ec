@@ -63,40 +63,40 @@ export class SecurityProject extends pulumi.CustomResource {
     /**
      * admin features package (BYOK, BYOIDP, CCS, CCR)
      */
-    public readonly adminFeaturesPackage!: pulumi.Output<string>;
+    declare public readonly adminFeaturesPackage: pulumi.Output<string>;
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
      */
-    public /*out*/ readonly cloudId!: pulumi.Output<string>;
+    declare public /*out*/ readonly cloudId: pulumi.Output<string>;
     /**
      * Basic auth credentials to access the Elasticsearch API.
      */
-    public /*out*/ readonly credentials!: pulumi.Output<outputs.SecurityProjectCredentials>;
+    declare public /*out*/ readonly credentials: pulumi.Output<outputs.SecurityProjectCredentials>;
     /**
      * The endpoints to access the different apps of the project.
      */
-    public /*out*/ readonly endpoints!: pulumi.Output<outputs.SecurityProjectEndpoints>;
+    declare public /*out*/ readonly endpoints: pulumi.Output<outputs.SecurityProjectEndpoints>;
     /**
      * Additional details about the project.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<outputs.SecurityProjectMetadata>;
+    declare public /*out*/ readonly metadata: pulumi.Output<outputs.SecurityProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
-    public readonly name!: pulumi.Output<string>;
-    public readonly productTypes!: pulumi.Output<outputs.SecurityProjectProductType[]>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly productTypes: pulumi.Output<outputs.SecurityProjectProductType[]>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
-    public readonly regionId!: pulumi.Output<string>;
+    declare public readonly regionId: pulumi.Output<string>;
     /**
      * the type of the project
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a SecurityProject resource with the given unique name, arguments, and options.
@@ -111,26 +111,26 @@ export class SecurityProject extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecurityProjectState | undefined;
-            resourceInputs["adminFeaturesPackage"] = state ? state.adminFeaturesPackage : undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["cloudId"] = state ? state.cloudId : undefined;
-            resourceInputs["credentials"] = state ? state.credentials : undefined;
-            resourceInputs["endpoints"] = state ? state.endpoints : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["productTypes"] = state ? state.productTypes : undefined;
-            resourceInputs["regionId"] = state ? state.regionId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["adminFeaturesPackage"] = state?.adminFeaturesPackage;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["cloudId"] = state?.cloudId;
+            resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["productTypes"] = state?.productTypes;
+            resourceInputs["regionId"] = state?.regionId;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SecurityProjectArgs | undefined;
-            if ((!args || args.regionId === undefined) && !opts.urn) {
+            if (args?.regionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'regionId'");
             }
-            resourceInputs["adminFeaturesPackage"] = args ? args.adminFeaturesPackage : undefined;
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["productTypes"] = args ? args.productTypes : undefined;
-            resourceInputs["regionId"] = args ? args.regionId : undefined;
+            resourceInputs["adminFeaturesPackage"] = args?.adminFeaturesPackage;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["productTypes"] = args?.productTypes;
+            resourceInputs["regionId"] = args?.regionId;
             resourceInputs["cloudId"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;

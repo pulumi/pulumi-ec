@@ -63,43 +63,43 @@ export class ElasticsearchProject extends pulumi.CustomResource {
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
      */
-    public /*out*/ readonly cloudId!: pulumi.Output<string>;
+    declare public /*out*/ readonly cloudId: pulumi.Output<string>;
     /**
      * Basic auth credentials to access the Elasticsearch API.
      */
-    public /*out*/ readonly credentials!: pulumi.Output<outputs.ElasticsearchProjectCredentials>;
+    declare public /*out*/ readonly credentials: pulumi.Output<outputs.ElasticsearchProjectCredentials>;
     /**
      * The endpoints to access the different apps of the project.
      */
-    public /*out*/ readonly endpoints!: pulumi.Output<outputs.ElasticsearchProjectEndpoints>;
+    declare public /*out*/ readonly endpoints: pulumi.Output<outputs.ElasticsearchProjectEndpoints>;
     /**
      * Additional details about the project.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<outputs.ElasticsearchProjectMetadata>;
+    declare public /*out*/ readonly metadata: pulumi.Output<outputs.ElasticsearchProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
      */
-    public readonly optimizedFor!: pulumi.Output<string>;
+    declare public readonly optimizedFor: pulumi.Output<string>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
-    public readonly regionId!: pulumi.Output<string>;
+    declare public readonly regionId: pulumi.Output<string>;
     /**
      * Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
      */
-    public readonly searchLake!: pulumi.Output<outputs.ElasticsearchProjectSearchLake>;
+    declare public readonly searchLake: pulumi.Output<outputs.ElasticsearchProjectSearchLake>;
     /**
      * the type of the project
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a ElasticsearchProject resource with the given unique name, arguments, and options.
@@ -114,26 +114,26 @@ export class ElasticsearchProject extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ElasticsearchProjectState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["cloudId"] = state ? state.cloudId : undefined;
-            resourceInputs["credentials"] = state ? state.credentials : undefined;
-            resourceInputs["endpoints"] = state ? state.endpoints : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["optimizedFor"] = state ? state.optimizedFor : undefined;
-            resourceInputs["regionId"] = state ? state.regionId : undefined;
-            resourceInputs["searchLake"] = state ? state.searchLake : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["cloudId"] = state?.cloudId;
+            resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["optimizedFor"] = state?.optimizedFor;
+            resourceInputs["regionId"] = state?.regionId;
+            resourceInputs["searchLake"] = state?.searchLake;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as ElasticsearchProjectArgs | undefined;
-            if ((!args || args.regionId === undefined) && !opts.urn) {
+            if (args?.regionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'regionId'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["optimizedFor"] = args ? args.optimizedFor : undefined;
-            resourceInputs["regionId"] = args ? args.regionId : undefined;
-            resourceInputs["searchLake"] = args ? args.searchLake : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["optimizedFor"] = args?.optimizedFor;
+            resourceInputs["regionId"] = args?.regionId;
+            resourceInputs["searchLake"] = args?.searchLake;
             resourceInputs["cloudId"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
