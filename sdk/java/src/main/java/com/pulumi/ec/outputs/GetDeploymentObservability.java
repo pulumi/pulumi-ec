@@ -27,7 +27,7 @@ public final class GetDeploymentObservability {
      */
     private Boolean metrics;
     /**
-     * @return Elasticsearch resource kind ref_id of the destination deployment.
+     * @return Elasticsearch resource kind refId of the destination deployment.
      * 
      */
     private String refId;
@@ -55,7 +55,7 @@ public final class GetDeploymentObservability {
         return this.metrics;
     }
     /**
-     * @return Elasticsearch resource kind ref_id of the destination deployment.
+     * @return Elasticsearch resource kind refId of the destination deployment.
      * 
      */
     public String refId() {

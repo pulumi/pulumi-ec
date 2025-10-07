@@ -18,6 +18,119 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ### With extension file
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var filePath = "/path/to/plugin.zip";
+    /// 
+    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("example_extension", new()
+    ///     {
+    ///         Name = "my_extension",
+    ///         Description = "my extension",
+    ///         Version = "*",
+    ///         ExtensionType = "bundle",
+    ///         FilePath = filePath,
+    ///         FileHash = Std.Filebase64sha256.Invoke(new()
+    ///         {
+    ///             Input = filePath,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     });
+    /// 
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
+    /// 
+    ///     var withExtension = new ElasticCloud.Deployment("with_extension", new()
+    ///     {
+    ///         Name = "my_example_deployment",
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///             Extension = new[]
+    ///             {
+    ///                 
+    ///                 {
+    ///                     { "name", exampleExtension.Name },
+    ///                     { "type", "bundle" },
+    ///                     { "version", latest.Apply(getStackResult =&gt; getStackResult.Version) },
+    ///                     { "url", exampleExtension.Url },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With download URL
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("example_extension", new()
+    ///     {
+    ///         Name = "my_extension",
+    ///         Description = "my extension",
+    ///         Version = "*",
+    ///         ExtensionType = "bundle",
+    ///         DownloadUrl = "https://example.net",
+    ///     });
+    /// 
+    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     {
+    ///         VersionRegex = "latest",
+    ///         Region = "us-east-1",
+    ///     });
+    /// 
+    ///     var withExtension = new ElasticCloud.Deployment("with_extension", new()
+    ///     {
+    ///         Name = "my_example_deployment",
+    ///         Region = "us-east-1",
+    ///         Version = latest.Apply(getStackResult =&gt; getStackResult.Version),
+    ///         DeploymentTemplateId = "aws-io-optimized-v2",
+    ///         Elasticsearch = new ElasticCloud.Inputs.DeploymentElasticsearchArgs
+    ///         {
+    ///             Hot = new ElasticCloud.Inputs.DeploymentElasticsearchHotArgs
+    ///             {
+    ///                 Autoscaling = null,
+    ///             },
+    ///             Extension = new[]
+    ///             {
+    ///                 
+    ///                 {
+    ///                     { "name", exampleExtension.Name },
+    ///                     { "type", "bundle" },
+    ///                     { "version", latest.Apply(getStackResult =&gt; getStackResult.Version) },
+    ///                     { "url", exampleExtension.Url },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Extensions can be imported using the `id`, for example:
@@ -42,7 +155,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> DownloadUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `Bundle` or `Plugin`. A `Bundle` will usually contain a dictionary or script, where a `Plugin` is compiled from source.
         /// </summary>
         [Output("extensionType")]
         public Output<string> ExtensionType { get; private set; } = null!;
@@ -148,7 +261,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? DownloadUrl { get; set; }
 
         /// <summary>
-        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `Bundle` or `Plugin`. A `Bundle` will usually contain a dictionary or script, where a `Plugin` is compiled from source.
         /// </summary>
         [Input("extensionType", required: true)]
         public Input<string> ExtensionType { get; set; } = null!;
@@ -198,7 +311,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? DownloadUrl { get; set; }
 
         /// <summary>
-        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `Bundle` or `Plugin`. A `Bundle` will usually contain a dictionary or script, where a `Plugin` is compiled from source.
         /// </summary>
         [Input("extensionType")]
         public Input<string>? ExtensionType { get; set; }

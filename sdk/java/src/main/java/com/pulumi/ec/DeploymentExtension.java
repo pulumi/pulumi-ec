@@ -24,6 +24,149 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### With extension file
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.DeploymentExtension;
+ * import com.pulumi.ec.DeploymentExtensionArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.Filebase64sha256Args;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var filePath = "/path/to/plugin.zip";
+ * 
+ *         var exampleExtension = new DeploymentExtension("exampleExtension", DeploymentExtensionArgs.builder()
+ *             .name("my_extension")
+ *             .description("my extension")
+ *             .version("*")
+ *             .extensionType("bundle")
+ *             .filePath(filePath)
+ *             .fileHash(StdFunctions.filebase64sha256(Filebase64sha256Args.builder()
+ *                 .input(filePath)
+ *                 .build()).result())
+ *             .build());
+ * 
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex("latest")
+ *             .region("us-east-1")
+ *             .build());
+ * 
+ *         var withExtension = new Deployment("withExtension", DeploymentArgs.builder()
+ *             .name("my_example_deployment")
+ *             .region("us-east-1")
+ *             .version(latest.version())
+ *             .deploymentTemplateId("aws-io-optimized-v2")
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
+ *                     .build())
+ *                 .extension(List.of(Map.ofEntries(
+ *                     Map.entry("name", exampleExtension.name()),
+ *                     Map.entry("type", "bundle"),
+ *                     Map.entry("version", latest.version()),
+ *                     Map.entry("url", exampleExtension.url())
+ *                 )))
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With download URL
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.DeploymentExtension;
+ * import com.pulumi.ec.DeploymentExtensionArgs;
+ * import com.pulumi.ec.EcFunctions;
+ * import com.pulumi.ec.inputs.GetStackArgs;
+ * import com.pulumi.ec.Deployment;
+ * import com.pulumi.ec.DeploymentArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
+ * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleExtension = new DeploymentExtension("exampleExtension", DeploymentExtensionArgs.builder()
+ *             .name("my_extension")
+ *             .description("my extension")
+ *             .version("*")
+ *             .extensionType("bundle")
+ *             .downloadUrl("https://example.net")
+ *             .build());
+ * 
+ *         final var latest = EcFunctions.getStack(GetStackArgs.builder()
+ *             .versionRegex("latest")
+ *             .region("us-east-1")
+ *             .build());
+ * 
+ *         var withExtension = new Deployment("withExtension", DeploymentArgs.builder()
+ *             .name("my_example_deployment")
+ *             .region("us-east-1")
+ *             .version(latest.version())
+ *             .deploymentTemplateId("aws-io-optimized-v2")
+ *             .elasticsearch(DeploymentElasticsearchArgs.builder()
+ *                 .hot(DeploymentElasticsearchHotArgs.builder()
+ *                     .autoscaling(DeploymentElasticsearchHotAutoscalingArgs.builder()
+ *                         .build())
+ *                     .build())
+ *                 .extension(List.of(Map.ofEntries(
+ *                     Map.entry("name", exampleExtension.name()),
+ *                     Map.entry("type", "bundle"),
+ *                     Map.entry("version", latest.version()),
+ *                     Map.entry("url", exampleExtension.url())
+ *                 )))
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Extensions can be imported using the `id`, for example:
