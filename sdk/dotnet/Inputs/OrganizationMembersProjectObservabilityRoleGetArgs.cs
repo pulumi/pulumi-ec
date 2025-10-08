@@ -43,7 +43,7 @@ namespace Pulumi.ElasticCloud.Inputs
         }
 
         /// <summary>
-        /// Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+        /// Assigned role. (Allowed values: `Admin`, `Editor`, `Viewer`)
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;

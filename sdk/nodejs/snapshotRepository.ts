@@ -9,6 +9,22 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * ### S3 style
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const _this = new ec.SnapshotRepository("this", {
+ *     name: "my-snapshot-repository",
+ *     s3: {
+ *         bucket: "my-bucket",
+ *         access_key: "my-access-key",
+ *         secret_key: "my-secret-key",
+ *     },
+ * });
+ * ```
+ *
  * ### Azure
  *
  * ```typescript

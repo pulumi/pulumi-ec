@@ -118,7 +118,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetStackArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+        /// Lock the `Latest` `VersionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
         /// </summary>
         [Input("lock")]
         public bool? Lock { get; set; }
@@ -130,7 +130,7 @@ namespace Pulumi.ElasticCloud
         public string Region { get; set; } = null!;
 
         /// <summary>
-        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `Latest` is also accepted to obtain the latest available stack version.
         /// </summary>
         [Input("versionRegex", required: true)]
         public string VersionRegex { get; set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumi.ElasticCloud
     public sealed class GetStackInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+        /// Lock the `Latest` `VersionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
         /// </summary>
         [Input("lock")]
         public Input<bool>? Lock { get; set; }
@@ -156,7 +156,7 @@ namespace Pulumi.ElasticCloud
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `Latest` is also accepted to obtain the latest available stack version.
         /// </summary>
         [Input("versionRegex", required: true)]
         public Input<string> VersionRegex { get; set; } = null!;
@@ -176,7 +176,7 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public readonly bool Accessible;
         /// <summary>
-        /// To include/not include this version in the `allowlist`. This is only relevant for Elasticsearch Service (ESS), not for ECE.
+        /// To include/not include this version in the `Allowlist`. This is only relevant for Elasticsearch Service (ESS), not for ECE.
         /// </summary>
         public readonly bool Allowlisted;
         /// <summary>
@@ -200,7 +200,7 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetStackKibanaResult> Kibanas;
         /// <summary>
-        /// Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
+        /// Lock the `Latest` `VersionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
         /// </summary>
         public readonly bool? Lock;
         /// <summary>
@@ -220,7 +220,7 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public readonly string Version;
         /// <summary>
-        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.
+        /// Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `Latest` is also accepted to obtain the latest available stack version.
         /// </summary>
         public readonly string VersionRegex;
 

@@ -325,6 +325,73 @@ class DeploymentExtension(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### With extension file
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+        import pulumi_std as std
+
+        file_path = "/path/to/plugin.zip"
+        example_extension = ec.DeploymentExtension("example_extension",
+            name="my_extension",
+            description="my extension",
+            version="*",
+            extension_type="bundle",
+            file_path=file_path,
+            file_hash=std.filebase64sha256(input=file_path).result)
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        with_extension = ec.Deployment("with_extension",
+            name="my_example_deployment",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+                "extension": [{
+                    "name": example_extension.name,
+                    "type": "bundle",
+                    "version": latest.version,
+                    "url": example_extension.url,
+                }],
+            })
+        ```
+
+        ### With download URL
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        example_extension = ec.DeploymentExtension("example_extension",
+            name="my_extension",
+            description="my extension",
+            version="*",
+            extension_type="bundle",
+            download_url="https://example.net")
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        with_extension = ec.Deployment("with_extension",
+            name="my_example_deployment",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+                "extension": [{
+                    "name": example_extension.name,
+                    "type": "bundle",
+                    "version": latest.version,
+                    "url": example_extension.url,
+                }],
+            })
+        ```
+
         ## Import
 
         Extensions can be imported using the `id`, for example:
@@ -357,6 +424,73 @@ class DeploymentExtension(pulumi.CustomResource):
           **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
 
         ## Example Usage
+
+        ### With extension file
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+        import pulumi_std as std
+
+        file_path = "/path/to/plugin.zip"
+        example_extension = ec.DeploymentExtension("example_extension",
+            name="my_extension",
+            description="my extension",
+            version="*",
+            extension_type="bundle",
+            file_path=file_path,
+            file_hash=std.filebase64sha256(input=file_path).result)
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        with_extension = ec.Deployment("with_extension",
+            name="my_example_deployment",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+                "extension": [{
+                    "name": example_extension.name,
+                    "type": "bundle",
+                    "version": latest.version,
+                    "url": example_extension.url,
+                }],
+            })
+        ```
+
+        ### With download URL
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        example_extension = ec.DeploymentExtension("example_extension",
+            name="my_extension",
+            description="my extension",
+            version="*",
+            extension_type="bundle",
+            download_url="https://example.net")
+        latest = ec.get_stack(version_regex="latest",
+            region="us-east-1")
+        with_extension = ec.Deployment("with_extension",
+            name="my_example_deployment",
+            region="us-east-1",
+            version=latest.version,
+            deployment_template_id="aws-io-optimized-v2",
+            elasticsearch={
+                "hot": {
+                    "autoscaling": {},
+                },
+                "extension": [{
+                    "name": example_extension.name,
+                    "type": "bundle",
+                    "version": latest.version,
+                    "url": example_extension.url,
+                }],
+            })
+        ```
 
         ## Import
 

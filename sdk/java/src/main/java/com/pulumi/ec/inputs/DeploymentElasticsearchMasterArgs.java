@@ -170,14 +170,14 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
     }
 
     /**
-     * Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
+     * Amount of &#34;sizeResource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     @Import(name="size")
     private @Nullable Output<String> size;
 
     /**
-     * @return Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
+     * @return Amount of &#34;sizeResource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     public Optional<Output<String>> size() {
@@ -471,7 +471,7 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
         }
 
         /**
-         * @param size Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
+         * @param size Amount of &#34;sizeResource&#34; per node in the &#34;\n\ng&#34; notation
          * 
          * @return builder
          * 
@@ -482,7 +482,7 @@ public final class DeploymentElasticsearchMasterArgs extends com.pulumi.resource
         }
 
         /**
-         * @param size Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
+         * @param size Amount of &#34;sizeResource&#34; per node in the &#34;\n\ng&#34; notation
          * 
          * @return builder
          * 

@@ -22,7 +22,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string DeploymentId;
         /// <summary>
-        /// Remote elasticsearch "ref_id", it is best left to the default value
+        /// Remote elasticsearch "RefId", it is best left to the default value
         /// </summary>
         public readonly string? RefId;
         /// <summary>
