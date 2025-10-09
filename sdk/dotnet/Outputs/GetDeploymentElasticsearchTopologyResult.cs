@@ -42,7 +42,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly bool NodeTypeMl;
         /// <summary>
-        /// Amount of "size_resource" per topology element in Gigabytes. For example "4g".
+        /// Amount of "SizeResource" per topology element in Gigabytes. For example "4g".
         /// </summary>
         public readonly string Size;
         /// <summary>

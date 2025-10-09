@@ -79,7 +79,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? NodeTypeMl { get; set; }
 
         /// <summary>
-        /// Amount of "size_resource" per node in the "\n\ng" notation
+        /// Amount of "SizeResource" per node in the "\n\ng" notation
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }

@@ -19,7 +19,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string> AccountId { get; set; } = null!;
 
         /// <summary>
-        /// If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+        /// If true, all clusters in this account will by default be trusted and the `TrustAllowlist` is ignored.
         /// </summary>
         [Input("trustAll", required: true)]
         public Input<bool> TrustAll { get; set; } = null!;
@@ -28,7 +28,7 @@ namespace Pulumi.ElasticCloud.Inputs
         private InputList<string>? _trustAllowlists;
 
         /// <summary>
-        /// The list of clusters to trust. Only used when `trust_all` is false.
+        /// The list of clusters to trust. Only used when `TrustAll` is false.
         /// </summary>
         public InputList<string> TrustAllowlists
         {
