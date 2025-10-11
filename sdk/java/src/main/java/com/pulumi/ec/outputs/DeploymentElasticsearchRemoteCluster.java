@@ -24,7 +24,7 @@ public final class DeploymentElasticsearchRemoteCluster {
      */
     private String deploymentId;
     /**
-     * @return Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+     * @return Remote elasticsearch &#34;refId&#34;, it is best left to the default value
      * 
      */
     private @Nullable String refId;
@@ -50,7 +50,7 @@ public final class DeploymentElasticsearchRemoteCluster {
         return this.deploymentId;
     }
     /**
-     * @return Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+     * @return Remote elasticsearch &#34;refId&#34;, it is best left to the default value
      * 
      */
     public Optional<String> refId() {

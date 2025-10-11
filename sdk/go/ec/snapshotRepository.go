@@ -13,6 +13,8 @@ import (
 
 // ## Example Usage
 //
+// ### S3 style
+//
 // ### Azure
 //
 // ```go

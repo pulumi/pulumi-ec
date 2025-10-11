@@ -13,7 +13,7 @@ namespace Pulumi.ElasticCloud.Inputs
     public sealed class SnapshotRepositoryS3Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+        /// An S3 access key. If set, the SecretKey setting must also be specified. If unset, the client will use the instance or container role instead.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
@@ -46,7 +46,7 @@ namespace Pulumi.ElasticCloud.Inputs
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// An S3 secret key. If set, the access_key setting must also be specified.
+        /// An S3 secret key. If set, the AccessKey setting must also be specified.
         /// </summary>
         public Input<string>? SecretKey
         {

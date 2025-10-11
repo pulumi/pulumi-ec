@@ -34,14 +34,14 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
     }
 
     /**
-     * If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
      * 
      */
     @Import(name="trustAll", required=true)
     private Output<Boolean> trustAll;
 
     /**
-     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * @return If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
      * 
      */
     public Output<Boolean> trustAll() {
@@ -49,14 +49,14 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
     }
 
     /**
-     * The list of clusters to trust. Only used when `trust_all` is false.
+     * The list of clusters to trust. Only used when `trustAll` is false.
      * 
      */
     @Import(name="trustAllowlists")
     private @Nullable Output<List<String>> trustAllowlists;
 
     /**
-     * @return The list of clusters to trust. Only used when `trust_all` is false.
+     * @return The list of clusters to trust. Only used when `trustAll` is false.
      * 
      */
     public Optional<Output<List<String>>> trustAllowlists() {
@@ -111,7 +111,7 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
         }
 
         /**
-         * @param trustAll If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+         * @param trustAll If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
          * 
          * @return builder
          * 
@@ -122,7 +122,7 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
         }
 
         /**
-         * @param trustAll If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+         * @param trustAll If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
         }
 
         /**
-         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is false.
+         * @param trustAllowlists The list of clusters to trust. Only used when `trustAll` is false.
          * 
          * @return builder
          * 
@@ -143,7 +143,7 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
         }
 
         /**
-         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is false.
+         * @param trustAllowlists The list of clusters to trust. Only used when `trustAll` is false.
          * 
          * @return builder
          * 
@@ -153,7 +153,7 @@ public final class DeploymentElasticsearchTrustAccountArgs extends com.pulumi.re
         }
 
         /**
-         * @param trustAllowlists The list of clusters to trust. Only used when `trust_all` is false.
+         * @param trustAllowlists The list of clusters to trust. Only used when `trustAll` is false.
          * 
          * @return builder
          * 
