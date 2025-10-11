@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * ### S3 style
+ *
  * ### Azure
  *
  * ```typescript

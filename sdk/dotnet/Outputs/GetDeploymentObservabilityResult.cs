@@ -26,7 +26,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly bool Metrics;
         /// <summary>
-        /// Elasticsearch resource kind ref_id of the destination deployment.
+        /// Elasticsearch resource kind RefId of the destination deployment.
         /// </summary>
         public readonly string RefId;
 

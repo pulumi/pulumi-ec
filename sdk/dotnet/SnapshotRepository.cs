@@ -12,6 +12,8 @@ namespace Pulumi.ElasticCloud
     /// <summary>
     /// ## Example Usage
     /// 
+    /// ### S3 style
+    /// 
     /// ### Azure
     /// 
     /// ```csharp

@@ -26,7 +26,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ProjectIds;
         /// <summary>
-        /// Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
+        /// Assigned role. (Allowed values: `Admin`, `Editor`, `Viewer`)
         /// </summary>
         public readonly string Role;
 

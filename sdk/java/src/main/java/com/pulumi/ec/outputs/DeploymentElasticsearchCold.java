@@ -66,7 +66,7 @@ public final class DeploymentElasticsearchCold {
      */
     private @Nullable String nodeTypeMl;
     /**
-     * @return Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
+     * @return Amount of &#34;sizeResource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     private @Nullable String size;
@@ -153,7 +153,7 @@ public final class DeploymentElasticsearchCold {
         return Optional.ofNullable(this.nodeTypeMl);
     }
     /**
-     * @return Amount of &#34;size_resource&#34; per node in the &#34;\n\ng&#34; notation
+     * @return Amount of &#34;sizeResource&#34; per node in the &#34;\n\ng&#34; notation
      * 
      */
     public Optional<String> size() {

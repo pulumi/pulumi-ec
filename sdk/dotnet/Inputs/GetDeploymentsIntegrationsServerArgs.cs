@@ -19,7 +19,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? Healthy { get; set; }
 
         /// <summary>
-        /// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+        /// Resource kind status. Can be one of `Initializing`, `Stopping`, `Stopped`, `Rebooting`, `Restarting`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

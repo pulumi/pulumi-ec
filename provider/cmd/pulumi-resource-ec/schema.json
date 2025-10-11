@@ -379,7 +379,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -418,7 +418,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -541,7 +541,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -580,7 +580,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -625,7 +625,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Extension type, only `bundle` or `plugin` are supported.\n"
+                    "description": "Extension type, only \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e are supported.\n"
                 },
                 "url": {
                     "type": "string",
@@ -691,7 +691,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -730,7 +730,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -814,7 +814,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -853,7 +853,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -962,7 +962,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -1001,7 +1001,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -1085,7 +1085,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -1124,7 +1124,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -1173,7 +1173,7 @@
                 },
                 "refId": {
                     "type": "string",
-                    "description": "Remote elasticsearch \"ref_id\", it is best left to the default value\n"
+                    "description": "Remote elasticsearch \u003cspan pulumi-lang-nodejs=\"\"refId\"\" pulumi-lang-dotnet=\"\"RefId\"\" pulumi-lang-go=\"\"refId\"\" pulumi-lang-python=\"\"ref_id\"\" pulumi-lang-yaml=\"\"refId\"\" pulumi-lang-java=\"\"refId\"\"\u003e\"ref_id\"\u003c/span\u003e, it is best left to the default value\n"
                 },
                 "skipUnavailable": {
                     "type": "boolean",
@@ -1280,14 +1280,14 @@
                 },
                 "trustAll": {
                     "type": "boolean",
-                    "description": "If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.\n"
+                    "description": "If true, all clusters in this account will by default be trusted and the \u003cspan pulumi-lang-nodejs=\"`trustAllowlist`\" pulumi-lang-dotnet=\"`TrustAllowlist`\" pulumi-lang-go=\"`trustAllowlist`\" pulumi-lang-python=\"`trust_allowlist`\" pulumi-lang-yaml=\"`trustAllowlist`\" pulumi-lang-java=\"`trustAllowlist`\"\u003e`trust_allowlist`\u003c/span\u003e is ignored.\n"
                 },
                 "trustAllowlists": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The list of clusters to trust. Only used when `trust_all` is false.\n"
+                    "description": "The list of clusters to trust. Only used when \u003cspan pulumi-lang-nodejs=\"`trustAll`\" pulumi-lang-dotnet=\"`TrustAll`\" pulumi-lang-go=\"`trustAll`\" pulumi-lang-python=\"`trust_all`\" pulumi-lang-yaml=\"`trustAll`\" pulumi-lang-java=\"`trustAll`\"\u003e`trust_all`\u003c/span\u003e is false.\n"
                 }
             },
             "type": "object",
@@ -1304,14 +1304,14 @@
                 },
                 "trustAll": {
                     "type": "boolean",
-                    "description": "If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.\n"
+                    "description": "If true, all clusters in this account will by default be trusted and the \u003cspan pulumi-lang-nodejs=\"`trustAllowlist`\" pulumi-lang-dotnet=\"`TrustAllowlist`\" pulumi-lang-go=\"`trustAllowlist`\" pulumi-lang-python=\"`trust_allowlist`\" pulumi-lang-yaml=\"`trustAllowlist`\" pulumi-lang-java=\"`trustAllowlist`\"\u003e`trust_allowlist`\u003c/span\u003e is ignored.\n"
                 },
                 "trustAllowlists": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The list of clusters to trust. Only used when `trust_all` is false.\n"
+                    "description": "The list of clusters to trust. Only used when \u003cspan pulumi-lang-nodejs=\"`trustAll`\" pulumi-lang-dotnet=\"`TrustAll`\" pulumi-lang-go=\"`trustAll`\" pulumi-lang-python=\"`trust_all`\" pulumi-lang-yaml=\"`trustAll`\" pulumi-lang-java=\"`trustAll`\"\u003e`trust_all`\u003c/span\u003e is false.\n"
                 }
             },
             "type": "object",
@@ -1367,7 +1367,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per node in the \"\\n\\ng\" notation\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per node in the \"\\n\\ng\" notation\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -1406,7 +1406,7 @@
             "properties": {
                 "autoscale": {
                     "type": "boolean",
-                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.\n"
+                    "description": "Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for \u003cspan pulumi-lang-nodejs=\"`ml`\" pulumi-lang-dotnet=\"`Ml`\" pulumi-lang-go=\"`ml`\" pulumi-lang-python=\"`ml`\" pulumi-lang-yaml=\"`ml`\" pulumi-lang-java=\"`ml`\"\u003e`ml`\u003c/span\u003e tier only.\n"
                 },
                 "maxSize": {
                     "type": "string",
@@ -1807,11 +1807,11 @@
             "properties": {
                 "azureEndpointGuid": {
                     "type": "string",
-                    "description": "Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`\n"
+                    "description": "Azure endpoint GUID. Only applicable when the ruleset type is set to \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azure_private_endpoint`\u003c/span\u003e\n"
                 },
                 "azureEndpointName": {
                     "type": "string",
-                    "description": "Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`\n"
+                    "description": "Azure endpoint name. Only applicable when the ruleset type is set to \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azure_private_endpoint`\u003c/span\u003e\n"
                 },
                 "description": {
                     "type": "string",
@@ -1823,7 +1823,7 @@
                 },
                 "source": {
                     "type": "string",
-                    "description": "Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`\n"
+                    "description": "Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azure_private_endpoint`\u003c/span\u003e\n"
                 }
             },
             "type": "object",
@@ -2100,7 +2100,7 @@
                 },
                 "role": {
                     "type": "string",
-                    "description": "Assigned role. Must be on of `viewer`, `editor` or `admin`.\n"
+                    "description": "Assigned role. Must be on of \u003cspan pulumi-lang-nodejs=\"`viewer`\" pulumi-lang-dotnet=\"`Viewer`\" pulumi-lang-go=\"`viewer`\" pulumi-lang-python=\"`viewer`\" pulumi-lang-yaml=\"`viewer`\" pulumi-lang-java=\"`viewer`\"\u003e`viewer`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`editor`\" pulumi-lang-dotnet=\"`Editor`\" pulumi-lang-go=\"`editor`\" pulumi-lang-python=\"`editor`\" pulumi-lang-yaml=\"`editor`\" pulumi-lang-java=\"`editor`\"\u003e`editor`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`admin`\" pulumi-lang-dotnet=\"`Admin`\" pulumi-lang-go=\"`admin`\" pulumi-lang-python=\"`admin`\" pulumi-lang-yaml=\"`admin`\" pulumi-lang-java=\"`admin`\"\u003e`admin`\u003c/span\u003e.\n"
                 }
             },
             "type": "object",
@@ -2130,7 +2130,7 @@
                 },
                 "role": {
                     "type": "string",
-                    "description": "Assigned role. (Allowed values: `admin`, `developer`, `viewer`)\n"
+                    "description": "Assigned role. (Allowed values: \u003cspan pulumi-lang-nodejs=\"`admin`\" pulumi-lang-dotnet=\"`Admin`\" pulumi-lang-go=\"`admin`\" pulumi-lang-python=\"`admin`\" pulumi-lang-yaml=\"`admin`\" pulumi-lang-java=\"`admin`\"\u003e`admin`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`developer`\" pulumi-lang-dotnet=\"`Developer`\" pulumi-lang-go=\"`developer`\" pulumi-lang-python=\"`developer`\" pulumi-lang-yaml=\"`developer`\" pulumi-lang-java=\"`developer`\"\u003e`developer`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`viewer`\" pulumi-lang-dotnet=\"`Viewer`\" pulumi-lang-go=\"`viewer`\" pulumi-lang-python=\"`viewer`\" pulumi-lang-yaml=\"`viewer`\" pulumi-lang-java=\"`viewer`\"\u003e`viewer`\u003c/span\u003e)\n"
                 }
             },
             "type": "object",
@@ -2160,7 +2160,7 @@
                 },
                 "role": {
                     "type": "string",
-                    "description": "Assigned role. (Allowed values: `admin`, `editor`, `viewer`)\n"
+                    "description": "Assigned role. (Allowed values: \u003cspan pulumi-lang-nodejs=\"`admin`\" pulumi-lang-dotnet=\"`Admin`\" pulumi-lang-go=\"`admin`\" pulumi-lang-python=\"`admin`\" pulumi-lang-yaml=\"`admin`\" pulumi-lang-java=\"`admin`\"\u003e`admin`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`editor`\" pulumi-lang-dotnet=\"`Editor`\" pulumi-lang-go=\"`editor`\" pulumi-lang-python=\"`editor`\" pulumi-lang-yaml=\"`editor`\" pulumi-lang-java=\"`editor`\"\u003e`editor`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`viewer`\" pulumi-lang-dotnet=\"`Viewer`\" pulumi-lang-go=\"`viewer`\" pulumi-lang-python=\"`viewer`\" pulumi-lang-yaml=\"`viewer`\" pulumi-lang-java=\"`viewer`\"\u003e`viewer`\u003c/span\u003e)\n"
                 }
             },
             "type": "object",
@@ -2190,7 +2190,7 @@
                 },
                 "role": {
                     "type": "string",
-                    "description": "Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)\n"
+                    "description": "Assigned role. (Allowed values: \u003cspan pulumi-lang-nodejs=\"`admin`\" pulumi-lang-dotnet=\"`Admin`\" pulumi-lang-go=\"`admin`\" pulumi-lang-python=\"`admin`\" pulumi-lang-yaml=\"`admin`\" pulumi-lang-java=\"`admin`\"\u003e`admin`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`editor`\" pulumi-lang-dotnet=\"`Editor`\" pulumi-lang-go=\"`editor`\" pulumi-lang-python=\"`editor`\" pulumi-lang-yaml=\"`editor`\" pulumi-lang-java=\"`editor`\"\u003e`editor`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`viewer`\" pulumi-lang-dotnet=\"`Viewer`\" pulumi-lang-go=\"`viewer`\" pulumi-lang-python=\"`viewer`\" pulumi-lang-yaml=\"`viewer`\" pulumi-lang-java=\"`viewer`\"\u003e`viewer`\u003c/span\u003e, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)\n"
                 }
             },
             "type": "object",
@@ -2314,7 +2314,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.\n"
+                    "description": "An S3 access key. If set, the\u003cspan pulumi-lang-nodejs=\" secretKey \" pulumi-lang-dotnet=\" SecretKey \" pulumi-lang-go=\" secretKey \" pulumi-lang-python=\" secret_key \" pulumi-lang-yaml=\" secretKey \" pulumi-lang-java=\" secretKey \"\u003e secret_key \u003c/span\u003esetting must also be specified. If unset, the client will use the instance or container role instead.\n"
                 },
                 "bucket": {
                     "type": "string",
@@ -2334,7 +2334,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "An S3 secret key. If set, the access_key setting must also be specified.\n",
+                    "description": "An S3 secret key. If set, the\u003cspan pulumi-lang-nodejs=\" accessKey \" pulumi-lang-dotnet=\" AccessKey \" pulumi-lang-go=\" accessKey \" pulumi-lang-python=\" access_key \" pulumi-lang-yaml=\" accessKey \" pulumi-lang-java=\" accessKey \"\u003e access_key \u003c/span\u003esetting must also be specified.\n",
                     "secret": true
                 },
                 "serverSideEncryption": {
@@ -2424,7 +2424,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -2551,7 +2551,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" per topology element in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e per topology element in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -2698,7 +2698,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -2793,7 +2793,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of \"size_resource\" in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of \u003cspan pulumi-lang-nodejs=\"\"sizeResource\"\" pulumi-lang-dotnet=\"\"SizeResource\"\" pulumi-lang-go=\"\"sizeResource\"\" pulumi-lang-python=\"\"size_resource\"\" pulumi-lang-yaml=\"\"sizeResource\"\" pulumi-lang-java=\"\"sizeResource\"\"\u003e\"size_resource\"\u003c/span\u003e in Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -2885,7 +2885,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "Amount of size_resource in Gigabytes. For example \"4g\".\n"
+                    "description": "Amount of\u003cspan pulumi-lang-nodejs=\" sizeResource \" pulumi-lang-dotnet=\" SizeResource \" pulumi-lang-go=\" sizeResource \" pulumi-lang-python=\" size_resource \" pulumi-lang-yaml=\" sizeResource \" pulumi-lang-java=\" sizeResource \"\u003e size_resource \u003c/span\u003ein Gigabytes. For example \"4g\".\n"
                 },
                 "sizeResource": {
                     "type": "string",
@@ -2925,7 +2925,7 @@
                 },
                 "refId": {
                     "type": "string",
-                    "description": "Elasticsearch resource kind ref_id of the destination deployment.\n"
+                    "description": "Elasticsearch resource kind\u003cspan pulumi-lang-nodejs=\" refId \" pulumi-lang-dotnet=\" RefId \" pulumi-lang-go=\" refId \" pulumi-lang-python=\" ref_id \" pulumi-lang-yaml=\" refId \" pulumi-lang-java=\" refId \"\u003e ref_id \u003c/span\u003eof the destination deployment.\n"
                 }
             },
             "type": "object",
@@ -3699,7 +3699,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.\n"
+                    "description": "Resource kind status. Can be one of \u003cspan pulumi-lang-nodejs=\"`initializing`\" pulumi-lang-dotnet=\"`Initializing`\" pulumi-lang-go=\"`initializing`\" pulumi-lang-python=\"`initializing`\" pulumi-lang-yaml=\"`initializing`\" pulumi-lang-java=\"`initializing`\"\u003e`initializing`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopping`\" pulumi-lang-dotnet=\"`Stopping`\" pulumi-lang-go=\"`stopping`\" pulumi-lang-python=\"`stopping`\" pulumi-lang-yaml=\"`stopping`\" pulumi-lang-java=\"`stopping`\"\u003e`stopping`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopped`\" pulumi-lang-dotnet=\"`Stopped`\" pulumi-lang-go=\"`stopped`\" pulumi-lang-python=\"`stopped`\" pulumi-lang-yaml=\"`stopped`\" pulumi-lang-java=\"`stopped`\"\u003e`stopped`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`rebooting`\" pulumi-lang-dotnet=\"`Rebooting`\" pulumi-lang-go=\"`rebooting`\" pulumi-lang-python=\"`rebooting`\" pulumi-lang-yaml=\"`rebooting`\" pulumi-lang-java=\"`rebooting`\"\u003e`rebooting`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`restarting`\" pulumi-lang-dotnet=\"`Restarting`\" pulumi-lang-go=\"`restarting`\" pulumi-lang-python=\"`restarting`\" pulumi-lang-yaml=\"`restarting`\" pulumi-lang-java=\"`restarting`\"\u003e`restarting`\u003c/span\u003e.\n"
                 },
                 "version": {
                     "type": "string",
@@ -3793,7 +3793,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.\n"
+                    "description": "Resource kind status. Can be one of \u003cspan pulumi-lang-nodejs=\"`initializing`\" pulumi-lang-dotnet=\"`Initializing`\" pulumi-lang-go=\"`initializing`\" pulumi-lang-python=\"`initializing`\" pulumi-lang-yaml=\"`initializing`\" pulumi-lang-java=\"`initializing`\"\u003e`initializing`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopping`\" pulumi-lang-dotnet=\"`Stopping`\" pulumi-lang-go=\"`stopping`\" pulumi-lang-python=\"`stopping`\" pulumi-lang-yaml=\"`stopping`\" pulumi-lang-java=\"`stopping`\"\u003e`stopping`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopped`\" pulumi-lang-dotnet=\"`Stopped`\" pulumi-lang-go=\"`stopped`\" pulumi-lang-python=\"`stopped`\" pulumi-lang-yaml=\"`stopped`\" pulumi-lang-java=\"`stopped`\"\u003e`stopped`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`rebooting`\" pulumi-lang-dotnet=\"`Rebooting`\" pulumi-lang-go=\"`rebooting`\" pulumi-lang-python=\"`rebooting`\" pulumi-lang-yaml=\"`rebooting`\" pulumi-lang-java=\"`rebooting`\"\u003e`rebooting`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`restarting`\" pulumi-lang-dotnet=\"`Restarting`\" pulumi-lang-go=\"`restarting`\" pulumi-lang-python=\"`restarting`\" pulumi-lang-yaml=\"`restarting`\" pulumi-lang-java=\"`restarting`\"\u003e`restarting`\u003c/span\u003e.\n"
                 },
                 "version": {
                     "type": "string",
@@ -3810,7 +3810,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.\n"
+                    "description": "Resource kind status. Can be one of \u003cspan pulumi-lang-nodejs=\"`initializing`\" pulumi-lang-dotnet=\"`Initializing`\" pulumi-lang-go=\"`initializing`\" pulumi-lang-python=\"`initializing`\" pulumi-lang-yaml=\"`initializing`\" pulumi-lang-java=\"`initializing`\"\u003e`initializing`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopping`\" pulumi-lang-dotnet=\"`Stopping`\" pulumi-lang-go=\"`stopping`\" pulumi-lang-python=\"`stopping`\" pulumi-lang-yaml=\"`stopping`\" pulumi-lang-java=\"`stopping`\"\u003e`stopping`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopped`\" pulumi-lang-dotnet=\"`Stopped`\" pulumi-lang-go=\"`stopped`\" pulumi-lang-python=\"`stopped`\" pulumi-lang-yaml=\"`stopped`\" pulumi-lang-java=\"`stopped`\"\u003e`stopped`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`rebooting`\" pulumi-lang-dotnet=\"`Rebooting`\" pulumi-lang-go=\"`rebooting`\" pulumi-lang-python=\"`rebooting`\" pulumi-lang-yaml=\"`rebooting`\" pulumi-lang-java=\"`rebooting`\"\u003e`rebooting`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`restarting`\" pulumi-lang-dotnet=\"`Restarting`\" pulumi-lang-go=\"`restarting`\" pulumi-lang-python=\"`restarting`\" pulumi-lang-yaml=\"`restarting`\" pulumi-lang-java=\"`restarting`\"\u003e`restarting`\u003c/span\u003e.\n"
                 },
                 "version": {
                     "type": "string",
@@ -3827,7 +3827,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.\n"
+                    "description": "Resource kind status. Can be one of \u003cspan pulumi-lang-nodejs=\"`initializing`\" pulumi-lang-dotnet=\"`Initializing`\" pulumi-lang-go=\"`initializing`\" pulumi-lang-python=\"`initializing`\" pulumi-lang-yaml=\"`initializing`\" pulumi-lang-java=\"`initializing`\"\u003e`initializing`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopping`\" pulumi-lang-dotnet=\"`Stopping`\" pulumi-lang-go=\"`stopping`\" pulumi-lang-python=\"`stopping`\" pulumi-lang-yaml=\"`stopping`\" pulumi-lang-java=\"`stopping`\"\u003e`stopping`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopped`\" pulumi-lang-dotnet=\"`Stopped`\" pulumi-lang-go=\"`stopped`\" pulumi-lang-python=\"`stopped`\" pulumi-lang-yaml=\"`stopped`\" pulumi-lang-java=\"`stopped`\"\u003e`stopped`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`rebooting`\" pulumi-lang-dotnet=\"`Rebooting`\" pulumi-lang-go=\"`rebooting`\" pulumi-lang-python=\"`rebooting`\" pulumi-lang-yaml=\"`rebooting`\" pulumi-lang-java=\"`rebooting`\"\u003e`rebooting`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`restarting`\" pulumi-lang-dotnet=\"`Restarting`\" pulumi-lang-go=\"`restarting`\" pulumi-lang-python=\"`restarting`\" pulumi-lang-yaml=\"`restarting`\" pulumi-lang-java=\"`restarting`\"\u003e`restarting`\u003c/span\u003e.\n"
                 },
                 "version": {
                     "type": "string",
@@ -3844,7 +3844,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.\n"
+                    "description": "Resource kind status. Can be one of \u003cspan pulumi-lang-nodejs=\"`initializing`\" pulumi-lang-dotnet=\"`Initializing`\" pulumi-lang-go=\"`initializing`\" pulumi-lang-python=\"`initializing`\" pulumi-lang-yaml=\"`initializing`\" pulumi-lang-java=\"`initializing`\"\u003e`initializing`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopping`\" pulumi-lang-dotnet=\"`Stopping`\" pulumi-lang-go=\"`stopping`\" pulumi-lang-python=\"`stopping`\" pulumi-lang-yaml=\"`stopping`\" pulumi-lang-java=\"`stopping`\"\u003e`stopping`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stopped`\" pulumi-lang-dotnet=\"`Stopped`\" pulumi-lang-go=\"`stopped`\" pulumi-lang-python=\"`stopped`\" pulumi-lang-yaml=\"`stopped`\" pulumi-lang-java=\"`stopped`\"\u003e`stopped`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`rebooting`\" pulumi-lang-dotnet=\"`Rebooting`\" pulumi-lang-go=\"`rebooting`\" pulumi-lang-python=\"`rebooting`\" pulumi-lang-yaml=\"`rebooting`\" pulumi-lang-java=\"`rebooting`\"\u003e`rebooting`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`restarting`\" pulumi-lang-dotnet=\"`Restarting`\" pulumi-lang-go=\"`restarting`\" pulumi-lang-python=\"`restarting`\" pulumi-lang-yaml=\"`restarting`\" pulumi-lang-java=\"`restarting`\"\u003e`restarting`\u003c/span\u003e.\n"
                 },
                 "version": {
                     "type": "string",
@@ -4200,7 +4200,7 @@
     },
     "resources": {
         "ec:index/deployment:Deployment": {
-            "description": "\n\n{{% examples %}}\n## Example Usage\n\n### Basic\n\n```terraform\n# Retrieve the latest stack pack version\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\n# Create an Elastic Cloud deployment\nresource \"ec_deployment\" \"example_minimal\" {\n  # Optional name.\n  name = \"my_example_deployment\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n  }\n\n  kibana = {}\n\n  enterprise_search = {}\n\n  integrations_server = {}\n}\n```\n\n### With config\n\n`es.yaml`\n```yaml\n# My example YAML configuration for elasicsearch nodes\nrepositories.url.allowed_urls: [\"http://www.example.org/root/*\", \"https://*.mydomain.com/*?*#*\"]\n```\n\n`deployment.tf`:\n```terraform\n# Retrieve the latest stack pack version\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\n# Create an Elastic Cloud deployment\nresource \"ec_deployment\" \"example_minimal\" {\n  # Optional name.\n  name = \"my_example_deployment\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n    config = {\n      user_settings_yaml = file(\"./es.yaml\")\n    }\n  }\n\n  kibana = {}\n\n  enterprise_search = {}\n\n  integrations_server = {}\n}\n```\n\n### With autoscaling\n\n```terraform\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\nresource \"ec_deployment\" \"example_minimal\" {\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n\n    autoscale = \"true\"\n\n    # If `autoscale` is set, all topology elements that\n    # - either set `size` in the plan or\n    # - have non-zero default `max_size` (that is read from the deployment templates's `autoscaling_max` value)\n    # have to be listed even if their blocks don't specify other fields beside `id`\n\n    cold = {\n      autoscaling = {}\n    }\n\n    frozen = {\n      autoscaling = {}\n    }\n\n    hot = {\n      size = \"8g\"\n\n      autoscaling = {\n        max_size          = \"128g\"\n        max_size_resource = \"memory\"\n      }\n    }\n\n    ml = {\n      autoscaling = {}\n    }\n\n    warm = {\n      autoscaling = {}\n    }\n  }\n\n  # Initial size for `hot_content` tier is set to 8g\n  # so `hot_content`'s size has to be added to the `ignore_changes` meta-argument to ignore future modifications that can be made by the autoscaler\n  lifecycle {\n    ignore_changes = [\n      elasticsearch.hot.size\n    ]\n  }\n\n  kibana = {}\n\n  integrations_server = {}\n\n  enterprise_search = {}\n}\n```\n\n### With observability\n\n```terraform\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\nresource \"ec_deployment\" \"example_observability\" {\n  # Optional name.\n  name = \"my_example_deployment\"\n\n  # Mandatory fields\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n  }\n\n  kibana = {}\n\n  # Optional observability settings\n  observability = {\n    deployment_id = ec_deployment.example_minimal.id\n  }\n\n  tags = {\n    \"monitoring\" = \"source\"\n  }\n}\n```\n\nIt is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.\n```hcl\nobservability = {\n  deployment_id = \"self\"\n}\n```\n\n### With Cross Cluster Search settings\n\n```terraform\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\nresource \"ec_deployment\" \"source_deployment\" {\n  name = \"my_ccs_source\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      size        = \"1g\"\n      autoscaling = {}\n    }\n  }\n}\n\nresource \"ec_deployment\" \"ccs\" {\n  name = \"ccs deployment\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-cross-cluster-search-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscalign = {}\n    }\n    remote_cluster = [{\n      deployment_id = ec_deployment.source_deployment.id\n      alias         = ec_deployment.source_deployment.name\n      ref_id        = ec_deployment.source_deployment.elasticsearch.0.ref_id\n    }]\n  }\n\n  kibana = {}\n}\n```\n\n### With Keystore\n\n```terraform\n# Retrieve the latest stack pack version\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\n# Create an Elastic Cloud deployment with keystore\nresource \"ec_deployment\" \"with_keystore\" {\n  name = \"example_with_keystore\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n\n    config = {\n      user_settings_yaml = \u003c\u003cEOF\nxpack.security.authc.realms.oidc.oidc1:\n  order: 1\n  rp.client_id: \"\u003cclient-id\u003e\"\n  rp.response_type: \"code\"\n  rp.requested_scopes: [\"openid\", \"email\"]\n  rp.redirect_uri: \"\u003cKIBANA_ENDPOINT_URL\u003e/api/security/oidc/callback\"\n  op.issuer: \"\u003cYOUR_OKTA_DOMAIN\u003e\"\n  op.authorization_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/authorize\"\n  op.token_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/token\"\n  op.userinfo_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/userinfo\"\n  op.endsession_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/logout\"\n  op.jwkset_path: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/keys\"\n  claims.principal: email\n  claim_patterns.principal: \"^([^@]+)@elastic\\\\.co$\"\nEOF\n    }\n\n    keystore_contents = {\n      \"xpack.security.authc.realms.oidc.oidc1.rp.client_secret\" = {\n        value = \"secret-1\"\n      }\n    }\n  }\n\n  kibana = {\n    zone_count = 1\n    config = {\n      user_settings_yaml = \u003c\u003cEOF\nxpack.security.authc.providers:\n  oidc.oidc1:\n    order: 0\n    realm: oidc1\n    description: \"Log in with Okta\"\n  basic.basic1:\n    order: 1\nEOF\n    }\n  }\n}\n```\n\n## Import\n\n~\u003e **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.\n\n~\u003e **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported.\n\n~\u003e **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported.\n\n~\u003e **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing.\n\nDeployments can be imported using the `id`, for example:\n\n```sh\n$ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\n{{% /examples %}}",
+            "description": "\n\n{{% examples %}}\n## Example Usage\n\n### Basic\n\n```terraform\n# Retrieve the latest stack pack version\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\n# Create an Elastic Cloud deployment\nresource \"ec_deployment\" \"example_minimal\" {\n  # Optional name.\n  name = \"my_example_deployment\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n  }\n\n  kibana = {}\n\n  enterprise_search = {}\n\n  integrations_server = {}\n}\n```\n\n### With config\n\n`es.yaml`\n```yaml\n# My example YAML configuration for elasicsearch nodes\nrepositories.url.allowed_urls: [\"http://www.example.org/root/*\", \"https://*.mydomain.com/*?*#*\"]\n```\n\n`deployment.tf`:\n```terraform\n# Retrieve the latest stack pack version\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\n# Create an Elastic Cloud deployment\nresource \"ec_deployment\" \"example_minimal\" {\n  # Optional name.\n  name = \"my_example_deployment\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n    config = {\n      user_settings_yaml = file(\"./es.yaml\")\n    }\n  }\n\n  kibana = {}\n\n  enterprise_search = {}\n\n  integrations_server = {}\n}\n```\n\n### With autoscaling\n\n```terraform\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\nresource \"ec_deployment\" \"example_minimal\" {\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n\n    autoscale = \"true\"\n\n    # If `autoscale` is set, all topology elements that\n    # - either set `size` in the plan or\n    # - have non-zero default `max_size` (that is read from the deployment templates's `autoscaling_max` value)\n    # have to be listed even if their blocks don't specify other fields beside `id`\n\n    cold = {\n      autoscaling = {}\n    }\n\n    frozen = {\n      autoscaling = {}\n    }\n\n    hot = {\n      size = \"8g\"\n\n      autoscaling = {\n        max_size          = \"128g\"\n        max_size_resource = \"memory\"\n      }\n    }\n\n    ml = {\n      autoscaling = {}\n    }\n\n    warm = {\n      autoscaling = {}\n    }\n  }\n\n  # Initial size for `hot_content` tier is set to 8g\n  # so `hot_content`'s size has to be added to the `ignore_changes` meta-argument to ignore future modifications that can be made by the autoscaler\n  lifecycle {\n    ignore_changes = [\n      elasticsearch.hot.size\n    ]\n  }\n\n  kibana = {}\n\n  integrations_server = {}\n\n  enterprise_search = {}\n}\n```\n\n### With observability\n\n```terraform\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\nresource \"ec_deployment\" \"example_observability\" {\n  # Optional name.\n  name = \"my_example_deployment\"\n\n  # Mandatory fields\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n  }\n\n  kibana = {}\n\n  # Optional observability settings\n  observability = {\n    deployment_id = ec_deployment.example_minimal.id\n  }\n\n  tags = {\n    \"monitoring\" = \"source\"\n  }\n}\n```\n\nIt is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set \u003cspan pulumi-lang-nodejs=\"`deploymentId`\" pulumi-lang-dotnet=\"`DeploymentId`\" pulumi-lang-go=\"`deploymentId`\" pulumi-lang-python=\"`deployment_id`\" pulumi-lang-yaml=\"`deploymentId`\" pulumi-lang-java=\"`deploymentId`\"\u003e`deployment_id`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`self`\" pulumi-lang-dotnet=\"`Self`\" pulumi-lang-go=\"`self`\" pulumi-lang-python=\"`self`\" pulumi-lang-yaml=\"`self`\" pulumi-lang-java=\"`self`\"\u003e`self`\u003c/span\u003e.\n```hcl\nobservability = {\n  deployment_id = \"self\"\n}\n```\n\n### With Cross Cluster Search settings\n\n```terraform\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\nresource \"ec_deployment\" \"source_deployment\" {\n  name = \"my_ccs_source\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      size        = \"1g\"\n      autoscaling = {}\n    }\n  }\n}\n\nresource \"ec_deployment\" \"ccs\" {\n  name = \"ccs deployment\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-cross-cluster-search-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscalign = {}\n    }\n    remote_cluster = [{\n      deployment_id = ec_deployment.source_deployment.id\n      alias         = ec_deployment.source_deployment.name\n      ref_id        = ec_deployment.source_deployment.elasticsearch.0.ref_id\n    }]\n  }\n\n  kibana = {}\n}\n```\n\n### With Keystore\n\n```terraform\n# Retrieve the latest stack pack version\ndata \"ec_stack\" \"latest\" {\n  version_regex = \"latest\"\n  region        = \"us-east-1\"\n}\n\n# Create an Elastic Cloud deployment with keystore\nresource \"ec_deployment\" \"with_keystore\" {\n  name = \"example_with_keystore\"\n\n  region                 = \"us-east-1\"\n  version                = data.ec_stack.latest.version\n  deployment_template_id = \"aws-io-optimized-v2\"\n\n  elasticsearch = {\n    hot = {\n      autoscaling = {}\n    }\n\n    config = {\n      user_settings_yaml = \u003c\u003cEOF\nxpack.security.authc.realms.oidc.oidc1:\n  order: 1\n  rp.client_id: \"\u003cclient-id\u003e\"\n  rp.response_type: \"code\"\n  rp.requested_scopes: [\"openid\", \"email\"]\n  rp.redirect_uri: \"\u003cKIBANA_ENDPOINT_URL\u003e/api/security/oidc/callback\"\n  op.issuer: \"\u003cYOUR_OKTA_DOMAIN\u003e\"\n  op.authorization_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/authorize\"\n  op.token_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/token\"\n  op.userinfo_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/userinfo\"\n  op.endsession_endpoint: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/logout\"\n  op.jwkset_path: \"\u003cYOUR_OKTA_DOMAIN\u003e/oauth2/v1/keys\"\n  claims.principal: email\n  claim_patterns.principal: \"^([^@]+)@elastic\\\\.co$\"\nEOF\n    }\n\n    keystore_contents = {\n      \"xpack.security.authc.realms.oidc.oidc1.rp.client_secret\" = {\n        value = \"secret-1\"\n      }\n    }\n  }\n\n  kibana = {\n    zone_count = 1\n    config = {\n      user_settings_yaml = \u003c\u003cEOF\nxpack.security.authc.providers:\n  oidc.oidc1:\n    order: 0\n    realm: oidc1\n    description: \"Log in with Okta\"\n  basic.basic1:\n    order: 1\nEOF\n    }\n  }\n}\n```\n\n## Import\n\n~\u003e **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.\n\n~\u003e **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported.\n\n~\u003e **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported.\n\n~\u003e **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing.\n\nDeployments can be imported using the `id`, for example:\n\n```sh\n$ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\n{{% /examples %}}",
             "properties": {
                 "alias": {
                     "type": "string",
@@ -4236,7 +4236,7 @@
                 },
                 "integrationsServer": {
                     "$ref": "#/types/ec:index/DeploymentIntegrationsServer:DeploymentIntegrationsServer",
-                    "description": "Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions \u003e 8.0"
+                    "description": "Integrations Server cluster definition. Integrations Server replaces \u003cspan pulumi-lang-nodejs=\"`apm`\" pulumi-lang-dotnet=\"`Apm`\" pulumi-lang-go=\"`apm`\" pulumi-lang-python=\"`apm`\" pulumi-lang-yaml=\"`apm`\" pulumi-lang-java=\"`apm`\"\u003e`apm`\u003c/span\u003e in Stack versions \u003e 8.0"
                 },
                 "kibana": {
                     "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
@@ -4252,7 +4252,7 @@
                 },
                 "observability": {
                     "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
-                    "description": "Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`."
+                    "description": "Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to \u003cspan pulumi-lang-nodejs=\"`self`\" pulumi-lang-dotnet=\"`Self`\" pulumi-lang-go=\"`self`\" pulumi-lang-python=\"`self`\" pulumi-lang-yaml=\"`self`\" pulumi-lang-java=\"`self`\"\u003e`self`\u003c/span\u003e."
                 },
                 "region": {
                     "type": "string",
@@ -4260,11 +4260,11 @@
                 },
                 "requestId": {
                     "type": "string",
-                    "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error."
+                    "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and \u003cspan pulumi-lang-nodejs=\"`requestId`\" pulumi-lang-dotnet=\"`RequestId`\" pulumi-lang-go=\"`requestId`\" pulumi-lang-python=\"`request_id`\" pulumi-lang-yaml=\"`requestId`\" pulumi-lang-java=\"`requestId`\"\u003e`request_id`\u003c/span\u003e is returned as part of the error."
                 },
                 "resetElasticsearchPassword": {
                     "type": "boolean",
-                    "description": "Explicitly resets the elasticsearch_password when true"
+                    "description": "Explicitly resets the\u003cspan pulumi-lang-nodejs=\" elasticsearchPassword \" pulumi-lang-dotnet=\" ElasticsearchPassword \" pulumi-lang-go=\" elasticsearchPassword \" pulumi-lang-python=\" elasticsearch_password \" pulumi-lang-yaml=\" elasticsearchPassword \" pulumi-lang-java=\" elasticsearchPassword \"\u003e elasticsearch_password \u003c/span\u003ewhen true"
                 },
                 "tags": {
                     "type": "object",
@@ -4321,7 +4321,7 @@
                 },
                 "integrationsServer": {
                     "$ref": "#/types/ec:index/DeploymentIntegrationsServer:DeploymentIntegrationsServer",
-                    "description": "Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions \u003e 8.0"
+                    "description": "Integrations Server cluster definition. Integrations Server replaces \u003cspan pulumi-lang-nodejs=\"`apm`\" pulumi-lang-dotnet=\"`Apm`\" pulumi-lang-go=\"`apm`\" pulumi-lang-python=\"`apm`\" pulumi-lang-yaml=\"`apm`\" pulumi-lang-java=\"`apm`\"\u003e`apm`\u003c/span\u003e in Stack versions \u003e 8.0"
                 },
                 "kibana": {
                     "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
@@ -4337,7 +4337,7 @@
                 },
                 "observability": {
                     "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
-                    "description": "Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`."
+                    "description": "Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to \u003cspan pulumi-lang-nodejs=\"`self`\" pulumi-lang-dotnet=\"`Self`\" pulumi-lang-go=\"`self`\" pulumi-lang-python=\"`self`\" pulumi-lang-yaml=\"`self`\" pulumi-lang-java=\"`self`\"\u003e`self`\u003c/span\u003e."
                 },
                 "region": {
                     "type": "string",
@@ -4345,11 +4345,11 @@
                 },
                 "requestId": {
                     "type": "string",
-                    "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error."
+                    "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and \u003cspan pulumi-lang-nodejs=\"`requestId`\" pulumi-lang-dotnet=\"`RequestId`\" pulumi-lang-go=\"`requestId`\" pulumi-lang-python=\"`request_id`\" pulumi-lang-yaml=\"`requestId`\" pulumi-lang-java=\"`requestId`\"\u003e`request_id`\u003c/span\u003e is returned as part of the error."
                 },
                 "resetElasticsearchPassword": {
                     "type": "boolean",
-                    "description": "Explicitly resets the elasticsearch_password when true"
+                    "description": "Explicitly resets the\u003cspan pulumi-lang-nodejs=\" elasticsearchPassword \" pulumi-lang-dotnet=\" ElasticsearchPassword \" pulumi-lang-go=\" elasticsearchPassword \" pulumi-lang-python=\" elasticsearch_password \" pulumi-lang-yaml=\" elasticsearchPassword \" pulumi-lang-java=\" elasticsearchPassword \"\u003e elasticsearch_password \u003c/span\u003ewhen true"
                 },
                 "tags": {
                     "type": "object",
@@ -4413,7 +4413,7 @@
                     },
                     "integrationsServer": {
                         "$ref": "#/types/ec:index/DeploymentIntegrationsServer:DeploymentIntegrationsServer",
-                        "description": "Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions \u003e 8.0"
+                        "description": "Integrations Server cluster definition. Integrations Server replaces \u003cspan pulumi-lang-nodejs=\"`apm`\" pulumi-lang-dotnet=\"`Apm`\" pulumi-lang-go=\"`apm`\" pulumi-lang-python=\"`apm`\" pulumi-lang-yaml=\"`apm`\" pulumi-lang-java=\"`apm`\"\u003e`apm`\u003c/span\u003e in Stack versions \u003e 8.0"
                     },
                     "kibana": {
                         "$ref": "#/types/ec:index/DeploymentKibana:DeploymentKibana",
@@ -4429,7 +4429,7 @@
                     },
                     "observability": {
                         "$ref": "#/types/ec:index/DeploymentObservability:DeploymentObservability",
-                        "description": "Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`."
+                        "description": "Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to \u003cspan pulumi-lang-nodejs=\"`self`\" pulumi-lang-dotnet=\"`Self`\" pulumi-lang-go=\"`self`\" pulumi-lang-python=\"`self`\" pulumi-lang-yaml=\"`self`\" pulumi-lang-java=\"`self`\"\u003e`self`\u003c/span\u003e."
                     },
                     "region": {
                         "type": "string",
@@ -4437,11 +4437,11 @@
                     },
                     "requestId": {
                         "type": "string",
-                        "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error."
+                        "description": "Request ID to set when you create the deployment. Use it only when previous attempts return an error and \u003cspan pulumi-lang-nodejs=\"`requestId`\" pulumi-lang-dotnet=\"`RequestId`\" pulumi-lang-go=\"`requestId`\" pulumi-lang-python=\"`request_id`\" pulumi-lang-yaml=\"`requestId`\" pulumi-lang-java=\"`requestId`\"\u003e`request_id`\u003c/span\u003e is returned as part of the error."
                     },
                     "resetElasticsearchPassword": {
                         "type": "boolean",
-                        "description": "Explicitly resets the elasticsearch_password when true"
+                        "description": "Explicitly resets the\u003cspan pulumi-lang-nodejs=\" elasticsearchPassword \" pulumi-lang-dotnet=\" ElasticsearchPassword \" pulumi-lang-go=\" elasticsearchPassword \" pulumi-lang-python=\" elasticsearch_password \" pulumi-lang-yaml=\" elasticsearchPassword \" pulumi-lang-java=\" elasticsearchPassword \"\u003e elasticsearch_password \u003c/span\u003ewhen true"
                     },
                     "tags": {
                         "type": "object",
@@ -4553,7 +4553,7 @@
                 },
                 "extensionType": {
                     "type": "string",
-                    "description": "Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.\n"
+                    "description": "Extension type. Must be \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e. A \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e will usually contain a dictionary or script, where a \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e is compiled from source.\n"
                 },
                 "fileHash": {
                     "type": "string",
@@ -4605,7 +4605,7 @@
                 },
                 "extensionType": {
                     "type": "string",
-                    "description": "Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.\n"
+                    "description": "Extension type. Must be \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e. A \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e will usually contain a dictionary or script, where a \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e is compiled from source.\n"
                 },
                 "fileHash": {
                     "type": "string",
@@ -4641,7 +4641,7 @@
                     },
                     "extensionType": {
                         "type": "string",
-                        "description": "Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.\n"
+                        "description": "Extension type. Must be \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e. A \u003cspan pulumi-lang-nodejs=\"`bundle`\" pulumi-lang-dotnet=\"`Bundle`\" pulumi-lang-go=\"`bundle`\" pulumi-lang-python=\"`bundle`\" pulumi-lang-yaml=\"`bundle`\" pulumi-lang-java=\"`bundle`\"\u003e`bundle`\u003c/span\u003e will usually contain a dictionary or script, where a \u003cspan pulumi-lang-nodejs=\"`plugin`\" pulumi-lang-dotnet=\"`Plugin`\" pulumi-lang-go=\"`plugin`\" pulumi-lang-python=\"`plugin`\" pulumi-lang-yaml=\"`plugin`\" pulumi-lang-java=\"`plugin`\"\u003e`plugin`\u003c/span\u003e is compiled from source.\n"
                     },
                     "fileHash": {
                         "type": "string",
@@ -4703,7 +4703,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`\n"
+                    "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azure_private_endpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcp_private_service_connect_endpoint`\u003c/span\u003e\n"
                 }
             },
             "required": [
@@ -4738,7 +4738,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`\n"
+                    "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azure_private_endpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcp_private_service_connect_endpoint`\u003c/span\u003e\n"
                 }
             },
             "requiredInputs": [
@@ -4773,7 +4773,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`\n"
+                        "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azure_private_endpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcp_private_service_connect_endpoint`\u003c/span\u003e\n"
                     }
                 },
                 "type": "object"
@@ -5608,7 +5608,7 @@
                     },
                     "size": {
                         "type": "integer",
-                        "description": "The maximum number of deployments to return. Defaults to `100`.\n"
+                        "description": "The maximum number of deployments to return. Defaults to \u003cspan pulumi-lang-nodejs=\"`100`\" pulumi-lang-dotnet=\"`100`\" pulumi-lang-go=\"`100`\" pulumi-lang-python=\"`100`\" pulumi-lang-yaml=\"`100`\" pulumi-lang-java=\"`100`\"\u003e`100`\u003c/span\u003e.\n"
                     },
                     "tags": {
                         "type": "object",
@@ -5690,7 +5690,7 @@
                         "type": "integer"
                     },
                     "size": {
-                        "description": "The maximum number of deployments to return. Defaults to `100`.\n",
+                        "description": "The maximum number of deployments to return. Defaults to \u003cspan pulumi-lang-nodejs=\"`100`\" pulumi-lang-dotnet=\"`100`\" pulumi-lang-go=\"`100`\" pulumi-lang-python=\"`100`\" pulumi-lang-yaml=\"`100`\" pulumi-lang-java=\"`100`\"\u003e`100`\u003c/span\u003e.\n",
                         "type": "integer"
                     },
                     "tags": {
@@ -5760,7 +5760,7 @@
                 "properties": {
                     "lock": {
                         "type": "boolean",
-                        "description": "Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.\n"
+                        "description": "Lock the \u003cspan pulumi-lang-nodejs=\"`latest`\" pulumi-lang-dotnet=\"`Latest`\" pulumi-lang-go=\"`latest`\" pulumi-lang-python=\"`latest`\" pulumi-lang-yaml=\"`latest`\" pulumi-lang-java=\"`latest`\"\u003e`latest`\u003c/span\u003e \u003cspan pulumi-lang-nodejs=\"`versionRegex`\" pulumi-lang-dotnet=\"`VersionRegex`\" pulumi-lang-go=\"`versionRegex`\" pulumi-lang-python=\"`version_regex`\" pulumi-lang-yaml=\"`versionRegex`\" pulumi-lang-java=\"`versionRegex`\"\u003e`version_regex`\u003c/span\u003e obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.\n"
                     },
                     "region": {
                         "type": "string",
@@ -5768,7 +5768,7 @@
                     },
                     "versionRegex": {
                         "type": "string",
-                        "description": "Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.\n"
+                        "description": "Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. \u003cspan pulumi-lang-nodejs=\"`latest`\" pulumi-lang-dotnet=\"`Latest`\" pulumi-lang-go=\"`latest`\" pulumi-lang-python=\"`latest`\" pulumi-lang-yaml=\"`latest`\" pulumi-lang-java=\"`latest`\"\u003e`latest`\u003c/span\u003e is also accepted to obtain the latest available stack version.\n"
                     }
                 },
                 "type": "object",
@@ -5785,7 +5785,7 @@
                         "type": "boolean"
                     },
                     "allowlisted": {
-                        "description": "To include/not include this version in the `allowlist`. This is only relevant for Elasticsearch Service (ESS), not for ECE.\n",
+                        "description": "To include/not include this version in the \u003cspan pulumi-lang-nodejs=\"`allowlist`\" pulumi-lang-dotnet=\"`Allowlist`\" pulumi-lang-go=\"`allowlist`\" pulumi-lang-python=\"`allowlist`\" pulumi-lang-yaml=\"`allowlist`\" pulumi-lang-java=\"`allowlist`\"\u003e`allowlist`\u003c/span\u003e. This is only relevant for Elasticsearch Service (ESS), not for ECE.\n",
                         "type": "boolean"
                     },
                     "apms": {
@@ -5821,7 +5821,7 @@
                         "type": "array"
                     },
                     "lock": {
-                        "description": "Lock the `latest` `version_regex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.\n",
+                        "description": "Lock the \u003cspan pulumi-lang-nodejs=\"`latest`\" pulumi-lang-dotnet=\"`Latest`\" pulumi-lang-go=\"`latest`\" pulumi-lang-python=\"`latest`\" pulumi-lang-yaml=\"`latest`\" pulumi-lang-java=\"`latest`\"\u003e`latest`\u003c/span\u003e \u003cspan pulumi-lang-nodejs=\"`versionRegex`\" pulumi-lang-dotnet=\"`VersionRegex`\" pulumi-lang-go=\"`versionRegex`\" pulumi-lang-python=\"`version_regex`\" pulumi-lang-yaml=\"`versionRegex`\" pulumi-lang-java=\"`versionRegex`\"\u003e`version_regex`\u003c/span\u003e obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.\n",
                         "type": "boolean"
                     },
                     "minUpgradableFrom": {
@@ -5844,7 +5844,7 @@
                         "type": "string"
                     },
                     "versionRegex": {
-                        "description": "Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. `latest` is also accepted to obtain the latest available stack version.\n",
+                        "description": "Regex to filter the available stacks. Can be any valid regex expression, when multiple stacks are matched through a regex, the latest version is returned. \u003cspan pulumi-lang-nodejs=\"`latest`\" pulumi-lang-dotnet=\"`Latest`\" pulumi-lang-go=\"`latest`\" pulumi-lang-python=\"`latest`\" pulumi-lang-yaml=\"`latest`\" pulumi-lang-java=\"`latest`\"\u003e`latest`\u003c/span\u003e is also accepted to obtain the latest available stack version.\n",
                         "type": "string"
                     }
                 },

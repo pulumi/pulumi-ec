@@ -13,6 +13,10 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### With extension file
+ *
+ * ### With download URL
+ *
  * ## Import
  *
  * Extensions can be imported using the `id`, for example:

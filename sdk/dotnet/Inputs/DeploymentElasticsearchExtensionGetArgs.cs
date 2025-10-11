@@ -19,7 +19,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Extension type, only `bundle` or `plugin` are supported.
+        /// Extension type, only `Bundle` or `Plugin` are supported.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

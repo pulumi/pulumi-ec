@@ -16,14 +16,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     public static final DeploymentTrafficFilterRuleArgs Empty = new DeploymentTrafficFilterRuleArgs();
 
     /**
-     * Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     @Import(name="azureEndpointGuid")
     private @Nullable Output<String> azureEndpointGuid;
 
     /**
-     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     public Optional<Output<String>> azureEndpointGuid() {
@@ -31,14 +31,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
-     * Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     @Import(name="azureEndpointName")
     private @Nullable Output<String> azureEndpointName;
 
     /**
-     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     public Optional<Output<String>> azureEndpointName() {
@@ -76,14 +76,14 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
-     * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
+     * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
     @Import(name="source")
     private @Nullable Output<String> source;
 
     /**
-     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
+     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
     public Optional<Output<String>> source() {
@@ -119,7 +119,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
+         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
+         * @param azureEndpointGuid Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
+         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
          * 
          * @return builder
          * 
@@ -151,7 +151,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
+         * @param azureEndpointName Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
          * 
          * @return builder
          * 
@@ -203,7 +203,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param source Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
+         * @param source Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
          * 
          * @return builder
          * 
@@ -214,7 +214,7 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param source Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
+         * @param source Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
          * 
          * @return builder
          * 

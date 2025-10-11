@@ -229,14 +229,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      * 
      */
     @Import(name="requestId")
     private @Nullable Output<String> requestId;
 
     /**
-     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      * 
      */
     public Optional<Output<String>> requestId() {
@@ -244,14 +244,14 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Explicitly resets the elasticsearch_password when true
+     * Explicitly resets the elasticsearchPassword when true
      * 
      */
     @Import(name="resetElasticsearchPassword")
     private @Nullable Output<Boolean> resetElasticsearchPassword;
 
     /**
-     * @return Explicitly resets the elasticsearch_password when true
+     * @return Explicitly resets the elasticsearchPassword when true
      * 
      */
     public Optional<Output<Boolean>> resetElasticsearchPassword() {
@@ -626,7 +626,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
          * 
          * @return builder
          * 
@@ -637,7 +637,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+         * @param requestId Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
          * 
          * @return builder
          * 
@@ -647,7 +647,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resetElasticsearchPassword Explicitly resets the elasticsearch_password when true
+         * @param resetElasticsearchPassword Explicitly resets the elasticsearchPassword when true
          * 
          * @return builder
          * 
@@ -658,7 +658,7 @@ public final class DeploymentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resetElasticsearchPassword Explicitly resets the elasticsearch_password when true
+         * @param resetElasticsearchPassword Explicitly resets the elasticsearchPassword when true
          * 
          * @return builder
          * 

@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SnapshotRepositoryS3 {
     /**
-     * @return An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+     * @return An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
      * 
      */
     private @Nullable String accessKey;
@@ -39,7 +39,7 @@ public final class SnapshotRepositoryS3 {
      */
     private @Nullable String region;
     /**
-     * @return An S3 secret key. If set, the access_key setting must also be specified.
+     * @return An S3 secret key. If set, the accessKey setting must also be specified.
      * 
      */
     private @Nullable String secretKey;
@@ -51,7 +51,7 @@ public final class SnapshotRepositoryS3 {
 
     private SnapshotRepositoryS3() {}
     /**
-     * @return An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+     * @return An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
      * 
      */
     public Optional<String> accessKey() {
@@ -86,7 +86,7 @@ public final class SnapshotRepositoryS3 {
         return Optional.ofNullable(this.region);
     }
     /**
-     * @return An S3 secret key. If set, the access_key setting must also be specified.
+     * @return An S3 secret key. If set, the accessKey setting must also be specified.
      * 
      */
     public Optional<String> secretKey() {

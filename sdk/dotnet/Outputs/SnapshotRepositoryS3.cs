@@ -14,7 +14,7 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class SnapshotRepositoryS3
     {
         /// <summary>
-        /// An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+        /// An S3 access key. If set, the SecretKey setting must also be specified. If unset, the client will use the instance or container role instead.
         /// </summary>
         public readonly string? AccessKey;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// An S3 secret key. If set, the access_key setting must also be specified.
+        /// An S3 secret key. If set, the AccessKey setting must also be specified.
         /// </summary>
         public readonly string? SecretKey;
         /// <summary>

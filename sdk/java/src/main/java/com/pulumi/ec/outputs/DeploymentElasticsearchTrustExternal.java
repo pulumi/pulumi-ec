@@ -19,12 +19,12 @@ public final class DeploymentElasticsearchTrustExternal {
      */
     private String relationshipId;
     /**
-     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * @return If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
      * 
      */
     private Boolean trustAll;
     /**
-     * @return The list of clusters to trust. Only used when `trust_all` is false.
+     * @return The list of clusters to trust. Only used when `trustAll` is false.
      * 
      */
     private @Nullable List<String> trustAllowlists;
@@ -38,14 +38,14 @@ public final class DeploymentElasticsearchTrustExternal {
         return this.relationshipId;
     }
     /**
-     * @return If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
+     * @return If true, all clusters in this account will by default be trusted and the `trustAllowlist` is ignored.
      * 
      */
     public Boolean trustAll() {
         return this.trustAll;
     }
     /**
-     * @return The list of clusters to trust. Only used when `trust_all` is false.
+     * @return The list of clusters to trust. Only used when `trustAll` is false.
      * 
      */
     public List<String> trustAllowlists() {

@@ -54,7 +54,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? NodeTypeMl;
         /// <summary>
-        /// Amount of "size_resource" per node in the "\n\ng" notation
+        /// Amount of "SizeResource" per node in the "\n\ng" notation
         /// </summary>
         public readonly string? Size;
         /// <summary>

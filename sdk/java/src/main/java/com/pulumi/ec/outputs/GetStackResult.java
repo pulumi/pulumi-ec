@@ -54,7 +54,7 @@ public final class GetStackResult {
      */
     private List<GetStackKibana> kibanas;
     /**
-     * @return Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * @return Lock the `latest` `versionRegex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
      * 
      */
     private @Nullable Boolean lock;
@@ -135,7 +135,7 @@ public final class GetStackResult {
         return this.kibanas;
     }
     /**
-     * @return Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * @return Lock the `latest` `versionRegex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
      * 
      */
     public Optional<Boolean> lock() {

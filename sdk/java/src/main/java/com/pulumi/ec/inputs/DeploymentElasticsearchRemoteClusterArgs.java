@@ -48,14 +48,14 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
     }
 
     /**
-     * Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+     * Remote elasticsearch &#34;refId&#34;, it is best left to the default value
      * 
      */
     @Import(name="refId")
     private @Nullable Output<String> refId;
 
     /**
-     * @return Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+     * @return Remote elasticsearch &#34;refId&#34;, it is best left to the default value
      * 
      */
     public Optional<Output<String>> refId() {
@@ -147,7 +147,7 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         /**
-         * @param refId Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+         * @param refId Remote elasticsearch &#34;refId&#34;, it is best left to the default value
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class DeploymentElasticsearchRemoteClusterArgs extends com.pulumi.r
         }
 
         /**
-         * @param refId Remote elasticsearch &#34;ref_id&#34;, it is best left to the default value
+         * @param refId Remote elasticsearch &#34;refId&#34;, it is best left to the default value
          * 
          * @return builder
          * 

@@ -33,7 +33,7 @@ public final class GetDeploymentEnterpriseSearchTopology {
      */
     private Boolean nodeTypeWorker;
     /**
-     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of &#34;sizeResource&#34; in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     private String size;
@@ -78,7 +78,7 @@ public final class GetDeploymentEnterpriseSearchTopology {
         return this.nodeTypeWorker;
     }
     /**
-     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of &#34;sizeResource&#34; in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     public String size() {

@@ -14,7 +14,7 @@ namespace Pulumi.ElasticCloud.Outputs
     public sealed class DeploymentElasticsearchMlAutoscaling
     {
         /// <summary>
-        /// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
+        /// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `Ml` tier only.
         /// </summary>
         public readonly bool? Autoscale;
         /// <summary>

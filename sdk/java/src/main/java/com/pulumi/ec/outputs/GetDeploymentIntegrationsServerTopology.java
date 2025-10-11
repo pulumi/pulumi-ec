@@ -17,7 +17,7 @@ public final class GetDeploymentIntegrationsServerTopology {
      */
     private String instanceConfigurationId;
     /**
-     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of &#34;sizeResource&#34; in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     private String size;
@@ -41,7 +41,7 @@ public final class GetDeploymentIntegrationsServerTopology {
         return this.instanceConfigurationId;
     }
     /**
-     * @return Amount of &#34;size_resource&#34; in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of &#34;sizeResource&#34; in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     public String size() {

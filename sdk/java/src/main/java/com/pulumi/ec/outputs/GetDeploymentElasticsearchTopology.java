@@ -50,7 +50,7 @@ public final class GetDeploymentElasticsearchTopology {
      */
     private Boolean nodeTypeMl;
     /**
-     * @return Amount of &#34;size_resource&#34; per topology element in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of &#34;sizeResource&#34; per topology element in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     private String size;
@@ -116,7 +116,7 @@ public final class GetDeploymentElasticsearchTopology {
         return this.nodeTypeMl;
     }
     /**
-     * @return Amount of &#34;size_resource&#34; per topology element in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of &#34;sizeResource&#34; per topology element in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     public String size() {

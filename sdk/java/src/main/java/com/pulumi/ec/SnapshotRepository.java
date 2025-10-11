@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * ### S3 style
+ * 
  * ### Azure
  * 
  * <pre>

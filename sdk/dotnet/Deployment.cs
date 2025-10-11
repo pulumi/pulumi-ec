@@ -24,7 +24,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ### With observability
     /// 
-    /// It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
+    /// It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `DeploymentId` to `Self`.
     /// 
     /// ### With Cross Cluster Search settings
     /// 
@@ -92,7 +92,7 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.DeploymentEnterpriseSearch?> EnterpriseSearch { get; private set; } = null!;
 
         /// <summary>
-        /// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
+        /// Integrations Server cluster definition. Integrations Server replaces `Apm` in Stack versions &gt; 8.0
         /// </summary>
         [Output("integrationsServer")]
         public Output<Outputs.DeploymentIntegrationsServer?> IntegrationsServer { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `Self`.
         /// </summary>
         [Output("observability")]
         public Output<Outputs.DeploymentObservability?> Observability { get; private set; } = null!;
@@ -133,13 +133,13 @@ namespace Pulumi.ElasticCloud
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `RequestId` is returned as part of the error.
         /// </summary>
         [Output("requestId")]
         public Output<string> RequestId { get; private set; } = null!;
 
         /// <summary>
-        /// Explicitly resets the elasticsearch_password when true
+        /// Explicitly resets the ElasticsearchPassword when true
         /// </summary>
         [Output("resetElasticsearchPassword")]
         public Output<bool?> ResetElasticsearchPassword { get; private set; } = null!;
@@ -244,7 +244,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentEnterpriseSearchArgs>? EnterpriseSearch { get; set; }
 
         /// <summary>
-        /// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
+        /// Integrations Server cluster definition. Integrations Server replaces `Apm` in Stack versions &gt; 8.0
         /// </summary>
         [Input("integrationsServer")]
         public Input<Inputs.DeploymentIntegrationsServerArgs>? IntegrationsServer { get; set; }
@@ -273,7 +273,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `Self`.
         /// </summary>
         [Input("observability")]
         public Input<Inputs.DeploymentObservabilityArgs>? Observability { get; set; }
@@ -285,13 +285,13 @@ namespace Pulumi.ElasticCloud
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `RequestId` is returned as part of the error.
         /// </summary>
         [Input("requestId")]
         public Input<string>? RequestId { get; set; }
 
         /// <summary>
-        /// Explicitly resets the elasticsearch_password when true
+        /// Explicitly resets the ElasticsearchPassword when true
         /// </summary>
         [Input("resetElasticsearchPassword")]
         public Input<bool>? ResetElasticsearchPassword { get; set; }
@@ -395,7 +395,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.DeploymentEnterpriseSearchGetArgs>? EnterpriseSearch { get; set; }
 
         /// <summary>
-        /// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions &gt; 8.0
+        /// Integrations Server cluster definition. Integrations Server replaces `Apm` in Stack versions &gt; 8.0
         /// </summary>
         [Input("integrationsServer")]
         public Input<Inputs.DeploymentIntegrationsServerGetArgs>? IntegrationsServer { get; set; }
@@ -424,7 +424,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
+        /// Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `Self`.
         /// </summary>
         [Input("observability")]
         public Input<Inputs.DeploymentObservabilityGetArgs>? Observability { get; set; }
@@ -436,13 +436,13 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+        /// Request ID to set when you create the deployment. Use it only when previous attempts return an error and `RequestId` is returned as part of the error.
         /// </summary>
         [Input("requestId")]
         public Input<string>? RequestId { get; set; }
 
         /// <summary>
-        /// Explicitly resets the elasticsearch_password when true
+        /// Explicitly resets the ElasticsearchPassword when true
         /// </summary>
         [Input("resetElasticsearchPassword")]
         public Input<bool>? ResetElasticsearchPassword { get; set; }

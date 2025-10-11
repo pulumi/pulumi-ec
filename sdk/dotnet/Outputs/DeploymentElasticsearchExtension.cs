@@ -18,7 +18,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Extension type, only `bundle` or `plugin` are supported.
+        /// Extension type, only `Bundle` or `Plugin` are supported.
         /// </summary>
         public readonly string Type;
         /// <summary>

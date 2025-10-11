@@ -17,14 +17,14 @@ public final class GetStackPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetStackPlainArgs Empty = new GetStackPlainArgs();
 
     /**
-     * Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * Lock the `latest` `versionRegex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
      * 
      */
     @Import(name="lock")
     private @Nullable Boolean lock;
 
     /**
-     * @return Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+     * @return Lock the `latest` `versionRegex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
      * 
      */
     public Optional<Boolean> lock() {
@@ -88,7 +88,7 @@ public final class GetStackPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param lock Lock the `latest` `version_regex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
+         * @param lock Lock the `latest` `versionRegex` obtained, so that the new stack release doesn&#39;t cascade the changes down to the deployments. It can be changed at any time.
          * 
          * @return builder
          * 

@@ -143,6 +143,8 @@ class SnapshotRepository(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### S3 style
+
         ### Azure
 
         ```python
@@ -203,6 +205,8 @@ class SnapshotRepository(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        ### S3 style
 
         ### Azure
 
