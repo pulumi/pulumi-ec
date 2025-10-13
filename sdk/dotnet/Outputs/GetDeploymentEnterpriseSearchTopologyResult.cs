@@ -30,7 +30,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly bool NodeTypeWorker;
         /// <summary>
-        /// Amount of "size_resource" in Gigabytes. For example "4g".
+        /// Amount of "SizeResource" in Gigabytes. For example "4g".
         /// </summary>
         public readonly string Size;
         /// <summary>

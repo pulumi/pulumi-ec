@@ -18,6 +18,10 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ### With extension file
+    /// 
+    /// ### With download URL
+    /// 
     /// ## Import
     /// 
     /// Extensions can be imported using the `id`, for example:
@@ -42,7 +46,7 @@ namespace Pulumi.ElasticCloud
         public Output<string> DownloadUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `Bundle` or `Plugin`. A `Bundle` will usually contain a dictionary or script, where a `Plugin` is compiled from source.
         /// </summary>
         [Output("extensionType")]
         public Output<string> ExtensionType { get; private set; } = null!;
@@ -148,7 +152,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? DownloadUrl { get; set; }
 
         /// <summary>
-        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `Bundle` or `Plugin`. A `Bundle` will usually contain a dictionary or script, where a `Plugin` is compiled from source.
         /// </summary>
         [Input("extensionType", required: true)]
         public Input<string> ExtensionType { get; set; } = null!;
@@ -198,7 +202,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? DownloadUrl { get; set; }
 
         /// <summary>
-        /// Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
+        /// Extension type. Must be `Bundle` or `Plugin`. A `Bundle` will usually contain a dictionary or script, where a `Plugin` is compiled from source.
         /// </summary>
         [Input("extensionType")]
         public Input<string>? ExtensionType { get; set; }

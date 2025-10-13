@@ -12,12 +12,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DeploymentTrafficFilterRule {
     /**
-     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     private @Nullable String azureEndpointGuid;
     /**
-     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     private @Nullable String azureEndpointName;
@@ -32,21 +32,21 @@ public final class DeploymentTrafficFilterRule {
      */
     private @Nullable String id;
     /**
-     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
+     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
     private @Nullable String source;
 
     private DeploymentTrafficFilterRule() {}
     /**
-     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * @return Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     public Optional<String> azureEndpointGuid() {
         return Optional.ofNullable(this.azureEndpointGuid);
     }
     /**
-     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
+     * @return Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      * 
      */
     public Optional<String> azureEndpointName() {
@@ -67,7 +67,7 @@ public final class DeploymentTrafficFilterRule {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
+     * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
     public Optional<String> source() {
