@@ -17,7 +17,7 @@ public final class GetDeploymentKibanaTopology {
      */
     private String instanceConfigurationId;
     /**
-     * @return Amount of size_resource in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of sizeResource in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     private String size;
@@ -41,7 +41,7 @@ public final class GetDeploymentKibanaTopology {
         return this.instanceConfigurationId;
     }
     /**
-     * @return Amount of size_resource in Gigabytes. For example &#34;4g&#34;.
+     * @return Amount of sizeResource in Gigabytes. For example &#34;4g&#34;.
      * 
      */
     public String size() {

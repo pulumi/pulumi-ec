@@ -18,14 +18,14 @@ public final class SnapshotRepositoryS3Args extends com.pulumi.resources.Resourc
     public static final SnapshotRepositoryS3Args Empty = new SnapshotRepositoryS3Args();
 
     /**
-     * An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+     * An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
      * 
      */
     @Import(name="accessKey")
     private @Nullable Output<String> accessKey;
 
     /**
-     * @return An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+     * @return An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
      * 
      */
     public Optional<Output<String>> accessKey() {
@@ -93,14 +93,14 @@ public final class SnapshotRepositoryS3Args extends com.pulumi.resources.Resourc
     }
 
     /**
-     * An S3 secret key. If set, the access_key setting must also be specified.
+     * An S3 secret key. If set, the accessKey setting must also be specified.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return An S3 secret key. If set, the access_key setting must also be specified.
+     * @return An S3 secret key. If set, the accessKey setting must also be specified.
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -153,7 +153,7 @@ public final class SnapshotRepositoryS3Args extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param accessKey An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+         * @param accessKey An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
          * 
          * @return builder
          * 
@@ -164,7 +164,7 @@ public final class SnapshotRepositoryS3Args extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param accessKey An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
+         * @param accessKey An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
          * 
          * @return builder
          * 
@@ -258,7 +258,7 @@ public final class SnapshotRepositoryS3Args extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param secretKey An S3 secret key. If set, the access_key setting must also be specified.
+         * @param secretKey An S3 secret key. If set, the accessKey setting must also be specified.
          * 
          * @return builder
          * 
@@ -269,7 +269,7 @@ public final class SnapshotRepositoryS3Args extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param secretKey An S3 secret key. If set, the access_key setting must also be specified.
+         * @param secretKey An S3 secret key. If set, the accessKey setting must also be specified.
          * 
          * @return builder
          * 

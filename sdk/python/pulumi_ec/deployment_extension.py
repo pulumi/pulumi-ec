@@ -325,6 +325,10 @@ class DeploymentExtension(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### With extension file
+
+        ### With download URL
+
         ## Import
 
         Extensions can be imported using the `id`, for example:
@@ -357,6 +361,10 @@ class DeploymentExtension(pulumi.CustomResource):
           **Tip :** If you experience timeouts when uploading an extension through a slow network, you might need to increase the timeout setting.
 
         ## Example Usage
+
+        ### With extension file
+
+        ### With download URL
 
         ## Import
 

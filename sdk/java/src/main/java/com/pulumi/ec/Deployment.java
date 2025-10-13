@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
  * 
  * ### With observability
  * 
- * It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deployment_id` to `self`.
+ * It is possible to enable observability without using a second deployment, by storing the observability data in the current deployment. To enable this, set `deploymentId` to `self`.
  * 
  * ### With Cross Cluster Search settings
  * 
@@ -254,28 +254,28 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
-     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+     * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      * 
      */
     @Export(name="requestId", refs={String.class}, tree="[0]")
     private Output<String> requestId;
 
     /**
-     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
+     * @return Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      * 
      */
     public Output<String> requestId() {
         return this.requestId;
     }
     /**
-     * Explicitly resets the elasticsearch_password when true
+     * Explicitly resets the elasticsearchPassword when true
      * 
      */
     @Export(name="resetElasticsearchPassword", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> resetElasticsearchPassword;
 
     /**
-     * @return Explicitly resets the elasticsearch_password when true
+     * @return Explicitly resets the elasticsearchPassword when true
      * 
      */
     public Output<Optional<Boolean>> resetElasticsearchPassword() {

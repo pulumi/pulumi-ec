@@ -221,7 +221,7 @@ namespace Pulumi.ElasticCloud
         public Output<ImmutableArray<Outputs.DeploymentTrafficFilterRule>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+        /// Type of the ruleset. It can be `Ip`, `Vpce`, `AzurePrivateEndpoint`, or `GcpPrivateServiceConnectEndpoint`
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -309,7 +309,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+        /// Type of the ruleset. It can be `Ip`, `Vpce`, `AzurePrivateEndpoint`, or `GcpPrivateServiceConnectEndpoint`
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -359,7 +359,7 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
-        /// Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+        /// Type of the ruleset. It can be `Ip`, `Vpce`, `AzurePrivateEndpoint`, or `GcpPrivateServiceConnectEndpoint`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

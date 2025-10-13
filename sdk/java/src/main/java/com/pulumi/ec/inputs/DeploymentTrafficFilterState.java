@@ -94,14 +94,14 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
     }
 
     /**
-     * Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+     * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+     * @return Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
      * 
      */
     public Optional<Output<String>> type() {
@@ -253,7 +253,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+         * @param type Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
          * 
          * @return builder
          * 
@@ -264,7 +264,7 @@ public final class DeploymentTrafficFilterState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
+         * @param type Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, or `gcpPrivateServiceConnectEndpoint`
          * 
          * @return builder
          * 

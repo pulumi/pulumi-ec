@@ -18,7 +18,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? Healthy;
         /// <summary>
-        /// Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
+        /// Resource kind status. Can be one of `Initializing`, `Stopping`, `Stopped`, `Rebooting`, `Restarting`.
         /// </summary>
         public readonly string? Status;
         /// <summary>
