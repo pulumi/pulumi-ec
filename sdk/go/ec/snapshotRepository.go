@@ -15,6 +15,35 @@ import (
 //
 // ### S3 style
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.NewSnapshotRepository(ctx, "this", &ec.SnapshotRepositoryArgs{
+//				Name: pulumi.String("my-snapshot-repository"),
+//				S3: &ec.SnapshotRepositoryS3Args{
+//					Bucket:    pulumi.String("my-bucket"),
+//					AccessKey: pulumi.String("my-access-key"),
+//					SecretKey: pulumi.String("my-secret-key"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Azure
 //
 // ```go

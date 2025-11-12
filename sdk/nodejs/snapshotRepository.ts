@@ -11,6 +11,20 @@ import * as utilities from "./utilities";
  *
  * ### S3 style
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const _this = new ec.SnapshotRepository("this", {
+ *     name: "my-snapshot-repository",
+ *     s3: {
+ *         bucket: "my-bucket",
+ *         accessKey: "my-access-key",
+ *         secretKey: "my-secret-key",
+ *     },
+ * });
+ * ```
+ *
  * ### Azure
  *
  * ```typescript
