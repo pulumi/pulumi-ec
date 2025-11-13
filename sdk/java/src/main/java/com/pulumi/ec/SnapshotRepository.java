@@ -21,6 +21,43 @@ import javax.annotation.Nullable;
  * 
  * ### S3 style
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.SnapshotRepository;
+ * import com.pulumi.ec.SnapshotRepositoryArgs;
+ * import com.pulumi.ec.inputs.SnapshotRepositoryS3Args;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new SnapshotRepository("this", SnapshotRepositoryArgs.builder()
+ *             .name("my-snapshot-repository")
+ *             .s3(SnapshotRepositoryS3Args.builder()
+ *                 .bucket("my-bucket")
+ *                 .accessKey("my-access-key")
+ *                 .secretKey("my-secret-key")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Azure
  * 
  * <pre>

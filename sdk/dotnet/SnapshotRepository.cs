@@ -14,6 +14,28 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ### S3 style
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
+    ///     {
+    ///         Name = "my-snapshot-repository",
+    ///         S3 = new ElasticCloud.Inputs.SnapshotRepositoryS3Args
+    ///         {
+    ///             Bucket = "my-bucket",
+    ///             AccessKey = "my-access-key",
+    ///             SecretKey = "my-secret-key",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Azure
     /// 
     /// ```csharp

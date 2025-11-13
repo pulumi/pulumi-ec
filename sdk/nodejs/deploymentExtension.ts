@@ -15,7 +15,80 @@ import * as utilities from "./utilities";
  *
  * ### With extension file
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ * import * as std from "@pulumi/std";
+ *
+ * const filePath = "/path/to/plugin.zip";
+ * const exampleExtension = new ec.DeploymentExtension("example_extension", {
+ *     name: "my_extension",
+ *     description: "my extension",
+ *     version: "*",
+ *     extensionType: "bundle",
+ *     filePath: filePath,
+ *     fileHash: std.filebase64sha256({
+ *         input: filePath,
+ *     }).then(invoke => invoke.result),
+ * });
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const withExtension = new ec.Deployment("with_extension", {
+ *     name: "my_example_deployment",
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *         extensions: [{
+ *             name: exampleExtension.name,
+ *             type: "bundle",
+ *             version: latest.then(latest => latest.version),
+ *             url: exampleExtension.url,
+ *         }],
+ *     },
+ * });
+ * ```
+ *
  * ### With download URL
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const exampleExtension = new ec.DeploymentExtension("example_extension", {
+ *     name: "my_extension",
+ *     description: "my extension",
+ *     version: "*",
+ *     extensionType: "bundle",
+ *     downloadUrl: "https://example.net",
+ * });
+ * const latest = ec.getStack({
+ *     versionRegex: "latest",
+ *     region: "us-east-1",
+ * });
+ * const withExtension = new ec.Deployment("with_extension", {
+ *     name: "my_example_deployment",
+ *     region: "us-east-1",
+ *     version: latest.then(latest => latest.version),
+ *     deploymentTemplateId: "aws-io-optimized-v2",
+ *     elasticsearch: {
+ *         hot: {
+ *             autoscaling: {},
+ *         },
+ *         extensions: [{
+ *             name: exampleExtension.name,
+ *             type: "bundle",
+ *             version: latest.then(latest => latest.version),
+ *             url: exampleExtension.url,
+ *         }],
+ *     },
+ * });
+ * ```
  *
  * ## Import
  *

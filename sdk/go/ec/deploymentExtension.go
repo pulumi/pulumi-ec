@@ -22,7 +22,130 @@ import (
 //
 // ### With extension file
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			filePath := "/path/to/plugin.zip"
+//			invokeFilebase64sha256, err := std.Filebase64sha256(ctx, &std.Filebase64sha256Args{
+//				Input: filePath,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleExtension, err := ec.NewDeploymentExtension(ctx, "example_extension", &ec.DeploymentExtensionArgs{
+//				Name:          pulumi.String("my_extension"),
+//				Description:   pulumi.String("my extension"),
+//				Version:       pulumi.String("*"),
+//				ExtensionType: pulumi.String("bundle"),
+//				FilePath:      pulumi.String(filePath),
+//				FileHash:      pulumi.String(invokeFilebase64sha256.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "with_extension", &ec.DeploymentArgs{
+//				Name:                 pulumi.String("my_example_deployment"),
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
+//					},
+//					Extensions: ec.DeploymentElasticsearchExtensionArray{
+//						&ec.DeploymentElasticsearchExtensionArgs{
+//							Name:    exampleExtension.Name,
+//							Type:    pulumi.String("bundle"),
+//							Version: pulumi.String(latest.Version),
+//							Url:     exampleExtension.Url,
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### With download URL
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleExtension, err := ec.NewDeploymentExtension(ctx, "example_extension", &ec.DeploymentExtensionArgs{
+//				Name:          pulumi.String("my_extension"),
+//				Description:   pulumi.String("my extension"),
+//				Version:       pulumi.String("*"),
+//				ExtensionType: pulumi.String("bundle"),
+//				DownloadUrl:   pulumi.String("https://example.net"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			latest, err := ec.GetStack(ctx, &ec.GetStackArgs{
+//				VersionRegex: "latest",
+//				Region:       "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewDeployment(ctx, "with_extension", &ec.DeploymentArgs{
+//				Name:                 pulumi.String("my_example_deployment"),
+//				Region:               pulumi.String("us-east-1"),
+//				Version:              pulumi.String(latest.Version),
+//				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
+//				Elasticsearch: &ec.DeploymentElasticsearchArgs{
+//					Hot: &ec.DeploymentElasticsearchHotArgs{
+//						Autoscaling: &ec.DeploymentElasticsearchHotAutoscalingArgs{},
+//					},
+//					Extensions: ec.DeploymentElasticsearchExtensionArray{
+//						&ec.DeploymentElasticsearchExtensionArgs{
+//							Name:    exampleExtension.Name,
+//							Type:    pulumi.String("bundle"),
+//							Version: pulumi.String(latest.Version),
+//							Url:     exampleExtension.Url,
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
