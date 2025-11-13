@@ -145,6 +145,19 @@ class SnapshotRepository(pulumi.CustomResource):
 
         ### S3 style
 
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        this = ec.SnapshotRepository("this",
+            name="my-snapshot-repository",
+            s3={
+                "bucket": "my-bucket",
+                "access_key": "my-access-key",
+                "secret_key": "my-secret-key",
+            })
+        ```
+
         ### Azure
 
         ```python
@@ -207,6 +220,19 @@ class SnapshotRepository(pulumi.CustomResource):
         ## Example Usage
 
         ### S3 style
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        this = ec.SnapshotRepository("this",
+            name="my-snapshot-repository",
+            s3={
+                "bucket": "my-bucket",
+                "access_key": "my-access-key",
+                "secret_key": "my-secret-key",
+            })
+        ```
 
         ### Azure
 
