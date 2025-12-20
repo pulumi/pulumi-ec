@@ -12,11 +12,21 @@ namespace Pulumi.ElasticCloud.Inputs
 
     public sealed class ElasticsearchProjectCredentialsGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// Basic auth password that can be used to access the Elasticsearch API.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Basic auth username that can be used to access the Elasticsearch API.

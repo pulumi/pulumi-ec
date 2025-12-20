@@ -208,7 +208,7 @@ export interface DeploymentElasticsearchColdAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -216,7 +216,7 @@ export interface DeploymentElasticsearchColdAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -317,7 +317,7 @@ export interface DeploymentElasticsearchCoordinatingAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -325,7 +325,7 @@ export interface DeploymentElasticsearchCoordinatingAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -418,7 +418,7 @@ export interface DeploymentElasticsearchFrozenAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -426,7 +426,7 @@ export interface DeploymentElasticsearchFrozenAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -500,7 +500,7 @@ export interface DeploymentElasticsearchHotAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -508,7 +508,7 @@ export interface DeploymentElasticsearchHotAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -593,7 +593,7 @@ export interface DeploymentElasticsearchMasterAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -601,7 +601,7 @@ export interface DeploymentElasticsearchMasterAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -675,7 +675,7 @@ export interface DeploymentElasticsearchMlAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -683,7 +683,7 @@ export interface DeploymentElasticsearchMlAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -842,7 +842,7 @@ export interface DeploymentElasticsearchWarmAutoscaling {
      */
     autoscale?: pulumi.Input<boolean>;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize?: pulumi.Input<string>;
     /**
@@ -850,7 +850,7 @@ export interface DeploymentElasticsearchWarmAutoscaling {
      */
     maxSizeResource?: pulumi.Input<string>;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize?: pulumi.Input<string>;
     /**
@@ -1276,6 +1276,10 @@ export interface ObservabilityProjectEndpoints {
      */
     elasticsearch?: pulumi.Input<string>;
     /**
+     * The endpoint to access the Managed OTLP Endpoint.
+     */
+    ingest?: pulumi.Input<string>;
+    /**
      * The endpoint to access kibana.
      */
     kibana?: pulumi.Input<string>;
@@ -1431,6 +1435,10 @@ export interface SecurityProjectEndpoints {
      * The endpoint to access elasticsearch.
      */
     elasticsearch?: pulumi.Input<string>;
+    /**
+     * The endpoint to access the Managed OTLP Endpoint.
+     */
+    ingest?: pulumi.Input<string>;
     /**
      * The endpoint to access kibana.
      */

@@ -123,7 +123,7 @@ namespace Pulumi.ElasticCloud
     /// });
     /// ```
     /// 
-    /// ###GCP Private Service Connect traffic filter
+    /// ### GCP Private Service Connect traffic filter
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

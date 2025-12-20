@@ -19,6 +19,12 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? Elasticsearch { get; set; }
 
         /// <summary>
+        /// The endpoint to access the Managed OTLP Endpoint.
+        /// </summary>
+        [Input("ingest")]
+        public Input<string>? Ingest { get; set; }
+
+        /// <summary>
         /// The endpoint to access kibana.
         /// </summary>
         [Input("kibana")]

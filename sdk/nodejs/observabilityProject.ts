@@ -85,6 +85,10 @@ export class ObservabilityProject extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * the tier of the observability project
+     */
+    declare public readonly productTier: pulumi.Output<string>;
+    /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     declare public readonly regionId: pulumi.Output<string>;
@@ -112,6 +116,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
             resourceInputs["endpoints"] = state?.endpoints;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
+            resourceInputs["productTier"] = state?.productTier;
             resourceInputs["regionId"] = state?.regionId;
             resourceInputs["type"] = state?.type;
         } else {
@@ -121,6 +126,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
             }
             resourceInputs["alias"] = args?.alias;
             resourceInputs["name"] = args?.name;
+            resourceInputs["productTier"] = args?.productTier;
             resourceInputs["regionId"] = args?.regionId;
             resourceInputs["cloudId"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
@@ -162,6 +168,10 @@ export interface ObservabilityProjectState {
      */
     name?: pulumi.Input<string>;
     /**
+     * the tier of the observability project
+     */
+    productTier?: pulumi.Input<string>;
+    /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     regionId?: pulumi.Input<string>;
@@ -183,6 +193,10 @@ export interface ObservabilityProjectArgs {
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string>;
+    /**
+     * the tier of the observability project
+     */
+    productTier?: pulumi.Input<string>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */

@@ -19,12 +19,14 @@ The ElasticCloud (EC) provider is available as a package in all Pulumi languages
 
 ---
 ## page_title: "Provider: Elastic Cloud"
-The Elastic Cloud Pulumi provider can be used to configure and manage Elastic Cloud deployments using the Elastic Cloud
-APIs. Use the navigation to the left to read about functions and resources supported by the Elastic Cloud provider. Elastic Cloud APIs are available for:
+The Elastic Cloud Pulumi provider can be used to configure and manage resources on Elastic Cloud, such as Elastic Hosted Deployments or Elastic Serverless Projects, using the Elastic Cloud APIs. Use the navigation to the left to read about functions and resources supported by the Elastic Cloud provider.
 
-* Elasticsearch Service (ESS).
-* Elastic Cloud Enterprise (ECE).
-* Elasticsearch Service Private (ESSP).
+This provider works with:
+
+* Elastic Cloud Hosted
+* Elastic Cloud Serverless
+* Elastic Cloud Enterprise (Self managed offering)
+* Elastic GovCloud offerings
 ## Authentication
 
 The Elastic Cloud Pulumi provider offers two methods of authentication against the remote API: `apikey` or a combination of `username` and `password`. Depending on the environment, you may choose one over the other. The Public API of Elasticsearch Service (ESS) is the default `endpoint` that the provider will target.
@@ -42,7 +44,7 @@ To generate an API key, follow these steps:
 1. Open you browser and navigate to <https://cloud.elastic.co/login>.
 2. Log in with your email and password.
 3. Click on [Elasticsearch Service](https://cloud.elastic.co/deployments).
-4. Navigate to [Features > API Keys](https://cloud.elastic.co/deployment-features/keys) and click on **Generate API Key**.
+4. Navigate to [Organization > API Keys](https://cloud.elastic.co/account/keys) and click on **Create API Key**.
 5. Choose a name for your API key.
 6. Save your API key somewhere.
 #### Using your API Key on the Elastic Cloud pulumi provider

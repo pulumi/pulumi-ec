@@ -23,18 +23,22 @@ class ObservabilityProjectArgs:
     def __init__(__self__, *,
                  region_id: pulumi.Input[_builtins.str],
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 product_tier: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ObservabilityProject resource.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         """
         pulumi.set(__self__, "region_id", region_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if product_tier is not None:
+            pulumi.set(__self__, "product_tier", product_tier)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
@@ -72,6 +76,18 @@ class ObservabilityProjectArgs:
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="productTier")
+    def product_tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        the tier of the observability project
+        """
+        return pulumi.get(self, "product_tier")
+
+    @product_tier.setter
+    def product_tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "product_tier", value)
+
 
 @pulumi.input_type
 class _ObservabilityProjectState:
@@ -82,6 +98,7 @@ class _ObservabilityProjectState:
                  endpoints: Optional[pulumi.Input['ObservabilityProjectEndpointsArgs']] = None,
                  metadata: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -92,6 +109,7 @@ class _ObservabilityProjectState:
         :param pulumi.Input['ObservabilityProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input['ObservabilityProjectMetadataArgs'] metadata: Additional details about the project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
@@ -107,6 +125,8 @@ class _ObservabilityProjectState:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if product_tier is not None:
+            pulumi.set(__self__, "product_tier", product_tier)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
         if type is not None:
@@ -185,6 +205,18 @@ class _ObservabilityProjectState:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="productTier")
+    def product_tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        the tier of the observability project
+        """
+        return pulumi.get(self, "product_tier")
+
+    @product_tier.setter
+    def product_tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "product_tier", value)
+
+    @_builtins.property
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -217,6 +249,7 @@ class ObservabilityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -248,6 +281,7 @@ class ObservabilityProject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         """
         ...
@@ -298,6 +332,7 @@ class ObservabilityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -310,6 +345,7 @@ class ObservabilityProject(pulumi.CustomResource):
 
             __props__.__dict__["alias"] = alias
             __props__.__dict__["name"] = name
+            __props__.__dict__["product_tier"] = product_tier
             if region_id is None and not opts.urn:
                 raise TypeError("Missing required property 'region_id'")
             __props__.__dict__["region_id"] = region_id
@@ -334,6 +370,7 @@ class ObservabilityProject(pulumi.CustomResource):
             endpoints: Optional[pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']]] = None,
             metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            product_tier: Optional[pulumi.Input[_builtins.str]] = None,
             region_id: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ObservabilityProject':
         """
@@ -349,6 +386,7 @@ class ObservabilityProject(pulumi.CustomResource):
         :param pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']] metadata: Additional details about the project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
@@ -362,6 +400,7 @@ class ObservabilityProject(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["product_tier"] = product_tier
         __props__.__dict__["region_id"] = region_id
         __props__.__dict__["type"] = type
         return ObservabilityProject(resource_name, opts=opts, __props__=__props__)
@@ -413,6 +452,14 @@ class ObservabilityProject(pulumi.CustomResource):
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="productTier")
+    def product_tier(self) -> pulumi.Output[_builtins.str]:
+        """
+        the tier of the observability project
+        """
+        return pulumi.get(self, "product_tier")
 
     @_builtins.property
     @pulumi.getter(name="regionId")

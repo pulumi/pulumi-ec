@@ -152,6 +152,20 @@ public class ObservabilityProject extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * the tier of the observability project
+     * 
+     */
+    @Export(name="productTier", refs={String.class}, tree="[0]")
+    private Output<String> productTier;
+
+    /**
+     * @return the tier of the observability project
+     * 
+     */
+    public Output<String> productTier() {
+        return this.productTier;
+    }
+    /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      * 
      */

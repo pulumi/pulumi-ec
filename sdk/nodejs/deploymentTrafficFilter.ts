@@ -79,7 +79,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ###GCP Private Service Connect traffic filter
+ * ### GCP Private Service Connect traffic filter
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

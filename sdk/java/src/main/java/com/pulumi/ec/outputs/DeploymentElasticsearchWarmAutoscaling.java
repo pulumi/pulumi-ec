@@ -18,7 +18,7 @@ public final class DeploymentElasticsearchWarmAutoscaling {
      */
     private @Nullable Boolean autoscale;
     /**
-     * @return Maximum size value for the maximum autoscaling setting.
+     * @return Maximum autoscaling size. Set it to &#34;0g&#34; if tier should not be created when autoscaling is enabled on ES level
      * 
      */
     private @Nullable String maxSize;
@@ -28,7 +28,7 @@ public final class DeploymentElasticsearchWarmAutoscaling {
      */
     private @Nullable String maxSizeResource;
     /**
-     * @return Minimum size value for the minimum autoscaling setting.
+     * @return Minimum autoscaling size.
      * 
      */
     private @Nullable String minSize;
@@ -52,7 +52,7 @@ public final class DeploymentElasticsearchWarmAutoscaling {
         return Optional.ofNullable(this.autoscale);
     }
     /**
-     * @return Maximum size value for the maximum autoscaling setting.
+     * @return Maximum autoscaling size. Set it to &#34;0g&#34; if tier should not be created when autoscaling is enabled on ES level
      * 
      */
     public Optional<String> maxSize() {
@@ -66,7 +66,7 @@ public final class DeploymentElasticsearchWarmAutoscaling {
         return Optional.ofNullable(this.maxSizeResource);
     }
     /**
-     * @return Minimum size value for the minimum autoscaling setting.
+     * @return Minimum autoscaling size.
      * 
      */
     public Optional<String> minSize() {

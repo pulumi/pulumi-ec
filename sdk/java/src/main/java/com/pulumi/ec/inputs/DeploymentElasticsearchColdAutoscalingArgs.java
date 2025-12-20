@@ -32,14 +32,14 @@ public final class DeploymentElasticsearchColdAutoscalingArgs extends com.pulumi
     }
 
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to &#34;0g&#34; if tier should not be created when autoscaling is enabled on ES level
      * 
      */
     @Import(name="maxSize")
     private @Nullable Output<String> maxSize;
 
     /**
-     * @return Maximum size value for the maximum autoscaling setting.
+     * @return Maximum autoscaling size. Set it to &#34;0g&#34; if tier should not be created when autoscaling is enabled on ES level
      * 
      */
     public Optional<Output<String>> maxSize() {
@@ -62,14 +62,14 @@ public final class DeploymentElasticsearchColdAutoscalingArgs extends com.pulumi
     }
 
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      * 
      */
     @Import(name="minSize")
     private @Nullable Output<String> minSize;
 
     /**
-     * @return Minimum size value for the minimum autoscaling setting.
+     * @return Minimum autoscaling size.
      * 
      */
     public Optional<Output<String>> minSize() {
@@ -157,7 +157,7 @@ public final class DeploymentElasticsearchColdAutoscalingArgs extends com.pulumi
         }
 
         /**
-         * @param maxSize Maximum size value for the maximum autoscaling setting.
+         * @param maxSize Maximum autoscaling size. Set it to &#34;0g&#34; if tier should not be created when autoscaling is enabled on ES level
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class DeploymentElasticsearchColdAutoscalingArgs extends com.pulumi
         }
 
         /**
-         * @param maxSize Maximum size value for the maximum autoscaling setting.
+         * @param maxSize Maximum autoscaling size. Set it to &#34;0g&#34; if tier should not be created when autoscaling is enabled on ES level
          * 
          * @return builder
          * 
@@ -199,7 +199,7 @@ public final class DeploymentElasticsearchColdAutoscalingArgs extends com.pulumi
         }
 
         /**
-         * @param minSize Minimum size value for the minimum autoscaling setting.
+         * @param minSize Minimum autoscaling size.
          * 
          * @return builder
          * 
@@ -210,7 +210,7 @@ public final class DeploymentElasticsearchColdAutoscalingArgs extends com.pulumi
         }
 
         /**
-         * @param minSize Minimum size value for the minimum autoscaling setting.
+         * @param minSize Minimum autoscaling size.
          * 
          * @return builder
          * 

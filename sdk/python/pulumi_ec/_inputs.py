@@ -1220,7 +1220,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1228,7 +1228,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1252,9 +1252,9 @@ class DeploymentElasticsearchColdAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -1287,7 +1287,7 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -1311,7 +1311,7 @@ class DeploymentElasticsearchColdAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -1755,7 +1755,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1763,7 +1763,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1787,9 +1787,9 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -1822,7 +1822,7 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -1846,7 +1846,7 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -2246,7 +2246,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -2254,7 +2254,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -2278,9 +2278,9 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -2313,7 +2313,7 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -2337,7 +2337,7 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -2649,7 +2649,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -2657,7 +2657,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -2681,9 +2681,9 @@ class DeploymentElasticsearchHotAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -2716,7 +2716,7 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -2740,7 +2740,7 @@ class DeploymentElasticsearchHotAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -3103,7 +3103,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -3111,7 +3111,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -3135,9 +3135,9 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -3170,7 +3170,7 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -3194,7 +3194,7 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -3506,7 +3506,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -3514,7 +3514,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -3538,9 +3538,9 @@ class DeploymentElasticsearchMlAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -3573,7 +3573,7 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -3597,7 +3597,7 @@ class DeploymentElasticsearchMlAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -4304,7 +4304,7 @@ if not MYPY:
         """
         max_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4312,7 +4312,7 @@ if not MYPY:
         """
         min_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4336,9 +4336,9 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
                  policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
-        :param pulumi.Input[_builtins.str] max_size: Maximum size value for the maximum autoscaling setting.
+        :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         :param pulumi.Input[_builtins.str] max_size_resource: Maximum resource type for the maximum autoscaling setting.
-        :param pulumi.Input[_builtins.str] min_size: Minimum size value for the minimum autoscaling setting.
+        :param pulumi.Input[_builtins.str] min_size: Minimum autoscaling size.
         :param pulumi.Input[_builtins.str] min_size_resource: Minimum resource type for the minimum autoscaling setting.
         :param pulumi.Input[_builtins.str] policy_override_json: Computed policy overrides set directly via the API or other clients.
         """
@@ -4371,7 +4371,7 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum size value for the maximum autoscaling setting.
+        Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
@@ -4395,7 +4395,7 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum size value for the minimum autoscaling setting.
+        Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
@@ -6028,6 +6028,10 @@ if not MYPY:
         """
         The endpoint to access elasticsearch.
         """
+        ingest: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The endpoint to access the Managed OTLP Endpoint.
+        """
         kibana: NotRequired[pulumi.Input[_builtins.str]]
         """
         The endpoint to access kibana.
@@ -6040,16 +6044,20 @@ class ObservabilityProjectEndpointsArgs:
     def __init__(__self__, *,
                  apm: Optional[pulumi.Input[_builtins.str]] = None,
                  elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
+                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
                  kibana: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] apm: The endpoint to access apm.
         :param pulumi.Input[_builtins.str] elasticsearch: The endpoint to access elasticsearch.
+        :param pulumi.Input[_builtins.str] ingest: The endpoint to access the Managed OTLP Endpoint.
         :param pulumi.Input[_builtins.str] kibana: The endpoint to access kibana.
         """
         if apm is not None:
             pulumi.set(__self__, "apm", apm)
         if elasticsearch is not None:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if ingest is not None:
+            pulumi.set(__self__, "ingest", ingest)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
 
@@ -6076,6 +6084,18 @@ class ObservabilityProjectEndpointsArgs:
     @elasticsearch.setter
     def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The endpoint to access the Managed OTLP Endpoint.
+        """
+        return pulumi.get(self, "ingest")
+
+    @ingest.setter
+    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
@@ -6796,6 +6816,10 @@ if not MYPY:
         """
         The endpoint to access elasticsearch.
         """
+        ingest: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The endpoint to access the Managed OTLP Endpoint.
+        """
         kibana: NotRequired[pulumi.Input[_builtins.str]]
         """
         The endpoint to access kibana.
@@ -6807,13 +6831,17 @@ elif False:
 class SecurityProjectEndpointsArgs:
     def __init__(__self__, *,
                  elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
+                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
                  kibana: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The endpoint to access elasticsearch.
+        :param pulumi.Input[_builtins.str] ingest: The endpoint to access the Managed OTLP Endpoint.
         :param pulumi.Input[_builtins.str] kibana: The endpoint to access kibana.
         """
         if elasticsearch is not None:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if ingest is not None:
+            pulumi.set(__self__, "ingest", ingest)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
 
@@ -6828,6 +6856,18 @@ class SecurityProjectEndpointsArgs:
     @elasticsearch.setter
     def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The endpoint to access the Managed OTLP Endpoint.
+        """
+        return pulumi.get(self, "ingest")
+
+    @ingest.setter
+    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter

@@ -302,7 +302,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             kibana={})
         ```
 
-        ###GCP Private Service Connect traffic filter
+        ### GCP Private Service Connect traffic filter
 
         ```python
         import pulumi
@@ -421,7 +421,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             kibana={})
         ```
 
-        ###GCP Private Service Connect traffic filter
+        ### GCP Private Service Connect traffic filter
 
         ```python
         import pulumi
