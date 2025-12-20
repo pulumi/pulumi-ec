@@ -1502,11 +1502,11 @@ func (o DeploymentElasticsearchColdPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 type DeploymentElasticsearchColdAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -1528,11 +1528,11 @@ type DeploymentElasticsearchColdAutoscalingInput interface {
 type DeploymentElasticsearchColdAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -1622,7 +1622,7 @@ func (o DeploymentElasticsearchColdAutoscalingOutput) Autoscale() pulumi.BoolPtr
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -1632,7 +1632,7 @@ func (o DeploymentElasticsearchColdAutoscalingOutput) MaxSizeResource() pulumi.S
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchColdAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchColdAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -1681,7 +1681,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) Autoscale() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -1701,7 +1701,7 @@ func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MaxSizeResource() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchColdAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchColdAutoscaling) *string {
 		if v == nil {
@@ -2333,11 +2333,11 @@ func (o DeploymentElasticsearchCoordinatingPtrOutput) ZoneCount() pulumi.IntPtrO
 type DeploymentElasticsearchCoordinatingAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -2359,11 +2359,11 @@ type DeploymentElasticsearchCoordinatingAutoscalingInput interface {
 type DeploymentElasticsearchCoordinatingAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -2453,7 +2453,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) Autoscale() pulumi
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -2463,7 +2463,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MaxSizeResource() 
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchCoordinatingAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchCoordinatingAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -2512,7 +2512,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) Autoscale() pul
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -2532,7 +2532,7 @@ func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MaxSizeResource
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchCoordinatingAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchCoordinatingAutoscaling) *string {
 		if v == nil {
@@ -3054,11 +3054,11 @@ func (o DeploymentElasticsearchFrozenPtrOutput) ZoneCount() pulumi.IntPtrOutput 
 type DeploymentElasticsearchFrozenAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -3080,11 +3080,11 @@ type DeploymentElasticsearchFrozenAutoscalingInput interface {
 type DeploymentElasticsearchFrozenAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -3174,7 +3174,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingOutput) Autoscale() pulumi.BoolP
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -3184,7 +3184,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingOutput) MaxSizeResource() pulumi
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchFrozenAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchFrozenAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -3233,7 +3233,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) Autoscale() pulumi.Bo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -3253,7 +3253,7 @@ func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MaxSizeResource() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchFrozenAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchFrozenAutoscaling) *string {
 		if v == nil {
@@ -3651,11 +3651,11 @@ func (o DeploymentElasticsearchHotPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 type DeploymentElasticsearchHotAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -3677,11 +3677,11 @@ type DeploymentElasticsearchHotAutoscalingInput interface {
 type DeploymentElasticsearchHotAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -3771,7 +3771,7 @@ func (o DeploymentElasticsearchHotAutoscalingOutput) Autoscale() pulumi.BoolPtrO
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -3781,7 +3781,7 @@ func (o DeploymentElasticsearchHotAutoscalingOutput) MaxSizeResource() pulumi.St
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchHotAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchHotAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -3830,7 +3830,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) Autoscale() pulumi.BoolP
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -3850,7 +3850,7 @@ func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MaxSizeResource() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchHotAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchHotAutoscaling) *string {
 		if v == nil {
@@ -4354,11 +4354,11 @@ func (o DeploymentElasticsearchMasterPtrOutput) ZoneCount() pulumi.IntPtrOutput 
 type DeploymentElasticsearchMasterAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -4380,11 +4380,11 @@ type DeploymentElasticsearchMasterAutoscalingInput interface {
 type DeploymentElasticsearchMasterAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -4474,7 +4474,7 @@ func (o DeploymentElasticsearchMasterAutoscalingOutput) Autoscale() pulumi.BoolP
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -4484,7 +4484,7 @@ func (o DeploymentElasticsearchMasterAutoscalingOutput) MaxSizeResource() pulumi
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchMasterAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMasterAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -4533,7 +4533,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) Autoscale() pulumi.Bo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4553,7 +4553,7 @@ func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MaxSizeResource() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchMasterAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMasterAutoscaling) *string {
 		if v == nil {
@@ -4951,11 +4951,11 @@ func (o DeploymentElasticsearchMlPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 type DeploymentElasticsearchMlAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -4977,11 +4977,11 @@ type DeploymentElasticsearchMlAutoscalingInput interface {
 type DeploymentElasticsearchMlAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -5071,7 +5071,7 @@ func (o DeploymentElasticsearchMlAutoscalingOutput) Autoscale() pulumi.BoolPtrOu
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -5081,7 +5081,7 @@ func (o DeploymentElasticsearchMlAutoscalingOutput) MaxSizeResource() pulumi.Str
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchMlAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchMlAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -5130,7 +5130,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) Autoscale() pulumi.BoolPt
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -5150,7 +5150,7 @@ func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MaxSizeResource() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchMlAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchMlAutoscaling) *string {
 		if v == nil {
@@ -6492,11 +6492,11 @@ func (o DeploymentElasticsearchWarmPtrOutput) ZoneCount() pulumi.IntPtrOutput {
 type DeploymentElasticsearchWarmAutoscaling struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale *bool `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize *string `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource *string `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize *string `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource *string `pulumi:"minSizeResource"`
@@ -6518,11 +6518,11 @@ type DeploymentElasticsearchWarmAutoscalingInput interface {
 type DeploymentElasticsearchWarmAutoscalingArgs struct {
 	// Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
 	Autoscale pulumi.BoolPtrInput `pulumi:"autoscale"`
-	// Maximum size value for the maximum autoscaling setting.
+	// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 	MaxSize pulumi.StringPtrInput `pulumi:"maxSize"`
 	// Maximum resource type for the maximum autoscaling setting.
 	MaxSizeResource pulumi.StringPtrInput `pulumi:"maxSizeResource"`
-	// Minimum size value for the minimum autoscaling setting.
+	// Minimum autoscaling size.
 	MinSize pulumi.StringPtrInput `pulumi:"minSize"`
 	// Minimum resource type for the minimum autoscaling setting.
 	MinSizeResource pulumi.StringPtrInput `pulumi:"minSizeResource"`
@@ -6612,7 +6612,7 @@ func (o DeploymentElasticsearchWarmAutoscalingOutput) Autoscale() pulumi.BoolPtr
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *bool { return v.Autoscale }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MaxSize }).(pulumi.StringPtrOutput)
 }
@@ -6622,7 +6622,7 @@ func (o DeploymentElasticsearchWarmAutoscalingOutput) MaxSizeResource() pulumi.S
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MaxSizeResource }).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchWarmAutoscalingOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearchWarmAutoscaling) *string { return v.MinSize }).(pulumi.StringPtrOutput)
 }
@@ -6671,7 +6671,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) Autoscale() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum size value for the maximum autoscaling setting.
+// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -6691,7 +6691,7 @@ func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MaxSizeResource() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum size value for the minimum autoscaling setting.
+// Minimum autoscaling size.
 func (o DeploymentElasticsearchWarmAutoscalingPtrOutput) MinSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearchWarmAutoscaling) *string {
 		if v == nil {
@@ -9782,6 +9782,8 @@ type ObservabilityProjectEndpoints struct {
 	Apm *string `pulumi:"apm"`
 	// The endpoint to access elasticsearch.
 	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The endpoint to access the Managed OTLP Endpoint.
+	Ingest *string `pulumi:"ingest"`
 	// The endpoint to access kibana.
 	Kibana *string `pulumi:"kibana"`
 }
@@ -9802,6 +9804,8 @@ type ObservabilityProjectEndpointsArgs struct {
 	Apm pulumi.StringPtrInput `pulumi:"apm"`
 	// The endpoint to access elasticsearch.
 	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The endpoint to access the Managed OTLP Endpoint.
+	Ingest pulumi.StringPtrInput `pulumi:"ingest"`
 	// The endpoint to access kibana.
 	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
 }
@@ -9893,6 +9897,11 @@ func (o ObservabilityProjectEndpointsOutput) Elasticsearch() pulumi.StringPtrOut
 	return o.ApplyT(func(v ObservabilityProjectEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
 }
 
+// The endpoint to access the Managed OTLP Endpoint.
+func (o ObservabilityProjectEndpointsOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectEndpoints) *string { return v.Ingest }).(pulumi.StringPtrOutput)
+}
+
 // The endpoint to access kibana.
 func (o ObservabilityProjectEndpointsOutput) Kibana() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObservabilityProjectEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
@@ -9939,6 +9948,16 @@ func (o ObservabilityProjectEndpointsPtrOutput) Elasticsearch() pulumi.StringPtr
 			return nil
 		}
 		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access the Managed OTLP Endpoint.
+func (o ObservabilityProjectEndpointsPtrOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ingest
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10984,6 +11003,8 @@ func (o SecurityProjectCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 type SecurityProjectEndpoints struct {
 	// The endpoint to access elasticsearch.
 	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The endpoint to access the Managed OTLP Endpoint.
+	Ingest *string `pulumi:"ingest"`
 	// The endpoint to access kibana.
 	Kibana *string `pulumi:"kibana"`
 }
@@ -11002,6 +11023,8 @@ type SecurityProjectEndpointsInput interface {
 type SecurityProjectEndpointsArgs struct {
 	// The endpoint to access elasticsearch.
 	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The endpoint to access the Managed OTLP Endpoint.
+	Ingest pulumi.StringPtrInput `pulumi:"ingest"`
 	// The endpoint to access kibana.
 	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
 }
@@ -11088,6 +11111,11 @@ func (o SecurityProjectEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityProjectEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
 }
 
+// The endpoint to access the Managed OTLP Endpoint.
+func (o SecurityProjectEndpointsOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectEndpoints) *string { return v.Ingest }).(pulumi.StringPtrOutput)
+}
+
 // The endpoint to access kibana.
 func (o SecurityProjectEndpointsOutput) Kibana() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityProjectEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
@@ -11124,6 +11152,16 @@ func (o SecurityProjectEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutpu
 			return nil
 		}
 		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access the Managed OTLP Endpoint.
+func (o SecurityProjectEndpointsPtrOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ingest
 	}).(pulumi.StringPtrOutput)
 }
 

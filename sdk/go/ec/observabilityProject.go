@@ -66,6 +66,8 @@ type ObservabilityProject struct {
 	Metadata ObservabilityProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// the tier of the observability project
+	ProductTier pulumi.StringOutput `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// the type of the project
@@ -117,6 +119,8 @@ type observabilityProjectState struct {
 	Metadata *ObservabilityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
+	// the tier of the observability project
+	ProductTier *string `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId *string `pulumi:"regionId"`
 	// the type of the project
@@ -136,6 +140,8 @@ type ObservabilityProjectState struct {
 	Metadata ObservabilityProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
+	// the tier of the observability project
+	ProductTier pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringPtrInput
 	// the type of the project
@@ -151,6 +157,8 @@ type observabilityProjectArgs struct {
 	Alias *string `pulumi:"alias"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
+	// the tier of the observability project
+	ProductTier *string `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId string `pulumi:"regionId"`
 }
@@ -161,6 +169,8 @@ type ObservabilityProjectArgs struct {
 	Alias pulumi.StringPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
+	// the tier of the observability project
+	ProductTier pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringInput
 }
@@ -280,6 +290,11 @@ func (o ObservabilityProjectOutput) Metadata() ObservabilityProjectMetadataOutpu
 // Descriptive name for a project.
 func (o ObservabilityProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObservabilityProject) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// the tier of the observability project
+func (o ObservabilityProjectOutput) ProductTier() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObservabilityProject) pulumi.StringOutput { return v.ProductTier }).(pulumi.StringOutput)
 }
 
 // Unique human-readable identifier for a region in Elastic Cloud.

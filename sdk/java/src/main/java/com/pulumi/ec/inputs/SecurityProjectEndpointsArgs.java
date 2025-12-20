@@ -31,6 +31,21 @@ public final class SecurityProjectEndpointsArgs extends com.pulumi.resources.Res
     }
 
     /**
+     * The endpoint to access the Managed OTLP Endpoint.
+     * 
+     */
+    @Import(name="ingest")
+    private @Nullable Output<String> ingest;
+
+    /**
+     * @return The endpoint to access the Managed OTLP Endpoint.
+     * 
+     */
+    public Optional<Output<String>> ingest() {
+        return Optional.ofNullable(this.ingest);
+    }
+
+    /**
      * The endpoint to access kibana.
      * 
      */
@@ -49,6 +64,7 @@ public final class SecurityProjectEndpointsArgs extends com.pulumi.resources.Res
 
     private SecurityProjectEndpointsArgs(SecurityProjectEndpointsArgs $) {
         this.elasticsearch = $.elasticsearch;
+        this.ingest = $.ingest;
         this.kibana = $.kibana;
     }
 
@@ -89,6 +105,27 @@ public final class SecurityProjectEndpointsArgs extends com.pulumi.resources.Res
          */
         public Builder elasticsearch(String elasticsearch) {
             return elasticsearch(Output.of(elasticsearch));
+        }
+
+        /**
+         * @param ingest The endpoint to access the Managed OTLP Endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingest(@Nullable Output<String> ingest) {
+            $.ingest = ingest;
+            return this;
+        }
+
+        /**
+         * @param ingest The endpoint to access the Managed OTLP Endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingest(String ingest) {
+            return ingest(Output.of(ingest));
         }
 
         /**

@@ -19,7 +19,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<bool>? Autoscale { get; set; }
 
         /// <summary>
-        /// Maximum size value for the maximum autoscaling setting.
+        /// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         /// </summary>
         [Input("maxSize")]
         public Input<string>? MaxSize { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? MaxSizeResource { get; set; }
 
         /// <summary>
-        /// Minimum size value for the minimum autoscaling setting.
+        /// Minimum autoscaling size.
         /// </summary>
         [Input("minSize")]
         public Input<string>? MinSize { get; set; }

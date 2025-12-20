@@ -22,6 +22,11 @@ public final class ObservabilityProjectEndpoints {
      */
     private @Nullable String elasticsearch;
     /**
+     * @return The endpoint to access the Managed OTLP Endpoint.
+     * 
+     */
+    private @Nullable String ingest;
+    /**
      * @return The endpoint to access kibana.
      * 
      */
@@ -43,6 +48,13 @@ public final class ObservabilityProjectEndpoints {
         return Optional.ofNullable(this.elasticsearch);
     }
     /**
+     * @return The endpoint to access the Managed OTLP Endpoint.
+     * 
+     */
+    public Optional<String> ingest() {
+        return Optional.ofNullable(this.ingest);
+    }
+    /**
      * @return The endpoint to access kibana.
      * 
      */
@@ -61,12 +73,14 @@ public final class ObservabilityProjectEndpoints {
     public static final class Builder {
         private @Nullable String apm;
         private @Nullable String elasticsearch;
+        private @Nullable String ingest;
         private @Nullable String kibana;
         public Builder() {}
         public Builder(ObservabilityProjectEndpoints defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apm = defaults.apm;
     	      this.elasticsearch = defaults.elasticsearch;
+    	      this.ingest = defaults.ingest;
     	      this.kibana = defaults.kibana;
         }
 
@@ -83,6 +97,12 @@ public final class ObservabilityProjectEndpoints {
             return this;
         }
         @CustomType.Setter
+        public Builder ingest(@Nullable String ingest) {
+
+            this.ingest = ingest;
+            return this;
+        }
+        @CustomType.Setter
         public Builder kibana(@Nullable String kibana) {
 
             this.kibana = kibana;
@@ -92,6 +112,7 @@ public final class ObservabilityProjectEndpoints {
             final var _resultValue = new ObservabilityProjectEndpoints();
             _resultValue.apm = apm;
             _resultValue.elasticsearch = elasticsearch;
+            _resultValue.ingest = ingest;
             _resultValue.kibana = kibana;
             return _resultValue;
         }

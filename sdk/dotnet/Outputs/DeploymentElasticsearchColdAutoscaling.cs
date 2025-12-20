@@ -18,7 +18,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly bool? Autoscale;
         /// <summary>
-        /// Maximum size value for the maximum autoscaling setting.
+        /// Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         /// </summary>
         public readonly string? MaxSize;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? MaxSizeResource;
         /// <summary>
-        /// Minimum size value for the minimum autoscaling setting.
+        /// Minimum autoscaling size.
         /// </summary>
         public readonly string? MinSize;
         /// <summary>

@@ -18,6 +18,10 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? Elasticsearch;
         /// <summary>
+        /// The endpoint to access the Managed OTLP Endpoint.
+        /// </summary>
+        public readonly string? Ingest;
+        /// <summary>
         /// The endpoint to access kibana.
         /// </summary>
         public readonly string? Kibana;
@@ -26,9 +30,12 @@ namespace Pulumi.ElasticCloud.Outputs
         private SecurityProjectEndpoints(
             string? elasticsearch,
 
+            string? ingest,
+
             string? kibana)
         {
             Elasticsearch = elasticsearch;
+            Ingest = ingest;
             Kibana = kibana;
         }
     }

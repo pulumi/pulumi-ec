@@ -47,6 +47,21 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * the tier of the observability project
+     * 
+     */
+    @Import(name="productTier")
+    private @Nullable Output<String> productTier;
+
+    /**
+     * @return the tier of the observability project
+     * 
+     */
+    public Optional<Output<String>> productTier() {
+        return Optional.ofNullable(this.productTier);
+    }
+
+    /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      * 
      */
@@ -66,6 +81,7 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
     private ObservabilityProjectArgs(ObservabilityProjectArgs $) {
         this.alias = $.alias;
         this.name = $.name;
+        this.productTier = $.productTier;
         this.regionId = $.regionId;
     }
 
@@ -127,6 +143,27 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param productTier the tier of the observability project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder productTier(@Nullable Output<String> productTier) {
+            $.productTier = productTier;
+            return this;
+        }
+
+        /**
+         * @param productTier the tier of the observability project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder productTier(String productTier) {
+            return productTier(Output.of(productTier));
         }
 
         /**

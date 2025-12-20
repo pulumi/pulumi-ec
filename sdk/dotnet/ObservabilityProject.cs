@@ -82,6 +82,12 @@ namespace Pulumi.ElasticCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// the tier of the observability project
+        /// </summary>
+        [Output("productTier")]
+        public Output<string> ProductTier { get; private set; } = null!;
+
+        /// <summary>
         /// Unique human-readable identifier for a region in Elastic Cloud.
         /// </summary>
         [Output("regionId")]
@@ -152,6 +158,12 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// the tier of the observability project
+        /// </summary>
+        [Input("productTier")]
+        public Input<string>? ProductTier { get; set; }
+
+        /// <summary>
         /// Unique human-readable identifier for a region in Elastic Cloud.
         /// </summary>
         [Input("regionId", required: true)]
@@ -200,6 +212,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// the tier of the observability project
+        /// </summary>
+        [Input("productTier")]
+        public Input<string>? ProductTier { get; set; }
 
         /// <summary>
         /// Unique human-readable identifier for a region in Elastic Cloud.

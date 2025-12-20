@@ -208,7 +208,7 @@ export interface DeploymentElasticsearchColdAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -216,7 +216,7 @@ export interface DeploymentElasticsearchColdAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -317,7 +317,7 @@ export interface DeploymentElasticsearchCoordinatingAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -325,7 +325,7 @@ export interface DeploymentElasticsearchCoordinatingAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -418,7 +418,7 @@ export interface DeploymentElasticsearchFrozenAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -426,7 +426,7 @@ export interface DeploymentElasticsearchFrozenAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -500,7 +500,7 @@ export interface DeploymentElasticsearchHotAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -508,7 +508,7 @@ export interface DeploymentElasticsearchHotAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -593,7 +593,7 @@ export interface DeploymentElasticsearchMasterAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -601,7 +601,7 @@ export interface DeploymentElasticsearchMasterAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -675,7 +675,7 @@ export interface DeploymentElasticsearchMlAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -683,7 +683,7 @@ export interface DeploymentElasticsearchMlAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -842,7 +842,7 @@ export interface DeploymentElasticsearchWarmAutoscaling {
      */
     autoscale: boolean;
     /**
-     * Maximum size value for the maximum autoscaling setting.
+     * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
     maxSize: string;
     /**
@@ -850,7 +850,7 @@ export interface DeploymentElasticsearchWarmAutoscaling {
      */
     maxSizeResource: string;
     /**
-     * Minimum size value for the minimum autoscaling setting.
+     * Minimum autoscaling size.
      */
     minSize: string;
     /**
@@ -1996,6 +1996,10 @@ export interface ObservabilityProjectEndpoints {
      */
     elasticsearch: string;
     /**
+     * The endpoint to access the Managed OTLP Endpoint.
+     */
+    ingest: string;
+    /**
      * The endpoint to access kibana.
      */
     kibana: string;
@@ -2151,6 +2155,10 @@ export interface SecurityProjectEndpoints {
      * The endpoint to access elasticsearch.
      */
     elasticsearch: string;
+    /**
+     * The endpoint to access the Managed OTLP Endpoint.
+     */
+    ingest: string;
     /**
      * The endpoint to access kibana.
      */
