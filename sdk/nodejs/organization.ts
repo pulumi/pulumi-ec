@@ -6,6 +6,87 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Manages an Elastic Cloud organization membership.
+ *
+ *   > **This resource can only be used with Elastic Cloud SaaS**
+ *
+ * ## Example Usage
+ *
+ * ### Import
+ *
+ * To import an organization into terraform, first define your organization configuration in your terraform file. For example:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const myorg = new ec.Organization("myorg", {});
+ * ```
+ *
+ * Then import the organization using your organization-id (The organization id can be found on [the organization page](https://cloud.elastic.co/account/members))
+ *
+ * Now you can run `pulumi preview` to see if there are any diffs between your config and how your organization is currently configured.
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const myOrg = new ec.Organization("my_org", {members: {
+ *     "a.member@example.com": {
+ *         organizationRole: "billing-admin",
+ *         deploymentRoles: [
+ *             {
+ *                 role: "editor",
+ *                 allDeployments: true,
+ *             },
+ *             {
+ *                 role: "editor",
+ *                 deploymentIds: ["ce03a623751b4fc98d48400fec58b9c0"],
+ *             },
+ *         ],
+ *         projectElasticsearchRoles: [
+ *             {
+ *                 role: "admin",
+ *                 allProjects: true,
+ *             },
+ *             {
+ *                 role: "admin",
+ *                 projectIds: ["c866244b611442d585e23a0cc8c9434c"],
+ *             },
+ *         ],
+ *         projectObservabilityRoles: [],
+ *         projectSecurityRoles: [],
+ *     },
+ * }});
+ * ```
+ *
+ * ### Use variables to give the same roles to multiple users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const deploymentAdmin = {
+ *     deploymentRoles: [{
+ *         role: "admin",
+ *         allDeployments: true,
+ *     }],
+ * };
+ * const deploymentViewer = {
+ *     deploymentRoles: [{
+ *         role: "viewer",
+ *         allDeployments: true,
+ *     }],
+ * };
+ * const myOrg = new ec.Organization("my_org", {members: {
+ *     "admin@example.com": deploymentAdmin,
+ *     "viewer@example.com": deploymentViewer,
+ *     "another.viewer@example.com": deploymentViewer,
+ * }});
+ * ```
+ */
 export class Organization extends pulumi.CustomResource {
     /**
      * Get an existing Organization resource's state with the given name, ID, and optional extra

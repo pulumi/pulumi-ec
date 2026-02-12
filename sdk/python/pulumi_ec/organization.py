@@ -75,7 +75,86 @@ class Organization(pulumi.CustomResource):
                  members: Optional[pulumi.Input[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None,
                  __props__=None):
         """
-        Create a Organization resource with the given unique name, props, and options.
+        Manages an Elastic Cloud organization membership.
+
+          > **This resource can only be used with Elastic Cloud SaaS**
+
+        ## Example Usage
+
+        ### Import
+
+        To import an organization into terraform, first define your organization configuration in your terraform file. For example:
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        myorg = ec.Organization("myorg")
+        ```
+
+        Then import the organization using your organization-id (The organization id can be found on [the organization page](https://cloud.elastic.co/account/members))
+
+        Now you can run `pulumi preview` to see if there are any diffs between your config and how your organization is currently configured.
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        my_org = ec.Organization("my_org", members={
+            "a.member@example.com": {
+                "organization_role": "billing-admin",
+                "deployment_roles": [
+                    {
+                        "role": "editor",
+                        "all_deployments": True,
+                    },
+                    {
+                        "role": "editor",
+                        "deployment_ids": ["ce03a623751b4fc98d48400fec58b9c0"],
+                    },
+                ],
+                "project_elasticsearch_roles": [
+                    {
+                        "role": "admin",
+                        "all_projects": True,
+                    },
+                    {
+                        "role": "admin",
+                        "project_ids": ["c866244b611442d585e23a0cc8c9434c"],
+                    },
+                ],
+                "project_observability_roles": [],
+                "project_security_roles": [],
+            },
+        })
+        ```
+
+        ### Use variables to give the same roles to multiple users
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        deployment_admin = {
+            "deploymentRoles": [{
+                "role": "admin",
+                "allDeployments": True,
+            }],
+        }
+        deployment_viewer = {
+            "deploymentRoles": [{
+                "role": "viewer",
+                "allDeployments": True,
+            }],
+        }
+        my_org = ec.Organization("my_org", members={
+            "admin@example.com": deployment_admin,
+            "viewer@example.com": deployment_viewer,
+            "another.viewer@example.com": deployment_viewer,
+        })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]] members: Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
@@ -87,7 +166,86 @@ class Organization(pulumi.CustomResource):
                  args: Optional[OrganizationArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Organization resource with the given unique name, props, and options.
+        Manages an Elastic Cloud organization membership.
+
+          > **This resource can only be used with Elastic Cloud SaaS**
+
+        ## Example Usage
+
+        ### Import
+
+        To import an organization into terraform, first define your organization configuration in your terraform file. For example:
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        myorg = ec.Organization("myorg")
+        ```
+
+        Then import the organization using your organization-id (The organization id can be found on [the organization page](https://cloud.elastic.co/account/members))
+
+        Now you can run `pulumi preview` to see if there are any diffs between your config and how your organization is currently configured.
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        my_org = ec.Organization("my_org", members={
+            "a.member@example.com": {
+                "organization_role": "billing-admin",
+                "deployment_roles": [
+                    {
+                        "role": "editor",
+                        "all_deployments": True,
+                    },
+                    {
+                        "role": "editor",
+                        "deployment_ids": ["ce03a623751b4fc98d48400fec58b9c0"],
+                    },
+                ],
+                "project_elasticsearch_roles": [
+                    {
+                        "role": "admin",
+                        "all_projects": True,
+                    },
+                    {
+                        "role": "admin",
+                        "project_ids": ["c866244b611442d585e23a0cc8c9434c"],
+                    },
+                ],
+                "project_observability_roles": [],
+                "project_security_roles": [],
+            },
+        })
+        ```
+
+        ### Use variables to give the same roles to multiple users
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        deployment_admin = {
+            "deploymentRoles": [{
+                "role": "admin",
+                "allDeployments": True,
+            }],
+        }
+        deployment_viewer = {
+            "deploymentRoles": [{
+                "role": "viewer",
+                "allDeployments": True,
+            }],
+        }
+        my_org = ec.Organization("my_org", members={
+            "admin@example.com": deployment_admin,
+            "viewer@example.com": deployment_viewer,
+            "another.viewer@example.com": deployment_viewer,
+        })
+        ```
+
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

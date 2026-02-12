@@ -104,6 +104,8 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
                  traffic_filter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Provides an Elastic Cloud traffic filter association resource, which allows traffic filter rules to be associated to an Elastic Cloud deployment outside of the control of Terraform. Associations can be created and deleted.
+
         ## Example Usage
 
         ```python
@@ -139,6 +141,8 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
                  args: DeploymentTrafficFilterAssociationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides an Elastic Cloud traffic filter association resource, which allows traffic filter rules to be associated to an Elastic Cloud deployment outside of the control of Terraform. Associations can be created and deleted.
+
         ## Example Usage
 
         ```python

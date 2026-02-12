@@ -16,6 +16,151 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Manages an Elastic Cloud organization membership.
+ * 
+ *   &gt; **This resource can only be used with Elastic Cloud SaaS**
+ * 
+ * ## Example Usage
+ * 
+ * ### Import
+ * 
+ * To import an organization into terraform, first define your organization configuration in your terraform file. For example:
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.Organization;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myorg = new Organization("myorg");
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Then import the organization using your organization-id (The organization id can be found on [the organization page](https://cloud.elastic.co/account/members))
+ * 
+ * Now you can run `pulumi preview` to see if there are any diffs between your config and how your organization is currently configured.
+ * 
+ * ### Basic
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.Organization;
+ * import com.pulumi.ec.OrganizationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         var myOrg = new Organization("myOrg", OrganizationArgs.builder()
+ *             .members(Map.of("a.member}{@literal @}{@code example.com", OrganizationMembersArgs.builder()
+ *                 .organizationRole("billing-admin")
+ *                 .deploymentRoles(                
+ *                     OrganizationMembersDeploymentRoleArgs.builder()
+ *                         .role("editor")
+ *                         .allDeployments(true)
+ *                         .build(),
+ *                     OrganizationMembersDeploymentRoleArgs.builder()
+ *                         .role("editor")
+ *                         .deploymentIds("ce03a623751b4fc98d48400fec58b9c0")
+ *                         .build())
+ *                 .projectElasticsearchRoles(                
+ *                     OrganizationMembersProjectElasticsearchRoleArgs.builder()
+ *                         .role("admin")
+ *                         .allProjects(true)
+ *                         .build(),
+ *                     OrganizationMembersProjectElasticsearchRoleArgs.builder()
+ *                         .role("admin")
+ *                         .projectIds("c866244b611442d585e23a0cc8c9434c")
+ *                         .build())
+ *                 .projectObservabilityRoles()
+ *                 .projectSecurityRoles()
+ *                 .build()))
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ * ### Use variables to give the same roles to multiple users
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.Organization;
+ * import com.pulumi.ec.OrganizationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         final var deploymentAdmin = Map.of("deploymentRoles", List.of(Map.ofEntries(
+ *             Map.entry("role", "admin"),
+ *             Map.entry("allDeployments", true)
+ *         )));
+ * 
+ *         final var deploymentViewer = Map.of("deploymentRoles", List.of(Map.ofEntries(
+ *             Map.entry("role", "viewer"),
+ *             Map.entry("allDeployments", true)
+ *         )));
+ * 
+ *         var myOrg = new Organization("myOrg", OrganizationArgs.builder()
+ *             .members(Map.ofEntries(
+ *                 Map.entry("admin}{@literal @}{@code example.com", deploymentAdmin),
+ *                 Map.entry("viewer}{@literal @}{@code example.com", deploymentViewer),
+ *                 Map.entry("another.viewer}{@literal @}{@code example.com", deploymentViewer)
+ *             ))
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ */
 @ResourceType(type="ec:index/organization:Organization")
 public class Organization extends com.pulumi.resources.CustomResource {
     /**

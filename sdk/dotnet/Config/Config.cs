@@ -43,6 +43,9 @@ namespace Pulumi.ElasticCloud
         }
 
         private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint"));
+        /// <summary>
+        /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
+        /// </summary>
         public static string? Endpoint
         {
             get => _endpoint.Get();

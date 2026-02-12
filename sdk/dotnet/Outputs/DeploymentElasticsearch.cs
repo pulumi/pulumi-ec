@@ -85,6 +85,11 @@ namespace Pulumi.ElasticCloud.Outputs
         /// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshot? Snapshot;
+        /// <summary>
+        /// Restores data from a snapshot of another deployment.
+        /// 
+        /// &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+        /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshotSource? SnapshotSource;
         /// <summary>
         /// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all

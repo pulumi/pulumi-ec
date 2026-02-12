@@ -19,7 +19,8 @@ type Provider struct {
 	pulumi.ProviderResourceState
 
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
-	Apikey   pulumi.StringPtrOutput `pulumi:"apikey"`
+	Apikey pulumi.StringPtrOutput `pulumi:"apikey"`
+	// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
 	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
@@ -60,7 +61,8 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
-	Apikey   *string `pulumi:"apikey"`
+	Apikey *string `pulumi:"apikey"`
+	// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 	Endpoint *string `pulumi:"endpoint"`
 	// Allow the provider to skip TLS validation on its outgoing HTTP calls.
 	Insecure *bool `pulumi:"insecure"`
@@ -81,7 +83,8 @@ type providerArgs struct {
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
-	Apikey   pulumi.StringPtrInput
+	Apikey pulumi.StringPtrInput
+	// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 	Endpoint pulumi.StringPtrInput
 	// Allow the provider to skip TLS validation on its outgoing HTTP calls.
 	Insecure pulumi.BoolPtrInput
@@ -164,6 +167,7 @@ func (o ProviderOutput) Apikey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Apikey }).(pulumi.StringPtrOutput)
 }
 
+// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }

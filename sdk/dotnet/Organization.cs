@@ -9,6 +9,138 @@ using Pulumi.Serialization;
 
 namespace Pulumi.ElasticCloud
 {
+    /// <summary>
+    /// Manages an Elastic Cloud organization membership.
+    /// 
+    ///   &gt; **This resource can only be used with Elastic Cloud SaaS**
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Import
+    /// 
+    /// To import an organization into terraform, first define your organization configuration in your terraform file. For example:
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myorg = new ElasticCloud.Organization("myorg");
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Then import the organization using your organization-id (The organization id can be found on [the organization page](https://cloud.elastic.co/account/members))
+    /// 
+    /// Now you can run `pulumi preview` to see if there are any diffs between your config and how your organization is currently configured.
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myOrg = new ElasticCloud.Organization("my_org", new()
+    ///     {
+    ///         Members = 
+    ///         {
+    ///             { "a.member@example.com", new ElasticCloud.Inputs.OrganizationMembersArgs
+    ///             {
+    ///                 OrganizationRole = "billing-admin",
+    ///                 DeploymentRoles = new[]
+    ///                 {
+    ///                     new ElasticCloud.Inputs.OrganizationMembersDeploymentRoleArgs
+    ///                     {
+    ///                         Role = "editor",
+    ///                         AllDeployments = true,
+    ///                     },
+    ///                     new ElasticCloud.Inputs.OrganizationMembersDeploymentRoleArgs
+    ///                     {
+    ///                         Role = "editor",
+    ///                         DeploymentIds = new[]
+    ///                         {
+    ///                             "ce03a623751b4fc98d48400fec58b9c0",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 ProjectElasticsearchRoles = new[]
+    ///                 {
+    ///                     new ElasticCloud.Inputs.OrganizationMembersProjectElasticsearchRoleArgs
+    ///                     {
+    ///                         Role = "admin",
+    ///                         AllProjects = true,
+    ///                     },
+    ///                     new ElasticCloud.Inputs.OrganizationMembersProjectElasticsearchRoleArgs
+    ///                     {
+    ///                         Role = "admin",
+    ///                         ProjectIds = new[]
+    ///                         {
+    ///                             "c866244b611442d585e23a0cc8c9434c",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 ProjectObservabilityRoles = new() { },
+    ///                 ProjectSecurityRoles = new() { },
+    ///             } },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Use variables to give the same roles to multiple users
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var deploymentAdmin = 
+    ///     {
+    ///         { "deploymentRoles", new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "role", "admin" },
+    ///                 { "allDeployments", true },
+    ///             },
+    ///         } },
+    ///     };
+    /// 
+    ///     var deploymentViewer = 
+    ///     {
+    ///         { "deploymentRoles", new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "role", "viewer" },
+    ///                 { "allDeployments", true },
+    ///             },
+    ///         } },
+    ///     };
+    /// 
+    ///     var myOrg = new ElasticCloud.Organization("my_org", new()
+    ///     {
+    ///         Members = 
+    ///         {
+    ///             { "admin@example.com", deploymentAdmin },
+    ///             { "viewer@example.com", deploymentViewer },
+    ///             { "another.viewer@example.com", deploymentViewer },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [ElasticCloudResourceType("ec:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource
     {

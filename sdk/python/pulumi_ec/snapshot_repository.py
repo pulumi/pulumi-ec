@@ -141,6 +141,10 @@ class SnapshotRepository(pulumi.CustomResource):
                  s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
                  __props__=None):
         """
+        Manages Elastic Cloud Enterprise snapshot repositories.
+
+          > **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository resource from the Elastic Stack terraform provider.
+
         ## Example Usage
 
         ### S3 style
@@ -217,6 +221,10 @@ class SnapshotRepository(pulumi.CustomResource):
                  args: Optional[SnapshotRepositoryArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages Elastic Cloud Enterprise snapshot repositories.
+
+          > **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstack_elasticsearch_snapshot_repository resource from the Elastic Stack terraform provider.
+
         ## Example Usage
 
         ### S3 style

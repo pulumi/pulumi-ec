@@ -16,6 +16,18 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * Provides an Elastic Cloud Deployment Elasticsearch keystore resource, which allows you to create and update Elasticsearch keystore settings.
+ * 
+ *   Elasticsearch keystore settings can be created and updated through this resource, **each resource represents a single Elasticsearch Keystore setting**. After adding a key and its secret value to the keystore, you can use the key in place of the secret value when you configure sensitive settings.
+ * 
+ *   &gt; **Note on Elastic keystore settings** This resource offers weaker consistency guarantees and will not detect and update keystore setting values that have been modified outside of the scope of Terraform, usually referred to as _drift_. For example, consider the following scenario:
+ *     1. A keystore setting is created using this resource.
+ *     2. The keystore setting&#39;s value is modified to a different value using the Elasticsearch Service API.
+ *     3. Running &lt;code&gt;pulumi up&lt;/code&gt; fails to detect the changes and does not update the keystore setting to the value defined in the terraform configuration.
+ *     To force the keystore setting to the value it is configured to hold, you may want to taint the resource and force its recreation.
+ * 
+ *   Before you create Elasticsearch keystore settings, check the [official Elasticsearch keystore documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/elasticsearch-keystore.html) and the [Elastic Cloud specific documentation](https://www.elastic.co/guide/en/cloud/current/ec-configuring-keystore.html).
+ * 
  * ## Example Usage
  * 
  * ### Basic

@@ -316,6 +316,10 @@ class _DeploymentState:
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
+        :param pulumi.Input[_builtins.str] elasticsearch_password: Password for authenticating to the Elasticsearch resource.
+               
+               > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+               > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -434,6 +438,12 @@ class _DeploymentState:
     @_builtins.property
     @pulumi.getter(name="elasticsearchPassword")
     def elasticsearch_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Password for authenticating to the Elasticsearch resource.
+
+        > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+        > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+        """
         return pulumi.get(self, "elasticsearch_password")
 
     @elasticsearch_password.setter
@@ -626,6 +636,14 @@ class Deployment(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Provides an Elastic Cloud deployment resource, which allows deployments to be created, updated, and deleted.
+
+        > **Note on traffic filters** If you use `traffic_filter` on an `Deployment`, Terraform will manage the full set of traffic rules for the deployment, and treat additional traffic filters as drift. For this reason, `traffic_filter` cannot be mixed with the `DeploymentTrafficFilterAssociation` resource for a given deployment.
+
+        > **Note on Elastic Stack versions** Using a version prior to `6.6.0` is not supported.
+
+        > **Note on regions and deployment templates** Before you start, you might want to read about [Elastic Cloud deployments](https://www.elastic.co/guide/en/cloud/current/ec-create-deployment.html) and check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in Elasticsearch Service (ESS).
+
         ## Example Usage
 
         ### Basic
@@ -648,13 +666,13 @@ class Deployment(pulumi.CustomResource):
 
         ## Import
 
-        ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
+        > **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
 
-        ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported.
+        > **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported.
 
-        ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported.
+        > **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported.
 
-        ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing.
+        > **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing.
 
         Deployments can be imported using the `id`, for example:
 
@@ -693,6 +711,14 @@ class Deployment(pulumi.CustomResource):
                  args: DeploymentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides an Elastic Cloud deployment resource, which allows deployments to be created, updated, and deleted.
+
+        > **Note on traffic filters** If you use `traffic_filter` on an `Deployment`, Terraform will manage the full set of traffic rules for the deployment, and treat additional traffic filters as drift. For this reason, `traffic_filter` cannot be mixed with the `DeploymentTrafficFilterAssociation` resource for a given deployment.
+
+        > **Note on Elastic Stack versions** Using a version prior to `6.6.0` is not supported.
+
+        > **Note on regions and deployment templates** Before you start, you might want to read about [Elastic Cloud deployments](https://www.elastic.co/guide/en/cloud/current/ec-create-deployment.html) and check the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in Elasticsearch Service (ESS).
+
         ## Example Usage
 
         ### Basic
@@ -715,13 +741,13 @@ class Deployment(pulumi.CustomResource):
 
         ## Import
 
-        ~> **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
+        > **Note on deployment credentials** The `elastic` user credentials are only available whilst creating a deployment. Importing a deployment will not import the `elasticsearch_username` or `elasticsearch_password` attributes.
 
-        ~> **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported.
+        > **Note on legacy (pre-slider) deployments** Importing deployments created prior to the addition of sliders in ECE or ESS, without being migrated to use sliders, is not supported.
 
-        ~> **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported.
+        > **Note on pre 6.6.0 deployments** Importing deployments with a version lower than `6.6.0` is not supported.
 
-        ~> **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing.
+        > **Note on deployments with topology user settings** Only deployments with global user settings (config) are supported. Make sure to migrate to global settings before importing.
 
         Deployments can be imported using the `id`, for example:
 
@@ -838,6 +864,10 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
+        :param pulumi.Input[_builtins.str] elasticsearch_password: Password for authenticating to the Elasticsearch resource.
+               
+               > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+               > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -922,6 +952,12 @@ class Deployment(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="elasticsearchPassword")
     def elasticsearch_password(self) -> pulumi.Output[_builtins.str]:
+        """
+        Password for authenticating to the Elasticsearch resource.
+
+        > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
+        > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+        """
         return pulumi.get(self, "elasticsearch_password")
 
     @_builtins.property

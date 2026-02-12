@@ -36,7 +36,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// Projects can be imported using the `id`, for example:
+    /// Projects can be imported using the `Id`, for example:
     /// 
     /// ```sh
     /// $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed

@@ -466,6 +466,9 @@ class DeploymentElasticsearch(dict):
         :param Sequence['DeploymentElasticsearchRemoteClusterArgs'] remote_clusters: Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         :param _builtins.str resource_id: The Elasticsearch resource unique identifier
         :param 'DeploymentElasticsearchSnapshotArgs' snapshot: (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
+        :param 'DeploymentElasticsearchSnapshotSourceArgs' snapshot_source: Restores data from a snapshot of another deployment.
+               
+               > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
         :param _builtins.str strategy: Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
         :param Sequence['DeploymentElasticsearchTrustAccountArgs'] trust_accounts: Optional Elasticsearch account trust settings.
         :param Sequence['DeploymentElasticsearchTrustExternalArgs'] trust_externals: Optional Elasticsearch external trust settings.
@@ -664,6 +667,11 @@ class DeploymentElasticsearch(dict):
     @_builtins.property
     @pulumi.getter(name="snapshotSource")
     def snapshot_source(self) -> Optional['outputs.DeploymentElasticsearchSnapshotSource']:
+        """
+        Restores data from a snapshot of another deployment.
+
+        > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
+        """
         return pulumi.get(self, "snapshot_source")
 
     @_builtins.property
