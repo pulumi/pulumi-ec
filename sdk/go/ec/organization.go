@@ -11,6 +11,142 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an Elastic Cloud organization membership.
+//
+//	> **This resource can only be used with Elastic Cloud SaaS**
+//
+// ## Example Usage
+//
+// ### Import
+//
+// To import an organization into terraform, first define your organization configuration in your terraform file. For example:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.NewOrganization(ctx, "myorg", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Then import the organization using your organization-id (The organization id can be found on [the organization page](https://cloud.elastic.co/account/members))
+//
+// Now you can run `pulumi preview` to see if there are any diffs between your config and how your organization is currently configured.
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ec.NewOrganization(ctx, "my_org", &ec.OrganizationArgs{
+//				Members: ec.OrganizationMembersMap{
+//					"a.member@example.com": &ec.OrganizationMembersArgs{
+//						OrganizationRole: pulumi.String("billing-admin"),
+//						DeploymentRoles: ec.OrganizationMembersDeploymentRoleArray{
+//							&ec.OrganizationMembersDeploymentRoleArgs{
+//								Role:           pulumi.String("editor"),
+//								AllDeployments: pulumi.Bool(true),
+//							},
+//							&ec.OrganizationMembersDeploymentRoleArgs{
+//								Role: pulumi.String("editor"),
+//								DeploymentIds: pulumi.StringArray{
+//									pulumi.String("ce03a623751b4fc98d48400fec58b9c0"),
+//								},
+//							},
+//						},
+//						ProjectElasticsearchRoles: ec.OrganizationMembersProjectElasticsearchRoleArray{
+//							&ec.OrganizationMembersProjectElasticsearchRoleArgs{
+//								Role:        pulumi.String("admin"),
+//								AllProjects: pulumi.Bool(true),
+//							},
+//							&ec.OrganizationMembersProjectElasticsearchRoleArgs{
+//								Role: pulumi.String("admin"),
+//								ProjectIds: pulumi.StringArray{
+//									pulumi.String("c866244b611442d585e23a0cc8c9434c"),
+//								},
+//							},
+//						},
+//						ProjectObservabilityRoles: ec.OrganizationMembersProjectObservabilityRoleArray{},
+//						ProjectSecurityRoles:      ec.OrganizationMembersProjectSecurityRoleArray{},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Use variables to give the same roles to multiple users
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			deploymentAdmin := map[string]interface{}{
+//				"deploymentRoles": []map[string]interface{}{
+//					map[string]interface{}{
+//						"role":           "admin",
+//						"allDeployments": true,
+//					},
+//				},
+//			}
+//			deploymentViewer := map[string]interface{}{
+//				"deploymentRoles": []map[string]interface{}{
+//					map[string]interface{}{
+//						"role":           "viewer",
+//						"allDeployments": true,
+//					},
+//				},
+//			}
+//			_, err := ec.NewOrganization(ctx, "my_org", &ec.OrganizationArgs{
+//				Members: ec.OrganizationMembersMap{
+//					"admin@example.com":          pulumi.MapArrayMap(deploymentAdmin),
+//					"viewer@example.com":         pulumi.MapArrayMap(deploymentViewer),
+//					"another.viewer@example.com": pulumi.MapArrayMap(deploymentViewer),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Organization struct {
 	pulumi.CustomResourceState
 

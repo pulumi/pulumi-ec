@@ -37,9 +37,17 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> apikey() {
         return Codegen.optional(this.apikey);
     }
+    /**
+     * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
+     * 
+     */
     @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> endpoint;
 
+    /**
+     * @return Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
+     * 
+     */
     public Output<Optional<String>> endpoint() {
         return Codegen.optional(this.endpoint);
     }

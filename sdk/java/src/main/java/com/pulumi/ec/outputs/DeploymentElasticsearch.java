@@ -120,6 +120,12 @@ public final class DeploymentElasticsearch {
      * 
      */
     private @Nullable DeploymentElasticsearchSnapshot snapshot;
+    /**
+     * @return Restores data from a snapshot of another deployment.
+     * 
+     * &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+     * 
+     */
     private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
     /**
      * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
@@ -269,6 +275,12 @@ public final class DeploymentElasticsearch {
     public Optional<DeploymentElasticsearchSnapshot> snapshot() {
         return Optional.ofNullable(this.snapshot);
     }
+    /**
+     * @return Restores data from a snapshot of another deployment.
+     * 
+     * &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+     * 
+     */
     public Optional<DeploymentElasticsearchSnapshotSource> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
     }

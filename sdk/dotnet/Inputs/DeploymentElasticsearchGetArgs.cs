@@ -138,6 +138,11 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("snapshot")]
         public Input<Inputs.DeploymentElasticsearchSnapshotGetArgs>? Snapshot { get; set; }
 
+        /// <summary>
+        /// Restores data from a snapshot of another deployment.
+        /// 
+        /// &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+        /// </summary>
         [Input("snapshotSource")]
         public Input<Inputs.DeploymentElasticsearchSnapshotSourceGetArgs>? SnapshotSource { get; set; }
 

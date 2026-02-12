@@ -617,7 +617,10 @@ type DeploymentElasticsearch struct {
 	// The Elasticsearch resource unique identifier
 	ResourceId *string `pulumi:"resourceId"`
 	// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
-	Snapshot       *DeploymentElasticsearchSnapshot       `pulumi:"snapshot"`
+	Snapshot *DeploymentElasticsearchSnapshot `pulumi:"snapshot"`
+	// Restores data from a snapshot of another deployment.
+	//
+	// > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
 	SnapshotSource *DeploymentElasticsearchSnapshotSource `pulumi:"snapshotSource"`
 	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
 	Strategy *string `pulumi:"strategy"`
@@ -676,7 +679,10 @@ type DeploymentElasticsearchArgs struct {
 	// The Elasticsearch resource unique identifier
 	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
 	// (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
-	Snapshot       DeploymentElasticsearchSnapshotPtrInput       `pulumi:"snapshot"`
+	Snapshot DeploymentElasticsearchSnapshotPtrInput `pulumi:"snapshot"`
+	// Restores data from a snapshot of another deployment.
+	//
+	// > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
 	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput `pulumi:"snapshotSource"`
 	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
 	Strategy pulumi.StringPtrInput `pulumi:"strategy"`
@@ -857,6 +863,9 @@ func (o DeploymentElasticsearchOutput) Snapshot() DeploymentElasticsearchSnapsho
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshot { return v.Snapshot }).(DeploymentElasticsearchSnapshotPtrOutput)
 }
 
+// Restores data from a snapshot of another deployment.
+//
+// > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
 func (o DeploymentElasticsearchOutput) SnapshotSource() DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource { return v.SnapshotSource }).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
@@ -1085,6 +1094,9 @@ func (o DeploymentElasticsearchPtrOutput) Snapshot() DeploymentElasticsearchSnap
 	}).(DeploymentElasticsearchSnapshotPtrOutput)
 }
 
+// Restores data from a snapshot of another deployment.
+//
+// > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
 func (o DeploymentElasticsearchPtrOutput) SnapshotSource() DeploymentElasticsearchSnapshotSourcePtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource {
 		if v == nil {

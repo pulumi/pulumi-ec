@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
+    /// Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
+    /// 
+    ///   &gt; **Note on traffic filters** If you use TrafficFilter on an ec_deployment, Terraform will manage the full set of traffic rules for the deployment, and treat additional traffic filters as drift. For this reason, TrafficFilter cannot be mixed with the ec.DeploymentTrafficFilterAssociation resource for a given deployment.
+    /// 
     /// ## Example Usage
     /// 
     /// ### IP based traffic filter
@@ -181,7 +185,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// Traffic filters can be imported using the `id`, for example:
+    /// Traffic filters can be imported using the `Id`, for example:
     /// 
     /// ```sh
     /// $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed

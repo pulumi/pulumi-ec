@@ -17,6 +17,10 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Manages Elastic Cloud Enterprise snapshot repositories.
+ * 
+ *   &gt; **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the elasticstackElasticsearchSnapshotRepository resource from the Elastic Stack terraform provider.
+ * 
  * ## Example Usage
  * 
  * ### S3 style

@@ -304,9 +304,21 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.snapshot);
     }
 
+    /**
+     * Restores data from a snapshot of another deployment.
+     * 
+     * &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+     * 
+     */
     @Import(name="snapshotSource")
     private @Nullable Output<DeploymentElasticsearchSnapshotSourceArgs> snapshotSource;
 
+    /**
+     * @return Restores data from a snapshot of another deployment.
+     * 
+     * &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+     * 
+     */
     public Optional<Output<DeploymentElasticsearchSnapshotSourceArgs>> snapshotSource() {
         return Optional.ofNullable(this.snapshotSource);
     }
@@ -815,11 +827,27 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
             return snapshot(Output.of(snapshot));
         }
 
+        /**
+         * @param snapshotSource Restores data from a snapshot of another deployment.
+         * 
+         * &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotSource(@Nullable Output<DeploymentElasticsearchSnapshotSourceArgs> snapshotSource) {
             $.snapshotSource = snapshotSource;
             return this;
         }
 
+        /**
+         * @param snapshotSource Restores data from a snapshot of another deployment.
+         * 
+         * &gt; **Note on behavior** The &lt;code&gt;snapshot_source&lt;/code&gt; block will not be saved in the Terraform state due to its transient nature. This means that whenever the &lt;code&gt;snapshot_source&lt;/code&gt; block is set, a snapshot will **always be restored**, unless removed before running &lt;code&gt;terraform apply&lt;/code&gt;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotSource(DeploymentElasticsearchSnapshotSourceArgs snapshotSource) {
             return snapshotSource(Output.of(snapshotSource));
         }

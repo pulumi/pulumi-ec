@@ -18,6 +18,10 @@ public final class Config {
     public Optional<String> apikey() {
         return Codegen.stringProp("apikey").config(config).get();
     }
+/**
+ * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
+ * 
+ */
     public Optional<String> endpoint() {
         return Codegen.stringProp("endpoint").config(config).get();
     }

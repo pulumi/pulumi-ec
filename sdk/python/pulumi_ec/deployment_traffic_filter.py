@@ -238,6 +238,10 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
+
+          > **Note on traffic filters** If you use traffic_filter on an ec_deployment, Terraform will manage the full set of traffic rules for the deployment, and treat additional traffic filters as drift. For this reason, traffic_filter cannot be mixed with the DeploymentTrafficFilterAssociation resource for a given deployment.
+
         ## Example Usage
 
         ### IP based traffic filter
@@ -357,6 +361,10 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  args: DeploymentTrafficFilterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides an Elastic Cloud traffic filter resource, which allows traffic filter rules to be created, updated, and deleted. Traffic filter rules are used to limit inbound traffic to deployment resources.
+
+          > **Note on traffic filters** If you use traffic_filter on an ec_deployment, Terraform will manage the full set of traffic rules for the deployment, and treat additional traffic filters as drift. For this reason, traffic_filter cannot be mixed with the DeploymentTrafficFilterAssociation resource for a given deployment.
+
         ## Example Usage
 
         ### IP based traffic filter

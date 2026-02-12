@@ -128,6 +128,11 @@ export interface DeploymentElasticsearch {
      * (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      */
     snapshot?: pulumi.Input<inputs.DeploymentElasticsearchSnapshot>;
+    /**
+     * Restores data from a snapshot of another deployment.
+     *
+     * > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
+     */
     snapshotSource?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotSource>;
     /**
      * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all

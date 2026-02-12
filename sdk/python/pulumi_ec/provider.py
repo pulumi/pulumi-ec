@@ -31,6 +31,7 @@ class ProviderArgs:
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
+        :param pulumi.Input[_builtins.str] endpoint: Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         :param pulumi.Input[_builtins.bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
         :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.str] timeout: Timeout used for individual HTTP calls. Defaults to "1m".
@@ -73,6 +74,9 @@ class ProviderArgs:
     @_builtins.property
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -189,6 +193,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
+        :param pulumi.Input[_builtins.str] endpoint: Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         :param pulumi.Input[_builtins.bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
         :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.str] timeout: Timeout used for individual HTTP calls. Defaults to "1m".
@@ -270,6 +275,9 @@ class Provider(pulumi.ProviderResource):
     @_builtins.property
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
+        """
         return pulumi.get(self, "endpoint")
 
     @_builtins.property

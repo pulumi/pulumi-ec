@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
+    /// Manages Elastic Cloud Enterprise snapshot repositories.
+    /// 
+    ///   &gt; **This resource can only be used with Elastic Cloud Enterprise** For Elastic Cloud SaaS please use the ElasticstackElasticsearchSnapshotRepository resource from the Elastic Stack terraform provider.
+    /// 
     /// ## Example Usage
     /// 
     /// ### S3 style
@@ -96,7 +100,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// ## Import
     /// 
-    /// You can import snapshot repositories using the `name`, for example:
+    /// You can import snapshot repositories using the `Name`, for example:
     /// 
     /// ```sh
     /// $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
