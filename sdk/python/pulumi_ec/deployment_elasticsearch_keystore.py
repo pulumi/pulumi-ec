@@ -25,6 +25,7 @@ class DeploymentElasticsearchKeystoreArgs:
                  as_file: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DeploymentElasticsearchKeystore resource.
+
         :param pulumi.Input[_builtins.str] deployment_id: Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
         :param pulumi.Input[_builtins.str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         :param pulumi.Input[_builtins.str] value: Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
@@ -94,6 +95,7 @@ class _DeploymentElasticsearchKeystoreState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentElasticsearchKeystore resources.
+
         :param pulumi.Input[_builtins.bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         :param pulumi.Input[_builtins.str] deployment_id: Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
         :param pulumi.Input[_builtins.str] setting_name: Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
@@ -241,6 +243,7 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
 
         This resource cannot be imported
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] as_file: Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
@@ -326,6 +329,7 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
         ## Import
 
         This resource cannot be imported
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentElasticsearchKeystoreArgs args: The arguments to use to populate this resource's properties.

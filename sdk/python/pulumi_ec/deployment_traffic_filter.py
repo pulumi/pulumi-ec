@@ -29,6 +29,7 @@ class DeploymentTrafficFilterArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentTrafficFilterRuleArgs']]]] = None):
         """
         The set of arguments for constructing a DeploymentTrafficFilter resource.
+
         :param pulumi.Input[_builtins.str] region: Filter region, the ruleset can only be attached to deployments in the specific region
         :param pulumi.Input[_builtins.str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, or `gcp_private_service_connect_endpoint`
         :param pulumi.Input[_builtins.str] description: Ruleset description
@@ -131,6 +132,7 @@ class _DeploymentTrafficFilterState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilter resources.
+
         :param pulumi.Input[_builtins.str] description: Ruleset description
         :param pulumi.Input[_builtins.bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[_builtins.str] name: Name of the ruleset
@@ -345,6 +347,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Ruleset description
@@ -467,6 +470,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/deploymentTrafficFilter:DeploymentTrafficFilter name 320b7b540dfc967a7a649c18e2fce4ed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentTrafficFilterArgs args: The arguments to use to populate this resource's properties.

@@ -39,6 +39,7 @@ class DeploymentArgs:
                  traffic_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
+
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input['DeploymentElasticsearchArgs'] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
@@ -312,6 +313,7 @@ class _DeploymentState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
+
         :param pulumi.Input[_builtins.str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
@@ -680,6 +682,7 @@ class Deployment(pulumi.CustomResource):
         $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
@@ -754,6 +757,7 @@ class Deployment(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentArgs args: The arguments to use to populate this resource's properties.

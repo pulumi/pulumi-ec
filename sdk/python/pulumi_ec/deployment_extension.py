@@ -28,6 +28,7 @@ class DeploymentExtensionArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeploymentExtension resource.
+
         :param pulumi.Input[_builtins.str] extension_type: Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         :param pulumi.Input[_builtins.str] version: Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         :param pulumi.Input[_builtins.str] description: Description for the extension
@@ -149,6 +150,7 @@ class _DeploymentExtensionState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentExtension resources.
+
         :param pulumi.Input[_builtins.str] description: Description for the extension
         :param pulumi.Input[_builtins.str] download_url: The URL to download the extension archive.
         :param pulumi.Input[_builtins.str] extension_type: Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
@@ -400,6 +402,7 @@ class DeploymentExtension(pulumi.CustomResource):
         $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description for the extension
@@ -499,6 +502,7 @@ class DeploymentExtension(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/deploymentExtension:DeploymentExtension name 320b7b540dfc967a7a649c18e2fce4ed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentExtensionArgs args: The arguments to use to populate this resource's properties.

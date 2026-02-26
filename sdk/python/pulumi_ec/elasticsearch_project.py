@@ -28,6 +28,7 @@ class ElasticsearchProjectArgs:
                  search_lake: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']] = None):
         """
         The set of arguments for constructing a ElasticsearchProject resource.
+
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
@@ -120,6 +121,7 @@ class _ElasticsearchProjectState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ElasticsearchProject resources.
+
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input['ElasticsearchProjectCredentialsArgs'] credentials: Basic auth credentials to access the Elasticsearch API.
@@ -310,6 +312,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
@@ -348,6 +351,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ElasticsearchProjectArgs args: The arguments to use to populate this resource's properties.
