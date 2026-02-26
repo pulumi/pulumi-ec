@@ -24,6 +24,7 @@ class OrganizationArgs:
                  members: Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]] = None):
         """
         The set of arguments for constructing a Organization resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]] members: Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
         """
         if members is not None:
@@ -48,6 +49,7 @@ class _OrganizationState:
                  members: Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]] members: Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
         """
         if members is not None:
@@ -155,6 +157,7 @@ class Organization(pulumi.CustomResource):
         })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]] members: Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
@@ -245,6 +248,7 @@ class Organization(pulumi.CustomResource):
             "another.viewer@example.com": deployment_viewer,
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.

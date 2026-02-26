@@ -26,6 +26,7 @@ class SnapshotRepositoryArgs:
                  s3: Optional[pulumi.Input['SnapshotRepositoryS3Args']] = None):
         """
         The set of arguments for constructing a SnapshotRepository resource.
+
         :param pulumi.Input['SnapshotRepositoryGenericArgs'] generic: Generic repository settings.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot repository configuration.
         :param pulumi.Input['SnapshotRepositoryS3Args'] s3: S3 repository settings.
@@ -82,6 +83,7 @@ class _SnapshotRepositoryState:
                  s3: Optional[pulumi.Input['SnapshotRepositoryS3Args']] = None):
         """
         Input properties used for looking up and filtering SnapshotRepository resources.
+
         :param pulumi.Input['SnapshotRepositoryGenericArgs'] generic: Generic repository settings.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot repository configuration.
         :param pulumi.Input['SnapshotRepositoryS3Args'] s3: S3 repository settings.
@@ -208,6 +210,7 @@ class SnapshotRepository(pulumi.CustomResource):
         $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']] generic: Generic repository settings.
@@ -287,6 +290,7 @@ class SnapshotRepository(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/snapshotRepository:SnapshotRepository this my-snapshot-repository
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotRepositoryArgs args: The arguments to use to populate this resource's properties.

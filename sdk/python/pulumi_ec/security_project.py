@@ -28,6 +28,7 @@ class SecurityProjectArgs:
                  product_types: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None):
         """
         The set of arguments for constructing a SecurityProject resource.
+
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
@@ -116,6 +117,7 @@ class _SecurityProjectState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityProject resources.
+
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
@@ -302,6 +304,7 @@ class SecurityProject(pulumi.CustomResource):
         $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
@@ -339,6 +342,7 @@ class SecurityProject(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityProjectArgs args: The arguments to use to populate this resource's properties.

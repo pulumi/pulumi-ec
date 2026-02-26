@@ -23,6 +23,7 @@ class DeploymentTrafficFilterAssociationArgs:
                  traffic_filter_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a DeploymentTrafficFilterAssociation resource.
+
         :param pulumi.Input[_builtins.str] deployment_id: Required deployment ID where the traffic filter will be associated
         :param pulumi.Input[_builtins.str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
@@ -61,6 +62,7 @@ class _DeploymentTrafficFilterAssociationState:
                  traffic_filter_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilterAssociation resources.
+
         :param pulumi.Input[_builtins.str] deployment_id: Required deployment ID where the traffic filter will be associated
         :param pulumi.Input[_builtins.str] traffic_filter_id: Required traffic filter ruleset ID to tie to a deployment
         """
@@ -129,6 +131,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
 
         Import is not supported on this resource
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] deployment_id: Required deployment ID where the traffic filter will be associated
@@ -165,6 +168,7 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         ## Import
 
         Import is not supported on this resource
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentTrafficFilterAssociationArgs args: The arguments to use to populate this resource's properties.
