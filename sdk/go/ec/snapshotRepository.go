@@ -77,7 +77,7 @@ import (
 //				Name: pulumi.String("my-snapshot-repository"),
 //				Generic: &ec.SnapshotRepositoryGenericArgs{
 //					Type:     pulumi.String("azure"),
-//					Settings: pulumi.String(json0),
+//					Settings: pulumi.String(pulumi.String(json0)),
 //				},
 //			})
 //			if err != nil {
@@ -118,7 +118,7 @@ import (
 //				Name: pulumi.String("my-snapshot-repository"),
 //				Generic: &ec.SnapshotRepositoryGenericArgs{
 //					Type:     pulumi.String("gcs"),
-//					Settings: pulumi.String(json0),
+//					Settings: pulumi.String(pulumi.String(json0)),
 //				},
 //			})
 //			if err != nil {

@@ -51,7 +51,7 @@ import (
 //			// Create an Elastic Cloud deployment
 //			exampleKeystore, err := ec.NewDeployment(ctx, "example_keystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
@@ -109,7 +109,7 @@ import (
 //			// Create an Elastic Cloud deployment
 //			exampleKeystore, err := ec.NewDeployment(ctx, "example_keystore", &ec.DeploymentArgs{
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
