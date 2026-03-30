@@ -56,7 +56,7 @@ import (
 //			_, err = ec.NewDeployment(ctx, "example_minimal", &ec.DeploymentArgs{
 //				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				TrafficFilters: pulumi.StringArray{
 //					example.ID(),
@@ -117,7 +117,7 @@ import (
 //			_, err = ec.NewDeployment(ctx, "example_minimal", &ec.DeploymentArgs{
 //				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.Any(region),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("azure-io-optimized-v3"),
 //				TrafficFilters: pulumi.StringArray{
 //					azure.ID(),
@@ -177,7 +177,7 @@ import (
 //			_, err = ec.NewDeployment(ctx, "example_minimal", &ec.DeploymentArgs{
 //				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.Any(region),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("gcp-storage-optimized"),
 //				TrafficFilters: pulumi.StringArray{
 //					gcpPsc.ID(),

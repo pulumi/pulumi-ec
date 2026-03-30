@@ -47,7 +47,7 @@ import (
 //				Description:   pulumi.String("my extension"),
 //				Version:       pulumi.String("*"),
 //				ExtensionType: pulumi.String("bundle"),
-//				FilePath:      pulumi.String(filePath),
+//				FilePath:      pulumi.String(pulumi.String(filePath)),
 //				FileHash:      pulumi.String(invokeFilebase64sha256.Result),
 //			})
 //			if err != nil {
@@ -63,7 +63,7 @@ import (
 //			_, err = ec.NewDeployment(ctx, "with_extension", &ec.DeploymentArgs{
 //				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
@@ -122,7 +122,7 @@ import (
 //			_, err = ec.NewDeployment(ctx, "with_extension", &ec.DeploymentArgs{
 //				Name:                 pulumi.String("my_example_deployment"),
 //				Region:               pulumi.String("us-east-1"),
-//				Version:              pulumi.String(latest.Version),
+//				Version:              pulumi.String(pulumi.String(latest.Version)),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
