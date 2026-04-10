@@ -26,13 +26,13 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
     ///     {
     ///         VersionRegex = "latest",
     ///         Region = "us-east-1",
     ///     });
     /// 
-    ///     var example = new ElasticCloud.DeploymentTrafficFilter("example", new()
+    ///     var example = new ElasticCloud.Index.DeploymentTrafficFilter("example", new()
     ///     {
     ///         Name = "my traffic filter name",
     ///         Region = "us-east-1",
@@ -47,7 +47,7 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleMinimal = new ElasticCloud.Deployment("example_minimal", new()
+    ///     var exampleMinimal = new ElasticCloud.Index.Deployment("example_minimal", new()
     ///     {
     ///         Name = "my_example_deployment",
     ///         Region = "us-east-1",
@@ -82,13 +82,13 @@ namespace Pulumi.ElasticCloud
     /// {
     ///     var region = azure_australiaeast;
     /// 
-    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
     ///     {
     ///         VersionRegex = "latest",
     ///         Region = region,
     ///     });
     /// 
-    ///     var azure = new ElasticCloud.DeploymentTrafficFilter("azure", new()
+    ///     var azure = new ElasticCloud.Index.DeploymentTrafficFilter("azure", new()
     ///     {
     ///         Name = "my traffic filter name",
     ///         Region = region,
@@ -104,7 +104,7 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleMinimal = new ElasticCloud.Deployment("example_minimal", new()
+    ///     var exampleMinimal = new ElasticCloud.Index.Deployment("example_minimal", new()
     ///     {
     ///         Name = "my_example_deployment",
     ///         Region = region,
@@ -139,13 +139,13 @@ namespace Pulumi.ElasticCloud
     /// {
     ///     var region = asia_east1;
     /// 
-    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
     ///     {
     ///         VersionRegex = "latest",
     ///         Region = region,
     ///     });
     /// 
-    ///     var gcpPsc = new ElasticCloud.DeploymentTrafficFilter("gcp_psc", new()
+    ///     var gcpPsc = new ElasticCloud.Index.DeploymentTrafficFilter("gcp_psc", new()
     ///     {
     ///         Name = "my traffic filter name",
     ///         Region = region,
@@ -160,7 +160,7 @@ namespace Pulumi.ElasticCloud
     ///     });
     /// 
     ///     // Create an Elastic Cloud deployment
-    ///     var exampleMinimal = new ElasticCloud.Deployment("example_minimal", new()
+    ///     var exampleMinimal = new ElasticCloud.Index.Deployment("example_minimal", new()
     ///     {
     ///         Name = "my_example_deployment",
     ///         Region = region,

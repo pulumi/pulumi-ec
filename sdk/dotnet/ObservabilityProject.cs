@@ -25,7 +25,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myProject = new ElasticCloud.ObservabilityProject("my_project", new()
+    ///     var myProject = new ElasticCloud.Index.ObservabilityProject("my_project", new()
     ///     {
     ///         Name = "my_project",
     ///         RegionId = "aws-us-east-1",

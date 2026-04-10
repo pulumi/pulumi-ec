@@ -31,26 +31,26 @@ namespace Pulumi.ElasticCloud
     /// {
     ///     var filePath = "/path/to/plugin.zip";
     /// 
-    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("example_extension", new()
+    ///     var exampleExtension = new ElasticCloud.Index.DeploymentExtension("example_extension", new()
     ///     {
     ///         Name = "my_extension",
     ///         Description = "my extension",
     ///         Version = "*",
     ///         ExtensionType = "bundle",
     ///         FilePath = filePath,
-    ///         FileHash = Std.Filebase64sha256.Invoke(new()
+    ///         FileHash = Std.Index.Filebase64sha256.Invoke(new()
     ///         {
     ///             Input = filePath,
     ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
-    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
     ///     {
     ///         VersionRegex = "latest",
     ///         Region = "us-east-1",
     ///     });
     /// 
-    ///     var withExtension = new ElasticCloud.Deployment("with_extension", new()
+    ///     var withExtension = new ElasticCloud.Index.Deployment("with_extension", new()
     ///     {
     ///         Name = "my_example_deployment",
     ///         Region = "us-east-1",
@@ -88,7 +88,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleExtension = new ElasticCloud.DeploymentExtension("example_extension", new()
+    ///     var exampleExtension = new ElasticCloud.Index.DeploymentExtension("example_extension", new()
     ///     {
     ///         Name = "my_extension",
     ///         Description = "my extension",
@@ -97,13 +97,13 @@ namespace Pulumi.ElasticCloud
     ///         DownloadUrl = "https://example.net",
     ///     });
     /// 
-    ///     var latest = ElasticCloud.GetStack.Invoke(new()
+    ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
     ///     {
     ///         VersionRegex = "latest",
     ///         Region = "us-east-1",
     ///     });
     /// 
-    ///     var withExtension = new ElasticCloud.Deployment("with_extension", new()
+    ///     var withExtension = new ElasticCloud.Index.Deployment("with_extension", new()
     ///     {
     ///         Name = "my_example_deployment",
     ///         Region = "us-east-1",

@@ -27,7 +27,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myorg = new ElasticCloud.Organization("myorg");
+    ///     var myorg = new ElasticCloud.Index.Organization("myorg");
     /// 
     /// });
     /// ```
@@ -46,7 +46,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myOrg = new ElasticCloud.Organization("my_org", new()
+    ///     var myOrg = new ElasticCloud.Index.Organization("my_org", new()
     ///     {
     ///         Members = 
     ///         {
@@ -128,7 +128,7 @@ namespace Pulumi.ElasticCloud
     ///         } },
     ///     };
     /// 
-    ///     var myOrg = new ElasticCloud.Organization("my_org", new()
+    ///     var myOrg = new ElasticCloud.Index.Organization("my_org", new()
     ///     {
     ///         Members = 
     ///         {

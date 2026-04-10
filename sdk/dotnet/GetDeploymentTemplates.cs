@@ -24,12 +24,12 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeploymentTemplates.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeploymentTemplates.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
         /// 
-        ///     var myDeployment = new ElasticCloud.Deployment("my_deployment", new()
+        ///     var myDeployment = new ElasticCloud.Index.Deployment("my_deployment", new()
         ///     {
         ///         Name = "My Deployment",
         ///         Version = "8.12.2",
@@ -64,12 +64,12 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeploymentTemplates.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeploymentTemplates.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
         /// 
-        ///     var myDeployment = new ElasticCloud.Deployment("my_deployment", new()
+        ///     var myDeployment = new ElasticCloud.Index.Deployment("my_deployment", new()
         ///     {
         ///         Name = "My Deployment",
         ///         Version = "8.12.2",
@@ -104,12 +104,12 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeploymentTemplates.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeploymentTemplates.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
         /// 
-        ///     var myDeployment = new ElasticCloud.Deployment("my_deployment", new()
+        ///     var myDeployment = new ElasticCloud.Index.Deployment("my_deployment", new()
         ///     {
         ///         Name = "My Deployment",
         ///         Version = "8.12.2",
