@@ -24,7 +24,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeployment.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeployment.Invoke(new()
         ///     {
         ///         Id = "f759065e5e64e9f3546f6c44f2743893",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeployment.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeployment.Invoke(new()
         ///     {
         ///         Id = "f759065e5e64e9f3546f6c44f2743893",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeployment.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeployment.Invoke(new()
         ///     {
         ///         Id = "f759065e5e64e9f3546f6c44f2743893",
         ///     });

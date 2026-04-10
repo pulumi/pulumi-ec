@@ -24,7 +24,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var us_east_1 = ElasticCloud.GetAwsPrivatelinkEndpoint.Invoke(new()
+        ///     var us_east_1 = ElasticCloud.Index.GetAwsPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var us_east_1 = ElasticCloud.GetAwsPrivatelinkEndpoint.Invoke(new()
+        ///     var us_east_1 = ElasticCloud.Index.GetAwsPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var us_east_1 = ElasticCloud.GetAwsPrivatelinkEndpoint.Invoke(new()
+        ///     var us_east_1 = ElasticCloud.Index.GetAwsPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });

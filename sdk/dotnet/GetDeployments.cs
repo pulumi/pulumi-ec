@@ -24,7 +24,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeployments.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeployments.Invoke(new()
         ///     {
         ///         NamePrefix = "test",
         ///         DeploymentTemplateId = "azure-compute-optimized",
@@ -82,7 +82,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeployments.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeployments.Invoke(new()
         ///     {
         ///         NamePrefix = "test",
         ///         DeploymentTemplateId = "azure-compute-optimized",
@@ -140,7 +140,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = ElasticCloud.GetDeployments.Invoke(new()
+        ///     var example = ElasticCloud.Index.GetDeployments.Invoke(new()
         ///     {
         ///         NamePrefix = "test",
         ///         DeploymentTemplateId = "azure-compute-optimized",

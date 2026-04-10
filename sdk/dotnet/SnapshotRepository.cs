@@ -26,7 +26,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
+    ///     var @this = new ElasticCloud.Index.SnapshotRepository("this", new()
     ///     {
     ///         Name = "my-snapshot-repository",
     ///         S3 = new ElasticCloud.Inputs.SnapshotRepositoryS3Args
@@ -51,7 +51,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
+    ///     var @this = new ElasticCloud.Index.SnapshotRepository("this", new()
     ///     {
     ///         Name = "my-snapshot-repository",
     ///         Generic = new ElasticCloud.Inputs.SnapshotRepositoryGenericArgs
@@ -80,7 +80,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new ElasticCloud.SnapshotRepository("this", new()
+    ///     var @this = new ElasticCloud.Index.SnapshotRepository("this", new()
     ///     {
     ///         Name = "my-snapshot-repository",
     ///         Generic = new ElasticCloud.Inputs.SnapshotRepositoryGenericArgs

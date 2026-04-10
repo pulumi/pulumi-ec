@@ -24,17 +24,17 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var name = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var name = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Name = "example-filter",
         ///     });
         /// 
-        ///     var id = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var id = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Id = "41d275439f884ce89359039e53eac516",
         ///     });
         /// 
-        ///     var region = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var region = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
@@ -58,17 +58,17 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var name = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var name = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Name = "example-filter",
         ///     });
         /// 
-        ///     var id = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var id = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Id = "41d275439f884ce89359039e53eac516",
         ///     });
         /// 
-        ///     var region = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var region = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });
@@ -92,17 +92,17 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var name = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var name = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Name = "example-filter",
         ///     });
         /// 
-        ///     var id = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var id = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Id = "41d275439f884ce89359039e53eac516",
         ///     });
         /// 
-        ///     var region = ElasticCloud.GetTrafficFilter.Invoke(new()
+        ///     var region = ElasticCloud.Index.GetTrafficFilter.Invoke(new()
         ///     {
         ///         Region = "us-east-1",
         ///     });

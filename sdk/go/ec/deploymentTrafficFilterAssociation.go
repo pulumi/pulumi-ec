@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ec.LookupDeployment(ctx, &ec.LookupDeploymentArgs{
+//			_, err := ec.GetDeployment(ctx, &ec.LookupDeploymentArgs{
 //				Id: "320b7b540dfc967a7a649c18e2fce4ed",
 //			}, nil)
 //			if err != nil {

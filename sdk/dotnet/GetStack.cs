@@ -26,14 +26,14 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var latest = ElasticCloud.GetStack.Invoke(new()
+        ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
         ///     {
         ///         VersionRegex = "latest",
         ///         Region = "us-east-1",
         ///         Lock = true,
         ///     });
         /// 
-        ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
+        ///     var latestPatch = ElasticCloud.Index.GetStack.Invoke(new()
         ///     {
         ///         VersionRegex = "7.9.?",
         ///         Region = "us-east-1",
@@ -60,14 +60,14 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var latest = ElasticCloud.GetStack.Invoke(new()
+        ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
         ///     {
         ///         VersionRegex = "latest",
         ///         Region = "us-east-1",
         ///         Lock = true,
         ///     });
         /// 
-        ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
+        ///     var latestPatch = ElasticCloud.Index.GetStack.Invoke(new()
         ///     {
         ///         VersionRegex = "7.9.?",
         ///         Region = "us-east-1",
@@ -94,14 +94,14 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var latest = ElasticCloud.GetStack.Invoke(new()
+        ///     var latest = ElasticCloud.Index.GetStack.Invoke(new()
         ///     {
         ///         VersionRegex = "latest",
         ///         Region = "us-east-1",
         ///         Lock = true,
         ///     });
         /// 
-        ///     var latestPatch = ElasticCloud.GetStack.Invoke(new()
+        ///     var latestPatch = ElasticCloud.Index.GetStack.Invoke(new()
         ///     {
         ///         VersionRegex = "7.9.?",
         ///         Region = "us-east-1",

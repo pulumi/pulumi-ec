@@ -24,7 +24,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var us_central1 = ElasticCloud.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
+        ///     var us_central1 = ElasticCloud.Index.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
         ///     {
         ///         Region = "us-central1",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var us_central1 = ElasticCloud.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
+        ///     var us_central1 = ElasticCloud.Index.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
         ///     {
         ///         Region = "us-central1",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.ElasticCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var us_central1 = ElasticCloud.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
+        ///     var us_central1 = ElasticCloud.Index.GetGcpPrivateServiceConnectEndpoint.Invoke(new()
         ///     {
         ///         Region = "us-central1",
         ///     });
