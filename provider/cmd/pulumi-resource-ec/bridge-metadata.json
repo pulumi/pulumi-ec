@@ -119,11 +119,21 @@
             },
             "ec_elasticsearch_project": {
                 "current": "ec:index/elasticsearchProject:ElasticsearchProject",
-                "majorVersion": 1
+                "majorVersion": 1,
+                "fields": {
+                    "traffic_filter_ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "ec_observability_project": {
                 "current": "ec:index/observabilityProject:ObservabilityProject",
-                "majorVersion": 1
+                "majorVersion": 1,
+                "fields": {
+                    "traffic_filter_ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "ec_organization": {
                 "current": "ec:index/organization:Organization",
@@ -194,6 +204,18 @@
                 "majorVersion": 1,
                 "fields": {
                     "product_types": {
+                        "maxItemsOne": false
+                    },
+                    "traffic_filter_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ec_serverless_traffic_filter": {
+                "current": "ec:index/serverlessTrafficFilter:ServerlessTrafficFilter",
+                "majorVersion": 1,
+                "fields": {
+                    "rules": {
                         "maxItemsOne": false
                     }
                 }
