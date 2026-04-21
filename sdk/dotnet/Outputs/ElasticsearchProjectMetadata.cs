@@ -33,6 +33,10 @@ namespace Pulumi.ElasticCloud.Outputs
         /// Reason why the project was suspended.
         /// </summary>
         public readonly string? SuspendedReason;
+        /// <summary>
+        /// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Tags;
 
         [OutputConstructor]
         private ElasticsearchProjectMetadata(
@@ -44,13 +48,16 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? suspendedAt,
 
-            string? suspendedReason)
+            string? suspendedReason,
+
+            ImmutableDictionary<string, string>? tags)
         {
             CreatedAt = createdAt;
             CreatedBy = createdBy;
             OrganizationId = organizationId;
             SuspendedAt = suspendedAt;
             SuspendedReason = suspendedReason;
+            Tags = tags;
         }
     }
 }

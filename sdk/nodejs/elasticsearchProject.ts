@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
  * ```
+ *
+ * > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
  */
 export class ElasticsearchProject extends pulumi.CustomResource {
     /**
@@ -77,17 +79,24 @@ export class ElasticsearchProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.ElasticsearchProjectEndpoints>;
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      */
-    declare public /*out*/ readonly metadata: pulumi.Output<outputs.ElasticsearchProjectMetadata>;
+    declare public readonly metadata: pulumi.Output<outputs.ElasticsearchProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     *
+     * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
     declare public readonly optimizedFor: pulumi.Output<string>;
+    /**
+     * Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+     */
+    declare public /*out*/ readonly privateEndpoints: pulumi.Output<outputs.ElasticsearchProjectPrivateEndpoints>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
@@ -96,6 +105,10 @@ export class ElasticsearchProject extends pulumi.CustomResource {
      * Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
      */
     declare public readonly searchLake: pulumi.Output<outputs.ElasticsearchProjectSearchLake>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    declare public readonly trafficFilterIds: pulumi.Output<string[] | undefined>;
     /**
      * the type of the project
      */
@@ -121,8 +134,10 @@ export class ElasticsearchProject extends pulumi.CustomResource {
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
             resourceInputs["optimizedFor"] = state?.optimizedFor;
+            resourceInputs["privateEndpoints"] = state?.privateEndpoints;
             resourceInputs["regionId"] = state?.regionId;
             resourceInputs["searchLake"] = state?.searchLake;
+            resourceInputs["trafficFilterIds"] = state?.trafficFilterIds;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as ElasticsearchProjectArgs | undefined;
@@ -130,14 +145,16 @@ export class ElasticsearchProject extends pulumi.CustomResource {
                 throw new Error("Missing required property 'regionId'");
             }
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["optimizedFor"] = args?.optimizedFor;
             resourceInputs["regionId"] = args?.regionId;
             resourceInputs["searchLake"] = args?.searchLake;
+            resourceInputs["trafficFilterIds"] = args?.trafficFilterIds;
             resourceInputs["cloudId"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
-            resourceInputs["metadata"] = undefined /*out*/;
+            resourceInputs["privateEndpoints"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -166,7 +183,7 @@ export interface ElasticsearchProjectState {
      */
     endpoints?: pulumi.Input<inputs.ElasticsearchProjectEndpoints>;
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      */
     metadata?: pulumi.Input<inputs.ElasticsearchProjectMetadata>;
     /**
@@ -174,9 +191,16 @@ export interface ElasticsearchProjectState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     *
+     * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
     optimizedFor?: pulumi.Input<string>;
+    /**
+     * Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+     */
+    privateEndpoints?: pulumi.Input<inputs.ElasticsearchProjectPrivateEndpoints>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
@@ -185,6 +209,10 @@ export interface ElasticsearchProjectState {
      * Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
      */
     searchLake?: pulumi.Input<inputs.ElasticsearchProjectSearchLake>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * the type of the project
      */
@@ -200,11 +228,18 @@ export interface ElasticsearchProjectArgs {
      */
     alias?: pulumi.Input<string>;
     /**
+     * Metadata request for a project with tags.
+     */
+    metadata?: pulumi.Input<inputs.ElasticsearchProjectMetadata>;
+    /**
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string>;
     /**
-     * The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     *
+     * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
     optimizedFor?: pulumi.Input<string>;
     /**
@@ -215,4 +250,8 @@ export interface ElasticsearchProjectArgs {
      * Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
      */
     searchLake?: pulumi.Input<inputs.ElasticsearchProjectSearchLake>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

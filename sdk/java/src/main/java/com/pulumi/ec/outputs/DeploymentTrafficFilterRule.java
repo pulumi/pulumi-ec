@@ -32,6 +32,16 @@ public final class DeploymentTrafficFilterRule {
      */
     private @Nullable String id;
     /**
+     * @return The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    private @Nullable String remoteClusterId;
+    /**
+     * @return The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    private @Nullable String remoteClusterOrgId;
+    /**
      * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
@@ -67,6 +77,20 @@ public final class DeploymentTrafficFilterRule {
         return Optional.ofNullable(this.id);
     }
     /**
+     * @return The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    public Optional<String> remoteClusterId() {
+        return Optional.ofNullable(this.remoteClusterId);
+    }
+    /**
+     * @return The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    public Optional<String> remoteClusterOrgId() {
+        return Optional.ofNullable(this.remoteClusterOrgId);
+    }
+    /**
      * @return Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
@@ -87,6 +111,8 @@ public final class DeploymentTrafficFilterRule {
         private @Nullable String azureEndpointName;
         private @Nullable String description;
         private @Nullable String id;
+        private @Nullable String remoteClusterId;
+        private @Nullable String remoteClusterOrgId;
         private @Nullable String source;
         public Builder() {}
         public Builder(DeploymentTrafficFilterRule defaults) {
@@ -95,6 +121,8 @@ public final class DeploymentTrafficFilterRule {
     	      this.azureEndpointName = defaults.azureEndpointName;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
+    	      this.remoteClusterId = defaults.remoteClusterId;
+    	      this.remoteClusterOrgId = defaults.remoteClusterOrgId;
     	      this.source = defaults.source;
         }
 
@@ -123,6 +151,18 @@ public final class DeploymentTrafficFilterRule {
             return this;
         }
         @CustomType.Setter
+        public Builder remoteClusterId(@Nullable String remoteClusterId) {
+
+            this.remoteClusterId = remoteClusterId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder remoteClusterOrgId(@Nullable String remoteClusterOrgId) {
+
+            this.remoteClusterOrgId = remoteClusterOrgId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder source(@Nullable String source) {
 
             this.source = source;
@@ -134,6 +174,8 @@ public final class DeploymentTrafficFilterRule {
             _resultValue.azureEndpointName = azureEndpointName;
             _resultValue.description = description;
             _resultValue.id = id;
+            _resultValue.remoteClusterId = remoteClusterId;
+            _resultValue.remoteClusterOrgId = remoteClusterOrgId;
             _resultValue.source = source;
             return _resultValue;
         }

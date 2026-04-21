@@ -24,25 +24,37 @@ class SecurityProjectArgs:
                  region_id: pulumi.Input[_builtins.str],
                  admin_features_package: Optional[pulumi.Input[_builtins.str]] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input['SecurityProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_types: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None):
+                 product_types: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None,
+                 search_lake: Optional[pulumi.Input['SecurityProjectSearchLakeArgs']] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecurityProject resource.
 
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input['SecurityProjectSearchLakeArgs'] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         pulumi.set(__self__, "region_id", region_id)
         if admin_features_package is not None:
             pulumi.set(__self__, "admin_features_package", admin_features_package)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if product_types is not None:
             pulumi.set(__self__, "product_types", product_types)
+        if search_lake is not None:
+            pulumi.set(__self__, "search_lake", search_lake)
+        if traffic_filter_ids is not None:
+            pulumi.set(__self__, "traffic_filter_ids", traffic_filter_ids)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
@@ -82,6 +94,18 @@ class SecurityProjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['SecurityProjectMetadataArgs']]:
+        """
+        Metadata request for a project with tags.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['SecurityProjectMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -101,6 +125,30 @@ class SecurityProjectArgs:
     def product_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]]):
         pulumi.set(self, "product_types", value)
 
+    @_builtins.property
+    @pulumi.getter(name="searchLake")
+    def search_lake(self) -> Optional[pulumi.Input['SecurityProjectSearchLakeArgs']]:
+        """
+        Configuration for the entire set of capabilities that make the data searchable in Security.
+        """
+        return pulumi.get(self, "search_lake")
+
+    @search_lake.setter
+    def search_lake(self, value: Optional[pulumi.Input['SecurityProjectSearchLakeArgs']]):
+        pulumi.set(self, "search_lake", value)
+
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
+
+    @traffic_filter_ids.setter
+    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traffic_filter_ids", value)
+
 
 @pulumi.input_type
 class _SecurityProjectState:
@@ -112,8 +160,11 @@ class _SecurityProjectState:
                  endpoints: Optional[pulumi.Input['SecurityProjectEndpointsArgs']] = None,
                  metadata: Optional[pulumi.Input['SecurityProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_endpoints: Optional[pulumi.Input['SecurityProjectPrivateEndpointsArgs']] = None,
                  product_types: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 search_lake: Optional[pulumi.Input['SecurityProjectSearchLakeArgs']] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityProject resources.
@@ -123,9 +174,12 @@ class _SecurityProjectState:
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input['SecurityProjectCredentialsArgs'] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input['SecurityProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Additional details about the project.
+        :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input['SecurityProjectPrivateEndpointsArgs'] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
+        :param pulumi.Input['SecurityProjectSearchLakeArgs'] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
         if admin_features_package is not None:
@@ -142,10 +196,16 @@ class _SecurityProjectState:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_endpoints is not None:
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if product_types is not None:
             pulumi.set(__self__, "product_types", product_types)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
+        if search_lake is not None:
+            pulumi.set(__self__, "search_lake", search_lake)
+        if traffic_filter_ids is not None:
+            pulumi.set(__self__, "traffic_filter_ids", traffic_filter_ids)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -213,7 +273,7 @@ class _SecurityProjectState:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['SecurityProjectMetadataArgs']]:
         """
-        Additional details about the project.
+        Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
@@ -232,6 +292,18 @@ class _SecurityProjectState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Optional[pulumi.Input['SecurityProjectPrivateEndpointsArgs']]:
+        """
+        Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+        """
+        return pulumi.get(self, "private_endpoints")
+
+    @private_endpoints.setter
+    def private_endpoints(self, value: Optional[pulumi.Input['SecurityProjectPrivateEndpointsArgs']]):
+        pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="productTypes")
@@ -255,6 +327,30 @@ class _SecurityProjectState:
         pulumi.set(self, "region_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="searchLake")
+    def search_lake(self) -> Optional[pulumi.Input['SecurityProjectSearchLakeArgs']]:
+        """
+        Configuration for the entire set of capabilities that make the data searchable in Security.
+        """
+        return pulumi.get(self, "search_lake")
+
+    @search_lake.setter
+    def search_lake(self, value: Optional[pulumi.Input['SecurityProjectSearchLakeArgs']]):
+        pulumi.set(self, "search_lake", value)
+
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
+
+    @traffic_filter_ids.setter
+    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traffic_filter_ids", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -275,9 +371,12 @@ class SecurityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_features_package: Optional[pulumi.Input[_builtins.str]] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  product_types: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 search_lake: Optional[pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         ## Technical preview
@@ -304,13 +403,18 @@ class SecurityProject(pulumi.CustomResource):
         $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+        > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
+        :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         ...
     @overload
@@ -343,6 +447,8 @@ class SecurityProject(pulumi.CustomResource):
         $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+        > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
+
 
         :param str resource_name: The name of the resource.
         :param SecurityProjectArgs args: The arguments to use to populate this resource's properties.
@@ -361,9 +467,12 @@ class SecurityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_features_package: Optional[pulumi.Input[_builtins.str]] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  product_types: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 search_lake: Optional[pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -375,15 +484,18 @@ class SecurityProject(pulumi.CustomResource):
 
             __props__.__dict__["admin_features_package"] = admin_features_package
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["product_types"] = product_types
             if region_id is None and not opts.urn:
                 raise TypeError("Missing required property 'region_id'")
             __props__.__dict__["region_id"] = region_id
+            __props__.__dict__["search_lake"] = search_lake
+            __props__.__dict__["traffic_filter_ids"] = traffic_filter_ids
             __props__.__dict__["cloud_id"] = None
             __props__.__dict__["credentials"] = None
             __props__.__dict__["endpoints"] = None
-            __props__.__dict__["metadata"] = None
+            __props__.__dict__["private_endpoints"] = None
             __props__.__dict__["type"] = None
         super(SecurityProject, __self__).__init__(
             'ec:index/securityProject:SecurityProject',
@@ -402,8 +514,11 @@ class SecurityProject(pulumi.CustomResource):
             endpoints: Optional[pulumi.Input[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict']]] = None,
             metadata: Optional[pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            private_endpoints: Optional[pulumi.Input[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict']]] = None,
             product_types: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
             region_id: Optional[pulumi.Input[_builtins.str]] = None,
+            search_lake: Optional[pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']]] = None,
+            traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecurityProject':
         """
         Get an existing SecurityProject resource's state with the given name, id, and optional extra
@@ -417,9 +532,12 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Additional details about the project.
+        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
+        :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -433,8 +551,11 @@ class SecurityProject(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["private_endpoints"] = private_endpoints
         __props__.__dict__["product_types"] = product_types
         __props__.__dict__["region_id"] = region_id
+        __props__.__dict__["search_lake"] = search_lake
+        __props__.__dict__["traffic_filter_ids"] = traffic_filter_ids
         __props__.__dict__["type"] = type
         return SecurityProject(resource_name, opts=opts, __props__=__props__)
 
@@ -482,7 +603,7 @@ class SecurityProject(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output['outputs.SecurityProjectMetadata']:
         """
-        Additional details about the project.
+        Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
@@ -493,6 +614,14 @@ class SecurityProject(pulumi.CustomResource):
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> pulumi.Output['outputs.SecurityProjectPrivateEndpoints']:
+        """
+        Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+        """
+        return pulumi.get(self, "private_endpoints")
 
     @_builtins.property
     @pulumi.getter(name="productTypes")
@@ -506,6 +635,22 @@ class SecurityProject(pulumi.CustomResource):
         Unique human-readable identifier for a region in Elastic Cloud.
         """
         return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="searchLake")
+    def search_lake(self) -> pulumi.Output['outputs.SecurityProjectSearchLake']:
+        """
+        Configuration for the entire set of capabilities that make the data searchable in Security.
+        """
+        return pulumi.get(self, "search_lake")
+
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
 
     @_builtins.property
     @pulumi.getter

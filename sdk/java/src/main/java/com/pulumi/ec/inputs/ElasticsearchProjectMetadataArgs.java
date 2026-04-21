@@ -6,6 +6,7 @@ package com.pulumi.ec.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -90,6 +91,21 @@ public final class ElasticsearchProjectMetadataArgs extends com.pulumi.resources
         return Optional.ofNullable(this.suspendedReason);
     }
 
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<Map<String,String>> tags;
+
+    /**
+     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
     private ElasticsearchProjectMetadataArgs() {}
 
     private ElasticsearchProjectMetadataArgs(ElasticsearchProjectMetadataArgs $) {
@@ -98,6 +114,7 @@ public final class ElasticsearchProjectMetadataArgs extends com.pulumi.resources
         this.organizationId = $.organizationId;
         this.suspendedAt = $.suspendedAt;
         this.suspendedReason = $.suspendedReason;
+        this.tags = $.tags;
     }
 
     public static Builder builder() {
@@ -221,6 +238,27 @@ public final class ElasticsearchProjectMetadataArgs extends com.pulumi.resources
          */
         public Builder suspendedReason(String suspendedReason) {
             return suspendedReason(Output.of(suspendedReason));
+        }
+
+        /**
+         * @param tags Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<Map<String,String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(Map<String,String> tags) {
+            return tags(Output.of(tags));
         }
 
         public ElasticsearchProjectMetadataArgs build() {

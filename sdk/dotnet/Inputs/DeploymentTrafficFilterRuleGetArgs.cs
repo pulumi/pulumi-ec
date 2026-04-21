@@ -37,6 +37,18 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
+        /// The remote cluster ID. Only applicable when the ruleset type is set to `RemoteCluster`
+        /// </summary>
+        [Input("remoteClusterId")]
+        public Input<string>? RemoteClusterId { get; set; }
+
+        /// <summary>
+        /// The remote cluster organization ID. Only applicable when the ruleset type is set to `RemoteCluster`
+        /// </summary>
+        [Input("remoteClusterOrgId")]
+        public Input<string>? RemoteClusterOrgId { get; set; }
+
+        /// <summary>
         /// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `AzurePrivateEndpoint`
         /// </summary>
         [Input("source")]

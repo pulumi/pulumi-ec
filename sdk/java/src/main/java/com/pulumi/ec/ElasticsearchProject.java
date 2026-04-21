@@ -13,8 +13,11 @@ import com.pulumi.ec.inputs.ElasticsearchProjectState;
 import com.pulumi.ec.outputs.ElasticsearchProjectCredentials;
 import com.pulumi.ec.outputs.ElasticsearchProjectEndpoints;
 import com.pulumi.ec.outputs.ElasticsearchProjectMetadata;
+import com.pulumi.ec.outputs.ElasticsearchProjectPrivateEndpoints;
 import com.pulumi.ec.outputs.ElasticsearchProjectSearchLake;
 import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -64,6 +67,8 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
  * ```
+ * 
+ * &gt; **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
  * 
  */
 @ResourceType(type="ec:index/elasticsearchProject:ElasticsearchProject")
@@ -125,14 +130,14 @@ public class ElasticsearchProject extends com.pulumi.resources.CustomResource {
         return this.endpoints;
     }
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      * 
      */
     @Export(name="metadata", refs={ElasticsearchProjectMetadata.class}, tree="[0]")
     private Output<ElasticsearchProjectMetadata> metadata;
 
     /**
-     * @return Additional details about the project.
+     * @return Metadata request for a project with tags.
      * 
      */
     public Output<ElasticsearchProjectMetadata> metadata() {
@@ -153,18 +158,38 @@ public class ElasticsearchProject extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     * 
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      * 
      */
     @Export(name="optimizedFor", refs={String.class}, tree="[0]")
     private Output<String> optimizedFor;
 
     /**
-     * @return The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * @return The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     * 
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      * 
      */
     public Output<String> optimizedFor() {
         return this.optimizedFor;
+    }
+    /**
+     * Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+     * 
+     */
+    @Export(name="privateEndpoints", refs={ElasticsearchProjectPrivateEndpoints.class}, tree="[0]")
+    private Output<ElasticsearchProjectPrivateEndpoints> privateEndpoints;
+
+    /**
+     * @return Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+     * 
+     */
+    public Output<ElasticsearchProjectPrivateEndpoints> privateEndpoints() {
+        return this.privateEndpoints;
     }
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
@@ -193,6 +218,20 @@ public class ElasticsearchProject extends com.pulumi.resources.CustomResource {
      */
     public Output<ElasticsearchProjectSearchLake> searchLake() {
         return this.searchLake;
+    }
+    /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Export(name="trafficFilterIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Output<Optional<List<String>>> trafficFilterIds() {
+        return Codegen.optional(this.trafficFilterIds);
     }
     /**
      * the type of the project

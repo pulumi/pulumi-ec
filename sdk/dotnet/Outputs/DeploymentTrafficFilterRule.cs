@@ -30,6 +30,14 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
+        /// The remote cluster ID. Only applicable when the ruleset type is set to `RemoteCluster`
+        /// </summary>
+        public readonly string? RemoteClusterId;
+        /// <summary>
+        /// The remote cluster organization ID. Only applicable when the ruleset type is set to `RemoteCluster`
+        /// </summary>
+        public readonly string? RemoteClusterOrgId;
+        /// <summary>
         /// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `AzurePrivateEndpoint`
         /// </summary>
         public readonly string? Source;
@@ -44,12 +52,18 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? id,
 
+            string? remoteClusterId,
+
+            string? remoteClusterOrgId,
+
             string? source)
         {
             AzureEndpointGuid = azureEndpointGuid;
             AzureEndpointName = azureEndpointName;
             Description = description;
             Id = id;
+            RemoteClusterId = remoteClusterId;
+            RemoteClusterOrgId = remoteClusterOrgId;
             Source = source;
         }
     }

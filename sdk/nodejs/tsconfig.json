@@ -34,6 +34,7 @@
         "organization.ts",
         "provider.ts",
         "securityProject.ts",
+        "serverlessTrafficFilter.ts",
         "snapshotRepository.ts",
         "types/index.ts",
         "types/input.ts",

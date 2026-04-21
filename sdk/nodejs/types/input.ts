@@ -1049,6 +1049,14 @@ export interface DeploymentTrafficFilterRule {
      */
     id?: pulumi.Input<string>;
     /**
+     * The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+     */
+    remoteClusterId?: pulumi.Input<string>;
+    /**
+     * The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+     */
+    remoteClusterOrgId?: pulumi.Input<string>;
+    /**
      * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      */
     source?: pulumi.Input<string>;
@@ -1097,6 +1105,21 @@ export interface ElasticsearchProjectMetadata {
      * Reason why the project was suspended.
      */
     suspendedReason?: pulumi.Input<string>;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface ElasticsearchProjectPrivateEndpoints {
+    /**
+     * The PrivateLink endpoint URL to access elasticsearch.
+     */
+    elasticsearch?: pulumi.Input<string>;
+    /**
+     * The PrivateLink endpoint URL to access kibana.
+     */
+    kibana?: pulumi.Input<string>;
 }
 
 export interface ElasticsearchProjectSearchLake {
@@ -1311,6 +1334,29 @@ export interface ObservabilityProjectMetadata {
      * Reason why the project was suspended.
      */
     suspendedReason?: pulumi.Input<string>;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface ObservabilityProjectPrivateEndpoints {
+    /**
+     * The PrivateLink endpoint URL to access APM.
+     */
+    apm?: pulumi.Input<string>;
+    /**
+     * The PrivateLink endpoint URL to access elasticsearch.
+     */
+    elasticsearch?: pulumi.Input<string>;
+    /**
+     * The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+     */
+    ingest?: pulumi.Input<string>;
+    /**
+     * The PrivateLink endpoint URL to access kibana.
+     */
+    kibana?: pulumi.Input<string>;
 }
 
 export interface OrganizationMembers {
@@ -1471,6 +1517,25 @@ export interface SecurityProjectMetadata {
      * Reason why the project was suspended.
      */
     suspendedReason?: pulumi.Input<string>;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface SecurityProjectPrivateEndpoints {
+    /**
+     * The PrivateLink endpoint URL to access elasticsearch.
+     */
+    elasticsearch?: pulumi.Input<string>;
+    /**
+     * The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+     */
+    ingest?: pulumi.Input<string>;
+    /**
+     * The PrivateLink endpoint URL to access kibana.
+     */
+    kibana?: pulumi.Input<string>;
 }
 
 export interface SecurityProjectProductType {
@@ -1482,6 +1547,35 @@ export interface SecurityProjectProductType {
      * The identifier of the Security Solution product tier.
      */
     productTier: pulumi.Input<string>;
+}
+
+export interface SecurityProjectSearchLake {
+    /**
+     * Configuration to control the data retention in Elasticsearch data streams.
+     */
+    dataRetention?: pulumi.Input<inputs.SecurityProjectSearchLakeDataRetention>;
+}
+
+export interface SecurityProjectSearchLakeDataRetention {
+    /**
+     * Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+     */
+    defaultRetentionDays?: pulumi.Input<number>;
+    /**
+     * Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+     */
+    maxRetentionDays?: pulumi.Input<number>;
+}
+
+export interface ServerlessTrafficFilterRule {
+    /**
+     * Description of the rule.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+     */
+    source: pulumi.Input<string>;
 }
 
 export interface SnapshotRepositoryGeneric {

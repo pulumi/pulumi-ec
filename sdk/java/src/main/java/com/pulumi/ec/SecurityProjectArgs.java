@@ -5,7 +5,9 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ec.inputs.SecurityProjectMetadataArgs;
 import com.pulumi.ec.inputs.SecurityProjectProductTypeArgs;
+import com.pulumi.ec.inputs.SecurityProjectSearchLakeArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
@@ -49,6 +51,21 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Metadata request for a project with tags.
+     * 
+     */
+    @Import(name="metadata")
+    private @Nullable Output<SecurityProjectMetadataArgs> metadata;
+
+    /**
+     * @return Metadata request for a project with tags.
+     * 
+     */
+    public Optional<Output<SecurityProjectMetadataArgs>> metadata() {
+        return Optional.ofNullable(this.metadata);
+    }
+
+    /**
      * Descriptive name for a project.
      * 
      */
@@ -85,14 +102,47 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
         return this.regionId;
     }
 
+    /**
+     * Configuration for the entire set of capabilities that make the data searchable in Security.
+     * 
+     */
+    @Import(name="searchLake")
+    private @Nullable Output<SecurityProjectSearchLakeArgs> searchLake;
+
+    /**
+     * @return Configuration for the entire set of capabilities that make the data searchable in Security.
+     * 
+     */
+    public Optional<Output<SecurityProjectSearchLakeArgs>> searchLake() {
+        return Optional.ofNullable(this.searchLake);
+    }
+
+    /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Import(name="trafficFilterIds")
+    private @Nullable Output<List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Optional<Output<List<String>>> trafficFilterIds() {
+        return Optional.ofNullable(this.trafficFilterIds);
+    }
+
     private SecurityProjectArgs() {}
 
     private SecurityProjectArgs(SecurityProjectArgs $) {
         this.adminFeaturesPackage = $.adminFeaturesPackage;
         this.alias = $.alias;
+        this.metadata = $.metadata;
         this.name = $.name;
         this.productTypes = $.productTypes;
         this.regionId = $.regionId;
+        this.searchLake = $.searchLake;
+        this.trafficFilterIds = $.trafficFilterIds;
     }
 
     public static Builder builder() {
@@ -156,6 +206,27 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param metadata Metadata request for a project with tags.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(@Nullable Output<SecurityProjectMetadataArgs> metadata) {
+            $.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * @param metadata Metadata request for a project with tags.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(SecurityProjectMetadataArgs metadata) {
+            return metadata(Output.of(metadata));
+        }
+
+        /**
          * @param name Descriptive name for a project.
          * 
          * @return builder
@@ -208,6 +279,58 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder regionId(String regionId) {
             return regionId(Output.of(regionId));
+        }
+
+        /**
+         * @param searchLake Configuration for the entire set of capabilities that make the data searchable in Security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder searchLake(@Nullable Output<SecurityProjectSearchLakeArgs> searchLake) {
+            $.searchLake = searchLake;
+            return this;
+        }
+
+        /**
+         * @param searchLake Configuration for the entire set of capabilities that make the data searchable in Security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder searchLake(SecurityProjectSearchLakeArgs searchLake) {
+            return searchLake(Output.of(searchLake));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(@Nullable Output<List<String>> trafficFilterIds) {
+            $.trafficFilterIds = trafficFilterIds;
+            return this;
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(List<String> trafficFilterIds) {
+            return trafficFilterIds(Output.of(trafficFilterIds));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(String... trafficFilterIds) {
+            return trafficFilterIds(List.of(trafficFilterIds));
         }
 
         public SecurityProjectArgs build() {

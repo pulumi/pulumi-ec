@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
  * ```
+ *
+ * > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
  */
 export class SecurityProject extends pulumi.CustomResource {
     /**
@@ -81,18 +83,30 @@ export class SecurityProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.SecurityProjectEndpoints>;
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      */
-    declare public /*out*/ readonly metadata: pulumi.Output<outputs.SecurityProjectMetadata>;
+    declare public readonly metadata: pulumi.Output<outputs.SecurityProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+     */
+    declare public /*out*/ readonly privateEndpoints: pulumi.Output<outputs.SecurityProjectPrivateEndpoints>;
     declare public readonly productTypes: pulumi.Output<outputs.SecurityProjectProductType[]>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     declare public readonly regionId: pulumi.Output<string>;
+    /**
+     * Configuration for the entire set of capabilities that make the data searchable in Security.
+     */
+    declare public readonly searchLake: pulumi.Output<outputs.SecurityProjectSearchLake>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    declare public readonly trafficFilterIds: pulumi.Output<string[] | undefined>;
     /**
      * the type of the project
      */
@@ -118,8 +132,11 @@ export class SecurityProject extends pulumi.CustomResource {
             resourceInputs["endpoints"] = state?.endpoints;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
+            resourceInputs["privateEndpoints"] = state?.privateEndpoints;
             resourceInputs["productTypes"] = state?.productTypes;
             resourceInputs["regionId"] = state?.regionId;
+            resourceInputs["searchLake"] = state?.searchLake;
+            resourceInputs["trafficFilterIds"] = state?.trafficFilterIds;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SecurityProjectArgs | undefined;
@@ -128,13 +145,16 @@ export class SecurityProject extends pulumi.CustomResource {
             }
             resourceInputs["adminFeaturesPackage"] = args?.adminFeaturesPackage;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["productTypes"] = args?.productTypes;
             resourceInputs["regionId"] = args?.regionId;
+            resourceInputs["searchLake"] = args?.searchLake;
+            resourceInputs["trafficFilterIds"] = args?.trafficFilterIds;
             resourceInputs["cloudId"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
-            resourceInputs["metadata"] = undefined /*out*/;
+            resourceInputs["privateEndpoints"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -167,18 +187,30 @@ export interface SecurityProjectState {
      */
     endpoints?: pulumi.Input<inputs.SecurityProjectEndpoints>;
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      */
     metadata?: pulumi.Input<inputs.SecurityProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+     */
+    privateEndpoints?: pulumi.Input<inputs.SecurityProjectPrivateEndpoints>;
     productTypes?: pulumi.Input<pulumi.Input<inputs.SecurityProjectProductType>[]>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     regionId?: pulumi.Input<string>;
+    /**
+     * Configuration for the entire set of capabilities that make the data searchable in Security.
+     */
+    searchLake?: pulumi.Input<inputs.SecurityProjectSearchLake>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * the type of the project
      */
@@ -198,6 +230,10 @@ export interface SecurityProjectArgs {
      */
     alias?: pulumi.Input<string>;
     /**
+     * Metadata request for a project with tags.
+     */
+    metadata?: pulumi.Input<inputs.SecurityProjectMetadata>;
+    /**
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string>;
@@ -206,4 +242,12 @@ export interface SecurityProjectArgs {
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     regionId: pulumi.Input<string>;
+    /**
+     * Configuration for the entire set of capabilities that make the data searchable in Security.
+     */
+    searchLake?: pulumi.Input<inputs.SecurityProjectSearchLake>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

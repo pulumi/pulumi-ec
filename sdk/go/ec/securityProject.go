@@ -51,6 +51,8 @@ import (
 // ```sh
 // $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
 // ```
+//
+// > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
 type SecurityProject struct {
 	pulumi.CustomResourceState
 
@@ -64,13 +66,19 @@ type SecurityProject struct {
 	Credentials SecurityProjectCredentialsOutput `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints SecurityProjectEndpointsOutput `pulumi:"endpoints"`
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
-	Name         pulumi.StringOutput                   `pulumi:"name"`
-	ProductTypes SecurityProjectProductTypeArrayOutput `pulumi:"productTypes"`
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+	PrivateEndpoints SecurityProjectPrivateEndpointsOutput `pulumi:"privateEndpoints"`
+	ProductTypes     SecurityProjectProductTypeArrayOutput `pulumi:"productTypes"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
+	// Configuration for the entire set of capabilities that make the data searchable in Security.
+	SearchLake SecurityProjectSearchLakeOutput `pulumi:"searchLake"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayOutput `pulumi:"trafficFilterIds"`
 	// the type of the project
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -118,13 +126,19 @@ type securityProjectState struct {
 	Credentials *SecurityProjectCredentials `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints *SecurityProjectEndpoints `pulumi:"endpoints"`
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata *SecurityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
-	Name         *string                      `pulumi:"name"`
-	ProductTypes []SecurityProjectProductType `pulumi:"productTypes"`
+	Name *string `pulumi:"name"`
+	// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+	PrivateEndpoints *SecurityProjectPrivateEndpoints `pulumi:"privateEndpoints"`
+	ProductTypes     []SecurityProjectProductType     `pulumi:"productTypes"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId *string `pulumi:"regionId"`
+	// Configuration for the entire set of capabilities that make the data searchable in Security.
+	SearchLake *SecurityProjectSearchLake `pulumi:"searchLake"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds []string `pulumi:"trafficFilterIds"`
 	// the type of the project
 	Type *string `pulumi:"type"`
 }
@@ -140,13 +154,19 @@ type SecurityProjectState struct {
 	Credentials SecurityProjectCredentialsPtrInput
 	// The endpoints to access the different apps of the project.
 	Endpoints SecurityProjectEndpointsPtrInput
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataPtrInput
 	// Descriptive name for a project.
-	Name         pulumi.StringPtrInput
-	ProductTypes SecurityProjectProductTypeArrayInput
+	Name pulumi.StringPtrInput
+	// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+	PrivateEndpoints SecurityProjectPrivateEndpointsPtrInput
+	ProductTypes     SecurityProjectProductTypeArrayInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringPtrInput
+	// Configuration for the entire set of capabilities that make the data searchable in Security.
+	SearchLake SecurityProjectSearchLakePtrInput
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayInput
 	// the type of the project
 	Type pulumi.StringPtrInput
 }
@@ -160,11 +180,17 @@ type securityProjectArgs struct {
 	AdminFeaturesPackage *string `pulumi:"adminFeaturesPackage"`
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`
+	// Metadata request for a project with tags.
+	Metadata *SecurityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name         *string                      `pulumi:"name"`
 	ProductTypes []SecurityProjectProductType `pulumi:"productTypes"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId string `pulumi:"regionId"`
+	// Configuration for the entire set of capabilities that make the data searchable in Security.
+	SearchLake *SecurityProjectSearchLake `pulumi:"searchLake"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds []string `pulumi:"trafficFilterIds"`
 }
 
 // The set of arguments for constructing a SecurityProject resource.
@@ -173,11 +199,17 @@ type SecurityProjectArgs struct {
 	AdminFeaturesPackage pulumi.StringPtrInput
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias pulumi.StringPtrInput
+	// Metadata request for a project with tags.
+	Metadata SecurityProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name         pulumi.StringPtrInput
 	ProductTypes SecurityProjectProductTypeArrayInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringInput
+	// Configuration for the entire set of capabilities that make the data searchable in Security.
+	SearchLake SecurityProjectSearchLakePtrInput
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayInput
 }
 
 func (SecurityProjectArgs) ElementType() reflect.Type {
@@ -292,7 +324,7 @@ func (o SecurityProjectOutput) Endpoints() SecurityProjectEndpointsOutput {
 	return o.ApplyT(func(v *SecurityProject) SecurityProjectEndpointsOutput { return v.Endpoints }).(SecurityProjectEndpointsOutput)
 }
 
-// Additional details about the project.
+// Metadata request for a project with tags.
 func (o SecurityProjectOutput) Metadata() SecurityProjectMetadataOutput {
 	return o.ApplyT(func(v *SecurityProject) SecurityProjectMetadataOutput { return v.Metadata }).(SecurityProjectMetadataOutput)
 }
@@ -302,6 +334,11 @@ func (o SecurityProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecurityProject) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+func (o SecurityProjectOutput) PrivateEndpoints() SecurityProjectPrivateEndpointsOutput {
+	return o.ApplyT(func(v *SecurityProject) SecurityProjectPrivateEndpointsOutput { return v.PrivateEndpoints }).(SecurityProjectPrivateEndpointsOutput)
+}
+
 func (o SecurityProjectOutput) ProductTypes() SecurityProjectProductTypeArrayOutput {
 	return o.ApplyT(func(v *SecurityProject) SecurityProjectProductTypeArrayOutput { return v.ProductTypes }).(SecurityProjectProductTypeArrayOutput)
 }
@@ -309,6 +346,16 @@ func (o SecurityProjectOutput) ProductTypes() SecurityProjectProductTypeArrayOut
 // Unique human-readable identifier for a region in Elastic Cloud.
 func (o SecurityProjectOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecurityProject) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// Configuration for the entire set of capabilities that make the data searchable in Security.
+func (o SecurityProjectOutput) SearchLake() SecurityProjectSearchLakeOutput {
+	return o.ApplyT(func(v *SecurityProject) SecurityProjectSearchLakeOutput { return v.SearchLake }).(SecurityProjectSearchLakeOutput)
+}
+
+// Set of traffic filter IDs to associate with this project
+func (o SecurityProjectOutput) TrafficFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecurityProject) pulumi.StringArrayOutput { return v.TrafficFilterIds }).(pulumi.StringArrayOutput)
 }
 
 // the type of the project

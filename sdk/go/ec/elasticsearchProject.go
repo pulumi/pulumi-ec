@@ -51,6 +51,8 @@ import (
 // ```sh
 // $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
 // ```
+//
+// > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
 type ElasticsearchProject struct {
 	pulumi.CustomResourceState
 
@@ -62,16 +64,23 @@ type ElasticsearchProject struct {
 	Credentials ElasticsearchProjectCredentialsOutput `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints ElasticsearchProjectEndpointsOutput `pulumi:"endpoints"`
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+	//
+	//     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+	//     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
 	OptimizedFor pulumi.StringOutput `pulumi:"optimizedFor"`
+	// Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+	PrivateEndpoints ElasticsearchProjectPrivateEndpointsOutput `pulumi:"privateEndpoints"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
 	SearchLake ElasticsearchProjectSearchLakeOutput `pulumi:"searchLake"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayOutput `pulumi:"trafficFilterIds"`
 	// the type of the project
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -117,16 +126,23 @@ type elasticsearchProjectState struct {
 	Credentials *ElasticsearchProjectCredentials `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints *ElasticsearchProjectEndpoints `pulumi:"endpoints"`
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata *ElasticsearchProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
-	// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+	//
+	//     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+	//     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
 	OptimizedFor *string `pulumi:"optimizedFor"`
+	// Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+	PrivateEndpoints *ElasticsearchProjectPrivateEndpoints `pulumi:"privateEndpoints"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId *string `pulumi:"regionId"`
 	// Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
 	SearchLake *ElasticsearchProjectSearchLake `pulumi:"searchLake"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds []string `pulumi:"trafficFilterIds"`
 	// the type of the project
 	Type *string `pulumi:"type"`
 }
@@ -140,16 +156,23 @@ type ElasticsearchProjectState struct {
 	Credentials ElasticsearchProjectCredentialsPtrInput
 	// The endpoints to access the different apps of the project.
 	Endpoints ElasticsearchProjectEndpointsPtrInput
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
-	// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+	//
+	//     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+	//     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
 	OptimizedFor pulumi.StringPtrInput
+	// Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+	PrivateEndpoints ElasticsearchProjectPrivateEndpointsPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringPtrInput
 	// Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
 	SearchLake ElasticsearchProjectSearchLakePtrInput
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayInput
 	// the type of the project
 	Type pulumi.StringPtrInput
 }
@@ -161,28 +184,42 @@ func (ElasticsearchProjectState) ElementType() reflect.Type {
 type elasticsearchProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`
+	// Metadata request for a project with tags.
+	Metadata *ElasticsearchProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
-	// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+	//
+	//     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+	//     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
 	OptimizedFor *string `pulumi:"optimizedFor"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId string `pulumi:"regionId"`
 	// Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
 	SearchLake *ElasticsearchProjectSearchLake `pulumi:"searchLake"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds []string `pulumi:"trafficFilterIds"`
 }
 
 // The set of arguments for constructing a ElasticsearchProject resource.
 type ElasticsearchProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias pulumi.StringPtrInput
+	// Metadata request for a project with tags.
+	Metadata ElasticsearchProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
-	// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+	//
+	//     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+	//     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
 	OptimizedFor pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringInput
 	// Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
 	SearchLake ElasticsearchProjectSearchLakePtrInput
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayInput
 }
 
 func (ElasticsearchProjectArgs) ElementType() reflect.Type {
@@ -292,7 +329,7 @@ func (o ElasticsearchProjectOutput) Endpoints() ElasticsearchProjectEndpointsOut
 	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectEndpointsOutput { return v.Endpoints }).(ElasticsearchProjectEndpointsOutput)
 }
 
-// Additional details about the project.
+// Metadata request for a project with tags.
 func (o ElasticsearchProjectOutput) Metadata() ElasticsearchProjectMetadataOutput {
 	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectMetadataOutput { return v.Metadata }).(ElasticsearchProjectMetadataOutput)
 }
@@ -302,9 +339,17 @@ func (o ElasticsearchProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ElasticsearchProject) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+//
+//   - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+//   - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
 func (o ElasticsearchProjectOutput) OptimizedFor() pulumi.StringOutput {
 	return o.ApplyT(func(v *ElasticsearchProject) pulumi.StringOutput { return v.OptimizedFor }).(pulumi.StringOutput)
+}
+
+// Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+func (o ElasticsearchProjectOutput) PrivateEndpoints() ElasticsearchProjectPrivateEndpointsOutput {
+	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectPrivateEndpointsOutput { return v.PrivateEndpoints }).(ElasticsearchProjectPrivateEndpointsOutput)
 }
 
 // Unique human-readable identifier for a region in Elastic Cloud.
@@ -315,6 +360,11 @@ func (o ElasticsearchProjectOutput) RegionId() pulumi.StringOutput {
 // Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
 func (o ElasticsearchProjectOutput) SearchLake() ElasticsearchProjectSearchLakeOutput {
 	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectSearchLakeOutput { return v.SearchLake }).(ElasticsearchProjectSearchLakeOutput)
+}
+
+// Set of traffic filter IDs to associate with this project
+func (o ElasticsearchProjectOutput) TrafficFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ElasticsearchProject) pulumi.StringArrayOutput { return v.TrafficFilterIds }).(pulumi.StringArrayOutput)
 }
 
 // the type of the project

@@ -21,6 +21,16 @@ public final class GetTrafficFilterRulesetRule {
      */
     private String id;
     /**
+     * @return The remote cluster ID.
+     * 
+     */
+    private String remoteClusterId;
+    /**
+     * @return The remote cluster organization ID.
+     * 
+     */
+    private String remoteClusterOrgId;
+    /**
      * @return Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
      * 
      */
@@ -42,6 +52,20 @@ public final class GetTrafficFilterRulesetRule {
         return this.id;
     }
     /**
+     * @return The remote cluster ID.
+     * 
+     */
+    public String remoteClusterId() {
+        return this.remoteClusterId;
+    }
+    /**
+     * @return The remote cluster organization ID.
+     * 
+     */
+    public String remoteClusterOrgId() {
+        return this.remoteClusterOrgId;
+    }
+    /**
      * @return Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
      * 
      */
@@ -60,12 +84,16 @@ public final class GetTrafficFilterRulesetRule {
     public static final class Builder {
         private String description;
         private String id;
+        private String remoteClusterId;
+        private String remoteClusterOrgId;
         private String source;
         public Builder() {}
         public Builder(GetTrafficFilterRulesetRule defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.description = defaults.description;
     	      this.id = defaults.id;
+    	      this.remoteClusterId = defaults.remoteClusterId;
+    	      this.remoteClusterOrgId = defaults.remoteClusterOrgId;
     	      this.source = defaults.source;
         }
 
@@ -86,6 +114,22 @@ public final class GetTrafficFilterRulesetRule {
             return this;
         }
         @CustomType.Setter
+        public Builder remoteClusterId(String remoteClusterId) {
+            if (remoteClusterId == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRulesetRule", "remoteClusterId");
+            }
+            this.remoteClusterId = remoteClusterId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder remoteClusterOrgId(String remoteClusterOrgId) {
+            if (remoteClusterOrgId == null) {
+              throw new MissingRequiredPropertyException("GetTrafficFilterRulesetRule", "remoteClusterOrgId");
+            }
+            this.remoteClusterOrgId = remoteClusterOrgId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder source(String source) {
             if (source == null) {
               throw new MissingRequiredPropertyException("GetTrafficFilterRulesetRule", "source");
@@ -97,6 +141,8 @@ public final class GetTrafficFilterRulesetRule {
             final var _resultValue = new GetTrafficFilterRulesetRule();
             _resultValue.description = description;
             _resultValue.id = id;
+            _resultValue.remoteClusterId = remoteClusterId;
+            _resultValue.remoteClusterOrgId = remoteClusterOrgId;
             _resultValue.source = source;
             return _resultValue;
         }
