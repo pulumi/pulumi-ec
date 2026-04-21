@@ -42,6 +42,18 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("suspendedReason")]
         public Input<string>? SuspendedReason { get; set; }
 
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
         public ObservabilityProjectMetadataGetArgs()
         {
         }

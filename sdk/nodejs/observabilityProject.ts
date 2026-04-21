@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed
  * ```
+ *
+ * > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
  */
 export class ObservabilityProject extends pulumi.CustomResource {
     /**
@@ -77,13 +79,17 @@ export class ObservabilityProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.ObservabilityProjectEndpoints>;
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      */
-    declare public /*out*/ readonly metadata: pulumi.Output<outputs.ObservabilityProjectMetadata>;
+    declare public readonly metadata: pulumi.Output<outputs.ObservabilityProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+     */
+    declare public /*out*/ readonly privateEndpoints: pulumi.Output<outputs.ObservabilityProjectPrivateEndpoints>;
     /**
      * the tier of the observability project
      */
@@ -92,6 +98,10 @@ export class ObservabilityProject extends pulumi.CustomResource {
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     declare public readonly regionId: pulumi.Output<string>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    declare public readonly trafficFilterIds: pulumi.Output<string[] | undefined>;
     /**
      * the type of the project
      */
@@ -116,8 +126,10 @@ export class ObservabilityProject extends pulumi.CustomResource {
             resourceInputs["endpoints"] = state?.endpoints;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
+            resourceInputs["privateEndpoints"] = state?.privateEndpoints;
             resourceInputs["productTier"] = state?.productTier;
             resourceInputs["regionId"] = state?.regionId;
+            resourceInputs["trafficFilterIds"] = state?.trafficFilterIds;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as ObservabilityProjectArgs | undefined;
@@ -125,13 +137,15 @@ export class ObservabilityProject extends pulumi.CustomResource {
                 throw new Error("Missing required property 'regionId'");
             }
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["productTier"] = args?.productTier;
             resourceInputs["regionId"] = args?.regionId;
+            resourceInputs["trafficFilterIds"] = args?.trafficFilterIds;
             resourceInputs["cloudId"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
-            resourceInputs["metadata"] = undefined /*out*/;
+            resourceInputs["privateEndpoints"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -160,13 +174,17 @@ export interface ObservabilityProjectState {
      */
     endpoints?: pulumi.Input<inputs.ObservabilityProjectEndpoints>;
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      */
     metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata>;
     /**
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+     */
+    privateEndpoints?: pulumi.Input<inputs.ObservabilityProjectPrivateEndpoints>;
     /**
      * the tier of the observability project
      */
@@ -175,6 +193,10 @@ export interface ObservabilityProjectState {
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     regionId?: pulumi.Input<string>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * the type of the project
      */
@@ -190,6 +212,10 @@ export interface ObservabilityProjectArgs {
      */
     alias?: pulumi.Input<string>;
     /**
+     * Metadata request for a project with tags.
+     */
+    metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata>;
+    /**
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string>;
@@ -201,4 +227,8 @@ export interface ObservabilityProjectArgs {
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
     regionId: pulumi.Input<string>;
+    /**
+     * Set of traffic filter IDs to associate with this project
+     */
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

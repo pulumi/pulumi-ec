@@ -93,6 +93,8 @@ __all__ = [
     'ElasticsearchProjectEndpointsArgsDict',
     'ElasticsearchProjectMetadataArgs',
     'ElasticsearchProjectMetadataArgsDict',
+    'ElasticsearchProjectPrivateEndpointsArgs',
+    'ElasticsearchProjectPrivateEndpointsArgsDict',
     'ElasticsearchProjectSearchLakeArgs',
     'ElasticsearchProjectSearchLakeArgsDict',
     'ObservabilityProjectCredentialsArgs',
@@ -101,6 +103,8 @@ __all__ = [
     'ObservabilityProjectEndpointsArgsDict',
     'ObservabilityProjectMetadataArgs',
     'ObservabilityProjectMetadataArgsDict',
+    'ObservabilityProjectPrivateEndpointsArgs',
+    'ObservabilityProjectPrivateEndpointsArgsDict',
     'OrganizationMembersArgs',
     'OrganizationMembersArgsDict',
     'OrganizationMembersDeploymentRoleArgs',
@@ -117,8 +121,16 @@ __all__ = [
     'SecurityProjectEndpointsArgsDict',
     'SecurityProjectMetadataArgs',
     'SecurityProjectMetadataArgsDict',
+    'SecurityProjectPrivateEndpointsArgs',
+    'SecurityProjectPrivateEndpointsArgsDict',
     'SecurityProjectProductTypeArgs',
     'SecurityProjectProductTypeArgsDict',
+    'SecurityProjectSearchLakeArgs',
+    'SecurityProjectSearchLakeArgsDict',
+    'SecurityProjectSearchLakeDataRetentionArgs',
+    'SecurityProjectSearchLakeDataRetentionArgsDict',
+    'ServerlessTrafficFilterRuleArgs',
+    'ServerlessTrafficFilterRuleArgsDict',
     'SnapshotRepositoryGenericArgs',
     'SnapshotRepositoryGenericArgsDict',
     'SnapshotRepositoryS3Args',
@@ -5509,6 +5521,14 @@ class DeploymentTrafficFilterRuleArgsDict(TypedDict):
     """
     Computed rule ID
     """
+    remote_cluster_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote cluster ID. Only applicable when the ruleset type is set to `remote_cluster`
+    """
+    remote_cluster_org_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote cluster organization ID. Only applicable when the ruleset type is set to `remote_cluster`
+    """
     source: NotRequired[pulumi.Input[_builtins.str]]
     """
     Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
@@ -5521,12 +5541,16 @@ class DeploymentTrafficFilterRuleArgs:
                  azure_endpoint_name: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_cluster_org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  source: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] azure_endpoint_guid: Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
         :param pulumi.Input[_builtins.str] azure_endpoint_name: Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
         :param pulumi.Input[_builtins.str] description: Description of this individual rule
         :param pulumi.Input[_builtins.str] id: Computed rule ID
+        :param pulumi.Input[_builtins.str] remote_cluster_id: The remote cluster ID. Only applicable when the ruleset type is set to `remote_cluster`
+        :param pulumi.Input[_builtins.str] remote_cluster_org_id: The remote cluster organization ID. Only applicable when the ruleset type is set to `remote_cluster`
         :param pulumi.Input[_builtins.str] source: Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
         """
         if azure_endpoint_guid is not None:
@@ -5537,6 +5561,10 @@ class DeploymentTrafficFilterRuleArgs:
             pulumi.set(__self__, "description", description)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if remote_cluster_id is not None:
+            pulumi.set(__self__, "remote_cluster_id", remote_cluster_id)
+        if remote_cluster_org_id is not None:
+            pulumi.set(__self__, "remote_cluster_org_id", remote_cluster_org_id)
         if source is not None:
             pulumi.set(__self__, "source", source)
 
@@ -5587,6 +5615,30 @@ class DeploymentTrafficFilterRuleArgs:
     @id.setter
     def id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteClusterId")
+    def remote_cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The remote cluster ID. Only applicable when the ruleset type is set to `remote_cluster`
+        """
+        return pulumi.get(self, "remote_cluster_id")
+
+    @remote_cluster_id.setter
+    def remote_cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_cluster_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteClusterOrgId")
+    def remote_cluster_org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The remote cluster organization ID. Only applicable when the ruleset type is set to `remote_cluster`
+        """
+        return pulumi.get(self, "remote_cluster_org_id")
+
+    @remote_cluster_org_id.setter
+    def remote_cluster_org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_cluster_org_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -5720,6 +5772,10 @@ class ElasticsearchProjectMetadataArgsDict(TypedDict):
     """
     Reason why the project was suspended.
     """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+    """
 
 @pulumi.input_type
 class ElasticsearchProjectMetadataArgs:
@@ -5728,13 +5784,15 @@ class ElasticsearchProjectMetadataArgs:
                  created_by: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  suspended_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None):
+                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
         :param pulumi.Input[_builtins.str] created_by: ID of the user.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID who owns the project.
         :param pulumi.Input[_builtins.str] suspended_at: Date and time when the project was suspended.
         :param pulumi.Input[_builtins.str] suspended_reason: Reason why the project was suspended.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -5746,6 +5804,8 @@ class ElasticsearchProjectMetadataArgs:
             pulumi.set(__self__, "suspended_at", suspended_at)
         if suspended_reason is not None:
             pulumi.set(__self__, "suspended_reason", suspended_reason)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -5806,6 +5866,67 @@ class ElasticsearchProjectMetadataArgs:
     @suspended_reason.setter
     def suspended_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "suspended_reason", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class ElasticsearchProjectPrivateEndpointsArgsDict(TypedDict):
+    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access elasticsearch.
+    """
+    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access kibana.
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectPrivateEndpointsArgs:
+    def __init__(__self__, *,
+                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
+                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
+        :param pulumi.Input[_builtins.str] kibana: The PrivateLink endpoint URL to access kibana.
+        """
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if kibana is not None:
+            pulumi.set(__self__, "kibana", kibana)
+
+    @_builtins.property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access elasticsearch.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @elasticsearch.setter
+    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access kibana.
+        """
+        return pulumi.get(self, "kibana")
+
+    @kibana.setter
+    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kibana", value)
 
 
 class ElasticsearchProjectSearchLakeArgsDict(TypedDict):
@@ -6016,6 +6137,10 @@ class ObservabilityProjectMetadataArgsDict(TypedDict):
     """
     Reason why the project was suspended.
     """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+    """
 
 @pulumi.input_type
 class ObservabilityProjectMetadataArgs:
@@ -6024,13 +6149,15 @@ class ObservabilityProjectMetadataArgs:
                  created_by: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  suspended_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None):
+                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
         :param pulumi.Input[_builtins.str] created_by: ID of the user.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID who owns the project.
         :param pulumi.Input[_builtins.str] suspended_at: Date and time when the project was suspended.
         :param pulumi.Input[_builtins.str] suspended_reason: Reason why the project was suspended.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -6042,6 +6169,8 @@ class ObservabilityProjectMetadataArgs:
             pulumi.set(__self__, "suspended_at", suspended_at)
         if suspended_reason is not None:
             pulumi.set(__self__, "suspended_reason", suspended_reason)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -6102,6 +6231,107 @@ class ObservabilityProjectMetadataArgs:
     @suspended_reason.setter
     def suspended_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "suspended_reason", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class ObservabilityProjectPrivateEndpointsArgsDict(TypedDict):
+    apm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access APM.
+    """
+    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access elasticsearch.
+    """
+    ingest: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+    """
+    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access kibana.
+    """
+
+@pulumi.input_type
+class ObservabilityProjectPrivateEndpointsArgs:
+    def __init__(__self__, *,
+                 apm: Optional[pulumi.Input[_builtins.str]] = None,
+                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
+                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
+                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] apm: The PrivateLink endpoint URL to access APM.
+        :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
+        :param pulumi.Input[_builtins.str] ingest: The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+        :param pulumi.Input[_builtins.str] kibana: The PrivateLink endpoint URL to access kibana.
+        """
+        if apm is not None:
+            pulumi.set(__self__, "apm", apm)
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if ingest is not None:
+            pulumi.set(__self__, "ingest", ingest)
+        if kibana is not None:
+            pulumi.set(__self__, "kibana", kibana)
+
+    @_builtins.property
+    @pulumi.getter
+    def apm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access APM.
+        """
+        return pulumi.get(self, "apm")
+
+    @apm.setter
+    def apm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "apm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access elasticsearch.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @elasticsearch.setter
+    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+        """
+        return pulumi.get(self, "ingest")
+
+    @ingest.setter
+    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ingest", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access kibana.
+        """
+        return pulumi.get(self, "kibana")
+
+    @kibana.setter
+    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kibana", value)
 
 
 class OrganizationMembersArgsDict(TypedDict):
@@ -6764,6 +6994,10 @@ class SecurityProjectMetadataArgsDict(TypedDict):
     """
     Reason why the project was suspended.
     """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+    """
 
 @pulumi.input_type
 class SecurityProjectMetadataArgs:
@@ -6772,13 +7006,15 @@ class SecurityProjectMetadataArgs:
                  created_by: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  suspended_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None):
+                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
         :param pulumi.Input[_builtins.str] created_by: ID of the user.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID who owns the project.
         :param pulumi.Input[_builtins.str] suspended_at: Date and time when the project was suspended.
         :param pulumi.Input[_builtins.str] suspended_reason: Reason why the project was suspended.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -6790,6 +7026,8 @@ class SecurityProjectMetadataArgs:
             pulumi.set(__self__, "suspended_at", suspended_at)
         if suspended_reason is not None:
             pulumi.set(__self__, "suspended_reason", suspended_reason)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -6851,6 +7089,87 @@ class SecurityProjectMetadataArgs:
     def suspended_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "suspended_reason", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class SecurityProjectPrivateEndpointsArgsDict(TypedDict):
+    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access elasticsearch.
+    """
+    ingest: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+    """
+    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The PrivateLink endpoint URL to access kibana.
+    """
+
+@pulumi.input_type
+class SecurityProjectPrivateEndpointsArgs:
+    def __init__(__self__, *,
+                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
+                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
+                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
+        :param pulumi.Input[_builtins.str] ingest: The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+        :param pulumi.Input[_builtins.str] kibana: The PrivateLink endpoint URL to access kibana.
+        """
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if ingest is not None:
+            pulumi.set(__self__, "ingest", ingest)
+        if kibana is not None:
+            pulumi.set(__self__, "kibana", kibana)
+
+    @_builtins.property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access elasticsearch.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @elasticsearch.setter
+    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+        """
+        return pulumi.get(self, "ingest")
+
+    @ingest.setter
+    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ingest", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access kibana.
+        """
+        return pulumi.get(self, "kibana")
+
+    @kibana.setter
+    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kibana", value)
+
 
 class SecurityProjectProductTypeArgsDict(TypedDict):
     product_line: pulumi.Input[_builtins.str]
@@ -6897,6 +7216,132 @@ class SecurityProjectProductTypeArgs:
     @product_tier.setter
     def product_tier(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "product_tier", value)
+
+
+class SecurityProjectSearchLakeArgsDict(TypedDict):
+    data_retention: NotRequired[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgsDict']]
+    """
+    Configuration to control the data retention in Elasticsearch data streams.
+    """
+
+@pulumi.input_type
+class SecurityProjectSearchLakeArgs:
+    def __init__(__self__, *,
+                 data_retention: Optional[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs']] = None):
+        """
+        :param pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs'] data_retention: Configuration to control the data retention in Elasticsearch data streams.
+        """
+        if data_retention is not None:
+            pulumi.set(__self__, "data_retention", data_retention)
+
+    @_builtins.property
+    @pulumi.getter(name="dataRetention")
+    def data_retention(self) -> Optional[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs']]:
+        """
+        Configuration to control the data retention in Elasticsearch data streams.
+        """
+        return pulumi.get(self, "data_retention")
+
+    @data_retention.setter
+    def data_retention(self, value: Optional[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs']]):
+        pulumi.set(self, "data_retention", value)
+
+
+class SecurityProjectSearchLakeDataRetentionArgsDict(TypedDict):
+    default_retention_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+    """
+    max_retention_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+    """
+
+@pulumi.input_type
+class SecurityProjectSearchLakeDataRetentionArgs:
+    def __init__(__self__, *,
+                 default_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retention_days: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] default_retention_days: Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+        :param pulumi.Input[_builtins.int] max_retention_days: Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+        """
+        if default_retention_days is not None:
+            pulumi.set(__self__, "default_retention_days", default_retention_days)
+        if max_retention_days is not None:
+            pulumi.set(__self__, "max_retention_days", max_retention_days)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultRetentionDays")
+    def default_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+        """
+        return pulumi.get(self, "default_retention_days")
+
+    @default_retention_days.setter
+    def default_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "default_retention_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetentionDays")
+    def max_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+        """
+        return pulumi.get(self, "max_retention_days")
+
+    @max_retention_days.setter
+    def max_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retention_days", value)
+
+
+class ServerlessTrafficFilterRuleArgsDict(TypedDict):
+    source: pulumi.Input[_builtins.str]
+    """
+    Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description of the rule.
+    """
+
+@pulumi.input_type
+class ServerlessTrafficFilterRuleArgs:
+    def __init__(__self__, *,
+                 source: pulumi.Input[_builtins.str],
+                 description: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] source: Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+        :param pulumi.Input[_builtins.str] description: Description of the rule.
+        """
+        pulumi.set(__self__, "source", source)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> pulumi.Input[_builtins.str]:
+        """
+        Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "source", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
 
 
 class SnapshotRepositoryGenericArgsDict(TypedDict):

@@ -8,8 +8,10 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.ElasticsearchProjectCredentialsArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectEndpointsArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectMetadataArgs;
+import com.pulumi.ec.inputs.ElasticsearchProjectPrivateEndpointsArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectSearchLakeArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -80,14 +82,14 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<ElasticsearchProjectMetadataArgs> metadata;
 
     /**
-     * @return Additional details about the project.
+     * @return Metadata request for a project with tags.
      * 
      */
     public Optional<Output<ElasticsearchProjectMetadataArgs>> metadata() {
@@ -110,18 +112,39 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     * 
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      * 
      */
     @Import(name="optimizedFor")
     private @Nullable Output<String> optimizedFor;
 
     /**
-     * @return The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+     * @return The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+     * 
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      * 
      */
     public Optional<Output<String>> optimizedFor() {
         return Optional.ofNullable(this.optimizedFor);
+    }
+
+    /**
+     * Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+     * 
+     */
+    @Import(name="privateEndpoints")
+    private @Nullable Output<ElasticsearchProjectPrivateEndpointsArgs> privateEndpoints;
+
+    /**
+     * @return Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+     * 
+     */
+    public Optional<Output<ElasticsearchProjectPrivateEndpointsArgs>> privateEndpoints() {
+        return Optional.ofNullable(this.privateEndpoints);
     }
 
     /**
@@ -155,6 +178,21 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
     }
 
     /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Import(name="trafficFilterIds")
+    private @Nullable Output<List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Optional<Output<List<String>>> trafficFilterIds() {
+        return Optional.ofNullable(this.trafficFilterIds);
+    }
+
+    /**
      * the type of the project
      * 
      */
@@ -179,8 +217,10 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
         this.metadata = $.metadata;
         this.name = $.name;
         this.optimizedFor = $.optimizedFor;
+        this.privateEndpoints = $.privateEndpoints;
         this.regionId = $.regionId;
         this.searchLake = $.searchLake;
+        this.trafficFilterIds = $.trafficFilterIds;
         this.type = $.type;
     }
 
@@ -287,7 +327,7 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param metadata Additional details about the project.
+         * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
          * 
@@ -298,7 +338,7 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param metadata Additional details about the project.
+         * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
          * 
@@ -329,7 +369,10 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param optimizedFor The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+         * @param optimizedFor The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+         * 
+         *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+         *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
          * 
          * @return builder
          * 
@@ -340,13 +383,37 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param optimizedFor The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+         * @param optimizedFor The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+         * 
+         *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+         *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
          * 
          * @return builder
          * 
          */
         public Builder optimizedFor(String optimizedFor) {
             return optimizedFor(Output.of(optimizedFor));
+        }
+
+        /**
+         * @param privateEndpoints Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpoints(@Nullable Output<ElasticsearchProjectPrivateEndpointsArgs> privateEndpoints) {
+            $.privateEndpoints = privateEndpoints;
+            return this;
+        }
+
+        /**
+         * @param privateEndpoints Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpoints(ElasticsearchProjectPrivateEndpointsArgs privateEndpoints) {
+            return privateEndpoints(Output.of(privateEndpoints));
         }
 
         /**
@@ -389,6 +456,37 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
          */
         public Builder searchLake(ElasticsearchProjectSearchLakeArgs searchLake) {
             return searchLake(Output.of(searchLake));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(@Nullable Output<List<String>> trafficFilterIds) {
+            $.trafficFilterIds = trafficFilterIds;
+            return this;
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(List<String> trafficFilterIds) {
+            return trafficFilterIds(Output.of(trafficFilterIds));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(String... trafficFilterIds) {
+            return trafficFilterIds(List.of(trafficFilterIds));
         }
 
         /**

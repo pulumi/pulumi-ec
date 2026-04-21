@@ -13,9 +13,12 @@ import com.pulumi.ec.inputs.SecurityProjectState;
 import com.pulumi.ec.outputs.SecurityProjectCredentials;
 import com.pulumi.ec.outputs.SecurityProjectEndpoints;
 import com.pulumi.ec.outputs.SecurityProjectMetadata;
+import com.pulumi.ec.outputs.SecurityProjectPrivateEndpoints;
 import com.pulumi.ec.outputs.SecurityProjectProductType;
+import com.pulumi.ec.outputs.SecurityProjectSearchLake;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -65,6 +68,8 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed
  * ```
+ * 
+ * &gt; **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
  * 
  */
 @ResourceType(type="ec:index/securityProject:SecurityProject")
@@ -140,14 +145,14 @@ public class SecurityProject extends com.pulumi.resources.CustomResource {
         return this.endpoints;
     }
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      * 
      */
     @Export(name="metadata", refs={SecurityProjectMetadata.class}, tree="[0]")
     private Output<SecurityProjectMetadata> metadata;
 
     /**
-     * @return Additional details about the project.
+     * @return Metadata request for a project with tags.
      * 
      */
     public Output<SecurityProjectMetadata> metadata() {
@@ -166,6 +171,20 @@ public class SecurityProject extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+     * 
+     */
+    @Export(name="privateEndpoints", refs={SecurityProjectPrivateEndpoints.class}, tree="[0]")
+    private Output<SecurityProjectPrivateEndpoints> privateEndpoints;
+
+    /**
+     * @return Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+     * 
+     */
+    public Output<SecurityProjectPrivateEndpoints> privateEndpoints() {
+        return this.privateEndpoints;
     }
     @Export(name="productTypes", refs={List.class,SecurityProjectProductType.class}, tree="[0,1]")
     private Output<List<SecurityProjectProductType>> productTypes;
@@ -186,6 +205,34 @@ public class SecurityProject extends com.pulumi.resources.CustomResource {
      */
     public Output<String> regionId() {
         return this.regionId;
+    }
+    /**
+     * Configuration for the entire set of capabilities that make the data searchable in Security.
+     * 
+     */
+    @Export(name="searchLake", refs={SecurityProjectSearchLake.class}, tree="[0]")
+    private Output<SecurityProjectSearchLake> searchLake;
+
+    /**
+     * @return Configuration for the entire set of capabilities that make the data searchable in Security.
+     * 
+     */
+    public Output<SecurityProjectSearchLake> searchLake() {
+        return this.searchLake;
+    }
+    /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Export(name="trafficFilterIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Output<Optional<List<String>>> trafficFilterIds() {
+        return Codegen.optional(this.trafficFilterIds);
     }
     /**
      * the type of the project

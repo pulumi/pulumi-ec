@@ -93,6 +93,11 @@ export type SecurityProject = import("./securityProject").SecurityProject;
 export const SecurityProject: typeof import("./securityProject").SecurityProject = null as any;
 utilities.lazyLoad(exports, ["SecurityProject"], () => require("./securityProject"));
 
+export { ServerlessTrafficFilterArgs, ServerlessTrafficFilterState } from "./serverlessTrafficFilter";
+export type ServerlessTrafficFilter = import("./serverlessTrafficFilter").ServerlessTrafficFilter;
+export const ServerlessTrafficFilter: typeof import("./serverlessTrafficFilter").ServerlessTrafficFilter = null as any;
+utilities.lazyLoad(exports, ["ServerlessTrafficFilter"], () => require("./serverlessTrafficFilter"));
+
 export { SnapshotRepositoryArgs, SnapshotRepositoryState } from "./snapshotRepository";
 export type SnapshotRepository = import("./snapshotRepository").SnapshotRepository;
 export const SnapshotRepository: typeof import("./snapshotRepository").SnapshotRepository = null as any;
@@ -130,6 +135,8 @@ const _module = {
                 return new Organization(name, <any>undefined, { urn })
             case "ec:index/securityProject:SecurityProject":
                 return new SecurityProject(name, <any>undefined, { urn })
+            case "ec:index/serverlessTrafficFilter:ServerlessTrafficFilter":
+                return new ServerlessTrafficFilter(name, <any>undefined, { urn })
             case "ec:index/snapshotRepository:SnapshotRepository":
                 return new SnapshotRepository(name, <any>undefined, { urn })
             default:
@@ -146,6 +153,7 @@ pulumi.runtime.registerResourceModule("ec", "index/elasticsearchProject", _modul
 pulumi.runtime.registerResourceModule("ec", "index/observabilityProject", _module)
 pulumi.runtime.registerResourceModule("ec", "index/organization", _module)
 pulumi.runtime.registerResourceModule("ec", "index/securityProject", _module)
+pulumi.runtime.registerResourceModule("ec", "index/serverlessTrafficFilter", _module)
 pulumi.runtime.registerResourceModule("ec", "index/snapshotRepository", _module)
 pulumi.runtime.registerResourcePackage("ec", {
     version: utilities.getVersion(),

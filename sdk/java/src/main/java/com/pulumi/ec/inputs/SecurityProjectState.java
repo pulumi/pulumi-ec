@@ -8,7 +8,9 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.SecurityProjectCredentialsArgs;
 import com.pulumi.ec.inputs.SecurityProjectEndpointsArgs;
 import com.pulumi.ec.inputs.SecurityProjectMetadataArgs;
+import com.pulumi.ec.inputs.SecurityProjectPrivateEndpointsArgs;
 import com.pulumi.ec.inputs.SecurityProjectProductTypeArgs;
+import com.pulumi.ec.inputs.SecurityProjectSearchLakeArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -96,14 +98,14 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<SecurityProjectMetadataArgs> metadata;
 
     /**
-     * @return Additional details about the project.
+     * @return Metadata request for a project with tags.
      * 
      */
     public Optional<Output<SecurityProjectMetadataArgs>> metadata() {
@@ -123,6 +125,21 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+     * 
+     */
+    @Import(name="privateEndpoints")
+    private @Nullable Output<SecurityProjectPrivateEndpointsArgs> privateEndpoints;
+
+    /**
+     * @return Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+     * 
+     */
+    public Optional<Output<SecurityProjectPrivateEndpointsArgs>> privateEndpoints() {
+        return Optional.ofNullable(this.privateEndpoints);
     }
 
     @Import(name="productTypes")
@@ -145,6 +162,36 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> regionId() {
         return Optional.ofNullable(this.regionId);
+    }
+
+    /**
+     * Configuration for the entire set of capabilities that make the data searchable in Security.
+     * 
+     */
+    @Import(name="searchLake")
+    private @Nullable Output<SecurityProjectSearchLakeArgs> searchLake;
+
+    /**
+     * @return Configuration for the entire set of capabilities that make the data searchable in Security.
+     * 
+     */
+    public Optional<Output<SecurityProjectSearchLakeArgs>> searchLake() {
+        return Optional.ofNullable(this.searchLake);
+    }
+
+    /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Import(name="trafficFilterIds")
+    private @Nullable Output<List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Optional<Output<List<String>>> trafficFilterIds() {
+        return Optional.ofNullable(this.trafficFilterIds);
     }
 
     /**
@@ -172,8 +219,11 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
         this.endpoints = $.endpoints;
         this.metadata = $.metadata;
         this.name = $.name;
+        this.privateEndpoints = $.privateEndpoints;
         this.productTypes = $.productTypes;
         this.regionId = $.regionId;
+        this.searchLake = $.searchLake;
+        this.trafficFilterIds = $.trafficFilterIds;
         this.type = $.type;
     }
 
@@ -301,7 +351,7 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param metadata Additional details about the project.
+         * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
          * 
@@ -312,7 +362,7 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param metadata Additional details about the project.
+         * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
          * 
@@ -340,6 +390,27 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param privateEndpoints Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpoints(@Nullable Output<SecurityProjectPrivateEndpointsArgs> privateEndpoints) {
+            $.privateEndpoints = privateEndpoints;
+            return this;
+        }
+
+        /**
+         * @param privateEndpoints Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpoints(SecurityProjectPrivateEndpointsArgs privateEndpoints) {
+            return privateEndpoints(Output.of(privateEndpoints));
         }
 
         public Builder productTypes(@Nullable Output<List<SecurityProjectProductTypeArgs>> productTypes) {
@@ -374,6 +445,58 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
          */
         public Builder regionId(String regionId) {
             return regionId(Output.of(regionId));
+        }
+
+        /**
+         * @param searchLake Configuration for the entire set of capabilities that make the data searchable in Security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder searchLake(@Nullable Output<SecurityProjectSearchLakeArgs> searchLake) {
+            $.searchLake = searchLake;
+            return this;
+        }
+
+        /**
+         * @param searchLake Configuration for the entire set of capabilities that make the data searchable in Security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder searchLake(SecurityProjectSearchLakeArgs searchLake) {
+            return searchLake(Output.of(searchLake));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(@Nullable Output<List<String>> trafficFilterIds) {
+            $.trafficFilterIds = trafficFilterIds;
+            return this;
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(List<String> trafficFilterIds) {
+            return trafficFilterIds(Output.of(trafficFilterIds));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(String... trafficFilterIds) {
+            return trafficFilterIds(List.of(trafficFilterIds));
         }
 
         /**

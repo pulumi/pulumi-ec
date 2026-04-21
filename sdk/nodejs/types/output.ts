@@ -1049,6 +1049,14 @@ export interface DeploymentTrafficFilterRule {
      */
     id: string;
     /**
+     * The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+     */
+    remoteClusterId?: string;
+    /**
+     * The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+     */
+    remoteClusterOrgId?: string;
+    /**
      * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      */
     source?: string;
@@ -1097,6 +1105,21 @@ export interface ElasticsearchProjectMetadata {
      * Reason why the project was suspended.
      */
     suspendedReason: string;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     */
+    tags: {[key: string]: string};
+}
+
+export interface ElasticsearchProjectPrivateEndpoints {
+    /**
+     * The PrivateLink endpoint URL to access elasticsearch.
+     */
+    elasticsearch: string;
+    /**
+     * The PrivateLink endpoint URL to access kibana.
+     */
+    kibana: string;
 }
 
 export interface ElasticsearchProjectSearchLake {
@@ -1975,6 +1998,14 @@ export interface GetTrafficFilterRulesetRule {
      */
     id: string;
     /**
+     * The remote cluster ID.
+     */
+    remoteClusterId: string;
+    /**
+     * The remote cluster organization ID.
+     */
+    remoteClusterOrgId: string;
+    /**
      * Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
      */
     source: string;
@@ -2031,6 +2062,29 @@ export interface ObservabilityProjectMetadata {
      * Reason why the project was suspended.
      */
     suspendedReason: string;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     */
+    tags: {[key: string]: string};
+}
+
+export interface ObservabilityProjectPrivateEndpoints {
+    /**
+     * The PrivateLink endpoint URL to access APM.
+     */
+    apm: string;
+    /**
+     * The PrivateLink endpoint URL to access elasticsearch.
+     */
+    elasticsearch: string;
+    /**
+     * The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+     */
+    ingest: string;
+    /**
+     * The PrivateLink endpoint URL to access kibana.
+     */
+    kibana: string;
 }
 
 export interface OrganizationMembers {
@@ -2191,6 +2245,25 @@ export interface SecurityProjectMetadata {
      * Reason why the project was suspended.
      */
     suspendedReason: string;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     */
+    tags: {[key: string]: string};
+}
+
+export interface SecurityProjectPrivateEndpoints {
+    /**
+     * The PrivateLink endpoint URL to access elasticsearch.
+     */
+    elasticsearch: string;
+    /**
+     * The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+     */
+    ingest: string;
+    /**
+     * The PrivateLink endpoint URL to access kibana.
+     */
+    kibana: string;
 }
 
 export interface SecurityProjectProductType {
@@ -2202,6 +2275,35 @@ export interface SecurityProjectProductType {
      * The identifier of the Security Solution product tier.
      */
     productTier: string;
+}
+
+export interface SecurityProjectSearchLake {
+    /**
+     * Configuration to control the data retention in Elasticsearch data streams.
+     */
+    dataRetention: outputs.SecurityProjectSearchLakeDataRetention;
+}
+
+export interface SecurityProjectSearchLakeDataRetention {
+    /**
+     * Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+     */
+    defaultRetentionDays: number;
+    /**
+     * Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+     */
+    maxRetentionDays: number;
+}
+
+export interface ServerlessTrafficFilterRule {
+    /**
+     * Description of the rule.
+     */
+    description: string;
+    /**
+     * Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+     */
+    source: string;
 }
 
 export interface SnapshotRepositoryGeneric {

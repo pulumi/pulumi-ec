@@ -13,7 +13,10 @@ import com.pulumi.ec.inputs.ObservabilityProjectState;
 import com.pulumi.ec.outputs.ObservabilityProjectCredentials;
 import com.pulumi.ec.outputs.ObservabilityProjectEndpoints;
 import com.pulumi.ec.outputs.ObservabilityProjectMetadata;
+import com.pulumi.ec.outputs.ObservabilityProjectPrivateEndpoints;
 import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -63,6 +66,8 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed
  * ```
+ * 
+ * &gt; **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
  * 
  */
 @ResourceType(type="ec:index/observabilityProject:ObservabilityProject")
@@ -124,14 +129,14 @@ public class ObservabilityProject extends com.pulumi.resources.CustomResource {
         return this.endpoints;
     }
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      * 
      */
     @Export(name="metadata", refs={ObservabilityProjectMetadata.class}, tree="[0]")
     private Output<ObservabilityProjectMetadata> metadata;
 
     /**
-     * @return Additional details about the project.
+     * @return Metadata request for a project with tags.
      * 
      */
     public Output<ObservabilityProjectMetadata> metadata() {
@@ -150,6 +155,20 @@ public class ObservabilityProject extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+     * 
+     */
+    @Export(name="privateEndpoints", refs={ObservabilityProjectPrivateEndpoints.class}, tree="[0]")
+    private Output<ObservabilityProjectPrivateEndpoints> privateEndpoints;
+
+    /**
+     * @return Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+     * 
+     */
+    public Output<ObservabilityProjectPrivateEndpoints> privateEndpoints() {
+        return this.privateEndpoints;
     }
     /**
      * the tier of the observability project
@@ -178,6 +197,20 @@ public class ObservabilityProject extends com.pulumi.resources.CustomResource {
      */
     public Output<String> regionId() {
         return this.regionId;
+    }
+    /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Export(name="trafficFilterIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Output<Optional<List<String>>> trafficFilterIds() {
+        return Codegen.optional(this.trafficFilterIds);
     }
     /**
      * the type of the project

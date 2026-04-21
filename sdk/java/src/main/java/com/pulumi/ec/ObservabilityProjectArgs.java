@@ -5,8 +5,10 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ec.inputs.ObservabilityProjectMetadataArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -29,6 +31,21 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> alias() {
         return Optional.ofNullable(this.alias);
+    }
+
+    /**
+     * Metadata request for a project with tags.
+     * 
+     */
+    @Import(name="metadata")
+    private @Nullable Output<ObservabilityProjectMetadataArgs> metadata;
+
+    /**
+     * @return Metadata request for a project with tags.
+     * 
+     */
+    public Optional<Output<ObservabilityProjectMetadataArgs>> metadata() {
+        return Optional.ofNullable(this.metadata);
     }
 
     /**
@@ -76,13 +93,30 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
         return this.regionId;
     }
 
+    /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Import(name="trafficFilterIds")
+    private @Nullable Output<List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Optional<Output<List<String>>> trafficFilterIds() {
+        return Optional.ofNullable(this.trafficFilterIds);
+    }
+
     private ObservabilityProjectArgs() {}
 
     private ObservabilityProjectArgs(ObservabilityProjectArgs $) {
         this.alias = $.alias;
+        this.metadata = $.metadata;
         this.name = $.name;
         this.productTier = $.productTier;
         this.regionId = $.regionId;
+        this.trafficFilterIds = $.trafficFilterIds;
     }
 
     public static Builder builder() {
@@ -122,6 +156,27 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param metadata Metadata request for a project with tags.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(@Nullable Output<ObservabilityProjectMetadataArgs> metadata) {
+            $.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * @param metadata Metadata request for a project with tags.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(ObservabilityProjectMetadataArgs metadata) {
+            return metadata(Output.of(metadata));
         }
 
         /**
@@ -185,6 +240,37 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
          */
         public Builder regionId(String regionId) {
             return regionId(Output.of(regionId));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(@Nullable Output<List<String>> trafficFilterIds) {
+            $.trafficFilterIds = trafficFilterIds;
+            return this;
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(List<String> trafficFilterIds) {
+            return trafficFilterIds(Output.of(trafficFilterIds));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(String... trafficFilterIds) {
+            return trafficFilterIds(List.of(trafficFilterIds));
         }
 
         public ObservabilityProjectArgs build() {

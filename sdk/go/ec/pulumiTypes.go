@@ -8828,6 +8828,10 @@ type DeploymentTrafficFilterRule struct {
 	Description *string `pulumi:"description"`
 	// Computed rule ID
 	Id *string `pulumi:"id"`
+	// The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+	RemoteClusterId *string `pulumi:"remoteClusterId"`
+	// The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+	RemoteClusterOrgId *string `pulumi:"remoteClusterOrgId"`
 	// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
 	Source *string `pulumi:"source"`
 }
@@ -8852,6 +8856,10 @@ type DeploymentTrafficFilterRuleArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// Computed rule ID
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+	RemoteClusterId pulumi.StringPtrInput `pulumi:"remoteClusterId"`
+	// The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+	RemoteClusterOrgId pulumi.StringPtrInput `pulumi:"remoteClusterOrgId"`
 	// Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
 	Source pulumi.StringPtrInput `pulumi:"source"`
 }
@@ -8925,6 +8933,16 @@ func (o DeploymentTrafficFilterRuleOutput) Description() pulumi.StringPtrOutput 
 // Computed rule ID
 func (o DeploymentTrafficFilterRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+func (o DeploymentTrafficFilterRuleOutput) RemoteClusterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.RemoteClusterId }).(pulumi.StringPtrOutput)
+}
+
+// The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+func (o DeploymentTrafficFilterRuleOutput) RemoteClusterOrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentTrafficFilterRule) *string { return v.RemoteClusterOrgId }).(pulumi.StringPtrOutput)
 }
 
 // Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
@@ -9275,6 +9293,8 @@ type ElasticsearchProjectMetadata struct {
 	SuspendedAt *string `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason *string `pulumi:"suspendedReason"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	Tags map[string]string `pulumi:"tags"`
 }
 
 // ElasticsearchProjectMetadataInput is an input type that accepts ElasticsearchProjectMetadataArgs and ElasticsearchProjectMetadataOutput values.
@@ -9299,6 +9319,8 @@ type ElasticsearchProjectMetadataArgs struct {
 	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
 func (ElasticsearchProjectMetadataArgs) ElementType() reflect.Type {
@@ -9403,6 +9425,11 @@ func (o ElasticsearchProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOu
 	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
 }
 
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+func (o ElasticsearchProjectMetadataOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
 type ElasticsearchProjectMetadataPtrOutput struct{ *pulumi.OutputState }
 
 func (ElasticsearchProjectMetadataPtrOutput) ElementType() reflect.Type {
@@ -9474,6 +9501,172 @@ func (o ElasticsearchProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPt
 			return nil
 		}
 		return v.SuspendedReason
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+func (o ElasticsearchProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringMapOutput)
+}
+
+type ElasticsearchProjectPrivateEndpoints struct {
+	// The PrivateLink endpoint URL to access elasticsearch.
+	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access kibana.
+	Kibana *string `pulumi:"kibana"`
+}
+
+// ElasticsearchProjectPrivateEndpointsInput is an input type that accepts ElasticsearchProjectPrivateEndpointsArgs and ElasticsearchProjectPrivateEndpointsOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectPrivateEndpointsInput` via:
+//
+//	ElasticsearchProjectPrivateEndpointsArgs{...}
+type ElasticsearchProjectPrivateEndpointsInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectPrivateEndpointsOutput() ElasticsearchProjectPrivateEndpointsOutput
+	ToElasticsearchProjectPrivateEndpointsOutputWithContext(context.Context) ElasticsearchProjectPrivateEndpointsOutput
+}
+
+type ElasticsearchProjectPrivateEndpointsArgs struct {
+	// The PrivateLink endpoint URL to access elasticsearch.
+	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access kibana.
+	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
+}
+
+func (ElasticsearchProjectPrivateEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectPrivateEndpointsArgs) ToElasticsearchProjectPrivateEndpointsOutput() ElasticsearchProjectPrivateEndpointsOutput {
+	return i.ToElasticsearchProjectPrivateEndpointsOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectPrivateEndpointsArgs) ToElasticsearchProjectPrivateEndpointsOutputWithContext(ctx context.Context) ElasticsearchProjectPrivateEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectPrivateEndpointsOutput)
+}
+
+func (i ElasticsearchProjectPrivateEndpointsArgs) ToElasticsearchProjectPrivateEndpointsPtrOutput() ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return i.ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectPrivateEndpointsArgs) ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectPrivateEndpointsOutput).ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectPrivateEndpointsPtrInput is an input type that accepts ElasticsearchProjectPrivateEndpointsArgs, ElasticsearchProjectPrivateEndpointsPtr and ElasticsearchProjectPrivateEndpointsPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectPrivateEndpointsPtrInput` via:
+//
+//	        ElasticsearchProjectPrivateEndpointsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectPrivateEndpointsPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectPrivateEndpointsPtrOutput() ElasticsearchProjectPrivateEndpointsPtrOutput
+	ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(context.Context) ElasticsearchProjectPrivateEndpointsPtrOutput
+}
+
+type elasticsearchProjectPrivateEndpointsPtrType ElasticsearchProjectPrivateEndpointsArgs
+
+func ElasticsearchProjectPrivateEndpointsPtr(v *ElasticsearchProjectPrivateEndpointsArgs) ElasticsearchProjectPrivateEndpointsPtrInput {
+	return (*elasticsearchProjectPrivateEndpointsPtrType)(v)
+}
+
+func (*elasticsearchProjectPrivateEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectPrivateEndpointsPtrType) ToElasticsearchProjectPrivateEndpointsPtrOutput() ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return i.ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectPrivateEndpointsPtrType) ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectPrivateEndpointsPtrOutput)
+}
+
+type ElasticsearchProjectPrivateEndpointsOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectPrivateEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectPrivateEndpointsOutput) ToElasticsearchProjectPrivateEndpointsOutput() ElasticsearchProjectPrivateEndpointsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectPrivateEndpointsOutput) ToElasticsearchProjectPrivateEndpointsOutputWithContext(ctx context.Context) ElasticsearchProjectPrivateEndpointsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectPrivateEndpointsOutput) ToElasticsearchProjectPrivateEndpointsPtrOutput() ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return o.ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectPrivateEndpointsOutput) ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectPrivateEndpoints) *ElasticsearchProjectPrivateEndpoints {
+		return &v
+	}).(ElasticsearchProjectPrivateEndpointsPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access elasticsearch.
+func (o ElasticsearchProjectPrivateEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectPrivateEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access kibana.
+func (o ElasticsearchProjectPrivateEndpointsOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectPrivateEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectPrivateEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectPrivateEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectPrivateEndpointsPtrOutput) ToElasticsearchProjectPrivateEndpointsPtrOutput() ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectPrivateEndpointsPtrOutput) ToElasticsearchProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ElasticsearchProjectPrivateEndpointsPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectPrivateEndpointsPtrOutput) Elem() ElasticsearchProjectPrivateEndpointsOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectPrivateEndpoints) ElasticsearchProjectPrivateEndpoints {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectPrivateEndpoints
+		return ret
+	}).(ElasticsearchProjectPrivateEndpointsOutput)
+}
+
+// The PrivateLink endpoint URL to access elasticsearch.
+func (o ElasticsearchProjectPrivateEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access kibana.
+func (o ElasticsearchProjectPrivateEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kibana
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -9994,6 +10187,8 @@ type ObservabilityProjectMetadata struct {
 	SuspendedAt *string `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason *string `pulumi:"suspendedReason"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	Tags map[string]string `pulumi:"tags"`
 }
 
 // ObservabilityProjectMetadataInput is an input type that accepts ObservabilityProjectMetadataArgs and ObservabilityProjectMetadataOutput values.
@@ -10018,6 +10213,8 @@ type ObservabilityProjectMetadataArgs struct {
 	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
 func (ObservabilityProjectMetadataArgs) ElementType() reflect.Type {
@@ -10122,6 +10319,11 @@ func (o ObservabilityProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOu
 	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
 }
 
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+func (o ObservabilityProjectMetadataOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
 type ObservabilityProjectMetadataPtrOutput struct{ *pulumi.OutputState }
 
 func (ObservabilityProjectMetadataPtrOutput) ElementType() reflect.Type {
@@ -10193,6 +10395,210 @@ func (o ObservabilityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPt
 			return nil
 		}
 		return v.SuspendedReason
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+func (o ObservabilityProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringMapOutput)
+}
+
+type ObservabilityProjectPrivateEndpoints struct {
+	// The PrivateLink endpoint URL to access APM.
+	Apm *string `pulumi:"apm"`
+	// The PrivateLink endpoint URL to access elasticsearch.
+	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+	Ingest *string `pulumi:"ingest"`
+	// The PrivateLink endpoint URL to access kibana.
+	Kibana *string `pulumi:"kibana"`
+}
+
+// ObservabilityProjectPrivateEndpointsInput is an input type that accepts ObservabilityProjectPrivateEndpointsArgs and ObservabilityProjectPrivateEndpointsOutput values.
+// You can construct a concrete instance of `ObservabilityProjectPrivateEndpointsInput` via:
+//
+//	ObservabilityProjectPrivateEndpointsArgs{...}
+type ObservabilityProjectPrivateEndpointsInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectPrivateEndpointsOutput() ObservabilityProjectPrivateEndpointsOutput
+	ToObservabilityProjectPrivateEndpointsOutputWithContext(context.Context) ObservabilityProjectPrivateEndpointsOutput
+}
+
+type ObservabilityProjectPrivateEndpointsArgs struct {
+	// The PrivateLink endpoint URL to access APM.
+	Apm pulumi.StringPtrInput `pulumi:"apm"`
+	// The PrivateLink endpoint URL to access elasticsearch.
+	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+	Ingest pulumi.StringPtrInput `pulumi:"ingest"`
+	// The PrivateLink endpoint URL to access kibana.
+	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
+}
+
+func (ObservabilityProjectPrivateEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (i ObservabilityProjectPrivateEndpointsArgs) ToObservabilityProjectPrivateEndpointsOutput() ObservabilityProjectPrivateEndpointsOutput {
+	return i.ToObservabilityProjectPrivateEndpointsOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectPrivateEndpointsArgs) ToObservabilityProjectPrivateEndpointsOutputWithContext(ctx context.Context) ObservabilityProjectPrivateEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectPrivateEndpointsOutput)
+}
+
+func (i ObservabilityProjectPrivateEndpointsArgs) ToObservabilityProjectPrivateEndpointsPtrOutput() ObservabilityProjectPrivateEndpointsPtrOutput {
+	return i.ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectPrivateEndpointsArgs) ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectPrivateEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectPrivateEndpointsOutput).ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectPrivateEndpointsPtrInput is an input type that accepts ObservabilityProjectPrivateEndpointsArgs, ObservabilityProjectPrivateEndpointsPtr and ObservabilityProjectPrivateEndpointsPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectPrivateEndpointsPtrInput` via:
+//
+//	        ObservabilityProjectPrivateEndpointsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectPrivateEndpointsPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectPrivateEndpointsPtrOutput() ObservabilityProjectPrivateEndpointsPtrOutput
+	ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(context.Context) ObservabilityProjectPrivateEndpointsPtrOutput
+}
+
+type observabilityProjectPrivateEndpointsPtrType ObservabilityProjectPrivateEndpointsArgs
+
+func ObservabilityProjectPrivateEndpointsPtr(v *ObservabilityProjectPrivateEndpointsArgs) ObservabilityProjectPrivateEndpointsPtrInput {
+	return (*observabilityProjectPrivateEndpointsPtrType)(v)
+}
+
+func (*observabilityProjectPrivateEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (i *observabilityProjectPrivateEndpointsPtrType) ToObservabilityProjectPrivateEndpointsPtrOutput() ObservabilityProjectPrivateEndpointsPtrOutput {
+	return i.ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectPrivateEndpointsPtrType) ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectPrivateEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectPrivateEndpointsPtrOutput)
+}
+
+type ObservabilityProjectPrivateEndpointsOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectPrivateEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (o ObservabilityProjectPrivateEndpointsOutput) ToObservabilityProjectPrivateEndpointsOutput() ObservabilityProjectPrivateEndpointsOutput {
+	return o
+}
+
+func (o ObservabilityProjectPrivateEndpointsOutput) ToObservabilityProjectPrivateEndpointsOutputWithContext(ctx context.Context) ObservabilityProjectPrivateEndpointsOutput {
+	return o
+}
+
+func (o ObservabilityProjectPrivateEndpointsOutput) ToObservabilityProjectPrivateEndpointsPtrOutput() ObservabilityProjectPrivateEndpointsPtrOutput {
+	return o.ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectPrivateEndpointsOutput) ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectPrivateEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectPrivateEndpoints) *ObservabilityProjectPrivateEndpoints {
+		return &v
+	}).(ObservabilityProjectPrivateEndpointsPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access APM.
+func (o ObservabilityProjectPrivateEndpointsOutput) Apm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectPrivateEndpoints) *string { return v.Apm }).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access elasticsearch.
+func (o ObservabilityProjectPrivateEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectPrivateEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+func (o ObservabilityProjectPrivateEndpointsOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectPrivateEndpoints) *string { return v.Ingest }).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access kibana.
+func (o ObservabilityProjectPrivateEndpointsOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectPrivateEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectPrivateEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectPrivateEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) ToObservabilityProjectPrivateEndpointsPtrOutput() ObservabilityProjectPrivateEndpointsPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) ToObservabilityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) ObservabilityProjectPrivateEndpointsPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) Elem() ObservabilityProjectPrivateEndpointsOutput {
+	return o.ApplyT(func(v *ObservabilityProjectPrivateEndpoints) ObservabilityProjectPrivateEndpoints {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectPrivateEndpoints
+		return ret
+	}).(ObservabilityProjectPrivateEndpointsOutput)
+}
+
+// The PrivateLink endpoint URL to access APM.
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) Apm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Apm
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access elasticsearch.
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ingest
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access kibana.
+func (o ObservabilityProjectPrivateEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kibana
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11198,6 +11604,8 @@ type SecurityProjectMetadata struct {
 	SuspendedAt *string `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason *string `pulumi:"suspendedReason"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	Tags map[string]string `pulumi:"tags"`
 }
 
 // SecurityProjectMetadataInput is an input type that accepts SecurityProjectMetadataArgs and SecurityProjectMetadataOutput values.
@@ -11222,6 +11630,8 @@ type SecurityProjectMetadataArgs struct {
 	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
 func (SecurityProjectMetadataArgs) ElementType() reflect.Type {
@@ -11326,6 +11736,11 @@ func (o SecurityProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
 }
 
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+func (o SecurityProjectMetadataOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
 type SecurityProjectMetadataPtrOutput struct{ *pulumi.OutputState }
 
 func (SecurityProjectMetadataPtrOutput) ElementType() reflect.Type {
@@ -11397,6 +11812,191 @@ func (o SecurityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPtrOutp
 			return nil
 		}
 		return v.SuspendedReason
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+func (o SecurityProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringMapOutput)
+}
+
+type SecurityProjectPrivateEndpoints struct {
+	// The PrivateLink endpoint URL to access elasticsearch.
+	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+	Ingest *string `pulumi:"ingest"`
+	// The PrivateLink endpoint URL to access kibana.
+	Kibana *string `pulumi:"kibana"`
+}
+
+// SecurityProjectPrivateEndpointsInput is an input type that accepts SecurityProjectPrivateEndpointsArgs and SecurityProjectPrivateEndpointsOutput values.
+// You can construct a concrete instance of `SecurityProjectPrivateEndpointsInput` via:
+//
+//	SecurityProjectPrivateEndpointsArgs{...}
+type SecurityProjectPrivateEndpointsInput interface {
+	pulumi.Input
+
+	ToSecurityProjectPrivateEndpointsOutput() SecurityProjectPrivateEndpointsOutput
+	ToSecurityProjectPrivateEndpointsOutputWithContext(context.Context) SecurityProjectPrivateEndpointsOutput
+}
+
+type SecurityProjectPrivateEndpointsArgs struct {
+	// The PrivateLink endpoint URL to access elasticsearch.
+	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+	Ingest pulumi.StringPtrInput `pulumi:"ingest"`
+	// The PrivateLink endpoint URL to access kibana.
+	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
+}
+
+func (SecurityProjectPrivateEndpointsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (i SecurityProjectPrivateEndpointsArgs) ToSecurityProjectPrivateEndpointsOutput() SecurityProjectPrivateEndpointsOutput {
+	return i.ToSecurityProjectPrivateEndpointsOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectPrivateEndpointsArgs) ToSecurityProjectPrivateEndpointsOutputWithContext(ctx context.Context) SecurityProjectPrivateEndpointsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectPrivateEndpointsOutput)
+}
+
+func (i SecurityProjectPrivateEndpointsArgs) ToSecurityProjectPrivateEndpointsPtrOutput() SecurityProjectPrivateEndpointsPtrOutput {
+	return i.ToSecurityProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectPrivateEndpointsArgs) ToSecurityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectPrivateEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectPrivateEndpointsOutput).ToSecurityProjectPrivateEndpointsPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectPrivateEndpointsPtrInput is an input type that accepts SecurityProjectPrivateEndpointsArgs, SecurityProjectPrivateEndpointsPtr and SecurityProjectPrivateEndpointsPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectPrivateEndpointsPtrInput` via:
+//
+//	        SecurityProjectPrivateEndpointsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectPrivateEndpointsPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectPrivateEndpointsPtrOutput() SecurityProjectPrivateEndpointsPtrOutput
+	ToSecurityProjectPrivateEndpointsPtrOutputWithContext(context.Context) SecurityProjectPrivateEndpointsPtrOutput
+}
+
+type securityProjectPrivateEndpointsPtrType SecurityProjectPrivateEndpointsArgs
+
+func SecurityProjectPrivateEndpointsPtr(v *SecurityProjectPrivateEndpointsArgs) SecurityProjectPrivateEndpointsPtrInput {
+	return (*securityProjectPrivateEndpointsPtrType)(v)
+}
+
+func (*securityProjectPrivateEndpointsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (i *securityProjectPrivateEndpointsPtrType) ToSecurityProjectPrivateEndpointsPtrOutput() SecurityProjectPrivateEndpointsPtrOutput {
+	return i.ToSecurityProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectPrivateEndpointsPtrType) ToSecurityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectPrivateEndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectPrivateEndpointsPtrOutput)
+}
+
+type SecurityProjectPrivateEndpointsOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectPrivateEndpointsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (o SecurityProjectPrivateEndpointsOutput) ToSecurityProjectPrivateEndpointsOutput() SecurityProjectPrivateEndpointsOutput {
+	return o
+}
+
+func (o SecurityProjectPrivateEndpointsOutput) ToSecurityProjectPrivateEndpointsOutputWithContext(ctx context.Context) SecurityProjectPrivateEndpointsOutput {
+	return o
+}
+
+func (o SecurityProjectPrivateEndpointsOutput) ToSecurityProjectPrivateEndpointsPtrOutput() SecurityProjectPrivateEndpointsPtrOutput {
+	return o.ToSecurityProjectPrivateEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectPrivateEndpointsOutput) ToSecurityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectPrivateEndpointsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectPrivateEndpoints) *SecurityProjectPrivateEndpoints {
+		return &v
+	}).(SecurityProjectPrivateEndpointsPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access elasticsearch.
+func (o SecurityProjectPrivateEndpointsOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectPrivateEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+func (o SecurityProjectPrivateEndpointsOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectPrivateEndpoints) *string { return v.Ingest }).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access kibana.
+func (o SecurityProjectPrivateEndpointsOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectPrivateEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectPrivateEndpointsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectPrivateEndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectPrivateEndpoints)(nil)).Elem()
+}
+
+func (o SecurityProjectPrivateEndpointsPtrOutput) ToSecurityProjectPrivateEndpointsPtrOutput() SecurityProjectPrivateEndpointsPtrOutput {
+	return o
+}
+
+func (o SecurityProjectPrivateEndpointsPtrOutput) ToSecurityProjectPrivateEndpointsPtrOutputWithContext(ctx context.Context) SecurityProjectPrivateEndpointsPtrOutput {
+	return o
+}
+
+func (o SecurityProjectPrivateEndpointsPtrOutput) Elem() SecurityProjectPrivateEndpointsOutput {
+	return o.ApplyT(func(v *SecurityProjectPrivateEndpoints) SecurityProjectPrivateEndpoints {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectPrivateEndpoints
+		return ret
+	}).(SecurityProjectPrivateEndpointsOutput)
+}
+
+// The PrivateLink endpoint URL to access elasticsearch.
+func (o SecurityProjectPrivateEndpointsPtrOutput) Elasticsearch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
+func (o SecurityProjectPrivateEndpointsPtrOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ingest
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access kibana.
+func (o SecurityProjectPrivateEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kibana
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11504,6 +12104,405 @@ func (o SecurityProjectProductTypeArrayOutput) Index(i pulumi.IntInput) Security
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityProjectProductType {
 		return vs[0].([]SecurityProjectProductType)[vs[1].(int)]
 	}).(SecurityProjectProductTypeOutput)
+}
+
+type SecurityProjectSearchLake struct {
+	// Configuration to control the data retention in Elasticsearch data streams.
+	DataRetention *SecurityProjectSearchLakeDataRetention `pulumi:"dataRetention"`
+}
+
+// SecurityProjectSearchLakeInput is an input type that accepts SecurityProjectSearchLakeArgs and SecurityProjectSearchLakeOutput values.
+// You can construct a concrete instance of `SecurityProjectSearchLakeInput` via:
+//
+//	SecurityProjectSearchLakeArgs{...}
+type SecurityProjectSearchLakeInput interface {
+	pulumi.Input
+
+	ToSecurityProjectSearchLakeOutput() SecurityProjectSearchLakeOutput
+	ToSecurityProjectSearchLakeOutputWithContext(context.Context) SecurityProjectSearchLakeOutput
+}
+
+type SecurityProjectSearchLakeArgs struct {
+	// Configuration to control the data retention in Elasticsearch data streams.
+	DataRetention SecurityProjectSearchLakeDataRetentionPtrInput `pulumi:"dataRetention"`
+}
+
+func (SecurityProjectSearchLakeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectSearchLake)(nil)).Elem()
+}
+
+func (i SecurityProjectSearchLakeArgs) ToSecurityProjectSearchLakeOutput() SecurityProjectSearchLakeOutput {
+	return i.ToSecurityProjectSearchLakeOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectSearchLakeArgs) ToSecurityProjectSearchLakeOutputWithContext(ctx context.Context) SecurityProjectSearchLakeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectSearchLakeOutput)
+}
+
+func (i SecurityProjectSearchLakeArgs) ToSecurityProjectSearchLakePtrOutput() SecurityProjectSearchLakePtrOutput {
+	return i.ToSecurityProjectSearchLakePtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectSearchLakeArgs) ToSecurityProjectSearchLakePtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectSearchLakeOutput).ToSecurityProjectSearchLakePtrOutputWithContext(ctx)
+}
+
+// SecurityProjectSearchLakePtrInput is an input type that accepts SecurityProjectSearchLakeArgs, SecurityProjectSearchLakePtr and SecurityProjectSearchLakePtrOutput values.
+// You can construct a concrete instance of `SecurityProjectSearchLakePtrInput` via:
+//
+//	        SecurityProjectSearchLakeArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectSearchLakePtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectSearchLakePtrOutput() SecurityProjectSearchLakePtrOutput
+	ToSecurityProjectSearchLakePtrOutputWithContext(context.Context) SecurityProjectSearchLakePtrOutput
+}
+
+type securityProjectSearchLakePtrType SecurityProjectSearchLakeArgs
+
+func SecurityProjectSearchLakePtr(v *SecurityProjectSearchLakeArgs) SecurityProjectSearchLakePtrInput {
+	return (*securityProjectSearchLakePtrType)(v)
+}
+
+func (*securityProjectSearchLakePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectSearchLake)(nil)).Elem()
+}
+
+func (i *securityProjectSearchLakePtrType) ToSecurityProjectSearchLakePtrOutput() SecurityProjectSearchLakePtrOutput {
+	return i.ToSecurityProjectSearchLakePtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectSearchLakePtrType) ToSecurityProjectSearchLakePtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectSearchLakePtrOutput)
+}
+
+type SecurityProjectSearchLakeOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectSearchLakeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectSearchLake)(nil)).Elem()
+}
+
+func (o SecurityProjectSearchLakeOutput) ToSecurityProjectSearchLakeOutput() SecurityProjectSearchLakeOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakeOutput) ToSecurityProjectSearchLakeOutputWithContext(ctx context.Context) SecurityProjectSearchLakeOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakeOutput) ToSecurityProjectSearchLakePtrOutput() SecurityProjectSearchLakePtrOutput {
+	return o.ToSecurityProjectSearchLakePtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectSearchLakeOutput) ToSecurityProjectSearchLakePtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectSearchLake) *SecurityProjectSearchLake {
+		return &v
+	}).(SecurityProjectSearchLakePtrOutput)
+}
+
+// Configuration to control the data retention in Elasticsearch data streams.
+func (o SecurityProjectSearchLakeOutput) DataRetention() SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return o.ApplyT(func(v SecurityProjectSearchLake) *SecurityProjectSearchLakeDataRetention { return v.DataRetention }).(SecurityProjectSearchLakeDataRetentionPtrOutput)
+}
+
+type SecurityProjectSearchLakePtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectSearchLakePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectSearchLake)(nil)).Elem()
+}
+
+func (o SecurityProjectSearchLakePtrOutput) ToSecurityProjectSearchLakePtrOutput() SecurityProjectSearchLakePtrOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakePtrOutput) ToSecurityProjectSearchLakePtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakePtrOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakePtrOutput) Elem() SecurityProjectSearchLakeOutput {
+	return o.ApplyT(func(v *SecurityProjectSearchLake) SecurityProjectSearchLake {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectSearchLake
+		return ret
+	}).(SecurityProjectSearchLakeOutput)
+}
+
+// Configuration to control the data retention in Elasticsearch data streams.
+func (o SecurityProjectSearchLakePtrOutput) DataRetention() SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectSearchLake) *SecurityProjectSearchLakeDataRetention {
+		if v == nil {
+			return nil
+		}
+		return v.DataRetention
+	}).(SecurityProjectSearchLakeDataRetentionPtrOutput)
+}
+
+type SecurityProjectSearchLakeDataRetention struct {
+	// Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+	DefaultRetentionDays *int `pulumi:"defaultRetentionDays"`
+	// Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+	MaxRetentionDays *int `pulumi:"maxRetentionDays"`
+}
+
+// SecurityProjectSearchLakeDataRetentionInput is an input type that accepts SecurityProjectSearchLakeDataRetentionArgs and SecurityProjectSearchLakeDataRetentionOutput values.
+// You can construct a concrete instance of `SecurityProjectSearchLakeDataRetentionInput` via:
+//
+//	SecurityProjectSearchLakeDataRetentionArgs{...}
+type SecurityProjectSearchLakeDataRetentionInput interface {
+	pulumi.Input
+
+	ToSecurityProjectSearchLakeDataRetentionOutput() SecurityProjectSearchLakeDataRetentionOutput
+	ToSecurityProjectSearchLakeDataRetentionOutputWithContext(context.Context) SecurityProjectSearchLakeDataRetentionOutput
+}
+
+type SecurityProjectSearchLakeDataRetentionArgs struct {
+	// Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+	DefaultRetentionDays pulumi.IntPtrInput `pulumi:"defaultRetentionDays"`
+	// Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+	MaxRetentionDays pulumi.IntPtrInput `pulumi:"maxRetentionDays"`
+}
+
+func (SecurityProjectSearchLakeDataRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectSearchLakeDataRetention)(nil)).Elem()
+}
+
+func (i SecurityProjectSearchLakeDataRetentionArgs) ToSecurityProjectSearchLakeDataRetentionOutput() SecurityProjectSearchLakeDataRetentionOutput {
+	return i.ToSecurityProjectSearchLakeDataRetentionOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectSearchLakeDataRetentionArgs) ToSecurityProjectSearchLakeDataRetentionOutputWithContext(ctx context.Context) SecurityProjectSearchLakeDataRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectSearchLakeDataRetentionOutput)
+}
+
+func (i SecurityProjectSearchLakeDataRetentionArgs) ToSecurityProjectSearchLakeDataRetentionPtrOutput() SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return i.ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectSearchLakeDataRetentionArgs) ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectSearchLakeDataRetentionOutput).ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectSearchLakeDataRetentionPtrInput is an input type that accepts SecurityProjectSearchLakeDataRetentionArgs, SecurityProjectSearchLakeDataRetentionPtr and SecurityProjectSearchLakeDataRetentionPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectSearchLakeDataRetentionPtrInput` via:
+//
+//	        SecurityProjectSearchLakeDataRetentionArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectSearchLakeDataRetentionPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectSearchLakeDataRetentionPtrOutput() SecurityProjectSearchLakeDataRetentionPtrOutput
+	ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(context.Context) SecurityProjectSearchLakeDataRetentionPtrOutput
+}
+
+type securityProjectSearchLakeDataRetentionPtrType SecurityProjectSearchLakeDataRetentionArgs
+
+func SecurityProjectSearchLakeDataRetentionPtr(v *SecurityProjectSearchLakeDataRetentionArgs) SecurityProjectSearchLakeDataRetentionPtrInput {
+	return (*securityProjectSearchLakeDataRetentionPtrType)(v)
+}
+
+func (*securityProjectSearchLakeDataRetentionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectSearchLakeDataRetention)(nil)).Elem()
+}
+
+func (i *securityProjectSearchLakeDataRetentionPtrType) ToSecurityProjectSearchLakeDataRetentionPtrOutput() SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return i.ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectSearchLakeDataRetentionPtrType) ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectSearchLakeDataRetentionPtrOutput)
+}
+
+type SecurityProjectSearchLakeDataRetentionOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectSearchLakeDataRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectSearchLakeDataRetention)(nil)).Elem()
+}
+
+func (o SecurityProjectSearchLakeDataRetentionOutput) ToSecurityProjectSearchLakeDataRetentionOutput() SecurityProjectSearchLakeDataRetentionOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakeDataRetentionOutput) ToSecurityProjectSearchLakeDataRetentionOutputWithContext(ctx context.Context) SecurityProjectSearchLakeDataRetentionOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakeDataRetentionOutput) ToSecurityProjectSearchLakeDataRetentionPtrOutput() SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return o.ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectSearchLakeDataRetentionOutput) ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectSearchLakeDataRetention) *SecurityProjectSearchLakeDataRetention {
+		return &v
+	}).(SecurityProjectSearchLakeDataRetentionPtrOutput)
+}
+
+// Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+func (o SecurityProjectSearchLakeDataRetentionOutput) DefaultRetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecurityProjectSearchLakeDataRetention) *int { return v.DefaultRetentionDays }).(pulumi.IntPtrOutput)
+}
+
+// Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+func (o SecurityProjectSearchLakeDataRetentionOutput) MaxRetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecurityProjectSearchLakeDataRetention) *int { return v.MaxRetentionDays }).(pulumi.IntPtrOutput)
+}
+
+type SecurityProjectSearchLakeDataRetentionPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectSearchLakeDataRetentionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectSearchLakeDataRetention)(nil)).Elem()
+}
+
+func (o SecurityProjectSearchLakeDataRetentionPtrOutput) ToSecurityProjectSearchLakeDataRetentionPtrOutput() SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakeDataRetentionPtrOutput) ToSecurityProjectSearchLakeDataRetentionPtrOutputWithContext(ctx context.Context) SecurityProjectSearchLakeDataRetentionPtrOutput {
+	return o
+}
+
+func (o SecurityProjectSearchLakeDataRetentionPtrOutput) Elem() SecurityProjectSearchLakeDataRetentionOutput {
+	return o.ApplyT(func(v *SecurityProjectSearchLakeDataRetention) SecurityProjectSearchLakeDataRetention {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectSearchLakeDataRetention
+		return ret
+	}).(SecurityProjectSearchLakeDataRetentionOutput)
+}
+
+// Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+func (o SecurityProjectSearchLakeDataRetentionPtrOutput) DefaultRetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectSearchLakeDataRetention) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultRetentionDays
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
+func (o SecurityProjectSearchLakeDataRetentionPtrOutput) MaxRetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectSearchLakeDataRetention) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxRetentionDays
+	}).(pulumi.IntPtrOutput)
+}
+
+type ServerlessTrafficFilterRule struct {
+	// Description of the rule.
+	Description *string `pulumi:"description"`
+	// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+	Source string `pulumi:"source"`
+}
+
+// ServerlessTrafficFilterRuleInput is an input type that accepts ServerlessTrafficFilterRuleArgs and ServerlessTrafficFilterRuleOutput values.
+// You can construct a concrete instance of `ServerlessTrafficFilterRuleInput` via:
+//
+//	ServerlessTrafficFilterRuleArgs{...}
+type ServerlessTrafficFilterRuleInput interface {
+	pulumi.Input
+
+	ToServerlessTrafficFilterRuleOutput() ServerlessTrafficFilterRuleOutput
+	ToServerlessTrafficFilterRuleOutputWithContext(context.Context) ServerlessTrafficFilterRuleOutput
+}
+
+type ServerlessTrafficFilterRuleArgs struct {
+	// Description of the rule.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+	Source pulumi.StringInput `pulumi:"source"`
+}
+
+func (ServerlessTrafficFilterRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerlessTrafficFilterRule)(nil)).Elem()
+}
+
+func (i ServerlessTrafficFilterRuleArgs) ToServerlessTrafficFilterRuleOutput() ServerlessTrafficFilterRuleOutput {
+	return i.ToServerlessTrafficFilterRuleOutputWithContext(context.Background())
+}
+
+func (i ServerlessTrafficFilterRuleArgs) ToServerlessTrafficFilterRuleOutputWithContext(ctx context.Context) ServerlessTrafficFilterRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerlessTrafficFilterRuleOutput)
+}
+
+// ServerlessTrafficFilterRuleArrayInput is an input type that accepts ServerlessTrafficFilterRuleArray and ServerlessTrafficFilterRuleArrayOutput values.
+// You can construct a concrete instance of `ServerlessTrafficFilterRuleArrayInput` via:
+//
+//	ServerlessTrafficFilterRuleArray{ ServerlessTrafficFilterRuleArgs{...} }
+type ServerlessTrafficFilterRuleArrayInput interface {
+	pulumi.Input
+
+	ToServerlessTrafficFilterRuleArrayOutput() ServerlessTrafficFilterRuleArrayOutput
+	ToServerlessTrafficFilterRuleArrayOutputWithContext(context.Context) ServerlessTrafficFilterRuleArrayOutput
+}
+
+type ServerlessTrafficFilterRuleArray []ServerlessTrafficFilterRuleInput
+
+func (ServerlessTrafficFilterRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerlessTrafficFilterRule)(nil)).Elem()
+}
+
+func (i ServerlessTrafficFilterRuleArray) ToServerlessTrafficFilterRuleArrayOutput() ServerlessTrafficFilterRuleArrayOutput {
+	return i.ToServerlessTrafficFilterRuleArrayOutputWithContext(context.Background())
+}
+
+func (i ServerlessTrafficFilterRuleArray) ToServerlessTrafficFilterRuleArrayOutputWithContext(ctx context.Context) ServerlessTrafficFilterRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerlessTrafficFilterRuleArrayOutput)
+}
+
+type ServerlessTrafficFilterRuleOutput struct{ *pulumi.OutputState }
+
+func (ServerlessTrafficFilterRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerlessTrafficFilterRule)(nil)).Elem()
+}
+
+func (o ServerlessTrafficFilterRuleOutput) ToServerlessTrafficFilterRuleOutput() ServerlessTrafficFilterRuleOutput {
+	return o
+}
+
+func (o ServerlessTrafficFilterRuleOutput) ToServerlessTrafficFilterRuleOutputWithContext(ctx context.Context) ServerlessTrafficFilterRuleOutput {
+	return o
+}
+
+// Description of the rule.
+func (o ServerlessTrafficFilterRuleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerlessTrafficFilterRule) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
+func (o ServerlessTrafficFilterRuleOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerlessTrafficFilterRule) string { return v.Source }).(pulumi.StringOutput)
+}
+
+type ServerlessTrafficFilterRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerlessTrafficFilterRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerlessTrafficFilterRule)(nil)).Elem()
+}
+
+func (o ServerlessTrafficFilterRuleArrayOutput) ToServerlessTrafficFilterRuleArrayOutput() ServerlessTrafficFilterRuleArrayOutput {
+	return o
+}
+
+func (o ServerlessTrafficFilterRuleArrayOutput) ToServerlessTrafficFilterRuleArrayOutputWithContext(ctx context.Context) ServerlessTrafficFilterRuleArrayOutput {
+	return o
+}
+
+func (o ServerlessTrafficFilterRuleArrayOutput) Index(i pulumi.IntInput) ServerlessTrafficFilterRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerlessTrafficFilterRule {
+		return vs[0].([]ServerlessTrafficFilterRule)[vs[1].(int)]
+	}).(ServerlessTrafficFilterRuleOutput)
 }
 
 type SnapshotRepositoryGeneric struct {
@@ -16898,6 +17897,10 @@ type GetTrafficFilterRulesetRule struct {
 	Description string `pulumi:"description"`
 	// The ID of the rule
 	Id string `pulumi:"id"`
+	// The remote cluster ID.
+	RemoteClusterId string `pulumi:"remoteClusterId"`
+	// The remote cluster organization ID.
+	RemoteClusterOrgId string `pulumi:"remoteClusterOrgId"`
 	// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
 	Source string `pulumi:"source"`
 }
@@ -16918,6 +17921,10 @@ type GetTrafficFilterRulesetRuleArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The ID of the rule
 	Id pulumi.StringInput `pulumi:"id"`
+	// The remote cluster ID.
+	RemoteClusterId pulumi.StringInput `pulumi:"remoteClusterId"`
+	// The remote cluster organization ID.
+	RemoteClusterOrgId pulumi.StringInput `pulumi:"remoteClusterOrgId"`
 	// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
 	Source pulumi.StringInput `pulumi:"source"`
 }
@@ -16981,6 +17988,16 @@ func (o GetTrafficFilterRulesetRuleOutput) Description() pulumi.StringOutput {
 // The ID of the rule
 func (o GetTrafficFilterRulesetRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The remote cluster ID.
+func (o GetTrafficFilterRulesetRuleOutput) RemoteClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.RemoteClusterId }).(pulumi.StringOutput)
+}
+
+// The remote cluster organization ID.
+func (o GetTrafficFilterRulesetRuleOutput) RemoteClusterOrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTrafficFilterRulesetRule) string { return v.RemoteClusterOrgId }).(pulumi.StringOutput)
 }
 
 // Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
@@ -17087,6 +18104,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectEndpointsPtrInput)(nil)).Elem(), ElasticsearchProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataPtrInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectPrivateEndpointsInput)(nil)).Elem(), ElasticsearchProjectPrivateEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectPrivateEndpointsPtrInput)(nil)).Elem(), ElasticsearchProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectSearchLakeInput)(nil)).Elem(), ElasticsearchProjectSearchLakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectSearchLakePtrInput)(nil)).Elem(), ElasticsearchProjectSearchLakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectCredentialsInput)(nil)).Elem(), ObservabilityProjectCredentialsArgs{})
@@ -17095,6 +18114,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectEndpointsPtrInput)(nil)).Elem(), ObservabilityProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataPtrInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectPrivateEndpointsInput)(nil)).Elem(), ObservabilityProjectPrivateEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectPrivateEndpointsPtrInput)(nil)).Elem(), ObservabilityProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersInput)(nil)).Elem(), OrganizationMembersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersMapInput)(nil)).Elem(), OrganizationMembersMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersDeploymentRoleInput)(nil)).Elem(), OrganizationMembersDeploymentRoleArgs{})
@@ -17111,8 +18132,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectEndpointsPtrInput)(nil)).Elem(), SecurityProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataPtrInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectPrivateEndpointsInput)(nil)).Elem(), SecurityProjectPrivateEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectPrivateEndpointsPtrInput)(nil)).Elem(), SecurityProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectProductTypeInput)(nil)).Elem(), SecurityProjectProductTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectProductTypeArrayInput)(nil)).Elem(), SecurityProjectProductTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectSearchLakeInput)(nil)).Elem(), SecurityProjectSearchLakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectSearchLakePtrInput)(nil)).Elem(), SecurityProjectSearchLakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectSearchLakeDataRetentionInput)(nil)).Elem(), SecurityProjectSearchLakeDataRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectSearchLakeDataRetentionPtrInput)(nil)).Elem(), SecurityProjectSearchLakeDataRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessTrafficFilterRuleInput)(nil)).Elem(), ServerlessTrafficFilterRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessTrafficFilterRuleArrayInput)(nil)).Elem(), ServerlessTrafficFilterRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryGenericInput)(nil)).Elem(), SnapshotRepositoryGenericArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryGenericPtrInput)(nil)).Elem(), SnapshotRepositoryGenericArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotRepositoryS3Input)(nil)).Elem(), SnapshotRepositoryS3Args{})
@@ -17264,6 +18293,8 @@ func init() {
 	pulumi.RegisterOutputType(ElasticsearchProjectEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectPrivateEndpointsOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectPrivateEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectSearchLakeOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectSearchLakePtrOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectCredentialsOutput{})
@@ -17272,6 +18303,8 @@ func init() {
 	pulumi.RegisterOutputType(ObservabilityProjectEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectPrivateEndpointsOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectPrivateEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(OrganizationMembersOutput{})
 	pulumi.RegisterOutputType(OrganizationMembersMapOutput{})
 	pulumi.RegisterOutputType(OrganizationMembersDeploymentRoleOutput{})
@@ -17288,8 +18321,16 @@ func init() {
 	pulumi.RegisterOutputType(SecurityProjectEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(SecurityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectPrivateEndpointsOutput{})
+	pulumi.RegisterOutputType(SecurityProjectPrivateEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectProductTypeOutput{})
 	pulumi.RegisterOutputType(SecurityProjectProductTypeArrayOutput{})
+	pulumi.RegisterOutputType(SecurityProjectSearchLakeOutput{})
+	pulumi.RegisterOutputType(SecurityProjectSearchLakePtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectSearchLakeDataRetentionOutput{})
+	pulumi.RegisterOutputType(SecurityProjectSearchLakeDataRetentionPtrOutput{})
+	pulumi.RegisterOutputType(ServerlessTrafficFilterRuleOutput{})
+	pulumi.RegisterOutputType(ServerlessTrafficFilterRuleArrayOutput{})
 	pulumi.RegisterOutputType(SnapshotRepositoryGenericOutput{})
 	pulumi.RegisterOutputType(SnapshotRepositoryGenericPtrOutput{})
 	pulumi.RegisterOutputType(SnapshotRepositoryS3Output{})

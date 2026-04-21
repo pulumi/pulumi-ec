@@ -8,7 +8,9 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.ObservabilityProjectCredentialsArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectEndpointsArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectMetadataArgs;
+import com.pulumi.ec.inputs.ObservabilityProjectPrivateEndpointsArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -79,14 +81,14 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Additional details about the project.
+     * Metadata request for a project with tags.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<ObservabilityProjectMetadataArgs> metadata;
 
     /**
-     * @return Additional details about the project.
+     * @return Metadata request for a project with tags.
      * 
      */
     public Optional<Output<ObservabilityProjectMetadataArgs>> metadata() {
@@ -106,6 +108,21 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+     * 
+     */
+    @Import(name="privateEndpoints")
+    private @Nullable Output<ObservabilityProjectPrivateEndpointsArgs> privateEndpoints;
+
+    /**
+     * @return Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+     * 
+     */
+    public Optional<Output<ObservabilityProjectPrivateEndpointsArgs>> privateEndpoints() {
+        return Optional.ofNullable(this.privateEndpoints);
     }
 
     /**
@@ -139,6 +156,21 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
     }
 
     /**
+     * Set of traffic filter IDs to associate with this project
+     * 
+     */
+    @Import(name="trafficFilterIds")
+    private @Nullable Output<List<String>> trafficFilterIds;
+
+    /**
+     * @return Set of traffic filter IDs to associate with this project
+     * 
+     */
+    public Optional<Output<List<String>>> trafficFilterIds() {
+        return Optional.ofNullable(this.trafficFilterIds);
+    }
+
+    /**
      * the type of the project
      * 
      */
@@ -162,8 +194,10 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
         this.endpoints = $.endpoints;
         this.metadata = $.metadata;
         this.name = $.name;
+        this.privateEndpoints = $.privateEndpoints;
         this.productTier = $.productTier;
         this.regionId = $.regionId;
+        this.trafficFilterIds = $.trafficFilterIds;
         this.type = $.type;
     }
 
@@ -270,7 +304,7 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param metadata Additional details about the project.
+         * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
          * 
@@ -281,7 +315,7 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param metadata Additional details about the project.
+         * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
          * 
@@ -309,6 +343,27 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param privateEndpoints Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpoints(@Nullable Output<ObservabilityProjectPrivateEndpointsArgs> privateEndpoints) {
+            $.privateEndpoints = privateEndpoints;
+            return this;
+        }
+
+        /**
+         * @param privateEndpoints Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpoints(ObservabilityProjectPrivateEndpointsArgs privateEndpoints) {
+            return privateEndpoints(Output.of(privateEndpoints));
         }
 
         /**
@@ -351,6 +406,37 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
          */
         public Builder regionId(String regionId) {
             return regionId(Output.of(regionId));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(@Nullable Output<List<String>> trafficFilterIds) {
+            $.trafficFilterIds = trafficFilterIds;
+            return this;
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(List<String> trafficFilterIds) {
+            return trafficFilterIds(Output.of(trafficFilterIds));
+        }
+
+        /**
+         * @param trafficFilterIds Set of traffic filter IDs to associate with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder trafficFilterIds(String... trafficFilterIds) {
+            return trafficFilterIds(List.of(trafficFilterIds));
         }
 
         /**

@@ -39,6 +39,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Organization{}
 	case "ec:index/securityProject:SecurityProject":
 		r = &SecurityProject{}
+	case "ec:index/serverlessTrafficFilter:ServerlessTrafficFilter":
+		r = &ServerlessTrafficFilter{}
 	case "ec:index/snapshotRepository:SnapshotRepository":
 		r = &SnapshotRepository{}
 	default:
@@ -115,6 +117,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ec",
 		"index/securityProject",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ec",
+		"index/serverlessTrafficFilter",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

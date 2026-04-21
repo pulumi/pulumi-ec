@@ -41,6 +41,8 @@ namespace Pulumi.ElasticCloud
     /// ```sh
     /// $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
     /// ```
+    /// 
+    /// &gt; **Note on Credentials** The `Credentials` attribute (containing `Username` and `Password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
     /// </summary>
     [ElasticCloudResourceType("ec:index/elasticsearchProject:ElasticsearchProject")]
     public partial class ElasticsearchProject : global::Pulumi.CustomResource
@@ -70,7 +72,7 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.ElasticsearchProjectEndpoints> Endpoints { get; private set; } = null!;
 
         /// <summary>
-        /// Additional details about the project.
+        /// Metadata request for a project with tags.
         /// </summary>
         [Output("metadata")]
         public Output<Outputs.ElasticsearchProjectMetadata> Metadata { get; private set; } = null!;
@@ -82,10 +84,19 @@ namespace Pulumi.ElasticCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        /// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+        /// 
+        /// 	- The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        /// 	- The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         /// </summary>
         [Output("optimizedFor")]
         public Output<string> OptimizedFor { get; private set; } = null!;
+
+        /// <summary>
+        /// Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+        /// </summary>
+        [Output("privateEndpoints")]
+        public Output<Outputs.ElasticsearchProjectPrivateEndpoints> PrivateEndpoints { get; private set; } = null!;
 
         /// <summary>
         /// Unique human-readable identifier for a region in Elastic Cloud.
@@ -98,6 +109,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Output("searchLake")]
         public Output<Outputs.ElasticsearchProjectSearchLake> SearchLake { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of traffic filter IDs to associate with this project
+        /// </summary>
+        [Output("trafficFilterIds")]
+        public Output<ImmutableArray<string>> TrafficFilterIds { get; private set; } = null!;
 
         /// <summary>
         /// the type of the project
@@ -158,13 +175,22 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// Metadata request for a project with tags.
+        /// </summary>
+        [Input("metadata")]
+        public Input<Inputs.ElasticsearchProjectMetadataArgs>? Metadata { get; set; }
+
+        /// <summary>
         /// Descriptive name for a project.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        /// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+        /// 
+        /// 	- The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        /// 	- The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         /// </summary>
         [Input("optimizedFor")]
         public Input<string>? OptimizedFor { get; set; }
@@ -180,6 +206,18 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("searchLake")]
         public Input<Inputs.ElasticsearchProjectSearchLakeArgs>? SearchLake { get; set; }
+
+        [Input("trafficFilterIds")]
+        private InputList<string>? _trafficFilterIds;
+
+        /// <summary>
+        /// Set of traffic filter IDs to associate with this project
+        /// </summary>
+        public InputList<string> TrafficFilterIds
+        {
+            get => _trafficFilterIds ?? (_trafficFilterIds = new InputList<string>());
+            set => _trafficFilterIds = value;
+        }
 
         public ElasticsearchProjectArgs()
         {
@@ -214,7 +252,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.ElasticsearchProjectEndpointsGetArgs>? Endpoints { get; set; }
 
         /// <summary>
-        /// Additional details about the project.
+        /// Metadata request for a project with tags.
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.ElasticsearchProjectMetadataGetArgs>? Metadata { get; set; }
@@ -226,10 +264,19 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        /// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+        /// 
+        /// 	- The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        /// 	- The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         /// </summary>
         [Input("optimizedFor")]
         public Input<string>? OptimizedFor { get; set; }
+
+        /// <summary>
+        /// Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+        /// </summary>
+        [Input("privateEndpoints")]
+        public Input<Inputs.ElasticsearchProjectPrivateEndpointsGetArgs>? PrivateEndpoints { get; set; }
 
         /// <summary>
         /// Unique human-readable identifier for a region in Elastic Cloud.
@@ -242,6 +289,18 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("searchLake")]
         public Input<Inputs.ElasticsearchProjectSearchLakeGetArgs>? SearchLake { get; set; }
+
+        [Input("trafficFilterIds")]
+        private InputList<string>? _trafficFilterIds;
+
+        /// <summary>
+        /// Set of traffic filter IDs to associate with this project
+        /// </summary>
+        public InputList<string> TrafficFilterIds
+        {
+            get => _trafficFilterIds ?? (_trafficFilterIds = new InputList<string>());
+            set => _trafficFilterIds = value;
+        }
 
         /// <summary>
         /// the type of the project

@@ -23,27 +23,38 @@ class ElasticsearchProjectArgs:
     def __init__(__self__, *,
                  region_id: pulumi.Input[_builtins.str],
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_lake: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']] = None):
+                 search_lake: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ElasticsearchProject resource.
 
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
-        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+               
+               	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+               	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         :param pulumi.Input['ElasticsearchProjectSearchLakeArgs'] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         pulumi.set(__self__, "region_id", region_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if optimized_for is not None:
             pulumi.set(__self__, "optimized_for", optimized_for)
         if search_lake is not None:
             pulumi.set(__self__, "search_lake", search_lake)
+        if traffic_filter_ids is not None:
+            pulumi.set(__self__, "traffic_filter_ids", traffic_filter_ids)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
@@ -71,6 +82,18 @@ class ElasticsearchProjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]:
+        """
+        Metadata request for a project with tags.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -85,7 +108,10 @@ class ElasticsearchProjectArgs:
     @pulumi.getter(name="optimizedFor")
     def optimized_for(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+
+        	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         """
         return pulumi.get(self, "optimized_for")
 
@@ -105,6 +131,18 @@ class ElasticsearchProjectArgs:
     def search_lake(self, value: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']]):
         pulumi.set(self, "search_lake", value)
 
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
+
+    @traffic_filter_ids.setter
+    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traffic_filter_ids", value)
+
 
 @pulumi.input_type
 class _ElasticsearchProjectState:
@@ -116,8 +154,10 @@ class _ElasticsearchProjectState:
                  metadata: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_endpoints: Optional[pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs']] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
                  search_lake: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ElasticsearchProject resources.
@@ -126,11 +166,16 @@ class _ElasticsearchProjectState:
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input['ElasticsearchProjectCredentialsArgs'] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input['ElasticsearchProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Additional details about the project.
+        :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
-        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+               
+               	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+               	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+        :param pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs'] private_endpoints: Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input['ElasticsearchProjectSearchLakeArgs'] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
         if alias is not None:
@@ -147,10 +192,14 @@ class _ElasticsearchProjectState:
             pulumi.set(__self__, "name", name)
         if optimized_for is not None:
             pulumi.set(__self__, "optimized_for", optimized_for)
+        if private_endpoints is not None:
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
         if search_lake is not None:
             pulumi.set(__self__, "search_lake", search_lake)
+        if traffic_filter_ids is not None:
+            pulumi.set(__self__, "traffic_filter_ids", traffic_filter_ids)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -206,7 +255,7 @@ class _ElasticsearchProjectState:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]:
         """
-        Additional details about the project.
+        Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
@@ -230,13 +279,28 @@ class _ElasticsearchProjectState:
     @pulumi.getter(name="optimizedFor")
     def optimized_for(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+
+        	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         """
         return pulumi.get(self, "optimized_for")
 
     @optimized_for.setter
     def optimized_for(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "optimized_for", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Optional[pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs']]:
+        """
+        Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+        """
+        return pulumi.get(self, "private_endpoints")
+
+    @private_endpoints.setter
+    def private_endpoints(self, value: Optional[pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs']]):
+        pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
@@ -263,6 +327,18 @@ class _ElasticsearchProjectState:
         pulumi.set(self, "search_lake", value)
 
     @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
+
+    @traffic_filter_ids.setter
+    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traffic_filter_ids", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -282,10 +358,12 @@ class ElasticsearchProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
                  search_lake: Optional[pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         ## Technical preview
@@ -312,14 +390,21 @@ class ElasticsearchProject(pulumi.CustomResource):
         $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+        > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
-        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+               
+               	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+               	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         ...
     @overload
@@ -352,6 +437,8 @@ class ElasticsearchProject(pulumi.CustomResource):
         $ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+        > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
+
 
         :param str resource_name: The name of the resource.
         :param ElasticsearchProjectArgs args: The arguments to use to populate this resource's properties.
@@ -369,10 +456,12 @@ class ElasticsearchProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
                  search_lake: Optional[pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -383,16 +472,18 @@ class ElasticsearchProject(pulumi.CustomResource):
             __props__ = ElasticsearchProjectArgs.__new__(ElasticsearchProjectArgs)
 
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["optimized_for"] = optimized_for
             if region_id is None and not opts.urn:
                 raise TypeError("Missing required property 'region_id'")
             __props__.__dict__["region_id"] = region_id
             __props__.__dict__["search_lake"] = search_lake
+            __props__.__dict__["traffic_filter_ids"] = traffic_filter_ids
             __props__.__dict__["cloud_id"] = None
             __props__.__dict__["credentials"] = None
             __props__.__dict__["endpoints"] = None
-            __props__.__dict__["metadata"] = None
+            __props__.__dict__["private_endpoints"] = None
             __props__.__dict__["type"] = None
         super(ElasticsearchProject, __self__).__init__(
             'ec:index/elasticsearchProject:ElasticsearchProject',
@@ -411,8 +502,10 @@ class ElasticsearchProject(pulumi.CustomResource):
             metadata: Optional[pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
+            private_endpoints: Optional[pulumi.Input[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict']]] = None,
             region_id: Optional[pulumi.Input[_builtins.str]] = None,
             search_lake: Optional[pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+            traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ElasticsearchProject':
         """
         Get an existing ElasticsearchProject resource's state with the given name, id, and optional extra
@@ -425,11 +518,16 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Additional details about the project.
+        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
-        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+               
+               	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+               	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+        :param pulumi.Input[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -443,8 +541,10 @@ class ElasticsearchProject(pulumi.CustomResource):
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
         __props__.__dict__["optimized_for"] = optimized_for
+        __props__.__dict__["private_endpoints"] = private_endpoints
         __props__.__dict__["region_id"] = region_id
         __props__.__dict__["search_lake"] = search_lake
+        __props__.__dict__["traffic_filter_ids"] = traffic_filter_ids
         __props__.__dict__["type"] = type
         return ElasticsearchProject(resource_name, opts=opts, __props__=__props__)
 
@@ -484,7 +584,7 @@ class ElasticsearchProject(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output['outputs.ElasticsearchProjectMetadata']:
         """
-        Additional details about the project.
+        Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
@@ -500,9 +600,20 @@ class ElasticsearchProject(pulumi.CustomResource):
     @pulumi.getter(name="optimizedFor")
     def optimized_for(self) -> pulumi.Output[_builtins.str]:
         """
-        The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.
+        The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
+
+        	- The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        	- The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         """
         return pulumi.get(self, "optimized_for")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> pulumi.Output['outputs.ElasticsearchProjectPrivateEndpoints']:
+        """
+        Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+        """
+        return pulumi.get(self, "private_endpoints")
 
     @_builtins.property
     @pulumi.getter(name="regionId")
@@ -519,6 +630,14 @@ class ElasticsearchProject(pulumi.CustomResource):
         Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
         """
         return pulumi.get(self, "search_lake")
+
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
 
     @_builtins.property
     @pulumi.getter

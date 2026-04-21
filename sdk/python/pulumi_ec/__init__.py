@@ -24,6 +24,7 @@ from .observability_project import *
 from .organization import *
 from .provider import *
 from .security_project import *
+from .serverless_traffic_filter import *
 from .snapshot_repository import *
 from ._inputs import *
 from . import outputs
@@ -108,6 +109,14 @@ _utilities.register(
   "fqn": "pulumi_ec",
   "classes": {
    "ec:index/securityProject:SecurityProject": "SecurityProject"
+  }
+ },
+ {
+  "pkg": "ec",
+  "mod": "index/serverlessTrafficFilter",
+  "fqn": "pulumi_ec",
+  "classes": {
+   "ec:index/serverlessTrafficFilter:ServerlessTrafficFilter": "ServerlessTrafficFilter"
   }
  },
  {

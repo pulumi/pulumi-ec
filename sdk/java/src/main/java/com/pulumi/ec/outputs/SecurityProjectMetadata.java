@@ -5,6 +5,7 @@ package com.pulumi.ec.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -36,6 +37,11 @@ public final class SecurityProjectMetadata {
      * 
      */
     private @Nullable String suspendedReason;
+    /**
+     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * 
+     */
+    private @Nullable Map<String,String> tags;
 
     private SecurityProjectMetadata() {}
     /**
@@ -73,6 +79,13 @@ public final class SecurityProjectMetadata {
     public Optional<String> suspendedReason() {
         return Optional.ofNullable(this.suspendedReason);
     }
+    /**
+     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * 
+     */
+    public Map<String,String> tags() {
+        return this.tags == null ? Map.of() : this.tags;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -88,6 +101,7 @@ public final class SecurityProjectMetadata {
         private @Nullable String organizationId;
         private @Nullable String suspendedAt;
         private @Nullable String suspendedReason;
+        private @Nullable Map<String,String> tags;
         public Builder() {}
         public Builder(SecurityProjectMetadata defaults) {
     	      Objects.requireNonNull(defaults);
@@ -96,6 +110,7 @@ public final class SecurityProjectMetadata {
     	      this.organizationId = defaults.organizationId;
     	      this.suspendedAt = defaults.suspendedAt;
     	      this.suspendedReason = defaults.suspendedReason;
+    	      this.tags = defaults.tags;
         }
 
         @CustomType.Setter
@@ -128,6 +143,12 @@ public final class SecurityProjectMetadata {
             this.suspendedReason = suspendedReason;
             return this;
         }
+        @CustomType.Setter
+        public Builder tags(@Nullable Map<String,String> tags) {
+
+            this.tags = tags;
+            return this;
+        }
         public SecurityProjectMetadata build() {
             final var _resultValue = new SecurityProjectMetadata();
             _resultValue.createdAt = createdAt;
@@ -135,6 +156,7 @@ public final class SecurityProjectMetadata {
             _resultValue.organizationId = organizationId;
             _resultValue.suspendedAt = suspendedAt;
             _resultValue.suspendedReason = suspendedReason;
+            _resultValue.tags = tags;
             return _resultValue;
         }
     }

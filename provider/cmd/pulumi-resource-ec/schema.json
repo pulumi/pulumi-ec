@@ -1823,6 +1823,14 @@
                     "type": "string",
                     "description": "Computed rule ID\n"
                 },
+                "remoteClusterId": {
+                    "type": "string",
+                    "description": "The remote cluster ID. Only applicable when the ruleset type is set to \u003cspan pulumi-lang-nodejs=\"`remoteCluster`\" pulumi-lang-dotnet=\"`RemoteCluster`\" pulumi-lang-go=\"`remoteCluster`\" pulumi-lang-python=\"`remote_cluster`\" pulumi-lang-yaml=\"`remoteCluster`\" pulumi-lang-java=\"`remoteCluster`\"\u003e`remoteCluster`\u003c/span\u003e\n"
+                },
+                "remoteClusterOrgId": {
+                    "type": "string",
+                    "description": "The remote cluster organization ID. Only applicable when the ruleset type is set to \u003cspan pulumi-lang-nodejs=\"`remoteCluster`\" pulumi-lang-dotnet=\"`RemoteCluster`\" pulumi-lang-go=\"`remoteCluster`\" pulumi-lang-python=\"`remote_cluster`\" pulumi-lang-yaml=\"`remoteCluster`\" pulumi-lang-java=\"`remoteCluster`\"\u003e`remoteCluster`\u003c/span\u003e\n"
+                },
                 "source": {
                     "type": "string",
                     "description": "Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e\n"
@@ -1901,6 +1909,13 @@
                 "suspendedReason": {
                     "type": "string",
                     "description": "Reason why the project was suspended.\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.\n"
                 }
             },
             "type": "object",
@@ -1911,7 +1926,29 @@
                         "createdBy",
                         "organizationId",
                         "suspendedAt",
-                        "suspendedReason"
+                        "suspendedReason",
+                        "tags"
+                    ]
+                }
+            }
+        },
+        "ec:index/ElasticsearchProjectPrivateEndpoints:ElasticsearchProjectPrivateEndpoints": {
+            "properties": {
+                "elasticsearch": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access elasticsearch.\n"
+                },
+                "kibana": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access kibana.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "elasticsearch",
+                        "kibana"
                     ]
                 }
             }
@@ -2011,6 +2048,13 @@
                 "suspendedReason": {
                     "type": "string",
                     "description": "Reason why the project was suspended.\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.\n"
                 }
             },
             "type": "object",
@@ -2021,7 +2065,39 @@
                         "createdBy",
                         "organizationId",
                         "suspendedAt",
-                        "suspendedReason"
+                        "suspendedReason",
+                        "tags"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectPrivateEndpoints:ObservabilityProjectPrivateEndpoints": {
+            "properties": {
+                "apm": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access APM.\n"
+                },
+                "elasticsearch": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access elasticsearch.\n"
+                },
+                "ingest": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access the Managed OTLP Endpoint.\n"
+                },
+                "kibana": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access kibana.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "apm",
+                        "elasticsearch",
+                        "ingest",
+                        "kibana"
                     ]
                 }
             }
@@ -2276,6 +2352,13 @@
                 "suspendedReason": {
                     "type": "string",
                     "description": "Reason why the project was suspended.\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.\n"
                 }
             },
             "type": "object",
@@ -2286,7 +2369,34 @@
                         "createdBy",
                         "organizationId",
                         "suspendedAt",
-                        "suspendedReason"
+                        "suspendedReason",
+                        "tags"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectPrivateEndpoints:SecurityProjectPrivateEndpoints": {
+            "properties": {
+                "elasticsearch": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access elasticsearch.\n"
+                },
+                "ingest": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access the Managed OTLP Endpoint.\n"
+                },
+                "kibana": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access kibana.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "elasticsearch",
+                        "ingest",
+                        "kibana"
                     ]
                 }
             }
@@ -2307,6 +2417,67 @@
                 "productLine",
                 "productTier"
             ]
+        },
+        "ec:index/SecurityProjectSearchLake:SecurityProjectSearchLake": {
+            "properties": {
+                "dataRetention": {
+                    "$ref": "#/types/ec:index/SecurityProjectSearchLakeDataRetention:SecurityProjectSearchLakeDataRetention",
+                    "description": "Configuration to control the data retention in Elasticsearch data streams.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "dataRetention"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectSearchLakeDataRetention:SecurityProjectSearchLakeDataRetention": {
+            "properties": {
+                "defaultRetentionDays": {
+                    "type": "integer",
+                    "description": "Default number of days during which data remains available in Elasticsearch data streams. Can be set to \"null\" for unlimited. A default of 396 will be applied if no value is specified on project creation.\n"
+                },
+                "maxRetentionDays": {
+                    "type": "integer",
+                    "description": "Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to \"null\" for unlimited. A default of 396 will be applied if no value is specified on project creation.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "defaultRetentionDays",
+                        "maxRetentionDays"
+                    ]
+                }
+            }
+        },
+        "ec:index/ServerlessTrafficFilterRule:ServerlessTrafficFilterRule": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the rule.\n"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "source"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "description",
+                        "source"
+                    ]
+                }
+            }
         },
         "ec:index/SnapshotRepositoryGeneric:SnapshotRepositoryGeneric": {
             "properties": {
@@ -4111,6 +4282,14 @@
                     "type": "string",
                     "description": "The ID of the rule\n"
                 },
+                "remoteClusterId": {
+                    "type": "string",
+                    "description": "The remote cluster ID.\n"
+                },
+                "remoteClusterOrgId": {
+                    "type": "string",
+                    "description": "The remote cluster organization ID.\n"
+                },
                 "source": {
                     "type": "string",
                     "description": "Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.\n"
@@ -4120,6 +4299,8 @@
             "required": [
                 "description",
                 "id",
+                "remoteClusterId",
+                "remoteClusterOrgId",
                 "source"
             ],
             "language": {
@@ -4722,7 +4903,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcpPrivateServiceConnectEndpoint`\u003c/span\u003e\n"
+                    "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcpPrivateServiceConnectEndpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`remoteCluster`\" pulumi-lang-dotnet=\"`RemoteCluster`\" pulumi-lang-go=\"`remoteCluster`\" pulumi-lang-python=\"`remote_cluster`\" pulumi-lang-yaml=\"`remoteCluster`\" pulumi-lang-java=\"`remoteCluster`\"\u003e`remoteCluster`\u003c/span\u003e\n"
                 }
             },
             "required": [
@@ -4757,7 +4938,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcpPrivateServiceConnectEndpoint`\u003c/span\u003e\n"
+                    "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcpPrivateServiceConnectEndpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`remoteCluster`\" pulumi-lang-dotnet=\"`RemoteCluster`\" pulumi-lang-go=\"`remoteCluster`\" pulumi-lang-python=\"`remote_cluster`\" pulumi-lang-yaml=\"`remoteCluster`\" pulumi-lang-java=\"`remoteCluster`\"\u003e`remoteCluster`\u003c/span\u003e\n"
                 }
             },
             "requiredInputs": [
@@ -4792,7 +4973,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcpPrivateServiceConnectEndpoint`\u003c/span\u003e\n"
+                        "description": "Type of the ruleset. It can be \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vpce`\" pulumi-lang-dotnet=\"`Vpce`\" pulumi-lang-go=\"`vpce`\" pulumi-lang-python=\"`vpce`\" pulumi-lang-yaml=\"`vpce`\" pulumi-lang-java=\"`vpce`\"\u003e`vpce`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`azurePrivateEndpoint`\" pulumi-lang-dotnet=\"`AzurePrivateEndpoint`\" pulumi-lang-go=\"`azurePrivateEndpoint`\" pulumi-lang-python=\"`azure_private_endpoint`\" pulumi-lang-yaml=\"`azurePrivateEndpoint`\" pulumi-lang-java=\"`azurePrivateEndpoint`\"\u003e`azurePrivateEndpoint`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-dotnet=\"`GcpPrivateServiceConnectEndpoint`\" pulumi-lang-go=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-python=\"`gcp_private_service_connect_endpoint`\" pulumi-lang-yaml=\"`gcpPrivateServiceConnectEndpoint`\" pulumi-lang-java=\"`gcpPrivateServiceConnectEndpoint`\"\u003e`gcpPrivateServiceConnectEndpoint`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`remoteCluster`\" pulumi-lang-dotnet=\"`RemoteCluster`\" pulumi-lang-go=\"`remoteCluster`\" pulumi-lang-python=\"`remote_cluster`\" pulumi-lang-yaml=\"`remoteCluster`\" pulumi-lang-java=\"`remoteCluster`\"\u003e`remoteCluster`\u003c/span\u003e\n"
                     }
                 },
                 "type": "object"
@@ -4844,47 +5025,58 @@
             }
         },
         "ec:index/elasticsearchProject:ElasticsearchProject": {
-            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ElasticsearchProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ElasticsearchProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.Index.ElasticsearchProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewElasticsearchProject(ctx, \"my_project\", \u0026ec.ElasticsearchProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ElasticsearchProject;\nimport com.pulumi.ec.ElasticsearchProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ElasticsearchProject(\"myProject\", ElasticsearchProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ElasticsearchProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n",
+            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ElasticsearchProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ElasticsearchProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.Index.ElasticsearchProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewElasticsearchProject(ctx, \"my_project\", \u0026ec.ElasticsearchProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ElasticsearchProject;\nimport com.pulumi.ec.ElasticsearchProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ElasticsearchProject(\"myProject\", ElasticsearchProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ElasticsearchProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
             "properties": {
                 "alias": {
                     "type": "string",
-                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default."
                 },
                 "cloudId": {
                     "type": "string",
-                    "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                    "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana."
                 },
                 "credentials": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectCredentials:ElasticsearchProjectCredentials",
-                    "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                    "description": "Basic auth credentials to access the Elasticsearch API."
                 },
                 "endpoints": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints",
-                    "description": "The endpoints to access the different apps of the project.\n"
+                    "description": "The endpoints to access the different apps of the project."
                 },
                 "metadata": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
-                    "description": "Additional details about the project.\n"
+                    "description": "Metadata request for a project with tags."
                 },
                 "name": {
                     "type": "string",
-                    "description": "Descriptive name for a project.\n"
+                    "description": "Descriptive name for a project."
                 },
                 "optimizedFor": {
                     "type": "string",
-                    "description": "The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.\n"
+                    "description": "The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.\n\n\t- The \u003cspan pulumi-lang-nodejs=\"`generalPurpose`\" pulumi-lang-dotnet=\"`GeneralPurpose`\" pulumi-lang-go=\"`generalPurpose`\" pulumi-lang-python=\"`general_purpose`\" pulumi-lang-yaml=\"`generalPurpose`\" pulumi-lang-java=\"`generalPurpose`\"\u003e`generalPurpose`\u003c/span\u003e option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.\n\t- The \u003cspan pulumi-lang-nodejs=\"`vector`\" pulumi-lang-dotnet=\"`Vector`\" pulumi-lang-go=\"`vector`\" pulumi-lang-python=\"`vector`\" pulumi-lang-yaml=\"`vector`\" pulumi-lang-java=\"`vector`\"\u003e`vector`\u003c/span\u003e option is recommended only for uncompressed dense vectors (\u003cspan pulumi-lang-nodejs=\"`denseVector`\" pulumi-lang-dotnet=\"`DenseVector`\" pulumi-lang-go=\"`denseVector`\" pulumi-lang-python=\"`dense_vector`\" pulumi-lang-yaml=\"`denseVector`\" pulumi-lang-java=\"`denseVector`\"\u003e`denseVector`\u003c/span\u003e fields with \u003cspan pulumi-lang-nodejs=\"`int4`\" pulumi-lang-dotnet=\"`Int4`\" pulumi-lang-go=\"`int4`\" pulumi-lang-python=\"`int4`\" pulumi-lang-yaml=\"`int4`\" pulumi-lang-java=\"`int4`\"\u003e`int4`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`int8`\" pulumi-lang-dotnet=\"`Int8`\" pulumi-lang-go=\"`int8`\" pulumi-lang-python=\"`int8`\" pulumi-lang-yaml=\"`int8`\" pulumi-lang-java=\"`int8`\"\u003e`int8`\u003c/span\u003e quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption."
+                },
+                "privateEndpoints": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectPrivateEndpoints:ElasticsearchProjectPrivateEndpoints",
+                    "description": "Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled."
                 },
                 "regionId": {
                     "type": "string",
-                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud."
                 },
                 "searchLake": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake",
-                    "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch.\n"
+                    "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch."
+                },
+                "trafficFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of traffic filter IDs to associate with this project"
                 },
                 "type": {
                     "type": "string",
-                    "description": "the type of the project\n"
+                    "description": "the type of the project"
                 }
             },
             "required": [
@@ -4895,6 +5087,7 @@
                 "metadata",
                 "name",
                 "optimizedFor",
+                "privateEndpoints",
                 "regionId",
                 "searchLake",
                 "type"
@@ -4902,23 +5095,34 @@
             "inputProperties": {
                 "alias": {
                     "type": "string",
-                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                    "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default."
+                },
+                "metadata": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
+                    "description": "Metadata request for a project with tags."
                 },
                 "name": {
                     "type": "string",
-                    "description": "Descriptive name for a project.\n"
+                    "description": "Descriptive name for a project."
                 },
                 "optimizedFor": {
                     "type": "string",
-                    "description": "The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.\n"
+                    "description": "The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.\n\n\t- The \u003cspan pulumi-lang-nodejs=\"`generalPurpose`\" pulumi-lang-dotnet=\"`GeneralPurpose`\" pulumi-lang-go=\"`generalPurpose`\" pulumi-lang-python=\"`general_purpose`\" pulumi-lang-yaml=\"`generalPurpose`\" pulumi-lang-java=\"`generalPurpose`\"\u003e`generalPurpose`\u003c/span\u003e option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.\n\t- The \u003cspan pulumi-lang-nodejs=\"`vector`\" pulumi-lang-dotnet=\"`Vector`\" pulumi-lang-go=\"`vector`\" pulumi-lang-python=\"`vector`\" pulumi-lang-yaml=\"`vector`\" pulumi-lang-java=\"`vector`\"\u003e`vector`\u003c/span\u003e option is recommended only for uncompressed dense vectors (\u003cspan pulumi-lang-nodejs=\"`denseVector`\" pulumi-lang-dotnet=\"`DenseVector`\" pulumi-lang-go=\"`denseVector`\" pulumi-lang-python=\"`dense_vector`\" pulumi-lang-yaml=\"`denseVector`\" pulumi-lang-java=\"`denseVector`\"\u003e`denseVector`\u003c/span\u003e fields with \u003cspan pulumi-lang-nodejs=\"`int4`\" pulumi-lang-dotnet=\"`Int4`\" pulumi-lang-go=\"`int4`\" pulumi-lang-python=\"`int4`\" pulumi-lang-yaml=\"`int4`\" pulumi-lang-java=\"`int4`\"\u003e`int4`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`int8`\" pulumi-lang-dotnet=\"`Int8`\" pulumi-lang-go=\"`int8`\" pulumi-lang-python=\"`int8`\" pulumi-lang-yaml=\"`int8`\" pulumi-lang-java=\"`int8`\"\u003e`int8`\u003c/span\u003e quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption."
                 },
                 "regionId": {
                     "type": "string",
-                    "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                    "description": "Unique human-readable identifier for a region in Elastic Cloud."
                 },
                 "searchLake": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake",
-                    "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch.\n"
+                    "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch."
+                },
+                "trafficFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of traffic filter IDs to associate with this project"
                 }
             },
             "requiredInputs": [
@@ -4929,50 +5133,61 @@
                 "properties": {
                     "alias": {
                         "type": "string",
-                        "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                        "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default."
                     },
                     "cloudId": {
                         "type": "string",
-                        "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.\n"
+                        "description": "The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana."
                     },
                     "credentials": {
                         "$ref": "#/types/ec:index/ElasticsearchProjectCredentials:ElasticsearchProjectCredentials",
-                        "description": "Basic auth credentials to access the Elasticsearch API.\n"
+                        "description": "Basic auth credentials to access the Elasticsearch API."
                     },
                     "endpoints": {
                         "$ref": "#/types/ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints",
-                        "description": "The endpoints to access the different apps of the project.\n"
+                        "description": "The endpoints to access the different apps of the project."
                     },
                     "metadata": {
                         "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
-                        "description": "Additional details about the project.\n"
+                        "description": "Metadata request for a project with tags."
                     },
                     "name": {
                         "type": "string",
-                        "description": "Descriptive name for a project.\n"
+                        "description": "Descriptive name for a project."
                     },
                     "optimizedFor": {
                         "type": "string",
-                        "description": "The purpose for which the hardware of this elasticsearch project is optimized for. Also known as the Elasticsearch project subtype.\n"
+                        "description": "The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.\n\n\t- The \u003cspan pulumi-lang-nodejs=\"`generalPurpose`\" pulumi-lang-dotnet=\"`GeneralPurpose`\" pulumi-lang-go=\"`generalPurpose`\" pulumi-lang-python=\"`general_purpose`\" pulumi-lang-yaml=\"`generalPurpose`\" pulumi-lang-java=\"`generalPurpose`\"\u003e`generalPurpose`\u003c/span\u003e option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.\n\t- The \u003cspan pulumi-lang-nodejs=\"`vector`\" pulumi-lang-dotnet=\"`Vector`\" pulumi-lang-go=\"`vector`\" pulumi-lang-python=\"`vector`\" pulumi-lang-yaml=\"`vector`\" pulumi-lang-java=\"`vector`\"\u003e`vector`\u003c/span\u003e option is recommended only for uncompressed dense vectors (\u003cspan pulumi-lang-nodejs=\"`denseVector`\" pulumi-lang-dotnet=\"`DenseVector`\" pulumi-lang-go=\"`denseVector`\" pulumi-lang-python=\"`dense_vector`\" pulumi-lang-yaml=\"`denseVector`\" pulumi-lang-java=\"`denseVector`\"\u003e`denseVector`\u003c/span\u003e fields with \u003cspan pulumi-lang-nodejs=\"`int4`\" pulumi-lang-dotnet=\"`Int4`\" pulumi-lang-go=\"`int4`\" pulumi-lang-python=\"`int4`\" pulumi-lang-yaml=\"`int4`\" pulumi-lang-java=\"`int4`\"\u003e`int4`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`int8`\" pulumi-lang-dotnet=\"`Int8`\" pulumi-lang-go=\"`int8`\" pulumi-lang-python=\"`int8`\" pulumi-lang-yaml=\"`int8`\" pulumi-lang-java=\"`int8`\"\u003e`int8`\u003c/span\u003e quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption."
+                    },
+                    "privateEndpoints": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectPrivateEndpoints:ElasticsearchProjectPrivateEndpoints",
+                        "description": "Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled."
                     },
                     "regionId": {
                         "type": "string",
-                        "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                        "description": "Unique human-readable identifier for a region in Elastic Cloud."
                     },
                     "searchLake": {
                         "$ref": "#/types/ec:index/ElasticsearchProjectSearchLake:ElasticsearchProjectSearchLake",
-                        "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch.\n"
+                        "description": "Configuration for entire set of capabilities that make the data searchable in Elasticsearch."
+                    },
+                    "trafficFilterIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of traffic filter IDs to associate with this project"
                     },
                     "type": {
                         "type": "string",
-                        "description": "the type of the project\n"
+                        "description": "the type of the project"
                     }
                 },
                 "type": "object"
             }
         },
         "ec:index/observabilityProject:ObservabilityProject": {
-            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ObservabilityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ObservabilityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.Index.ObservabilityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewObservabilityProject(ctx, \"my_project\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ObservabilityProject(\"myProject\", ObservabilityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ObservabilityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n",
+            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ObservabilityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ObservabilityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.Index.ObservabilityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewObservabilityProject(ctx, \"my_project\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ObservabilityProject(\"myProject\", ObservabilityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ObservabilityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
             "properties": {
                 "alias": {
                     "type": "string",
@@ -4992,19 +5207,30 @@
                 },
                 "metadata": {
                     "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
-                    "description": "Additional details about the project.\n"
+                    "description": "Metadata request for a project with tags.\n"
                 },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for a project.\n"
                 },
+                "privateEndpoints": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectPrivateEndpoints:ObservabilityProjectPrivateEndpoints",
+                    "description": "Private endpoints (URLs) for Observability projects when PrivateLink is enabled.\n"
+                },
                 "productTier": {
                     "type": "string",
-                    "description": "the tier of the observability project"
+                    "description": "the tier of the observability project\n"
                 },
                 "regionId": {
                     "type": "string",
                     "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "trafficFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of traffic filter IDs to associate with this project\n"
                 },
                 "type": {
                     "type": "string",
@@ -5018,6 +5244,7 @@
                 "endpoints",
                 "metadata",
                 "name",
+                "privateEndpoints",
                 "productTier",
                 "regionId",
                 "type"
@@ -5027,17 +5254,28 @@
                     "type": "string",
                     "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
                 },
+                "metadata": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
+                    "description": "Metadata request for a project with tags.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for a project.\n"
                 },
                 "productTier": {
                     "type": "string",
-                    "description": "the tier of the observability project"
+                    "description": "the tier of the observability project\n"
                 },
                 "regionId": {
                     "type": "string",
                     "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "trafficFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of traffic filter IDs to associate with this project\n"
                 }
             },
             "requiredInputs": [
@@ -5064,19 +5302,30 @@
                     },
                     "metadata": {
                         "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
-                        "description": "Additional details about the project.\n"
+                        "description": "Metadata request for a project with tags.\n"
                     },
                     "name": {
                         "type": "string",
                         "description": "Descriptive name for a project.\n"
                     },
+                    "privateEndpoints": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectPrivateEndpoints:ObservabilityProjectPrivateEndpoints",
+                        "description": "Private endpoints (URLs) for Observability projects when PrivateLink is enabled.\n"
+                    },
                     "productTier": {
                         "type": "string",
-                        "description": "the tier of the observability project"
+                        "description": "the tier of the observability project\n"
                     },
                     "regionId": {
                         "type": "string",
                         "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                    },
+                    "trafficFilterIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of traffic filter IDs to associate with this project\n"
                     },
                     "type": {
                         "type": "string",
@@ -5121,7 +5370,7 @@
             }
         },
         "ec:index/securityProject:SecurityProject": {
-            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.SecurityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.SecurityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.Index.SecurityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewSecurityProject(ctx, \"my_project\", \u0026ec.SecurityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.SecurityProject;\nimport com.pulumi.ec.SecurityProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new SecurityProject(\"myProject\", SecurityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:SecurityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n",
+            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.SecurityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.SecurityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.Index.SecurityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewSecurityProject(ctx, \"my_project\", \u0026ec.SecurityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.SecurityProject;\nimport com.pulumi.ec.SecurityProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new SecurityProject(\"myProject\", SecurityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:SecurityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
             "properties": {
                 "adminFeaturesPackage": {
                     "type": "string",
@@ -5145,11 +5394,15 @@
                 },
                 "metadata": {
                     "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
-                    "description": "Additional details about the project.\n"
+                    "description": "Metadata request for a project with tags.\n"
                 },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for a project.\n"
+                },
+                "privateEndpoints": {
+                    "$ref": "#/types/ec:index/SecurityProjectPrivateEndpoints:SecurityProjectPrivateEndpoints",
+                    "description": "Private endpoints (URLs) for Security projects when PrivateLink is enabled.\n"
                 },
                 "productTypes": {
                     "type": "array",
@@ -5160,6 +5413,17 @@
                 "regionId": {
                     "type": "string",
                     "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "searchLake": {
+                    "$ref": "#/types/ec:index/SecurityProjectSearchLake:SecurityProjectSearchLake",
+                    "description": "Configuration for the entire set of capabilities that make the data searchable in Security.\n"
+                },
+                "trafficFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of traffic filter IDs to associate with this project\n"
                 },
                 "type": {
                     "type": "string",
@@ -5174,8 +5438,10 @@
                 "endpoints",
                 "metadata",
                 "name",
+                "privateEndpoints",
                 "productTypes",
                 "regionId",
+                "searchLake",
                 "type"
             ],
             "inputProperties": {
@@ -5186,6 +5452,10 @@
                 "alias": {
                     "type": "string",
                     "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
+                },
+                "metadata": {
+                    "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
+                    "description": "Metadata request for a project with tags.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5200,6 +5470,17 @@
                 "regionId": {
                     "type": "string",
                     "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
+                },
+                "searchLake": {
+                    "$ref": "#/types/ec:index/SecurityProjectSearchLake:SecurityProjectSearchLake",
+                    "description": "Configuration for the entire set of capabilities that make the data searchable in Security.\n"
+                },
+                "trafficFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of traffic filter IDs to associate with this project\n"
                 }
             },
             "requiredInputs": [
@@ -5230,11 +5511,15 @@
                     },
                     "metadata": {
                         "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
-                        "description": "Additional details about the project.\n"
+                        "description": "Metadata request for a project with tags.\n"
                     },
                     "name": {
                         "type": "string",
                         "description": "Descriptive name for a project.\n"
+                    },
+                    "privateEndpoints": {
+                        "$ref": "#/types/ec:index/SecurityProjectPrivateEndpoints:SecurityProjectPrivateEndpoints",
+                        "description": "Private endpoints (URLs) for Security projects when PrivateLink is enabled.\n"
                     },
                     "productTypes": {
                         "type": "array",
@@ -5246,9 +5531,126 @@
                         "type": "string",
                         "description": "Unique human-readable identifier for a region in Elastic Cloud.\n"
                     },
+                    "searchLake": {
+                        "$ref": "#/types/ec:index/SecurityProjectSearchLake:SecurityProjectSearchLake",
+                        "description": "Configuration for the entire set of capabilities that make the data searchable in Security.\n"
+                    },
+                    "trafficFilterIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of traffic filter IDs to associate with this project\n"
+                    },
                     "type": {
                         "type": "string",
                         "description": "the type of the project\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ec:index/serverlessTrafficFilter:ServerlessTrafficFilter": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst example = new ec.ServerlessTrafficFilter(\"example\", {\n    name: \"my-serverless-traffic-filter\",\n    region: \"aws-us-east-1\",\n    type: \"ip\",\n    description: \"Allow traffic from the office network\",\n    includeByDefault: false,\n    rules: [{\n        source: \"203.0.113.0/24\",\n        description: \"Office egress\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nexample = ec.ServerlessTrafficFilter(\"example\",\n    name=\"my-serverless-traffic-filter\",\n    region=\"aws-us-east-1\",\n    type=\"ip\",\n    description=\"Allow traffic from the office network\",\n    include_by_default=False,\n    rules=[{\n        \"source\": \"203.0.113.0/24\",\n        \"description\": \"Office egress\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new ElasticCloud.Index.ServerlessTrafficFilter(\"example\", new()\n    {\n        Name = \"my-serverless-traffic-filter\",\n        Region = \"aws-us-east-1\",\n        Type = \"ip\",\n        Description = \"Allow traffic from the office network\",\n        IncludeByDefault = false,\n        Rules = new[]\n        {\n            new ElasticCloud.Inputs.ServerlessTrafficFilterRuleArgs\n            {\n                Source = \"203.0.113.0/24\",\n                Description = \"Office egress\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewServerlessTrafficFilter(ctx, \"example\", \u0026ec.ServerlessTrafficFilterArgs{\n\t\t\tName:             pulumi.String(\"my-serverless-traffic-filter\"),\n\t\t\tRegion:           pulumi.String(\"aws-us-east-1\"),\n\t\t\tType:             pulumi.String(\"ip\"),\n\t\t\tDescription:      pulumi.String(\"Allow traffic from the office network\"),\n\t\t\tIncludeByDefault: pulumi.Bool(false),\n\t\t\tRules: ec.ServerlessTrafficFilterRuleArray{\n\t\t\t\t\u0026ec.ServerlessTrafficFilterRuleArgs{\n\t\t\t\t\tSource:      pulumi.String(\"203.0.113.0/24\"),\n\t\t\t\t\tDescription: pulumi.String(\"Office egress\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ServerlessTrafficFilter;\nimport com.pulumi.ec.ServerlessTrafficFilterArgs;\nimport com.pulumi.ec.inputs.ServerlessTrafficFilterRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ServerlessTrafficFilter(\"example\", ServerlessTrafficFilterArgs.builder()\n            .name(\"my-serverless-traffic-filter\")\n            .region(\"aws-us-east-1\")\n            .type(\"ip\")\n            .description(\"Allow traffic from the office network\")\n            .includeByDefault(false)\n            .rules(ServerlessTrafficFilterRuleArgs.builder()\n                .source(\"203.0.113.0/24\")\n                .description(\"Office egress\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ec:ServerlessTrafficFilter\n    properties:\n      name: my-serverless-traffic-filter\n      region: aws-us-east-1\n      type: ip\n      description: Allow traffic from the office network\n      includeByDefault: false\n      rules:\n        - source: 203.0.113.0/24\n          description: Office egress\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nServerless traffic filters can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/serverlessTrafficFilter:ServerlessTrafficFilter id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the traffic filter\n"
+                },
+                "includeByDefault": {
+                    "type": "boolean",
+                    "description": "Should the traffic filter be automatically included in the new projects\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the traffic filter\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The traffic filter can be attached only to projects in the specific region\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/ServerlessTrafficFilterRule:ServerlessTrafficFilterRule"
+                    },
+                    "description": "List of rules\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the traffic filter\n"
+                }
+            },
+            "required": [
+                "description",
+                "includeByDefault",
+                "name",
+                "region",
+                "rules",
+                "type"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the traffic filter\n"
+                },
+                "includeByDefault": {
+                    "type": "boolean",
+                    "description": "Should the traffic filter be automatically included in the new projects\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the traffic filter\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The traffic filter can be attached only to projects in the specific region\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ec:index/ServerlessTrafficFilterRule:ServerlessTrafficFilterRule"
+                    },
+                    "description": "List of rules\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the traffic filter\n"
+                }
+            },
+            "requiredInputs": [
+                "region",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServerlessTrafficFilter resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the traffic filter\n"
+                    },
+                    "includeByDefault": {
+                        "type": "boolean",
+                        "description": "Should the traffic filter be automatically included in the new projects\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the traffic filter\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The traffic filter can be attached only to projects in the specific region\n"
+                    },
+                    "rules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ec:index/ServerlessTrafficFilterRule:ServerlessTrafficFilterRule"
+                        },
+                        "description": "List of rules\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the traffic filter\n"
                     }
                 },
                 "type": "object"

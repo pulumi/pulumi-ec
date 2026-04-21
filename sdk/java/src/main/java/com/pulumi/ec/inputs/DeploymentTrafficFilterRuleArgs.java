@@ -76,6 +76,36 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
     }
 
     /**
+     * The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    @Import(name="remoteClusterId")
+    private @Nullable Output<String> remoteClusterId;
+
+    /**
+     * @return The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    public Optional<Output<String>> remoteClusterId() {
+        return Optional.ofNullable(this.remoteClusterId);
+    }
+
+    /**
+     * The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    @Import(name="remoteClusterOrgId")
+    private @Nullable Output<String> remoteClusterOrgId;
+
+    /**
+     * @return The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+     * 
+     */
+    public Optional<Output<String>> remoteClusterOrgId() {
+        return Optional.ofNullable(this.remoteClusterOrgId);
+    }
+
+    /**
      * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      * 
      */
@@ -97,6 +127,8 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
         this.azureEndpointName = $.azureEndpointName;
         this.description = $.description;
         this.id = $.id;
+        this.remoteClusterId = $.remoteClusterId;
+        this.remoteClusterOrgId = $.remoteClusterOrgId;
         this.source = $.source;
     }
 
@@ -200,6 +232,48 @@ public final class DeploymentTrafficFilterRuleArgs extends com.pulumi.resources.
          */
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        /**
+         * @param remoteClusterId The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder remoteClusterId(@Nullable Output<String> remoteClusterId) {
+            $.remoteClusterId = remoteClusterId;
+            return this;
+        }
+
+        /**
+         * @param remoteClusterId The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder remoteClusterId(String remoteClusterId) {
+            return remoteClusterId(Output.of(remoteClusterId));
+        }
+
+        /**
+         * @param remoteClusterOrgId The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder remoteClusterOrgId(@Nullable Output<String> remoteClusterOrgId) {
+            $.remoteClusterOrgId = remoteClusterOrgId;
+            return this;
+        }
+
+        /**
+         * @param remoteClusterOrgId The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder remoteClusterOrgId(String remoteClusterOrgId) {
+            return remoteClusterOrgId(Output.of(remoteClusterOrgId));
         }
 
         /**

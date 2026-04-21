@@ -22,6 +22,14 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The remote cluster ID.
+        /// </summary>
+        public readonly string RemoteClusterId;
+        /// <summary>
+        /// The remote cluster organization ID.
+        /// </summary>
+        public readonly string RemoteClusterOrgId;
+        /// <summary>
         /// Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID.
         /// </summary>
         public readonly string Source;
@@ -32,10 +40,16 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string id,
 
+            string remoteClusterId,
+
+            string remoteClusterOrgId,
+
             string source)
         {
             Description = description;
             Id = id;
+            RemoteClusterId = remoteClusterId;
+            RemoteClusterOrgId = remoteClusterOrgId;
             Source = source;
         }
     }

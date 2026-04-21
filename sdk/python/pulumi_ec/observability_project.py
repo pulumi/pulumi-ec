@@ -23,23 +23,31 @@ class ObservabilityProjectArgs:
     def __init__(__self__, *,
                  region_id: pulumi.Input[_builtins.str],
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_tier: Optional[pulumi.Input[_builtins.str]] = None):
+                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ObservabilityProject resource.
 
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input['ObservabilityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         pulumi.set(__self__, "region_id", region_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if product_tier is not None:
             pulumi.set(__self__, "product_tier", product_tier)
+        if traffic_filter_ids is not None:
+            pulumi.set(__self__, "traffic_filter_ids", traffic_filter_ids)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
@@ -67,6 +75,18 @@ class ObservabilityProjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]:
+        """
+        Metadata request for a project with tags.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -89,6 +109,18 @@ class ObservabilityProjectArgs:
     def product_tier(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "product_tier", value)
 
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
+
+    @traffic_filter_ids.setter
+    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traffic_filter_ids", value)
+
 
 @pulumi.input_type
 class _ObservabilityProjectState:
@@ -99,8 +131,10 @@ class _ObservabilityProjectState:
                  endpoints: Optional[pulumi.Input['ObservabilityProjectEndpointsArgs']] = None,
                  metadata: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_endpoints: Optional[pulumi.Input['ObservabilityProjectPrivateEndpointsArgs']] = None,
                  product_tier: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObservabilityProject resources.
@@ -109,10 +143,12 @@ class _ObservabilityProjectState:
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input['ObservabilityProjectCredentialsArgs'] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input['ObservabilityProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input['ObservabilityProjectMetadataArgs'] metadata: Additional details about the project.
+        :param pulumi.Input['ObservabilityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input['ObservabilityProjectPrivateEndpointsArgs'] private_endpoints: Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
         if alias is not None:
@@ -127,10 +163,14 @@ class _ObservabilityProjectState:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_endpoints is not None:
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if product_tier is not None:
             pulumi.set(__self__, "product_tier", product_tier)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
+        if traffic_filter_ids is not None:
+            pulumi.set(__self__, "traffic_filter_ids", traffic_filter_ids)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -186,7 +226,7 @@ class _ObservabilityProjectState:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]:
         """
-        Additional details about the project.
+        Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
@@ -205,6 +245,18 @@ class _ObservabilityProjectState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Optional[pulumi.Input['ObservabilityProjectPrivateEndpointsArgs']]:
+        """
+        Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+        """
+        return pulumi.get(self, "private_endpoints")
+
+    @private_endpoints.setter
+    def private_endpoints(self, value: Optional[pulumi.Input['ObservabilityProjectPrivateEndpointsArgs']]):
+        pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="productTier")
@@ -231,6 +283,18 @@ class _ObservabilityProjectState:
         pulumi.set(self, "region_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
+
+    @traffic_filter_ids.setter
+    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traffic_filter_ids", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -250,9 +314,11 @@ class ObservabilityProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  product_tier: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         ## Technical preview
@@ -279,13 +345,17 @@ class ObservabilityProject(pulumi.CustomResource):
         $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+        > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         ...
     @overload
@@ -318,6 +388,8 @@ class ObservabilityProject(pulumi.CustomResource):
         $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
+        > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
+
 
         :param str resource_name: The name of the resource.
         :param ObservabilityProjectArgs args: The arguments to use to populate this resource's properties.
@@ -335,9 +407,11 @@ class ObservabilityProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  product_tier: Optional[pulumi.Input[_builtins.str]] = None,
                  region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -348,15 +422,17 @@ class ObservabilityProject(pulumi.CustomResource):
             __props__ = ObservabilityProjectArgs.__new__(ObservabilityProjectArgs)
 
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["product_tier"] = product_tier
             if region_id is None and not opts.urn:
                 raise TypeError("Missing required property 'region_id'")
             __props__.__dict__["region_id"] = region_id
+            __props__.__dict__["traffic_filter_ids"] = traffic_filter_ids
             __props__.__dict__["cloud_id"] = None
             __props__.__dict__["credentials"] = None
             __props__.__dict__["endpoints"] = None
-            __props__.__dict__["metadata"] = None
+            __props__.__dict__["private_endpoints"] = None
             __props__.__dict__["type"] = None
         super(ObservabilityProject, __self__).__init__(
             'ec:index/observabilityProject:ObservabilityProject',
@@ -374,8 +450,10 @@ class ObservabilityProject(pulumi.CustomResource):
             endpoints: Optional[pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']]] = None,
             metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            private_endpoints: Optional[pulumi.Input[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict']]] = None,
             product_tier: Optional[pulumi.Input[_builtins.str]] = None,
             region_id: Optional[pulumi.Input[_builtins.str]] = None,
+            traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ObservabilityProject':
         """
         Get an existing ObservabilityProject resource's state with the given name, id, and optional extra
@@ -388,10 +466,12 @@ class ObservabilityProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']] metadata: Additional details about the project.
+        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
+        :param pulumi.Input[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -404,8 +484,10 @@ class ObservabilityProject(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["private_endpoints"] = private_endpoints
         __props__.__dict__["product_tier"] = product_tier
         __props__.__dict__["region_id"] = region_id
+        __props__.__dict__["traffic_filter_ids"] = traffic_filter_ids
         __props__.__dict__["type"] = type
         return ObservabilityProject(resource_name, opts=opts, __props__=__props__)
 
@@ -445,7 +527,7 @@ class ObservabilityProject(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output['outputs.ObservabilityProjectMetadata']:
         """
-        Additional details about the project.
+        Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
@@ -456,6 +538,14 @@ class ObservabilityProject(pulumi.CustomResource):
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> pulumi.Output['outputs.ObservabilityProjectPrivateEndpoints']:
+        """
+        Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+        """
+        return pulumi.get(self, "private_endpoints")
 
     @_builtins.property
     @pulumi.getter(name="productTier")
@@ -472,6 +562,14 @@ class ObservabilityProject(pulumi.CustomResource):
         Unique human-readable identifier for a region in Elastic Cloud.
         """
         return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="trafficFilterIds")
+    def traffic_filter_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Set of traffic filter IDs to associate with this project
+        """
+        return pulumi.get(self, "traffic_filter_ids")
 
     @_builtins.property
     @pulumi.getter

@@ -41,6 +41,8 @@ namespace Pulumi.ElasticCloud
     /// ```sh
     /// $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed
     /// ```
+    /// 
+    /// &gt; **Note on Credentials** The `Credentials` attribute (containing `Username` and `Password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
     /// </summary>
     [ElasticCloudResourceType("ec:index/observabilityProject:ObservabilityProject")]
     public partial class ObservabilityProject : global::Pulumi.CustomResource
@@ -70,7 +72,7 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.ObservabilityProjectEndpoints> Endpoints { get; private set; } = null!;
 
         /// <summary>
-        /// Additional details about the project.
+        /// Metadata request for a project with tags.
         /// </summary>
         [Output("metadata")]
         public Output<Outputs.ObservabilityProjectMetadata> Metadata { get; private set; } = null!;
@@ -80,6 +82,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+        /// </summary>
+        [Output("privateEndpoints")]
+        public Output<Outputs.ObservabilityProjectPrivateEndpoints> PrivateEndpoints { get; private set; } = null!;
 
         /// <summary>
         /// the tier of the observability project
@@ -92,6 +100,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Output("regionId")]
         public Output<string> RegionId { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of traffic filter IDs to associate with this project
+        /// </summary>
+        [Output("trafficFilterIds")]
+        public Output<ImmutableArray<string>> TrafficFilterIds { get; private set; } = null!;
 
         /// <summary>
         /// the type of the project
@@ -152,6 +166,12 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// Metadata request for a project with tags.
+        /// </summary>
+        [Input("metadata")]
+        public Input<Inputs.ObservabilityProjectMetadataArgs>? Metadata { get; set; }
+
+        /// <summary>
         /// Descriptive name for a project.
         /// </summary>
         [Input("name")]
@@ -168,6 +188,18 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("regionId", required: true)]
         public Input<string> RegionId { get; set; } = null!;
+
+        [Input("trafficFilterIds")]
+        private InputList<string>? _trafficFilterIds;
+
+        /// <summary>
+        /// Set of traffic filter IDs to associate with this project
+        /// </summary>
+        public InputList<string> TrafficFilterIds
+        {
+            get => _trafficFilterIds ?? (_trafficFilterIds = new InputList<string>());
+            set => _trafficFilterIds = value;
+        }
 
         public ObservabilityProjectArgs()
         {
@@ -202,7 +234,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.ObservabilityProjectEndpointsGetArgs>? Endpoints { get; set; }
 
         /// <summary>
-        /// Additional details about the project.
+        /// Metadata request for a project with tags.
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.ObservabilityProjectMetadataGetArgs>? Metadata { get; set; }
@@ -212,6 +244,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+        /// </summary>
+        [Input("privateEndpoints")]
+        public Input<Inputs.ObservabilityProjectPrivateEndpointsGetArgs>? PrivateEndpoints { get; set; }
 
         /// <summary>
         /// the tier of the observability project
@@ -224,6 +262,18 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
+
+        [Input("trafficFilterIds")]
+        private InputList<string>? _trafficFilterIds;
+
+        /// <summary>
+        /// Set of traffic filter IDs to associate with this project
+        /// </summary>
+        public InputList<string> TrafficFilterIds
+        {
+            get => _trafficFilterIds ?? (_trafficFilterIds = new InputList<string>());
+            set => _trafficFilterIds = value;
+        }
 
         /// <summary>
         /// the type of the project

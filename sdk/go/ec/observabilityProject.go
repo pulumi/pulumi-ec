@@ -51,6 +51,8 @@ import (
 // ```sh
 // $ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed
 // ```
+//
+// > **Note on Credentials** The `credentials` attribute (containing `username` and `password`) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.
 type ObservabilityProject struct {
 	pulumi.CustomResourceState
 
@@ -62,14 +64,18 @@ type ObservabilityProject struct {
 	Credentials ObservabilityProjectCredentialsOutput `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints ObservabilityProjectEndpointsOutput `pulumi:"endpoints"`
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata ObservabilityProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+	PrivateEndpoints ObservabilityProjectPrivateEndpointsOutput `pulumi:"privateEndpoints"`
 	// the tier of the observability project
 	ProductTier pulumi.StringOutput `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayOutput `pulumi:"trafficFilterIds"`
 	// the type of the project
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -115,14 +121,18 @@ type observabilityProjectState struct {
 	Credentials *ObservabilityProjectCredentials `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints *ObservabilityProjectEndpoints `pulumi:"endpoints"`
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata *ObservabilityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
+	// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+	PrivateEndpoints *ObservabilityProjectPrivateEndpoints `pulumi:"privateEndpoints"`
 	// the tier of the observability project
 	ProductTier *string `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId *string `pulumi:"regionId"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds []string `pulumi:"trafficFilterIds"`
 	// the type of the project
 	Type *string `pulumi:"type"`
 }
@@ -136,14 +146,18 @@ type ObservabilityProjectState struct {
 	Credentials ObservabilityProjectCredentialsPtrInput
 	// The endpoints to access the different apps of the project.
 	Endpoints ObservabilityProjectEndpointsPtrInput
-	// Additional details about the project.
+	// Metadata request for a project with tags.
 	Metadata ObservabilityProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
+	// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+	PrivateEndpoints ObservabilityProjectPrivateEndpointsPtrInput
 	// the tier of the observability project
 	ProductTier pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringPtrInput
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayInput
 	// the type of the project
 	Type pulumi.StringPtrInput
 }
@@ -155,24 +169,32 @@ func (ObservabilityProjectState) ElementType() reflect.Type {
 type observabilityProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`
+	// Metadata request for a project with tags.
+	Metadata *ObservabilityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
 	// the tier of the observability project
 	ProductTier *string `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId string `pulumi:"regionId"`
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds []string `pulumi:"trafficFilterIds"`
 }
 
 // The set of arguments for constructing a ObservabilityProject resource.
 type ObservabilityProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias pulumi.StringPtrInput
+	// Metadata request for a project with tags.
+	Metadata ObservabilityProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
 	// the tier of the observability project
 	ProductTier pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringInput
+	// Set of traffic filter IDs to associate with this project
+	TrafficFilterIds pulumi.StringArrayInput
 }
 
 func (ObservabilityProjectArgs) ElementType() reflect.Type {
@@ -282,7 +304,7 @@ func (o ObservabilityProjectOutput) Endpoints() ObservabilityProjectEndpointsOut
 	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectEndpointsOutput { return v.Endpoints }).(ObservabilityProjectEndpointsOutput)
 }
 
-// Additional details about the project.
+// Metadata request for a project with tags.
 func (o ObservabilityProjectOutput) Metadata() ObservabilityProjectMetadataOutput {
 	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectMetadataOutput { return v.Metadata }).(ObservabilityProjectMetadataOutput)
 }
@@ -290,6 +312,11 @@ func (o ObservabilityProjectOutput) Metadata() ObservabilityProjectMetadataOutpu
 // Descriptive name for a project.
 func (o ObservabilityProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObservabilityProject) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+func (o ObservabilityProjectOutput) PrivateEndpoints() ObservabilityProjectPrivateEndpointsOutput {
+	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectPrivateEndpointsOutput { return v.PrivateEndpoints }).(ObservabilityProjectPrivateEndpointsOutput)
 }
 
 // the tier of the observability project
@@ -300,6 +327,11 @@ func (o ObservabilityProjectOutput) ProductTier() pulumi.StringOutput {
 // Unique human-readable identifier for a region in Elastic Cloud.
 func (o ObservabilityProjectOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObservabilityProject) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// Set of traffic filter IDs to associate with this project
+func (o ObservabilityProjectOutput) TrafficFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ObservabilityProject) pulumi.StringArrayOutput { return v.TrafficFilterIds }).(pulumi.StringArrayOutput)
 }
 
 // the type of the project
