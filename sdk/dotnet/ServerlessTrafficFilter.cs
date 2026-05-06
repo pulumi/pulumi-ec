@@ -20,7 +20,7 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new ElasticCloud.Index.ServerlessTrafficFilter("example", new()
+    ///     var example = new ElasticCloud.ServerlessTrafficFilter("example", new()
     ///     {
     ///         Name = "my-serverless-traffic-filter",
     ///         Region = "aws-us-east-1",

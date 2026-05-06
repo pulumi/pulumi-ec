@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.ec.Organization;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -69,8 +69,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.ec.Organization;
  * import com.pulumi.ec.OrganizationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -124,8 +124,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.ec.Organization;
  * import com.pulumi.ec.OrganizationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -137,12 +137,12 @@ import javax.annotation.Nullable;
  *     }}{@code
  * 
  *     public static void stack(Context ctx) }{{@code
- *         final var deploymentAdmin = Map.of("deploymentRoles", List.of(Map.ofEntries(
+ *         final var deploymentAdmin = Map.of("deploymentRoles", Arrays.asList(Map.ofEntries(
  *             Map.entry("role", "admin"),
  *             Map.entry("allDeployments", true)
  *         )));
  * 
- *         final var deploymentViewer = Map.of("deploymentRoles", List.of(Map.ofEntries(
+ *         final var deploymentViewer = Map.of("deploymentRoles", Arrays.asList(Map.ofEntries(
  *             Map.entry("role", "viewer"),
  *             Map.entry("allDeployments", true)
  *         )));
