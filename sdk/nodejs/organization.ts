@@ -150,7 +150,7 @@ export interface OrganizationState {
     /**
      * Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
      */
-    members?: pulumi.Input<{[key: string]: pulumi.Input<inputs.OrganizationMembers>}>;
+    members?: pulumi.Input<{[key: string]: pulumi.Input<inputs.OrganizationMembers>} | undefined>;
 }
 
 /**
@@ -160,5 +160,5 @@ export interface OrganizationArgs {
     /**
      * Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
      */
-    members?: pulumi.Input<{[key: string]: pulumi.Input<inputs.OrganizationMembers>}>;
+    members?: pulumi.Input<{[key: string]: pulumi.Input<inputs.OrganizationMembers>} | undefined>;
 }

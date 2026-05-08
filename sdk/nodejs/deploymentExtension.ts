@@ -221,43 +221,43 @@ export interface DeploymentExtensionState {
     /**
      * Description for the extension
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The URL to download the extension archive.
      */
-    downloadUrl?: pulumi.Input<string>;
+    downloadUrl?: pulumi.Input<string | undefined>;
     /**
      * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      */
-    extensionType?: pulumi.Input<string>;
+    extensionType?: pulumi.Input<string | undefined>;
     /**
      * Hash value of the file. Triggers re-uploading the file on change.
      */
-    fileHash?: pulumi.Input<string>;
+    fileHash?: pulumi.Input<string | undefined>;
     /**
      * Local file path to upload as the extension.
      */
-    filePath?: pulumi.Input<string>;
+    filePath?: pulumi.Input<string | undefined>;
     /**
      * The datatime the extension was last modified.
      */
-    lastModified?: pulumi.Input<string>;
+    lastModified?: pulumi.Input<string | undefined>;
     /**
      * Name of the extension
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The size of the extension file in bytes.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * The extension URL which will be used in the Elastic Cloud deployment plan.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -267,11 +267,11 @@ export interface DeploymentExtensionArgs {
     /**
      * Description for the extension
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The URL to download the extension archive.
      */
-    downloadUrl?: pulumi.Input<string>;
+    downloadUrl?: pulumi.Input<string | undefined>;
     /**
      * Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
      */
@@ -279,15 +279,15 @@ export interface DeploymentExtensionArgs {
     /**
      * Hash value of the file. Triggers re-uploading the file on change.
      */
-    fileHash?: pulumi.Input<string>;
+    fileHash?: pulumi.Input<string | undefined>;
     /**
      * Local file path to upload as the extension.
      */
-    filePath?: pulumi.Input<string>;
+    filePath?: pulumi.Input<string | undefined>;
     /**
      * Name of the extension
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
      */

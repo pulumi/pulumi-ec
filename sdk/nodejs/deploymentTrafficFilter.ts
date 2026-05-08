@@ -225,27 +225,27 @@ export interface DeploymentTrafficFilterState {
     /**
      * Ruleset description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      */
-    includeByDefault?: pulumi.Input<boolean>;
+    includeByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the ruleset
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Filter region, the ruleset can only be attached to deployments in the specific region
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Set of rules, which the ruleset is made of.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[] | undefined>;
     /**
      * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, `gcpPrivateServiceConnectEndpoint`, or `remoteCluster`
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -255,15 +255,15 @@ export interface DeploymentTrafficFilterArgs {
     /**
      * Ruleset description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
      */
-    includeByDefault?: pulumi.Input<boolean>;
+    includeByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the ruleset
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Filter region, the ruleset can only be attached to deployments in the specific region
      */
@@ -271,7 +271,7 @@ export interface DeploymentTrafficFilterArgs {
     /**
      * Set of rules, which the ruleset is made of.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.DeploymentTrafficFilterRule>[] | undefined>;
     /**
      * Type of the ruleset. It can be `ip`, `vpce`, `azurePrivateEndpoint`, `gcpPrivateServiceConnectEndpoint`, or `remoteCluster`
      */

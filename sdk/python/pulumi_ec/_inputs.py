@@ -148,44 +148,44 @@ __all__ = [
 ]
 
 class DeploymentApmArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input['DeploymentApmConfigArgsDict']]
+    config: NotRequired[pulumi.Input[Optional['DeploymentApmConfigArgs']]]
     """
     Optionally define the Apm configuration options for the APM Server
     """
-    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    http_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    https_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    region: NotRequired[pulumi.Input[_builtins.str]]
-    resource_id: NotRequired[pulumi.Input[_builtins.str]]
-    size: NotRequired[pulumi.Input[_builtins.str]]
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    http_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    https_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    resource_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
 
 @pulumi.input_type
 class DeploymentApmArgs:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input['DeploymentApmConfigArgs']] = None,
-                 elasticsearch_cluster_ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 https_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 config: pulumi.Input[Optional['DeploymentApmConfigArgs']] = None,
+                 elasticsearch_cluster_ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentApmConfigArgs'] config: Optionally define the Apm configuration options for the APM Server
         :param pulumi.Input[_builtins.str] size_resource: Optional size type, defaults to "memory".
@@ -221,159 +221,159 @@ class DeploymentApmArgs:
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input['DeploymentApmConfigArgs']]:
+    def config(self) -> pulumi.Input[Optional['DeploymentApmConfigArgs']]:
         """
         Optionally define the Apm configuration options for the APM Server
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input['DeploymentApmConfigArgs']]):
+    def config(self, value: pulumi.Input[Optional['DeploymentApmConfigArgs']]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="elasticsearchClusterRefId")
-    def elasticsearch_cluster_ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch_cluster_ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "elasticsearch_cluster_ref_id")
 
     @elasticsearch_cluster_ref_id.setter
-    def elasticsearch_cluster_ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch_cluster_ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_cluster_ref_id", value)
 
     @_builtins.property
     @pulumi.getter(name="httpEndpoint")
-    def http_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "http_endpoint")
 
     @http_endpoint.setter
-    def http_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEndpoint")
-    def https_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def https_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "https_endpoint")
 
     @https_endpoint.setter
-    def https_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def https_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "https_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceId")
-    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_id")
 
     @resource_id.setter
-    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentApmConfigArgsDict(TypedDict):
-    debug_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    debug_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Optionally enable debug mode for APM servers - defaults to false
     """
-    docker_image: NotRequired[pulumi.Input[_builtins.str]]
+    docker_image: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
     """
-    user_settings_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
-    user_settings_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_override_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
@@ -381,12 +381,12 @@ class DeploymentApmConfigArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentApmConfigArgs:
     def __init__(__self__, *,
-                 debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 docker_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_yaml: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_yaml: Optional[pulumi.Input[_builtins.str]] = None):
+                 debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 docker_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_yaml: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_yaml: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] debug_enabled: Optionally enable debug mode for APM servers - defaults to false
         :param pulumi.Input[_builtins.str] docker_image: Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
@@ -410,74 +410,74 @@ class DeploymentApmConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="debugEnabled")
-    def debug_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def debug_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Optionally enable debug mode for APM servers - defaults to false
         """
         return pulumi.get(self, "debug_enabled")
 
     @debug_enabled.setter
-    def debug_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def debug_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "debug_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerImage")
-    def docker_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
         """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
-    def docker_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_image", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsJson")
-    def user_settings_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
-    def user_settings_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideJson")
-    def user_settings_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
-    def user_settings_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideYaml")
-    def user_settings_override_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
-    def user_settings_override_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_yaml", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsYaml")
-    def user_settings_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
-    def user_settings_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
 
@@ -486,93 +486,93 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     'hot' topology element
     """
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
     """
-    cloud_id: NotRequired[pulumi.Input[_builtins.str]]
+    cloud_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The encoded Elasticsearch credentials to use in Beats or Logstash
     """
-    cold: NotRequired[pulumi.Input['DeploymentElasticsearchColdArgsDict']]
+    cold: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchColdArgs']]]
     """
     'cold' topology element
     """
-    config: NotRequired[pulumi.Input['DeploymentElasticsearchConfigArgsDict']]
+    config: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchConfigArgs']]]
     """
     Elasticsearch settings which will be applied to all topologies
     """
-    coordinating: NotRequired[pulumi.Input['DeploymentElasticsearchCoordinatingArgsDict']]
+    coordinating: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchCoordinatingArgs']]]
     """
     'coordinating' topology element
     """
-    extensions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgsDict']]]]
+    extensions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]]]
     """
     Optional Elasticsearch extensions such as custom bundles or plugins.
     """
-    frozen: NotRequired[pulumi.Input['DeploymentElasticsearchFrozenArgsDict']]
+    frozen: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchFrozenArgs']]]
     """
     'frozen' topology element
     """
-    http_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    http_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Elasticsearch resource HTTP endpoint
     """
-    https_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    https_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Elasticsearch resource HTTPs endpoint
     """
-    keystore_contents: NotRequired[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgsDict']]]]
+    keystore_contents: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]]
     """
     Keystore contents that are controlled by the deployment resource.
     """
-    master: NotRequired[pulumi.Input['DeploymentElasticsearchMasterArgsDict']]
+    master: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchMasterArgs']]]
     """
     'master' topology element
     """
-    ml: NotRequired[pulumi.Input['DeploymentElasticsearchMlArgsDict']]
+    ml: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchMlArgs']]]
     """
     'ml' topology element
     """
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
     """
-    remote_clusters: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgsDict']]]]
+    remote_clusters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]]]
     """
     Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
     """
-    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    resource_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Elasticsearch resource unique identifier
     """
-    snapshot: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotArgsDict']]
+    snapshot: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotArgs']]]
     """
     (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
     """
-    snapshot_source: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotSourceArgsDict']]
+    snapshot_source: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotSourceArgs']]]
     """
     Restores data from a snapshot of another deployment.
 
     > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
     """
-    strategy: NotRequired[pulumi.Input[_builtins.str]]
+    strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
     """
-    trust_accounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgsDict']]]]
+    trust_accounts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]]]
     """
     Optional Elasticsearch account trust settings.
     """
-    trust_externals: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgsDict']]]]
+    trust_externals: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]]]
     """
     Optional Elasticsearch external trust settings.
     """
-    warm: NotRequired[pulumi.Input['DeploymentElasticsearchWarmArgsDict']]
+    warm: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchWarmArgs']]]
     """
     'warm' topology element
     """
@@ -581,28 +581,28 @@ class DeploymentElasticsearchArgsDict(TypedDict):
 class DeploymentElasticsearchArgs:
     def __init__(__self__, *,
                  hot: pulumi.Input['DeploymentElasticsearchHotArgs'],
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cold: Optional[pulumi.Input['DeploymentElasticsearchColdArgs']] = None,
-                 config: Optional[pulumi.Input['DeploymentElasticsearchConfigArgs']] = None,
-                 coordinating: Optional[pulumi.Input['DeploymentElasticsearchCoordinatingArgs']] = None,
-                 extensions: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]] = None,
-                 frozen: Optional[pulumi.Input['DeploymentElasticsearchFrozenArgs']] = None,
-                 http_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 https_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore_contents: Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]] = None,
-                 master: Optional[pulumi.Input['DeploymentElasticsearchMasterArgs']] = None,
-                 ml: Optional[pulumi.Input['DeploymentElasticsearchMlArgs']] = None,
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot: Optional[pulumi.Input['DeploymentElasticsearchSnapshotArgs']] = None,
-                 snapshot_source: Optional[pulumi.Input['DeploymentElasticsearchSnapshotSourceArgs']] = None,
-                 strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 trust_accounts: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]] = None,
-                 trust_externals: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]] = None,
-                 warm: Optional[pulumi.Input['DeploymentElasticsearchWarmArgs']] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cold: pulumi.Input[Optional['DeploymentElasticsearchColdArgs']] = None,
+                 config: pulumi.Input[Optional['DeploymentElasticsearchConfigArgs']] = None,
+                 coordinating: pulumi.Input[Optional['DeploymentElasticsearchCoordinatingArgs']] = None,
+                 extensions: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]] = None,
+                 frozen: pulumi.Input[Optional['DeploymentElasticsearchFrozenArgs']] = None,
+                 http_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore_contents: pulumi.Input[Optional[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]] = None,
+                 master: pulumi.Input[Optional['DeploymentElasticsearchMasterArgs']] = None,
+                 ml: pulumi.Input[Optional['DeploymentElasticsearchMlArgs']] = None,
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_clusters: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot: pulumi.Input[Optional['DeploymentElasticsearchSnapshotArgs']] = None,
+                 snapshot_source: pulumi.Input[Optional['DeploymentElasticsearchSnapshotSourceArgs']] = None,
+                 strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 trust_accounts: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]] = None,
+                 trust_externals: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]] = None,
+                 warm: pulumi.Input[Optional['DeploymentElasticsearchWarmArgs']] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchHotArgs'] hot: 'hot' topology element
         :param pulumi.Input[_builtins.bool] autoscale: Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
@@ -690,211 +690,211 @@ class DeploymentElasticsearchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudId")
-    def cloud_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The encoded Elasticsearch credentials to use in Beats or Logstash
         """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
-    def cloud_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def cold(self) -> Optional[pulumi.Input['DeploymentElasticsearchColdArgs']]:
+    def cold(self) -> pulumi.Input[Optional['DeploymentElasticsearchColdArgs']]:
         """
         'cold' topology element
         """
         return pulumi.get(self, "cold")
 
     @cold.setter
-    def cold(self, value: Optional[pulumi.Input['DeploymentElasticsearchColdArgs']]):
+    def cold(self, value: pulumi.Input[Optional['DeploymentElasticsearchColdArgs']]):
         pulumi.set(self, "cold", value)
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input['DeploymentElasticsearchConfigArgs']]:
+    def config(self) -> pulumi.Input[Optional['DeploymentElasticsearchConfigArgs']]:
         """
         Elasticsearch settings which will be applied to all topologies
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input['DeploymentElasticsearchConfigArgs']]):
+    def config(self, value: pulumi.Input[Optional['DeploymentElasticsearchConfigArgs']]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter
-    def coordinating(self) -> Optional[pulumi.Input['DeploymentElasticsearchCoordinatingArgs']]:
+    def coordinating(self) -> pulumi.Input[Optional['DeploymentElasticsearchCoordinatingArgs']]:
         """
         'coordinating' topology element
         """
         return pulumi.get(self, "coordinating")
 
     @coordinating.setter
-    def coordinating(self, value: Optional[pulumi.Input['DeploymentElasticsearchCoordinatingArgs']]):
+    def coordinating(self, value: pulumi.Input[Optional['DeploymentElasticsearchCoordinatingArgs']]):
         pulumi.set(self, "coordinating", value)
 
     @_builtins.property
     @pulumi.getter
-    def extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]]:
+    def extensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]]:
         """
         Optional Elasticsearch extensions such as custom bundles or plugins.
         """
         return pulumi.get(self, "extensions")
 
     @extensions.setter
-    def extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]]):
+    def extensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]]):
         pulumi.set(self, "extensions", value)
 
     @_builtins.property
     @pulumi.getter
-    def frozen(self) -> Optional[pulumi.Input['DeploymentElasticsearchFrozenArgs']]:
+    def frozen(self) -> pulumi.Input[Optional['DeploymentElasticsearchFrozenArgs']]:
         """
         'frozen' topology element
         """
         return pulumi.get(self, "frozen")
 
     @frozen.setter
-    def frozen(self, value: Optional[pulumi.Input['DeploymentElasticsearchFrozenArgs']]):
+    def frozen(self, value: pulumi.Input[Optional['DeploymentElasticsearchFrozenArgs']]):
         pulumi.set(self, "frozen", value)
 
     @_builtins.property
     @pulumi.getter(name="httpEndpoint")
-    def http_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Elasticsearch resource HTTP endpoint
         """
         return pulumi.get(self, "http_endpoint")
 
     @http_endpoint.setter
-    def http_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEndpoint")
-    def https_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def https_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Elasticsearch resource HTTPs endpoint
         """
         return pulumi.get(self, "https_endpoint")
 
     @https_endpoint.setter
-    def https_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def https_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "https_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="keystoreContents")
-    def keystore_contents(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]:
+    def keystore_contents(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]:
         """
         Keystore contents that are controlled by the deployment resource.
         """
         return pulumi.get(self, "keystore_contents")
 
     @keystore_contents.setter
-    def keystore_contents(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]):
+    def keystore_contents(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]):
         pulumi.set(self, "keystore_contents", value)
 
     @_builtins.property
     @pulumi.getter
-    def master(self) -> Optional[pulumi.Input['DeploymentElasticsearchMasterArgs']]:
+    def master(self) -> pulumi.Input[Optional['DeploymentElasticsearchMasterArgs']]:
         """
         'master' topology element
         """
         return pulumi.get(self, "master")
 
     @master.setter
-    def master(self, value: Optional[pulumi.Input['DeploymentElasticsearchMasterArgs']]):
+    def master(self, value: pulumi.Input[Optional['DeploymentElasticsearchMasterArgs']]):
         pulumi.set(self, "master", value)
 
     @_builtins.property
     @pulumi.getter
-    def ml(self) -> Optional[pulumi.Input['DeploymentElasticsearchMlArgs']]:
+    def ml(self) -> pulumi.Input[Optional['DeploymentElasticsearchMlArgs']]:
         """
         'ml' topology element
         """
         return pulumi.get(self, "ml")
 
     @ml.setter
-    def ml(self, value: Optional[pulumi.Input['DeploymentElasticsearchMlArgs']]):
+    def ml(self, value: pulumi.Input[Optional['DeploymentElasticsearchMlArgs']]):
         pulumi.set(self, "ml", value)
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
         """
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteClusters")
-    def remote_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]]:
+    def remote_clusters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]]:
         """
         Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
         """
         return pulumi.get(self, "remote_clusters")
 
     @remote_clusters.setter
-    def remote_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]]):
+    def remote_clusters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]]):
         pulumi.set(self, "remote_clusters", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceId")
-    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Elasticsearch resource unique identifier
         """
         return pulumi.get(self, "resource_id")
 
     @resource_id.setter
-    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def snapshot(self) -> Optional[pulumi.Input['DeploymentElasticsearchSnapshotArgs']]:
+    def snapshot(self) -> pulumi.Input[Optional['DeploymentElasticsearchSnapshotArgs']]:
         """
         (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
         """
         return pulumi.get(self, "snapshot")
 
     @snapshot.setter
-    def snapshot(self, value: Optional[pulumi.Input['DeploymentElasticsearchSnapshotArgs']]):
+    def snapshot(self, value: pulumi.Input[Optional['DeploymentElasticsearchSnapshotArgs']]):
         pulumi.set(self, "snapshot", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotSource")
-    def snapshot_source(self) -> Optional[pulumi.Input['DeploymentElasticsearchSnapshotSourceArgs']]:
+    def snapshot_source(self) -> pulumi.Input[Optional['DeploymentElasticsearchSnapshotSourceArgs']]:
         """
         Restores data from a snapshot of another deployment.
 
@@ -903,55 +903,55 @@ class DeploymentElasticsearchArgs:
         return pulumi.get(self, "snapshot_source")
 
     @snapshot_source.setter
-    def snapshot_source(self, value: Optional[pulumi.Input['DeploymentElasticsearchSnapshotSourceArgs']]):
+    def snapshot_source(self, value: pulumi.Input[Optional['DeploymentElasticsearchSnapshotSourceArgs']]):
         pulumi.set(self, "snapshot_source", value)
 
     @_builtins.property
     @pulumi.getter
-    def strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
         """
         return pulumi.get(self, "strategy")
 
     @strategy.setter
-    def strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "strategy", value)
 
     @_builtins.property
     @pulumi.getter(name="trustAccounts")
-    def trust_accounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]]:
+    def trust_accounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]]:
         """
         Optional Elasticsearch account trust settings.
         """
         return pulumi.get(self, "trust_accounts")
 
     @trust_accounts.setter
-    def trust_accounts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]]):
+    def trust_accounts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]]):
         pulumi.set(self, "trust_accounts", value)
 
     @_builtins.property
     @pulumi.getter(name="trustExternals")
-    def trust_externals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]]:
+    def trust_externals(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]]:
         """
         Optional Elasticsearch external trust settings.
         """
         return pulumi.get(self, "trust_externals")
 
     @trust_externals.setter
-    def trust_externals(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]]):
+    def trust_externals(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]]):
         pulumi.set(self, "trust_externals", value)
 
     @_builtins.property
     @pulumi.getter
-    def warm(self) -> Optional[pulumi.Input['DeploymentElasticsearchWarmArgs']]:
+    def warm(self) -> pulumi.Input[Optional['DeploymentElasticsearchWarmArgs']]:
         """
         'warm' topology element
         """
         return pulumi.get(self, "warm")
 
     @warm.setter
-    def warm(self, value: Optional[pulumi.Input['DeploymentElasticsearchWarmArgs']]):
+    def warm(self, value: pulumi.Input[Optional['DeploymentElasticsearchWarmArgs']]):
         pulumi.set(self, "warm", value)
 
 
@@ -960,51 +960,51 @@ class DeploymentElasticsearchColdArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -1013,18 +1013,18 @@ class DeploymentElasticsearchColdArgsDict(TypedDict):
 class DeploymentElasticsearchColdArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchColdAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -1080,171 +1080,171 @@ class DeploymentElasticsearchColdArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchColdAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -1252,12 +1252,12 @@ class DeploymentElasticsearchColdAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchColdAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -1281,99 +1281,99 @@ class DeploymentElasticsearchColdAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
 class DeploymentElasticsearchConfigArgsDict(TypedDict):
-    docker_image: NotRequired[pulumi.Input[_builtins.str]]
+    docker_image: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
     """
-    plugins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    plugins: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
     """
-    user_settings_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     JSON-formatted user level "elasticsearch.yml" setting overrides
     """
-    user_settings_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
     """
-    user_settings_override_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
     """
-    user_settings_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     YAML-formatted user level "elasticsearch.yml" setting overrides
     """
@@ -1381,12 +1381,12 @@ class DeploymentElasticsearchConfigArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchConfigArgs:
     def __init__(__self__, *,
-                 docker_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_settings_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_yaml: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_yaml: Optional[pulumi.Input[_builtins.str]] = None):
+                 docker_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_settings_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_yaml: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_yaml: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] docker_image: Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] plugins: List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
@@ -1410,74 +1410,74 @@ class DeploymentElasticsearchConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="dockerImage")
-    def docker_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
-    def docker_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_image", value)
 
     @_builtins.property
     @pulumi.getter
-    def plugins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def plugins(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
         """
         return pulumi.get(self, "plugins")
 
     @plugins.setter
-    def plugins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def plugins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "plugins", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsJson")
-    def user_settings_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON-formatted user level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
-    def user_settings_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideJson")
-    def user_settings_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
-    def user_settings_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideYaml")
-    def user_settings_override_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
-    def user_settings_override_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_yaml", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsYaml")
-    def user_settings_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         YAML-formatted user level "elasticsearch.yml" setting overrides
         """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
-    def user_settings_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
 
@@ -1486,51 +1486,51 @@ class DeploymentElasticsearchCoordinatingArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -1539,18 +1539,18 @@ class DeploymentElasticsearchCoordinatingArgsDict(TypedDict):
 class DeploymentElasticsearchCoordinatingArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchCoordinatingAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -1606,171 +1606,171 @@ class DeploymentElasticsearchCoordinatingArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchCoordinatingAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -1778,12 +1778,12 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchCoordinatingAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -1807,74 +1807,74 @@ class DeploymentElasticsearchCoordinatingAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
@@ -1968,51 +1968,51 @@ class DeploymentElasticsearchFrozenArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -2021,18 +2021,18 @@ class DeploymentElasticsearchFrozenArgsDict(TypedDict):
 class DeploymentElasticsearchFrozenArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchFrozenAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -2088,171 +2088,171 @@ class DeploymentElasticsearchFrozenArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchFrozenAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -2260,12 +2260,12 @@ class DeploymentElasticsearchFrozenAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchFrozenAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -2289,74 +2289,74 @@ class DeploymentElasticsearchFrozenAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
@@ -2365,51 +2365,51 @@ class DeploymentElasticsearchHotArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -2418,18 +2418,18 @@ class DeploymentElasticsearchHotArgsDict(TypedDict):
 class DeploymentElasticsearchHotArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchHotAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -2485,171 +2485,171 @@ class DeploymentElasticsearchHotArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchHotAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -2657,12 +2657,12 @@ class DeploymentElasticsearchHotAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchHotAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -2686,74 +2686,74 @@ class DeploymentElasticsearchHotAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
@@ -2762,7 +2762,7 @@ class DeploymentElasticsearchKeystoreContentsArgsDict(TypedDict):
     """
     Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
     """
-    as_file: NotRequired[pulumi.Input[_builtins.bool]]
+    as_file: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
     """
@@ -2771,7 +2771,7 @@ class DeploymentElasticsearchKeystoreContentsArgsDict(TypedDict):
 class DeploymentElasticsearchKeystoreContentsArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[_builtins.str],
-                 as_file: Optional[pulumi.Input[_builtins.bool]] = None):
+                 as_file: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] value: Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         :param pulumi.Input[_builtins.bool] as_file: If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
@@ -2794,14 +2794,14 @@ class DeploymentElasticsearchKeystoreContentsArgs:
 
     @_builtins.property
     @pulumi.getter(name="asFile")
-    def as_file(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def as_file(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
         """
         return pulumi.get(self, "as_file")
 
     @as_file.setter
-    def as_file(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def as_file(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "as_file", value)
 
 
@@ -2810,51 +2810,51 @@ class DeploymentElasticsearchMasterArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -2863,18 +2863,18 @@ class DeploymentElasticsearchMasterArgsDict(TypedDict):
 class DeploymentElasticsearchMasterArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchMasterAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -2930,171 +2930,171 @@ class DeploymentElasticsearchMasterArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchMasterAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -3102,12 +3102,12 @@ class DeploymentElasticsearchMasterAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchMasterAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -3131,74 +3131,74 @@ class DeploymentElasticsearchMasterAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
@@ -3207,51 +3207,51 @@ class DeploymentElasticsearchMlArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -3260,18 +3260,18 @@ class DeploymentElasticsearchMlArgsDict(TypedDict):
 class DeploymentElasticsearchMlArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchMlAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -3327,171 +3327,171 @@ class DeploymentElasticsearchMlArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchMlAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -3499,12 +3499,12 @@ class DeploymentElasticsearchMlAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchMlAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -3528,74 +3528,74 @@ class DeploymentElasticsearchMlAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
@@ -3608,11 +3608,11 @@ class DeploymentElasticsearchRemoteClusterArgsDict(TypedDict):
     """
     Remote deployment ID
     """
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Remote elasticsearch "ref_id", it is best left to the default value
     """
-    skip_unavailable: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_unavailable: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If true, skip the cluster during search when disconnected
     """
@@ -3622,8 +3622,8 @@ class DeploymentElasticsearchRemoteClusterArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[_builtins.str],
                  deployment_id: pulumi.Input[_builtins.str],
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_unavailable: Optional[pulumi.Input[_builtins.bool]] = None):
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_unavailable: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] alias: Alias for this Cross Cluster Search binding
         :param pulumi.Input[_builtins.str] deployment_id: Remote deployment ID
@@ -3663,26 +3663,26 @@ class DeploymentElasticsearchRemoteClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Remote elasticsearch "ref_id", it is best left to the default value
         """
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
     @_builtins.property
     @pulumi.getter(name="skipUnavailable")
-    def skip_unavailable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_unavailable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, skip the cluster during search when disconnected
         """
         return pulumi.get(self, "skip_unavailable")
 
     @skip_unavailable.setter
-    def skip_unavailable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_unavailable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_unavailable", value)
 
 
@@ -3691,7 +3691,7 @@ class DeploymentElasticsearchSnapshotArgsDict(TypedDict):
     """
     Indicates if Snapshotting is enabled.
     """
-    repository: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgsDict']]
+    repository: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryArgs']]]
     """
     Snapshot repository configuration
     """
@@ -3700,7 +3700,7 @@ class DeploymentElasticsearchSnapshotArgsDict(TypedDict):
 class DeploymentElasticsearchSnapshotArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
-                 repository: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs']] = None):
+                 repository: pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryArgs']] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Indicates if Snapshotting is enabled.
         :param pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs'] repository: Snapshot repository configuration
@@ -3723,19 +3723,19 @@ class DeploymentElasticsearchSnapshotArgs:
 
     @_builtins.property
     @pulumi.getter
-    def repository(self) -> Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs']]:
+    def repository(self) -> pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryArgs']]:
         """
         Snapshot repository configuration
         """
         return pulumi.get(self, "repository")
 
     @repository.setter
-    def repository(self, value: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryArgs']]):
+    def repository(self, value: pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryArgs']]):
         pulumi.set(self, "repository", value)
 
 
 class DeploymentElasticsearchSnapshotRepositoryArgsDict(TypedDict):
-    reference: NotRequired[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgsDict']]
+    reference: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]]
     """
     Cluster snapshot reference repository settings, containing the repository name in ECE fashion
     """
@@ -3743,7 +3743,7 @@ class DeploymentElasticsearchSnapshotRepositoryArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchSnapshotRepositoryArgs:
     def __init__(__self__, *,
-                 reference: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']] = None):
+                 reference: pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs'] reference: Cluster snapshot reference repository settings, containing the repository name in ECE fashion
         """
@@ -3752,14 +3752,14 @@ class DeploymentElasticsearchSnapshotRepositoryArgs:
 
     @_builtins.property
     @pulumi.getter
-    def reference(self) -> Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]:
+    def reference(self) -> pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]:
         """
         Cluster snapshot reference repository settings, containing the repository name in ECE fashion
         """
         return pulumi.get(self, "reference")
 
     @reference.setter
-    def reference(self, value: Optional[pulumi.Input['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]):
+    def reference(self, value: pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]):
         pulumi.set(self, "reference", value)
 
 
@@ -3796,7 +3796,7 @@ class DeploymentElasticsearchSnapshotSourceArgsDict(TypedDict):
     """
     ID of the Elasticsearch cluster that will be used as the source of the snapshot
     """
-    snapshot_name: NotRequired[pulumi.Input[_builtins.str]]
+    snapshot_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
     """
@@ -3805,7 +3805,7 @@ class DeploymentElasticsearchSnapshotSourceArgsDict(TypedDict):
 class DeploymentElasticsearchSnapshotSourceArgs:
     def __init__(__self__, *,
                  source_elasticsearch_cluster_id: pulumi.Input[_builtins.str],
-                 snapshot_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 snapshot_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] source_elasticsearch_cluster_id: ID of the Elasticsearch cluster that will be used as the source of the snapshot
         :param pulumi.Input[_builtins.str] snapshot_name: Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
@@ -3828,14 +3828,14 @@ class DeploymentElasticsearchSnapshotSourceArgs:
 
     @_builtins.property
     @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
         """
         return pulumi.get(self, "snapshot_name")
 
     @snapshot_name.setter
-    def snapshot_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_name", value)
 
 
@@ -3848,7 +3848,7 @@ class DeploymentElasticsearchTrustAccountArgsDict(TypedDict):
     """
     If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
     """
-    trust_allowlists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    trust_allowlists: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The list of clusters to trust. Only used when `trust_all` is false.
     """
@@ -3858,7 +3858,7 @@ class DeploymentElasticsearchTrustAccountArgs:
     def __init__(__self__, *,
                  account_id: pulumi.Input[_builtins.str],
                  trust_all: pulumi.Input[_builtins.bool],
-                 trust_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 trust_allowlists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] account_id: The ID of the Account.
         :param pulumi.Input[_builtins.bool] trust_all: If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
@@ -3895,14 +3895,14 @@ class DeploymentElasticsearchTrustAccountArgs:
 
     @_builtins.property
     @pulumi.getter(name="trustAllowlists")
-    def trust_allowlists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def trust_allowlists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of clusters to trust. Only used when `trust_all` is false.
         """
         return pulumi.get(self, "trust_allowlists")
 
     @trust_allowlists.setter
-    def trust_allowlists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def trust_allowlists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "trust_allowlists", value)
 
 
@@ -3915,7 +3915,7 @@ class DeploymentElasticsearchTrustExternalArgsDict(TypedDict):
     """
     If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
     """
-    trust_allowlists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    trust_allowlists: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The list of clusters to trust. Only used when `trust_all` is false.
     """
@@ -3925,7 +3925,7 @@ class DeploymentElasticsearchTrustExternalArgs:
     def __init__(__self__, *,
                  relationship_id: pulumi.Input[_builtins.str],
                  trust_all: pulumi.Input[_builtins.bool],
-                 trust_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 trust_allowlists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] relationship_id: The ID of the external trust relationship.
         :param pulumi.Input[_builtins.bool] trust_all: If true, all clusters in this account will by default be trusted and the `trust_allowlist` is ignored.
@@ -3962,14 +3962,14 @@ class DeploymentElasticsearchTrustExternalArgs:
 
     @_builtins.property
     @pulumi.getter(name="trustAllowlists")
-    def trust_allowlists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def trust_allowlists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of clusters to trust. Only used when `trust_all` is false.
         """
         return pulumi.get(self, "trust_allowlists")
 
     @trust_allowlists.setter
-    def trust_allowlists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def trust_allowlists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "trust_allowlists", value)
 
 
@@ -3978,51 +3978,51 @@ class DeploymentElasticsearchWarmArgsDict(TypedDict):
     """
     Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
     """
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Instance Configuration ID of the topology element
     """
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Instance Configuration version of the topology element
     """
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Latest Instance Configuration ID available on the deployment template for the topology element
     """
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Latest version available for the Instance Configuration with the latest*instance*configuration_id
     """
-    node_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    node_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The computed list of node roles for the current topology element
     """
-    node_type_data: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_data: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (data node)
     """
-    node_type_ingest: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (ingest node)
     """
-    node_type_master: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_master: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (master node)
     """
-    node_type_ml: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_ml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The node type for the Elasticsearch Topology element (machine learning node)
     """
-    size: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amount of "size_resource" per node in the "\\n\\ng" notation
     """
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of zones that the Elasticsearch cluster will span. This is used to set HA
     """
@@ -4031,18 +4031,18 @@ class DeploymentElasticsearchWarmArgsDict(TypedDict):
 class DeploymentElasticsearchWarmArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs'],
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 node_type_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_master: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type_ml: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 node_type_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_master: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type_ml: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentElasticsearchWarmAutoscalingArgs'] autoscaling: Optional Elasticsearch autoscaling settings, such a maximum and minimum size and resources.
         :param pulumi.Input[_builtins.str] instance_configuration_id: Instance Configuration ID of the topology element
@@ -4098,171 +4098,171 @@ class DeploymentElasticsearchWarmArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance Configuration ID of the topology element
         """
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance Configuration version of the topology element
         """
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest Instance Configuration ID available on the deployment template for the topology element
         """
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest version available for the Instance Configuration with the latest*instance*configuration_id
         """
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeRoles")
-    def node_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The computed list of node roles for the current topology element
         """
         return pulumi.get(self, "node_roles")
 
     @node_roles.setter
-    def node_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeData")
-    def node_type_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (data node)
         """
         return pulumi.get(self, "node_type_data")
 
     @node_type_data.setter
-    def node_type_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_data", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeIngest")
-    def node_type_ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (ingest node)
         """
         return pulumi.get(self, "node_type_ingest")
 
     @node_type_ingest.setter
-    def node_type_ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ingest", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMaster")
-    def node_type_master(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_master(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (master node)
         """
         return pulumi.get(self, "node_type_master")
 
     @node_type_master.setter
-    def node_type_master(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_master(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_master", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeMl")
-    def node_type_ml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_ml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node type for the Elasticsearch Topology element (machine learning node)
         """
         return pulumi.get(self, "node_type_ml")
 
     @node_type_ml.setter
-    def node_type_ml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_ml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_ml", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amount of "size_resource" per node in the "\\n\\ng" notation
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of zones that the Elasticsearch cluster will span. This is used to set HA
         """
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentElasticsearchWarmAutoscalingArgsDict(TypedDict):
-    autoscale: NotRequired[pulumi.Input[_builtins.bool]]
+    autoscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
     """
-    max_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
     """
-    max_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    max_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum resource type for the maximum autoscaling setting.
     """
-    min_size: NotRequired[pulumi.Input[_builtins.str]]
+    min_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum autoscaling size.
     """
-    min_size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    min_size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum resource type for the minimum autoscaling setting.
     """
-    policy_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    policy_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed policy overrides set directly via the API or other clients.
     """
@@ -4270,12 +4270,12 @@ class DeploymentElasticsearchWarmAutoscalingArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentElasticsearchWarmAutoscalingArgs:
     def __init__(__self__, *,
-                 autoscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_override_json: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_override_json: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] autoscale: Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         :param pulumi.Input[_builtins.str] max_size: Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
@@ -4299,122 +4299,122 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
         """
         return pulumi.get(self, "autoscale")
 
     @autoscale.setter
-    def autoscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscale", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSizeResource")
-    def max_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum resource type for the maximum autoscaling setting.
         """
         return pulumi.get(self, "max_size_resource")
 
     @max_size_resource.setter
-    def max_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum autoscaling size.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSizeResource")
-    def min_size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum resource type for the minimum autoscaling setting.
         """
         return pulumi.get(self, "min_size_resource")
 
     @min_size_resource.setter
-    def min_size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverrideJson")
-    def policy_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed policy overrides set directly via the API or other clients.
         """
         return pulumi.get(self, "policy_override_json")
 
     @policy_override_json.setter
-    def policy_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_override_json", value)
 
 
 class DeploymentEnterpriseSearchArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input['DeploymentEnterpriseSearchConfigArgsDict']]
+    config: NotRequired[pulumi.Input[Optional['DeploymentEnterpriseSearchConfigArgs']]]
     """
     Optionally define the Enterprise Search configuration options for the Enterprise Search Server
     """
-    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    http_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    https_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    node_type_appserver: NotRequired[pulumi.Input[_builtins.bool]]
-    node_type_connector: NotRequired[pulumi.Input[_builtins.bool]]
-    node_type_worker: NotRequired[pulumi.Input[_builtins.bool]]
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    region: NotRequired[pulumi.Input[_builtins.str]]
-    resource_id: NotRequired[pulumi.Input[_builtins.str]]
-    size: NotRequired[pulumi.Input[_builtins.str]]
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    http_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    https_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    node_type_appserver: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    node_type_connector: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    node_type_worker: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    resource_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
 
 @pulumi.input_type
 class DeploymentEnterpriseSearchArgs:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input['DeploymentEnterpriseSearchConfigArgs']] = None,
-                 elasticsearch_cluster_ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 https_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_type_appserver: Optional[pulumi.Input[_builtins.bool]] = None,
-                 node_type_connector: Optional[pulumi.Input[_builtins.bool]] = None,
-                 node_type_worker: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 config: pulumi.Input[Optional['DeploymentEnterpriseSearchConfigArgs']] = None,
+                 elasticsearch_cluster_ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_type_appserver: pulumi.Input[Optional[_builtins.bool]] = None,
+                 node_type_connector: pulumi.Input[Optional[_builtins.bool]] = None,
+                 node_type_worker: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentEnterpriseSearchConfigArgs'] config: Optionally define the Enterprise Search configuration options for the Enterprise Search Server
         :param pulumi.Input[_builtins.str] size_resource: Optional size type, defaults to "memory".
@@ -4456,182 +4456,182 @@ class DeploymentEnterpriseSearchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input['DeploymentEnterpriseSearchConfigArgs']]:
+    def config(self) -> pulumi.Input[Optional['DeploymentEnterpriseSearchConfigArgs']]:
         """
         Optionally define the Enterprise Search configuration options for the Enterprise Search Server
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input['DeploymentEnterpriseSearchConfigArgs']]):
+    def config(self, value: pulumi.Input[Optional['DeploymentEnterpriseSearchConfigArgs']]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="elasticsearchClusterRefId")
-    def elasticsearch_cluster_ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch_cluster_ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "elasticsearch_cluster_ref_id")
 
     @elasticsearch_cluster_ref_id.setter
-    def elasticsearch_cluster_ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch_cluster_ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_cluster_ref_id", value)
 
     @_builtins.property
     @pulumi.getter(name="httpEndpoint")
-    def http_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "http_endpoint")
 
     @http_endpoint.setter
-    def http_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEndpoint")
-    def https_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def https_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "https_endpoint")
 
     @https_endpoint.setter
-    def https_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def https_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "https_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeAppserver")
-    def node_type_appserver(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def node_type_appserver(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "node_type_appserver")
 
     @node_type_appserver.setter
-    def node_type_appserver(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def node_type_appserver(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "node_type_appserver", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeConnector")
-    def node_type_connector(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def node_type_connector(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "node_type_connector")
 
     @node_type_connector.setter
-    def node_type_connector(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def node_type_connector(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "node_type_connector", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeWorker")
-    def node_type_worker(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def node_type_worker(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "node_type_worker")
 
     @node_type_worker.setter
-    def node_type_worker(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def node_type_worker(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "node_type_worker", value)
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceId")
-    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_id")
 
     @resource_id.setter
-    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentEnterpriseSearchConfigArgsDict(TypedDict):
-    docker_image: NotRequired[pulumi.Input[_builtins.str]]
+    docker_image: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
     """
-    user_settings_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
-    user_settings_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_override_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
@@ -4639,11 +4639,11 @@ class DeploymentEnterpriseSearchConfigArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentEnterpriseSearchConfigArgs:
     def __init__(__self__, *,
-                 docker_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_yaml: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_yaml: Optional[pulumi.Input[_builtins.str]] = None):
+                 docker_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_yaml: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_yaml: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] docker_image: Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[_builtins.str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
@@ -4664,109 +4664,109 @@ class DeploymentEnterpriseSearchConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="dockerImage")
-    def docker_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
-    def docker_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_image", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsJson")
-    def user_settings_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
-    def user_settings_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideJson")
-    def user_settings_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
-    def user_settings_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideYaml")
-    def user_settings_override_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
-    def user_settings_override_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_yaml", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsYaml")
-    def user_settings_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
-    def user_settings_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
 
 class DeploymentIntegrationsServerArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input['DeploymentIntegrationsServerConfigArgsDict']]
+    config: NotRequired[pulumi.Input[Optional['DeploymentIntegrationsServerConfigArgs']]]
     """
     Optionally define the Integrations Server configuration options for the IntegrationsServer Server
     """
-    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    endpoints: NotRequired[pulumi.Input['DeploymentIntegrationsServerEndpointsArgsDict']]
+    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    endpoints: NotRequired[pulumi.Input[Optional['DeploymentIntegrationsServerEndpointsArgs']]]
     """
     URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
     """
-    http_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    https_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    region: NotRequired[pulumi.Input[_builtins.str]]
-    resource_id: NotRequired[pulumi.Input[_builtins.str]]
-    size: NotRequired[pulumi.Input[_builtins.str]]
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    http_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    https_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    resource_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
 
 @pulumi.input_type
 class DeploymentIntegrationsServerArgs:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input['DeploymentIntegrationsServerConfigArgs']] = None,
-                 elasticsearch_cluster_ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input['DeploymentIntegrationsServerEndpointsArgs']] = None,
-                 http_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 https_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 config: pulumi.Input[Optional['DeploymentIntegrationsServerConfigArgs']] = None,
+                 elasticsearch_cluster_ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional['DeploymentIntegrationsServerEndpointsArgs']] = None,
+                 http_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentIntegrationsServerConfigArgs'] config: Optionally define the Integrations Server configuration options for the IntegrationsServer Server
         :param pulumi.Input['DeploymentIntegrationsServerEndpointsArgs'] endpoints: URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
@@ -4805,171 +4805,171 @@ class DeploymentIntegrationsServerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input['DeploymentIntegrationsServerConfigArgs']]:
+    def config(self) -> pulumi.Input[Optional['DeploymentIntegrationsServerConfigArgs']]:
         """
         Optionally define the Integrations Server configuration options for the IntegrationsServer Server
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input['DeploymentIntegrationsServerConfigArgs']]):
+    def config(self, value: pulumi.Input[Optional['DeploymentIntegrationsServerConfigArgs']]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="elasticsearchClusterRefId")
-    def elasticsearch_cluster_ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch_cluster_ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "elasticsearch_cluster_ref_id")
 
     @elasticsearch_cluster_ref_id.setter
-    def elasticsearch_cluster_ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch_cluster_ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_cluster_ref_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input['DeploymentIntegrationsServerEndpointsArgs']]:
+    def endpoints(self) -> pulumi.Input[Optional['DeploymentIntegrationsServerEndpointsArgs']]:
         """
         URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input['DeploymentIntegrationsServerEndpointsArgs']]):
+    def endpoints(self, value: pulumi.Input[Optional['DeploymentIntegrationsServerEndpointsArgs']]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="httpEndpoint")
-    def http_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "http_endpoint")
 
     @http_endpoint.setter
-    def http_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEndpoint")
-    def https_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def https_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "https_endpoint")
 
     @https_endpoint.setter
-    def https_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def https_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "https_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceId")
-    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_id")
 
     @resource_id.setter
-    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentIntegrationsServerConfigArgsDict(TypedDict):
-    debug_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    debug_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Optionally enable debug mode for Integrations Server instances - defaults to false
     """
-    docker_image: NotRequired[pulumi.Input[_builtins.str]]
+    docker_image: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
     """
-    user_settings_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
-    user_settings_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_override_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
@@ -4977,12 +4977,12 @@ class DeploymentIntegrationsServerConfigArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentIntegrationsServerConfigArgs:
     def __init__(__self__, *,
-                 debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 docker_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_yaml: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_yaml: Optional[pulumi.Input[_builtins.str]] = None):
+                 debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 docker_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_yaml: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_yaml: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] debug_enabled: Optionally enable debug mode for Integrations Server instances - defaults to false
         :param pulumi.Input[_builtins.str] docker_image: Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
@@ -5006,74 +5006,74 @@ class DeploymentIntegrationsServerConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="debugEnabled")
-    def debug_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def debug_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Optionally enable debug mode for Integrations Server instances - defaults to false
         """
         return pulumi.get(self, "debug_enabled")
 
     @debug_enabled.setter
-    def debug_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def debug_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "debug_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerImage")
-    def docker_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
-    def docker_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_image", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsJson")
-    def user_settings_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
-    def user_settings_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideJson")
-    def user_settings_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
-    def user_settings_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideYaml")
-    def user_settings_override_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
-    def user_settings_override_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_yaml", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsYaml")
-    def user_settings_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
-    def user_settings_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
 
@@ -5133,44 +5133,44 @@ class DeploymentIntegrationsServerEndpointsArgs:
 
 
 class DeploymentKibanaArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input['DeploymentKibanaConfigArgsDict']]
+    config: NotRequired[pulumi.Input[Optional['DeploymentKibanaConfigArgs']]]
     """
     Optionally define the Kibana configuration options for the Kibana Server
     """
-    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    http_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    https_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    latest_instance_configuration_id: NotRequired[pulumi.Input[_builtins.str]]
-    latest_instance_configuration_version: NotRequired[pulumi.Input[_builtins.int]]
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
-    region: NotRequired[pulumi.Input[_builtins.str]]
-    resource_id: NotRequired[pulumi.Input[_builtins.str]]
-    size: NotRequired[pulumi.Input[_builtins.str]]
-    size_resource: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    http_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    https_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    latest_instance_configuration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    latest_instance_configuration_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    resource_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size_resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional size type, defaults to "memory".
     """
-    zone_count: NotRequired[pulumi.Input[_builtins.int]]
+    zone_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
 
 @pulumi.input_type
 class DeploymentKibanaArgs:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input['DeploymentKibanaConfigArgs']] = None,
-                 elasticsearch_cluster_ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 https_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 latest_instance_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 latest_instance_configuration_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.str]] = None,
-                 size_resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 config: pulumi.Input[Optional['DeploymentKibanaConfigArgs']] = None,
+                 elasticsearch_cluster_ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 latest_instance_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 latest_instance_configuration_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.str]] = None,
+                 size_resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['DeploymentKibanaConfigArgs'] config: Optionally define the Kibana configuration options for the Kibana Server
         :param pulumi.Input[_builtins.str] size_resource: Optional size type, defaults to "memory".
@@ -5206,155 +5206,155 @@ class DeploymentKibanaArgs:
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input['DeploymentKibanaConfigArgs']]:
+    def config(self) -> pulumi.Input[Optional['DeploymentKibanaConfigArgs']]:
         """
         Optionally define the Kibana configuration options for the Kibana Server
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input['DeploymentKibanaConfigArgs']]):
+    def config(self, value: pulumi.Input[Optional['DeploymentKibanaConfigArgs']]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="elasticsearchClusterRefId")
-    def elasticsearch_cluster_ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch_cluster_ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "elasticsearch_cluster_ref_id")
 
     @elasticsearch_cluster_ref_id.setter
-    def elasticsearch_cluster_ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch_cluster_ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_cluster_ref_id", value)
 
     @_builtins.property
     @pulumi.getter(name="httpEndpoint")
-    def http_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "http_endpoint")
 
     @http_endpoint.setter
-    def http_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEndpoint")
-    def https_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def https_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "https_endpoint")
 
     @https_endpoint.setter
-    def https_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def https_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "https_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationId")
-    def instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "instance_configuration_id")
 
     @instance_configuration_id.setter
-    def instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceConfigurationVersion")
-    def instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "instance_configuration_version")
 
     @instance_configuration_version.setter
-    def instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationId")
-    def latest_instance_configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def latest_instance_configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "latest_instance_configuration_id")
 
     @latest_instance_configuration_id.setter
-    def latest_instance_configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def latest_instance_configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "latest_instance_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="latestInstanceConfigurationVersion")
-    def latest_instance_configuration_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_instance_configuration_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "latest_instance_configuration_version")
 
     @latest_instance_configuration_version.setter
-    def latest_instance_configuration_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_instance_configuration_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_instance_configuration_version", value)
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceId")
-    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_id")
 
     @resource_id.setter
-    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeResource")
-    def size_resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def size_resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional size type, defaults to "memory".
         """
         return pulumi.get(self, "size_resource")
 
     @size_resource.setter
-    def size_resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def size_resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "size_resource", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneCount")
-    def zone_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def zone_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "zone_count")
 
     @zone_count.setter
-    def zone_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def zone_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "zone_count", value)
 
 
 class DeploymentKibanaConfigArgsDict(TypedDict):
-    docker_image: NotRequired[pulumi.Input[_builtins.str]]
+    docker_image: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
     """
-    user_settings_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
-    user_settings_override_json: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_override_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_override_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
     """
-    user_settings_yaml: NotRequired[pulumi.Input[_builtins.str]]
+    user_settings_yaml: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
     """
@@ -5362,11 +5362,11 @@ class DeploymentKibanaConfigArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentKibanaConfigArgs:
     def __init__(__self__, *,
-                 docker_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_override_yaml: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_settings_yaml: Optional[pulumi.Input[_builtins.str]] = None):
+                 docker_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_override_yaml: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_settings_yaml: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] docker_image: Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         :param pulumi.Input[_builtins.str] user_settings_json: An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
@@ -5387,78 +5387,78 @@ class DeploymentKibanaConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="dockerImage")
-    def docker_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
         """
         return pulumi.get(self, "docker_image")
 
     @docker_image.setter
-    def docker_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_image", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsJson")
-    def user_settings_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_json")
 
     @user_settings_json.setter
-    def user_settings_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideJson")
-    def user_settings_override_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_json")
 
     @user_settings_override_json.setter
-    def user_settings_override_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_json", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsOverrideYaml")
-    def user_settings_override_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_override_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_override_yaml")
 
     @user_settings_override_yaml.setter
-    def user_settings_override_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_override_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_override_yaml", value)
 
     @_builtins.property
     @pulumi.getter(name="userSettingsYaml")
-    def user_settings_yaml(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_settings_yaml(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         """
         return pulumi.get(self, "user_settings_yaml")
 
     @user_settings_yaml.setter
-    def user_settings_yaml(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_settings_yaml(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_settings_yaml", value)
 
 
 class DeploymentObservabilityArgsDict(TypedDict):
     deployment_id: pulumi.Input[_builtins.str]
-    logs: NotRequired[pulumi.Input[_builtins.bool]]
-    metrics: NotRequired[pulumi.Input[_builtins.bool]]
-    ref_id: NotRequired[pulumi.Input[_builtins.str]]
+    logs: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    metrics: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class DeploymentObservabilityArgs:
     def __init__(__self__, *,
                  deployment_id: pulumi.Input[_builtins.str],
-                 logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ref_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ref_id: pulumi.Input[Optional[_builtins.str]] = None):
         pulumi.set(__self__, "deployment_id", deployment_id)
         if logs is not None:
             pulumi.set(__self__, "logs", logs)
@@ -5478,58 +5478,58 @@ class DeploymentObservabilityArgs:
 
     @_builtins.property
     @pulumi.getter
-    def logs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def logs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "logs")
 
     @logs.setter
-    def logs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def logs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "logs", value)
 
     @_builtins.property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="refId")
-    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ref_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "ref_id")
 
     @ref_id.setter
-    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ref_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ref_id", value)
 
 
 class DeploymentTrafficFilterRuleArgsDict(TypedDict):
-    azure_endpoint_guid: NotRequired[pulumi.Input[_builtins.str]]
+    azure_endpoint_guid: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
     """
-    azure_endpoint_name: NotRequired[pulumi.Input[_builtins.str]]
+    azure_endpoint_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Description of this individual rule
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed rule ID
     """
-    remote_cluster_id: NotRequired[pulumi.Input[_builtins.str]]
+    remote_cluster_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The remote cluster ID. Only applicable when the ruleset type is set to `remote_cluster`
     """
-    remote_cluster_org_id: NotRequired[pulumi.Input[_builtins.str]]
+    remote_cluster_org_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The remote cluster organization ID. Only applicable when the ruleset type is set to `remote_cluster`
     """
-    source: NotRequired[pulumi.Input[_builtins.str]]
+    source: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
     """
@@ -5537,13 +5537,13 @@ class DeploymentTrafficFilterRuleArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentTrafficFilterRuleArgs:
     def __init__(__self__, *,
-                 azure_endpoint_guid: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_cluster_org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None):
+                 azure_endpoint_guid: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_cluster_org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] azure_endpoint_guid: Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
         :param pulumi.Input[_builtins.str] azure_endpoint_name: Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
@@ -5570,95 +5570,95 @@ class DeploymentTrafficFilterRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="azureEndpointGuid")
-    def azure_endpoint_guid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_endpoint_guid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure endpoint GUID. Only applicable when the ruleset type is set to `azure_private_endpoint`
         """
         return pulumi.get(self, "azure_endpoint_guid")
 
     @azure_endpoint_guid.setter
-    def azure_endpoint_guid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_endpoint_guid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_endpoint_guid", value)
 
     @_builtins.property
     @pulumi.getter(name="azureEndpointName")
-    def azure_endpoint_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_endpoint_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure endpoint name. Only applicable when the ruleset type is set to `azure_private_endpoint`
         """
         return pulumi.get(self, "azure_endpoint_name")
 
     @azure_endpoint_name.setter
-    def azure_endpoint_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_endpoint_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_endpoint_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of this individual rule
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed rule ID
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteClusterId")
-    def remote_cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def remote_cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The remote cluster ID. Only applicable when the ruleset type is set to `remote_cluster`
         """
         return pulumi.get(self, "remote_cluster_id")
 
     @remote_cluster_id.setter
-    def remote_cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def remote_cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "remote_cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteClusterOrgId")
-    def remote_cluster_org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def remote_cluster_org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The remote cluster organization ID. Only applicable when the ruleset type is set to `remote_cluster`
         """
         return pulumi.get(self, "remote_cluster_org_id")
 
     @remote_cluster_org_id.setter
-    def remote_cluster_org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def remote_cluster_org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "remote_cluster_org_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azure_private_endpoint`
         """
         return pulumi.get(self, "source")
 
     @source.setter
-    def source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source", value)
 
 
 class ElasticsearchProjectCredentialsArgsDict(TypedDict):
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Basic auth password that can be used to access the Elasticsearch API.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Basic auth username that can be used to access the Elasticsearch API.
     """
@@ -5666,8 +5666,8 @@ class ElasticsearchProjectCredentialsArgsDict(TypedDict):
 @pulumi.input_type
 class ElasticsearchProjectCredentialsArgs:
     def __init__(__self__, *,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] password: Basic auth password that can be used to access the Elasticsearch API.
         :param pulumi.Input[_builtins.str] username: Basic auth username that can be used to access the Elasticsearch API.
@@ -5679,35 +5679,35 @@ class ElasticsearchProjectCredentialsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Basic auth password that can be used to access the Elasticsearch API.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Basic auth username that can be used to access the Elasticsearch API.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class ElasticsearchProjectEndpointsArgsDict(TypedDict):
-    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access elasticsearch.
     """
-    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access kibana.
     """
@@ -5715,8 +5715,8 @@ class ElasticsearchProjectEndpointsArgsDict(TypedDict):
 @pulumi.input_type
 class ElasticsearchProjectEndpointsArgs:
     def __init__(__self__, *,
-                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
-                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+                 elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The endpoint to access elasticsearch.
         :param pulumi.Input[_builtins.str] kibana: The endpoint to access kibana.
@@ -5728,51 +5728,51 @@ class ElasticsearchProjectEndpointsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access elasticsearch.
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kibana(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access kibana.
         """
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kibana(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kibana", value)
 
 
 class ElasticsearchProjectMetadataArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Date and time when the project was created.
     """
-    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    created_by: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the user.
     """
-    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    organization_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Organization ID who owns the project.
     """
-    suspended_at: NotRequired[pulumi.Input[_builtins.str]]
+    suspended_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Date and time when the project was suspended.
     """
-    suspended_reason: NotRequired[pulumi.Input[_builtins.str]]
+    suspended_reason: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Reason why the project was suspended.
     """
-    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
     """
@@ -5780,12 +5780,12 @@ class ElasticsearchProjectMetadataArgsDict(TypedDict):
 @pulumi.input_type
 class ElasticsearchProjectMetadataArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 suspended_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 suspended_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
         :param pulumi.Input[_builtins.str] created_by: ID of the user.
@@ -5809,83 +5809,83 @@ class ElasticsearchProjectMetadataArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the project was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_by(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the user.
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_by(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID who owns the project.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="suspendedAt")
-    def suspended_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suspended_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the project was suspended.
         """
         return pulumi.get(self, "suspended_at")
 
     @suspended_at.setter
-    def suspended_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suspended_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suspended_at", value)
 
     @_builtins.property
     @pulumi.getter(name="suspendedReason")
-    def suspended_reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suspended_reason(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Reason why the project was suspended.
         """
         return pulumi.get(self, "suspended_reason")
 
     @suspended_reason.setter
-    def suspended_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suspended_reason(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suspended_reason", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 class ElasticsearchProjectPrivateEndpointsArgsDict(TypedDict):
-    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access elasticsearch.
     """
-    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access kibana.
     """
@@ -5893,8 +5893,8 @@ class ElasticsearchProjectPrivateEndpointsArgsDict(TypedDict):
 @pulumi.input_type
 class ElasticsearchProjectPrivateEndpointsArgs:
     def __init__(__self__, *,
-                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
-                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+                 elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
         :param pulumi.Input[_builtins.str] kibana: The PrivateLink endpoint URL to access kibana.
@@ -5906,35 +5906,35 @@ class ElasticsearchProjectPrivateEndpointsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access elasticsearch.
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kibana(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access kibana.
         """
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kibana(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kibana", value)
 
 
 class ElasticsearchProjectSearchLakeArgsDict(TypedDict):
-    boost_window: NotRequired[pulumi.Input[_builtins.int]]
+    boost_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
     """
-    search_power: NotRequired[pulumi.Input[_builtins.int]]
+    search_power: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
     """
@@ -5942,8 +5942,8 @@ class ElasticsearchProjectSearchLakeArgsDict(TypedDict):
 @pulumi.input_type
 class ElasticsearchProjectSearchLakeArgs:
     def __init__(__self__, *,
-                 boost_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 search_power: Optional[pulumi.Input[_builtins.int]] = None):
+                 boost_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 search_power: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] boost_window: Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
         :param pulumi.Input[_builtins.int] search_power: Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
@@ -5955,35 +5955,35 @@ class ElasticsearchProjectSearchLakeArgs:
 
     @_builtins.property
     @pulumi.getter(name="boostWindow")
-    def boost_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def boost_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
         """
         return pulumi.get(self, "boost_window")
 
     @boost_window.setter
-    def boost_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def boost_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "boost_window", value)
 
     @_builtins.property
     @pulumi.getter(name="searchPower")
-    def search_power(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def search_power(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
         """
         return pulumi.get(self, "search_power")
 
     @search_power.setter
-    def search_power(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def search_power(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "search_power", value)
 
 
 class ObservabilityProjectCredentialsArgsDict(TypedDict):
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Basic auth password that can be used to access the Elasticsearch API.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Basic auth username that can be used to access the Elasticsearch API.
     """
@@ -5991,8 +5991,8 @@ class ObservabilityProjectCredentialsArgsDict(TypedDict):
 @pulumi.input_type
 class ObservabilityProjectCredentialsArgs:
     def __init__(__self__, *,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] password: Basic auth password that can be used to access the Elasticsearch API.
         :param pulumi.Input[_builtins.str] username: Basic auth username that can be used to access the Elasticsearch API.
@@ -6004,43 +6004,43 @@ class ObservabilityProjectCredentialsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Basic auth password that can be used to access the Elasticsearch API.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Basic auth username that can be used to access the Elasticsearch API.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class ObservabilityProjectEndpointsArgsDict(TypedDict):
-    apm: NotRequired[pulumi.Input[_builtins.str]]
+    apm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access apm.
     """
-    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access elasticsearch.
     """
-    ingest: NotRequired[pulumi.Input[_builtins.str]]
+    ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access the Managed OTLP Endpoint.
     """
-    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access kibana.
     """
@@ -6048,10 +6048,10 @@ class ObservabilityProjectEndpointsArgsDict(TypedDict):
 @pulumi.input_type
 class ObservabilityProjectEndpointsArgs:
     def __init__(__self__, *,
-                 apm: Optional[pulumi.Input[_builtins.str]] = None,
-                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
-                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+                 apm: pulumi.Input[Optional[_builtins.str]] = None,
+                 elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] apm: The endpoint to access apm.
         :param pulumi.Input[_builtins.str] elasticsearch: The endpoint to access elasticsearch.
@@ -6069,75 +6069,75 @@ class ObservabilityProjectEndpointsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def apm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def apm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access apm.
         """
         return pulumi.get(self, "apm")
 
     @apm.setter
-    def apm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def apm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apm", value)
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access elasticsearch.
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter
-    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access the Managed OTLP Endpoint.
         """
         return pulumi.get(self, "ingest")
 
     @ingest.setter
-    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kibana(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access kibana.
         """
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kibana(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kibana", value)
 
 
 class ObservabilityProjectMetadataArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Date and time when the project was created.
     """
-    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    created_by: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the user.
     """
-    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    organization_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Organization ID who owns the project.
     """
-    suspended_at: NotRequired[pulumi.Input[_builtins.str]]
+    suspended_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Date and time when the project was suspended.
     """
-    suspended_reason: NotRequired[pulumi.Input[_builtins.str]]
+    suspended_reason: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Reason why the project was suspended.
     """
-    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
     """
@@ -6145,12 +6145,12 @@ class ObservabilityProjectMetadataArgsDict(TypedDict):
 @pulumi.input_type
 class ObservabilityProjectMetadataArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 suspended_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 suspended_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
         :param pulumi.Input[_builtins.str] created_by: ID of the user.
@@ -6174,91 +6174,91 @@ class ObservabilityProjectMetadataArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the project was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_by(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the user.
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_by(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID who owns the project.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="suspendedAt")
-    def suspended_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suspended_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the project was suspended.
         """
         return pulumi.get(self, "suspended_at")
 
     @suspended_at.setter
-    def suspended_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suspended_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suspended_at", value)
 
     @_builtins.property
     @pulumi.getter(name="suspendedReason")
-    def suspended_reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suspended_reason(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Reason why the project was suspended.
         """
         return pulumi.get(self, "suspended_reason")
 
     @suspended_reason.setter
-    def suspended_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suspended_reason(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suspended_reason", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 class ObservabilityProjectPrivateEndpointsArgsDict(TypedDict):
-    apm: NotRequired[pulumi.Input[_builtins.str]]
+    apm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access APM.
     """
-    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access elasticsearch.
     """
-    ingest: NotRequired[pulumi.Input[_builtins.str]]
+    ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
     """
-    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access kibana.
     """
@@ -6266,10 +6266,10 @@ class ObservabilityProjectPrivateEndpointsArgsDict(TypedDict):
 @pulumi.input_type
 class ObservabilityProjectPrivateEndpointsArgs:
     def __init__(__self__, *,
-                 apm: Optional[pulumi.Input[_builtins.str]] = None,
-                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
-                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+                 apm: pulumi.Input[Optional[_builtins.str]] = None,
+                 elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] apm: The PrivateLink endpoint URL to access APM.
         :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
@@ -6287,83 +6287,83 @@ class ObservabilityProjectPrivateEndpointsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def apm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def apm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access APM.
         """
         return pulumi.get(self, "apm")
 
     @apm.setter
-    def apm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def apm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apm", value)
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access elasticsearch.
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter
-    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
         """
         return pulumi.get(self, "ingest")
 
     @ingest.setter
-    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kibana(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access kibana.
         """
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kibana(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kibana", value)
 
 
 class OrganizationMembersArgsDict(TypedDict):
-    deployment_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgsDict']]]]
+    deployment_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]]
     """
     Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
     """
-    email: NotRequired[pulumi.Input[_builtins.str]]
+    email: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Email address of the user.
     """
-    invitation_pending: NotRequired[pulumi.Input[_builtins.bool]]
+    invitation_pending: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true while the user has not yet accepted their invitation to the organization.
     """
-    organization_role: NotRequired[pulumi.Input[_builtins.str]]
+    organization_role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
     """
-    project_elasticsearch_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgsDict']]]]
+    project_elasticsearch_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]]
     """
     Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
     """
-    project_observability_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgsDict']]]]
+    project_observability_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]]
     """
     Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
     """
-    project_security_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgsDict']]]]
+    project_security_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]]
     """
     Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
     """
-    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    user_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     User ID.
     """
@@ -6371,14 +6371,14 @@ class OrganizationMembersArgsDict(TypedDict):
 @pulumi.input_type
 class OrganizationMembersArgs:
     def __init__(__self__, *,
-                 deployment_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 invitation_pending: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organization_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_elasticsearch_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]] = None,
-                 project_observability_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]] = None,
-                 project_security_roles: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 deployment_roles: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 invitation_pending: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_elasticsearch_roles: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]] = None,
+                 project_observability_roles: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]] = None,
+                 project_security_roles: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]] deployment_roles: Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
         :param pulumi.Input[_builtins.str] email: Email address of the user.
@@ -6408,98 +6408,98 @@ class OrganizationMembersArgs:
 
     @_builtins.property
     @pulumi.getter(name="deploymentRoles")
-    def deployment_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]:
+    def deployment_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]:
         """
         Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
         """
         return pulumi.get(self, "deployment_roles")
 
     @deployment_roles.setter
-    def deployment_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]):
+    def deployment_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]):
         pulumi.set(self, "deployment_roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address of the user.
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="invitationPending")
-    def invitation_pending(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def invitation_pending(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true while the user has not yet accepted their invitation to the organization.
         """
         return pulumi.get(self, "invitation_pending")
 
     @invitation_pending.setter
-    def invitation_pending(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def invitation_pending(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "invitation_pending", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationRole")
-    def organization_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
         """
         return pulumi.get(self, "organization_role")
 
     @organization_role.setter
-    def organization_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_role", value)
 
     @_builtins.property
     @pulumi.getter(name="projectElasticsearchRoles")
-    def project_elasticsearch_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]:
+    def project_elasticsearch_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]:
         """
         Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
         """
         return pulumi.get(self, "project_elasticsearch_roles")
 
     @project_elasticsearch_roles.setter
-    def project_elasticsearch_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]):
+    def project_elasticsearch_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]):
         pulumi.set(self, "project_elasticsearch_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectObservabilityRoles")
-    def project_observability_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]:
+    def project_observability_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]:
         """
         Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
         """
         return pulumi.get(self, "project_observability_roles")
 
     @project_observability_roles.setter
-    def project_observability_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]):
+    def project_observability_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]):
         pulumi.set(self, "project_observability_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectSecurityRoles")
-    def project_security_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]:
+    def project_security_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]:
         """
         Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
         """
         return pulumi.get(self, "project_security_roles")
 
     @project_security_roles.setter
-    def project_security_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]):
+    def project_security_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]):
         pulumi.set(self, "project_security_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User ID.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -6508,15 +6508,15 @@ class OrganizationMembersDeploymentRoleArgsDict(TypedDict):
     """
     Assigned role. Must be on of `viewer`, `editor` or `admin`.
     """
-    all_deployments: NotRequired[pulumi.Input[_builtins.bool]]
+    all_deployments: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Role applies to all deployments in the organization.
     """
-    application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    application_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
     """
-    deployment_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    deployment_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Role applies to deployments listed here.
     """
@@ -6525,9 +6525,9 @@ class OrganizationMembersDeploymentRoleArgsDict(TypedDict):
 class OrganizationMembersDeploymentRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 all_deployments: Optional[pulumi.Input[_builtins.bool]] = None,
-                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 deployment_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 all_deployments: pulumi.Input[Optional[_builtins.bool]] = None,
+                 application_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 deployment_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Assigned role. Must be on of `viewer`, `editor` or `admin`.
         :param pulumi.Input[_builtins.bool] all_deployments: Role applies to all deployments in the organization.
@@ -6556,38 +6556,38 @@ class OrganizationMembersDeploymentRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allDeployments")
-    def all_deployments(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def all_deployments(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Role applies to all deployments in the organization.
         """
         return pulumi.get(self, "all_deployments")
 
     @all_deployments.setter
-    def all_deployments(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def all_deployments(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "all_deployments", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationRoles")
-    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def application_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
         """
         return pulumi.get(self, "application_roles")
 
     @application_roles.setter
-    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def application_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "application_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentIds")
-    def deployment_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def deployment_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Role applies to deployments listed here.
         """
         return pulumi.get(self, "deployment_ids")
 
     @deployment_ids.setter
-    def deployment_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def deployment_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "deployment_ids", value)
 
 
@@ -6596,15 +6596,15 @@ class OrganizationMembersProjectElasticsearchRoleArgsDict(TypedDict):
     """
     Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
     """
-    all_projects: NotRequired[pulumi.Input[_builtins.bool]]
+    all_projects: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Role applies to all projects in the organization.
     """
-    application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    application_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
     """
-    project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    project_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Role applies to projects listed here.
     """
@@ -6613,9 +6613,9 @@ class OrganizationMembersProjectElasticsearchRoleArgsDict(TypedDict):
 class OrganizationMembersProjectElasticsearchRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 all_projects: Optional[pulumi.Input[_builtins.bool]] = None,
-                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 all_projects: pulumi.Input[Optional[_builtins.bool]] = None,
+                 application_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
         :param pulumi.Input[_builtins.bool] all_projects: Role applies to all projects in the organization.
@@ -6644,38 +6644,38 @@ class OrganizationMembersProjectElasticsearchRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allProjects")
-    def all_projects(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def all_projects(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Role applies to all projects in the organization.
         """
         return pulumi.get(self, "all_projects")
 
     @all_projects.setter
-    def all_projects(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def all_projects(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "all_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationRoles")
-    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def application_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
         """
         return pulumi.get(self, "application_roles")
 
     @application_roles.setter
-    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def application_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "application_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectIds")
-    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def project_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Role applies to projects listed here.
         """
         return pulumi.get(self, "project_ids")
 
     @project_ids.setter
-    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def project_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_ids", value)
 
 
@@ -6684,15 +6684,15 @@ class OrganizationMembersProjectObservabilityRoleArgsDict(TypedDict):
     """
     Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
     """
-    all_projects: NotRequired[pulumi.Input[_builtins.bool]]
+    all_projects: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Role applies to all projects in the organization.
     """
-    application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    application_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
     """
-    project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    project_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Role applies to projects listed here.
     """
@@ -6701,9 +6701,9 @@ class OrganizationMembersProjectObservabilityRoleArgsDict(TypedDict):
 class OrganizationMembersProjectObservabilityRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 all_projects: Optional[pulumi.Input[_builtins.bool]] = None,
-                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 all_projects: pulumi.Input[Optional[_builtins.bool]] = None,
+                 application_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
         :param pulumi.Input[_builtins.bool] all_projects: Role applies to all projects in the organization.
@@ -6732,38 +6732,38 @@ class OrganizationMembersProjectObservabilityRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allProjects")
-    def all_projects(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def all_projects(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Role applies to all projects in the organization.
         """
         return pulumi.get(self, "all_projects")
 
     @all_projects.setter
-    def all_projects(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def all_projects(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "all_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationRoles")
-    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def application_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
         """
         return pulumi.get(self, "application_roles")
 
     @application_roles.setter
-    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def application_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "application_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectIds")
-    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def project_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Role applies to projects listed here.
         """
         return pulumi.get(self, "project_ids")
 
     @project_ids.setter
-    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def project_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_ids", value)
 
 
@@ -6772,15 +6772,15 @@ class OrganizationMembersProjectSecurityRoleArgsDict(TypedDict):
     """
     Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
     """
-    all_projects: NotRequired[pulumi.Input[_builtins.bool]]
+    all_projects: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Role applies to all projects in the organization.
     """
-    application_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    application_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
     """
-    project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    project_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Role applies to projects listed here.
     """
@@ -6789,9 +6789,9 @@ class OrganizationMembersProjectSecurityRoleArgsDict(TypedDict):
 class OrganizationMembersProjectSecurityRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 all_projects: Optional[pulumi.Input[_builtins.bool]] = None,
-                 application_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 all_projects: pulumi.Input[Optional[_builtins.bool]] = None,
+                 application_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
         :param pulumi.Input[_builtins.bool] all_projects: Role applies to all projects in the organization.
@@ -6820,47 +6820,47 @@ class OrganizationMembersProjectSecurityRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allProjects")
-    def all_projects(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def all_projects(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Role applies to all projects in the organization.
         """
         return pulumi.get(self, "all_projects")
 
     @all_projects.setter
-    def all_projects(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def all_projects(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "all_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationRoles")
-    def application_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def application_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
         """
         return pulumi.get(self, "application_roles")
 
     @application_roles.setter
-    def application_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def application_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "application_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectIds")
-    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def project_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Role applies to projects listed here.
         """
         return pulumi.get(self, "project_ids")
 
     @project_ids.setter
-    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def project_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_ids", value)
 
 
 class SecurityProjectCredentialsArgsDict(TypedDict):
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Basic auth password that can be used to access the Elasticsearch API.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Basic auth username that can be used to access the Elasticsearch API.
     """
@@ -6868,8 +6868,8 @@ class SecurityProjectCredentialsArgsDict(TypedDict):
 @pulumi.input_type
 class SecurityProjectCredentialsArgs:
     def __init__(__self__, *,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] password: Basic auth password that can be used to access the Elasticsearch API.
         :param pulumi.Input[_builtins.str] username: Basic auth username that can be used to access the Elasticsearch API.
@@ -6881,39 +6881,39 @@ class SecurityProjectCredentialsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Basic auth password that can be used to access the Elasticsearch API.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Basic auth username that can be used to access the Elasticsearch API.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class SecurityProjectEndpointsArgsDict(TypedDict):
-    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access elasticsearch.
     """
-    ingest: NotRequired[pulumi.Input[_builtins.str]]
+    ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access the Managed OTLP Endpoint.
     """
-    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access kibana.
     """
@@ -6921,9 +6921,9 @@ class SecurityProjectEndpointsArgsDict(TypedDict):
 @pulumi.input_type
 class SecurityProjectEndpointsArgs:
     def __init__(__self__, *,
-                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
-                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+                 elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The endpoint to access elasticsearch.
         :param pulumi.Input[_builtins.str] ingest: The endpoint to access the Managed OTLP Endpoint.
@@ -6938,63 +6938,63 @@ class SecurityProjectEndpointsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access elasticsearch.
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter
-    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access the Managed OTLP Endpoint.
         """
         return pulumi.get(self, "ingest")
 
     @ingest.setter
-    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kibana(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to access kibana.
         """
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kibana(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kibana", value)
 
 
 class SecurityProjectMetadataArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Date and time when the project was created.
     """
-    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    created_by: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the user.
     """
-    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    organization_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Organization ID who owns the project.
     """
-    suspended_at: NotRequired[pulumi.Input[_builtins.str]]
+    suspended_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Date and time when the project was suspended.
     """
-    suspended_reason: NotRequired[pulumi.Input[_builtins.str]]
+    suspended_reason: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Reason why the project was suspended.
     """
-    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
     """
@@ -7002,12 +7002,12 @@ class SecurityProjectMetadataArgsDict(TypedDict):
 @pulumi.input_type
 class SecurityProjectMetadataArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 suspended_reason: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 suspended_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 suspended_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
         :param pulumi.Input[_builtins.str] created_by: ID of the user.
@@ -7031,87 +7031,87 @@ class SecurityProjectMetadataArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the project was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="createdBy")
-    def created_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_by(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the user.
         """
         return pulumi.get(self, "created_by")
 
     @created_by.setter
-    def created_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_by(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_by", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID who owns the project.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="suspendedAt")
-    def suspended_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suspended_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the project was suspended.
         """
         return pulumi.get(self, "suspended_at")
 
     @suspended_at.setter
-    def suspended_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suspended_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suspended_at", value)
 
     @_builtins.property
     @pulumi.getter(name="suspendedReason")
-    def suspended_reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suspended_reason(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Reason why the project was suspended.
         """
         return pulumi.get(self, "suspended_reason")
 
     @suspended_reason.setter
-    def suspended_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suspended_reason(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suspended_reason", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 class SecurityProjectPrivateEndpointsArgsDict(TypedDict):
-    elasticsearch: NotRequired[pulumi.Input[_builtins.str]]
+    elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access elasticsearch.
     """
-    ingest: NotRequired[pulumi.Input[_builtins.str]]
+    ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
     """
-    kibana: NotRequired[pulumi.Input[_builtins.str]]
+    kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access kibana.
     """
@@ -7119,9 +7119,9 @@ class SecurityProjectPrivateEndpointsArgsDict(TypedDict):
 @pulumi.input_type
 class SecurityProjectPrivateEndpointsArgs:
     def __init__(__self__, *,
-                 elasticsearch: Optional[pulumi.Input[_builtins.str]] = None,
-                 ingest: Optional[pulumi.Input[_builtins.str]] = None,
-                 kibana: Optional[pulumi.Input[_builtins.str]] = None):
+                 elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 ingest: pulumi.Input[Optional[_builtins.str]] = None,
+                 kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
         :param pulumi.Input[_builtins.str] ingest: The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
@@ -7136,38 +7136,38 @@ class SecurityProjectPrivateEndpointsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access elasticsearch.
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter
-    def ingest(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
         """
         return pulumi.get(self, "ingest")
 
     @ingest.setter
-    def ingest(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kibana(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PrivateLink endpoint URL to access kibana.
         """
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kibana(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kibana", value)
 
 
@@ -7219,7 +7219,7 @@ class SecurityProjectProductTypeArgs:
 
 
 class SecurityProjectSearchLakeArgsDict(TypedDict):
-    data_retention: NotRequired[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgsDict']]
+    data_retention: NotRequired[pulumi.Input[Optional['SecurityProjectSearchLakeDataRetentionArgs']]]
     """
     Configuration to control the data retention in Elasticsearch data streams.
     """
@@ -7227,7 +7227,7 @@ class SecurityProjectSearchLakeArgsDict(TypedDict):
 @pulumi.input_type
 class SecurityProjectSearchLakeArgs:
     def __init__(__self__, *,
-                 data_retention: Optional[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs']] = None):
+                 data_retention: pulumi.Input[Optional['SecurityProjectSearchLakeDataRetentionArgs']] = None):
         """
         :param pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs'] data_retention: Configuration to control the data retention in Elasticsearch data streams.
         """
@@ -7236,23 +7236,23 @@ class SecurityProjectSearchLakeArgs:
 
     @_builtins.property
     @pulumi.getter(name="dataRetention")
-    def data_retention(self) -> Optional[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs']]:
+    def data_retention(self) -> pulumi.Input[Optional['SecurityProjectSearchLakeDataRetentionArgs']]:
         """
         Configuration to control the data retention in Elasticsearch data streams.
         """
         return pulumi.get(self, "data_retention")
 
     @data_retention.setter
-    def data_retention(self, value: Optional[pulumi.Input['SecurityProjectSearchLakeDataRetentionArgs']]):
+    def data_retention(self, value: pulumi.Input[Optional['SecurityProjectSearchLakeDataRetentionArgs']]):
         pulumi.set(self, "data_retention", value)
 
 
 class SecurityProjectSearchLakeDataRetentionArgsDict(TypedDict):
-    default_retention_days: NotRequired[pulumi.Input[_builtins.int]]
+    default_retention_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
     """
-    max_retention_days: NotRequired[pulumi.Input[_builtins.int]]
+    max_retention_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
     """
@@ -7260,8 +7260,8 @@ class SecurityProjectSearchLakeDataRetentionArgsDict(TypedDict):
 @pulumi.input_type
 class SecurityProjectSearchLakeDataRetentionArgs:
     def __init__(__self__, *,
-                 default_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retention_days: Optional[pulumi.Input[_builtins.int]] = None):
+                 default_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retention_days: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] default_retention_days: Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
         :param pulumi.Input[_builtins.int] max_retention_days: Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
@@ -7273,26 +7273,26 @@ class SecurityProjectSearchLakeDataRetentionArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultRetentionDays")
-    def default_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_retention_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
         """
         return pulumi.get(self, "default_retention_days")
 
     @default_retention_days.setter
-    def default_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_retention_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_retention_days", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetentionDays")
-    def max_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retention_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
         """
         return pulumi.get(self, "max_retention_days")
 
     @max_retention_days.setter
-    def max_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retention_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retention_days", value)
 
 
@@ -7301,7 +7301,7 @@ class ServerlessTrafficFilterRuleArgsDict(TypedDict):
     """
     Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Description of the rule.
     """
@@ -7310,7 +7310,7 @@ class ServerlessTrafficFilterRuleArgsDict(TypedDict):
 class ServerlessTrafficFilterRuleArgs:
     def __init__(__self__, *,
                  source: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] source: Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
         :param pulumi.Input[_builtins.str] description: Description of the rule.
@@ -7333,14 +7333,14 @@ class ServerlessTrafficFilterRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the rule.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
 
@@ -7396,27 +7396,27 @@ class SnapshotRepositoryS3ArgsDict(TypedDict):
     """
     Name of the S3 bucket to use for snapshots.
     """
-    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
     """
-    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
     """
-    path_style_access: NotRequired[pulumi.Input[_builtins.bool]]
+    path_style_access: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An S3 secret key. If set, the access_key setting must also be specified.
     """
-    server_side_encryption: NotRequired[pulumi.Input[_builtins.bool]]
+    server_side_encryption: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
     """
@@ -7425,12 +7425,12 @@ class SnapshotRepositoryS3ArgsDict(TypedDict):
 class SnapshotRepositoryS3Args:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_style_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_side_encryption: Optional[pulumi.Input[_builtins.bool]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_style_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] bucket: Name of the S3 bucket to use for snapshots.
         :param pulumi.Input[_builtins.str] access_key: An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
@@ -7468,74 +7468,74 @@ class SnapshotRepositoryS3Args:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An S3 access key. If set, the secret_key setting must also be specified. If unset, the client will use the instance or container role instead.
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="pathStyleAccess")
-    def path_style_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def path_style_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
         """
         return pulumi.get(self, "path_style_access")
 
     @path_style_access.setter
-    def path_style_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def path_style_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "path_style_access", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An S3 secret key. If set, the access_key setting must also be specified.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def server_side_encryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
         """
         return pulumi.get(self, "server_side_encryption")
 
     @server_side_encryption.setter
-    def server_side_encryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def server_side_encryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "server_side_encryption", value)
 
 

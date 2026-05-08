@@ -22,7 +22,7 @@ class DeploymentElasticsearchKeystoreArgs:
                  deployment_id: pulumi.Input[_builtins.str],
                  setting_name: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.str],
-                 as_file: Optional[pulumi.Input[_builtins.bool]] = None):
+                 as_file: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DeploymentElasticsearchKeystore resource.
 
@@ -75,24 +75,24 @@ class DeploymentElasticsearchKeystoreArgs:
 
     @_builtins.property
     @pulumi.getter(name="asFile")
-    def as_file(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def as_file(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
         return pulumi.get(self, "as_file")
 
     @as_file.setter
-    def as_file(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def as_file(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "as_file", value)
 
 
 @pulumi.input_type
 class _DeploymentElasticsearchKeystoreState:
     def __init__(__self__, *,
-                 as_file: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 setting_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 as_file: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 setting_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentElasticsearchKeystore resources.
 
@@ -112,50 +112,50 @@ class _DeploymentElasticsearchKeystoreState:
 
     @_builtins.property
     @pulumi.getter(name="asFile")
-    def as_file(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def as_file(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
         """
         return pulumi.get(self, "as_file")
 
     @as_file.setter
-    def as_file(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def as_file(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "as_file", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="settingName")
-    def setting_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def setting_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
         """
         return pulumi.get(self, "setting_name")
 
     @setting_name.setter
-    def setting_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def setting_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "setting_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -165,10 +165,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 as_file: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 setting_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 as_file: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 setting_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides an Elastic Cloud Deployment Elasticsearch keystore resource, which allows you to create and update Elasticsearch keystore settings.
@@ -346,10 +346,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 as_file: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 setting_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 as_file: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 setting_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -381,10 +381,10 @@ class DeploymentElasticsearchKeystore(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            as_file: Optional[pulumi.Input[_builtins.bool]] = None,
-            deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-            setting_name: Optional[pulumi.Input[_builtins.str]] = None,
-            value: Optional[pulumi.Input[_builtins.str]] = None) -> 'DeploymentElasticsearchKeystore':
+            as_file: pulumi.Input[Optional[_builtins.bool]] = None,
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            setting_name: pulumi.Input[Optional[_builtins.str]] = None,
+            value: pulumi.Input[Optional[_builtins.str]] = None) -> 'DeploymentElasticsearchKeystore':
         """
         Get an existing DeploymentElasticsearchKeystore resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

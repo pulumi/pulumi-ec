@@ -9,81 +9,81 @@ export interface DeploymentApm {
     /**
      * Optionally define the Apm configuration options for the APM Server
      */
-    config?: pulumi.Input<inputs.DeploymentApmConfig>;
-    elasticsearchClusterRefId?: pulumi.Input<string>;
-    httpEndpoint?: pulumi.Input<string>;
-    httpsEndpoint?: pulumi.Input<string>;
-    instanceConfigurationId?: pulumi.Input<string>;
-    instanceConfigurationVersion?: pulumi.Input<number>;
-    latestInstanceConfigurationId?: pulumi.Input<string>;
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
-    refId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
-    resourceId?: pulumi.Input<string>;
-    size?: pulumi.Input<string>;
+    config?: pulumi.Input<inputs.DeploymentApmConfig | undefined>;
+    elasticsearchClusterRefId?: pulumi.Input<string | undefined>;
+    httpEndpoint?: pulumi.Input<string | undefined>;
+    httpsEndpoint?: pulumi.Input<string | undefined>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    refId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
+    resourceId?: pulumi.Input<string | undefined>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Optional size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
-    zoneCount?: pulumi.Input<number>;
+    sizeResource?: pulumi.Input<string | undefined>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentApmConfig {
     /**
      * Optionally enable debug mode for APM servers - defaults to false
      */
-    debugEnabled?: pulumi.Input<boolean>;
+    debugEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Optionally override the docker image the APM nodes will use. This option will not work in ESS customers and should only be changed if you know what you're doing.
      */
-    dockerImage?: pulumi.Input<string>;
+    dockerImage?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsJson?: pulumi.Input<string>;
+    userSettingsJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideJson?: pulumi.Input<string>;
+    userSettingsOverrideJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
+    userSettingsOverrideYaml?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsYaml?: pulumi.Input<string>;
+    userSettingsYaml?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearch {
     /**
      * Enable or disable autoscaling. Defaults to the setting coming from the deployment template.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * The encoded Elasticsearch credentials to use in Beats or Logstash
      */
-    cloudId?: pulumi.Input<string>;
+    cloudId?: pulumi.Input<string | undefined>;
     /**
      * 'cold' topology element
      */
-    cold?: pulumi.Input<inputs.DeploymentElasticsearchCold>;
+    cold?: pulumi.Input<inputs.DeploymentElasticsearchCold | undefined>;
     /**
      * Elasticsearch settings which will be applied to all topologies
      */
-    config?: pulumi.Input<inputs.DeploymentElasticsearchConfig>;
+    config?: pulumi.Input<inputs.DeploymentElasticsearchConfig | undefined>;
     /**
      * 'coordinating' topology element
      */
-    coordinating?: pulumi.Input<inputs.DeploymentElasticsearchCoordinating>;
+    coordinating?: pulumi.Input<inputs.DeploymentElasticsearchCoordinating | undefined>;
     /**
      * Optional Elasticsearch extensions such as custom bundles or plugins.
      */
-    extensions?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchExtension>[]>;
+    extensions?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchExtension>[] | undefined>;
     /**
      * 'frozen' topology element
      */
-    frozen?: pulumi.Input<inputs.DeploymentElasticsearchFrozen>;
+    frozen?: pulumi.Input<inputs.DeploymentElasticsearchFrozen | undefined>;
     /**
      * 'hot' topology element
      */
@@ -91,65 +91,65 @@ export interface DeploymentElasticsearch {
     /**
      * The Elasticsearch resource HTTP endpoint
      */
-    httpEndpoint?: pulumi.Input<string>;
+    httpEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The Elasticsearch resource HTTPs endpoint
      */
-    httpsEndpoint?: pulumi.Input<string>;
+    httpsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Keystore contents that are controlled by the deployment resource.
      */
-    keystoreContents?: pulumi.Input<{[key: string]: pulumi.Input<inputs.DeploymentElasticsearchKeystoreContents>}>;
+    keystoreContents?: pulumi.Input<{[key: string]: pulumi.Input<inputs.DeploymentElasticsearchKeystoreContents>} | undefined>;
     /**
      * 'master' topology element
      */
-    master?: pulumi.Input<inputs.DeploymentElasticsearchMaster>;
+    master?: pulumi.Input<inputs.DeploymentElasticsearchMaster | undefined>;
     /**
      * 'ml' topology element
      */
-    ml?: pulumi.Input<inputs.DeploymentElasticsearchMl>;
+    ml?: pulumi.Input<inputs.DeploymentElasticsearchMl | undefined>;
     /**
      * A human readable reference for the Elasticsearch resource. The default value `main-elasticsearch` is recommended.
      */
-    refId?: pulumi.Input<string>;
+    refId?: pulumi.Input<string | undefined>;
     /**
      * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
      */
-    remoteClusters?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchRemoteCluster>[]>;
+    remoteClusters?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchRemoteCluster>[] | undefined>;
     /**
      * The Elasticsearch resource unique identifier
      */
-    resourceId?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string | undefined>;
     /**
      * (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
      */
-    snapshot?: pulumi.Input<inputs.DeploymentElasticsearchSnapshot>;
+    snapshot?: pulumi.Input<inputs.DeploymentElasticsearchSnapshot | undefined>;
     /**
      * Restores data from a snapshot of another deployment.
      *
      * > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
      */
-    snapshotSource?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotSource>;
+    snapshotSource?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotSource | undefined>;
     /**
      * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
      */
-    strategy?: pulumi.Input<string>;
+    strategy?: pulumi.Input<string | undefined>;
     /**
      * Optional Elasticsearch account trust settings.
      */
-    trustAccounts?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustAccount>[]>;
+    trustAccounts?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustAccount>[] | undefined>;
     /**
      * Optional Elasticsearch external trust settings.
      */
-    trustExternals?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustExternal>[]>;
+    trustExternals?: pulumi.Input<pulumi.Input<inputs.DeploymentElasticsearchTrustExternal>[] | undefined>;
     /**
      * 'warm' topology element
      */
-    warm?: pulumi.Input<inputs.DeploymentElasticsearchWarm>;
+    warm?: pulumi.Input<inputs.DeploymentElasticsearchWarm | undefined>;
 }
 
 export interface DeploymentElasticsearchCold {
@@ -160,105 +160,105 @@ export interface DeploymentElasticsearchCold {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchColdAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchConfig {
     /**
      * Overrides the docker image the Elasticsearch nodes will use. Note that this field will only work for internal users only.
      */
-    dockerImage?: pulumi.Input<string>;
+    dockerImage?: pulumi.Input<string | undefined>;
     /**
      * List of Elasticsearch supported plugins, which vary from version to version. Check the Stack Pack version to see which plugins are supported for each version. This is currently only available from the UI and [ecctl](https://www.elastic.co/guide/en/ecctl/master/ecctl_stack_list.html)
      */
-    plugins?: pulumi.Input<pulumi.Input<string>[]>;
+    plugins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * JSON-formatted user level "elasticsearch.yml" setting overrides
      */
-    userSettingsJson?: pulumi.Input<string>;
+    userSettingsJson?: pulumi.Input<string | undefined>;
     /**
      * JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
      */
-    userSettingsOverrideJson?: pulumi.Input<string>;
+    userSettingsOverrideJson?: pulumi.Input<string | undefined>;
     /**
      * YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
      */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
+    userSettingsOverrideYaml?: pulumi.Input<string | undefined>;
     /**
      * YAML-formatted user level "elasticsearch.yml" setting overrides
      */
-    userSettingsYaml?: pulumi.Input<string>;
+    userSettingsYaml?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchCoordinating {
@@ -269,78 +269,78 @@ export interface DeploymentElasticsearchCoordinating {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchCoordinatingAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchExtension {
@@ -370,78 +370,78 @@ export interface DeploymentElasticsearchFrozen {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchFrozenAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchHot {
@@ -452,85 +452,85 @@ export interface DeploymentElasticsearchHot {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchHotAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchKeystoreContents {
     /**
      * If true, the secret is handled as a file. Otherwise, it's handled as a plain string.
      */
-    asFile?: pulumi.Input<boolean>;
+    asFile?: pulumi.Input<boolean | undefined>;
     /**
      * Secret value. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      */
@@ -545,78 +545,78 @@ export interface DeploymentElasticsearchMaster {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchMasterAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchMl {
@@ -627,78 +627,78 @@ export interface DeploymentElasticsearchMl {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchMlAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentElasticsearchRemoteCluster {
@@ -713,11 +713,11 @@ export interface DeploymentElasticsearchRemoteCluster {
     /**
      * Remote elasticsearch "refId", it is best left to the default value
      */
-    refId?: pulumi.Input<string>;
+    refId?: pulumi.Input<string | undefined>;
     /**
      * If true, skip the cluster during search when disconnected
      */
-    skipUnavailable?: pulumi.Input<boolean>;
+    skipUnavailable?: pulumi.Input<boolean | undefined>;
 }
 
 export interface DeploymentElasticsearchSnapshot {
@@ -728,14 +728,14 @@ export interface DeploymentElasticsearchSnapshot {
     /**
      * Snapshot repository configuration
      */
-    repository?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepository>;
+    repository?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepository | undefined>;
 }
 
 export interface DeploymentElasticsearchSnapshotRepository {
     /**
      * Cluster snapshot reference repository settings, containing the repository name in ECE fashion
      */
-    reference?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepositoryReference>;
+    reference?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotRepositoryReference | undefined>;
 }
 
 export interface DeploymentElasticsearchSnapshotRepositoryReference {
@@ -749,7 +749,7 @@ export interface DeploymentElasticsearchSnapshotSource {
     /**
      * Name of the snapshot to restore. Use '**latest_success**' to get the most recent successful snapshot.
      */
-    snapshotName?: pulumi.Input<string>;
+    snapshotName?: pulumi.Input<string | undefined>;
     /**
      * ID of the Elasticsearch cluster that will be used as the source of the snapshot
      */
@@ -768,7 +768,7 @@ export interface DeploymentElasticsearchTrustAccount {
     /**
      * The list of clusters to trust. Only used when `trustAll` is false.
      */
-    trustAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
+    trustAllowlists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface DeploymentElasticsearchTrustExternal {
@@ -783,7 +783,7 @@ export interface DeploymentElasticsearchTrustExternal {
     /**
      * The list of clusters to trust. Only used when `trustAll` is false.
      */
-    trustAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
+    trustAllowlists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface DeploymentElasticsearchWarm {
@@ -794,181 +794,181 @@ export interface DeploymentElasticsearchWarm {
     /**
      * Instance Configuration ID of the topology element
      */
-    instanceConfigurationId?: pulumi.Input<string>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Instance Configuration version of the topology element
      */
-    instanceConfigurationVersion?: pulumi.Input<number>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * Latest Instance Configuration ID available on the deployment template for the topology element
      */
-    latestInstanceConfigurationId?: pulumi.Input<string>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Latest version available for the Instance Configuration with the latest*instance*configuration_id
      */
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
     /**
      * The computed list of node roles for the current topology element
      */
-    nodeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (data node)
      */
-    nodeTypeData?: pulumi.Input<string>;
+    nodeTypeData?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (ingest node)
      */
-    nodeTypeIngest?: pulumi.Input<string>;
+    nodeTypeIngest?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (master node)
      */
-    nodeTypeMaster?: pulumi.Input<string>;
+    nodeTypeMaster?: pulumi.Input<string | undefined>;
     /**
      * The node type for the Elasticsearch Topology element (machine learning node)
      */
-    nodeTypeMl?: pulumi.Input<string>;
+    nodeTypeMl?: pulumi.Input<string | undefined>;
     /**
      * Amount of "sizeResource" per node in the "\n\ng" notation
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
+    sizeResource?: pulumi.Input<string | undefined>;
     /**
      * Number of zones that the Elasticsearch cluster will span. This is used to set HA
      */
-    zoneCount?: pulumi.Input<number>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentElasticsearchWarmAutoscaling {
     /**
      * Whether this specific tier should be auto-scaled, overrides deployment-wide setting. Allowed for `ml` tier only.
      */
-    autoscale?: pulumi.Input<boolean>;
+    autoscale?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum autoscaling size. Set it to "0g" if tier should not be created when autoscaling is enabled on ES level
      */
-    maxSize?: pulumi.Input<string>;
+    maxSize?: pulumi.Input<string | undefined>;
     /**
      * Maximum resource type for the maximum autoscaling setting.
      */
-    maxSizeResource?: pulumi.Input<string>;
+    maxSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Minimum autoscaling size.
      */
-    minSize?: pulumi.Input<string>;
+    minSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum resource type for the minimum autoscaling setting.
      */
-    minSizeResource?: pulumi.Input<string>;
+    minSizeResource?: pulumi.Input<string | undefined>;
     /**
      * Computed policy overrides set directly via the API or other clients.
      */
-    policyOverrideJson?: pulumi.Input<string>;
+    policyOverrideJson?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentEnterpriseSearch {
     /**
      * Optionally define the Enterprise Search configuration options for the Enterprise Search Server
      */
-    config?: pulumi.Input<inputs.DeploymentEnterpriseSearchConfig>;
-    elasticsearchClusterRefId?: pulumi.Input<string>;
-    httpEndpoint?: pulumi.Input<string>;
-    httpsEndpoint?: pulumi.Input<string>;
-    instanceConfigurationId?: pulumi.Input<string>;
-    instanceConfigurationVersion?: pulumi.Input<number>;
-    latestInstanceConfigurationId?: pulumi.Input<string>;
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
-    nodeTypeAppserver?: pulumi.Input<boolean>;
-    nodeTypeConnector?: pulumi.Input<boolean>;
-    nodeTypeWorker?: pulumi.Input<boolean>;
-    refId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
-    resourceId?: pulumi.Input<string>;
-    size?: pulumi.Input<string>;
+    config?: pulumi.Input<inputs.DeploymentEnterpriseSearchConfig | undefined>;
+    elasticsearchClusterRefId?: pulumi.Input<string | undefined>;
+    httpEndpoint?: pulumi.Input<string | undefined>;
+    httpsEndpoint?: pulumi.Input<string | undefined>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    nodeTypeAppserver?: pulumi.Input<boolean | undefined>;
+    nodeTypeConnector?: pulumi.Input<boolean | undefined>;
+    nodeTypeWorker?: pulumi.Input<boolean | undefined>;
+    refId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
+    resourceId?: pulumi.Input<string | undefined>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Optional size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
-    zoneCount?: pulumi.Input<number>;
+    sizeResource?: pulumi.Input<string | undefined>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentEnterpriseSearchConfig {
     /**
      * Optionally override the docker image the Enterprise Search nodes will use. Note that this field will only work for internal users only.
      */
-    dockerImage?: pulumi.Input<string>;
+    dockerImage?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsJson?: pulumi.Input<string>;
+    userSettingsJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideJson?: pulumi.Input<string>;
+    userSettingsOverrideJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
+    userSettingsOverrideYaml?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsYaml?: pulumi.Input<string>;
+    userSettingsYaml?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentIntegrationsServer {
     /**
      * Optionally define the Integrations Server configuration options for the IntegrationsServer Server
      */
-    config?: pulumi.Input<inputs.DeploymentIntegrationsServerConfig>;
-    elasticsearchClusterRefId?: pulumi.Input<string>;
+    config?: pulumi.Input<inputs.DeploymentIntegrationsServerConfig | undefined>;
+    elasticsearchClusterRefId?: pulumi.Input<string | undefined>;
     /**
      * URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
      */
-    endpoints?: pulumi.Input<inputs.DeploymentIntegrationsServerEndpoints>;
-    httpEndpoint?: pulumi.Input<string>;
-    httpsEndpoint?: pulumi.Input<string>;
-    instanceConfigurationId?: pulumi.Input<string>;
-    instanceConfigurationVersion?: pulumi.Input<number>;
-    latestInstanceConfigurationId?: pulumi.Input<string>;
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
-    refId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
-    resourceId?: pulumi.Input<string>;
-    size?: pulumi.Input<string>;
+    endpoints?: pulumi.Input<inputs.DeploymentIntegrationsServerEndpoints | undefined>;
+    httpEndpoint?: pulumi.Input<string | undefined>;
+    httpsEndpoint?: pulumi.Input<string | undefined>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    refId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
+    resourceId?: pulumi.Input<string | undefined>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Optional size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
-    zoneCount?: pulumi.Input<number>;
+    sizeResource?: pulumi.Input<string | undefined>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentIntegrationsServerConfig {
     /**
      * Optionally enable debug mode for Integrations Server instances - defaults to false
      */
-    debugEnabled?: pulumi.Input<boolean>;
+    debugEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Optionally override the docker image the Integrations Server nodes will use. Note that this field will only work for internal users only.
      */
-    dockerImage?: pulumi.Input<string>;
+    dockerImage?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsJson?: pulumi.Input<string>;
+    userSettingsJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideJson?: pulumi.Input<string>;
+    userSettingsOverrideJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
+    userSettingsOverrideYaml?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsYaml?: pulumi.Input<string>;
+    userSettingsYaml?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentIntegrationsServerEndpoints {
@@ -982,155 +982,155 @@ export interface DeploymentKibana {
     /**
      * Optionally define the Kibana configuration options for the Kibana Server
      */
-    config?: pulumi.Input<inputs.DeploymentKibanaConfig>;
-    elasticsearchClusterRefId?: pulumi.Input<string>;
-    httpEndpoint?: pulumi.Input<string>;
-    httpsEndpoint?: pulumi.Input<string>;
-    instanceConfigurationId?: pulumi.Input<string>;
-    instanceConfigurationVersion?: pulumi.Input<number>;
-    latestInstanceConfigurationId?: pulumi.Input<string>;
-    latestInstanceConfigurationVersion?: pulumi.Input<number>;
-    refId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
-    resourceId?: pulumi.Input<string>;
-    size?: pulumi.Input<string>;
+    config?: pulumi.Input<inputs.DeploymentKibanaConfig | undefined>;
+    elasticsearchClusterRefId?: pulumi.Input<string | undefined>;
+    httpEndpoint?: pulumi.Input<string | undefined>;
+    httpsEndpoint?: pulumi.Input<string | undefined>;
+    instanceConfigurationId?: pulumi.Input<string | undefined>;
+    instanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    latestInstanceConfigurationId?: pulumi.Input<string | undefined>;
+    latestInstanceConfigurationVersion?: pulumi.Input<number | undefined>;
+    refId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
+    resourceId?: pulumi.Input<string | undefined>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * Optional size type, defaults to "memory".
      */
-    sizeResource?: pulumi.Input<string>;
-    zoneCount?: pulumi.Input<number>;
+    sizeResource?: pulumi.Input<string | undefined>;
+    zoneCount?: pulumi.Input<number | undefined>;
 }
 
 export interface DeploymentKibanaConfig {
     /**
      * Optionally override the docker image the Kibana nodes will use. Note that this field will only work for internal users only.
      */
-    dockerImage?: pulumi.Input<string>;
+    dockerImage?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsJson?: pulumi.Input<string>;
+    userSettingsJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideJson?: pulumi.Input<string>;
+    userSettingsOverrideJson?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
      */
-    userSettingsOverrideYaml?: pulumi.Input<string>;
+    userSettingsOverrideYaml?: pulumi.Input<string | undefined>;
     /**
      * An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
      */
-    userSettingsYaml?: pulumi.Input<string>;
+    userSettingsYaml?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentObservability {
     deploymentId: pulumi.Input<string>;
-    logs?: pulumi.Input<boolean>;
-    metrics?: pulumi.Input<boolean>;
-    refId?: pulumi.Input<string>;
+    logs?: pulumi.Input<boolean | undefined>;
+    metrics?: pulumi.Input<boolean | undefined>;
+    refId?: pulumi.Input<string | undefined>;
 }
 
 export interface DeploymentTrafficFilterRule {
     /**
      * Azure endpoint GUID. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      */
-    azureEndpointGuid?: pulumi.Input<string>;
+    azureEndpointGuid?: pulumi.Input<string | undefined>;
     /**
      * Azure endpoint name. Only applicable when the ruleset type is set to `azurePrivateEndpoint`
      */
-    azureEndpointName?: pulumi.Input<string>;
+    azureEndpointName?: pulumi.Input<string | undefined>;
     /**
      * Description of this individual rule
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Computed rule ID
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The remote cluster ID. Only applicable when the ruleset type is set to `remoteCluster`
      */
-    remoteClusterId?: pulumi.Input<string>;
+    remoteClusterId?: pulumi.Input<string | undefined>;
     /**
      * The remote cluster organization ID. Only applicable when the ruleset type is set to `remoteCluster`
      */
-    remoteClusterOrgId?: pulumi.Input<string>;
+    remoteClusterOrgId?: pulumi.Input<string | undefined>;
     /**
      * Traffic filter source: IP address, CIDR mask, or VPC endpoint ID, **only required** when the type is not `azurePrivateEndpoint`
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
 }
 
 export interface ElasticsearchProjectCredentials {
     /**
      * Basic auth password that can be used to access the Elasticsearch API.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Basic auth username that can be used to access the Elasticsearch API.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ElasticsearchProjectEndpoints {
     /**
      * The endpoint to access elasticsearch.
      */
-    elasticsearch?: pulumi.Input<string>;
+    elasticsearch?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to access kibana.
      */
-    kibana?: pulumi.Input<string>;
+    kibana?: pulumi.Input<string | undefined>;
 }
 
 export interface ElasticsearchProjectMetadata {
     /**
      * Date and time when the project was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user.
      */
-    createdBy?: pulumi.Input<string>;
+    createdBy?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID who owns the project.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Date and time when the project was suspended.
      */
-    suspendedAt?: pulumi.Input<string>;
+    suspendedAt?: pulumi.Input<string | undefined>;
     /**
      * Reason why the project was suspended.
      */
-    suspendedReason?: pulumi.Input<string>;
+    suspendedReason?: pulumi.Input<string | undefined>;
     /**
      * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface ElasticsearchProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access elasticsearch.
      */
-    elasticsearch?: pulumi.Input<string>;
+    elasticsearch?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access kibana.
      */
-    kibana?: pulumi.Input<string>;
+    kibana?: pulumi.Input<string | undefined>;
 }
 
 export interface ElasticsearchProjectSearchLake {
     /**
      * Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
      */
-    boostWindow?: pulumi.Input<number>;
+    boostWindow?: pulumi.Input<number | undefined>;
     /**
      * Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
      */
-    searchPower?: pulumi.Input<number>;
+    searchPower?: pulumi.Input<number | undefined>;
 }
 
 export interface GetDeploymentsApm {
@@ -1152,15 +1152,15 @@ export interface GetDeploymentsApmArgs {
     /**
      * Overall health status of the resource instances.
      */
-    healthy?: pulumi.Input<string>;
+    healthy?: pulumi.Input<string | undefined>;
     /**
      * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface GetDeploymentsElasticsearch {
@@ -1182,15 +1182,15 @@ export interface GetDeploymentsElasticsearchArgs {
     /**
      * Overall health status of the resource instances.
      */
-    healthy?: pulumi.Input<string>;
+    healthy?: pulumi.Input<string | undefined>;
     /**
      * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface GetDeploymentsEnterpriseSearch {
@@ -1212,15 +1212,15 @@ export interface GetDeploymentsEnterpriseSearchArgs {
     /**
      * Overall health status of the resource instances.
      */
-    healthy?: pulumi.Input<string>;
+    healthy?: pulumi.Input<string | undefined>;
     /**
      * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface GetDeploymentsIntegrationsServer {
@@ -1242,15 +1242,15 @@ export interface GetDeploymentsIntegrationsServerArgs {
     /**
      * Overall health status of the resource instances.
      */
-    healthy?: pulumi.Input<string>;
+    healthy?: pulumi.Input<string | undefined>;
     /**
      * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface GetDeploymentsKibana {
@@ -1272,141 +1272,141 @@ export interface GetDeploymentsKibanaArgs {
     /**
      * Overall health status of the resource instances.
      */
-    healthy?: pulumi.Input<string>;
+    healthy?: pulumi.Input<string | undefined>;
     /**
      * Resource kind status. Can be one of `initializing`, `stopping`, `stopped`, `rebooting`, `restarting`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Elastic stack version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface ObservabilityProjectCredentials {
     /**
      * Basic auth password that can be used to access the Elasticsearch API.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Basic auth username that can be used to access the Elasticsearch API.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ObservabilityProjectEndpoints {
     /**
      * The endpoint to access apm.
      */
-    apm?: pulumi.Input<string>;
+    apm?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to access elasticsearch.
      */
-    elasticsearch?: pulumi.Input<string>;
+    elasticsearch?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to access the Managed OTLP Endpoint.
      */
-    ingest?: pulumi.Input<string>;
+    ingest?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to access kibana.
      */
-    kibana?: pulumi.Input<string>;
+    kibana?: pulumi.Input<string | undefined>;
 }
 
 export interface ObservabilityProjectMetadata {
     /**
      * Date and time when the project was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user.
      */
-    createdBy?: pulumi.Input<string>;
+    createdBy?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID who owns the project.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Date and time when the project was suspended.
      */
-    suspendedAt?: pulumi.Input<string>;
+    suspendedAt?: pulumi.Input<string | undefined>;
     /**
      * Reason why the project was suspended.
      */
-    suspendedReason?: pulumi.Input<string>;
+    suspendedReason?: pulumi.Input<string | undefined>;
     /**
      * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface ObservabilityProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access APM.
      */
-    apm?: pulumi.Input<string>;
+    apm?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access elasticsearch.
      */
-    elasticsearch?: pulumi.Input<string>;
+    elasticsearch?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
      */
-    ingest?: pulumi.Input<string>;
+    ingest?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access kibana.
      */
-    kibana?: pulumi.Input<string>;
+    kibana?: pulumi.Input<string | undefined>;
 }
 
 export interface OrganizationMembers {
     /**
      * Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
      */
-    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersDeploymentRole>[]>;
+    deploymentRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersDeploymentRole>[] | undefined>;
     /**
      * Email address of the user.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * Set to true while the user has not yet accepted their invitation to the organization.
      */
-    invitationPending?: pulumi.Input<boolean>;
+    invitationPending?: pulumi.Input<boolean | undefined>;
     /**
      * The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
      */
-    organizationRole?: pulumi.Input<string>;
+    organizationRole?: pulumi.Input<string | undefined>;
     /**
      * Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
      */
-    projectElasticsearchRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectElasticsearchRole>[]>;
+    projectElasticsearchRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectElasticsearchRole>[] | undefined>;
     /**
      * Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
      */
-    projectObservabilityRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectObservabilityRole>[]>;
+    projectObservabilityRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectObservabilityRole>[] | undefined>;
     /**
      * Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
      */
-    projectSecurityRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectSecurityRole>[]>;
+    projectSecurityRoles?: pulumi.Input<pulumi.Input<inputs.OrganizationMembersProjectSecurityRole>[] | undefined>;
     /**
      * User ID.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 export interface OrganizationMembersDeploymentRole {
     /**
      * Role applies to all deployments in the organization.
      */
-    allDeployments?: pulumi.Input<boolean>;
+    allDeployments?: pulumi.Input<boolean | undefined>;
     /**
      * If provided, the user assigned this role assignment will be granted this application role when signing in to the deployment(s) specified in the role assignment.
      */
-    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Role applies to deployments listed here.
      */
-    deploymentIds?: pulumi.Input<pulumi.Input<string>[]>;
+    deploymentIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Assigned role. Must be on of `viewer`, `editor` or `admin`.
      */
@@ -1417,15 +1417,15 @@ export interface OrganizationMembersProjectElasticsearchRole {
     /**
      * Role applies to all projects in the organization.
      */
-    allProjects?: pulumi.Input<boolean>;
+    allProjects?: pulumi.Input<boolean | undefined>;
     /**
      * If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
      */
-    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Role applies to projects listed here.
      */
-    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    projectIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Assigned role. (Allowed values: `admin`, `developer`, `viewer`)
      */
@@ -1436,15 +1436,15 @@ export interface OrganizationMembersProjectObservabilityRole {
     /**
      * Role applies to all projects in the organization.
      */
-    allProjects?: pulumi.Input<boolean>;
+    allProjects?: pulumi.Input<boolean | undefined>;
     /**
      * If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
      */
-    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Role applies to projects listed here.
      */
-    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    projectIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Assigned role. (Allowed values: `admin`, `editor`, `viewer`)
      */
@@ -1455,15 +1455,15 @@ export interface OrganizationMembersProjectSecurityRole {
     /**
      * Role applies to all projects in the organization.
      */
-    allProjects?: pulumi.Input<boolean>;
+    allProjects?: pulumi.Input<boolean | undefined>;
     /**
      * If provided, the user assigned this role assignment will be granted this application role when signing in to the project(s) specified in the role assignment.
      */
-    applicationRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    applicationRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Role applies to projects listed here.
      */
-    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    projectIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Assigned role. (Allowed values: `admin`, `editor`, `viewer`, `t1-analyst`, `t2-analyst`, `t3-analyst`, `threat-intel-analyst`, `rule-author`, `soc-manager`, `endpoint-operations-analyst`, `platform-engineer`, `detections-admin`, `endpoint-policy-manager`)
      */
@@ -1474,68 +1474,68 @@ export interface SecurityProjectCredentials {
     /**
      * Basic auth password that can be used to access the Elasticsearch API.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Basic auth username that can be used to access the Elasticsearch API.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface SecurityProjectEndpoints {
     /**
      * The endpoint to access elasticsearch.
      */
-    elasticsearch?: pulumi.Input<string>;
+    elasticsearch?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to access the Managed OTLP Endpoint.
      */
-    ingest?: pulumi.Input<string>;
+    ingest?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to access kibana.
      */
-    kibana?: pulumi.Input<string>;
+    kibana?: pulumi.Input<string | undefined>;
 }
 
 export interface SecurityProjectMetadata {
     /**
      * Date and time when the project was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user.
      */
-    createdBy?: pulumi.Input<string>;
+    createdBy?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID who owns the project.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Date and time when the project was suspended.
      */
-    suspendedAt?: pulumi.Input<string>;
+    suspendedAt?: pulumi.Input<string | undefined>;
     /**
      * Reason why the project was suspended.
      */
-    suspendedReason?: pulumi.Input<string>;
+    suspendedReason?: pulumi.Input<string | undefined>;
     /**
      * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface SecurityProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access elasticsearch.
      */
-    elasticsearch?: pulumi.Input<string>;
+    elasticsearch?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access the Managed OTLP Endpoint.
      */
-    ingest?: pulumi.Input<string>;
+    ingest?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access kibana.
      */
-    kibana?: pulumi.Input<string>;
+    kibana?: pulumi.Input<string | undefined>;
 }
 
 export interface SecurityProjectProductType {
@@ -1553,25 +1553,25 @@ export interface SecurityProjectSearchLake {
     /**
      * Configuration to control the data retention in Elasticsearch data streams.
      */
-    dataRetention?: pulumi.Input<inputs.SecurityProjectSearchLakeDataRetention>;
+    dataRetention?: pulumi.Input<inputs.SecurityProjectSearchLakeDataRetention | undefined>;
 }
 
 export interface SecurityProjectSearchLakeDataRetention {
     /**
      * Default number of days during which data remains available in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
      */
-    defaultRetentionDays?: pulumi.Input<number>;
+    defaultRetentionDays?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of days allowed for retaining data in Elasticsearch data streams. Can be set to "null" for unlimited. A default of 396 will be applied if no value is specified on project creation.
      */
-    maxRetentionDays?: pulumi.Input<number>;
+    maxRetentionDays?: pulumi.Input<number | undefined>;
 }
 
 export interface ServerlessTrafficFilterRule {
     /**
      * Description of the rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Allowed traffic filter source: IP address, CIDR mask, or VPC endpoint ID
      */
@@ -1593,7 +1593,7 @@ export interface SnapshotRepositoryS3 {
     /**
      * An S3 access key. If set, the secretKey setting must also be specified. If unset, the client will use the instance or container role instead.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * Name of the S3 bucket to use for snapshots.
      */
@@ -1601,21 +1601,21 @@ export interface SnapshotRepositoryS3 {
     /**
      * The S3 service endpoint to connect to. This defaults to s3.amazonaws.com but the AWS documentation lists alternative S3 endpoints. If you are using an S3-compatible service then you should set this to the service’s endpoint.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * Whether to force the use of the path style access pattern. If true, the path style access pattern will be used. If false, the access pattern will be automatically determined by the AWS Java SDK (See AWS documentation for details). Defaults to false.
      */
-    pathStyleAccess?: pulumi.Input<boolean>;
+    pathStyleAccess?: pulumi.Input<boolean | undefined>;
     /**
      * Allows specifying the signing region to use. Specifying this setting manually should not be necessary for most use cases. Generally, the SDK will correctly guess the signing region to use. It should be considered an expert level setting to support S3-compatible APIs that require v4 signatures and use a region other than the default us-east-1. Defaults to empty string which means that the SDK will try to automatically determine the correct signing region.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * An S3 secret key. If set, the accessKey setting must also be specified.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * When set to true files are encrypted on server side using AES256 algorithm. Defaults to false.
      */
-    serverSideEncryption?: pulumi.Input<boolean>;
+    serverSideEncryption?: pulumi.Input<boolean | undefined>;
 }

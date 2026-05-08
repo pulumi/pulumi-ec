@@ -169,54 +169,54 @@ export interface ElasticsearchProjectState {
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
      */
-    cloudId?: pulumi.Input<string>;
+    cloudId?: pulumi.Input<string | undefined>;
     /**
      * Basic auth credentials to access the Elasticsearch API.
      */
-    credentials?: pulumi.Input<inputs.ElasticsearchProjectCredentials>;
+    credentials?: pulumi.Input<inputs.ElasticsearchProjectCredentials | undefined>;
     /**
      * The endpoints to access the different apps of the project.
      */
-    endpoints?: pulumi.Input<inputs.ElasticsearchProjectEndpoints>;
+    endpoints?: pulumi.Input<inputs.ElasticsearchProjectEndpoints | undefined>;
     /**
      * Metadata request for a project with tags.
      */
-    metadata?: pulumi.Input<inputs.ElasticsearchProjectMetadata>;
+    metadata?: pulumi.Input<inputs.ElasticsearchProjectMetadata | undefined>;
     /**
      * Descriptive name for a project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
      *
      * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
      * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
-    optimizedFor?: pulumi.Input<string>;
+    optimizedFor?: pulumi.Input<string | undefined>;
     /**
      * Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
      */
-    privateEndpoints?: pulumi.Input<inputs.ElasticsearchProjectPrivateEndpoints>;
+    privateEndpoints?: pulumi.Input<inputs.ElasticsearchProjectPrivateEndpoints | undefined>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
-    regionId?: pulumi.Input<string>;
+    regionId?: pulumi.Input<string | undefined>;
     /**
      * Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
      */
-    searchLake?: pulumi.Input<inputs.ElasticsearchProjectSearchLake>;
+    searchLake?: pulumi.Input<inputs.ElasticsearchProjectSearchLake | undefined>;
     /**
      * Set of traffic filter IDs to associate with this project
      */
-    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * the type of the project
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -226,22 +226,22 @@ export interface ElasticsearchProjectArgs {
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * Metadata request for a project with tags.
      */
-    metadata?: pulumi.Input<inputs.ElasticsearchProjectMetadata>;
+    metadata?: pulumi.Input<inputs.ElasticsearchProjectMetadata | undefined>;
     /**
      * Descriptive name for a project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
      *
      * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
      * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
-    optimizedFor?: pulumi.Input<string>;
+    optimizedFor?: pulumi.Input<string | undefined>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
@@ -249,9 +249,9 @@ export interface ElasticsearchProjectArgs {
     /**
      * Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
      */
-    searchLake?: pulumi.Input<inputs.ElasticsearchProjectSearchLake>;
+    searchLake?: pulumi.Input<inputs.ElasticsearchProjectSearchLake | undefined>;
     /**
      * Set of traffic filter IDs to associate with this project
      */
-    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

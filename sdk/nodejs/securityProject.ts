@@ -169,52 +169,52 @@ export interface SecurityProjectState {
     /**
      * admin features package (BYOK, BYOIDP, CCS, CCR)
      */
-    adminFeaturesPackage?: pulumi.Input<string>;
+    adminFeaturesPackage?: pulumi.Input<string | undefined>;
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
      */
-    cloudId?: pulumi.Input<string>;
+    cloudId?: pulumi.Input<string | undefined>;
     /**
      * Basic auth credentials to access the Elasticsearch API.
      */
-    credentials?: pulumi.Input<inputs.SecurityProjectCredentials>;
+    credentials?: pulumi.Input<inputs.SecurityProjectCredentials | undefined>;
     /**
      * The endpoints to access the different apps of the project.
      */
-    endpoints?: pulumi.Input<inputs.SecurityProjectEndpoints>;
+    endpoints?: pulumi.Input<inputs.SecurityProjectEndpoints | undefined>;
     /**
      * Metadata request for a project with tags.
      */
-    metadata?: pulumi.Input<inputs.SecurityProjectMetadata>;
+    metadata?: pulumi.Input<inputs.SecurityProjectMetadata | undefined>;
     /**
      * Descriptive name for a project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private endpoints (URLs) for Security projects when PrivateLink is enabled.
      */
-    privateEndpoints?: pulumi.Input<inputs.SecurityProjectPrivateEndpoints>;
-    productTypes?: pulumi.Input<pulumi.Input<inputs.SecurityProjectProductType>[]>;
+    privateEndpoints?: pulumi.Input<inputs.SecurityProjectPrivateEndpoints | undefined>;
+    productTypes?: pulumi.Input<pulumi.Input<inputs.SecurityProjectProductType>[] | undefined>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
-    regionId?: pulumi.Input<string>;
+    regionId?: pulumi.Input<string | undefined>;
     /**
      * Configuration for the entire set of capabilities that make the data searchable in Security.
      */
-    searchLake?: pulumi.Input<inputs.SecurityProjectSearchLake>;
+    searchLake?: pulumi.Input<inputs.SecurityProjectSearchLake | undefined>;
     /**
      * Set of traffic filter IDs to associate with this project
      */
-    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * the type of the project
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -224,20 +224,20 @@ export interface SecurityProjectArgs {
     /**
      * admin features package (BYOK, BYOIDP, CCS, CCR)
      */
-    adminFeaturesPackage?: pulumi.Input<string>;
+    adminFeaturesPackage?: pulumi.Input<string | undefined>;
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * Metadata request for a project with tags.
      */
-    metadata?: pulumi.Input<inputs.SecurityProjectMetadata>;
+    metadata?: pulumi.Input<inputs.SecurityProjectMetadata | undefined>;
     /**
      * Descriptive name for a project.
      */
-    name?: pulumi.Input<string>;
-    productTypes?: pulumi.Input<pulumi.Input<inputs.SecurityProjectProductType>[]>;
+    name?: pulumi.Input<string | undefined>;
+    productTypes?: pulumi.Input<pulumi.Input<inputs.SecurityProjectProductType>[] | undefined>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
@@ -245,9 +245,9 @@ export interface SecurityProjectArgs {
     /**
      * Configuration for the entire set of capabilities that make the data searchable in Security.
      */
-    searchLake?: pulumi.Input<inputs.SecurityProjectSearchLake>;
+    searchLake?: pulumi.Input<inputs.SecurityProjectSearchLake | undefined>;
     /**
      * Set of traffic filter IDs to associate with this project
      */
-    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

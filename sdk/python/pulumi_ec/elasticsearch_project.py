@@ -22,12 +22,12 @@ __all__ = ['ElasticsearchProjectArgs', 'ElasticsearchProject']
 class ElasticsearchProjectArgs:
     def __init__(__self__, *,
                  region_id: pulumi.Input[_builtins.str],
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_lake: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_lake: pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ElasticsearchProject resource.
 
@@ -70,43 +70,43 @@ class ElasticsearchProjectArgs:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]:
+    def metadata(self) -> pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']]:
         """
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]):
+    def metadata(self, value: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="optimizedFor")
-    def optimized_for(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def optimized_for(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
 
@@ -116,49 +116,49 @@ class ElasticsearchProjectArgs:
         return pulumi.get(self, "optimized_for")
 
     @optimized_for.setter
-    def optimized_for(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def optimized_for(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "optimized_for", value)
 
     @_builtins.property
     @pulumi.getter(name="searchLake")
-    def search_lake(self) -> Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']]:
+    def search_lake(self) -> pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']]:
         """
         Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
         """
         return pulumi.get(self, "search_lake")
 
     @search_lake.setter
-    def search_lake(self, value: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']]):
+    def search_lake(self, value: pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']]):
         pulumi.set(self, "search_lake", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilterIds")
-    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def traffic_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of traffic filter IDs to associate with this project
         """
         return pulumi.get(self, "traffic_filter_ids")
 
     @traffic_filter_ids.setter
-    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def traffic_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "traffic_filter_ids", value)
 
 
 @pulumi.input_type
 class _ElasticsearchProjectState:
     def __init__(__self__, *,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input['ElasticsearchProjectCredentialsArgs']] = None,
-                 endpoints: Optional[pulumi.Input['ElasticsearchProjectEndpointsArgs']] = None,
-                 metadata: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoints: Optional[pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs']] = None,
-                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_lake: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional['ElasticsearchProjectCredentialsArgs']] = None,
+                 endpoints: pulumi.Input[Optional['ElasticsearchProjectEndpointsArgs']] = None,
+                 metadata: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoints: pulumi.Input[Optional['ElasticsearchProjectPrivateEndpointsArgs']] = None,
+                 region_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_lake: pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ElasticsearchProject resources.
 
@@ -205,79 +205,79 @@ class _ElasticsearchProjectState:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudId")
-    def cloud_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
-    def cloud_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input['ElasticsearchProjectCredentialsArgs']]:
+    def credentials(self) -> pulumi.Input[Optional['ElasticsearchProjectCredentialsArgs']]:
         """
         Basic auth credentials to access the Elasticsearch API.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input['ElasticsearchProjectCredentialsArgs']]):
+    def credentials(self, value: pulumi.Input[Optional['ElasticsearchProjectCredentialsArgs']]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input['ElasticsearchProjectEndpointsArgs']]:
+    def endpoints(self) -> pulumi.Input[Optional['ElasticsearchProjectEndpointsArgs']]:
         """
         The endpoints to access the different apps of the project.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input['ElasticsearchProjectEndpointsArgs']]):
+    def endpoints(self, value: pulumi.Input[Optional['ElasticsearchProjectEndpointsArgs']]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]:
+    def metadata(self) -> pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']]:
         """
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['ElasticsearchProjectMetadataArgs']]):
+    def metadata(self, value: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="optimizedFor")
-    def optimized_for(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def optimized_for(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
 
@@ -287,67 +287,67 @@ class _ElasticsearchProjectState:
         return pulumi.get(self, "optimized_for")
 
     @optimized_for.setter
-    def optimized_for(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def optimized_for(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "optimized_for", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs']]:
+    def private_endpoints(self) -> pulumi.Input[Optional['ElasticsearchProjectPrivateEndpointsArgs']]:
         """
         Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
         """
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
-    def private_endpoints(self, value: Optional[pulumi.Input['ElasticsearchProjectPrivateEndpointsArgs']]):
+    def private_endpoints(self, value: pulumi.Input[Optional['ElasticsearchProjectPrivateEndpointsArgs']]):
         pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
-    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique human-readable identifier for a region in Elastic Cloud.
         """
         return pulumi.get(self, "region_id")
 
     @region_id.setter
-    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region_id", value)
 
     @_builtins.property
     @pulumi.getter(name="searchLake")
-    def search_lake(self) -> Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']]:
+    def search_lake(self) -> pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']]:
         """
         Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
         """
         return pulumi.get(self, "search_lake")
 
     @search_lake.setter
-    def search_lake(self, value: Optional[pulumi.Input['ElasticsearchProjectSearchLakeArgs']]):
+    def search_lake(self, value: pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']]):
         pulumi.set(self, "search_lake", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilterIds")
-    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def traffic_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of traffic filter IDs to associate with this project
         """
         return pulumi.get(self, "traffic_filter_ids")
 
     @traffic_filter_ids.setter
-    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def traffic_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "traffic_filter_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         the type of the project
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -357,13 +357,13 @@ class ElasticsearchProject(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_lake: Optional[pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         ## Technical preview
@@ -455,13 +455,13 @@ class ElasticsearchProject(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_lake: Optional[pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -495,18 +495,18 @@ class ElasticsearchProject(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials: Optional[pulumi.Input[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']]] = None,
-            endpoints: Optional[pulumi.Input[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']]] = None,
-            metadata: Optional[pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            optimized_for: Optional[pulumi.Input[_builtins.str]] = None,
-            private_endpoints: Optional[pulumi.Input[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict']]] = None,
-            region_id: Optional[pulumi.Input[_builtins.str]] = None,
-            search_lake: Optional[pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
-            traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ElasticsearchProject':
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']]] = None,
+            endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']]] = None,
+            metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict']]] = None,
+            region_id: pulumi.Input[Optional[_builtins.str]] = None,
+            search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+            traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'ElasticsearchProject':
         """
         Get an existing ElasticsearchProject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -109,11 +109,11 @@ export interface DeploymentTrafficFilterAssociationState {
     /**
      * Required deployment ID where the traffic filter will be associated
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * Required traffic filter ruleset ID to tie to a deployment
      */
-    trafficFilterId?: pulumi.Input<string>;
+    trafficFilterId?: pulumi.Input<string | undefined>;
 }
 
 /**

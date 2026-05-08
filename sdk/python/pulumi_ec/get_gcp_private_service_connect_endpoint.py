@@ -112,7 +112,7 @@ def get_gcp_private_service_connect_endpoint(region: Optional[_builtins.str] = N
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         service_attachment_uri=pulumi.get(__ret__, 'service_attachment_uri'))
-def get_gcp_private_service_connect_endpoint_output(region: Optional[pulumi.Input[_builtins.str]] = None,
+def get_gcp_private_service_connect_endpoint_output(region: pulumi.Input[Optional[_builtins.str]] = None,
                                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGcpPrivateServiceConnectEndpointResult]:
     """
     Use this data source to retrieve information about the GCP Private Service Connect configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-psc.html).

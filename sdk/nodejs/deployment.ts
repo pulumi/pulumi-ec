@@ -241,84 +241,84 @@ export interface DeploymentState {
     /**
      * Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      */
-    apm?: pulumi.Input<inputs.DeploymentApm>;
-    apmSecretToken?: pulumi.Input<string>;
+    apm?: pulumi.Input<inputs.DeploymentApm | undefined>;
+    apmSecretToken?: pulumi.Input<string | undefined>;
     /**
      * Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      */
-    deploymentTemplateId?: pulumi.Input<string>;
+    deploymentTemplateId?: pulumi.Input<string | undefined>;
     /**
      * Elasticsearch cluster definition
      */
-    elasticsearch?: pulumi.Input<inputs.DeploymentElasticsearch>;
+    elasticsearch?: pulumi.Input<inputs.DeploymentElasticsearch | undefined>;
     /**
      * Password for authenticating to the Elasticsearch resource.
      *
      * > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
      * > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
      */
-    elasticsearchPassword?: pulumi.Input<string>;
+    elasticsearchPassword?: pulumi.Input<string | undefined>;
     /**
      * Username for authenticating to the Elasticsearch resource.
      */
-    elasticsearchUsername?: pulumi.Input<string>;
+    elasticsearchUsername?: pulumi.Input<string | undefined>;
     /**
      * Enterprise Search cluster definition.
      */
-    enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch>;
+    enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch | undefined>;
     /**
      * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
      */
-    integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
+    integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer | undefined>;
     /**
      * Kibana cluster definition.
      *
      * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
-    kibana?: pulumi.Input<inputs.DeploymentKibana>;
+    kibana?: pulumi.Input<inputs.DeploymentKibana | undefined>;
     /**
      * When set to true, the deployment will be updated according to the latest deployment template values.
      *
      * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
      * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
-    migrateToLatestHardware?: pulumi.Input<boolean>;
+    migrateToLatestHardware?: pulumi.Input<boolean | undefined>;
     /**
      * Name for the deployment
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      */
-    observability?: pulumi.Input<inputs.DeploymentObservability>;
+    observability?: pulumi.Input<inputs.DeploymentObservability | undefined>;
     /**
      * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      */
-    requestId?: pulumi.Input<string>;
+    requestId?: pulumi.Input<string | undefined>;
     /**
      * Explicitly resets the elasticsearchPassword when true
      */
-    resetElasticsearchPassword?: pulumi.Input<boolean>;
+    resetElasticsearchPassword?: pulumi.Input<boolean | undefined>;
     /**
      * Optional map of deployment tags
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of traffic filters rule identifiers that will be applied to the deployment.
      */
-    trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Elastic Stack version to use for all of the deployment resources.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -328,11 +328,11 @@ export interface DeploymentArgs {
     /**
      * Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
      */
-    apm?: pulumi.Input<inputs.DeploymentApm>;
+    apm?: pulumi.Input<inputs.DeploymentApm | undefined>;
     /**
      * Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
      */
@@ -344,32 +344,32 @@ export interface DeploymentArgs {
     /**
      * Enterprise Search cluster definition.
      */
-    enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch>;
+    enterpriseSearch?: pulumi.Input<inputs.DeploymentEnterpriseSearch | undefined>;
     /**
      * Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
      */
-    integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer>;
+    integrationsServer?: pulumi.Input<inputs.DeploymentIntegrationsServer | undefined>;
     /**
      * Kibana cluster definition.
      *
      * > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
      */
-    kibana?: pulumi.Input<inputs.DeploymentKibana>;
+    kibana?: pulumi.Input<inputs.DeploymentKibana | undefined>;
     /**
      * When set to true, the deployment will be updated according to the latest deployment template values.
      *
      * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
      * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
-    migrateToLatestHardware?: pulumi.Input<boolean>;
+    migrateToLatestHardware?: pulumi.Input<boolean | undefined>;
     /**
      * Name for the deployment
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
      */
-    observability?: pulumi.Input<inputs.DeploymentObservability>;
+    observability?: pulumi.Input<inputs.DeploymentObservability | undefined>;
     /**
      * Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
      */
@@ -377,19 +377,19 @@ export interface DeploymentArgs {
     /**
      * Request ID to set when you create the deployment. Use it only when previous attempts return an error and `requestId` is returned as part of the error.
      */
-    requestId?: pulumi.Input<string>;
+    requestId?: pulumi.Input<string | undefined>;
     /**
      * Explicitly resets the elasticsearchPassword when true
      */
-    resetElasticsearchPassword?: pulumi.Input<boolean>;
+    resetElasticsearchPassword?: pulumi.Input<boolean | undefined>;
     /**
      * Optional map of deployment tags
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of traffic filters rule identifiers that will be applied to the deployment.
      */
-    trafficFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Elastic Stack version to use for all of the deployment resources.
      */

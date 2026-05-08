@@ -25,18 +25,18 @@ class DeploymentArgs:
                  elasticsearch: pulumi.Input['DeploymentElasticsearchArgs'],
                  region: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str],
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 apm: Optional[pulumi.Input['DeploymentApmArgs']] = None,
-                 enterprise_search: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']] = None,
-                 integrations_server: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']] = None,
-                 kibana: Optional[pulumi.Input['DeploymentKibanaArgs']] = None,
-                 migrate_to_latest_hardware: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 observability: Optional[pulumi.Input['DeploymentObservabilityArgs']] = None,
-                 request_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_elasticsearch_password: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 traffic_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 apm: pulumi.Input[Optional['DeploymentApmArgs']] = None,
+                 enterprise_search: pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']] = None,
+                 integrations_server: pulumi.Input[Optional['DeploymentIntegrationsServerArgs']] = None,
+                 kibana: pulumi.Input[Optional['DeploymentKibanaArgs']] = None,
+                 migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 observability: pulumi.Input[Optional['DeploymentObservabilityArgs']] = None,
+                 request_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 traffic_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
 
@@ -141,55 +141,55 @@ class DeploymentArgs:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def apm(self) -> Optional[pulumi.Input['DeploymentApmArgs']]:
+    def apm(self) -> pulumi.Input[Optional['DeploymentApmArgs']]:
         """
         **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         """
         return pulumi.get(self, "apm")
 
     @apm.setter
-    def apm(self, value: Optional[pulumi.Input['DeploymentApmArgs']]):
+    def apm(self, value: pulumi.Input[Optional['DeploymentApmArgs']]):
         pulumi.set(self, "apm", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseSearch")
-    def enterprise_search(self) -> Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']]:
+    def enterprise_search(self) -> pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']]:
         """
         Enterprise Search cluster definition.
         """
         return pulumi.get(self, "enterprise_search")
 
     @enterprise_search.setter
-    def enterprise_search(self, value: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']]):
+    def enterprise_search(self, value: pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']]):
         pulumi.set(self, "enterprise_search", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationsServer")
-    def integrations_server(self) -> Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]:
+    def integrations_server(self) -> pulumi.Input[Optional['DeploymentIntegrationsServerArgs']]:
         """
         Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         """
         return pulumi.get(self, "integrations_server")
 
     @integrations_server.setter
-    def integrations_server(self, value: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]):
+    def integrations_server(self, value: pulumi.Input[Optional['DeploymentIntegrationsServerArgs']]):
         pulumi.set(self, "integrations_server", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input['DeploymentKibanaArgs']]:
+    def kibana(self) -> pulumi.Input[Optional['DeploymentKibanaArgs']]:
         """
         Kibana cluster definition.
 
@@ -198,12 +198,12 @@ class DeploymentArgs:
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input['DeploymentKibanaArgs']]):
+    def kibana(self, value: pulumi.Input[Optional['DeploymentKibanaArgs']]):
         pulumi.set(self, "kibana", value)
 
     @_builtins.property
     @pulumi.getter(name="migrateToLatestHardware")
-    def migrate_to_latest_hardware(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def migrate_to_latest_hardware(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to true, the deployment will be updated according to the latest deployment template values.
 
@@ -213,104 +213,104 @@ class DeploymentArgs:
         return pulumi.get(self, "migrate_to_latest_hardware")
 
     @migrate_to_latest_hardware.setter
-    def migrate_to_latest_hardware(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def migrate_to_latest_hardware(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "migrate_to_latest_hardware", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name for the deployment
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def observability(self) -> Optional[pulumi.Input['DeploymentObservabilityArgs']]:
+    def observability(self) -> pulumi.Input[Optional['DeploymentObservabilityArgs']]:
         """
         Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         """
         return pulumi.get(self, "observability")
 
     @observability.setter
-    def observability(self, value: Optional[pulumi.Input['DeploymentObservabilityArgs']]):
+    def observability(self, value: pulumi.Input[Optional['DeploymentObservabilityArgs']]):
         pulumi.set(self, "observability", value)
 
     @_builtins.property
     @pulumi.getter(name="requestId")
-    def request_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         """
         return pulumi.get(self, "request_id")
 
     @request_id.setter
-    def request_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resetElasticsearchPassword")
-    def reset_elasticsearch_password(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reset_elasticsearch_password(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Explicitly resets the elasticsearch_password when true
         """
         return pulumi.get(self, "reset_elasticsearch_password")
 
     @reset_elasticsearch_password.setter
-    def reset_elasticsearch_password(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reset_elasticsearch_password(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reset_elasticsearch_password", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Optional map of deployment tags
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilters")
-    def traffic_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def traffic_filters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of traffic filters rule identifiers that will be applied to the deployment.
         """
         return pulumi.get(self, "traffic_filters")
 
     @traffic_filters.setter
-    def traffic_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def traffic_filters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "traffic_filters", value)
 
 
 @pulumi.input_type
 class _DeploymentState:
     def __init__(__self__, *,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 apm: Optional[pulumi.Input['DeploymentApmArgs']] = None,
-                 apm_secret_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 elasticsearch: Optional[pulumi.Input['DeploymentElasticsearchArgs']] = None,
-                 elasticsearch_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 elasticsearch_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 enterprise_search: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']] = None,
-                 integrations_server: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']] = None,
-                 kibana: Optional[pulumi.Input['DeploymentKibanaArgs']] = None,
-                 migrate_to_latest_hardware: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 observability: Optional[pulumi.Input['DeploymentObservabilityArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_elasticsearch_password: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 traffic_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 apm: pulumi.Input[Optional['DeploymentApmArgs']] = None,
+                 apm_secret_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 elasticsearch: pulumi.Input[Optional['DeploymentElasticsearchArgs']] = None,
+                 elasticsearch_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 elasticsearch_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 enterprise_search: pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']] = None,
+                 integrations_server: pulumi.Input[Optional['DeploymentIntegrationsServerArgs']] = None,
+                 kibana: pulumi.Input[Optional['DeploymentKibanaArgs']] = None,
+                 migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 observability: pulumi.Input[Optional['DeploymentObservabilityArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 traffic_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
 
@@ -382,64 +382,64 @@ class _DeploymentState:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def apm(self) -> Optional[pulumi.Input['DeploymentApmArgs']]:
+    def apm(self) -> pulumi.Input[Optional['DeploymentApmArgs']]:
         """
         **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         """
         return pulumi.get(self, "apm")
 
     @apm.setter
-    def apm(self, value: Optional[pulumi.Input['DeploymentApmArgs']]):
+    def apm(self, value: pulumi.Input[Optional['DeploymentApmArgs']]):
         pulumi.set(self, "apm", value)
 
     @_builtins.property
     @pulumi.getter(name="apmSecretToken")
-    def apm_secret_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def apm_secret_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "apm_secret_token")
 
     @apm_secret_token.setter
-    def apm_secret_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def apm_secret_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apm_secret_token", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentTemplateId")
-    def deployment_template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_template_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         """
         return pulumi.get(self, "deployment_template_id")
 
     @deployment_template_id.setter
-    def deployment_template_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_template_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_template_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def elasticsearch(self) -> Optional[pulumi.Input['DeploymentElasticsearchArgs']]:
+    def elasticsearch(self) -> pulumi.Input[Optional['DeploymentElasticsearchArgs']]:
         """
         Elasticsearch cluster definition
         """
         return pulumi.get(self, "elasticsearch")
 
     @elasticsearch.setter
-    def elasticsearch(self, value: Optional[pulumi.Input['DeploymentElasticsearchArgs']]):
+    def elasticsearch(self, value: pulumi.Input[Optional['DeploymentElasticsearchArgs']]):
         pulumi.set(self, "elasticsearch", value)
 
     @_builtins.property
     @pulumi.getter(name="elasticsearchPassword")
-    def elasticsearch_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for authenticating to the Elasticsearch resource.
 
@@ -449,48 +449,48 @@ class _DeploymentState:
         return pulumi.get(self, "elasticsearch_password")
 
     @elasticsearch_password.setter
-    def elasticsearch_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_password", value)
 
     @_builtins.property
     @pulumi.getter(name="elasticsearchUsername")
-    def elasticsearch_username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def elasticsearch_username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username for authenticating to the Elasticsearch resource.
         """
         return pulumi.get(self, "elasticsearch_username")
 
     @elasticsearch_username.setter
-    def elasticsearch_username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def elasticsearch_username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_username", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseSearch")
-    def enterprise_search(self) -> Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']]:
+    def enterprise_search(self) -> pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']]:
         """
         Enterprise Search cluster definition.
         """
         return pulumi.get(self, "enterprise_search")
 
     @enterprise_search.setter
-    def enterprise_search(self, value: Optional[pulumi.Input['DeploymentEnterpriseSearchArgs']]):
+    def enterprise_search(self, value: pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']]):
         pulumi.set(self, "enterprise_search", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationsServer")
-    def integrations_server(self) -> Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]:
+    def integrations_server(self) -> pulumi.Input[Optional['DeploymentIntegrationsServerArgs']]:
         """
         Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         """
         return pulumi.get(self, "integrations_server")
 
     @integrations_server.setter
-    def integrations_server(self, value: Optional[pulumi.Input['DeploymentIntegrationsServerArgs']]):
+    def integrations_server(self, value: pulumi.Input[Optional['DeploymentIntegrationsServerArgs']]):
         pulumi.set(self, "integrations_server", value)
 
     @_builtins.property
     @pulumi.getter
-    def kibana(self) -> Optional[pulumi.Input['DeploymentKibanaArgs']]:
+    def kibana(self) -> pulumi.Input[Optional['DeploymentKibanaArgs']]:
         """
         Kibana cluster definition.
 
@@ -499,12 +499,12 @@ class _DeploymentState:
         return pulumi.get(self, "kibana")
 
     @kibana.setter
-    def kibana(self, value: Optional[pulumi.Input['DeploymentKibanaArgs']]):
+    def kibana(self, value: pulumi.Input[Optional['DeploymentKibanaArgs']]):
         pulumi.set(self, "kibana", value)
 
     @_builtins.property
     @pulumi.getter(name="migrateToLatestHardware")
-    def migrate_to_latest_hardware(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def migrate_to_latest_hardware(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to true, the deployment will be updated according to the latest deployment template values.
 
@@ -514,103 +514,103 @@ class _DeploymentState:
         return pulumi.get(self, "migrate_to_latest_hardware")
 
     @migrate_to_latest_hardware.setter
-    def migrate_to_latest_hardware(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def migrate_to_latest_hardware(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "migrate_to_latest_hardware", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name for the deployment
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def observability(self) -> Optional[pulumi.Input['DeploymentObservabilityArgs']]:
+    def observability(self) -> pulumi.Input[Optional['DeploymentObservabilityArgs']]:
         """
         Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         """
         return pulumi.get(self, "observability")
 
     @observability.setter
-    def observability(self, value: Optional[pulumi.Input['DeploymentObservabilityArgs']]):
+    def observability(self, value: pulumi.Input[Optional['DeploymentObservabilityArgs']]):
         pulumi.set(self, "observability", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestId")
-    def request_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         """
         return pulumi.get(self, "request_id")
 
     @request_id.setter
-    def request_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resetElasticsearchPassword")
-    def reset_elasticsearch_password(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reset_elasticsearch_password(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Explicitly resets the elasticsearch_password when true
         """
         return pulumi.get(self, "reset_elasticsearch_password")
 
     @reset_elasticsearch_password.setter
-    def reset_elasticsearch_password(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reset_elasticsearch_password(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reset_elasticsearch_password", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Optional map of deployment tags
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilters")
-    def traffic_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def traffic_filters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of traffic filters rule identifiers that will be applied to the deployment.
         """
         return pulumi.get(self, "traffic_filters")
 
     @traffic_filters.setter
-    def traffic_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def traffic_filters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "traffic_filters", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Elastic Stack version to use for all of the deployment resources.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -620,22 +620,22 @@ class Deployment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 apm: Optional[pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
-                 deployment_template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 elasticsearch: Optional[pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
-                 enterprise_search: Optional[pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
-                 integrations_server: Optional[pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
-                 kibana: Optional[pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
-                 migrate_to_latest_hardware: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 observability: Optional[pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_elasticsearch_password: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 traffic_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
+                 deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+                 enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
+                 integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
+                 kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
+                 migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 traffic_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides an Elastic Cloud deployment resource, which allows deployments to be created, updated, and deleted.
@@ -774,22 +774,22 @@ class Deployment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 apm: Optional[pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
-                 deployment_template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 elasticsearch: Optional[pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
-                 enterprise_search: Optional[pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
-                 integrations_server: Optional[pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
-                 kibana: Optional[pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
-                 migrate_to_latest_hardware: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 observability: Optional[pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_elasticsearch_password: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 traffic_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
+                 deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+                 enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
+                 integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
+                 kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
+                 migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 traffic_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -838,25 +838,25 @@ class Deployment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias: Optional[pulumi.Input[_builtins.str]] = None,
-            apm: Optional[pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
-            apm_secret_token: Optional[pulumi.Input[_builtins.str]] = None,
-            deployment_template_id: Optional[pulumi.Input[_builtins.str]] = None,
-            elasticsearch: Optional[pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
-            elasticsearch_password: Optional[pulumi.Input[_builtins.str]] = None,
-            elasticsearch_username: Optional[pulumi.Input[_builtins.str]] = None,
-            enterprise_search: Optional[pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
-            integrations_server: Optional[pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
-            kibana: Optional[pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
-            migrate_to_latest_hardware: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            observability: Optional[pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            request_id: Optional[pulumi.Input[_builtins.str]] = None,
-            reset_elasticsearch_password: Optional[pulumi.Input[_builtins.bool]] = None,
-            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            traffic_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None) -> 'Deployment':
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
+            apm_secret_token: pulumi.Input[Optional[_builtins.str]] = None,
+            deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
+            elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+            elasticsearch_password: pulumi.Input[Optional[_builtins.str]] = None,
+            elasticsearch_username: pulumi.Input[Optional[_builtins.str]] = None,
+            enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
+            integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
+            kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
+            migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            request_id: pulumi.Input[Optional[_builtins.str]] = None,
+            reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            traffic_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -21,7 +21,7 @@ __all__ = ['OrganizationArgs', 'Organization']
 @pulumi.input_type
 class OrganizationArgs:
     def __init__(__self__, *,
-                 members: Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]] = None):
+                 members: pulumi.Input[Optional[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]] = None):
         """
         The set of arguments for constructing a Organization resource.
 
@@ -32,21 +32,21 @@ class OrganizationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def members(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]:
+    def members(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]:
         """
         Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
         """
         return pulumi.get(self, "members")
 
     @members.setter
-    def members(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]):
+    def members(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]):
         pulumi.set(self, "members", value)
 
 
 @pulumi.input_type
 class _OrganizationState:
     def __init__(__self__, *,
-                 members: Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]] = None):
+                 members: pulumi.Input[Optional[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
 
@@ -57,14 +57,14 @@ class _OrganizationState:
 
     @_builtins.property
     @pulumi.getter
-    def members(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]:
+    def members(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]:
         """
         Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
         """
         return pulumi.get(self, "members")
 
     @members.setter
-    def members(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]):
+    def members(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input['OrganizationMembersArgs']]]]):
         pulumi.set(self, "members", value)
 
 
@@ -74,7 +74,7 @@ class Organization(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 members: Optional[pulumi.Input[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None,
+                 members: pulumi.Input[Optional[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages an Elastic Cloud organization membership.
@@ -265,7 +265,7 @@ class Organization(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 members: Optional[pulumi.Input[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None,
+                 members: pulumi.Input[Optional[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -286,7 +286,7 @@ class Organization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            members: Optional[pulumi.Input[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None) -> 'Organization':
+            members: pulumi.Input[Optional[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict']]]]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

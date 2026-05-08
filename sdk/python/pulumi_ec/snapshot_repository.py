@@ -21,9 +21,9 @@ __all__ = ['SnapshotRepositoryArgs', 'SnapshotRepository']
 @pulumi.input_type
 class SnapshotRepositoryArgs:
     def __init__(__self__, *,
-                 generic: Optional[pulumi.Input['SnapshotRepositoryGenericArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3: Optional[pulumi.Input['SnapshotRepositoryS3Args']] = None):
+                 generic: pulumi.Input[Optional['SnapshotRepositoryGenericArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3: pulumi.Input[Optional['SnapshotRepositoryS3Args']] = None):
         """
         The set of arguments for constructing a SnapshotRepository resource.
 
@@ -40,47 +40,47 @@ class SnapshotRepositoryArgs:
 
     @_builtins.property
     @pulumi.getter
-    def generic(self) -> Optional[pulumi.Input['SnapshotRepositoryGenericArgs']]:
+    def generic(self) -> pulumi.Input[Optional['SnapshotRepositoryGenericArgs']]:
         """
         Generic repository settings.
         """
         return pulumi.get(self, "generic")
 
     @generic.setter
-    def generic(self, value: Optional[pulumi.Input['SnapshotRepositoryGenericArgs']]):
+    def generic(self, value: pulumi.Input[Optional['SnapshotRepositoryGenericArgs']]):
         pulumi.set(self, "generic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the snapshot repository configuration.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def s3(self) -> Optional[pulumi.Input['SnapshotRepositoryS3Args']]:
+    def s3(self) -> pulumi.Input[Optional['SnapshotRepositoryS3Args']]:
         """
         S3 repository settings.
         """
         return pulumi.get(self, "s3")
 
     @s3.setter
-    def s3(self, value: Optional[pulumi.Input['SnapshotRepositoryS3Args']]):
+    def s3(self, value: pulumi.Input[Optional['SnapshotRepositoryS3Args']]):
         pulumi.set(self, "s3", value)
 
 
 @pulumi.input_type
 class _SnapshotRepositoryState:
     def __init__(__self__, *,
-                 generic: Optional[pulumi.Input['SnapshotRepositoryGenericArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3: Optional[pulumi.Input['SnapshotRepositoryS3Args']] = None):
+                 generic: pulumi.Input[Optional['SnapshotRepositoryGenericArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3: pulumi.Input[Optional['SnapshotRepositoryS3Args']] = None):
         """
         Input properties used for looking up and filtering SnapshotRepository resources.
 
@@ -97,38 +97,38 @@ class _SnapshotRepositoryState:
 
     @_builtins.property
     @pulumi.getter
-    def generic(self) -> Optional[pulumi.Input['SnapshotRepositoryGenericArgs']]:
+    def generic(self) -> pulumi.Input[Optional['SnapshotRepositoryGenericArgs']]:
         """
         Generic repository settings.
         """
         return pulumi.get(self, "generic")
 
     @generic.setter
-    def generic(self, value: Optional[pulumi.Input['SnapshotRepositoryGenericArgs']]):
+    def generic(self, value: pulumi.Input[Optional['SnapshotRepositoryGenericArgs']]):
         pulumi.set(self, "generic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the snapshot repository configuration.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def s3(self) -> Optional[pulumi.Input['SnapshotRepositoryS3Args']]:
+    def s3(self) -> pulumi.Input[Optional['SnapshotRepositoryS3Args']]:
         """
         S3 repository settings.
         """
         return pulumi.get(self, "s3")
 
     @s3.setter
-    def s3(self, value: Optional[pulumi.Input['SnapshotRepositoryS3Args']]):
+    def s3(self, value: pulumi.Input[Optional['SnapshotRepositoryS3Args']]):
         pulumi.set(self, "s3", value)
 
 
@@ -138,9 +138,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 generic: Optional[pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
+                 generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
                  __props__=None):
         """
         Manages Elastic Cloud Enterprise snapshot repositories.
@@ -307,9 +307,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 generic: Optional[pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
+                 generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -332,9 +332,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            generic: Optional[pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            s3: Optional[pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None) -> 'SnapshotRepository':
+            generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None) -> 'SnapshotRepository':
         """
         Get an existing SnapshotRepository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

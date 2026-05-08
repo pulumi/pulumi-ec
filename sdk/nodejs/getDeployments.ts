@@ -222,45 +222,45 @@ export interface GetDeploymentsOutputArgs {
     /**
      * Filter by APM resource kind status or configuration.
      */
-    apms?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsApmArgs>[]>;
+    apms?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsApmArgs>[] | undefined>;
     /**
      * Filter the result set by the ID of the deployment template the deployment is based off.
      */
-    deploymentTemplateId?: pulumi.Input<string>;
+    deploymentTemplateId?: pulumi.Input<string | undefined>;
     /**
      * Filter by Elasticsearch resource kind status or configuration.
      */
-    elasticsearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsElasticsearchArgs>[]>;
+    elasticsearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsElasticsearchArgs>[] | undefined>;
     /**
      * Filter by Enterprise Search resource kind status or configuration.
      */
-    enterpriseSearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsEnterpriseSearchArgs>[]>;
+    enterpriseSearches?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsEnterpriseSearchArgs>[] | undefined>;
     /**
      * Filter the result set by their health status.
      */
-    healthy?: pulumi.Input<string>;
+    healthy?: pulumi.Input<string | undefined>;
     /**
      * Filter by Integrations Server resource kind status or configuration.
      */
-    integrationsServers?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsIntegrationsServerArgs>[]>;
+    integrationsServers?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsIntegrationsServerArgs>[] | undefined>;
     /**
      * Filter by Kibana resource kind status or configuration.
      */
-    kibanas?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsKibanaArgs>[]>;
+    kibanas?: pulumi.Input<pulumi.Input<inputs.GetDeploymentsKibanaArgs>[] | undefined>;
     /**
      * Filter the result by the full deployment name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Prefix to filter the returned deployment list by.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of deployments to return. Defaults to `100`.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * Filter the result set by their assigned tags.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

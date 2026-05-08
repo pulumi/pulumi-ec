@@ -22,11 +22,11 @@ __all__ = ['ObservabilityProjectArgs', 'ObservabilityProject']
 class ObservabilityProjectArgs:
     def __init__(__self__, *,
                  region_id: pulumi.Input[_builtins.str],
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional['ObservabilityProjectMetadataArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ObservabilityProject resource.
 
@@ -63,79 +63,79 @@ class ObservabilityProjectArgs:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]:
+    def metadata(self) -> pulumi.Input[Optional['ObservabilityProjectMetadataArgs']]:
         """
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]):
+    def metadata(self, value: pulumi.Input[Optional['ObservabilityProjectMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="productTier")
-    def product_tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def product_tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         the tier of the observability project
         """
         return pulumi.get(self, "product_tier")
 
     @product_tier.setter
-    def product_tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def product_tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "product_tier", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilterIds")
-    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def traffic_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of traffic filter IDs to associate with this project
         """
         return pulumi.get(self, "traffic_filter_ids")
 
     @traffic_filter_ids.setter
-    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def traffic_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "traffic_filter_ids", value)
 
 
 @pulumi.input_type
 class _ObservabilityProjectState:
     def __init__(__self__, *,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input['ObservabilityProjectCredentialsArgs']] = None,
-                 endpoints: Optional[pulumi.Input['ObservabilityProjectEndpointsArgs']] = None,
-                 metadata: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoints: Optional[pulumi.Input['ObservabilityProjectPrivateEndpointsArgs']] = None,
-                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional['ObservabilityProjectCredentialsArgs']] = None,
+                 endpoints: pulumi.Input[Optional['ObservabilityProjectEndpointsArgs']] = None,
+                 metadata: pulumi.Input[Optional['ObservabilityProjectMetadataArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoints: pulumi.Input[Optional['ObservabilityProjectPrivateEndpointsArgs']] = None,
+                 product_tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObservabilityProject resources.
 
@@ -176,134 +176,134 @@ class _ObservabilityProjectState:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudId")
-    def cloud_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
-    def cloud_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input['ObservabilityProjectCredentialsArgs']]:
+    def credentials(self) -> pulumi.Input[Optional['ObservabilityProjectCredentialsArgs']]:
         """
         Basic auth credentials to access the Elasticsearch API.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input['ObservabilityProjectCredentialsArgs']]):
+    def credentials(self, value: pulumi.Input[Optional['ObservabilityProjectCredentialsArgs']]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input['ObservabilityProjectEndpointsArgs']]:
+    def endpoints(self) -> pulumi.Input[Optional['ObservabilityProjectEndpointsArgs']]:
         """
         The endpoints to access the different apps of the project.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input['ObservabilityProjectEndpointsArgs']]):
+    def endpoints(self, value: pulumi.Input[Optional['ObservabilityProjectEndpointsArgs']]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]:
+    def metadata(self) -> pulumi.Input[Optional['ObservabilityProjectMetadataArgs']]:
         """
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['ObservabilityProjectMetadataArgs']]):
+    def metadata(self, value: pulumi.Input[Optional['ObservabilityProjectMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[pulumi.Input['ObservabilityProjectPrivateEndpointsArgs']]:
+    def private_endpoints(self) -> pulumi.Input[Optional['ObservabilityProjectPrivateEndpointsArgs']]:
         """
         Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
         """
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
-    def private_endpoints(self, value: Optional[pulumi.Input['ObservabilityProjectPrivateEndpointsArgs']]):
+    def private_endpoints(self, value: pulumi.Input[Optional['ObservabilityProjectPrivateEndpointsArgs']]):
         pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="productTier")
-    def product_tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def product_tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         the tier of the observability project
         """
         return pulumi.get(self, "product_tier")
 
     @product_tier.setter
-    def product_tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def product_tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "product_tier", value)
 
     @_builtins.property
     @pulumi.getter(name="regionId")
-    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique human-readable identifier for a region in Elastic Cloud.
         """
         return pulumi.get(self, "region_id")
 
     @region_id.setter
-    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region_id", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilterIds")
-    def traffic_filter_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def traffic_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of traffic filter IDs to associate with this project
         """
         return pulumi.get(self, "traffic_filter_ids")
 
     @traffic_filter_ids.setter
-    def traffic_filter_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def traffic_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "traffic_filter_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         the type of the project
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -313,12 +313,12 @@ class ObservabilityProject(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         ## Technical preview
@@ -406,12 +406,12 @@ class ObservabilityProject(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -444,17 +444,17 @@ class ObservabilityProject(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials: Optional[pulumi.Input[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict']]] = None,
-            endpoints: Optional[pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']]] = None,
-            metadata: Optional[pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            private_endpoints: Optional[pulumi.Input[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict']]] = None,
-            product_tier: Optional[pulumi.Input[_builtins.str]] = None,
-            region_id: Optional[pulumi.Input[_builtins.str]] = None,
-            traffic_filter_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ObservabilityProject':
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict']]] = None,
+            endpoints: pulumi.Input[Optional[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']]] = None,
+            metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict']]] = None,
+            product_tier: pulumi.Input[Optional[_builtins.str]] = None,
+            region_id: pulumi.Input[Optional[_builtins.str]] = None,
+            traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'ObservabilityProject':
         """
         Get an existing ObservabilityProject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

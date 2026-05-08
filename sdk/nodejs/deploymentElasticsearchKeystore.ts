@@ -181,19 +181,19 @@ export interface DeploymentElasticsearchKeystoreState {
     /**
      * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      */
-    asFile?: pulumi.Input<boolean>;
+    asFile?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * Name for the keystore setting, if the setting already exists in the Elasticsearch cluster, it will be overridden.
      */
-    settingName?: pulumi.Input<string>;
+    settingName?: pulumi.Input<string | undefined>;
     /**
      * Value of this setting. This can either be a string or a JSON object that is stored as a JSON string in the keystore.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -203,7 +203,7 @@ export interface DeploymentElasticsearchKeystoreArgs {
     /**
      * Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
      */
-    asFile?: pulumi.Input<boolean>;
+    asFile?: pulumi.Input<boolean | undefined>;
     /**
      * Deployment ID of the Deployment that holds the Elasticsearch cluster where the keystore setting will be written to.
      */
