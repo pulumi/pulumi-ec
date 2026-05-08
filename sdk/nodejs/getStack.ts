@@ -150,7 +150,7 @@ export interface GetStackOutputArgs {
     /**
      * Lock the `latest` `versionRegex` obtained, so that the new stack release doesn't cascade the changes down to the deployments. It can be changed at any time.
      */
-    lock?: pulumi.Input<boolean>;
+    lock?: pulumi.Input<boolean | undefined>;
     /**
      * Region where the stack pack is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
      */

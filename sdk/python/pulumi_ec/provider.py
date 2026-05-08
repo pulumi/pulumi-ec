@@ -19,15 +19,15 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 verbose: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_file: Optional[pulumi.Input[_builtins.str]] = None):
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 verbose: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_file: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -62,110 +62,110 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter
-    def apikey(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def apikey(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
         """
         return pulumi.get(self, "apikey")
 
     @apikey.setter
-    def apikey(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def apikey(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apikey", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow the provider to skip TLS validation on its outgoing HTTP calls.
         """
         return pulumi.get(self, "insecure")
 
     @insecure.setter
-    def insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timeout used for individual HTTP calls. Defaults to "1m".
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter
-    def verbose(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verbose(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
         """
         return pulumi.get(self, "verbose")
 
     @verbose.setter
-    def verbose(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verbose(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verbose", value)
 
     @_builtins.property
     @pulumi.getter(name="verboseCredentials")
-    def verbose_credentials(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verbose_credentials(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
         """
         return pulumi.get(self, "verbose_credentials")
 
     @verbose_credentials.setter
-    def verbose_credentials(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verbose_credentials(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verbose_credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="verboseFile")
-    def verbose_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def verbose_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timeout used for individual HTTP calls. Defaults to "1m".
         """
         return pulumi.get(self, "verbose_file")
 
     @verbose_file.setter
-    def verbose_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def verbose_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "verbose_file", value)
 
 
@@ -175,15 +175,15 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 verbose: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_file: Optional[pulumi.Input[_builtins.str]] = None,
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 verbose: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_file: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the ec package. By default, resources use package-wide configuration
@@ -232,15 +232,15 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 verbose: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_file: Optional[pulumi.Input[_builtins.str]] = None,
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 verbose: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_file: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

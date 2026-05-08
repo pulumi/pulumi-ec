@@ -94,39 +94,39 @@ export interface ProviderArgs {
     /**
      * API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
      */
-    apikey?: pulumi.Input<string>;
+    apikey?: pulumi.Input<string | undefined>;
     /**
      * Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * Allow the provider to skip TLS validation on its outgoing HTTP calls.
      */
-    insecure?: pulumi.Input<boolean>;
+    insecure?: pulumi.Input<boolean | undefined>;
     /**
      * Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Timeout used for individual HTTP calls. Defaults to "1m".
      */
-    timeout?: pulumi.Input<string>;
+    timeout?: pulumi.Input<string | undefined>;
     /**
      * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
      */
-    verbose?: pulumi.Input<boolean>;
+    verbose?: pulumi.Input<boolean | undefined>;
     /**
      * When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
      */
-    verboseCredentials?: pulumi.Input<boolean>;
+    verboseCredentials?: pulumi.Input<boolean | undefined>;
     /**
      * Timeout used for individual HTTP calls. Defaults to "1m".
      */
-    verboseFile?: pulumi.Input<string>;
+    verboseFile?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

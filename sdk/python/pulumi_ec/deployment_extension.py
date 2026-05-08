@@ -21,11 +21,11 @@ class DeploymentExtensionArgs:
     def __init__(__self__, *,
                  extension_type: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 download_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_hash: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 download_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_hash: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeploymentExtension resource.
 
@@ -76,78 +76,78 @@ class DeploymentExtensionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description for the extension
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="downloadUrl")
-    def download_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def download_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL to download the extension archive.
         """
         return pulumi.get(self, "download_url")
 
     @download_url.setter
-    def download_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def download_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "download_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fileHash")
-    def file_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hash value of the file. Triggers re-uploading the file on change.
         """
         return pulumi.get(self, "file_hash")
 
     @file_hash.setter
-    def file_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_hash", value)
 
     @_builtins.property
     @pulumi.getter(name="filePath")
-    def file_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Local file path to upload as the extension.
         """
         return pulumi.get(self, "file_path")
 
     @file_path.setter
-    def file_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_path", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the extension
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _DeploymentExtensionState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 download_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 extension_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_hash: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_modified: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 download_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 extension_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_hash: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_modified: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentExtension resources.
 
@@ -185,122 +185,122 @@ class _DeploymentExtensionState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description for the extension
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="downloadUrl")
-    def download_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def download_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL to download the extension archive.
         """
         return pulumi.get(self, "download_url")
 
     @download_url.setter
-    def download_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def download_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "download_url", value)
 
     @_builtins.property
     @pulumi.getter(name="extensionType")
-    def extension_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def extension_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Extension type. Must be `bundle` or `plugin`. A `bundle` will usually contain a dictionary or script, where a `plugin` is compiled from source.
         """
         return pulumi.get(self, "extension_type")
 
     @extension_type.setter
-    def extension_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def extension_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "extension_type", value)
 
     @_builtins.property
     @pulumi.getter(name="fileHash")
-    def file_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hash value of the file. Triggers re-uploading the file on change.
         """
         return pulumi.get(self, "file_hash")
 
     @file_hash.setter
-    def file_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_hash", value)
 
     @_builtins.property
     @pulumi.getter(name="filePath")
-    def file_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Local file path to upload as the extension.
         """
         return pulumi.get(self, "file_path")
 
     @file_path.setter
-    def file_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_path", value)
 
     @_builtins.property
     @pulumi.getter(name="lastModified")
-    def last_modified(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_modified(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The datatime the extension was last modified.
         """
         return pulumi.get(self, "last_modified")
 
     @last_modified.setter
-    def last_modified(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_modified(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_modified", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the extension
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the extension file in bytes.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The extension URL which will be used in the Elastic Cloud deployment plan.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Elastic stack version. A full version (e.g 8.7.0) should be set for plugins. A wildcard (e.g 8.*) may be used for bundles.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -310,13 +310,13 @@ class DeploymentExtension(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 download_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 extension_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_hash: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 download_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 extension_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_hash: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides an Elastic Cloud extension resource, which allows extensions to be created, updated, and deleted.
@@ -519,13 +519,13 @@ class DeploymentExtension(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 download_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 extension_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_hash: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 download_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 extension_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_hash: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -559,16 +559,16 @@ class DeploymentExtension(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            download_url: Optional[pulumi.Input[_builtins.str]] = None,
-            extension_type: Optional[pulumi.Input[_builtins.str]] = None,
-            file_hash: Optional[pulumi.Input[_builtins.str]] = None,
-            file_path: Optional[pulumi.Input[_builtins.str]] = None,
-            last_modified: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None) -> 'DeploymentExtension':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            download_url: pulumi.Input[Optional[_builtins.str]] = None,
+            extension_type: pulumi.Input[Optional[_builtins.str]] = None,
+            file_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            file_path: pulumi.Input[Optional[_builtins.str]] = None,
+            last_modified: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> 'DeploymentExtension':
         """
         Get an existing DeploymentExtension resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -135,27 +135,27 @@ export interface ServerlessTrafficFilterState {
     /**
      * Description of the traffic filter
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Should the traffic filter be automatically included in the new projects
      */
-    includeByDefault?: pulumi.Input<boolean>;
+    includeByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the traffic filter
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The traffic filter can be attached only to projects in the specific region
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of rules
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.ServerlessTrafficFilterRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.ServerlessTrafficFilterRule>[] | undefined>;
     /**
      * Type of the traffic filter
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -165,15 +165,15 @@ export interface ServerlessTrafficFilterArgs {
     /**
      * Description of the traffic filter
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Should the traffic filter be automatically included in the new projects
      */
-    includeByDefault?: pulumi.Input<boolean>;
+    includeByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the traffic filter
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The traffic filter can be attached only to projects in the specific region
      */
@@ -181,7 +181,7 @@ export interface ServerlessTrafficFilterArgs {
     /**
      * List of rules
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.ServerlessTrafficFilterRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.ServerlessTrafficFilterRule>[] | undefined>;
     /**
      * Type of the traffic filter
      */

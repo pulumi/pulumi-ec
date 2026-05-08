@@ -291,17 +291,17 @@ def get_deployments(apms: Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetD
         return_count=pulumi.get(__ret__, 'return_count'),
         size=pulumi.get(__ret__, 'size'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_deployments_output(apms: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']]]]] = None,
-                           deployment_template_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           elasticsearches: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']]]]] = None,
-                           enterprise_searches: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict']]]]] = None,
-                           healthy: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           integrations_servers: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict']]]]] = None,
-                           kibanas: Optional[pulumi.Input[Optional[Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict']]]]] = None,
-                           name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           name_prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           size: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                           tags: Optional[pulumi.Input[Optional[Mapping[str, _builtins.str]]]] = None,
+def get_deployments_output(apms: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']]]]] = None,
+                           deployment_template_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           elasticsearches: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']]]]] = None,
+                           enterprise_searches: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict']]]]] = None,
+                           healthy: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           integrations_servers: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict']]]]] = None,
+                           kibanas: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict']]]]] = None,
+                           name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           name_prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           size: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                           tags: pulumi.Input[Optional[Optional[Mapping[str, _builtins.str]]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentsResult]:
     """
     Use this data source to retrieve a list of IDs for the deployment and resource kinds, based on the specified query.

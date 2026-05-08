@@ -50,8 +50,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -90,8 +90,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -130,8 +130,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -170,8 +170,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -210,8 +210,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAwsPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -250,8 +250,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -290,8 +290,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -330,8 +330,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -370,8 +370,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -410,8 +410,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetAzurePrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -450,8 +450,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -490,8 +490,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -530,8 +530,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -570,8 +570,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -610,8 +610,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -656,8 +656,8 @@ public final class EcFunctions {
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
      * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -717,8 +717,8 @@ public final class EcFunctions {
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
      * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -778,8 +778,8 @@ public final class EcFunctions {
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
      * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -839,8 +839,8 @@ public final class EcFunctions {
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
      * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -900,8 +900,8 @@ public final class EcFunctions {
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotArgs;
      * import com.pulumi.ec.inputs.DeploymentElasticsearchHotAutoscalingArgs;
      * import com.pulumi.ec.inputs.DeploymentKibanaArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -955,8 +955,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1010,8 +1010,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1065,8 +1065,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1120,8 +1120,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1175,8 +1175,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1230,8 +1230,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1285,8 +1285,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1340,8 +1340,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1380,8 +1380,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1420,8 +1420,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1460,8 +1460,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1500,8 +1500,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetGcpPrivateServiceConnectEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1542,8 +1542,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetStackArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1591,8 +1591,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetStackArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1640,8 +1640,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetStackArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1689,8 +1689,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetStackArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1738,8 +1738,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetStackArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1785,8 +1785,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1833,8 +1833,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1881,8 +1881,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1929,8 +1929,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1977,8 +1977,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2025,8 +2025,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2073,8 +2073,8 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetTrafficFilterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

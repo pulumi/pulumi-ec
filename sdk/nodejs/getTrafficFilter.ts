@@ -112,13 +112,13 @@ export interface GetTrafficFilterOutputArgs {
     /**
      * The id of the traffic filter to select.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The exact name of the traffic filter to select.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Region where the traffic filter is. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

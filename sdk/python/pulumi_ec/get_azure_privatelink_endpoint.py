@@ -112,7 +112,7 @@ def get_azure_privatelink_endpoint(region: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         service_alias=pulumi.get(__ret__, 'service_alias'))
-def get_azure_privatelink_endpoint_output(region: Optional[pulumi.Input[_builtins.str]] = None,
+def get_azure_privatelink_endpoint_output(region: pulumi.Input[Optional[_builtins.str]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAzurePrivatelinkEndpointResult]:
     """
     Use this data source to retrieve information about the Azure Private Link configuration for a given region. Further documentation on how to establish a PrivateLink connection can be found in the ESS [documentation](https://www.elastic.co/guide/en/cloud/current/ec-traffic-filtering-vnet.html).

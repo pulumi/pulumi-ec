@@ -132,7 +132,7 @@ export interface GetDeploymentTemplatesOutputArgs {
     /**
      * Filters for a deployment template with this id.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Region to select. For Elastic Cloud Enterprise (ECE) installations, use `ece-region`.
      */
@@ -140,9 +140,9 @@ export interface GetDeploymentTemplatesOutputArgs {
     /**
      * Enable to also show deprecated deployment templates. (Set to false by default.)
      */
-    showDeprecated?: pulumi.Input<boolean>;
+    showDeprecated?: pulumi.Input<boolean | undefined>;
     /**
      * Filters for deployment templates compatible with this stack version.
      */
-    stackVersion?: pulumi.Input<string>;
+    stackVersion?: pulumi.Input<string | undefined>;
 }

@@ -160,47 +160,47 @@ export interface ObservabilityProjectState {
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
      */
-    cloudId?: pulumi.Input<string>;
+    cloudId?: pulumi.Input<string | undefined>;
     /**
      * Basic auth credentials to access the Elasticsearch API.
      */
-    credentials?: pulumi.Input<inputs.ObservabilityProjectCredentials>;
+    credentials?: pulumi.Input<inputs.ObservabilityProjectCredentials | undefined>;
     /**
      * The endpoints to access the different apps of the project.
      */
-    endpoints?: pulumi.Input<inputs.ObservabilityProjectEndpoints>;
+    endpoints?: pulumi.Input<inputs.ObservabilityProjectEndpoints | undefined>;
     /**
      * Metadata request for a project with tags.
      */
-    metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata>;
+    metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata | undefined>;
     /**
      * Descriptive name for a project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
      */
-    privateEndpoints?: pulumi.Input<inputs.ObservabilityProjectPrivateEndpoints>;
+    privateEndpoints?: pulumi.Input<inputs.ObservabilityProjectPrivateEndpoints | undefined>;
     /**
      * the tier of the observability project
      */
-    productTier?: pulumi.Input<string>;
+    productTier?: pulumi.Input<string | undefined>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
-    regionId?: pulumi.Input<string>;
+    regionId?: pulumi.Input<string | undefined>;
     /**
      * Set of traffic filter IDs to associate with this project
      */
-    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * the type of the project
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -210,19 +210,19 @@ export interface ObservabilityProjectArgs {
     /**
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * Metadata request for a project with tags.
      */
-    metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata>;
+    metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata | undefined>;
     /**
      * Descriptive name for a project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * the tier of the observability project
      */
-    productTier?: pulumi.Input<string>;
+    productTier?: pulumi.Input<string | undefined>;
     /**
      * Unique human-readable identifier for a region in Elastic Cloud.
      */
@@ -230,5 +230,5 @@ export interface ObservabilityProjectArgs {
     /**
      * Set of traffic filter IDs to associate with this project
      */
-    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[]>;
+    trafficFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

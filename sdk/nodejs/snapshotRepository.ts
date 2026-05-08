@@ -150,15 +150,15 @@ export interface SnapshotRepositoryState {
     /**
      * Generic repository settings.
      */
-    generic?: pulumi.Input<inputs.SnapshotRepositoryGeneric>;
+    generic?: pulumi.Input<inputs.SnapshotRepositoryGeneric | undefined>;
     /**
      * The name of the snapshot repository configuration.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * S3 repository settings.
      */
-    s3?: pulumi.Input<inputs.SnapshotRepositoryS3>;
+    s3?: pulumi.Input<inputs.SnapshotRepositoryS3 | undefined>;
 }
 
 /**
@@ -168,13 +168,13 @@ export interface SnapshotRepositoryArgs {
     /**
      * Generic repository settings.
      */
-    generic?: pulumi.Input<inputs.SnapshotRepositoryGeneric>;
+    generic?: pulumi.Input<inputs.SnapshotRepositoryGeneric | undefined>;
     /**
      * The name of the snapshot repository configuration.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * S3 repository settings.
      */
-    s3?: pulumi.Input<inputs.SnapshotRepositoryS3>;
+    s3?: pulumi.Input<inputs.SnapshotRepositoryS3 | undefined>;
 }

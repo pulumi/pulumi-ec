@@ -243,7 +243,7 @@ def get_deployment(id: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'),
         traffic_filters=pulumi.get(__ret__, 'traffic_filters'))
-def get_deployment_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_deployment_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentResult]:
     """
     Use this data source to retrieve information about an existing Elastic Cloud deployment.

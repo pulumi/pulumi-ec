@@ -146,10 +146,10 @@ def get_deployment_templates(id: Optional[_builtins.str] = None,
         show_deprecated=pulumi.get(__ret__, 'show_deprecated'),
         stack_version=pulumi.get(__ret__, 'stack_version'),
         templates=pulumi.get(__ret__, 'templates'))
-def get_deployment_templates_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                    region: Optional[pulumi.Input[_builtins.str]] = None,
-                                    show_deprecated: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                    stack_version: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_deployment_templates_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                    region: pulumi.Input[Optional[_builtins.str]] = None,
+                                    show_deprecated: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                    stack_version: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentTemplatesResult]:
     """
     Use this data source to retrieve a list of available deployment templates.

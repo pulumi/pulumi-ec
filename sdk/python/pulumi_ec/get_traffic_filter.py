@@ -121,9 +121,9 @@ def get_traffic_filter(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'),
         rulesets=pulumi.get(__ret__, 'rulesets'))
-def get_traffic_filter_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_traffic_filter_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTrafficFilterResult]:
     """
     Use this data source to filter for an existing traffic filter that has been created via one of the provided filters.

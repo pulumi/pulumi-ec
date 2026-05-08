@@ -58,8 +58,8 @@ class DeploymentTrafficFilterAssociationArgs:
 @pulumi.input_type
 class _DeploymentTrafficFilterAssociationState:
     def __init__(__self__, *,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeploymentTrafficFilterAssociation resources.
 
@@ -73,26 +73,26 @@ class _DeploymentTrafficFilterAssociationState:
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
-    def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required deployment ID where the traffic filter will be associated
         """
         return pulumi.get(self, "deployment_id")
 
     @deployment_id.setter
-    def deployment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="trafficFilterId")
-    def traffic_filter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def traffic_filter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required traffic filter ruleset ID to tie to a deployment
         """
         return pulumi.get(self, "traffic_filter_id")
 
     @traffic_filter_id.setter
-    def traffic_filter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def traffic_filter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "traffic_filter_id", value)
 
 
@@ -102,8 +102,8 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides an Elastic Cloud traffic filter association resource, which allows traffic filter rules to be associated to an Elastic Cloud deployment outside of the control of Terraform. Associations can be created and deleted.
@@ -185,8 +185,8 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 traffic_filter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 traffic_filter_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -212,8 +212,8 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
-            traffic_filter_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'DeploymentTrafficFilterAssociation':
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            traffic_filter_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DeploymentTrafficFilterAssociation':
         """
         Get an existing DeploymentTrafficFilterAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
