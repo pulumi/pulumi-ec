@@ -4429,6 +4429,10 @@
                     "type": "string",
                     "description": "Username for authenticating to the Elasticsearch resource."
                 },
+                "encryptionKeyPath": {
+                    "type": "string",
+                    "description": "Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.\n\n\u003e **Note** Changing this value after deployment creation will force a new deployment to be created."
+                },
                 "enterpriseSearch": {
                     "$ref": "#/types/ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch",
                     "description": "Enterprise Search cluster definition."
@@ -4513,6 +4517,10 @@
                 "elasticsearch": {
                     "$ref": "#/types/ec:index/DeploymentElasticsearch:DeploymentElasticsearch",
                     "description": "Elasticsearch cluster definition\n"
+                },
+                "encryptionKeyPath": {
+                    "type": "string",
+                    "description": "Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.\n\n\u003e **Note** Changing this value after deployment creation will force a new deployment to be created."
                 },
                 "enterpriseSearch": {
                     "$ref": "#/types/ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch",
@@ -4606,6 +4614,10 @@
                     "elasticsearchUsername": {
                         "type": "string",
                         "description": "Username for authenticating to the Elasticsearch resource."
+                    },
+                    "encryptionKeyPath": {
+                        "type": "string",
+                        "description": "Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.\n\n\u003e **Note** Changing this value after deployment creation will force a new deployment to be created."
                     },
                     "enterpriseSearch": {
                         "$ref": "#/types/ec:index/DeploymentEnterpriseSearch:DeploymentEnterpriseSearch",

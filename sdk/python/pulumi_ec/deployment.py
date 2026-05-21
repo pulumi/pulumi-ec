@@ -27,6 +27,7 @@ class DeploymentArgs:
                  version: pulumi.Input[_builtins.str],
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  apm: pulumi.Input[Optional['DeploymentApmArgs']] = None,
+                 encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
                  enterprise_search: pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']] = None,
                  integrations_server: pulumi.Input[Optional['DeploymentIntegrationsServerArgs']] = None,
                  kibana: pulumi.Input[Optional['DeploymentKibanaArgs']] = None,
@@ -46,6 +47,9 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.str] version: Elastic Stack version to use for all of the deployment resources.
         :param pulumi.Input[_builtins.str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
         :param pulumi.Input['DeploymentApmArgs'] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
+        :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+               
+               > **Note** Changing this value after deployment creation will force a new deployment to be created.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition.
@@ -70,6 +74,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "alias", alias)
         if apm is not None:
             pulumi.set(__self__, "apm", apm)
+        if encryption_key_path is not None:
+            pulumi.set(__self__, "encryption_key_path", encryption_key_path)
         if enterprise_search is not None:
             pulumi.set(__self__, "enterprise_search", enterprise_search)
         if integrations_server is not None:
@@ -162,6 +168,20 @@ class DeploymentArgs:
     @apm.setter
     def apm(self, value: pulumi.Input[Optional['DeploymentApmArgs']]):
         pulumi.set(self, "apm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyPath")
+    def encryption_key_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+
+        > **Note** Changing this value after deployment creation will force a new deployment to be created.
+        """
+        return pulumi.get(self, "encryption_key_path")
+
+    @encryption_key_path.setter
+    def encryption_key_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "encryption_key_path", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseSearch")
@@ -299,6 +319,7 @@ class _DeploymentState:
                  elasticsearch: pulumi.Input[Optional['DeploymentElasticsearchArgs']] = None,
                  elasticsearch_password: pulumi.Input[Optional[_builtins.str]] = None,
                  elasticsearch_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
                  enterprise_search: pulumi.Input[Optional['DeploymentEnterpriseSearchArgs']] = None,
                  integrations_server: pulumi.Input[Optional['DeploymentIntegrationsServerArgs']] = None,
                  kibana: pulumi.Input[Optional['DeploymentKibanaArgs']] = None,
@@ -323,6 +344,9 @@ class _DeploymentState:
                > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
                > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
+        :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+               
+               > **Note** Changing this value after deployment creation will force a new deployment to be created.
         :param pulumi.Input['DeploymentEnterpriseSearchArgs'] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input['DeploymentIntegrationsServerArgs'] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input['DeploymentKibanaArgs'] kibana: Kibana cluster definition.
@@ -355,6 +379,8 @@ class _DeploymentState:
             pulumi.set(__self__, "elasticsearch_password", elasticsearch_password)
         if elasticsearch_username is not None:
             pulumi.set(__self__, "elasticsearch_username", elasticsearch_username)
+        if encryption_key_path is not None:
+            pulumi.set(__self__, "encryption_key_path", encryption_key_path)
         if enterprise_search is not None:
             pulumi.set(__self__, "enterprise_search", enterprise_search)
         if integrations_server is not None:
@@ -463,6 +489,20 @@ class _DeploymentState:
     @elasticsearch_username.setter
     def elasticsearch_username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch_username", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyPath")
+    def encryption_key_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+
+        > **Note** Changing this value after deployment creation will force a new deployment to be created.
+        """
+        return pulumi.get(self, "encryption_key_path")
+
+    @encryption_key_path.setter
+    def encryption_key_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "encryption_key_path", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseSearch")
@@ -624,6 +664,7 @@ class Deployment(pulumi.CustomResource):
                  apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
                  deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
                  elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+                 encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
                  enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
                  integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
                  kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
@@ -689,6 +730,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
         :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
+        :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+               
+               > **Note** Changing this value after deployment creation will force a new deployment to be created.
         :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition.
@@ -778,6 +822,7 @@ class Deployment(pulumi.CustomResource):
                  apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
                  deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
                  elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+                 encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
                  enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
                  integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
                  kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
@@ -807,6 +852,7 @@ class Deployment(pulumi.CustomResource):
             if elasticsearch is None and not opts.urn:
                 raise TypeError("Missing required property 'elasticsearch'")
             __props__.__dict__["elasticsearch"] = elasticsearch
+            __props__.__dict__["encryption_key_path"] = encryption_key_path
             __props__.__dict__["enterprise_search"] = enterprise_search
             __props__.__dict__["integrations_server"] = integrations_server
             __props__.__dict__["kibana"] = kibana
@@ -845,6 +891,7 @@ class Deployment(pulumi.CustomResource):
             elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
             elasticsearch_password: pulumi.Input[Optional[_builtins.str]] = None,
             elasticsearch_username: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
             enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
             integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
             kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
@@ -873,6 +920,9 @@ class Deployment(pulumi.CustomResource):
                > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
                > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
+        :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+               
+               > **Note** Changing this value after deployment creation will force a new deployment to be created.
         :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
         :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
         :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition.
@@ -902,6 +952,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["elasticsearch"] = elasticsearch
         __props__.__dict__["elasticsearch_password"] = elasticsearch_password
         __props__.__dict__["elasticsearch_username"] = elasticsearch_username
+        __props__.__dict__["encryption_key_path"] = encryption_key_path
         __props__.__dict__["enterprise_search"] = enterprise_search
         __props__.__dict__["integrations_server"] = integrations_server
         __props__.__dict__["kibana"] = kibana
@@ -971,6 +1022,16 @@ class Deployment(pulumi.CustomResource):
         Username for authenticating to the Elasticsearch resource.
         """
         return pulumi.get(self, "elasticsearch_username")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyPath")
+    def encryption_key_path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+
+        > **Note** Changing this value after deployment creation will force a new deployment to be created.
+        """
+        return pulumi.get(self, "encryption_key_path")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseSearch")

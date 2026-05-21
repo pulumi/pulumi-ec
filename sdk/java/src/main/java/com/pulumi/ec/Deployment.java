@@ -168,6 +168,24 @@ public class Deployment extends com.pulumi.resources.CustomResource {
         return this.elasticsearchUsername;
     }
     /**
+     * Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     * 
+     * &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+     * 
+     */
+    @Export(name="encryptionKeyPath", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> encryptionKeyPath;
+
+    /**
+     * @return Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     * 
+     * &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+     * 
+     */
+    public Output<Optional<String>> encryptionKeyPath() {
+        return Codegen.optional(this.encryptionKeyPath);
+    }
+    /**
      * Enterprise Search cluster definition.
      * 
      */

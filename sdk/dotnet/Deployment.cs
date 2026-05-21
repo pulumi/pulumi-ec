@@ -100,6 +100,14 @@ namespace Pulumi.ElasticCloud
         public Output<string> ElasticsearchUsername { get; private set; } = null!;
 
         /// <summary>
+        /// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+        /// 
+        /// &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+        /// </summary>
+        [Output("encryptionKeyPath")]
+        public Output<string?> EncryptionKeyPath { get; private set; } = null!;
+
+        /// <summary>
         /// Enterprise Search cluster definition.
         /// </summary>
         [Output("enterpriseSearch")]
@@ -250,6 +258,14 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("elasticsearch", required: true)]
         public Input<Inputs.DeploymentElasticsearchArgs> Elasticsearch { get; set; } = null!;
+
+        /// <summary>
+        /// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+        /// 
+        /// &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+        /// </summary>
+        [Input("encryptionKeyPath")]
+        public Input<string>? EncryptionKeyPath { get; set; }
 
         /// <summary>
         /// Enterprise Search cluster definition.
@@ -408,6 +424,14 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("elasticsearchUsername")]
         public Input<string>? ElasticsearchUsername { get; set; }
+
+        /// <summary>
+        /// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+        /// 
+        /// &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+        /// </summary>
+        [Input("encryptionKeyPath")]
+        public Input<string>? EncryptionKeyPath { get; set; }
 
         /// <summary>
         /// Enterprise Search cluster definition.
