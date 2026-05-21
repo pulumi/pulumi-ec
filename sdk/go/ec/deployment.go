@@ -74,6 +74,10 @@ type Deployment struct {
 	ElasticsearchPassword pulumi.StringOutput `pulumi:"elasticsearchPassword"`
 	// Username for authenticating to the Elasticsearch resource.
 	ElasticsearchUsername pulumi.StringOutput `pulumi:"elasticsearchUsername"`
+	// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+	//
+	// > **Note** Changing this value after deployment creation will force a new deployment to be created.
+	EncryptionKeyPath pulumi.StringPtrOutput `pulumi:"encryptionKeyPath"`
 	// Enterprise Search cluster definition.
 	EnterpriseSearch DeploymentEnterpriseSearchPtrOutput `pulumi:"enterpriseSearch"`
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -168,6 +172,10 @@ type deploymentState struct {
 	ElasticsearchPassword *string `pulumi:"elasticsearchPassword"`
 	// Username for authenticating to the Elasticsearch resource.
 	ElasticsearchUsername *string `pulumi:"elasticsearchUsername"`
+	// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+	//
+	// > **Note** Changing this value after deployment creation will force a new deployment to be created.
+	EncryptionKeyPath *string `pulumi:"encryptionKeyPath"`
 	// Enterprise Search cluster definition.
 	EnterpriseSearch *DeploymentEnterpriseSearch `pulumi:"enterpriseSearch"`
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -216,6 +224,10 @@ type DeploymentState struct {
 	ElasticsearchPassword pulumi.StringPtrInput
 	// Username for authenticating to the Elasticsearch resource.
 	ElasticsearchUsername pulumi.StringPtrInput
+	// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+	//
+	// > **Note** Changing this value after deployment creation will force a new deployment to be created.
+	EncryptionKeyPath pulumi.StringPtrInput
 	// Enterprise Search cluster definition.
 	EnterpriseSearch DeploymentEnterpriseSearchPtrInput
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -260,6 +272,10 @@ type deploymentArgs struct {
 	DeploymentTemplateId string `pulumi:"deploymentTemplateId"`
 	// Elasticsearch cluster definition
 	Elasticsearch DeploymentElasticsearch `pulumi:"elasticsearch"`
+	// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+	//
+	// > **Note** Changing this value after deployment creation will force a new deployment to be created.
+	EncryptionKeyPath *string `pulumi:"encryptionKeyPath"`
 	// Enterprise Search cluster definition.
 	EnterpriseSearch *DeploymentEnterpriseSearch `pulumi:"enterpriseSearch"`
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -301,6 +317,10 @@ type DeploymentArgs struct {
 	DeploymentTemplateId pulumi.StringInput
 	// Elasticsearch cluster definition
 	Elasticsearch DeploymentElasticsearchInput
+	// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+	//
+	// > **Note** Changing this value after deployment creation will force a new deployment to be created.
+	EncryptionKeyPath pulumi.StringPtrInput
 	// Enterprise Search cluster definition.
 	EnterpriseSearch DeploymentEnterpriseSearchPtrInput
 	// Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
@@ -454,6 +474,13 @@ func (o DeploymentOutput) ElasticsearchPassword() pulumi.StringOutput {
 // Username for authenticating to the Elasticsearch resource.
 func (o DeploymentOutput) ElasticsearchUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ElasticsearchUsername }).(pulumi.StringOutput)
+}
+
+// Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+//
+// > **Note** Changing this value after deployment creation will force a new deployment to be created.
+func (o DeploymentOutput) EncryptionKeyPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.EncryptionKeyPath }).(pulumi.StringPtrOutput)
 }
 
 // Enterprise Search cluster definition.

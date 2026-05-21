@@ -108,6 +108,12 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly elasticsearchUsername: pulumi.Output<string>;
     /**
+     * Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     *
+     * > **Note** Changing this value after deployment creation will force a new deployment to be created.
+     */
+    declare public readonly encryptionKeyPath: pulumi.Output<string | undefined>;
+    /**
      * Enterprise Search cluster definition.
      */
     declare public readonly enterpriseSearch: pulumi.Output<outputs.DeploymentEnterpriseSearch | undefined>;
@@ -181,6 +187,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["elasticsearch"] = state?.elasticsearch;
             resourceInputs["elasticsearchPassword"] = state?.elasticsearchPassword;
             resourceInputs["elasticsearchUsername"] = state?.elasticsearchUsername;
+            resourceInputs["encryptionKeyPath"] = state?.encryptionKeyPath;
             resourceInputs["enterpriseSearch"] = state?.enterpriseSearch;
             resourceInputs["integrationsServer"] = state?.integrationsServer;
             resourceInputs["kibana"] = state?.kibana;
@@ -211,6 +218,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["apm"] = args?.apm;
             resourceInputs["deploymentTemplateId"] = args?.deploymentTemplateId;
             resourceInputs["elasticsearch"] = args?.elasticsearch;
+            resourceInputs["encryptionKeyPath"] = args?.encryptionKeyPath;
             resourceInputs["enterpriseSearch"] = args?.enterpriseSearch;
             resourceInputs["integrationsServer"] = args?.integrationsServer;
             resourceInputs["kibana"] = args?.kibana;
@@ -266,6 +274,12 @@ export interface DeploymentState {
      * Username for authenticating to the Elasticsearch resource.
      */
     elasticsearchUsername?: pulumi.Input<string | undefined>;
+    /**
+     * Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     *
+     * > **Note** Changing this value after deployment creation will force a new deployment to be created.
+     */
+    encryptionKeyPath?: pulumi.Input<string | undefined>;
     /**
      * Enterprise Search cluster definition.
      */
@@ -341,6 +355,12 @@ export interface DeploymentArgs {
      * Elasticsearch cluster definition
      */
     elasticsearch: pulumi.Input<inputs.DeploymentElasticsearch>;
+    /**
+     * Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     *
+     * > **Note** Changing this value after deployment creation will force a new deployment to be created.
+     */
+    encryptionKeyPath?: pulumi.Input<string | undefined>;
     /**
      * Enterprise Search cluster definition.
      */

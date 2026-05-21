@@ -86,6 +86,25 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     * 
+     * &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+     * 
+     */
+    @Import(name="encryptionKeyPath")
+    private @Nullable Output<String> encryptionKeyPath;
+
+    /**
+     * @return Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+     * 
+     * &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+     * 
+     */
+    public Optional<Output<String>> encryptionKeyPath() {
+        return Optional.ofNullable(this.encryptionKeyPath);
+    }
+
+    /**
      * Enterprise Search cluster definition.
      * 
      */
@@ -282,6 +301,7 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
         this.apm = $.apm;
         this.deploymentTemplateId = $.deploymentTemplateId;
         this.elasticsearch = $.elasticsearch;
+        this.encryptionKeyPath = $.encryptionKeyPath;
         this.enterpriseSearch = $.enterpriseSearch;
         this.integrationsServer = $.integrationsServer;
         this.kibana = $.kibana;
@@ -396,6 +416,31 @@ public final class DeploymentArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder elasticsearch(DeploymentElasticsearchArgs elasticsearch) {
             return elasticsearch(Output.of(elasticsearch));
+        }
+
+        /**
+         * @param encryptionKeyPath Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+         * 
+         * &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionKeyPath(@Nullable Output<String> encryptionKeyPath) {
+            $.encryptionKeyPath = encryptionKeyPath;
+            return this;
+        }
+
+        /**
+         * @param encryptionKeyPath Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
+         * 
+         * &gt; **Note** Changing this value after deployment creation will force a new deployment to be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionKeyPath(String encryptionKeyPath) {
+            return encryptionKeyPath(Output.of(encryptionKeyPath));
         }
 
         /**
