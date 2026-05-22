@@ -148,7 +148,7 @@ __all__ = [
 ]
 
 class DeploymentApmArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input[Optional['DeploymentApmConfigArgs']]]
+    config: NotRequired[pulumi.Input[Optional['DeploymentApmConfigArgsDict']]]
     """
     Optionally define the Apm configuration options for the APM Server
     """
@@ -494,23 +494,23 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     The encoded Elasticsearch credentials to use in Beats or Logstash
     """
-    cold: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchColdArgs']]]
+    cold: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchColdArgsDict']]]
     """
     'cold' topology element
     """
-    config: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchConfigArgs']]]
+    config: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchConfigArgsDict']]]
     """
     Elasticsearch settings which will be applied to all topologies
     """
-    coordinating: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchCoordinatingArgs']]]
+    coordinating: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchCoordinatingArgsDict']]]
     """
     'coordinating' topology element
     """
-    extensions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgs']]]]]
+    extensions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchExtensionArgsDict']]]]]
     """
     Optional Elasticsearch extensions such as custom bundles or plugins.
     """
-    frozen: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchFrozenArgs']]]
+    frozen: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchFrozenArgsDict']]]
     """
     'frozen' topology element
     """
@@ -522,15 +522,15 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     The Elasticsearch resource HTTPs endpoint
     """
-    keystore_contents: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgs']]]]]
+    keystore_contents: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input['DeploymentElasticsearchKeystoreContentsArgsDict']]]]]
     """
     Keystore contents that are controlled by the deployment resource.
     """
-    master: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchMasterArgs']]]
+    master: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchMasterArgsDict']]]
     """
     'master' topology element
     """
-    ml: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchMlArgs']]]
+    ml: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchMlArgsDict']]]
     """
     'ml' topology element
     """
@@ -542,7 +542,7 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
     """
-    remote_clusters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgs']]]]]
+    remote_clusters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchRemoteClusterArgsDict']]]]]
     """
     Optional Elasticsearch remote clusters to configure for the Elasticsearch resource, can be set multiple times
     """
@@ -550,11 +550,11 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     The Elasticsearch resource unique identifier
     """
-    snapshot: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotArgs']]]
+    snapshot: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotArgsDict']]]
     """
     (ECE only) Snapshot configuration settings for an Elasticsearch cluster.
     """
-    snapshot_source: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotSourceArgs']]]
+    snapshot_source: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotSourceArgsDict']]]
     """
     Restores data from a snapshot of another deployment.
 
@@ -564,15 +564,15 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
     """
-    trust_accounts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]]]]
+    trust_accounts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgsDict']]]]]
     """
     Optional Elasticsearch account trust settings.
     """
-    trust_externals: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]]]]
+    trust_externals: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgsDict']]]]]
     """
     Optional Elasticsearch external trust settings.
     """
-    warm: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchWarmArgs']]]
+    warm: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchWarmArgsDict']]]
     """
     'warm' topology element
     """
@@ -3691,7 +3691,7 @@ class DeploymentElasticsearchSnapshotArgsDict(TypedDict):
     """
     Indicates if Snapshotting is enabled.
     """
-    repository: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryArgs']]]
+    repository: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryArgsDict']]]
     """
     Snapshot repository configuration
     """
@@ -3735,7 +3735,7 @@ class DeploymentElasticsearchSnapshotArgs:
 
 
 class DeploymentElasticsearchSnapshotRepositoryArgsDict(TypedDict):
-    reference: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryReferenceArgs']]]
+    reference: NotRequired[pulumi.Input[Optional['DeploymentElasticsearchSnapshotRepositoryReferenceArgsDict']]]
     """
     Cluster snapshot reference repository settings, containing the repository name in ECE fashion
     """
@@ -4371,7 +4371,7 @@ class DeploymentElasticsearchWarmAutoscalingArgs:
 
 
 class DeploymentEnterpriseSearchArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input[Optional['DeploymentEnterpriseSearchConfigArgs']]]
+    config: NotRequired[pulumi.Input[Optional['DeploymentEnterpriseSearchConfigArgsDict']]]
     """
     Optionally define the Enterprise Search configuration options for the Enterprise Search Server
     """
@@ -4724,12 +4724,12 @@ class DeploymentEnterpriseSearchConfigArgs:
 
 
 class DeploymentIntegrationsServerArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input[Optional['DeploymentIntegrationsServerConfigArgs']]]
+    config: NotRequired[pulumi.Input[Optional['DeploymentIntegrationsServerConfigArgsDict']]]
     """
     Optionally define the Integrations Server configuration options for the IntegrationsServer Server
     """
     elasticsearch_cluster_ref_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    endpoints: NotRequired[pulumi.Input[Optional['DeploymentIntegrationsServerEndpointsArgs']]]
+    endpoints: NotRequired[pulumi.Input[Optional['DeploymentIntegrationsServerEndpointsArgsDict']]]
     """
     URLs for the accessing the Fleet and APM API's within this Integrations Server resource.
     """
@@ -5133,7 +5133,7 @@ class DeploymentIntegrationsServerEndpointsArgs:
 
 
 class DeploymentKibanaArgsDict(TypedDict):
-    config: NotRequired[pulumi.Input[Optional['DeploymentKibanaConfigArgs']]]
+    config: NotRequired[pulumi.Input[Optional['DeploymentKibanaConfigArgsDict']]]
     """
     Optionally define the Kibana configuration options for the Kibana Server
     """
@@ -6335,7 +6335,7 @@ class ObservabilityProjectPrivateEndpointsArgs:
 
 
 class OrganizationMembersArgsDict(TypedDict):
-    deployment_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgs']]]]]
+    deployment_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersDeploymentRoleArgsDict']]]]]
     """
     Grant access to one or more deployments. For more info see: [Deployment instance roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_instance_access_roles).
     """
@@ -6351,15 +6351,15 @@ class OrganizationMembersArgsDict(TypedDict):
     """
     The optional organization role for the member. Can be one of `organization-admin`, `billing-admin`. For more info see: [Organization roles](https://www.elastic.co/guide/en/cloud/current/ec-user-privileges.html#ec_organization_level_roles)
     """
-    project_elasticsearch_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgs']]]]]
+    project_elasticsearch_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectElasticsearchRoleArgsDict']]]]]
     """
     Roles assigned for elasticsearch projects. For more info see: [Serverless elasticsearch roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#es)
     """
-    project_observability_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgs']]]]]
+    project_observability_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectObservabilityRoleArgsDict']]]]]
     """
     Roles assigned for observability projects. For more info see: [Serverless observability roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#observability)
     """
-    project_security_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgs']]]]]
+    project_security_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationMembersProjectSecurityRoleArgsDict']]]]]
     """
     Roles assigned for security projects. For more info see: [Serverless security roles](https://www.elastic.co/docs/current/serverless/general/assign-user-roles#security)
     """
@@ -7219,7 +7219,7 @@ class SecurityProjectProductTypeArgs:
 
 
 class SecurityProjectSearchLakeArgsDict(TypedDict):
-    data_retention: NotRequired[pulumi.Input[Optional['SecurityProjectSearchLakeDataRetentionArgs']]]
+    data_retention: NotRequired[pulumi.Input[Optional['SecurityProjectSearchLakeDataRetentionArgsDict']]]
     """
     Configuration to control the data retention in Elasticsearch data streams.
     """
