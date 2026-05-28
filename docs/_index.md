@@ -33,7 +33,7 @@ The Elastic Cloud Pulumi provider offers two methods of authentication against t
 
 Elasticsearch Service (ESS) only supports `apikey`. Elastic Cloud Enterprise (ECE) supports `apikey` or a combination of `username` and `password`.
 
-!> **Warning:** Hard-coding credentials into a Pulumi configuration is not recommended, and risks secret leakage should this file ever be committed to a public version control system.
+> **Warning:** Hard-coding credentials into a Pulumi configuration is not recommended, and risks secret leakage should this file ever be committed to a public version control system.
 ### API key authentication (recommended)
 
 API keys are the recommended authentication method. They can be used to authenticate against Elasticsearch Service or Elastic Cloud Enterprise.
