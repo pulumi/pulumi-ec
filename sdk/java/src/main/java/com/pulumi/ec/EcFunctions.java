@@ -955,6 +955,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -1010,6 +1014,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -1065,6 +1073,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -1120,6 +1132,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -1175,6 +1191,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -1230,6 +1250,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -1285,6 +1309,10 @@ public final class EcFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ec.EcFunctions;
      * import com.pulumi.ec.inputs.GetDeploymentsArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsElasticsearchArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsKibanaArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsIntegrationsServerArgs;
+     * import com.pulumi.ec.inputs.GetDeploymentsEnterpriseSearchArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
