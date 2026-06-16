@@ -519,6 +519,21 @@
         }
     },
     "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "ec_deployment": {},
+            "ec_deployment_elasticsearch_keystore": {},
+            "ec_deployment_extension": {},
+            "ec_deployment_traffic_filter": {},
+            "ec_deployment_traffic_filter_association": {},
+            "ec_elasticsearch_project": {},
+            "ec_observability_project": {},
+            "ec_organization": {},
+            "ec_security_project": {},
+            "ec_serverless_traffic_filter": {},
+            "ec_snapshot_repository": {}
+        }
+    },
     "renames": {
         "resources": {
             "ec:index/deployment:Deployment": "ec_deployment",
