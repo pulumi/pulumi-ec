@@ -41,6 +41,8 @@ const (
 	mainPkg = "ec"
 	// modules:
 	mainMod = "index" // the y module
+
+	elasticsearchKey = "elasticsearch"
 )
 
 //go:embed  cmd/pulumi-resource-ec/bridge-metadata.json
@@ -139,7 +141,7 @@ func Provider() tfbridge.ProviderInfo {
 // current schema expects. Values that are already booleans (or absent) are left
 // untouched, so the transform is a no-op on clean state. See issue #147.
 func migrateElasticsearchAutoscale(_ context.Context, state resource.PropertyMap) (resource.PropertyMap, error) {
-	es, ok := state["elasticsearch"]
+	es, ok := state[elasticsearchKey]
 	if !ok {
 		return state, nil
 	}

@@ -18,9 +18,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 )
@@ -33,21 +34,21 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 
 	es := func(autoscale resource.PropertyValue) resource.PropertyMap {
 		return resource.PropertyMap{
-			"elasticsearch": resource.NewObjectProperty(resource.PropertyMap{
+			elasticsearchKey: resource.NewObjectProperty(resource.PropertyMap{
 				"autoscale": autoscale,
 				"hot":       resource.NewObjectProperty(resource.PropertyMap{"size": resource.NewStringProperty("8g")}),
 			}),
 		}
 	}
-	autoscaleOf := func(t *testing.T, m resource.PropertyMap) resource.PropertyValue {
-		return m["elasticsearch"].ObjectValue()["autoscale"]
+	autoscaleOf := func(m resource.PropertyMap) resource.PropertyValue {
+		return m[elasticsearchKey].ObjectValue()["autoscale"]
 	}
 
 	t.Run("string false -> bool false", func(t *testing.T) {
 		t.Parallel()
 		out, err := migrateElasticsearchAutoscale(context.Background(), es(resource.NewStringProperty("false")))
 		require.NoError(t, err)
-		got := autoscaleOf(t, out)
+		got := autoscaleOf(out)
 		require.True(t, got.IsBool())
 		assert.False(t, got.BoolValue())
 	})
@@ -56,7 +57,7 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 		t.Parallel()
 		out, err := migrateElasticsearchAutoscale(context.Background(), es(resource.NewStringProperty("TRUE")))
 		require.NoError(t, err)
-		got := autoscaleOf(t, out)
+		got := autoscaleOf(out)
 		require.True(t, got.IsBool())
 		assert.True(t, got.BoolValue())
 	})
@@ -65,7 +66,7 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 		t.Parallel()
 		out, err := migrateElasticsearchAutoscale(context.Background(), es(resource.NewBoolProperty(true)))
 		require.NoError(t, err)
-		got := autoscaleOf(t, out)
+		got := autoscaleOf(out)
 		require.True(t, got.IsBool())
 		assert.True(t, got.BoolValue())
 	})
@@ -73,13 +74,13 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 	t.Run("single-element list shape", func(t *testing.T) {
 		t.Parallel()
 		in := resource.PropertyMap{
-			"elasticsearch": resource.NewArrayProperty([]resource.PropertyValue{
+			elasticsearchKey: resource.NewArrayProperty([]resource.PropertyValue{
 				resource.NewObjectProperty(resource.PropertyMap{"autoscale": resource.NewStringProperty("true")}),
 			}),
 		}
 		out, err := migrateElasticsearchAutoscale(context.Background(), in)
 		require.NoError(t, err)
-		got := out["elasticsearch"].ArrayValue()[0].ObjectValue()["autoscale"]
+		got := out[elasticsearchKey].ArrayValue()[0].ObjectValue()["autoscale"]
 		require.True(t, got.IsBool())
 		assert.True(t, got.BoolValue())
 	})
