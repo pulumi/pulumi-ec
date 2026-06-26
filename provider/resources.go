@@ -15,9 +15,11 @@
 package ec
 
 import (
+	"context"
 	"fmt"
 	"path/filepath"
 	"regexp"
+	"strings"
 
 	// Allow us to embed metadata
 	_ "embed"
@@ -28,6 +30,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 )
@@ -38,6 +41,8 @@ const (
 	mainPkg = "ec"
 	// modules:
 	mainMod = "index" // the y module
+
+	elasticsearchKey = "elasticsearch"
 )
 
 //go:embed  cmd/pulumi-resource-ec/bridge-metadata.json
@@ -107,11 +112,64 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustComputeTokens(tks.SingleModule("ec_", mainMod,
 		tks.MakeStandard(mainPkg)))
 
+	// https://github.com/pulumi/pulumi-ec/issues/147
+	//
+	// terraform-provider-ec changed `elasticsearch.autoscale` from a string to a bool
+	// (released in pulumi-ec v0.6.0). Stacks first deployed with <= 0.5.x have the value
+	// stored in Pulumi state as a JSON string ("true"/"false"). When a newer provider
+	// reads that state the schema encoder throws before any cloud call:
+	//
+	//   [pf/tfbridge] Error calling EncodePropertyMap: objectEncoder failed on property
+	//   "elasticsearch": objectEncoder failed on property "autoscale": Expected a Boolean
+	//
+	// TransformFromState runs on the prior state ahead of the encode/upgrade steps in
+	// Check, Diff, Read, Update and Delete, so coercing the legacy string to a bool here
+	// migrates affected stacks transparently — no manual `pulumi state` surgery required.
+	if r := prov.Resources["ec_deployment"]; r != nil {
+		r.TransformFromState = migrateElasticsearchAutoscale
+	}
+
 	prov.SetAutonaming(255, "-")
 
 	prov.MustApplyAutoAliases()
 
 	return prov
+}
+
+// migrateElasticsearchAutoscale coerces a legacy string `elasticsearch.autoscale`
+// (e.g. "true"/"false", as written by pulumi-ec <= 0.5.x) into the boolean that the
+// current schema expects. Values that are already booleans (or absent) are left
+// untouched, so the transform is a no-op on clean state. See issue #147.
+func migrateElasticsearchAutoscale(_ context.Context, state resource.PropertyMap) (resource.PropertyMap, error) {
+	es, ok := state[elasticsearchKey]
+	if !ok {
+		return state, nil
+	}
+
+	coerce := func(v resource.PropertyValue) resource.PropertyValue {
+		if !v.IsObject() {
+			return v
+		}
+		obj := v.ObjectValue()
+		if a, ok := obj["autoscale"]; ok && a.IsString() {
+			obj["autoscale"] = resource.NewBoolProperty(strings.EqualFold(a.StringValue(), "true"))
+		}
+		return resource.NewObjectProperty(obj)
+	}
+
+	switch {
+	case es.IsObject():
+		state["elasticsearch"] = coerce(es)
+	case es.IsArray():
+		// Older schema shapes modelled elasticsearch as a single-element list.
+		arr := es.ArrayValue()
+		for i := range arr {
+			arr[i] = coerce(arr[i])
+		}
+		state["elasticsearch"] = resource.NewArrayProperty(arr)
+	}
+
+	return state, nil
 }
 
 func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
