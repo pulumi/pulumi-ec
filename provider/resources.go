@@ -112,36 +112,12 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustComputeTokens(tks.SingleModule("ec_", mainMod,
 		tks.MakeStandard(mainPkg)))
 
-	// https://github.com/pulumi/pulumi-ec/issues/147
-	//
-	// terraform-provider-ec changed `elasticsearch.autoscale` from a string to a bool
-	// (released in pulumi-ec v0.6.0). Stacks first deployed with <= 0.5.x have the value
-	// stored in Pulumi state as a JSON string ("true"/"false"). When a newer provider
-	// reads that state the schema encoder throws before any cloud call:
-	//
-	//   [pf/tfbridge] Error calling EncodePropertyMap: objectEncoder failed on property
-	//   "elasticsearch": objectEncoder failed on property "autoscale": Expected a Boolean
-	//
-	// TransformFromState runs on the prior state ahead of the encode/upgrade steps in
-	// Check, Diff, Read, Update and Delete, so coercing the legacy string to a bool here
-	// migrates affected stacks transparently — no manual `pulumi state` surgery required.
+	// The Elastic Cloud deployment resource has two breaking schema changes from v1 to v2; transform them and
+	// update the schema version
 	if r := prov.Resources["ec_deployment"]; r != nil {
 		r.TransformFromState = migrateElasticsearchState
 
-		// Upstream ec_deployment declares schema version 2 but ships no
-		// StateUpgrader, so the Plugin Framework runtime rejects any prior state
-		// recorded at an older version with:
-		//
-		//   This resource was implemented without an UpgradeState() method,
-		//   however Terraform was expecting an implementation for version N upgrade.
-		//   ... Unable to Upgrade Resource State
-		//
-		// TransformFromState has already coerced the only breaking field
-		// (elasticsearch.autoscale string -> bool), so the prior state is already
-		// shaped for the current schema. Report it as already at the current
-		// version so the bridge invokes UpgradeResourceState with version ==
-		// current, which the framework treats as a pass-through and does not
-		// require an upgrader.
+		// The upstream ec_deployment has no StateUpgrader; provide one
 		r.PreStateUpgradeHook = func(args tfbridge.PreStateUpgradeHookArgs) (int64, resource.PropertyMap, error) {
 			return args.ResourceSchemaVersion, args.PriorState, nil
 		}
@@ -154,26 +130,16 @@ func Provider() tfbridge.ProviderInfo {
 	return prov
 }
 
-// migrateElasticsearchState coerces legacy `elasticsearch` field shapes (as written
-// by pulumi-ec <= 0.5.x against the v1 upstream schema) into the shapes the current
-// (v2) schema expects, so the prior state can be encoded against it. See issue #147.
-//
-// Two fields changed shape between the v1 and v2 schemas in a way the encoder cannot
-// reconcile on its own:
-//
-//   - `autoscale`: string ("true"/"false") -> bool.
-//   - `strategy`:  list/object of `{type: "..."}` -> the bare `type` string.
-//
-// Values already in the current shape (or absent) are left untouched, so the
-// transform is idempotent and a no-op on clean state.
+// migrateElasticsearchState coerces `elasticsearch` field shapes from v1 -> v2 schema.
+// Changes only `autoscale` and `strategy` fields to match the upstream provider.
 func migrateElasticsearchState(_ context.Context, state resource.PropertyMap) (resource.PropertyMap, error) {
 	es, ok := state[elasticsearchKey]
 	if !ok {
 		return state, nil
 	}
 
-	// extractStrategyType pulls the `type` string out of a legacy `strategy` value,
-	// which the v1 schema modelled as a (single-element) list of `{type: "..."}`
+	// extractStrategyType pulls the `type` string out of the `strategy` value,
+	// which the v1 schema modeled as a (single-element) list of `{type: "..."}`
 	// objects, or as a single such object. Returns false if no string type is found.
 	extractStrategyType := func(v resource.PropertyValue) (string, bool) {
 		if v.IsArray() {
@@ -211,7 +177,7 @@ func migrateElasticsearchState(_ context.Context, state resource.PropertyMap) (r
 	case es.IsObject():
 		state["elasticsearch"] = coerce(es)
 	case es.IsArray():
-		// Older schema shapes modelled elasticsearch as a single-element list.
+		// Older schema shapes modeled elasticsearch as a single-element list.
 		arr := es.ArrayValue()
 		for i := range arr {
 			arr[i] = coerce(arr[i])

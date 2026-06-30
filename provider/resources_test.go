@@ -26,10 +26,9 @@ import (
 	"github.com/pulumi/pulumi-ec/provider/pkg/version"
 )
 
-// TestMigrateElasticsearchAutoscale covers the state migration for
-// https://github.com/pulumi/pulumi-ec/issues/147: legacy stacks store
-// elasticsearch.autoscale as a string, the current schema expects a bool.
-func TestMigrateElasticsearchAutoscale(t *testing.T) {
+// Ensure https://github.com/pulumi/pulumi-ec/issues/147 schema migration
+// v1 stacks store elasticsearch.autoscale as a string, the current schema expects a bool.
+func TestMigrateElasticCloudDeploymentAutoscale(t *testing.T) {
 	t.Parallel()
 
 	es := func(autoscale resource.PropertyValue) resource.PropertyMap {
@@ -94,10 +93,9 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 	})
 }
 
-// TestMigrateElasticsearchStrategy covers the second v1->v2 shape change: the
-// legacy `strategy` field was a (single-element) list of `{type: "..."}` objects,
-// while the current schema models it as the bare `type` string.
-func TestMigrateElasticsearchStrategy(t *testing.T) {
+// v1 stacks store elasticsearch.strategy as a single-element) list of `{type: "..."}` objects
+// The current schema expects a bare `type` string.
+func TestMigrateElasticCloudDeploymentStrategy(t *testing.T) {
 	t.Parallel()
 
 	es := func(strategy resource.PropertyValue) resource.PropertyMap {
@@ -151,9 +149,7 @@ func TestMigrateElasticsearchStrategy(t *testing.T) {
 	})
 }
 
-// TestAutoscaleTransformIsWired guards against the hook silently detaching if the
-// resource token mapping changes (e.g. the Resources map key is no longer populated).
-func TestAutoscaleTransformIsWired(t *testing.T) {
+func TestElasticCloudDeploymentSchemaMigrationTransformIsWired(t *testing.T) {
 	t.Parallel()
 	version.Version = "0.0.0-test"
 	p := Provider()
