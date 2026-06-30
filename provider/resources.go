@@ -126,7 +126,25 @@ func Provider() tfbridge.ProviderInfo {
 	// Check, Diff, Read, Update and Delete, so coercing the legacy string to a bool here
 	// migrates affected stacks transparently — no manual `pulumi state` surgery required.
 	if r := prov.Resources["ec_deployment"]; r != nil {
-		r.TransformFromState = migrateElasticsearchAutoscale
+		r.TransformFromState = migrateElasticsearchState
+
+		// Upstream ec_deployment declares schema version 2 but ships no
+		// StateUpgrader, so the Plugin Framework runtime rejects any prior state
+		// recorded at an older version with:
+		//
+		//   This resource was implemented without an UpgradeState() method,
+		//   however Terraform was expecting an implementation for version N upgrade.
+		//   ... Unable to Upgrade Resource State
+		//
+		// TransformFromState has already coerced the only breaking field
+		// (elasticsearch.autoscale string -> bool), so the prior state is already
+		// shaped for the current schema. Report it as already at the current
+		// version so the bridge invokes UpgradeResourceState with version ==
+		// current, which the framework treats as a pass-through and does not
+		// require an upgrader.
+		r.PreStateUpgradeHook = func(args tfbridge.PreStateUpgradeHookArgs) (int64, resource.PropertyMap, error) {
+			return args.ResourceSchemaVersion, args.PriorState, nil
+		}
 	}
 
 	prov.SetAutonaming(255, "-")
@@ -136,14 +154,41 @@ func Provider() tfbridge.ProviderInfo {
 	return prov
 }
 
-// migrateElasticsearchAutoscale coerces a legacy string `elasticsearch.autoscale`
-// (e.g. "true"/"false", as written by pulumi-ec <= 0.5.x) into the boolean that the
-// current schema expects. Values that are already booleans (or absent) are left
-// untouched, so the transform is a no-op on clean state. See issue #147.
-func migrateElasticsearchAutoscale(_ context.Context, state resource.PropertyMap) (resource.PropertyMap, error) {
+// migrateElasticsearchState coerces legacy `elasticsearch` field shapes (as written
+// by pulumi-ec <= 0.5.x against the v1 upstream schema) into the shapes the current
+// (v2) schema expects, so the prior state can be encoded against it. See issue #147.
+//
+// Two fields changed shape between the v1 and v2 schemas in a way the encoder cannot
+// reconcile on its own:
+//
+//   - `autoscale`: string ("true"/"false") -> bool.
+//   - `strategy`:  list/object of `{type: "..."}` -> the bare `type` string.
+//
+// Values already in the current shape (or absent) are left untouched, so the
+// transform is idempotent and a no-op on clean state.
+func migrateElasticsearchState(_ context.Context, state resource.PropertyMap) (resource.PropertyMap, error) {
 	es, ok := state[elasticsearchKey]
 	if !ok {
 		return state, nil
+	}
+
+	// extractStrategyType pulls the `type` string out of a legacy `strategy` value,
+	// which the v1 schema modelled as a (single-element) list of `{type: "..."}`
+	// objects, or as a single such object. Returns false if no string type is found.
+	extractStrategyType := func(v resource.PropertyValue) (string, bool) {
+		if v.IsArray() {
+			arr := v.ArrayValue()
+			if len(arr) == 0 {
+				return "", false
+			}
+			v = arr[0]
+		}
+		if v.IsObject() {
+			if t, ok := v.ObjectValue()["type"]; ok && t.IsString() {
+				return t.StringValue(), true
+			}
+		}
+		return "", false
 	}
 
 	coerce := func(v resource.PropertyValue) resource.PropertyValue {
@@ -153,6 +198,11 @@ func migrateElasticsearchAutoscale(_ context.Context, state resource.PropertyMap
 		obj := v.ObjectValue()
 		if a, ok := obj["autoscale"]; ok && a.IsString() {
 			obj["autoscale"] = resource.NewBoolProperty(strings.EqualFold(a.StringValue(), "true"))
+		}
+		if s, ok := obj["strategy"]; ok && !s.IsString() {
+			if t, got := extractStrategyType(s); got {
+				obj["strategy"] = resource.NewStringProperty(t)
+			}
 		}
 		return resource.NewObjectProperty(obj)
 	}

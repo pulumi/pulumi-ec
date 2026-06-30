@@ -46,7 +46,7 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 
 	t.Run("string false -> bool false", func(t *testing.T) {
 		t.Parallel()
-		out, err := migrateElasticsearchAutoscale(context.Background(), es(resource.NewStringProperty("false")))
+		out, err := migrateElasticsearchState(context.Background(), es(resource.NewStringProperty("false")))
 		require.NoError(t, err)
 		got := autoscaleOf(out)
 		require.True(t, got.IsBool())
@@ -55,7 +55,7 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 
 	t.Run("string true -> bool true (case-insensitive)", func(t *testing.T) {
 		t.Parallel()
-		out, err := migrateElasticsearchAutoscale(context.Background(), es(resource.NewStringProperty("TRUE")))
+		out, err := migrateElasticsearchState(context.Background(), es(resource.NewStringProperty("TRUE")))
 		require.NoError(t, err)
 		got := autoscaleOf(out)
 		require.True(t, got.IsBool())
@@ -64,7 +64,7 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 
 	t.Run("already bool is left untouched (idempotent)", func(t *testing.T) {
 		t.Parallel()
-		out, err := migrateElasticsearchAutoscale(context.Background(), es(resource.NewBoolProperty(true)))
+		out, err := migrateElasticsearchState(context.Background(), es(resource.NewBoolProperty(true)))
 		require.NoError(t, err)
 		got := autoscaleOf(out)
 		require.True(t, got.IsBool())
@@ -78,7 +78,7 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 				resource.NewObjectProperty(resource.PropertyMap{"autoscale": resource.NewStringProperty("true")}),
 			}),
 		}
-		out, err := migrateElasticsearchAutoscale(context.Background(), in)
+		out, err := migrateElasticsearchState(context.Background(), in)
 		require.NoError(t, err)
 		got := out[elasticsearchKey].ArrayValue()[0].ObjectValue()["autoscale"]
 		require.True(t, got.IsBool())
@@ -88,9 +88,66 @@ func TestMigrateElasticsearchAutoscale(t *testing.T) {
 	t.Run("missing elasticsearch is a no-op", func(t *testing.T) {
 		t.Parallel()
 		in := resource.PropertyMap{"region": resource.NewStringProperty("gcp-europe-west1")}
-		out, err := migrateElasticsearchAutoscale(context.Background(), in)
+		out, err := migrateElasticsearchState(context.Background(), in)
 		require.NoError(t, err)
 		assert.Equal(t, in, out)
+	})
+}
+
+// TestMigrateElasticsearchStrategy covers the second v1->v2 shape change: the
+// legacy `strategy` field was a (single-element) list of `{type: "..."}` objects,
+// while the current schema models it as the bare `type` string.
+func TestMigrateElasticsearchStrategy(t *testing.T) {
+	t.Parallel()
+
+	es := func(strategy resource.PropertyValue) resource.PropertyMap {
+		return resource.PropertyMap{
+			elasticsearchKey: resource.NewObjectProperty(resource.PropertyMap{
+				"strategy": strategy,
+			}),
+		}
+	}
+	strategyOf := func(m resource.PropertyMap) resource.PropertyValue {
+		return m[elasticsearchKey].ObjectValue()["strategy"]
+	}
+
+	t.Run("list of {type} -> string", func(t *testing.T) {
+		t.Parallel()
+		in := es(resource.NewArrayProperty([]resource.PropertyValue{
+			resource.NewObjectProperty(resource.PropertyMap{"type": resource.NewStringProperty("autodetect")}),
+		}))
+		out, err := migrateElasticsearchState(context.Background(), in)
+		require.NoError(t, err)
+		got := strategyOf(out)
+		require.True(t, got.IsString())
+		assert.Equal(t, "autodetect", got.StringValue())
+	})
+
+	t.Run("single {type} object -> string", func(t *testing.T) {
+		t.Parallel()
+		in := es(resource.NewObjectProperty(resource.PropertyMap{"type": resource.NewStringProperty("grow_and_shrink")}))
+		out, err := migrateElasticsearchState(context.Background(), in)
+		require.NoError(t, err)
+		got := strategyOf(out)
+		require.True(t, got.IsString())
+		assert.Equal(t, "grow_and_shrink", got.StringValue())
+	})
+
+	t.Run("already a string is left untouched (idempotent)", func(t *testing.T) {
+		t.Parallel()
+		out, err := migrateElasticsearchState(context.Background(), es(resource.NewStringProperty("rolling_all")))
+		require.NoError(t, err)
+		got := strategyOf(out)
+		require.True(t, got.IsString())
+		assert.Equal(t, "rolling_all", got.StringValue())
+	})
+
+	t.Run("empty list is left untouched", func(t *testing.T) {
+		t.Parallel()
+		in := es(resource.NewArrayProperty(nil))
+		out, err := migrateElasticsearchState(context.Background(), in)
+		require.NoError(t, err)
+		assert.True(t, strategyOf(out).IsArray())
 	})
 }
 
@@ -103,4 +160,5 @@ func TestAutoscaleTransformIsWired(t *testing.T) {
 	r := p.Resources["ec_deployment"]
 	require.NotNil(t, r, "ec_deployment must be present in the Resources map")
 	assert.NotNil(t, r.TransformFromState, "TransformFromState must be set on ec_deployment")
+	assert.NotNil(t, r.PreStateUpgradeHook, "PreStateUpgradeHook must be set on ec_deployment")
 }
