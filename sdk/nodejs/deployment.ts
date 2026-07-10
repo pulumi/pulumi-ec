@@ -100,7 +100,7 @@ export class Deployment extends pulumi.CustomResource {
      * Password for authenticating to the Elasticsearch resource.
      *
      * > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
-     * > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+     * **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
      */
     declare public /*out*/ readonly elasticsearchPassword: pulumi.Output<string>;
     /**
@@ -131,7 +131,7 @@ export class Deployment extends pulumi.CustomResource {
      * When set to true, the deployment will be updated according to the latest deployment template values.
      *
      * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-     * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     declare public readonly migrateToLatestHardware: pulumi.Output<boolean | undefined>;
     /**
@@ -267,7 +267,7 @@ export interface DeploymentState {
      * Password for authenticating to the Elasticsearch resource.
      *
      * > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
-     * > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+     * **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
      */
     elasticsearchPassword?: pulumi.Input<string | undefined>;
     /**
@@ -298,7 +298,7 @@ export interface DeploymentState {
      * When set to true, the deployment will be updated according to the latest deployment template values.
      *
      * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-     * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     migrateToLatestHardware?: pulumi.Input<boolean | undefined>;
     /**
@@ -379,7 +379,7 @@ export interface DeploymentArgs {
      * When set to true, the deployment will be updated according to the latest deployment template values.
      *
      * > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-     * > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+     * **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
      */
     migrateToLatestHardware?: pulumi.Input<boolean | undefined>;
     /**

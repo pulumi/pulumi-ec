@@ -58,7 +58,7 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
                
                > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+               **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
@@ -228,7 +228,7 @@ class DeploymentArgs:
         When set to true, the deployment will be updated according to the latest deployment template values.
 
         > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-        > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+        **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         """
         return pulumi.get(self, "migrate_to_latest_hardware")
 
@@ -342,7 +342,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] elasticsearch_password: Password for authenticating to the Elasticsearch resource.
                
                > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
-               > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+               **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
                
@@ -355,7 +355,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
                
                > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+               **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
         :param pulumi.Input['DeploymentObservabilityArgs'] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
@@ -470,7 +470,7 @@ class _DeploymentState:
         Password for authenticating to the Elasticsearch resource.
 
         > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
-        > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+        **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         """
         return pulumi.get(self, "elasticsearch_password")
 
@@ -549,7 +549,7 @@ class _DeploymentState:
         When set to true, the deployment will be updated according to the latest deployment template values.
 
         > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-        > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+        **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         """
         return pulumi.get(self, "migrate_to_latest_hardware")
 
@@ -723,7 +723,6 @@ class Deployment(pulumi.CustomResource):
         $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
         ```
 
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
@@ -741,7 +740,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
                
                > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+               **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
         :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
@@ -801,7 +800,6 @@ class Deployment(pulumi.CustomResource):
         ```sh
         $ pulumi import ec:index/deployment:Deployment search 320b7b540dfc967a7a649c18e2fce4ed
         ```
-
 
         :param str resource_name: The name of the resource.
         :param DeploymentArgs args: The arguments to use to populate this resource's properties.
@@ -918,7 +916,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] elasticsearch_password: Password for authenticating to the Elasticsearch resource.
                
                > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
-               > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+               **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         :param pulumi.Input[_builtins.str] elasticsearch_username: Username for authenticating to the Elasticsearch resource.
         :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
                
@@ -931,7 +929,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
                
                > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-               > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+               **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
         :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
@@ -1011,7 +1009,7 @@ class Deployment(pulumi.CustomResource):
         Password for authenticating to the Elasticsearch resource.
 
         > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
-        > **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+        **Note on deployment credentials in state** The <code>elastic</code> user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         """
         return pulumi.get(self, "elasticsearch_password")
 
@@ -1066,7 +1064,7 @@ class Deployment(pulumi.CustomResource):
         When set to true, the deployment will be updated according to the latest deployment template values.
 
         > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
-        > **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+        **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         """
         return pulumi.get(self, "migrate_to_latest_hardware")
 
