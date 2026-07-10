@@ -89,8 +89,8 @@ export class ElasticsearchProject extends pulumi.CustomResource {
     /**
      * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
      *
-     * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
-     * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
     declare public readonly optimizedFor: pulumi.Output<string>;
     /**
@@ -193,8 +193,8 @@ export interface ElasticsearchProjectState {
     /**
      * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
      *
-     * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
-     * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
     optimizedFor?: pulumi.Input<string | undefined>;
     /**
@@ -238,8 +238,8 @@ export interface ElasticsearchProjectArgs {
     /**
      * The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
      *
-     * 	- The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
-     * 	- The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+     *     - The `generalPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+     *     - The `vector` option is recommended only for uncompressed dense vectors (`denseVector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
      */
     optimizedFor?: pulumi.Input<string | undefined>;
     /**

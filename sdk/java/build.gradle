@@ -95,7 +95,7 @@ publishing {
                 inceptionYear = "2022"
                 name = "pulumi-ec"
                 packaging = "jar"
-                description = "A Pulumi package for creating and managing ElasticCloud resources."
+                description = $/A Pulumi package for creating and managing ElasticCloud resources./$
 
                 url = "https://github.com/pulumi/pulumi-ec"
 
