@@ -5744,10 +5744,6 @@
                         "description": "The domain name to used in when configuring a private hosted zone in the VPCE connection.\n",
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "region": {
                         "description": "Region to retrieve the Private Link configuration for.\n",
                         "type": "string"
@@ -5768,8 +5764,7 @@
                     "domainName",
                     "region",
                     "vpcServiceName",
-                    "zoneIds",
-                    "id"
+                    "zoneIds"
                 ],
                 "type": "object"
             }
@@ -5796,10 +5791,6 @@
                         "description": "The domain name to used in when configuring a private hosted zone in the VNet connection.\n",
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "region": {
                         "description": "Region to retrieve the Private Link configuration for.\n",
                         "type": "string"
@@ -5812,8 +5803,7 @@
                 "required": [
                     "domainName",
                     "region",
-                    "serviceAlias",
-                    "id"
+                    "serviceAlias"
                 ],
                 "type": "object"
             }
@@ -6178,10 +6168,6 @@
                         "description": "The domain name to point towards the PSC endpoint.\n",
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "region": {
                         "description": "Region to retrieve the Prive Link configuration for.\n",
                         "type": "string"
@@ -6194,8 +6180,7 @@
                 "required": [
                     "domainName",
                     "region",
-                    "serviceAttachmentUri",
-                    "id"
+                    "serviceAttachmentUri"
                 ],
                 "type": "object"
             }
