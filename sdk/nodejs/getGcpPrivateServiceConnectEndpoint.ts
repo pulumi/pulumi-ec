@@ -44,10 +44,6 @@ export interface GetGcpPrivateServiceConnectEndpointResult {
      */
     readonly domainName: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Region to retrieve the Prive Link configuration for.
      */
     readonly region: string;

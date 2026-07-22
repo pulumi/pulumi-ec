@@ -26,13 +26,10 @@ class GetAwsPrivatelinkEndpointResult:
     """
     A collection of values returned by getAwsPrivatelinkEndpoint.
     """
-    def __init__(__self__, domain_name=None, id=None, region=None, vpc_service_name=None, zone_ids=None):
+    def __init__(__self__, domain_name=None, region=None, vpc_service_name=None, zone_ids=None):
         if domain_name and not isinstance(domain_name, str):
             raise TypeError("Expected argument 'domain_name' to be a str")
         pulumi.set(__self__, "domain_name", domain_name)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -50,14 +47,6 @@ class GetAwsPrivatelinkEndpointResult:
         The domain name to used in when configuring a private hosted zone in the VPCE connection.
         """
         return pulumi.get(self, "domain_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -91,7 +80,6 @@ class AwaitableGetAwsPrivatelinkEndpointResult(GetAwsPrivatelinkEndpointResult):
             yield self
         return GetAwsPrivatelinkEndpointResult(
             domain_name=self.domain_name,
-            id=self.id,
             region=self.region,
             vpc_service_name=self.vpc_service_name,
             zone_ids=self.zone_ids)
@@ -121,7 +109,6 @@ def get_aws_privatelink_endpoint(region: Optional[_builtins.str] = None,
 
     return AwaitableGetAwsPrivatelinkEndpointResult(
         domain_name=pulumi.get(__ret__, 'domain_name'),
-        id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         vpc_service_name=pulumi.get(__ret__, 'vpc_service_name'),
         zone_ids=pulumi.get(__ret__, 'zone_ids'))
@@ -148,7 +135,6 @@ def get_aws_privatelink_endpoint_output(region: pulumi.Input[Optional[_builtins.
     __ret__ = pulumi.runtime.invoke_output('ec:index/getAwsPrivatelinkEndpoint:getAwsPrivatelinkEndpoint', __args__, opts=opts, typ=GetAwsPrivatelinkEndpointResult)
     return __ret__.apply(lambda __response__: GetAwsPrivatelinkEndpointResult(
         domain_name=pulumi.get(__response__, 'domain_name'),
-        id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),
         vpc_service_name=pulumi.get(__response__, 'vpc_service_name'),
         zone_ids=pulumi.get(__response__, 'zone_ids')))

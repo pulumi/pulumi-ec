@@ -26,13 +26,10 @@ class GetAzurePrivatelinkEndpointResult:
     """
     A collection of values returned by getAzurePrivatelinkEndpoint.
     """
-    def __init__(__self__, domain_name=None, id=None, region=None, service_alias=None):
+    def __init__(__self__, domain_name=None, region=None, service_alias=None):
         if domain_name and not isinstance(domain_name, str):
             raise TypeError("Expected argument 'domain_name' to be a str")
         pulumi.set(__self__, "domain_name", domain_name)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -47,14 +44,6 @@ class GetAzurePrivatelinkEndpointResult:
         The domain name to used in when configuring a private hosted zone in the VNet connection.
         """
         return pulumi.get(self, "domain_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -80,7 +69,6 @@ class AwaitableGetAzurePrivatelinkEndpointResult(GetAzurePrivatelinkEndpointResu
             yield self
         return GetAzurePrivatelinkEndpointResult(
             domain_name=self.domain_name,
-            id=self.id,
             region=self.region,
             service_alias=self.service_alias)
 
@@ -109,7 +97,6 @@ def get_azure_privatelink_endpoint(region: Optional[_builtins.str] = None,
 
     return AwaitableGetAzurePrivatelinkEndpointResult(
         domain_name=pulumi.get(__ret__, 'domain_name'),
-        id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         service_alias=pulumi.get(__ret__, 'service_alias'))
 def get_azure_privatelink_endpoint_output(region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -135,6 +122,5 @@ def get_azure_privatelink_endpoint_output(region: pulumi.Input[Optional[_builtin
     __ret__ = pulumi.runtime.invoke_output('ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint', __args__, opts=opts, typ=GetAzurePrivatelinkEndpointResult)
     return __ret__.apply(lambda __response__: GetAzurePrivatelinkEndpointResult(
         domain_name=pulumi.get(__response__, 'domain_name'),
-        id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),
         service_alias=pulumi.get(__response__, 'service_alias')))

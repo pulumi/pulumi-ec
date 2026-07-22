@@ -26,13 +26,10 @@ class GetGcpPrivateServiceConnectEndpointResult:
     """
     A collection of values returned by getGcpPrivateServiceConnectEndpoint.
     """
-    def __init__(__self__, domain_name=None, id=None, region=None, service_attachment_uri=None):
+    def __init__(__self__, domain_name=None, region=None, service_attachment_uri=None):
         if domain_name and not isinstance(domain_name, str):
             raise TypeError("Expected argument 'domain_name' to be a str")
         pulumi.set(__self__, "domain_name", domain_name)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -47,14 +44,6 @@ class GetGcpPrivateServiceConnectEndpointResult:
         The domain name to point towards the PSC endpoint.
         """
         return pulumi.get(self, "domain_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -80,7 +69,6 @@ class AwaitableGetGcpPrivateServiceConnectEndpointResult(GetGcpPrivateServiceCon
             yield self
         return GetGcpPrivateServiceConnectEndpointResult(
             domain_name=self.domain_name,
-            id=self.id,
             region=self.region,
             service_attachment_uri=self.service_attachment_uri)
 
@@ -109,7 +97,6 @@ def get_gcp_private_service_connect_endpoint(region: Optional[_builtins.str] = N
 
     return AwaitableGetGcpPrivateServiceConnectEndpointResult(
         domain_name=pulumi.get(__ret__, 'domain_name'),
-        id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         service_attachment_uri=pulumi.get(__ret__, 'service_attachment_uri'))
 def get_gcp_private_service_connect_endpoint_output(region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -135,6 +122,5 @@ def get_gcp_private_service_connect_endpoint_output(region: pulumi.Input[Optiona
     __ret__ = pulumi.runtime.invoke_output('ec:index/getGcpPrivateServiceConnectEndpoint:getGcpPrivateServiceConnectEndpoint', __args__, opts=opts, typ=GetGcpPrivateServiceConnectEndpointResult)
     return __ret__.apply(lambda __response__: GetGcpPrivateServiceConnectEndpointResult(
         domain_name=pulumi.get(__response__, 'domain_name'),
-        id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),
         service_attachment_uri=pulumi.get(__response__, 'service_attachment_uri')))

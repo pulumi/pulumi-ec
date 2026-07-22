@@ -44,10 +44,6 @@ export interface GetAzurePrivatelinkEndpointResult {
      */
     readonly domainName: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Region to retrieve the Private Link configuration for.
      */
     readonly region: string;

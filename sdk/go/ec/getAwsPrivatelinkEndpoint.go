@@ -58,8 +58,6 @@ type GetAwsPrivatelinkEndpointArgs struct {
 type GetAwsPrivatelinkEndpointResult struct {
 	// The domain name to used in when configuring a private hosted zone in the VPCE connection.
 	DomainName string `pulumi:"domainName"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Region to retrieve the Private Link configuration for.
 	Region string `pulumi:"region"`
 	// The VPC service name used to connect to the region.
@@ -105,11 +103,6 @@ func (o GetAwsPrivatelinkEndpointResultOutput) ToGetAwsPrivatelinkEndpointResult
 // The domain name to used in when configuring a private hosted zone in the VPCE connection.
 func (o GetAwsPrivatelinkEndpointResultOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsPrivatelinkEndpointResult) string { return v.DomainName }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetAwsPrivatelinkEndpointResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAwsPrivatelinkEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Region to retrieve the Private Link configuration for.

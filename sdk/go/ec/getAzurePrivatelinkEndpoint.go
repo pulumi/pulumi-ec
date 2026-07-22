@@ -58,8 +58,6 @@ type GetAzurePrivatelinkEndpointArgs struct {
 type GetAzurePrivatelinkEndpointResult struct {
 	// The domain name to used in when configuring a private hosted zone in the VNet connection.
 	DomainName string `pulumi:"domainName"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Region to retrieve the Private Link configuration for.
 	Region string `pulumi:"region"`
 	// The service alias to establish a connection to.
@@ -103,11 +101,6 @@ func (o GetAzurePrivatelinkEndpointResultOutput) ToGetAzurePrivatelinkEndpointRe
 // The domain name to used in when configuring a private hosted zone in the VNet connection.
 func (o GetAzurePrivatelinkEndpointResultOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzurePrivatelinkEndpointResult) string { return v.DomainName }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetAzurePrivatelinkEndpointResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAzurePrivatelinkEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Region to retrieve the Private Link configuration for.
