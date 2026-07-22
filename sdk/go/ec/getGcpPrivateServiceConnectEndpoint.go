@@ -58,8 +58,6 @@ type GetGcpPrivateServiceConnectEndpointArgs struct {
 type GetGcpPrivateServiceConnectEndpointResult struct {
 	// The domain name to point towards the PSC endpoint.
 	DomainName string `pulumi:"domainName"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Region to retrieve the Prive Link configuration for.
 	Region string `pulumi:"region"`
 	// The service attachment URI to attach the PSC endpoint to.
@@ -103,11 +101,6 @@ func (o GetGcpPrivateServiceConnectEndpointResultOutput) ToGetGcpPrivateServiceC
 // The domain name to point towards the PSC endpoint.
 func (o GetGcpPrivateServiceConnectEndpointResultOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGcpPrivateServiceConnectEndpointResult) string { return v.DomainName }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetGcpPrivateServiceConnectEndpointResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGcpPrivateServiceConnectEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Region to retrieve the Prive Link configuration for.

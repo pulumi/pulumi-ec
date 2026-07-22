@@ -16,11 +16,6 @@ public final class GetAzurePrivatelinkEndpointResult {
      */
     private String domainName;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Region to retrieve the Private Link configuration for.
      * 
      */
@@ -38,13 +33,6 @@ public final class GetAzurePrivatelinkEndpointResult {
      */
     public String domainName() {
         return this.domainName;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Region to retrieve the Private Link configuration for.
@@ -71,14 +59,12 @@ public final class GetAzurePrivatelinkEndpointResult {
     @CustomType.Builder
     public static final class Builder {
         private String domainName;
-        private String id;
         private String region;
         private String serviceAlias;
         public Builder() {}
         public Builder(GetAzurePrivatelinkEndpointResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.domainName = defaults.domainName;
-    	      this.id = defaults.id;
     	      this.region = defaults.region;
     	      this.serviceAlias = defaults.serviceAlias;
         }
@@ -89,14 +75,6 @@ public final class GetAzurePrivatelinkEndpointResult {
               throw new MissingRequiredPropertyException("GetAzurePrivatelinkEndpointResult", "domainName");
             }
             this.domainName = domainName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetAzurePrivatelinkEndpointResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -118,7 +96,6 @@ public final class GetAzurePrivatelinkEndpointResult {
         public GetAzurePrivatelinkEndpointResult build() {
             final var _resultValue = new GetAzurePrivatelinkEndpointResult();
             _resultValue.domainName = domainName;
-            _resultValue.id = id;
             _resultValue.region = region;
             _resultValue.serviceAlias = serviceAlias;
             return _resultValue;

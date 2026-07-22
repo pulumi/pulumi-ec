@@ -122,10 +122,6 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         public readonly string DomainName;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Region to retrieve the Private Link configuration for.
         /// </summary>
         public readonly string Region;
@@ -142,8 +138,6 @@ namespace Pulumi.ElasticCloud
         private GetAwsPrivatelinkEndpointResult(
             string domainName,
 
-            string id,
-
             string region,
 
             string vpcServiceName,
@@ -151,7 +145,6 @@ namespace Pulumi.ElasticCloud
             ImmutableArray<string> zoneIds)
         {
             DomainName = domainName;
-            Id = id;
             Region = region;
             VpcServiceName = vpcServiceName;
             ZoneIds = zoneIds;

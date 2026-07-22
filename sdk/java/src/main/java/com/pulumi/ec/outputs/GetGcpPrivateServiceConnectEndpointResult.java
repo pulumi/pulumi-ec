@@ -16,11 +16,6 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
      */
     private String domainName;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Region to retrieve the Prive Link configuration for.
      * 
      */
@@ -38,13 +33,6 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
      */
     public String domainName() {
         return this.domainName;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Region to retrieve the Prive Link configuration for.
@@ -71,14 +59,12 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
     @CustomType.Builder
     public static final class Builder {
         private String domainName;
-        private String id;
         private String region;
         private String serviceAttachmentUri;
         public Builder() {}
         public Builder(GetGcpPrivateServiceConnectEndpointResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.domainName = defaults.domainName;
-    	      this.id = defaults.id;
     	      this.region = defaults.region;
     	      this.serviceAttachmentUri = defaults.serviceAttachmentUri;
         }
@@ -89,14 +75,6 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
               throw new MissingRequiredPropertyException("GetGcpPrivateServiceConnectEndpointResult", "domainName");
             }
             this.domainName = domainName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetGcpPrivateServiceConnectEndpointResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -118,7 +96,6 @@ public final class GetGcpPrivateServiceConnectEndpointResult {
         public GetGcpPrivateServiceConnectEndpointResult build() {
             final var _resultValue = new GetGcpPrivateServiceConnectEndpointResult();
             _resultValue.domainName = domainName;
-            _resultValue.id = id;
             _resultValue.region = region;
             _resultValue.serviceAttachmentUri = serviceAttachmentUri;
             return _resultValue;
