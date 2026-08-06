@@ -116,7 +116,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			deploymentAdmin := map[string]interface{}{
+//			deploymentAdmin := map[string][]map[string]interface{}{
 //				"deploymentRoles": []map[string]interface{}{
 //					map[string]interface{}{
 //						"role":           "admin",
@@ -124,7 +124,7 @@ import (
 //					},
 //				},
 //			}
-//			deploymentViewer := map[string]interface{}{
+//			deploymentViewer := map[string][]map[string]interface{}{
 //				"deploymentRoles": []map[string]interface{}{
 //					map[string]interface{}{
 //						"role":           "viewer",
