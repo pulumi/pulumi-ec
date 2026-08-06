@@ -31,7 +31,7 @@ import (
 //				NamePrefix:           pulumi.StringRef("test"),
 //				DeploymentTemplateId: pulumi.StringRef("azure-compute-optimized"),
 //				Size:                 pulumi.IntRef(200),
-//				Tags: map[string]interface{}{
+//				Tags: map[string]string{
 //					"foo": "bar",
 //				},
 //				Elasticsearches: []ec.GetDeploymentsElasticsearch{

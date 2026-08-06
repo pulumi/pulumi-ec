@@ -59,7 +59,7 @@ import (
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("aws-io-optimized-v2"),
 //				TrafficFilters: pulumi.StringArray{
-//					example.ID(),
+//					example.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
@@ -120,7 +120,7 @@ import (
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("azure-io-optimized-v3"),
 //				TrafficFilters: pulumi.StringArray{
-//					azure.ID(),
+//					azure.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{
@@ -180,7 +180,7 @@ import (
 //				Version:              pulumi.String(latest.Version),
 //				DeploymentTemplateId: pulumi.String("gcp-storage-optimized"),
 //				TrafficFilters: pulumi.StringArray{
-//					gcpPsc.ID(),
+//					gcpPsc.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Elasticsearch: &ec.DeploymentElasticsearchArgs{
 //					Hot: &ec.DeploymentElasticsearchHotArgs{

@@ -48,7 +48,7 @@ import (
 //				return err
 //			}
 //			_, err = ec.NewDeploymentTrafficFilterAssociation(ctx, "example", &ec.DeploymentTrafficFilterAssociationArgs{
-//				TrafficFilterId: exampleDeploymentTrafficFilter.ID(),
+//				TrafficFilterId: exampleDeploymentTrafficFilter.ID().ToIDOutput().ToStringOutput(),
 //				DeploymentId:    pulumi.Any(exampleEcDeployment.Id),
 //			})
 //			if err != nil {
