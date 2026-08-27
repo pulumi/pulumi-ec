@@ -83,12 +83,8 @@ type GetTrafficFilterResult struct {
 }
 
 func GetTrafficFilterOutput(ctx *pulumi.Context, args GetTrafficFilterOutputArgs, opts ...pulumi.InvokeOption) GetTrafficFilterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetTrafficFilterResultOutput, error) {
-			args := v.(GetTrafficFilterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ec:index/getTrafficFilter:getTrafficFilter", args, GetTrafficFilterResultOutput{}, options).(GetTrafficFilterResultOutput), nil
-		}).(GetTrafficFilterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ec:index/getTrafficFilter:getTrafficFilter", args, GetTrafficFilterResultOutput{}, options).(GetTrafficFilterResultOutput)
 }
 
 // A collection of arguments for invoking getTrafficFilter.

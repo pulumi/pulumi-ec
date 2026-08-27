@@ -90,12 +90,8 @@ type GetDeploymentTemplatesResult struct {
 }
 
 func GetDeploymentTemplatesOutput(ctx *pulumi.Context, args GetDeploymentTemplatesOutputArgs, opts ...pulumi.InvokeOption) GetDeploymentTemplatesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDeploymentTemplatesResultOutput, error) {
-			args := v.(GetDeploymentTemplatesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ec:index/getDeploymentTemplates:getDeploymentTemplates", args, GetDeploymentTemplatesResultOutput{}, options).(GetDeploymentTemplatesResultOutput), nil
-		}).(GetDeploymentTemplatesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ec:index/getDeploymentTemplates:getDeploymentTemplates", args, GetDeploymentTemplatesResultOutput{}, options).(GetDeploymentTemplatesResultOutput)
 }
 
 // A collection of arguments for invoking getDeploymentTemplates.
