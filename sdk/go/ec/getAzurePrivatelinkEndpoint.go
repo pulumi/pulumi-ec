@@ -65,12 +65,8 @@ type GetAzurePrivatelinkEndpointResult struct {
 }
 
 func GetAzurePrivatelinkEndpointOutput(ctx *pulumi.Context, args GetAzurePrivatelinkEndpointOutputArgs, opts ...pulumi.InvokeOption) GetAzurePrivatelinkEndpointResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAzurePrivatelinkEndpointResultOutput, error) {
-			args := v.(GetAzurePrivatelinkEndpointArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args, GetAzurePrivatelinkEndpointResultOutput{}, options).(GetAzurePrivatelinkEndpointResultOutput), nil
-		}).(GetAzurePrivatelinkEndpointResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ec:index/getAzurePrivatelinkEndpoint:getAzurePrivatelinkEndpoint", args, GetAzurePrivatelinkEndpointResultOutput{}, options).(GetAzurePrivatelinkEndpointResultOutput)
 }
 
 // A collection of arguments for invoking getAzurePrivatelinkEndpoint.
