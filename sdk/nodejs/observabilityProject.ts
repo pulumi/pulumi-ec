@@ -79,6 +79,10 @@ export class ObservabilityProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.ObservabilityProjectEndpoints>;
     /**
+     * Configuration for linked projects associated with this project
+     */
+    declare public readonly linked: pulumi.Output<outputs.ObservabilityProjectLinked | undefined>;
+    /**
      * Metadata request for a project with tags.
      */
     declare public readonly metadata: pulumi.Output<outputs.ObservabilityProjectMetadata>;
@@ -91,7 +95,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly privateEndpoints: pulumi.Output<outputs.ObservabilityProjectPrivateEndpoints>;
     /**
-     * the tier of the observability project
+     * the tier of the observability project. The default is "complete" when not specified at creation time.
      */
     declare public readonly productTier: pulumi.Output<string>;
     /**
@@ -124,6 +128,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
             resourceInputs["cloudId"] = state?.cloudId;
             resourceInputs["credentials"] = state?.credentials;
             resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["linked"] = state?.linked;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
             resourceInputs["privateEndpoints"] = state?.privateEndpoints;
@@ -137,6 +142,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
                 throw new Error("Missing required property 'regionId'");
             }
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["linked"] = args?.linked;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["productTier"] = args?.productTier;
@@ -174,6 +180,10 @@ export interface ObservabilityProjectState {
      */
     endpoints?: pulumi.Input<inputs.ObservabilityProjectEndpoints | undefined>;
     /**
+     * Configuration for linked projects associated with this project
+     */
+    linked?: pulumi.Input<inputs.ObservabilityProjectLinked | undefined>;
+    /**
      * Metadata request for a project with tags.
      */
     metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata | undefined>;
@@ -186,7 +196,7 @@ export interface ObservabilityProjectState {
      */
     privateEndpoints?: pulumi.Input<inputs.ObservabilityProjectPrivateEndpoints | undefined>;
     /**
-     * the tier of the observability project
+     * the tier of the observability project. The default is "complete" when not specified at creation time.
      */
     productTier?: pulumi.Input<string | undefined>;
     /**
@@ -212,6 +222,10 @@ export interface ObservabilityProjectArgs {
      */
     alias?: pulumi.Input<string | undefined>;
     /**
+     * Configuration for linked projects associated with this project
+     */
+    linked?: pulumi.Input<inputs.ObservabilityProjectLinked | undefined>;
+    /**
      * Metadata request for a project with tags.
      */
     metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata | undefined>;
@@ -220,7 +234,7 @@ export interface ObservabilityProjectArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * the tier of the observability project
+     * the tier of the observability project. The default is "complete" when not specified at creation time.
      */
     productTier?: pulumi.Input<string | undefined>;
     /**

@@ -12,6 +12,7 @@ import com.pulumi.ec.Utilities;
 import com.pulumi.ec.inputs.ElasticsearchProjectState;
 import com.pulumi.ec.outputs.ElasticsearchProjectCredentials;
 import com.pulumi.ec.outputs.ElasticsearchProjectEndpoints;
+import com.pulumi.ec.outputs.ElasticsearchProjectLinked;
 import com.pulumi.ec.outputs.ElasticsearchProjectMetadata;
 import com.pulumi.ec.outputs.ElasticsearchProjectPrivateEndpoints;
 import com.pulumi.ec.outputs.ElasticsearchProjectSearchLake;
@@ -128,6 +129,20 @@ public class ElasticsearchProject extends com.pulumi.resources.CustomResource {
      */
     public Output<ElasticsearchProjectEndpoints> endpoints() {
         return this.endpoints;
+    }
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Export(name="linked", refs={ElasticsearchProjectLinked.class}, tree="[0]")
+    private Output</* @Nullable */ ElasticsearchProjectLinked> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Output<Optional<ElasticsearchProjectLinked>> linked() {
+        return Codegen.optional(this.linked);
     }
     /**
      * Metadata request for a project with tags.

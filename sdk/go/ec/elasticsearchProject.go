@@ -64,6 +64,8 @@ type ElasticsearchProject struct {
 	Credentials ElasticsearchProjectCredentialsOutput `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints ElasticsearchProjectEndpointsOutput `pulumi:"endpoints"`
+	// Configuration for linked projects associated with this project
+	Linked ElasticsearchProjectLinkedPtrOutput `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
@@ -126,6 +128,8 @@ type elasticsearchProjectState struct {
 	Credentials *ElasticsearchProjectCredentials `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints *ElasticsearchProjectEndpoints `pulumi:"endpoints"`
+	// Configuration for linked projects associated with this project
+	Linked *ElasticsearchProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *ElasticsearchProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
@@ -156,6 +160,8 @@ type ElasticsearchProjectState struct {
 	Credentials ElasticsearchProjectCredentialsPtrInput
 	// The endpoints to access the different apps of the project.
 	Endpoints ElasticsearchProjectEndpointsPtrInput
+	// Configuration for linked projects associated with this project
+	Linked ElasticsearchProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataPtrInput
 	// Descriptive name for a project.
@@ -184,6 +190,8 @@ func (ElasticsearchProjectState) ElementType() reflect.Type {
 type elasticsearchProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`
+	// Configuration for linked projects associated with this project
+	Linked *ElasticsearchProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *ElasticsearchProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
@@ -205,6 +213,8 @@ type elasticsearchProjectArgs struct {
 type ElasticsearchProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias pulumi.StringPtrInput
+	// Configuration for linked projects associated with this project
+	Linked ElasticsearchProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataPtrInput
 	// Descriptive name for a project.
@@ -327,6 +337,11 @@ func (o ElasticsearchProjectOutput) Credentials() ElasticsearchProjectCredential
 // The endpoints to access the different apps of the project.
 func (o ElasticsearchProjectOutput) Endpoints() ElasticsearchProjectEndpointsOutput {
 	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectEndpointsOutput { return v.Endpoints }).(ElasticsearchProjectEndpointsOutput)
+}
+
+// Configuration for linked projects associated with this project
+func (o ElasticsearchProjectOutput) Linked() ElasticsearchProjectLinkedPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectLinkedPtrOutput { return v.Linked }).(ElasticsearchProjectLinkedPtrOutput)
 }
 
 // Metadata request for a project with tags.

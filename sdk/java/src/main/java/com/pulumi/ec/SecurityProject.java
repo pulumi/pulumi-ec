@@ -12,6 +12,7 @@ import com.pulumi.ec.Utilities;
 import com.pulumi.ec.inputs.SecurityProjectState;
 import com.pulumi.ec.outputs.SecurityProjectCredentials;
 import com.pulumi.ec.outputs.SecurityProjectEndpoints;
+import com.pulumi.ec.outputs.SecurityProjectLinked;
 import com.pulumi.ec.outputs.SecurityProjectMetadata;
 import com.pulumi.ec.outputs.SecurityProjectPrivateEndpoints;
 import com.pulumi.ec.outputs.SecurityProjectProductType;
@@ -143,6 +144,20 @@ public class SecurityProject extends com.pulumi.resources.CustomResource {
      */
     public Output<SecurityProjectEndpoints> endpoints() {
         return this.endpoints;
+    }
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Export(name="linked", refs={SecurityProjectLinked.class}, tree="[0]")
+    private Output</* @Nullable */ SecurityProjectLinked> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Output<Optional<SecurityProjectLinked>> linked() {
+        return Codegen.optional(this.linked);
     }
     /**
      * Metadata request for a project with tags.

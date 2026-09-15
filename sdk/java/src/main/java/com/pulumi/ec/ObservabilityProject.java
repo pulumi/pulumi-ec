@@ -12,6 +12,7 @@ import com.pulumi.ec.Utilities;
 import com.pulumi.ec.inputs.ObservabilityProjectState;
 import com.pulumi.ec.outputs.ObservabilityProjectCredentials;
 import com.pulumi.ec.outputs.ObservabilityProjectEndpoints;
+import com.pulumi.ec.outputs.ObservabilityProjectLinked;
 import com.pulumi.ec.outputs.ObservabilityProjectMetadata;
 import com.pulumi.ec.outputs.ObservabilityProjectPrivateEndpoints;
 import java.lang.String;
@@ -129,6 +130,20 @@ public class ObservabilityProject extends com.pulumi.resources.CustomResource {
         return this.endpoints;
     }
     /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Export(name="linked", refs={ObservabilityProjectLinked.class}, tree="[0]")
+    private Output</* @Nullable */ ObservabilityProjectLinked> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Output<Optional<ObservabilityProjectLinked>> linked() {
+        return Codegen.optional(this.linked);
+    }
+    /**
      * Metadata request for a project with tags.
      * 
      */
@@ -171,14 +186,14 @@ public class ObservabilityProject extends com.pulumi.resources.CustomResource {
         return this.privateEndpoints;
     }
     /**
-     * the tier of the observability project
+     * the tier of the observability project. The default is &#34;complete&#34; when not specified at creation time.
      * 
      */
     @Export(name="productTier", refs={String.class}, tree="[0]")
     private Output<String> productTier;
 
     /**
-     * @return the tier of the observability project
+     * @return the tier of the observability project. The default is &#34;complete&#34; when not specified at creation time.
      * 
      */
     public Output<String> productTier() {

@@ -5,6 +5,7 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ec.inputs.ObservabilityProjectLinkedArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectMetadataArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
@@ -31,6 +32,21 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> alias() {
         return Optional.ofNullable(this.alias);
+    }
+
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Import(name="linked")
+    private @Nullable Output<ObservabilityProjectLinkedArgs> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Optional<Output<ObservabilityProjectLinkedArgs>> linked() {
+        return Optional.ofNullable(this.linked);
     }
 
     /**
@@ -64,14 +80,14 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * the tier of the observability project
+     * the tier of the observability project. The default is &#34;complete&#34; when not specified at creation time.
      * 
      */
     @Import(name="productTier")
     private @Nullable Output<String> productTier;
 
     /**
-     * @return the tier of the observability project
+     * @return the tier of the observability project. The default is &#34;complete&#34; when not specified at creation time.
      * 
      */
     public Optional<Output<String>> productTier() {
@@ -112,6 +128,7 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
 
     private ObservabilityProjectArgs(ObservabilityProjectArgs $) {
         this.alias = $.alias;
+        this.linked = $.linked;
         this.metadata = $.metadata;
         this.name = $.name;
         this.productTier = $.productTier;
@@ -159,6 +176,27 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(@Nullable Output<ObservabilityProjectLinkedArgs> linked) {
+            $.linked = linked;
+            return this;
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(ObservabilityProjectLinkedArgs linked) {
+            return linked(Output.of(linked));
+        }
+
+        /**
          * @param metadata Metadata request for a project with tags.
          * 
          * @return builder
@@ -201,7 +239,7 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param productTier the tier of the observability project
+         * @param productTier the tier of the observability project. The default is &#34;complete&#34; when not specified at creation time.
          * 
          * @return builder
          * 
@@ -212,7 +250,7 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param productTier the tier of the observability project
+         * @param productTier the tier of the observability project. The default is &#34;complete&#34; when not specified at creation time.
          * 
          * @return builder
          * 

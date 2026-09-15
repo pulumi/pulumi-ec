@@ -128,7 +128,7 @@ public final class DeploymentElasticsearch {
      */
     private @Nullable DeploymentElasticsearchSnapshotSource snapshotSource;
     /**
-     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = &#34;rollingAll&#34;` when upgrading across a major version boundary (the API requires `group_by: __all__`).
      * 
      */
     private @Nullable String strategy;
@@ -285,7 +285,7 @@ public final class DeploymentElasticsearch {
         return Optional.ofNullable(this.snapshotSource);
     }
     /**
-     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = &#34;rollingAll&#34;` when upgrading across a major version boundary (the API requires `group_by: __all__`).
      * 
      */
     public Optional<String> strategy() {

@@ -135,7 +135,7 @@ export interface DeploymentElasticsearch {
      */
     snapshotSource?: outputs.DeploymentElasticsearchSnapshotSource;
     /**
-     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = "rollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
      */
     strategy?: string;
     /**
@@ -1084,6 +1084,21 @@ export interface ElasticsearchProjectEndpoints {
     kibana: string;
 }
 
+export interface ElasticsearchProjectLinked {
+    projects: {[key: string]: outputs.ElasticsearchProjectLinkedProjects};
+    /**
+     * Status of each linked project, keyed by project ID. Populated by the provider from the API.
+     */
+    statuses: {[key: string]: string};
+}
+
+export interface ElasticsearchProjectLinkedProjects {
+    /**
+     * The type of the linked project
+     */
+    type: string;
+}
+
 export interface ElasticsearchProjectMetadata {
     /**
      * Date and time when the project was created.
@@ -1106,7 +1121,11 @@ export interface ElasticsearchProjectMetadata {
      */
     suspendedReason: string;
     /**
-     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     */
+    systemTags: {[key: string]: string};
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags: {[key: string]: string};
 }
@@ -2041,6 +2060,21 @@ export interface ObservabilityProjectEndpoints {
     kibana: string;
 }
 
+export interface ObservabilityProjectLinked {
+    projects: {[key: string]: outputs.ObservabilityProjectLinkedProjects};
+    /**
+     * Status of each linked project, keyed by project ID. Populated by the provider from the API.
+     */
+    statuses: {[key: string]: string};
+}
+
+export interface ObservabilityProjectLinkedProjects {
+    /**
+     * The type of the linked project
+     */
+    type: string;
+}
+
 export interface ObservabilityProjectMetadata {
     /**
      * Date and time when the project was created.
@@ -2063,7 +2097,11 @@ export interface ObservabilityProjectMetadata {
      */
     suspendedReason: string;
     /**
-     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     */
+    systemTags: {[key: string]: string};
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags: {[key: string]: string};
 }
@@ -2224,6 +2262,21 @@ export interface SecurityProjectEndpoints {
     kibana: string;
 }
 
+export interface SecurityProjectLinked {
+    projects: {[key: string]: outputs.SecurityProjectLinkedProjects};
+    /**
+     * Status of each linked project, keyed by project ID. Populated by the provider from the API.
+     */
+    statuses: {[key: string]: string};
+}
+
+export interface SecurityProjectLinkedProjects {
+    /**
+     * The type of the linked project
+     */
+    type: string;
+}
+
 export interface SecurityProjectMetadata {
     /**
      * Date and time when the project was created.
@@ -2246,7 +2299,11 @@ export interface SecurityProjectMetadata {
      */
     suspendedReason: string;
     /**
-     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     */
+    systemTags: {[key: string]: string};
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags: {[key: string]: string};
 }

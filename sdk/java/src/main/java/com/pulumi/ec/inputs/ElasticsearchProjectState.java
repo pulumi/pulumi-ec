@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.ElasticsearchProjectCredentialsArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectEndpointsArgs;
+import com.pulumi.ec.inputs.ElasticsearchProjectLinkedArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectMetadataArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectPrivateEndpointsArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectSearchLakeArgs;
@@ -79,6 +80,21 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
      */
     public Optional<Output<ElasticsearchProjectEndpointsArgs>> endpoints() {
         return Optional.ofNullable(this.endpoints);
+    }
+
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Import(name="linked")
+    private @Nullable Output<ElasticsearchProjectLinkedArgs> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Optional<Output<ElasticsearchProjectLinkedArgs>> linked() {
+        return Optional.ofNullable(this.linked);
     }
 
     /**
@@ -214,6 +230,7 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
         this.cloudId = $.cloudId;
         this.credentials = $.credentials;
         this.endpoints = $.endpoints;
+        this.linked = $.linked;
         this.metadata = $.metadata;
         this.name = $.name;
         this.optimizedFor = $.optimizedFor;
@@ -324,6 +341,27 @@ public final class ElasticsearchProjectState extends com.pulumi.resources.Resour
          */
         public Builder endpoints(ElasticsearchProjectEndpointsArgs endpoints) {
             return endpoints(Output.of(endpoints));
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(@Nullable Output<ElasticsearchProjectLinkedArgs> linked) {
+            $.linked = linked;
+            return this;
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(ElasticsearchProjectLinkedArgs linked) {
+            return linked(Output.of(linked));
         }
 
         /**
