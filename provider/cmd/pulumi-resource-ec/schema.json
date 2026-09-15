@@ -290,7 +290,7 @@
                 },
                 "strategy": {
                     "type": "string",
-                    "description": "Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all\n"
+                    "description": "Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. \u003e **Note on behavior** \u003cspan pulumi-lang-nodejs=\"`rollingZone`\" pulumi-lang-dotnet=\"`RollingZone`\" pulumi-lang-go=\"`rollingZone`\" pulumi-lang-python=\"`rolling_zone`\" pulumi-lang-yaml=\"`rollingZone`\" pulumi-lang-java=\"`rollingZone`\" pulumi-lang-hcl=\"`rolling_zone`\"\u003e`rollingZone`\u003c/span\u003e cannot be used for major version upgrades. Set `strategy = \u003cspan pulumi-lang-nodejs=\"\"rollingAll\"\" pulumi-lang-dotnet=\"\"RollingAll\"\" pulumi-lang-go=\"\"rollingAll\"\" pulumi-lang-python=\"\"rolling_all\"\" pulumi-lang-yaml=\"\"rollingAll\"\" pulumi-lang-java=\"\"rollingAll\"\" pulumi-lang-hcl=\"\"rolling_all\"\"\u003e\"rollingAll\"\u003c/span\u003e` when upgrading across a major version boundary (the API requires `group_by: __all__`).\n"
                 },
                 "trustAccounts": {
                     "type": "array",
@@ -1888,6 +1888,47 @@
                 }
             }
         },
+        "ec:index/ElasticsearchProjectLinked:ElasticsearchProjectLinked": {
+            "properties": {
+                "projects": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectLinkedProjects:ElasticsearchProjectLinkedProjects"
+                    }
+                },
+                "statuses": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Status of each linked project, keyed by project ID. Populated by the provider from the API.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projects"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projects",
+                        "statuses"
+                    ]
+                }
+            }
+        },
+        "ec:index/ElasticsearchProjectLinkedProjects:ElasticsearchProjectLinkedProjects": {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "The type of the linked project\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
         "ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata": {
             "properties": {
                 "createdAt": {
@@ -1910,12 +1951,19 @@
                     "type": "string",
                     "description": "Reason why the project was suspended.\n"
                 },
+                "systemTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.\n"
+                },
                 "tags": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.\n"
+                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.\n"
                 }
             },
             "type": "object",
@@ -1927,6 +1975,7 @@
                         "organizationId",
                         "suspendedAt",
                         "suspendedReason",
+                        "systemTags",
                         "tags"
                     ]
                 }
@@ -2027,6 +2076,47 @@
                 }
             }
         },
+        "ec:index/ObservabilityProjectLinked:ObservabilityProjectLinked": {
+            "properties": {
+                "projects": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectLinkedProjects:ObservabilityProjectLinkedProjects"
+                    }
+                },
+                "statuses": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Status of each linked project, keyed by project ID. Populated by the provider from the API.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projects"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projects",
+                        "statuses"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectLinkedProjects:ObservabilityProjectLinkedProjects": {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "The type of the linked project\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
         "ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata": {
             "properties": {
                 "createdAt": {
@@ -2049,12 +2139,19 @@
                     "type": "string",
                     "description": "Reason why the project was suspended.\n"
                 },
+                "systemTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.\n"
+                },
                 "tags": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.\n"
+                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.\n"
                 }
             },
             "type": "object",
@@ -2066,6 +2163,7 @@
                         "organizationId",
                         "suspendedAt",
                         "suspendedReason",
+                        "systemTags",
                         "tags"
                     ]
                 }
@@ -2331,6 +2429,47 @@
                 }
             }
         },
+        "ec:index/SecurityProjectLinked:SecurityProjectLinked": {
+            "properties": {
+                "projects": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/ec:index/SecurityProjectLinkedProjects:SecurityProjectLinkedProjects"
+                    }
+                },
+                "statuses": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Status of each linked project, keyed by project ID. Populated by the provider from the API.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projects"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projects",
+                        "statuses"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectLinkedProjects:SecurityProjectLinkedProjects": {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "The type of the linked project\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
         "ec:index/SecurityProjectMetadata:SecurityProjectMetadata": {
             "properties": {
                 "createdAt": {
@@ -2353,12 +2492,19 @@
                     "type": "string",
                     "description": "Reason why the project was suspended.\n"
                 },
+                "systemTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.\n"
+                },
                 "tags": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.\n"
+                    "description": "Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.\n"
                 }
             },
             "type": "object",
@@ -2370,6 +2516,7 @@
                         "organizationId",
                         "suspendedAt",
                         "suspendedReason",
+                        "systemTags",
                         "tags"
                     ]
                 }
@@ -5055,6 +5202,10 @@
                     "$ref": "#/types/ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints",
                     "description": "The endpoints to access the different apps of the project."
                 },
+                "linked": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectLinked:ElasticsearchProjectLinked",
+                    "description": "Configuration for linked projects associated with this project"
+                },
                 "metadata": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
                     "description": "Metadata request for a project with tags."
@@ -5109,6 +5260,10 @@
                     "type": "string",
                     "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default."
                 },
+                "linked": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectLinked:ElasticsearchProjectLinked",
+                    "description": "Configuration for linked projects associated with this project"
+                },
                 "metadata": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
                     "description": "Metadata request for a project with tags."
@@ -5158,6 +5313,10 @@
                     "endpoints": {
                         "$ref": "#/types/ec:index/ElasticsearchProjectEndpoints:ElasticsearchProjectEndpoints",
                         "description": "The endpoints to access the different apps of the project."
+                    },
+                    "linked": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectLinked:ElasticsearchProjectLinked",
+                        "description": "Configuration for linked projects associated with this project"
                     },
                     "metadata": {
                         "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
@@ -5217,6 +5376,10 @@
                     "$ref": "#/types/ec:index/ObservabilityProjectEndpoints:ObservabilityProjectEndpoints",
                     "description": "The endpoints to access the different apps of the project.\n"
                 },
+                "linked": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectLinked:ObservabilityProjectLinked",
+                    "description": "Configuration for linked projects associated with this project\n"
+                },
                 "metadata": {
                     "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
@@ -5231,7 +5394,7 @@
                 },
                 "productTier": {
                     "type": "string",
-                    "description": "the tier of the observability project\n"
+                    "description": "the tier of the observability project. The default is \"complete\" when not specified at creation time.\n"
                 },
                 "regionId": {
                     "type": "string",
@@ -5266,6 +5429,10 @@
                     "type": "string",
                     "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
                 },
+                "linked": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectLinked:ObservabilityProjectLinked",
+                    "description": "Configuration for linked projects associated with this project\n"
+                },
                 "metadata": {
                     "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
@@ -5276,7 +5443,7 @@
                 },
                 "productTier": {
                     "type": "string",
-                    "description": "the tier of the observability project\n"
+                    "description": "the tier of the observability project. The default is \"complete\" when not specified at creation time.\n"
                 },
                 "regionId": {
                     "type": "string",
@@ -5312,6 +5479,10 @@
                         "$ref": "#/types/ec:index/ObservabilityProjectEndpoints:ObservabilityProjectEndpoints",
                         "description": "The endpoints to access the different apps of the project.\n"
                     },
+                    "linked": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectLinked:ObservabilityProjectLinked",
+                        "description": "Configuration for linked projects associated with this project\n"
+                    },
                     "metadata": {
                         "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
                         "description": "Metadata request for a project with tags.\n"
@@ -5326,7 +5497,7 @@
                     },
                     "productTier": {
                         "type": "string",
-                        "description": "the tier of the observability project\n"
+                        "description": "the tier of the observability project. The default is \"complete\" when not specified at creation time.\n"
                     },
                     "regionId": {
                         "type": "string",
@@ -5404,6 +5575,10 @@
                     "$ref": "#/types/ec:index/SecurityProjectEndpoints:SecurityProjectEndpoints",
                     "description": "The endpoints to access the different apps of the project.\n"
                 },
+                "linked": {
+                    "$ref": "#/types/ec:index/SecurityProjectLinked:SecurityProjectLinked",
+                    "description": "Configuration for linked projects associated with this project\n"
+                },
                 "metadata": {
                     "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
@@ -5465,6 +5640,10 @@
                     "type": "string",
                     "description": "A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.\n"
                 },
+                "linked": {
+                    "$ref": "#/types/ec:index/SecurityProjectLinked:SecurityProjectLinked",
+                    "description": "Configuration for linked projects associated with this project\n"
+                },
                 "metadata": {
                     "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
@@ -5520,6 +5699,10 @@
                     "endpoints": {
                         "$ref": "#/types/ec:index/SecurityProjectEndpoints:SecurityProjectEndpoints",
                         "description": "The endpoints to access the different apps of the project.\n"
+                    },
+                    "linked": {
+                        "$ref": "#/types/ec:index/SecurityProjectLinked:SecurityProjectLinked",
+                        "description": "Configuration for linked projects associated with this project\n"
                     },
                     "metadata": {
                         "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
