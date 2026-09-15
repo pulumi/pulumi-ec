@@ -622,7 +622,7 @@ type DeploymentElasticsearch struct {
 	//
 	// > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
 	SnapshotSource *DeploymentElasticsearchSnapshotSource `pulumi:"snapshotSource"`
-	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = "rollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
 	Strategy *string `pulumi:"strategy"`
 	// Optional Elasticsearch account trust settings.
 	TrustAccounts []DeploymentElasticsearchTrustAccount `pulumi:"trustAccounts"`
@@ -684,7 +684,7 @@ type DeploymentElasticsearchArgs struct {
 	//
 	// > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
 	SnapshotSource DeploymentElasticsearchSnapshotSourcePtrInput `pulumi:"snapshotSource"`
-	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+	// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = "rollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
 	Strategy pulumi.StringPtrInput `pulumi:"strategy"`
 	// Optional Elasticsearch account trust settings.
 	TrustAccounts DeploymentElasticsearchTrustAccountArrayInput `pulumi:"trustAccounts"`
@@ -870,7 +870,7 @@ func (o DeploymentElasticsearchOutput) SnapshotSource() DeploymentElasticsearchS
 	return o.ApplyT(func(v DeploymentElasticsearch) *DeploymentElasticsearchSnapshotSource { return v.SnapshotSource }).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
-// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = "rollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
 func (o DeploymentElasticsearchOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentElasticsearch) *string { return v.Strategy }).(pulumi.StringPtrOutput)
 }
@@ -1106,7 +1106,7 @@ func (o DeploymentElasticsearchPtrOutput) SnapshotSource() DeploymentElasticsear
 	}).(DeploymentElasticsearchSnapshotSourcePtrOutput)
 }
 
-// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = "rollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
 func (o DeploymentElasticsearchPtrOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentElasticsearch) *string {
 		if v == nil {
@@ -9282,6 +9282,255 @@ func (o ElasticsearchProjectEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type ElasticsearchProjectLinked struct {
+	Projects map[string]ElasticsearchProjectLinkedProjects `pulumi:"projects"`
+	// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+	Statuses map[string]string `pulumi:"statuses"`
+}
+
+// ElasticsearchProjectLinkedInput is an input type that accepts ElasticsearchProjectLinkedArgs and ElasticsearchProjectLinkedOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectLinkedInput` via:
+//
+//	ElasticsearchProjectLinkedArgs{...}
+type ElasticsearchProjectLinkedInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectLinkedOutput() ElasticsearchProjectLinkedOutput
+	ToElasticsearchProjectLinkedOutputWithContext(context.Context) ElasticsearchProjectLinkedOutput
+}
+
+type ElasticsearchProjectLinkedArgs struct {
+	Projects ElasticsearchProjectLinkedProjectsMapInput `pulumi:"projects"`
+	// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+	Statuses pulumi.StringMapInput `pulumi:"statuses"`
+}
+
+func (ElasticsearchProjectLinkedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectLinked)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectLinkedArgs) ToElasticsearchProjectLinkedOutput() ElasticsearchProjectLinkedOutput {
+	return i.ToElasticsearchProjectLinkedOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectLinkedArgs) ToElasticsearchProjectLinkedOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectLinkedOutput)
+}
+
+func (i ElasticsearchProjectLinkedArgs) ToElasticsearchProjectLinkedPtrOutput() ElasticsearchProjectLinkedPtrOutput {
+	return i.ToElasticsearchProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectLinkedArgs) ToElasticsearchProjectLinkedPtrOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectLinkedOutput).ToElasticsearchProjectLinkedPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectLinkedPtrInput is an input type that accepts ElasticsearchProjectLinkedArgs, ElasticsearchProjectLinkedPtr and ElasticsearchProjectLinkedPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectLinkedPtrInput` via:
+//
+//	        ElasticsearchProjectLinkedArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectLinkedPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectLinkedPtrOutput() ElasticsearchProjectLinkedPtrOutput
+	ToElasticsearchProjectLinkedPtrOutputWithContext(context.Context) ElasticsearchProjectLinkedPtrOutput
+}
+
+type elasticsearchProjectLinkedPtrType ElasticsearchProjectLinkedArgs
+
+func ElasticsearchProjectLinkedPtr(v *ElasticsearchProjectLinkedArgs) ElasticsearchProjectLinkedPtrInput {
+	return (*elasticsearchProjectLinkedPtrType)(v)
+}
+
+func (*elasticsearchProjectLinkedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectLinked)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectLinkedPtrType) ToElasticsearchProjectLinkedPtrOutput() ElasticsearchProjectLinkedPtrOutput {
+	return i.ToElasticsearchProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectLinkedPtrType) ToElasticsearchProjectLinkedPtrOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectLinkedPtrOutput)
+}
+
+type ElasticsearchProjectLinkedOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectLinkedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectLinked)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectLinkedOutput) ToElasticsearchProjectLinkedOutput() ElasticsearchProjectLinkedOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedOutput) ToElasticsearchProjectLinkedOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedOutput) ToElasticsearchProjectLinkedPtrOutput() ElasticsearchProjectLinkedPtrOutput {
+	return o.ToElasticsearchProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectLinkedOutput) ToElasticsearchProjectLinkedPtrOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectLinked) *ElasticsearchProjectLinked {
+		return &v
+	}).(ElasticsearchProjectLinkedPtrOutput)
+}
+
+func (o ElasticsearchProjectLinkedOutput) Projects() ElasticsearchProjectLinkedProjectsMapOutput {
+	return o.ApplyT(func(v ElasticsearchProjectLinked) map[string]ElasticsearchProjectLinkedProjects { return v.Projects }).(ElasticsearchProjectLinkedProjectsMapOutput)
+}
+
+// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+func (o ElasticsearchProjectLinkedOutput) Statuses() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ElasticsearchProjectLinked) map[string]string { return v.Statuses }).(pulumi.StringMapOutput)
+}
+
+type ElasticsearchProjectLinkedPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectLinkedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectLinked)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectLinkedPtrOutput) ToElasticsearchProjectLinkedPtrOutput() ElasticsearchProjectLinkedPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedPtrOutput) ToElasticsearchProjectLinkedPtrOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedPtrOutput) Elem() ElasticsearchProjectLinkedOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectLinked) ElasticsearchProjectLinked {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectLinked
+		return ret
+	}).(ElasticsearchProjectLinkedOutput)
+}
+
+func (o ElasticsearchProjectLinkedPtrOutput) Projects() ElasticsearchProjectLinkedProjectsMapOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectLinked) map[string]ElasticsearchProjectLinkedProjects {
+		if v == nil {
+			return nil
+		}
+		return v.Projects
+	}).(ElasticsearchProjectLinkedProjectsMapOutput)
+}
+
+// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+func (o ElasticsearchProjectLinkedPtrOutput) Statuses() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectLinked) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Statuses
+	}).(pulumi.StringMapOutput)
+}
+
+type ElasticsearchProjectLinkedProjects struct {
+	// The type of the linked project
+	Type string `pulumi:"type"`
+}
+
+// ElasticsearchProjectLinkedProjectsInput is an input type that accepts ElasticsearchProjectLinkedProjectsArgs and ElasticsearchProjectLinkedProjectsOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectLinkedProjectsInput` via:
+//
+//	ElasticsearchProjectLinkedProjectsArgs{...}
+type ElasticsearchProjectLinkedProjectsInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectLinkedProjectsOutput() ElasticsearchProjectLinkedProjectsOutput
+	ToElasticsearchProjectLinkedProjectsOutputWithContext(context.Context) ElasticsearchProjectLinkedProjectsOutput
+}
+
+type ElasticsearchProjectLinkedProjectsArgs struct {
+	// The type of the linked project
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ElasticsearchProjectLinkedProjectsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectLinkedProjects)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectLinkedProjectsArgs) ToElasticsearchProjectLinkedProjectsOutput() ElasticsearchProjectLinkedProjectsOutput {
+	return i.ToElasticsearchProjectLinkedProjectsOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectLinkedProjectsArgs) ToElasticsearchProjectLinkedProjectsOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedProjectsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectLinkedProjectsOutput)
+}
+
+// ElasticsearchProjectLinkedProjectsMapInput is an input type that accepts ElasticsearchProjectLinkedProjectsMap and ElasticsearchProjectLinkedProjectsMapOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectLinkedProjectsMapInput` via:
+//
+//	ElasticsearchProjectLinkedProjectsMap{ "key": ElasticsearchProjectLinkedProjectsArgs{...} }
+type ElasticsearchProjectLinkedProjectsMapInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectLinkedProjectsMapOutput() ElasticsearchProjectLinkedProjectsMapOutput
+	ToElasticsearchProjectLinkedProjectsMapOutputWithContext(context.Context) ElasticsearchProjectLinkedProjectsMapOutput
+}
+
+type ElasticsearchProjectLinkedProjectsMap map[string]ElasticsearchProjectLinkedProjectsInput
+
+func (ElasticsearchProjectLinkedProjectsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ElasticsearchProjectLinkedProjects)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectLinkedProjectsMap) ToElasticsearchProjectLinkedProjectsMapOutput() ElasticsearchProjectLinkedProjectsMapOutput {
+	return i.ToElasticsearchProjectLinkedProjectsMapOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectLinkedProjectsMap) ToElasticsearchProjectLinkedProjectsMapOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedProjectsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectLinkedProjectsMapOutput)
+}
+
+type ElasticsearchProjectLinkedProjectsOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectLinkedProjectsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectLinkedProjects)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectLinkedProjectsOutput) ToElasticsearchProjectLinkedProjectsOutput() ElasticsearchProjectLinkedProjectsOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedProjectsOutput) ToElasticsearchProjectLinkedProjectsOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedProjectsOutput {
+	return o
+}
+
+// The type of the linked project
+func (o ElasticsearchProjectLinkedProjectsOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ElasticsearchProjectLinkedProjects) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type ElasticsearchProjectLinkedProjectsMapOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectLinkedProjectsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ElasticsearchProjectLinkedProjects)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectLinkedProjectsMapOutput) ToElasticsearchProjectLinkedProjectsMapOutput() ElasticsearchProjectLinkedProjectsMapOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedProjectsMapOutput) ToElasticsearchProjectLinkedProjectsMapOutputWithContext(ctx context.Context) ElasticsearchProjectLinkedProjectsMapOutput {
+	return o
+}
+
+func (o ElasticsearchProjectLinkedProjectsMapOutput) MapIndex(k pulumi.StringInput) ElasticsearchProjectLinkedProjectsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ElasticsearchProjectLinkedProjects {
+		return vs[0].(map[string]ElasticsearchProjectLinkedProjects)[vs[1].(string)]
+	}).(ElasticsearchProjectLinkedProjectsOutput)
+}
+
 type ElasticsearchProjectMetadata struct {
 	// Date and time when the project was created.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -9293,7 +9542,9 @@ type ElasticsearchProjectMetadata struct {
 	SuspendedAt *string `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason *string `pulumi:"suspendedReason"`
-	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+	SystemTags map[string]string `pulumi:"systemTags"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 	Tags map[string]string `pulumi:"tags"`
 }
 
@@ -9319,7 +9570,9 @@ type ElasticsearchProjectMetadataArgs struct {
 	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
-	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+	SystemTags pulumi.StringMapInput `pulumi:"systemTags"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
@@ -9425,7 +9678,12 @@ func (o ElasticsearchProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOu
 	return o.ApplyT(func(v ElasticsearchProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
 }
 
-// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+func (o ElasticsearchProjectMetadataOutput) SystemTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMetadata) map[string]string { return v.SystemTags }).(pulumi.StringMapOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 func (o ElasticsearchProjectMetadataOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ElasticsearchProjectMetadata) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
@@ -9504,7 +9762,17 @@ func (o ElasticsearchProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+func (o ElasticsearchProjectMetadataPtrOutput) SystemTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.SystemTags
+	}).(pulumi.StringMapOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 func (o ElasticsearchProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ElasticsearchProjectMetadata) map[string]string {
 		if v == nil {
@@ -10176,6 +10444,255 @@ func (o ObservabilityProjectEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type ObservabilityProjectLinked struct {
+	Projects map[string]ObservabilityProjectLinkedProjects `pulumi:"projects"`
+	// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+	Statuses map[string]string `pulumi:"statuses"`
+}
+
+// ObservabilityProjectLinkedInput is an input type that accepts ObservabilityProjectLinkedArgs and ObservabilityProjectLinkedOutput values.
+// You can construct a concrete instance of `ObservabilityProjectLinkedInput` via:
+//
+//	ObservabilityProjectLinkedArgs{...}
+type ObservabilityProjectLinkedInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectLinkedOutput() ObservabilityProjectLinkedOutput
+	ToObservabilityProjectLinkedOutputWithContext(context.Context) ObservabilityProjectLinkedOutput
+}
+
+type ObservabilityProjectLinkedArgs struct {
+	Projects ObservabilityProjectLinkedProjectsMapInput `pulumi:"projects"`
+	// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+	Statuses pulumi.StringMapInput `pulumi:"statuses"`
+}
+
+func (ObservabilityProjectLinkedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectLinked)(nil)).Elem()
+}
+
+func (i ObservabilityProjectLinkedArgs) ToObservabilityProjectLinkedOutput() ObservabilityProjectLinkedOutput {
+	return i.ToObservabilityProjectLinkedOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectLinkedArgs) ToObservabilityProjectLinkedOutputWithContext(ctx context.Context) ObservabilityProjectLinkedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectLinkedOutput)
+}
+
+func (i ObservabilityProjectLinkedArgs) ToObservabilityProjectLinkedPtrOutput() ObservabilityProjectLinkedPtrOutput {
+	return i.ToObservabilityProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectLinkedArgs) ToObservabilityProjectLinkedPtrOutputWithContext(ctx context.Context) ObservabilityProjectLinkedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectLinkedOutput).ToObservabilityProjectLinkedPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectLinkedPtrInput is an input type that accepts ObservabilityProjectLinkedArgs, ObservabilityProjectLinkedPtr and ObservabilityProjectLinkedPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectLinkedPtrInput` via:
+//
+//	        ObservabilityProjectLinkedArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectLinkedPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectLinkedPtrOutput() ObservabilityProjectLinkedPtrOutput
+	ToObservabilityProjectLinkedPtrOutputWithContext(context.Context) ObservabilityProjectLinkedPtrOutput
+}
+
+type observabilityProjectLinkedPtrType ObservabilityProjectLinkedArgs
+
+func ObservabilityProjectLinkedPtr(v *ObservabilityProjectLinkedArgs) ObservabilityProjectLinkedPtrInput {
+	return (*observabilityProjectLinkedPtrType)(v)
+}
+
+func (*observabilityProjectLinkedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectLinked)(nil)).Elem()
+}
+
+func (i *observabilityProjectLinkedPtrType) ToObservabilityProjectLinkedPtrOutput() ObservabilityProjectLinkedPtrOutput {
+	return i.ToObservabilityProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectLinkedPtrType) ToObservabilityProjectLinkedPtrOutputWithContext(ctx context.Context) ObservabilityProjectLinkedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectLinkedPtrOutput)
+}
+
+type ObservabilityProjectLinkedOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectLinkedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectLinked)(nil)).Elem()
+}
+
+func (o ObservabilityProjectLinkedOutput) ToObservabilityProjectLinkedOutput() ObservabilityProjectLinkedOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedOutput) ToObservabilityProjectLinkedOutputWithContext(ctx context.Context) ObservabilityProjectLinkedOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedOutput) ToObservabilityProjectLinkedPtrOutput() ObservabilityProjectLinkedPtrOutput {
+	return o.ToObservabilityProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectLinkedOutput) ToObservabilityProjectLinkedPtrOutputWithContext(ctx context.Context) ObservabilityProjectLinkedPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectLinked) *ObservabilityProjectLinked {
+		return &v
+	}).(ObservabilityProjectLinkedPtrOutput)
+}
+
+func (o ObservabilityProjectLinkedOutput) Projects() ObservabilityProjectLinkedProjectsMapOutput {
+	return o.ApplyT(func(v ObservabilityProjectLinked) map[string]ObservabilityProjectLinkedProjects { return v.Projects }).(ObservabilityProjectLinkedProjectsMapOutput)
+}
+
+// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+func (o ObservabilityProjectLinkedOutput) Statuses() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ObservabilityProjectLinked) map[string]string { return v.Statuses }).(pulumi.StringMapOutput)
+}
+
+type ObservabilityProjectLinkedPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectLinkedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectLinked)(nil)).Elem()
+}
+
+func (o ObservabilityProjectLinkedPtrOutput) ToObservabilityProjectLinkedPtrOutput() ObservabilityProjectLinkedPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedPtrOutput) ToObservabilityProjectLinkedPtrOutputWithContext(ctx context.Context) ObservabilityProjectLinkedPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedPtrOutput) Elem() ObservabilityProjectLinkedOutput {
+	return o.ApplyT(func(v *ObservabilityProjectLinked) ObservabilityProjectLinked {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectLinked
+		return ret
+	}).(ObservabilityProjectLinkedOutput)
+}
+
+func (o ObservabilityProjectLinkedPtrOutput) Projects() ObservabilityProjectLinkedProjectsMapOutput {
+	return o.ApplyT(func(v *ObservabilityProjectLinked) map[string]ObservabilityProjectLinkedProjects {
+		if v == nil {
+			return nil
+		}
+		return v.Projects
+	}).(ObservabilityProjectLinkedProjectsMapOutput)
+}
+
+// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+func (o ObservabilityProjectLinkedPtrOutput) Statuses() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ObservabilityProjectLinked) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Statuses
+	}).(pulumi.StringMapOutput)
+}
+
+type ObservabilityProjectLinkedProjects struct {
+	// The type of the linked project
+	Type string `pulumi:"type"`
+}
+
+// ObservabilityProjectLinkedProjectsInput is an input type that accepts ObservabilityProjectLinkedProjectsArgs and ObservabilityProjectLinkedProjectsOutput values.
+// You can construct a concrete instance of `ObservabilityProjectLinkedProjectsInput` via:
+//
+//	ObservabilityProjectLinkedProjectsArgs{...}
+type ObservabilityProjectLinkedProjectsInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectLinkedProjectsOutput() ObservabilityProjectLinkedProjectsOutput
+	ToObservabilityProjectLinkedProjectsOutputWithContext(context.Context) ObservabilityProjectLinkedProjectsOutput
+}
+
+type ObservabilityProjectLinkedProjectsArgs struct {
+	// The type of the linked project
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ObservabilityProjectLinkedProjectsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (i ObservabilityProjectLinkedProjectsArgs) ToObservabilityProjectLinkedProjectsOutput() ObservabilityProjectLinkedProjectsOutput {
+	return i.ToObservabilityProjectLinkedProjectsOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectLinkedProjectsArgs) ToObservabilityProjectLinkedProjectsOutputWithContext(ctx context.Context) ObservabilityProjectLinkedProjectsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectLinkedProjectsOutput)
+}
+
+// ObservabilityProjectLinkedProjectsMapInput is an input type that accepts ObservabilityProjectLinkedProjectsMap and ObservabilityProjectLinkedProjectsMapOutput values.
+// You can construct a concrete instance of `ObservabilityProjectLinkedProjectsMapInput` via:
+//
+//	ObservabilityProjectLinkedProjectsMap{ "key": ObservabilityProjectLinkedProjectsArgs{...} }
+type ObservabilityProjectLinkedProjectsMapInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectLinkedProjectsMapOutput() ObservabilityProjectLinkedProjectsMapOutput
+	ToObservabilityProjectLinkedProjectsMapOutputWithContext(context.Context) ObservabilityProjectLinkedProjectsMapOutput
+}
+
+type ObservabilityProjectLinkedProjectsMap map[string]ObservabilityProjectLinkedProjectsInput
+
+func (ObservabilityProjectLinkedProjectsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ObservabilityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (i ObservabilityProjectLinkedProjectsMap) ToObservabilityProjectLinkedProjectsMapOutput() ObservabilityProjectLinkedProjectsMapOutput {
+	return i.ToObservabilityProjectLinkedProjectsMapOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectLinkedProjectsMap) ToObservabilityProjectLinkedProjectsMapOutputWithContext(ctx context.Context) ObservabilityProjectLinkedProjectsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectLinkedProjectsMapOutput)
+}
+
+type ObservabilityProjectLinkedProjectsOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectLinkedProjectsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (o ObservabilityProjectLinkedProjectsOutput) ToObservabilityProjectLinkedProjectsOutput() ObservabilityProjectLinkedProjectsOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedProjectsOutput) ToObservabilityProjectLinkedProjectsOutputWithContext(ctx context.Context) ObservabilityProjectLinkedProjectsOutput {
+	return o
+}
+
+// The type of the linked project
+func (o ObservabilityProjectLinkedProjectsOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ObservabilityProjectLinkedProjects) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type ObservabilityProjectLinkedProjectsMapOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectLinkedProjectsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ObservabilityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (o ObservabilityProjectLinkedProjectsMapOutput) ToObservabilityProjectLinkedProjectsMapOutput() ObservabilityProjectLinkedProjectsMapOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedProjectsMapOutput) ToObservabilityProjectLinkedProjectsMapOutputWithContext(ctx context.Context) ObservabilityProjectLinkedProjectsMapOutput {
+	return o
+}
+
+func (o ObservabilityProjectLinkedProjectsMapOutput) MapIndex(k pulumi.StringInput) ObservabilityProjectLinkedProjectsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ObservabilityProjectLinkedProjects {
+		return vs[0].(map[string]ObservabilityProjectLinkedProjects)[vs[1].(string)]
+	}).(ObservabilityProjectLinkedProjectsOutput)
+}
+
 type ObservabilityProjectMetadata struct {
 	// Date and time when the project was created.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -10187,7 +10704,9 @@ type ObservabilityProjectMetadata struct {
 	SuspendedAt *string `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason *string `pulumi:"suspendedReason"`
-	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+	SystemTags map[string]string `pulumi:"systemTags"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 	Tags map[string]string `pulumi:"tags"`
 }
 
@@ -10213,7 +10732,9 @@ type ObservabilityProjectMetadataArgs struct {
 	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
-	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+	SystemTags pulumi.StringMapInput `pulumi:"systemTags"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
@@ -10319,7 +10840,12 @@ func (o ObservabilityProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOu
 	return o.ApplyT(func(v ObservabilityProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
 }
 
-// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+func (o ObservabilityProjectMetadataOutput) SystemTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ObservabilityProjectMetadata) map[string]string { return v.SystemTags }).(pulumi.StringMapOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 func (o ObservabilityProjectMetadataOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ObservabilityProjectMetadata) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
@@ -10398,7 +10924,17 @@ func (o ObservabilityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+func (o ObservabilityProjectMetadataPtrOutput) SystemTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.SystemTags
+	}).(pulumi.StringMapOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 func (o ObservabilityProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObservabilityProjectMetadata) map[string]string {
 		if v == nil {
@@ -11593,6 +12129,255 @@ func (o SecurityProjectEndpointsPtrOutput) Kibana() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type SecurityProjectLinked struct {
+	Projects map[string]SecurityProjectLinkedProjects `pulumi:"projects"`
+	// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+	Statuses map[string]string `pulumi:"statuses"`
+}
+
+// SecurityProjectLinkedInput is an input type that accepts SecurityProjectLinkedArgs and SecurityProjectLinkedOutput values.
+// You can construct a concrete instance of `SecurityProjectLinkedInput` via:
+//
+//	SecurityProjectLinkedArgs{...}
+type SecurityProjectLinkedInput interface {
+	pulumi.Input
+
+	ToSecurityProjectLinkedOutput() SecurityProjectLinkedOutput
+	ToSecurityProjectLinkedOutputWithContext(context.Context) SecurityProjectLinkedOutput
+}
+
+type SecurityProjectLinkedArgs struct {
+	Projects SecurityProjectLinkedProjectsMapInput `pulumi:"projects"`
+	// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+	Statuses pulumi.StringMapInput `pulumi:"statuses"`
+}
+
+func (SecurityProjectLinkedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectLinked)(nil)).Elem()
+}
+
+func (i SecurityProjectLinkedArgs) ToSecurityProjectLinkedOutput() SecurityProjectLinkedOutput {
+	return i.ToSecurityProjectLinkedOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectLinkedArgs) ToSecurityProjectLinkedOutputWithContext(ctx context.Context) SecurityProjectLinkedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectLinkedOutput)
+}
+
+func (i SecurityProjectLinkedArgs) ToSecurityProjectLinkedPtrOutput() SecurityProjectLinkedPtrOutput {
+	return i.ToSecurityProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectLinkedArgs) ToSecurityProjectLinkedPtrOutputWithContext(ctx context.Context) SecurityProjectLinkedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectLinkedOutput).ToSecurityProjectLinkedPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectLinkedPtrInput is an input type that accepts SecurityProjectLinkedArgs, SecurityProjectLinkedPtr and SecurityProjectLinkedPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectLinkedPtrInput` via:
+//
+//	        SecurityProjectLinkedArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectLinkedPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectLinkedPtrOutput() SecurityProjectLinkedPtrOutput
+	ToSecurityProjectLinkedPtrOutputWithContext(context.Context) SecurityProjectLinkedPtrOutput
+}
+
+type securityProjectLinkedPtrType SecurityProjectLinkedArgs
+
+func SecurityProjectLinkedPtr(v *SecurityProjectLinkedArgs) SecurityProjectLinkedPtrInput {
+	return (*securityProjectLinkedPtrType)(v)
+}
+
+func (*securityProjectLinkedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectLinked)(nil)).Elem()
+}
+
+func (i *securityProjectLinkedPtrType) ToSecurityProjectLinkedPtrOutput() SecurityProjectLinkedPtrOutput {
+	return i.ToSecurityProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectLinkedPtrType) ToSecurityProjectLinkedPtrOutputWithContext(ctx context.Context) SecurityProjectLinkedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectLinkedPtrOutput)
+}
+
+type SecurityProjectLinkedOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectLinkedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectLinked)(nil)).Elem()
+}
+
+func (o SecurityProjectLinkedOutput) ToSecurityProjectLinkedOutput() SecurityProjectLinkedOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedOutput) ToSecurityProjectLinkedOutputWithContext(ctx context.Context) SecurityProjectLinkedOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedOutput) ToSecurityProjectLinkedPtrOutput() SecurityProjectLinkedPtrOutput {
+	return o.ToSecurityProjectLinkedPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectLinkedOutput) ToSecurityProjectLinkedPtrOutputWithContext(ctx context.Context) SecurityProjectLinkedPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectLinked) *SecurityProjectLinked {
+		return &v
+	}).(SecurityProjectLinkedPtrOutput)
+}
+
+func (o SecurityProjectLinkedOutput) Projects() SecurityProjectLinkedProjectsMapOutput {
+	return o.ApplyT(func(v SecurityProjectLinked) map[string]SecurityProjectLinkedProjects { return v.Projects }).(SecurityProjectLinkedProjectsMapOutput)
+}
+
+// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+func (o SecurityProjectLinkedOutput) Statuses() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecurityProjectLinked) map[string]string { return v.Statuses }).(pulumi.StringMapOutput)
+}
+
+type SecurityProjectLinkedPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectLinkedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectLinked)(nil)).Elem()
+}
+
+func (o SecurityProjectLinkedPtrOutput) ToSecurityProjectLinkedPtrOutput() SecurityProjectLinkedPtrOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedPtrOutput) ToSecurityProjectLinkedPtrOutputWithContext(ctx context.Context) SecurityProjectLinkedPtrOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedPtrOutput) Elem() SecurityProjectLinkedOutput {
+	return o.ApplyT(func(v *SecurityProjectLinked) SecurityProjectLinked {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectLinked
+		return ret
+	}).(SecurityProjectLinkedOutput)
+}
+
+func (o SecurityProjectLinkedPtrOutput) Projects() SecurityProjectLinkedProjectsMapOutput {
+	return o.ApplyT(func(v *SecurityProjectLinked) map[string]SecurityProjectLinkedProjects {
+		if v == nil {
+			return nil
+		}
+		return v.Projects
+	}).(SecurityProjectLinkedProjectsMapOutput)
+}
+
+// Status of each linked project, keyed by project ID. Populated by the provider from the API.
+func (o SecurityProjectLinkedPtrOutput) Statuses() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecurityProjectLinked) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Statuses
+	}).(pulumi.StringMapOutput)
+}
+
+type SecurityProjectLinkedProjects struct {
+	// The type of the linked project
+	Type string `pulumi:"type"`
+}
+
+// SecurityProjectLinkedProjectsInput is an input type that accepts SecurityProjectLinkedProjectsArgs and SecurityProjectLinkedProjectsOutput values.
+// You can construct a concrete instance of `SecurityProjectLinkedProjectsInput` via:
+//
+//	SecurityProjectLinkedProjectsArgs{...}
+type SecurityProjectLinkedProjectsInput interface {
+	pulumi.Input
+
+	ToSecurityProjectLinkedProjectsOutput() SecurityProjectLinkedProjectsOutput
+	ToSecurityProjectLinkedProjectsOutputWithContext(context.Context) SecurityProjectLinkedProjectsOutput
+}
+
+type SecurityProjectLinkedProjectsArgs struct {
+	// The type of the linked project
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (SecurityProjectLinkedProjectsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (i SecurityProjectLinkedProjectsArgs) ToSecurityProjectLinkedProjectsOutput() SecurityProjectLinkedProjectsOutput {
+	return i.ToSecurityProjectLinkedProjectsOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectLinkedProjectsArgs) ToSecurityProjectLinkedProjectsOutputWithContext(ctx context.Context) SecurityProjectLinkedProjectsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectLinkedProjectsOutput)
+}
+
+// SecurityProjectLinkedProjectsMapInput is an input type that accepts SecurityProjectLinkedProjectsMap and SecurityProjectLinkedProjectsMapOutput values.
+// You can construct a concrete instance of `SecurityProjectLinkedProjectsMapInput` via:
+//
+//	SecurityProjectLinkedProjectsMap{ "key": SecurityProjectLinkedProjectsArgs{...} }
+type SecurityProjectLinkedProjectsMapInput interface {
+	pulumi.Input
+
+	ToSecurityProjectLinkedProjectsMapOutput() SecurityProjectLinkedProjectsMapOutput
+	ToSecurityProjectLinkedProjectsMapOutputWithContext(context.Context) SecurityProjectLinkedProjectsMapOutput
+}
+
+type SecurityProjectLinkedProjectsMap map[string]SecurityProjectLinkedProjectsInput
+
+func (SecurityProjectLinkedProjectsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecurityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (i SecurityProjectLinkedProjectsMap) ToSecurityProjectLinkedProjectsMapOutput() SecurityProjectLinkedProjectsMapOutput {
+	return i.ToSecurityProjectLinkedProjectsMapOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectLinkedProjectsMap) ToSecurityProjectLinkedProjectsMapOutputWithContext(ctx context.Context) SecurityProjectLinkedProjectsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectLinkedProjectsMapOutput)
+}
+
+type SecurityProjectLinkedProjectsOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectLinkedProjectsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (o SecurityProjectLinkedProjectsOutput) ToSecurityProjectLinkedProjectsOutput() SecurityProjectLinkedProjectsOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedProjectsOutput) ToSecurityProjectLinkedProjectsOutputWithContext(ctx context.Context) SecurityProjectLinkedProjectsOutput {
+	return o
+}
+
+// The type of the linked project
+func (o SecurityProjectLinkedProjectsOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityProjectLinkedProjects) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type SecurityProjectLinkedProjectsMapOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectLinkedProjectsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecurityProjectLinkedProjects)(nil)).Elem()
+}
+
+func (o SecurityProjectLinkedProjectsMapOutput) ToSecurityProjectLinkedProjectsMapOutput() SecurityProjectLinkedProjectsMapOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedProjectsMapOutput) ToSecurityProjectLinkedProjectsMapOutputWithContext(ctx context.Context) SecurityProjectLinkedProjectsMapOutput {
+	return o
+}
+
+func (o SecurityProjectLinkedProjectsMapOutput) MapIndex(k pulumi.StringInput) SecurityProjectLinkedProjectsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecurityProjectLinkedProjects {
+		return vs[0].(map[string]SecurityProjectLinkedProjects)[vs[1].(string)]
+	}).(SecurityProjectLinkedProjectsOutput)
+}
+
 type SecurityProjectMetadata struct {
 	// Date and time when the project was created.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -11604,7 +12389,9 @@ type SecurityProjectMetadata struct {
 	SuspendedAt *string `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason *string `pulumi:"suspendedReason"`
-	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+	SystemTags map[string]string `pulumi:"systemTags"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 	Tags map[string]string `pulumi:"tags"`
 }
 
@@ -11630,7 +12417,9 @@ type SecurityProjectMetadataArgs struct {
 	SuspendedAt pulumi.StringPtrInput `pulumi:"suspendedAt"`
 	// Reason why the project was suspended.
 	SuspendedReason pulumi.StringPtrInput `pulumi:"suspendedReason"`
-	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+	// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+	SystemTags pulumi.StringMapInput `pulumi:"systemTags"`
+	// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
 }
 
@@ -11736,7 +12525,12 @@ func (o SecurityProjectMetadataOutput) SuspendedReason() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SecurityProjectMetadata) *string { return v.SuspendedReason }).(pulumi.StringPtrOutput)
 }
 
-// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+func (o SecurityProjectMetadataOutput) SystemTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecurityProjectMetadata) map[string]string { return v.SystemTags }).(pulumi.StringMapOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 func (o SecurityProjectMetadataOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SecurityProjectMetadata) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
@@ -11815,7 +12609,17 @@ func (o SecurityProjectMetadataPtrOutput) SuspendedReason() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+func (o SecurityProjectMetadataPtrOutput) SystemTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecurityProjectMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.SystemTags
+	}).(pulumi.StringMapOutput)
+}
+
+// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
 func (o SecurityProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecurityProjectMetadata) map[string]string {
 		if v == nil {
@@ -18102,6 +18906,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectCredentialsPtrInput)(nil)).Elem(), ElasticsearchProjectCredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectEndpointsInput)(nil)).Elem(), ElasticsearchProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectEndpointsPtrInput)(nil)).Elem(), ElasticsearchProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectLinkedInput)(nil)).Elem(), ElasticsearchProjectLinkedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectLinkedPtrInput)(nil)).Elem(), ElasticsearchProjectLinkedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectLinkedProjectsInput)(nil)).Elem(), ElasticsearchProjectLinkedProjectsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectLinkedProjectsMapInput)(nil)).Elem(), ElasticsearchProjectLinkedProjectsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataPtrInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectPrivateEndpointsInput)(nil)).Elem(), ElasticsearchProjectPrivateEndpointsArgs{})
@@ -18112,6 +18920,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectCredentialsPtrInput)(nil)).Elem(), ObservabilityProjectCredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectEndpointsInput)(nil)).Elem(), ObservabilityProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectEndpointsPtrInput)(nil)).Elem(), ObservabilityProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectLinkedInput)(nil)).Elem(), ObservabilityProjectLinkedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectLinkedPtrInput)(nil)).Elem(), ObservabilityProjectLinkedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectLinkedProjectsInput)(nil)).Elem(), ObservabilityProjectLinkedProjectsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectLinkedProjectsMapInput)(nil)).Elem(), ObservabilityProjectLinkedProjectsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataPtrInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectPrivateEndpointsInput)(nil)).Elem(), ObservabilityProjectPrivateEndpointsArgs{})
@@ -18130,6 +18942,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectCredentialsPtrInput)(nil)).Elem(), SecurityProjectCredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectEndpointsInput)(nil)).Elem(), SecurityProjectEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectEndpointsPtrInput)(nil)).Elem(), SecurityProjectEndpointsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectLinkedInput)(nil)).Elem(), SecurityProjectLinkedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectLinkedPtrInput)(nil)).Elem(), SecurityProjectLinkedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectLinkedProjectsInput)(nil)).Elem(), SecurityProjectLinkedProjectsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectLinkedProjectsMapInput)(nil)).Elem(), SecurityProjectLinkedProjectsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataPtrInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectPrivateEndpointsInput)(nil)).Elem(), SecurityProjectPrivateEndpointsArgs{})
@@ -18291,6 +19107,10 @@ func init() {
 	pulumi.RegisterOutputType(ElasticsearchProjectCredentialsPtrOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectEndpointsOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectEndpointsPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectLinkedOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectLinkedPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectLinkedProjectsOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectLinkedProjectsMapOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectMetadataPtrOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectPrivateEndpointsOutput{})
@@ -18301,6 +19121,10 @@ func init() {
 	pulumi.RegisterOutputType(ObservabilityProjectCredentialsPtrOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectEndpointsOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectEndpointsPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectLinkedOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectLinkedPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectLinkedProjectsOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectLinkedProjectsMapOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataPtrOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectPrivateEndpointsOutput{})
@@ -18319,6 +19143,10 @@ func init() {
 	pulumi.RegisterOutputType(SecurityProjectCredentialsPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectEndpointsOutput{})
 	pulumi.RegisterOutputType(SecurityProjectEndpointsPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectLinkedOutput{})
+	pulumi.RegisterOutputType(SecurityProjectLinkedPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectLinkedProjectsOutput{})
+	pulumi.RegisterOutputType(SecurityProjectLinkedProjectsMapOutput{})
 	pulumi.RegisterOutputType(SecurityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(SecurityProjectMetadataPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectPrivateEndpointsOutput{})

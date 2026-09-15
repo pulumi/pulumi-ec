@@ -72,6 +72,12 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.ObservabilityProjectEndpoints> Endpoints { get; private set; } = null!;
 
         /// <summary>
+        /// Configuration for linked projects associated with this project
+        /// </summary>
+        [Output("linked")]
+        public Output<Outputs.ObservabilityProjectLinked?> Linked { get; private set; } = null!;
+
+        /// <summary>
         /// Metadata request for a project with tags.
         /// </summary>
         [Output("metadata")]
@@ -90,7 +96,7 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.ObservabilityProjectPrivateEndpoints> PrivateEndpoints { get; private set; } = null!;
 
         /// <summary>
-        /// the tier of the observability project
+        /// the tier of the observability project. The default is "complete" when not specified at creation time.
         /// </summary>
         [Output("productTier")]
         public Output<string> ProductTier { get; private set; } = null!;
@@ -166,6 +172,12 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// Configuration for linked projects associated with this project
+        /// </summary>
+        [Input("linked")]
+        public Input<Inputs.ObservabilityProjectLinkedArgs>? Linked { get; set; }
+
+        /// <summary>
         /// Metadata request for a project with tags.
         /// </summary>
         [Input("metadata")]
@@ -178,7 +190,7 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// the tier of the observability project
+        /// the tier of the observability project. The default is "complete" when not specified at creation time.
         /// </summary>
         [Input("productTier")]
         public Input<string>? ProductTier { get; set; }
@@ -234,6 +246,12 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.ObservabilityProjectEndpointsGetArgs>? Endpoints { get; set; }
 
         /// <summary>
+        /// Configuration for linked projects associated with this project
+        /// </summary>
+        [Input("linked")]
+        public Input<Inputs.ObservabilityProjectLinkedGetArgs>? Linked { get; set; }
+
+        /// <summary>
         /// Metadata request for a project with tags.
         /// </summary>
         [Input("metadata")]
@@ -252,7 +270,7 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.ObservabilityProjectPrivateEndpointsGetArgs>? PrivateEndpoints { get; set; }
 
         /// <summary>
-        /// the tier of the observability project
+        /// the tier of the observability project. The default is "complete" when not specified at creation time.
         /// </summary>
         [Input("productTier")]
         public Input<string>? ProductTier { get; set; }

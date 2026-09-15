@@ -24,6 +24,7 @@ class SecurityProjectArgs:
                  region_id: pulumi.Input[_builtins.str],
                  admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 linked: pulumi.Input[Optional['SecurityProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['SecurityProjectMetadataArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None,
@@ -35,6 +36,7 @@ class SecurityProjectArgs:
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input['SecurityProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input['SecurityProjectSearchLakeArgs'] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
@@ -45,6 +47,8 @@ class SecurityProjectArgs:
             pulumi.set(__self__, "admin_features_package", admin_features_package)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if linked is not None:
+            pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
@@ -91,6 +95,18 @@ class SecurityProjectArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def linked(self) -> pulumi.Input[Optional['SecurityProjectLinkedArgs']]:
+        """
+        Configuration for linked projects associated with this project
+        """
+        return pulumi.get(self, "linked")
+
+    @linked.setter
+    def linked(self, value: pulumi.Input[Optional['SecurityProjectLinkedArgs']]):
+        pulumi.set(self, "linked", value)
 
     @_builtins.property
     @pulumi.getter
@@ -158,6 +174,7 @@ class _SecurityProjectState:
                  cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
                  credentials: pulumi.Input[Optional['SecurityProjectCredentialsArgs']] = None,
                  endpoints: pulumi.Input[Optional['SecurityProjectEndpointsArgs']] = None,
+                 linked: pulumi.Input[Optional['SecurityProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['SecurityProjectMetadataArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_endpoints: pulumi.Input[Optional['SecurityProjectPrivateEndpointsArgs']] = None,
@@ -174,6 +191,7 @@ class _SecurityProjectState:
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input['SecurityProjectCredentialsArgs'] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input['SecurityProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input['SecurityProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input['SecurityProjectPrivateEndpointsArgs'] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
@@ -192,6 +210,8 @@ class _SecurityProjectState:
             pulumi.set(__self__, "credentials", credentials)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
+        if linked is not None:
+            pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
@@ -268,6 +288,18 @@ class _SecurityProjectState:
     @endpoints.setter
     def endpoints(self, value: pulumi.Input[Optional['SecurityProjectEndpointsArgs']]):
         pulumi.set(self, "endpoints", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def linked(self) -> pulumi.Input[Optional['SecurityProjectLinkedArgs']]:
+        """
+        Configuration for linked projects associated with this project
+        """
+        return pulumi.get(self, "linked")
+
+    @linked.setter
+    def linked(self, value: pulumi.Input[Optional['SecurityProjectLinkedArgs']]):
+        pulumi.set(self, "linked", value)
 
     @_builtins.property
     @pulumi.getter
@@ -371,6 +403,7 @@ class SecurityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']]] = None,
                  metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
@@ -410,6 +443,7 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
@@ -467,6 +501,7 @@ class SecurityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']]] = None,
                  metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
@@ -484,6 +519,7 @@ class SecurityProject(pulumi.CustomResource):
 
             __props__.__dict__["admin_features_package"] = admin_features_package
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["linked"] = linked
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["product_types"] = product_types
@@ -512,6 +548,7 @@ class SecurityProject(pulumi.CustomResource):
             cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
             credentials: pulumi.Input[Optional[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict']]] = None,
             endpoints: pulumi.Input[Optional[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict']]] = None,
+            linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']]] = None,
             metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             private_endpoints: pulumi.Input[Optional[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict']]] = None,
@@ -532,6 +569,7 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
@@ -549,6 +587,7 @@ class SecurityProject(pulumi.CustomResource):
         __props__.__dict__["cloud_id"] = cloud_id
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["endpoints"] = endpoints
+        __props__.__dict__["linked"] = linked
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
         __props__.__dict__["private_endpoints"] = private_endpoints
@@ -598,6 +637,14 @@ class SecurityProject(pulumi.CustomResource):
         The endpoints to access the different apps of the project.
         """
         return pulumi.get(self, "endpoints")
+
+    @_builtins.property
+    @pulumi.getter
+    def linked(self) -> pulumi.Output[Optional['outputs.SecurityProjectLinked']]:
+        """
+        Configuration for linked projects associated with this project
+        """
+        return pulumi.get(self, "linked")
 
     @_builtins.property
     @pulumi.getter

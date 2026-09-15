@@ -91,6 +91,10 @@ __all__ = [
     'ElasticsearchProjectCredentialsArgsDict',
     'ElasticsearchProjectEndpointsArgs',
     'ElasticsearchProjectEndpointsArgsDict',
+    'ElasticsearchProjectLinkedArgs',
+    'ElasticsearchProjectLinkedArgsDict',
+    'ElasticsearchProjectLinkedProjectsArgs',
+    'ElasticsearchProjectLinkedProjectsArgsDict',
     'ElasticsearchProjectMetadataArgs',
     'ElasticsearchProjectMetadataArgsDict',
     'ElasticsearchProjectPrivateEndpointsArgs',
@@ -101,6 +105,10 @@ __all__ = [
     'ObservabilityProjectCredentialsArgsDict',
     'ObservabilityProjectEndpointsArgs',
     'ObservabilityProjectEndpointsArgsDict',
+    'ObservabilityProjectLinkedArgs',
+    'ObservabilityProjectLinkedArgsDict',
+    'ObservabilityProjectLinkedProjectsArgs',
+    'ObservabilityProjectLinkedProjectsArgsDict',
     'ObservabilityProjectMetadataArgs',
     'ObservabilityProjectMetadataArgsDict',
     'ObservabilityProjectPrivateEndpointsArgs',
@@ -119,6 +127,10 @@ __all__ = [
     'SecurityProjectCredentialsArgsDict',
     'SecurityProjectEndpointsArgs',
     'SecurityProjectEndpointsArgsDict',
+    'SecurityProjectLinkedArgs',
+    'SecurityProjectLinkedArgsDict',
+    'SecurityProjectLinkedProjectsArgs',
+    'SecurityProjectLinkedProjectsArgsDict',
     'SecurityProjectMetadataArgs',
     'SecurityProjectMetadataArgsDict',
     'SecurityProjectPrivateEndpointsArgs',
@@ -562,7 +574,7 @@ class DeploymentElasticsearchArgsDict(TypedDict):
     """
     strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+    Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rolling_zone` cannot be used for major version upgrades. Set `strategy = "rolling_all"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
     """
     trust_accounts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgsDict']]]]]
     """
@@ -625,7 +637,7 @@ class DeploymentElasticsearchArgs:
         :param pulumi.Input['DeploymentElasticsearchSnapshotSourceArgs'] snapshot_source: Restores data from a snapshot of another deployment.
                
                > **Note on behavior** The <code>snapshot_source</code> block will not be saved in the Terraform state due to its transient nature. This means that whenever the <code>snapshot_source</code> block is set, a snapshot will **always be restored**, unless removed before running <code>terraform apply</code>.
-        :param pulumi.Input[_builtins.str] strategy: Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        :param pulumi.Input[_builtins.str] strategy: Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rolling_zone` cannot be used for major version upgrades. Set `strategy = "rolling_all"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustAccountArgs']]] trust_accounts: Optional Elasticsearch account trust settings.
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentElasticsearchTrustExternalArgs']]] trust_externals: Optional Elasticsearch external trust settings.
         :param pulumi.Input['DeploymentElasticsearchWarmArgs'] warm: 'warm' topology element
@@ -910,7 +922,7 @@ class DeploymentElasticsearchArgs:
     @pulumi.getter
     def strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rolling_zone` cannot be used for major version upgrades. Set `strategy = "rolling_all"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
         """
         return pulumi.get(self, "strategy")
 
@@ -5751,6 +5763,75 @@ class ElasticsearchProjectEndpointsArgs:
         pulumi.set(self, "kibana", value)
 
 
+class ElasticsearchProjectLinkedArgsDict(TypedDict):
+    projects: pulumi.Input[Mapping[str, pulumi.Input['ElasticsearchProjectLinkedProjectsArgsDict']]]
+    statuses: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Status of each linked project, keyed by project ID. Populated by the provider from the API.
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectLinkedArgs:
+    def __init__(__self__, *,
+                 projects: pulumi.Input[Mapping[str, pulumi.Input['ElasticsearchProjectLinkedProjectsArgs']]],
+                 statuses: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] statuses: Status of each linked project, keyed by project ID. Populated by the provider from the API.
+        """
+        pulumi.set(__self__, "projects", projects)
+        if statuses is not None:
+            pulumi.set(__self__, "statuses", statuses)
+
+    @_builtins.property
+    @pulumi.getter
+    def projects(self) -> pulumi.Input[Mapping[str, pulumi.Input['ElasticsearchProjectLinkedProjectsArgs']]]:
+        return pulumi.get(self, "projects")
+
+    @projects.setter
+    def projects(self, value: pulumi.Input[Mapping[str, pulumi.Input['ElasticsearchProjectLinkedProjectsArgs']]]):
+        pulumi.set(self, "projects", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def statuses(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Status of each linked project, keyed by project ID. Populated by the provider from the API.
+        """
+        return pulumi.get(self, "statuses")
+
+    @statuses.setter
+    def statuses(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "statuses", value)
+
+
+class ElasticsearchProjectLinkedProjectsArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of the linked project
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectLinkedProjectsArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] type: The type of the linked project
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the linked project
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
 class ElasticsearchProjectMetadataArgsDict(TypedDict):
     created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -5772,9 +5853,13 @@ class ElasticsearchProjectMetadataArgsDict(TypedDict):
     """
     Reason why the project was suspended.
     """
+    system_tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+    """
     tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
-    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
     """
 
 @pulumi.input_type
@@ -5785,6 +5870,7 @@ class ElasticsearchProjectMetadataArgs:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  suspended_at: pulumi.Input[Optional[_builtins.str]] = None,
                  suspended_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 system_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
@@ -5792,7 +5878,8 @@ class ElasticsearchProjectMetadataArgs:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID who owns the project.
         :param pulumi.Input[_builtins.str] suspended_at: Date and time when the project was suspended.
         :param pulumi.Input[_builtins.str] suspended_reason: Reason why the project was suspended.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] system_tags: System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -5804,6 +5891,8 @@ class ElasticsearchProjectMetadataArgs:
             pulumi.set(__self__, "suspended_at", suspended_at)
         if suspended_reason is not None:
             pulumi.set(__self__, "suspended_reason", suspended_reason)
+        if system_tags is not None:
+            pulumi.set(__self__, "system_tags", system_tags)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -5868,10 +5957,22 @@ class ElasticsearchProjectMetadataArgs:
         pulumi.set(self, "suspended_reason", value)
 
     @_builtins.property
+    @pulumi.getter(name="systemTags")
+    def system_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        """
+        return pulumi.get(self, "system_tags")
+
+    @system_tags.setter
+    def system_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "system_tags", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         """
         return pulumi.get(self, "tags")
 
@@ -6116,6 +6217,75 @@ class ObservabilityProjectEndpointsArgs:
         pulumi.set(self, "kibana", value)
 
 
+class ObservabilityProjectLinkedArgsDict(TypedDict):
+    projects: pulumi.Input[Mapping[str, pulumi.Input['ObservabilityProjectLinkedProjectsArgsDict']]]
+    statuses: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Status of each linked project, keyed by project ID. Populated by the provider from the API.
+    """
+
+@pulumi.input_type
+class ObservabilityProjectLinkedArgs:
+    def __init__(__self__, *,
+                 projects: pulumi.Input[Mapping[str, pulumi.Input['ObservabilityProjectLinkedProjectsArgs']]],
+                 statuses: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] statuses: Status of each linked project, keyed by project ID. Populated by the provider from the API.
+        """
+        pulumi.set(__self__, "projects", projects)
+        if statuses is not None:
+            pulumi.set(__self__, "statuses", statuses)
+
+    @_builtins.property
+    @pulumi.getter
+    def projects(self) -> pulumi.Input[Mapping[str, pulumi.Input['ObservabilityProjectLinkedProjectsArgs']]]:
+        return pulumi.get(self, "projects")
+
+    @projects.setter
+    def projects(self, value: pulumi.Input[Mapping[str, pulumi.Input['ObservabilityProjectLinkedProjectsArgs']]]):
+        pulumi.set(self, "projects", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def statuses(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Status of each linked project, keyed by project ID. Populated by the provider from the API.
+        """
+        return pulumi.get(self, "statuses")
+
+    @statuses.setter
+    def statuses(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "statuses", value)
+
+
+class ObservabilityProjectLinkedProjectsArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of the linked project
+    """
+
+@pulumi.input_type
+class ObservabilityProjectLinkedProjectsArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] type: The type of the linked project
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the linked project
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
 class ObservabilityProjectMetadataArgsDict(TypedDict):
     created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -6137,9 +6307,13 @@ class ObservabilityProjectMetadataArgsDict(TypedDict):
     """
     Reason why the project was suspended.
     """
+    system_tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+    """
     tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
-    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
     """
 
 @pulumi.input_type
@@ -6150,6 +6324,7 @@ class ObservabilityProjectMetadataArgs:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  suspended_at: pulumi.Input[Optional[_builtins.str]] = None,
                  suspended_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 system_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
@@ -6157,7 +6332,8 @@ class ObservabilityProjectMetadataArgs:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID who owns the project.
         :param pulumi.Input[_builtins.str] suspended_at: Date and time when the project was suspended.
         :param pulumi.Input[_builtins.str] suspended_reason: Reason why the project was suspended.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] system_tags: System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -6169,6 +6345,8 @@ class ObservabilityProjectMetadataArgs:
             pulumi.set(__self__, "suspended_at", suspended_at)
         if suspended_reason is not None:
             pulumi.set(__self__, "suspended_reason", suspended_reason)
+        if system_tags is not None:
+            pulumi.set(__self__, "system_tags", system_tags)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -6233,10 +6411,22 @@ class ObservabilityProjectMetadataArgs:
         pulumi.set(self, "suspended_reason", value)
 
     @_builtins.property
+    @pulumi.getter(name="systemTags")
+    def system_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        """
+        return pulumi.get(self, "system_tags")
+
+    @system_tags.setter
+    def system_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "system_tags", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         """
         return pulumi.get(self, "tags")
 
@@ -6973,6 +7163,75 @@ class SecurityProjectEndpointsArgs:
         pulumi.set(self, "kibana", value)
 
 
+class SecurityProjectLinkedArgsDict(TypedDict):
+    projects: pulumi.Input[Mapping[str, pulumi.Input['SecurityProjectLinkedProjectsArgsDict']]]
+    statuses: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Status of each linked project, keyed by project ID. Populated by the provider from the API.
+    """
+
+@pulumi.input_type
+class SecurityProjectLinkedArgs:
+    def __init__(__self__, *,
+                 projects: pulumi.Input[Mapping[str, pulumi.Input['SecurityProjectLinkedProjectsArgs']]],
+                 statuses: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] statuses: Status of each linked project, keyed by project ID. Populated by the provider from the API.
+        """
+        pulumi.set(__self__, "projects", projects)
+        if statuses is not None:
+            pulumi.set(__self__, "statuses", statuses)
+
+    @_builtins.property
+    @pulumi.getter
+    def projects(self) -> pulumi.Input[Mapping[str, pulumi.Input['SecurityProjectLinkedProjectsArgs']]]:
+        return pulumi.get(self, "projects")
+
+    @projects.setter
+    def projects(self, value: pulumi.Input[Mapping[str, pulumi.Input['SecurityProjectLinkedProjectsArgs']]]):
+        pulumi.set(self, "projects", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def statuses(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Status of each linked project, keyed by project ID. Populated by the provider from the API.
+        """
+        return pulumi.get(self, "statuses")
+
+    @statuses.setter
+    def statuses(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "statuses", value)
+
+
+class SecurityProjectLinkedProjectsArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of the linked project
+    """
+
+@pulumi.input_type
+class SecurityProjectLinkedProjectsArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] type: The type of the linked project
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the linked project
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
 class SecurityProjectMetadataArgsDict(TypedDict):
     created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -6994,9 +7253,13 @@ class SecurityProjectMetadataArgsDict(TypedDict):
     """
     Reason why the project was suspended.
     """
+    system_tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+    """
     tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
-    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+    Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
     """
 
 @pulumi.input_type
@@ -7007,6 +7270,7 @@ class SecurityProjectMetadataArgs:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  suspended_at: pulumi.Input[Optional[_builtins.str]] = None,
                  suspended_reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 system_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: Date and time when the project was created.
@@ -7014,7 +7278,8 @@ class SecurityProjectMetadataArgs:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID who owns the project.
         :param pulumi.Input[_builtins.str] suspended_at: Date and time when the project was suspended.
         :param pulumi.Input[_builtins.str] suspended_reason: Reason why the project was suspended.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] system_tags: System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -7026,6 +7291,8 @@ class SecurityProjectMetadataArgs:
             pulumi.set(__self__, "suspended_at", suspended_at)
         if suspended_reason is not None:
             pulumi.set(__self__, "suspended_reason", suspended_reason)
+        if system_tags is not None:
+            pulumi.set(__self__, "system_tags", system_tags)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -7090,10 +7357,22 @@ class SecurityProjectMetadataArgs:
         pulumi.set(self, "suspended_reason", value)
 
     @_builtins.property
+    @pulumi.getter(name="systemTags")
+    def system_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        """
+        return pulumi.get(self, "system_tags")
+
+    @system_tags.setter
+    def system_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "system_tags", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         """
         return pulumi.get(self, "tags")
 

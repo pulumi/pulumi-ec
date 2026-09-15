@@ -34,7 +34,11 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? SuspendedReason;
         /// <summary>
-        /// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+        /// System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? SystemTags;
+        /// <summary>
+        /// Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Tags;
 
@@ -50,6 +54,8 @@ namespace Pulumi.ElasticCloud.Outputs
 
             string? suspendedReason,
 
+            ImmutableDictionary<string, string>? systemTags,
+
             ImmutableDictionary<string, string>? tags)
         {
             CreatedAt = createdAt;
@@ -57,6 +63,7 @@ namespace Pulumi.ElasticCloud.Outputs
             OrganizationId = organizationId;
             SuspendedAt = suspendedAt;
             SuspendedReason = suspendedReason;
+            SystemTags = systemTags;
             Tags = tags;
         }
     }

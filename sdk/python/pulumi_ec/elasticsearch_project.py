@@ -23,6 +23,7 @@ class ElasticsearchProjectArgs:
     def __init__(__self__, *,
                  region_id: pulumi.Input[_builtins.str],
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 linked: pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
@@ -33,6 +34,7 @@ class ElasticsearchProjectArgs:
 
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input['ElasticsearchProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -45,6 +47,8 @@ class ElasticsearchProjectArgs:
         pulumi.set(__self__, "region_id", region_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if linked is not None:
+            pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
@@ -79,6 +83,18 @@ class ElasticsearchProjectArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def linked(self) -> pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']]:
+        """
+        Configuration for linked projects associated with this project
+        """
+        return pulumi.get(self, "linked")
+
+    @linked.setter
+    def linked(self, value: pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']]):
+        pulumi.set(self, "linked", value)
 
     @_builtins.property
     @pulumi.getter
@@ -151,6 +167,7 @@ class _ElasticsearchProjectState:
                  cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
                  credentials: pulumi.Input[Optional['ElasticsearchProjectCredentialsArgs']] = None,
                  endpoints: pulumi.Input[Optional['ElasticsearchProjectEndpointsArgs']] = None,
+                 linked: pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
@@ -166,6 +183,7 @@ class _ElasticsearchProjectState:
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input['ElasticsearchProjectCredentialsArgs'] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input['ElasticsearchProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input['ElasticsearchProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -186,6 +204,8 @@ class _ElasticsearchProjectState:
             pulumi.set(__self__, "credentials", credentials)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
+        if linked is not None:
+            pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
@@ -250,6 +270,18 @@ class _ElasticsearchProjectState:
     @endpoints.setter
     def endpoints(self, value: pulumi.Input[Optional['ElasticsearchProjectEndpointsArgs']]):
         pulumi.set(self, "endpoints", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def linked(self) -> pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']]:
+        """
+        Configuration for linked projects associated with this project
+        """
+        return pulumi.get(self, "linked")
+
+    @linked.setter
+    def linked(self, value: pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']]):
+        pulumi.set(self, "linked", value)
 
     @_builtins.property
     @pulumi.getter
@@ -358,6 +390,7 @@ class ElasticsearchProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']]] = None,
                  metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
@@ -396,6 +429,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
+        :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -456,6 +490,7 @@ class ElasticsearchProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']]] = None,
                  metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
@@ -472,6 +507,7 @@ class ElasticsearchProject(pulumi.CustomResource):
             __props__ = ElasticsearchProjectArgs.__new__(ElasticsearchProjectArgs)
 
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["linked"] = linked
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["optimized_for"] = optimized_for
@@ -499,6 +535,7 @@ class ElasticsearchProject(pulumi.CustomResource):
             cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
             credentials: pulumi.Input[Optional[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']]] = None,
             endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']]] = None,
+            linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']]] = None,
             metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
@@ -518,6 +555,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
         :param pulumi.Input[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
         :param pulumi.Input[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -538,6 +576,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         __props__.__dict__["cloud_id"] = cloud_id
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["endpoints"] = endpoints
+        __props__.__dict__["linked"] = linked
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
         __props__.__dict__["optimized_for"] = optimized_for
@@ -579,6 +618,14 @@ class ElasticsearchProject(pulumi.CustomResource):
         The endpoints to access the different apps of the project.
         """
         return pulumi.get(self, "endpoints")
+
+    @_builtins.property
+    @pulumi.getter
+    def linked(self) -> pulumi.Output[Optional['outputs.ElasticsearchProjectLinked']]:
+        """
+        Configuration for linked projects associated with this project
+        """
+        return pulumi.get(self, "linked")
 
     @_builtins.property
     @pulumi.getter

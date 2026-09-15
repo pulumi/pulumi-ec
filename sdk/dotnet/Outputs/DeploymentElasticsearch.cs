@@ -92,7 +92,7 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly Outputs.DeploymentElasticsearchSnapshotSource? SnapshotSource;
         /// <summary>
-        /// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+        /// Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `RollingZone` cannot be used for major version upgrades. Set `strategy = "RollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
         /// </summary>
         public readonly string? Strategy;
         /// <summary>

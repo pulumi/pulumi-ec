@@ -324,14 +324,14 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = &#34;rollingAll&#34;` when upgrading across a major version boundary (the API requires `group_by: __all__`).
      * 
      */
     @Import(name="strategy")
     private @Nullable Output<String> strategy;
 
     /**
-     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * @return Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = &#34;rollingAll&#34;` when upgrading across a major version boundary (the API requires `group_by: __all__`).
      * 
      */
     public Optional<Output<String>> strategy() {
@@ -853,7 +853,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param strategy Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+         * @param strategy Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = &#34;rollingAll&#34;` when upgrading across a major version boundary (the API requires `group_by: __all__`).
          * 
          * @return builder
          * 
@@ -864,7 +864,7 @@ public final class DeploymentElasticsearchArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param strategy Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+         * @param strategy Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. &gt; **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = &#34;rollingAll&#34;` when upgrading across a major version boundary (the API requires `group_by: __all__`).
          * 
          * @return builder
          * 

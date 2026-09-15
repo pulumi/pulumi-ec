@@ -64,13 +64,15 @@ type ObservabilityProject struct {
 	Credentials ObservabilityProjectCredentialsOutput `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints ObservabilityProjectEndpointsOutput `pulumi:"endpoints"`
+	// Configuration for linked projects associated with this project
+	Linked ObservabilityProjectLinkedPtrOutput `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata ObservabilityProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
 	PrivateEndpoints ObservabilityProjectPrivateEndpointsOutput `pulumi:"privateEndpoints"`
-	// the tier of the observability project
+	// the tier of the observability project. The default is "complete" when not specified at creation time.
 	ProductTier pulumi.StringOutput `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
@@ -121,13 +123,15 @@ type observabilityProjectState struct {
 	Credentials *ObservabilityProjectCredentials `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints *ObservabilityProjectEndpoints `pulumi:"endpoints"`
+	// Configuration for linked projects associated with this project
+	Linked *ObservabilityProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *ObservabilityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
 	// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
 	PrivateEndpoints *ObservabilityProjectPrivateEndpoints `pulumi:"privateEndpoints"`
-	// the tier of the observability project
+	// the tier of the observability project. The default is "complete" when not specified at creation time.
 	ProductTier *string `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId *string `pulumi:"regionId"`
@@ -146,13 +150,15 @@ type ObservabilityProjectState struct {
 	Credentials ObservabilityProjectCredentialsPtrInput
 	// The endpoints to access the different apps of the project.
 	Endpoints ObservabilityProjectEndpointsPtrInput
+	// Configuration for linked projects associated with this project
+	Linked ObservabilityProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata ObservabilityProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
 	// Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
 	PrivateEndpoints ObservabilityProjectPrivateEndpointsPtrInput
-	// the tier of the observability project
+	// the tier of the observability project. The default is "complete" when not specified at creation time.
 	ProductTier pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringPtrInput
@@ -169,11 +175,13 @@ func (ObservabilityProjectState) ElementType() reflect.Type {
 type observabilityProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`
+	// Configuration for linked projects associated with this project
+	Linked *ObservabilityProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *ObservabilityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
-	// the tier of the observability project
+	// the tier of the observability project. The default is "complete" when not specified at creation time.
 	ProductTier *string `pulumi:"productTier"`
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId string `pulumi:"regionId"`
@@ -185,11 +193,13 @@ type observabilityProjectArgs struct {
 type ObservabilityProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias pulumi.StringPtrInput
+	// Configuration for linked projects associated with this project
+	Linked ObservabilityProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata ObservabilityProjectMetadataPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
-	// the tier of the observability project
+	// the tier of the observability project. The default is "complete" when not specified at creation time.
 	ProductTier pulumi.StringPtrInput
 	// Unique human-readable identifier for a region in Elastic Cloud.
 	RegionId pulumi.StringInput
@@ -304,6 +314,11 @@ func (o ObservabilityProjectOutput) Endpoints() ObservabilityProjectEndpointsOut
 	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectEndpointsOutput { return v.Endpoints }).(ObservabilityProjectEndpointsOutput)
 }
 
+// Configuration for linked projects associated with this project
+func (o ObservabilityProjectOutput) Linked() ObservabilityProjectLinkedPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectLinkedPtrOutput { return v.Linked }).(ObservabilityProjectLinkedPtrOutput)
+}
+
 // Metadata request for a project with tags.
 func (o ObservabilityProjectOutput) Metadata() ObservabilityProjectMetadataOutput {
 	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectMetadataOutput { return v.Metadata }).(ObservabilityProjectMetadataOutput)
@@ -319,7 +334,7 @@ func (o ObservabilityProjectOutput) PrivateEndpoints() ObservabilityProjectPriva
 	return o.ApplyT(func(v *ObservabilityProject) ObservabilityProjectPrivateEndpointsOutput { return v.PrivateEndpoints }).(ObservabilityProjectPrivateEndpointsOutput)
 }
 
-// the tier of the observability project
+// the tier of the observability project. The default is "complete" when not specified at creation time.
 func (o ObservabilityProjectOutput) ProductTier() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObservabilityProject) pulumi.StringOutput { return v.ProductTier }).(pulumi.StringOutput)
 }

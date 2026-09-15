@@ -5,6 +5,7 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ec.inputs.ElasticsearchProjectLinkedArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectMetadataArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectSearchLakeArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
@@ -32,6 +33,21 @@ public final class ElasticsearchProjectArgs extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> alias() {
         return Optional.ofNullable(this.alias);
+    }
+
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Import(name="linked")
+    private @Nullable Output<ElasticsearchProjectLinkedArgs> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Optional<Output<ElasticsearchProjectLinkedArgs>> linked() {
+        return Optional.ofNullable(this.linked);
     }
 
     /**
@@ -134,6 +150,7 @@ public final class ElasticsearchProjectArgs extends com.pulumi.resources.Resourc
 
     private ElasticsearchProjectArgs(ElasticsearchProjectArgs $) {
         this.alias = $.alias;
+        this.linked = $.linked;
         this.metadata = $.metadata;
         this.name = $.name;
         this.optimizedFor = $.optimizedFor;
@@ -179,6 +196,27 @@ public final class ElasticsearchProjectArgs extends com.pulumi.resources.Resourc
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(@Nullable Output<ElasticsearchProjectLinkedArgs> linked) {
+            $.linked = linked;
+            return this;
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(ElasticsearchProjectLinkedArgs linked) {
+            return linked(Output.of(linked));
         }
 
         /**

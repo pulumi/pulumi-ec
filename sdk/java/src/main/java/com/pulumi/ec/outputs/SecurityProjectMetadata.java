@@ -38,7 +38,12 @@ public final class SecurityProjectMetadata {
      */
     private @Nullable String suspendedReason;
     /**
-     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * @return System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     * 
+     */
+    private @Nullable Map<String,String> systemTags;
+    /**
+     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      * 
      */
     private @Nullable Map<String,String> tags;
@@ -80,7 +85,14 @@ public final class SecurityProjectMetadata {
         return Optional.ofNullable(this.suspendedReason);
     }
     /**
-     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * @return System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     * 
+     */
+    public Map<String,String> systemTags() {
+        return this.systemTags == null ? Map.of() : this.systemTags;
+    }
+    /**
+     * @return Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      * 
      */
     public Map<String,String> tags() {
@@ -101,6 +113,7 @@ public final class SecurityProjectMetadata {
         private @Nullable String organizationId;
         private @Nullable String suspendedAt;
         private @Nullable String suspendedReason;
+        private @Nullable Map<String,String> systemTags;
         private @Nullable Map<String,String> tags;
         public Builder() {}
         public Builder(SecurityProjectMetadata defaults) {
@@ -110,6 +123,7 @@ public final class SecurityProjectMetadata {
     	      this.organizationId = defaults.organizationId;
     	      this.suspendedAt = defaults.suspendedAt;
     	      this.suspendedReason = defaults.suspendedReason;
+    	      this.systemTags = defaults.systemTags;
     	      this.tags = defaults.tags;
         }
 
@@ -144,6 +158,12 @@ public final class SecurityProjectMetadata {
             return this;
         }
         @CustomType.Setter
+        public Builder systemTags(@Nullable Map<String,String> systemTags) {
+
+            this.systemTags = systemTags;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(@Nullable Map<String,String> tags) {
 
             this.tags = tags;
@@ -156,6 +176,7 @@ public final class SecurityProjectMetadata {
             _resultValue.organizationId = organizationId;
             _resultValue.suspendedAt = suspendedAt;
             _resultValue.suspendedReason = suspendedReason;
+            _resultValue.systemTags = systemTags;
             _resultValue.tags = tags;
             return _resultValue;
         }

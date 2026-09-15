@@ -5,6 +5,7 @@ package com.pulumi.ec;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ec.inputs.SecurityProjectLinkedArgs;
 import com.pulumi.ec.inputs.SecurityProjectMetadataArgs;
 import com.pulumi.ec.inputs.SecurityProjectProductTypeArgs;
 import com.pulumi.ec.inputs.SecurityProjectSearchLakeArgs;
@@ -48,6 +49,21 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<String>> alias() {
         return Optional.ofNullable(this.alias);
+    }
+
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Import(name="linked")
+    private @Nullable Output<SecurityProjectLinkedArgs> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Optional<Output<SecurityProjectLinkedArgs>> linked() {
+        return Optional.ofNullable(this.linked);
     }
 
     /**
@@ -137,6 +153,7 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
     private SecurityProjectArgs(SecurityProjectArgs $) {
         this.adminFeaturesPackage = $.adminFeaturesPackage;
         this.alias = $.alias;
+        this.linked = $.linked;
         this.metadata = $.metadata;
         this.name = $.name;
         this.productTypes = $.productTypes;
@@ -203,6 +220,27 @@ public final class SecurityProjectArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(@Nullable Output<SecurityProjectLinkedArgs> linked) {
+            $.linked = linked;
+            return this;
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(SecurityProjectLinkedArgs linked) {
+            return linked(Output.of(linked));
         }
 
         /**

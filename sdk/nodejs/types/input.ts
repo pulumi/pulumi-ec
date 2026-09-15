@@ -135,7 +135,7 @@ export interface DeploymentElasticsearch {
      */
     snapshotSource?: pulumi.Input<inputs.DeploymentElasticsearchSnapshotSource | undefined>;
     /**
-     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all
+     * Configuration strategy type autodetect, grow_and_shrink, rolling_grow_and_shrink, rolling_all, rolling_zone. > **Note on behavior** `rollingZone` cannot be used for major version upgrades. Set `strategy = "rollingAll"` when upgrading across a major version boundary (the API requires `group_by: __all__`).
      */
     strategy?: pulumi.Input<string | undefined>;
     /**
@@ -1084,6 +1084,21 @@ export interface ElasticsearchProjectEndpoints {
     kibana?: pulumi.Input<string | undefined>;
 }
 
+export interface ElasticsearchProjectLinked {
+    projects: pulumi.Input<{[key: string]: pulumi.Input<inputs.ElasticsearchProjectLinkedProjects>}>;
+    /**
+     * Status of each linked project, keyed by project ID. Populated by the provider from the API.
+     */
+    statuses?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface ElasticsearchProjectLinkedProjects {
+    /**
+     * The type of the linked project
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface ElasticsearchProjectMetadata {
     /**
      * Date and time when the project was created.
@@ -1106,7 +1121,11 @@ export interface ElasticsearchProjectMetadata {
      */
     suspendedReason?: pulumi.Input<string | undefined>;
     /**
-     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     */
+    systemTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
@@ -1313,6 +1332,21 @@ export interface ObservabilityProjectEndpoints {
     kibana?: pulumi.Input<string | undefined>;
 }
 
+export interface ObservabilityProjectLinked {
+    projects: pulumi.Input<{[key: string]: pulumi.Input<inputs.ObservabilityProjectLinkedProjects>}>;
+    /**
+     * Status of each linked project, keyed by project ID. Populated by the provider from the API.
+     */
+    statuses?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface ObservabilityProjectLinkedProjects {
+    /**
+     * The type of the linked project
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface ObservabilityProjectMetadata {
     /**
      * Date and time when the project was created.
@@ -1335,7 +1369,11 @@ export interface ObservabilityProjectMetadata {
      */
     suspendedReason?: pulumi.Input<string | undefined>;
     /**
-     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     */
+    systemTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
@@ -1496,6 +1534,21 @@ export interface SecurityProjectEndpoints {
     kibana?: pulumi.Input<string | undefined>;
 }
 
+export interface SecurityProjectLinked {
+    projects: pulumi.Input<{[key: string]: pulumi.Input<inputs.SecurityProjectLinkedProjects>}>;
+    /**
+     * Status of each linked project, keyed by project ID. Populated by the provider from the API.
+     */
+    statuses?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface SecurityProjectLinkedProjects {
+    /**
+     * The type of the linked project
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface SecurityProjectMetadata {
     /**
      * Date and time when the project was created.
@@ -1518,7 +1571,11 @@ export interface SecurityProjectMetadata {
      */
     suspendedReason?: pulumi.Input<string | undefined>;
     /**
-     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64. A tag key can contain only alphanumerics, underscores, and hyphens.
+     * System tags associated with a project in the form of key-value pairs. These tags are added by the internal system and are read-only. The keys are prefixed with an underscore to differentiate them from user tags.
+     */
+    systemTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

@@ -72,6 +72,12 @@ namespace Pulumi.ElasticCloud
         public Output<Outputs.ElasticsearchProjectEndpoints> Endpoints { get; private set; } = null!;
 
         /// <summary>
+        /// Configuration for linked projects associated with this project
+        /// </summary>
+        [Output("linked")]
+        public Output<Outputs.ElasticsearchProjectLinked?> Linked { get; private set; } = null!;
+
+        /// <summary>
         /// Metadata request for a project with tags.
         /// </summary>
         [Output("metadata")]
@@ -175,6 +181,12 @@ namespace Pulumi.ElasticCloud
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// Configuration for linked projects associated with this project
+        /// </summary>
+        [Input("linked")]
+        public Input<Inputs.ElasticsearchProjectLinkedArgs>? Linked { get; set; }
+
+        /// <summary>
         /// Metadata request for a project with tags.
         /// </summary>
         [Input("metadata")]
@@ -250,6 +262,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("endpoints")]
         public Input<Inputs.ElasticsearchProjectEndpointsGetArgs>? Endpoints { get; set; }
+
+        /// <summary>
+        /// Configuration for linked projects associated with this project
+        /// </summary>
+        [Input("linked")]
+        public Input<Inputs.ElasticsearchProjectLinkedGetArgs>? Linked { get; set; }
 
         /// <summary>
         /// Metadata request for a project with tags.

@@ -83,6 +83,10 @@ export class SecurityProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.SecurityProjectEndpoints>;
     /**
+     * Configuration for linked projects associated with this project
+     */
+    declare public readonly linked: pulumi.Output<outputs.SecurityProjectLinked | undefined>;
+    /**
      * Metadata request for a project with tags.
      */
     declare public readonly metadata: pulumi.Output<outputs.SecurityProjectMetadata>;
@@ -130,6 +134,7 @@ export class SecurityProject extends pulumi.CustomResource {
             resourceInputs["cloudId"] = state?.cloudId;
             resourceInputs["credentials"] = state?.credentials;
             resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["linked"] = state?.linked;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
             resourceInputs["privateEndpoints"] = state?.privateEndpoints;
@@ -145,6 +150,7 @@ export class SecurityProject extends pulumi.CustomResource {
             }
             resourceInputs["adminFeaturesPackage"] = args?.adminFeaturesPackage;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["linked"] = args?.linked;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["productTypes"] = args?.productTypes;
@@ -186,6 +192,10 @@ export interface SecurityProjectState {
      * The endpoints to access the different apps of the project.
      */
     endpoints?: pulumi.Input<inputs.SecurityProjectEndpoints | undefined>;
+    /**
+     * Configuration for linked projects associated with this project
+     */
+    linked?: pulumi.Input<inputs.SecurityProjectLinked | undefined>;
     /**
      * Metadata request for a project with tags.
      */
@@ -229,6 +239,10 @@ export interface SecurityProjectArgs {
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Configuration for linked projects associated with this project
+     */
+    linked?: pulumi.Input<inputs.SecurityProjectLinked | undefined>;
     /**
      * Metadata request for a project with tags.
      */

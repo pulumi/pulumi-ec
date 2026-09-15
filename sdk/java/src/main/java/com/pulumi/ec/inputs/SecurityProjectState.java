@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.SecurityProjectCredentialsArgs;
 import com.pulumi.ec.inputs.SecurityProjectEndpointsArgs;
+import com.pulumi.ec.inputs.SecurityProjectLinkedArgs;
 import com.pulumi.ec.inputs.SecurityProjectMetadataArgs;
 import com.pulumi.ec.inputs.SecurityProjectPrivateEndpointsArgs;
 import com.pulumi.ec.inputs.SecurityProjectProductTypeArgs;
@@ -95,6 +96,21 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<SecurityProjectEndpointsArgs>> endpoints() {
         return Optional.ofNullable(this.endpoints);
+    }
+
+    /**
+     * Configuration for linked projects associated with this project
+     * 
+     */
+    @Import(name="linked")
+    private @Nullable Output<SecurityProjectLinkedArgs> linked;
+
+    /**
+     * @return Configuration for linked projects associated with this project
+     * 
+     */
+    public Optional<Output<SecurityProjectLinkedArgs>> linked() {
+        return Optional.ofNullable(this.linked);
     }
 
     /**
@@ -217,6 +233,7 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
         this.cloudId = $.cloudId;
         this.credentials = $.credentials;
         this.endpoints = $.endpoints;
+        this.linked = $.linked;
         this.metadata = $.metadata;
         this.name = $.name;
         this.privateEndpoints = $.privateEndpoints;
@@ -348,6 +365,27 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
          */
         public Builder endpoints(SecurityProjectEndpointsArgs endpoints) {
             return endpoints(Output.of(endpoints));
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(@Nullable Output<SecurityProjectLinkedArgs> linked) {
+            $.linked = linked;
+            return this;
+        }
+
+        /**
+         * @param linked Configuration for linked projects associated with this project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder linked(SecurityProjectLinkedArgs linked) {
+            return linked(Output.of(linked));
         }
 
         /**

@@ -79,6 +79,10 @@ export class ElasticsearchProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.ElasticsearchProjectEndpoints>;
     /**
+     * Configuration for linked projects associated with this project
+     */
+    declare public readonly linked: pulumi.Output<outputs.ElasticsearchProjectLinked | undefined>;
+    /**
      * Metadata request for a project with tags.
      */
     declare public readonly metadata: pulumi.Output<outputs.ElasticsearchProjectMetadata>;
@@ -131,6 +135,7 @@ export class ElasticsearchProject extends pulumi.CustomResource {
             resourceInputs["cloudId"] = state?.cloudId;
             resourceInputs["credentials"] = state?.credentials;
             resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["linked"] = state?.linked;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
             resourceInputs["optimizedFor"] = state?.optimizedFor;
@@ -145,6 +150,7 @@ export class ElasticsearchProject extends pulumi.CustomResource {
                 throw new Error("Missing required property 'regionId'");
             }
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["linked"] = args?.linked;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["optimizedFor"] = args?.optimizedFor;
@@ -182,6 +188,10 @@ export interface ElasticsearchProjectState {
      * The endpoints to access the different apps of the project.
      */
     endpoints?: pulumi.Input<inputs.ElasticsearchProjectEndpoints | undefined>;
+    /**
+     * Configuration for linked projects associated with this project
+     */
+    linked?: pulumi.Input<inputs.ElasticsearchProjectLinked | undefined>;
     /**
      * Metadata request for a project with tags.
      */
@@ -227,6 +237,10 @@ export interface ElasticsearchProjectArgs {
      * A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Configuration for linked projects associated with this project
+     */
+    linked?: pulumi.Input<inputs.ElasticsearchProjectLinked | undefined>;
     /**
      * Metadata request for a project with tags.
      */

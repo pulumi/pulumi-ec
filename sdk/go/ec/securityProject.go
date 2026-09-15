@@ -66,6 +66,8 @@ type SecurityProject struct {
 	Credentials SecurityProjectCredentialsOutput `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints SecurityProjectEndpointsOutput `pulumi:"endpoints"`
+	// Configuration for linked projects associated with this project
+	Linked SecurityProjectLinkedPtrOutput `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataOutput `pulumi:"metadata"`
 	// Descriptive name for a project.
@@ -126,6 +128,8 @@ type securityProjectState struct {
 	Credentials *SecurityProjectCredentials `pulumi:"credentials"`
 	// The endpoints to access the different apps of the project.
 	Endpoints *SecurityProjectEndpoints `pulumi:"endpoints"`
+	// Configuration for linked projects associated with this project
+	Linked *SecurityProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *SecurityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
@@ -154,6 +158,8 @@ type SecurityProjectState struct {
 	Credentials SecurityProjectCredentialsPtrInput
 	// The endpoints to access the different apps of the project.
 	Endpoints SecurityProjectEndpointsPtrInput
+	// Configuration for linked projects associated with this project
+	Linked SecurityProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataPtrInput
 	// Descriptive name for a project.
@@ -180,6 +186,8 @@ type securityProjectArgs struct {
 	AdminFeaturesPackage *string `pulumi:"adminFeaturesPackage"`
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`
+	// Configuration for linked projects associated with this project
+	Linked *SecurityProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *SecurityProjectMetadata `pulumi:"metadata"`
 	// Descriptive name for a project.
@@ -199,6 +207,8 @@ type SecurityProjectArgs struct {
 	AdminFeaturesPackage pulumi.StringPtrInput
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias pulumi.StringPtrInput
+	// Configuration for linked projects associated with this project
+	Linked SecurityProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataPtrInput
 	// Descriptive name for a project.
@@ -322,6 +332,11 @@ func (o SecurityProjectOutput) Credentials() SecurityProjectCredentialsOutput {
 // The endpoints to access the different apps of the project.
 func (o SecurityProjectOutput) Endpoints() SecurityProjectEndpointsOutput {
 	return o.ApplyT(func(v *SecurityProject) SecurityProjectEndpointsOutput { return v.Endpoints }).(SecurityProjectEndpointsOutput)
+}
+
+// Configuration for linked projects associated with this project
+func (o SecurityProjectOutput) Linked() SecurityProjectLinkedPtrOutput {
+	return o.ApplyT(func(v *SecurityProject) SecurityProjectLinkedPtrOutput { return v.Linked }).(SecurityProjectLinkedPtrOutput)
 }
 
 // Metadata request for a project with tags.
