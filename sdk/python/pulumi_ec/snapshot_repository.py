@@ -138,9 +138,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
+                 generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict', 'outputs.SnapshotRepositoryGeneric']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
+                 s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict', 'outputs.SnapshotRepositoryS3']]] = None,
                  __props__=None):
         """
         Manages Elastic Cloud Enterprise snapshot repositories.
@@ -213,9 +213,9 @@ class SnapshotRepository(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']] generic: Generic repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict', 'outputs.SnapshotRepositoryGeneric']] generic: Generic repository settings.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot repository configuration.
-        :param pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']] s3: S3 repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict', 'outputs.SnapshotRepositoryS3']] s3: S3 repository settings.
         """
         ...
     @overload
@@ -307,9 +307,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
+                 generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict', 'outputs.SnapshotRepositoryGeneric']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None,
+                 s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict', 'outputs.SnapshotRepositoryS3']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -332,9 +332,9 @@ class SnapshotRepository(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']]] = None,
+            generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict', 'outputs.SnapshotRepositoryGeneric']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']]] = None) -> 'SnapshotRepository':
+            s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict', 'outputs.SnapshotRepositoryS3']]] = None) -> 'SnapshotRepository':
         """
         Get an existing SnapshotRepository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -342,9 +342,9 @@ class SnapshotRepository(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict']] generic: Generic repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict', 'outputs.SnapshotRepositoryGeneric']] generic: Generic repository settings.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot repository configuration.
-        :param pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict']] s3: S3 repository settings.
+        :param pulumi.Input[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict', 'outputs.SnapshotRepositoryS3']] s3: S3 repository settings.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

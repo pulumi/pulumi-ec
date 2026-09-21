@@ -661,16 +661,16 @@ class Deployment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
+                 apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict', 'outputs.DeploymentApm']]] = None,
                  deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+                 elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict', 'outputs.DeploymentElasticsearch']]] = None,
                  encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
-                 enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
-                 integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
-                 kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
+                 enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict', 'outputs.DeploymentEnterpriseSearch']]] = None,
+                 integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict', 'outputs.DeploymentIntegrationsServer']]] = None,
+                 kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict', 'outputs.DeploymentKibana']]] = None,
                  migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
+                 observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict', 'outputs.DeploymentObservability']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  request_id: pulumi.Input[Optional[_builtins.str]] = None,
                  reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -726,15 +726,15 @@ class Deployment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
-        :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
+        :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict', 'outputs.DeploymentApm']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-        :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
+        :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict', 'outputs.DeploymentElasticsearch']] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
                
                > **Note** Changing this value after deployment creation will force a new deployment to be created.
-        :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
-        :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
-        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition.
+        :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict', 'outputs.DeploymentEnterpriseSearch']] enterprise_search: Enterprise Search cluster definition.
+        :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict', 'outputs.DeploymentIntegrationsServer']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
+        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict', 'outputs.DeploymentKibana']] kibana: Kibana cluster definition.
                
                > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
@@ -742,7 +742,7 @@ class Deployment(pulumi.CustomResource):
                > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
                **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
-        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
+        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict', 'outputs.DeploymentObservability']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[_builtins.bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true
@@ -817,16 +817,16 @@ class Deployment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
+                 apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict', 'outputs.DeploymentApm']]] = None,
                  deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+                 elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict', 'outputs.DeploymentElasticsearch']]] = None,
                  encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
-                 enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
-                 integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
-                 kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
+                 enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict', 'outputs.DeploymentEnterpriseSearch']]] = None,
+                 integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict', 'outputs.DeploymentIntegrationsServer']]] = None,
+                 kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict', 'outputs.DeploymentKibana']]] = None,
                  migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
+                 observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict', 'outputs.DeploymentObservability']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  request_id: pulumi.Input[Optional[_builtins.str]] = None,
                  reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -883,19 +883,19 @@ class Deployment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
-            apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']]] = None,
+            apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict', 'outputs.DeploymentApm']]] = None,
             apm_secret_token: pulumi.Input[Optional[_builtins.str]] = None,
             deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
-            elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']]] = None,
+            elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict', 'outputs.DeploymentElasticsearch']]] = None,
             elasticsearch_password: pulumi.Input[Optional[_builtins.str]] = None,
             elasticsearch_username: pulumi.Input[Optional[_builtins.str]] = None,
             encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
-            enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']]] = None,
-            integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']]] = None,
-            kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']]] = None,
+            enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict', 'outputs.DeploymentEnterpriseSearch']]] = None,
+            integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict', 'outputs.DeploymentIntegrationsServer']]] = None,
+            kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict', 'outputs.DeploymentKibana']]] = None,
             migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']]] = None,
+            observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict', 'outputs.DeploymentObservability']]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             request_id: pulumi.Input[Optional[_builtins.str]] = None,
             reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -910,9 +910,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
-        :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
+        :param pulumi.Input[Union['DeploymentApmArgs', 'DeploymentApmArgsDict', 'outputs.DeploymentApm']] apm: **DEPRECATED** APM cluster definition. This should only be used for deployments running a version lower than 8.0
         :param pulumi.Input[_builtins.str] deployment_template_id: Deployment template identifier to create the deployment from. See the [full list](https://www.elastic.co/guide/en/cloud/current/ec-regions-templates-instances.html) of regions and deployment templates available in ESS.
-        :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict']] elasticsearch: Elasticsearch cluster definition
+        :param pulumi.Input[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict', 'outputs.DeploymentElasticsearch']] elasticsearch: Elasticsearch cluster definition
         :param pulumi.Input[_builtins.str] elasticsearch_password: Password for authenticating to the Elasticsearch resource.
                
                > **Note on deployment credentials** The <code>elastic</code> user credentials are only available whilst creating a deployment. Importing a deployment will not import the <code>elasticsearch_username</code> or <code>elasticsearch_password</code> attributes.
@@ -921,9 +921,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] encryption_key_path: Customer-managed encryption key resource path for data-at-rest encryption. Both key ARNs (arn:aws:kms:us-east-1:123456789:key/12345678-0000-0000-0000-000000000000) and alias ARNs (arn:aws:kms:us-east-1:123456789:alias/my-key-alias) are supported. Not supported on ECE.
                
                > **Note** Changing this value after deployment creation will force a new deployment to be created.
-        :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict']] enterprise_search: Enterprise Search cluster definition.
-        :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
-        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict']] kibana: Kibana cluster definition.
+        :param pulumi.Input[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict', 'outputs.DeploymentEnterpriseSearch']] enterprise_search: Enterprise Search cluster definition.
+        :param pulumi.Input[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict', 'outputs.DeploymentIntegrationsServer']] integrations_server: Integrations Server cluster definition. Integrations Server replaces `apm` in Stack versions > 8.0
+        :param pulumi.Input[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict', 'outputs.DeploymentKibana']] kibana: Kibana cluster definition.
                
                > **Note on disabling Kibana** While optional it is recommended deployments specify a Kibana block, since not doing so might cause issues when modifying or upgrading the deployment.
         :param pulumi.Input[_builtins.bool] migrate_to_latest_hardware: When set to true, the deployment will be updated according to the latest deployment template values.
@@ -931,7 +931,7 @@ class Deployment(pulumi.CustomResource):
                > **Note** If the <code>instance_configuration_id</code> or <code>instance_configuration_version</code> fields are set for a specific topology element, that element will not be updated.
                **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         :param pulumi.Input[_builtins.str] name: Name for the deployment
-        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
+        :param pulumi.Input[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict', 'outputs.DeploymentObservability']] observability: Observability settings that you can set to ship logs and metrics to a deployment. The target deployment can also be the current deployment itself by setting observability.deployment_id to `self`.
         :param pulumi.Input[_builtins.str] region: Elasticsearch Service (ESS) region where the deployment should be hosted. For Elastic Cloud Enterprise (ECE) installations, set to `"ece-region".
         :param pulumi.Input[_builtins.str] request_id: Request ID to set when you create the deployment. Use it only when previous attempts return an error and `request_id` is returned as part of the error.
         :param pulumi.Input[_builtins.bool] reset_elasticsearch_password: Explicitly resets the elasticsearch_password when true

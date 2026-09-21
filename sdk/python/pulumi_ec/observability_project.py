@@ -346,8 +346,8 @@ class ObservabilityProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict']]] = None,
-                 metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
+                 linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
+                 metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_tier: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -384,8 +384,8 @@ class ObservabilityProject(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
-        :param pulumi.Input[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
-        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']] linked: Configuration for linked projects associated with this project
+        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project. The default is "complete" when not specified at creation time.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
@@ -441,8 +441,8 @@ class ObservabilityProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict']]] = None,
-                 metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
+                 linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
+                 metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_tier: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -482,12 +482,12 @@ class ObservabilityProject(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
             cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
-            credentials: pulumi.Input[Optional[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict']]] = None,
-            endpoints: pulumi.Input[Optional[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']]] = None,
-            linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict']]] = None,
-            metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']]] = None,
+            credentials: pulumi.Input[Optional[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict', 'outputs.ObservabilityProjectCredentials']]] = None,
+            endpoints: pulumi.Input[Optional[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict', 'outputs.ObservabilityProjectEndpoints']]] = None,
+            linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
+            metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            private_endpoints: pulumi.Input[Optional[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict']]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict', 'outputs.ObservabilityProjectPrivateEndpoints']]] = None,
             product_tier: pulumi.Input[Optional[_builtins.str]] = None,
             region_id: pulumi.Input[Optional[_builtins.str]] = None,
             traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -501,12 +501,12 @@ class ObservabilityProject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
-        :param pulumi.Input[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
-        :param pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
-        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict', 'outputs.ObservabilityProjectCredentials']] credentials: Basic auth credentials to access the Elasticsearch API.
+        :param pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict', 'outputs.ObservabilityProjectEndpoints']] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']] linked: Configuration for linked projects associated with this project
+        :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
-        :param pulumi.Input[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
+        :param pulumi.Input[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict', 'outputs.ObservabilityProjectPrivateEndpoints']] private_endpoints: Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project. The default is "complete" when not specified at creation time.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project

@@ -390,12 +390,12 @@ class ElasticsearchProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']]] = None,
-                 metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
+                 linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
+                 metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+                 search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict', 'outputs.ElasticsearchProjectSearchLake']]] = None,
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -429,15 +429,15 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
-        :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
-        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']] linked: Configuration for linked projects associated with this project
+        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
                
                    - The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
                    - The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
-        :param pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
+        :param pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict', 'outputs.ElasticsearchProjectSearchLake']] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         ...
@@ -490,12 +490,12 @@ class ElasticsearchProject(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']]] = None,
-                 metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
+                 linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
+                 metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+                 search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict', 'outputs.ElasticsearchProjectSearchLake']]] = None,
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -533,15 +533,15 @@ class ElasticsearchProject(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
             cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
-            credentials: pulumi.Input[Optional[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']]] = None,
-            endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']]] = None,
-            linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']]] = None,
-            metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']]] = None,
+            credentials: pulumi.Input[Optional[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict', 'outputs.ElasticsearchProjectCredentials']]] = None,
+            endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict', 'outputs.ElasticsearchProjectEndpoints']]] = None,
+            linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
+            metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
-            private_endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict']]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict', 'outputs.ElasticsearchProjectPrivateEndpoints']]] = None,
             region_id: pulumi.Input[Optional[_builtins.str]] = None,
-            search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']]] = None,
+            search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict', 'outputs.ElasticsearchProjectSearchLake']]] = None,
             traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'ElasticsearchProject':
         """
@@ -553,18 +553,18 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
-        :param pulumi.Input[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
-        :param pulumi.Input[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
-        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict', 'outputs.ElasticsearchProjectCredentials']] credentials: Basic auth credentials to access the Elasticsearch API.
+        :param pulumi.Input[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict', 'outputs.ElasticsearchProjectEndpoints']] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']] linked: Configuration for linked projects associated with this project
+        :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
                
                    - The `general_purpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
                    - The `vector` option is recommended only for uncompressed dense vectors (`dense_vector` fields with `int4` or `int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
-        :param pulumi.Input[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
+        :param pulumi.Input[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict', 'outputs.ElasticsearchProjectPrivateEndpoints']] private_endpoints: Private endpoints (URLs) for Elasticsearch projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
-        :param pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict']] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
+        :param pulumi.Input[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict', 'outputs.ElasticsearchProjectSearchLake']] search_lake: Configuration for entire set of capabilities that make the data searchable in Elasticsearch.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """
