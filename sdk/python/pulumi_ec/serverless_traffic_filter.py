@@ -236,7 +236,7 @@ class ServerlessTrafficFilter(pulumi.CustomResource):
                  include_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict', 'outputs.ServerlessTrafficFilterRule']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -275,7 +275,7 @@ class ServerlessTrafficFilter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] include_by_default: Should the traffic filter be automatically included in the new projects
         :param pulumi.Input[_builtins.str] name: Name of the traffic filter
         :param pulumi.Input[_builtins.str] region: The traffic filter can be attached only to projects in the specific region
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict']]]] rules: List of rules
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict', 'outputs.ServerlessTrafficFilterRule']]]] rules: List of rules
         :param pulumi.Input[_builtins.str] type: Type of the traffic filter
         """
         ...
@@ -333,7 +333,7 @@ class ServerlessTrafficFilter(pulumi.CustomResource):
                  include_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict', 'outputs.ServerlessTrafficFilterRule']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -368,7 +368,7 @@ class ServerlessTrafficFilter(pulumi.CustomResource):
             include_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict', 'outputs.ServerlessTrafficFilterRule']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServerlessTrafficFilter':
         """
         Get an existing ServerlessTrafficFilter resource's state with the given name, id, and optional extra
@@ -381,7 +381,7 @@ class ServerlessTrafficFilter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] include_by_default: Should the traffic filter be automatically included in the new projects
         :param pulumi.Input[_builtins.str] name: Name of the traffic filter
         :param pulumi.Input[_builtins.str] region: The traffic filter can be attached only to projects in the specific region
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict']]]] rules: List of rules
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessTrafficFilterRuleArgs', 'ServerlessTrafficFilterRuleArgsDict', 'outputs.ServerlessTrafficFilterRule']]]] rules: List of rules
         :param pulumi.Input[_builtins.str] type: Type of the traffic filter
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

@@ -403,12 +403,12 @@ class SecurityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']]] = None,
-                 metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
+                 linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
+                 metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
+                 product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']]] = None,
+                 search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']]] = None,
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -443,11 +443,11 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
-        :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
-        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']] linked: Configuration for linked projects associated with this project
+        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
-        :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
+        :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         """
         ...
@@ -501,12 +501,12 @@ class SecurityProject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']]] = None,
-                 metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
+                 linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
+                 metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
+                 product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']]] = None,
+                 search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']]] = None,
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -546,15 +546,15 @@ class SecurityProject(pulumi.CustomResource):
             admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
             cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
-            credentials: pulumi.Input[Optional[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict']]] = None,
-            endpoints: pulumi.Input[Optional[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict']]] = None,
-            linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']]] = None,
-            metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']]] = None,
+            credentials: pulumi.Input[Optional[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict', 'outputs.SecurityProjectCredentials']]] = None,
+            endpoints: pulumi.Input[Optional[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict', 'outputs.SecurityProjectEndpoints']]] = None,
+            linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
+            metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            private_endpoints: pulumi.Input[Optional[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict']]] = None,
-            product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict']]]]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict', 'outputs.SecurityProjectPrivateEndpoints']]] = None,
+            product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
             region_id: pulumi.Input[Optional[_builtins.str]] = None,
-            search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']]] = None,
+            search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']]] = None,
             traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecurityProject':
         """
@@ -567,14 +567,14 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] admin_features_package: admin features package (BYOK, BYOIDP, CCS, CCR)
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[_builtins.str] cloud_id: The cloud ID, an encoded string that provides other Elastic services with the necessary information to connect to this Elasticsearch and Kibana.
-        :param pulumi.Input[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict']] credentials: Basic auth credentials to access the Elasticsearch API.
-        :param pulumi.Input[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict']] endpoints: The endpoints to access the different apps of the project.
-        :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict']] linked: Configuration for linked projects associated with this project
-        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict', 'outputs.SecurityProjectCredentials']] credentials: Basic auth credentials to access the Elasticsearch API.
+        :param pulumi.Input[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict', 'outputs.SecurityProjectEndpoints']] endpoints: The endpoints to access the different apps of the project.
+        :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']] linked: Configuration for linked projects associated with this project
+        :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']] metadata: Metadata request for a project with tags.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
-        :param pulumi.Input[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict']] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
+        :param pulumi.Input[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict', 'outputs.SecurityProjectPrivateEndpoints']] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
-        :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
+        :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
         :param pulumi.Input[_builtins.str] type: the type of the project
         """

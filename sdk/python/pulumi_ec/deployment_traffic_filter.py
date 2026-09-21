@@ -236,7 +236,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  include_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict', 'outputs.DeploymentTrafficFilterRule']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -354,7 +354,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[_builtins.str] name: Name of the ruleset
         :param pulumi.Input[_builtins.str] region: Filter region, the ruleset can only be attached to deployments in the specific region
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict', 'outputs.DeploymentTrafficFilterRule']]]] rules: Set of rules, which the ruleset is made of.
         :param pulumi.Input[_builtins.str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, `gcp_private_service_connect_endpoint`, or `remote_cluster`
         """
         ...
@@ -491,7 +491,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
                  include_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict', 'outputs.DeploymentTrafficFilterRule']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -526,7 +526,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
             include_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict', 'outputs.DeploymentTrafficFilterRule']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'DeploymentTrafficFilter':
         """
         Get an existing DeploymentTrafficFilter resource's state with the given name, id, and optional extra
@@ -539,7 +539,7 @@ class DeploymentTrafficFilter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] include_by_default: Indicates that the ruleset should be automatically included in new deployments (Defaults to false)
         :param pulumi.Input[_builtins.str] name: Name of the ruleset
         :param pulumi.Input[_builtins.str] region: Filter region, the ruleset can only be attached to deployments in the specific region
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict']]]] rules: Set of rules, which the ruleset is made of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentTrafficFilterRuleArgs', 'DeploymentTrafficFilterRuleArgsDict', 'outputs.DeploymentTrafficFilterRule']]]] rules: Set of rules, which the ruleset is made of.
         :param pulumi.Input[_builtins.str] type: Type of the ruleset. It can be `ip`, `vpce`, `azure_private_endpoint`, `gcp_private_service_connect_endpoint`, or `remote_cluster`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

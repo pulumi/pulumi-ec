@@ -207,13 +207,13 @@ class AwaitableGetDeploymentsResult(GetDeploymentsResult):
             tags=self.tags)
 
 
-def get_deployments(apms: Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']]] = None,
+def get_deployments(apms: Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict', 'outputs.GetDeploymentsApmResult']]] = None,
                     deployment_template_id: Optional[_builtins.str] = None,
-                    elasticsearches: Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']]] = None,
-                    enterprise_searches: Optional[Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict']]] = None,
+                    elasticsearches: Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict', 'outputs.GetDeploymentsElasticsearchResult']]] = None,
+                    enterprise_searches: Optional[Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict', 'outputs.GetDeploymentsEnterpriseSearchResult']]] = None,
                     healthy: Optional[_builtins.str] = None,
-                    integrations_servers: Optional[Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict']]] = None,
-                    kibanas: Optional[Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict']]] = None,
+                    integrations_servers: Optional[Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict', 'outputs.GetDeploymentsIntegrationsServerResult']]] = None,
+                    kibanas: Optional[Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict', 'outputs.GetDeploymentsKibanaResult']]] = None,
                     name: Optional[_builtins.str] = None,
                     name_prefix: Optional[_builtins.str] = None,
                     size: Optional[_builtins.int] = None,
@@ -249,13 +249,13 @@ def get_deployments(apms: Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetD
     ```
 
 
-    :param Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']] apms: Filter by APM resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict', 'outputs.GetDeploymentsApmResult']] apms: Filter by APM resource kind status or configuration.
     :param _builtins.str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
-    :param Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
-    :param Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict', 'outputs.GetDeploymentsElasticsearchResult']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict', 'outputs.GetDeploymentsEnterpriseSearchResult']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
     :param _builtins.str healthy: Filter the result set by their health status.
-    :param Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
-    :param Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict']] kibanas: Filter by Kibana resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict', 'outputs.GetDeploymentsIntegrationsServerResult']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict', 'outputs.GetDeploymentsKibanaResult']] kibanas: Filter by Kibana resource kind status or configuration.
     :param _builtins.str name: Filter the result by the full deployment name.
     :param _builtins.str name_prefix: Prefix to filter the returned deployment list by.
     :param _builtins.int size: The maximum number of deployments to return. Defaults to `100`.
@@ -291,13 +291,13 @@ def get_deployments(apms: Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetD
         return_count=pulumi.get(__ret__, 'return_count'),
         size=pulumi.get(__ret__, 'size'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_deployments_output(apms: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']]]]] = None,
+def get_deployments_output(apms: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict', 'outputs.GetDeploymentsApmResult']]]]] = None,
                            deployment_template_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                           elasticsearches: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']]]]] = None,
-                           enterprise_searches: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict']]]]] = None,
+                           elasticsearches: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict', 'outputs.GetDeploymentsElasticsearchResult']]]]] = None,
+                           enterprise_searches: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict', 'outputs.GetDeploymentsEnterpriseSearchResult']]]]] = None,
                            healthy: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                           integrations_servers: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict']]]]] = None,
-                           kibanas: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict']]]]] = None,
+                           integrations_servers: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict', 'outputs.GetDeploymentsIntegrationsServerResult']]]]] = None,
+                           kibanas: pulumi.Input[Optional[Optional[Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict', 'outputs.GetDeploymentsKibanaResult']]]]] = None,
                            name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            name_prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            size: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
@@ -333,13 +333,13 @@ def get_deployments_output(apms: pulumi.Input[Optional[Optional[Sequence[Union['
     ```
 
 
-    :param Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict']] apms: Filter by APM resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsApmArgs', 'GetDeploymentsApmArgsDict', 'outputs.GetDeploymentsApmResult']] apms: Filter by APM resource kind status or configuration.
     :param _builtins.str deployment_template_id: Filter the result set by the ID of the deployment template the deployment is based off.
-    :param Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
-    :param Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsElasticsearchArgs', 'GetDeploymentsElasticsearchArgsDict', 'outputs.GetDeploymentsElasticsearchResult']] elasticsearches: Filter by Elasticsearch resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsEnterpriseSearchArgs', 'GetDeploymentsEnterpriseSearchArgsDict', 'outputs.GetDeploymentsEnterpriseSearchResult']] enterprise_searches: Filter by Enterprise Search resource kind status or configuration.
     :param _builtins.str healthy: Filter the result set by their health status.
-    :param Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
-    :param Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict']] kibanas: Filter by Kibana resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsIntegrationsServerArgs', 'GetDeploymentsIntegrationsServerArgsDict', 'outputs.GetDeploymentsIntegrationsServerResult']] integrations_servers: Filter by Integrations Server resource kind status or configuration.
+    :param Sequence[Union['GetDeploymentsKibanaArgs', 'GetDeploymentsKibanaArgsDict', 'outputs.GetDeploymentsKibanaResult']] kibanas: Filter by Kibana resource kind status or configuration.
     :param _builtins.str name: Filter the result by the full deployment name.
     :param _builtins.str name_prefix: Prefix to filter the returned deployment list by.
     :param _builtins.int size: The maximum number of deployments to return. Defaults to `100`.
