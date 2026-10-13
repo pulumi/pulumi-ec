@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleDeploymentTrafficFilterAssociation = new DeploymentTrafficFilterAssociation("exampleDeploymentTrafficFilterAssociation", DeploymentTrafficFilterAssociationArgs.builder()
  *             .trafficFilterId(exampleDeploymentTrafficFilter.id())
- *             .deploymentId(exampleEcDeployment.id())
+ *             .deploymentId(exampleEcDeployment.get("id"))
  *             .build());
  * 
  *     }

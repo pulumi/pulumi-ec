@@ -104,28 +104,28 @@ namespace Pulumi.ElasticCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var deploymentAdmin = 
+    ///     var deploymentAdmin = new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         { "deploymentRoles", new[]
+    ///         ["deploymentRoles"] = new[]
     ///         {
-    ///             
+    ///             new Dictionary&lt;string, object?&gt;
     ///             {
-    ///                 { "role", "admin" },
-    ///                 { "allDeployments", true },
+    ///                 ["role"] = "admin",
+    ///                 ["allDeployments"] = true,
     ///             },
-    ///         } },
+    ///         },
     ///     };
     /// 
-    ///     var deploymentViewer = 
+    ///     var deploymentViewer = new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         { "deploymentRoles", new[]
+    ///         ["deploymentRoles"] = new[]
     ///         {
-    ///             
+    ///             new Dictionary&lt;string, object?&gt;
     ///             {
-    ///                 { "role", "viewer" },
-    ///                 { "allDeployments", true },
+    ///                 ["role"] = "viewer",
+    ///                 ["allDeployments"] = true,
     ///             },
-    ///         } },
+    ///         },
     ///     };
     /// 
     ///     var myOrg = new ElasticCloud.Organization("my_org", new()
