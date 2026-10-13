@@ -42,7 +42,7 @@ namespace Pulumi.ElasticCloud
         ///                 Autoscaling = null,
         ///             },
         ///         },
-        ///         Kibana = null,
+        ///         Kibana = new() { },
         ///     });
         /// 
         /// });
@@ -82,7 +82,7 @@ namespace Pulumi.ElasticCloud
         ///                 Autoscaling = null,
         ///             },
         ///         },
-        ///         Kibana = null,
+        ///         Kibana = new() { },
         ///     });
         /// 
         /// });
@@ -122,7 +122,7 @@ namespace Pulumi.ElasticCloud
         ///                 Autoscaling = null,
         ///             },
         ///         },
-        ///         Kibana = null,
+        ///         Kibana = new() { },
         ///     });
         /// 
         /// });
