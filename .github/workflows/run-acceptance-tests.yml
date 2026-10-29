@@ -198,6 +198,18 @@ jobs:
         PROVIDER_VERSION: ${{ needs.prerequisites.outputs.version }}
     - name: Build registry docs
       run: make build_registry_docs
+    - name: DEBUG convert
+      continue-on-error: true
+      run: |
+        set -x
+        which -a pulumi pulumi-converter-terraform || true
+        ls -la "$PULUMI_HOME" "$PULUMI_HOME/plugins" || true
+        ls -la /tmp | head -50
+        for d in /tmp/convert-examples-repro*; do [ -d "$d" ] || continue; ls -la "$d"; cat "$d/repro.sh"; (cd "$d" && bash repro.sh) || true; done
+        cd "$(mktemp -d)"
+        printf '{"x":"provider \\"ec\\" {\\n  apikey = \\"abc\\"\\n}\\n"}' > ex.json
+        pulumi convert --from terraform --language pcl --out out --generate-only --logtostderr -v=9 -- --convert-examples ex.json 2>&1 | grep -v 'grpc' | tail -150 || true
+        ls -la out || true
     - name: Check worktree clean
       id: worktreeClean
       uses: pulumi/git-status-check-action@0d90c81496aa8d6a31d9c6a0d6297feea2f54057 # v2.0.0
