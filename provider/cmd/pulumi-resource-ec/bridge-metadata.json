@@ -121,6 +121,21 @@
                 "current": "ec:index/elasticsearchProject:ElasticsearchProject",
                 "majorVersion": 1,
                 "fields": {
+                    "monitoring": {
+                        "fields": {
+                            "logging": {
+                                "fields": {
+                                    "audit": {
+                                        "fields": {
+                                            "ignore_filter_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "traffic_filter_ids": {
                         "maxItemsOne": false
                     }
@@ -130,6 +145,21 @@
                 "current": "ec:index/observabilityProject:ObservabilityProject",
                 "majorVersion": 1,
                 "fields": {
+                    "monitoring": {
+                        "fields": {
+                            "logging": {
+                                "fields": {
+                                    "audit": {
+                                        "fields": {
+                                            "ignore_filter_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "traffic_filter_ids": {
                         "maxItemsOne": false
                     }
@@ -203,6 +233,21 @@
                 "current": "ec:index/securityProject:SecurityProject",
                 "majorVersion": 1,
                 "fields": {
+                    "monitoring": {
+                        "fields": {
+                            "logging": {
+                                "fields": {
+                                    "audit": {
+                                        "fields": {
+                                            "ignore_filter_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "product_types": {
                         "maxItemsOne": false
                     },
