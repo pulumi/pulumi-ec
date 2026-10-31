@@ -10,12 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.ElasticCloud
 {
     /// <summary>
-    /// ## Technical preview
-    /// 
-    /// This functionality is in technical preview and may be changed or removed in a future release.
-    /// Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-    /// 
     /// ## Example Usage
+    /// 
+    /// ### Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -33,6 +30,54 @@ namespace Pulumi.ElasticCloud
     /// 
     /// });
     /// ```
+    /// 
+    /// ### With audit logging
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using ElasticCloud = Pulumi.ElasticCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // The destination must be an existing observability or security project.
+    ///     var auditLogs = new ElasticCloud.ObservabilityProject("audit_logs", new()
+    ///     {
+    ///         Name = "my_audit_logs",
+    ///         RegionId = "aws-us-east-1",
+    ///     });
+    /// 
+    ///     var myProject = new ElasticCloud.ObservabilityProject("my_project", new()
+    ///     {
+    ///         Name = "my_project",
+    ///         RegionId = "aws-us-east-1",
+    ///         Monitoring = new ElasticCloud.Inputs.ObservabilityProjectMonitoringArgs
+    ///         {
+    ///             Logging = new ElasticCloud.Inputs.ObservabilityProjectMonitoringLoggingArgs
+    ///             {
+    ///                 Audit = new ElasticCloud.Inputs.ObservabilityProjectMonitoringLoggingAuditArgs
+    ///                 {
+    ///                     Destination = new ElasticCloud.Inputs.ObservabilityProjectMonitoringLoggingAuditDestinationArgs
+    ///                     {
+    ///                         ProjectId = auditLogs.Id,
+    ///                         ProjectType = "observability",
+    ///                     },
+    ///                     IgnoreFilterIds = new[]
+    ///                     {
+    ///                         "audit-ignore-data-reads",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Audit logs are delivered to a serverless project of type `Observability` or `Security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `IgnoreFilterIds` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+    /// 
+    /// &gt; **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
     /// 
     /// ## Import
     /// 
@@ -82,6 +127,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Output("metadata")]
         public Output<Outputs.ObservabilityProjectMetadata> Metadata { get; private set; } = null!;
+
+        /// <summary>
+        /// Configuration for monitoring a project.
+        /// </summary>
+        [Output("monitoring")]
+        public Output<Outputs.ObservabilityProjectMonitoring?> Monitoring { get; private set; } = null!;
 
         /// <summary>
         /// Descriptive name for a project.
@@ -184,6 +235,12 @@ namespace Pulumi.ElasticCloud
         public Input<Inputs.ObservabilityProjectMetadataArgs>? Metadata { get; set; }
 
         /// <summary>
+        /// Configuration for monitoring a project.
+        /// </summary>
+        [Input("monitoring")]
+        public Input<Inputs.ObservabilityProjectMonitoringArgs>? Monitoring { get; set; }
+
+        /// <summary>
         /// Descriptive name for a project.
         /// </summary>
         [Input("name")]
@@ -256,6 +313,12 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.ObservabilityProjectMetadataGetArgs>? Metadata { get; set; }
+
+        /// <summary>
+        /// Configuration for monitoring a project.
+        /// </summary>
+        [Input("monitoring")]
+        public Input<Inputs.ObservabilityProjectMonitoringGetArgs>? Monitoring { get; set; }
 
         /// <summary>
         /// Descriptive name for a project.

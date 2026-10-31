@@ -17,6 +17,11 @@ public final class ElasticsearchProjectPrivateEndpoints {
      */
     private @Nullable String elasticsearch;
     /**
+     * @return The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+     * 
+     */
+    private @Nullable String ingest;
+    /**
      * @return The PrivateLink endpoint URL to access kibana.
      * 
      */
@@ -29,6 +34,13 @@ public final class ElasticsearchProjectPrivateEndpoints {
      */
     public Optional<String> elasticsearch() {
         return Optional.ofNullable(this.elasticsearch);
+    }
+    /**
+     * @return The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+     * 
+     */
+    public Optional<String> ingest() {
+        return Optional.ofNullable(this.ingest);
     }
     /**
      * @return The PrivateLink endpoint URL to access kibana.
@@ -48,11 +60,13 @@ public final class ElasticsearchProjectPrivateEndpoints {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String elasticsearch;
+        private @Nullable String ingest;
         private @Nullable String kibana;
         public Builder() {}
         public Builder(ElasticsearchProjectPrivateEndpoints defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.elasticsearch = defaults.elasticsearch;
+    	      this.ingest = defaults.ingest;
     	      this.kibana = defaults.kibana;
         }
 
@@ -60,6 +74,12 @@ public final class ElasticsearchProjectPrivateEndpoints {
         public Builder elasticsearch(@Nullable String elasticsearch) {
 
             this.elasticsearch = elasticsearch;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ingest(@Nullable String ingest) {
+
+            this.ingest = ingest;
             return this;
         }
         @CustomType.Setter
@@ -71,6 +91,7 @@ public final class ElasticsearchProjectPrivateEndpoints {
         public ElasticsearchProjectPrivateEndpoints build() {
             final var _resultValue = new ElasticsearchProjectPrivateEndpoints();
             _resultValue.elasticsearch = elasticsearch;
+            _resultValue.ingest = ingest;
             _resultValue.kibana = kibana;
             return _resultValue;
         }

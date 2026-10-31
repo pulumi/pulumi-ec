@@ -12,12 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Technical preview
-//
-// This functionality is in technical preview and may be changed or removed in a future release.
-// Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-//
 // ## Example Usage
+//
+// ### Basic
 //
 // ```go
 // package main
@@ -43,6 +40,58 @@ import (
 //	}
 //
 // ```
+//
+// ### With audit logging
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// The destination must be an existing observability or security project.
+//			auditLogs, err := ec.NewObservabilityProject(ctx, "audit_logs", &ec.ObservabilityProjectArgs{
+//				Name:     pulumi.String("my_audit_logs"),
+//				RegionId: pulumi.String("aws-us-east-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewSecurityProject(ctx, "my_project", &ec.SecurityProjectArgs{
+//				Name:     pulumi.String("my_project"),
+//				RegionId: pulumi.String("aws-us-east-1"),
+//				Monitoring: &ec.SecurityProjectMonitoringArgs{
+//					Logging: &ec.SecurityProjectMonitoringLoggingArgs{
+//						Audit: &ec.SecurityProjectMonitoringLoggingAuditArgs{
+//							Destination: &ec.SecurityProjectMonitoringLoggingAuditDestinationArgs{
+//								ProjectId:   auditLogs.ID(),
+//								ProjectType: pulumi.String("observability"),
+//							},
+//							IgnoreFilterIds: pulumi.StringArray{
+//								pulumi.String("audit-ignore-data-reads"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignoreFilterIds` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+//
+// > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 //
 // ## Import
 //
@@ -70,6 +119,8 @@ type SecurityProject struct {
 	Linked SecurityProjectLinkedPtrOutput `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataOutput `pulumi:"metadata"`
+	// Configuration for monitoring a project.
+	Monitoring SecurityProjectMonitoringPtrOutput `pulumi:"monitoring"`
 	// Descriptive name for a project.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
@@ -132,6 +183,8 @@ type securityProjectState struct {
 	Linked *SecurityProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *SecurityProjectMetadata `pulumi:"metadata"`
+	// Configuration for monitoring a project.
+	Monitoring *SecurityProjectMonitoring `pulumi:"monitoring"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
 	// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
@@ -162,6 +215,8 @@ type SecurityProjectState struct {
 	Linked SecurityProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataPtrInput
+	// Configuration for monitoring a project.
+	Monitoring SecurityProjectMonitoringPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
 	// Private endpoints (URLs) for Security projects when PrivateLink is enabled.
@@ -190,6 +245,8 @@ type securityProjectArgs struct {
 	Linked *SecurityProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *SecurityProjectMetadata `pulumi:"metadata"`
+	// Configuration for monitoring a project.
+	Monitoring *SecurityProjectMonitoring `pulumi:"monitoring"`
 	// Descriptive name for a project.
 	Name         *string                      `pulumi:"name"`
 	ProductTypes []SecurityProjectProductType `pulumi:"productTypes"`
@@ -211,6 +268,8 @@ type SecurityProjectArgs struct {
 	Linked SecurityProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata SecurityProjectMetadataPtrInput
+	// Configuration for monitoring a project.
+	Monitoring SecurityProjectMonitoringPtrInput
 	// Descriptive name for a project.
 	Name         pulumi.StringPtrInput
 	ProductTypes SecurityProjectProductTypeArrayInput
@@ -342,6 +401,11 @@ func (o SecurityProjectOutput) Linked() SecurityProjectLinkedPtrOutput {
 // Metadata request for a project with tags.
 func (o SecurityProjectOutput) Metadata() SecurityProjectMetadataOutput {
 	return o.ApplyT(func(v *SecurityProject) SecurityProjectMetadataOutput { return v.Metadata }).(SecurityProjectMetadataOutput)
+}
+
+// Configuration for monitoring a project.
+func (o SecurityProjectOutput) Monitoring() SecurityProjectMonitoringPtrOutput {
+	return o.ApplyT(func(v *SecurityProject) SecurityProjectMonitoringPtrOutput { return v.Monitoring }).(SecurityProjectMonitoringPtrOutput)
 }
 
 // Descriptive name for a project.

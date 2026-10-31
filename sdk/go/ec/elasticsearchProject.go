@@ -12,12 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Technical preview
-//
-// This functionality is in technical preview and may be changed or removed in a future release.
-// Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-//
 // ## Example Usage
+//
+// ### Basic
 //
 // ```go
 // package main
@@ -44,6 +41,58 @@ import (
 //
 // ```
 //
+// ### With audit logging
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-ec/sdk/go/ec"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// The destination must be an existing observability or security project.
+//			auditLogs, err := ec.NewObservabilityProject(ctx, "audit_logs", &ec.ObservabilityProjectArgs{
+//				Name:     pulumi.String("my_audit_logs"),
+//				RegionId: pulumi.String("aws-us-east-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec.NewElasticsearchProject(ctx, "my_project", &ec.ElasticsearchProjectArgs{
+//				Name:     pulumi.String("my_project"),
+//				RegionId: pulumi.String("aws-us-east-1"),
+//				Monitoring: &ec.ElasticsearchProjectMonitoringArgs{
+//					Logging: &ec.ElasticsearchProjectMonitoringLoggingArgs{
+//						Audit: &ec.ElasticsearchProjectMonitoringLoggingAuditArgs{
+//							Destination: &ec.ElasticsearchProjectMonitoringLoggingAuditDestinationArgs{
+//								ProjectId:   auditLogs.ID(),
+//								ProjectType: pulumi.String("observability"),
+//							},
+//							IgnoreFilterIds: pulumi.StringArray{
+//								pulumi.String("audit-ignore-data-reads"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignoreFilterIds` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+//
+// > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
+//
 // ## Import
 //
 // Projects can be imported using the `id`, for example:
@@ -68,6 +117,8 @@ type ElasticsearchProject struct {
 	Linked ElasticsearchProjectLinkedPtrOutput `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataOutput `pulumi:"metadata"`
+	// Configuration for monitoring a project.
+	Monitoring ElasticsearchProjectMonitoringPtrOutput `pulumi:"monitoring"`
 	// Descriptive name for a project.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -132,6 +183,8 @@ type elasticsearchProjectState struct {
 	Linked *ElasticsearchProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *ElasticsearchProjectMetadata `pulumi:"metadata"`
+	// Configuration for monitoring a project.
+	Monitoring *ElasticsearchProjectMonitoring `pulumi:"monitoring"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
 	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -164,6 +217,8 @@ type ElasticsearchProjectState struct {
 	Linked ElasticsearchProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataPtrInput
+	// Configuration for monitoring a project.
+	Monitoring ElasticsearchProjectMonitoringPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
 	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -194,6 +249,8 @@ type elasticsearchProjectArgs struct {
 	Linked *ElasticsearchProjectLinked `pulumi:"linked"`
 	// Metadata request for a project with tags.
 	Metadata *ElasticsearchProjectMetadata `pulumi:"metadata"`
+	// Configuration for monitoring a project.
+	Monitoring *ElasticsearchProjectMonitoring `pulumi:"monitoring"`
 	// Descriptive name for a project.
 	Name *string `pulumi:"name"`
 	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -217,6 +274,8 @@ type ElasticsearchProjectArgs struct {
 	Linked ElasticsearchProjectLinkedPtrInput
 	// Metadata request for a project with tags.
 	Metadata ElasticsearchProjectMetadataPtrInput
+	// Configuration for monitoring a project.
+	Monitoring ElasticsearchProjectMonitoringPtrInput
 	// Descriptive name for a project.
 	Name pulumi.StringPtrInput
 	// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
@@ -347,6 +406,11 @@ func (o ElasticsearchProjectOutput) Linked() ElasticsearchProjectLinkedPtrOutput
 // Metadata request for a project with tags.
 func (o ElasticsearchProjectOutput) Metadata() ElasticsearchProjectMetadataOutput {
 	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectMetadataOutput { return v.Metadata }).(ElasticsearchProjectMetadataOutput)
+}
+
+// Configuration for monitoring a project.
+func (o ElasticsearchProjectOutput) Monitoring() ElasticsearchProjectMonitoringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProject) ElasticsearchProjectMonitoringPtrOutput { return v.Monitoring }).(ElasticsearchProjectMonitoringPtrOutput)
 }
 
 // Descriptive name for a project.

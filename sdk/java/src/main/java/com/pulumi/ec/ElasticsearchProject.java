@@ -14,6 +14,7 @@ import com.pulumi.ec.outputs.ElasticsearchProjectCredentials;
 import com.pulumi.ec.outputs.ElasticsearchProjectEndpoints;
 import com.pulumi.ec.outputs.ElasticsearchProjectLinked;
 import com.pulumi.ec.outputs.ElasticsearchProjectMetadata;
+import com.pulumi.ec.outputs.ElasticsearchProjectMonitoring;
 import com.pulumi.ec.outputs.ElasticsearchProjectPrivateEndpoints;
 import com.pulumi.ec.outputs.ElasticsearchProjectSearchLake;
 import java.lang.String;
@@ -22,12 +23,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Technical preview
- * 
- * This functionality is in technical preview and may be changed or removed in a future release.
- * Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
- * 
  * ## Example Usage
+ * 
+ * ### Basic
  * 
  * <pre>
  * {@code
@@ -60,6 +58,67 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### With audit logging
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.ObservabilityProject;
+ * import com.pulumi.ec.ObservabilityProjectArgs;
+ * import com.pulumi.ec.ElasticsearchProject;
+ * import com.pulumi.ec.ElasticsearchProjectArgs;
+ * import com.pulumi.ec.inputs.ElasticsearchProjectMonitoringArgs;
+ * import com.pulumi.ec.inputs.ElasticsearchProjectMonitoringLoggingArgs;
+ * import com.pulumi.ec.inputs.ElasticsearchProjectMonitoringLoggingAuditArgs;
+ * import com.pulumi.ec.inputs.ElasticsearchProjectMonitoringLoggingAuditDestinationArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // The destination must be an existing observability or security project.
+ *         var auditLogs = new ObservabilityProject("auditLogs", ObservabilityProjectArgs.builder()
+ *             .name("my_audit_logs")
+ *             .regionId("aws-us-east-1")
+ *             .build());
+ * 
+ *         var myProject = new ElasticsearchProject("myProject", ElasticsearchProjectArgs.builder()
+ *             .name("my_project")
+ *             .regionId("aws-us-east-1")
+ *             .monitoring(ElasticsearchProjectMonitoringArgs.builder()
+ *                 .logging(ElasticsearchProjectMonitoringLoggingArgs.builder()
+ *                     .audit(ElasticsearchProjectMonitoringLoggingAuditArgs.builder()
+ *                         .destination(ElasticsearchProjectMonitoringLoggingAuditDestinationArgs.builder()
+ *                             .projectId(auditLogs.id())
+ *                             .projectType("observability")
+ *                             .build())
+ *                         .ignoreFilterIds("audit-ignore-data-reads")
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignoreFilterIds` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+ * 
+ * &gt; **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
  * 
  * ## Import
  * 
@@ -157,6 +216,20 @@ public class ElasticsearchProject extends com.pulumi.resources.CustomResource {
      */
     public Output<ElasticsearchProjectMetadata> metadata() {
         return this.metadata;
+    }
+    /**
+     * Configuration for monitoring a project.
+     * 
+     */
+    @Export(name="monitoring", refs={ElasticsearchProjectMonitoring.class}, tree="[0]")
+    private Output</* @Nullable */ ElasticsearchProjectMonitoring> monitoring;
+
+    /**
+     * @return Configuration for monitoring a project.
+     * 
+     */
+    public Output<Optional<ElasticsearchProjectMonitoring>> monitoring() {
+        return Codegen.optional(this.monitoring);
     }
     /**
      * Descriptive name for a project.

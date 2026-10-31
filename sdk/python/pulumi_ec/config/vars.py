@@ -28,6 +28,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('apikey')
 
     @_builtins.property
+    def ca_cert(self) -> Optional[str]:
+        """
+        Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+        """
+        return __config__.get('caCert')
+
+    @_builtins.property
     def endpoint(self) -> Optional[str]:
         """
         Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
@@ -54,6 +61,20 @@ class _ExportableConfig(types.ModuleType):
         Timeout used for individual HTTP calls. Defaults to "1m".
         """
         return __config__.get('timeout')
+
+    @_builtins.property
+    def tls_cert(self) -> Optional[str]:
+        """
+        Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        """
+        return __config__.get('tlsCert')
+
+    @_builtins.property
+    def tls_key(self) -> Optional[str]:
+        """
+        Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+        """
+        return __config__.get('tlsKey')
 
     @_builtins.property
     def username(self) -> Optional[str]:

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.ObservabilityProjectLinkedArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectMetadataArgs;
+import com.pulumi.ec.inputs.ObservabilityProjectMonitoringArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
@@ -62,6 +63,21 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
      */
     public Optional<Output<ObservabilityProjectMetadataArgs>> metadata() {
         return Optional.ofNullable(this.metadata);
+    }
+
+    /**
+     * Configuration for monitoring a project.
+     * 
+     */
+    @Import(name="monitoring")
+    private @Nullable Output<ObservabilityProjectMonitoringArgs> monitoring;
+
+    /**
+     * @return Configuration for monitoring a project.
+     * 
+     */
+    public Optional<Output<ObservabilityProjectMonitoringArgs>> monitoring() {
+        return Optional.ofNullable(this.monitoring);
     }
 
     /**
@@ -130,6 +146,7 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
         this.alias = $.alias;
         this.linked = $.linked;
         this.metadata = $.metadata;
+        this.monitoring = $.monitoring;
         this.name = $.name;
         this.productTier = $.productTier;
         this.regionId = $.regionId;
@@ -215,6 +232,27 @@ public final class ObservabilityProjectArgs extends com.pulumi.resources.Resourc
          */
         public Builder metadata(ObservabilityProjectMetadataArgs metadata) {
             return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(@Nullable Output<ObservabilityProjectMonitoringArgs> monitoring) {
+            $.monitoring = monitoring;
+            return this;
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(ObservabilityProjectMonitoringArgs monitoring) {
+            return monitoring(Output.of(monitoring));
         }
 
         /**

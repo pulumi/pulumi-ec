@@ -25,6 +25,7 @@ class ObservabilityProjectArgs:
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional['ObservabilityProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['ObservabilityProjectMetadataArgs']] = None,
+                 monitoring: pulumi.Input[Optional['ObservabilityProjectMonitoringArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_tier: pulumi.Input[Optional[_builtins.str]] = None,
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -35,6 +36,7 @@ class ObservabilityProjectArgs:
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input['ObservabilityProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['ObservabilityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
+        :param pulumi.Input['ObservabilityProjectMonitoringArgs'] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project. The default is "complete" when not specified at creation time.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
@@ -46,6 +48,8 @@ class ObservabilityProjectArgs:
             pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if product_tier is not None:
@@ -103,6 +107,18 @@ class ObservabilityProjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    def monitoring(self) -> pulumi.Input[Optional['ObservabilityProjectMonitoringArgs']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @monitoring.setter
+    def monitoring(self, value: pulumi.Input[Optional['ObservabilityProjectMonitoringArgs']]):
+        pulumi.set(self, "monitoring", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -147,6 +163,7 @@ class _ObservabilityProjectState:
                  endpoints: pulumi.Input[Optional['ObservabilityProjectEndpointsArgs']] = None,
                  linked: pulumi.Input[Optional['ObservabilityProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['ObservabilityProjectMetadataArgs']] = None,
+                 monitoring: pulumi.Input[Optional['ObservabilityProjectMonitoringArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_endpoints: pulumi.Input[Optional['ObservabilityProjectPrivateEndpointsArgs']] = None,
                  product_tier: pulumi.Input[Optional[_builtins.str]] = None,
@@ -162,6 +179,7 @@ class _ObservabilityProjectState:
         :param pulumi.Input['ObservabilityProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input['ObservabilityProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['ObservabilityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
+        :param pulumi.Input['ObservabilityProjectMonitoringArgs'] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input['ObservabilityProjectPrivateEndpointsArgs'] private_endpoints: Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project. The default is "complete" when not specified at creation time.
@@ -181,6 +199,8 @@ class _ObservabilityProjectState:
             pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_endpoints is not None:
@@ -268,6 +288,18 @@ class _ObservabilityProjectState:
 
     @_builtins.property
     @pulumi.getter
+    def monitoring(self) -> pulumi.Input[Optional['ObservabilityProjectMonitoringArgs']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @monitoring.setter
+    def monitoring(self, value: pulumi.Input[Optional['ObservabilityProjectMonitoringArgs']]):
+        pulumi.set(self, "monitoring", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -348,18 +380,16 @@ class ObservabilityProject(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
                  metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
+                 monitoring: pulumi.Input[Optional[Union['ObservabilityProjectMonitoringArgs', 'ObservabilityProjectMonitoringArgsDict', 'outputs.ObservabilityProjectMonitoring']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_tier: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## Technical preview
-
-        This functionality is in technical preview and may be changed or removed in a future release.
-        Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -369,6 +399,36 @@ class ObservabilityProject(pulumi.CustomResource):
             name="my_project",
             region_id="aws-us-east-1")
         ```
+
+        ### With audit logging
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        # The destination must be an existing observability or security project.
+        audit_logs = ec.ObservabilityProject("audit_logs",
+            name="my_audit_logs",
+            region_id="aws-us-east-1")
+        my_project = ec.ObservabilityProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            monitoring={
+                "logging": {
+                    "audit": {
+                        "destination": {
+                            "project_id": audit_logs.id,
+                            "project_type": "observability",
+                        },
+                        "ignore_filter_ids": ["audit-ignore-data-reads"],
+                    },
+                },
+            })
+        ```
+
+        Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+
+        > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
         ## Import
 
@@ -386,6 +446,7 @@ class ObservabilityProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ObservabilityProjectMonitoringArgs', 'ObservabilityProjectMonitoringArgsDict', 'outputs.ObservabilityProjectMonitoring']] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project. The default is "complete" when not specified at creation time.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
@@ -398,12 +459,9 @@ class ObservabilityProject(pulumi.CustomResource):
                  args: ObservabilityProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Technical preview
-
-        This functionality is in technical preview and may be changed or removed in a future release.
-        Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -413,6 +471,36 @@ class ObservabilityProject(pulumi.CustomResource):
             name="my_project",
             region_id="aws-us-east-1")
         ```
+
+        ### With audit logging
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        # The destination must be an existing observability or security project.
+        audit_logs = ec.ObservabilityProject("audit_logs",
+            name="my_audit_logs",
+            region_id="aws-us-east-1")
+        my_project = ec.ObservabilityProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            monitoring={
+                "logging": {
+                    "audit": {
+                        "destination": {
+                            "project_id": audit_logs.id,
+                            "project_type": "observability",
+                        },
+                        "ignore_filter_ids": ["audit-ignore-data-reads"],
+                    },
+                },
+            })
+        ```
+
+        Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+
+        > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
         ## Import
 
@@ -443,6 +531,7 @@ class ObservabilityProject(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
                  metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
+                 monitoring: pulumi.Input[Optional[Union['ObservabilityProjectMonitoringArgs', 'ObservabilityProjectMonitoringArgsDict', 'outputs.ObservabilityProjectMonitoring']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_tier: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -459,6 +548,7 @@ class ObservabilityProject(pulumi.CustomResource):
             __props__.__dict__["alias"] = alias
             __props__.__dict__["linked"] = linked
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["monitoring"] = monitoring
             __props__.__dict__["name"] = name
             __props__.__dict__["product_tier"] = product_tier
             if region_id is None and not opts.urn:
@@ -486,6 +576,7 @@ class ObservabilityProject(pulumi.CustomResource):
             endpoints: pulumi.Input[Optional[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict', 'outputs.ObservabilityProjectEndpoints']]] = None,
             linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
             metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
+            monitoring: pulumi.Input[Optional[Union['ObservabilityProjectMonitoringArgs', 'ObservabilityProjectMonitoringArgsDict', 'outputs.ObservabilityProjectMonitoring']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             private_endpoints: pulumi.Input[Optional[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict', 'outputs.ObservabilityProjectPrivateEndpoints']]] = None,
             product_tier: pulumi.Input[Optional[_builtins.str]] = None,
@@ -505,6 +596,7 @@ class ObservabilityProject(pulumi.CustomResource):
         :param pulumi.Input[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict', 'outputs.ObservabilityProjectEndpoints']] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ObservabilityProjectMonitoringArgs', 'ObservabilityProjectMonitoringArgsDict', 'outputs.ObservabilityProjectMonitoring']] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict', 'outputs.ObservabilityProjectPrivateEndpoints']] private_endpoints: Private endpoints (URLs) for Observability projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] product_tier: the tier of the observability project. The default is "complete" when not specified at creation time.
@@ -522,6 +614,7 @@ class ObservabilityProject(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["linked"] = linked
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["monitoring"] = monitoring
         __props__.__dict__["name"] = name
         __props__.__dict__["private_endpoints"] = private_endpoints
         __props__.__dict__["product_tier"] = product_tier
@@ -577,6 +670,14 @@ class ObservabilityProject(pulumi.CustomResource):
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def monitoring(self) -> pulumi.Output[Optional['outputs.ObservabilityProjectMonitoring']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
 
     @_builtins.property
     @pulumi.getter

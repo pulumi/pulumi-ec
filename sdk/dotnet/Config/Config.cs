@@ -42,6 +42,16 @@ namespace Pulumi.ElasticCloud
             set => _apikey.Set(value);
         }
 
+        private static readonly __Value<string?> _caCert = new __Value<string?>(() => __config.Get("caCert"));
+        /// <summary>
+        /// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+        /// </summary>
+        public static string? CaCert
+        {
+            get => _caCert.Get();
+            set => _caCert.Set(value);
+        }
+
         private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint"));
         /// <summary>
         /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
@@ -80,6 +90,26 @@ namespace Pulumi.ElasticCloud
         {
             get => _timeout.Get();
             set => _timeout.Set(value);
+        }
+
+        private static readonly __Value<string?> _tlsCert = new __Value<string?>(() => __config.Get("tlsCert"));
+        /// <summary>
+        /// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        /// </summary>
+        public static string? TlsCert
+        {
+            get => _tlsCert.Get();
+            set => _tlsCert.Set(value);
+        }
+
+        private static readonly __Value<string?> _tlsKey = new __Value<string?>(() => __config.Get("tlsKey"));
+        /// <summary>
+        /// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+        /// </summary>
+        public static string? TlsKey
+        {
+            get => _tlsKey.Get();
+            set => _tlsKey.Set(value);
         }
 
         private static readonly __Value<string?> _username = new __Value<string?>(() => __config.Get("username"));

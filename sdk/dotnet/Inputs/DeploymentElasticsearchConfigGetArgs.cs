@@ -30,29 +30,69 @@ namespace Pulumi.ElasticCloud.Inputs
             set => _plugins = value;
         }
 
+        [Input("userSettingsJson")]
+        private Input<string>? _userSettingsJson;
+
         /// <summary>
         /// JSON-formatted user level "elasticsearch.yml" setting overrides
         /// </summary>
-        [Input("userSettingsJson")]
-        public Input<string>? UserSettingsJson { get; set; }
+        public Input<string>? UserSettingsJson
+        {
+            get => _userSettingsJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("userSettingsOverrideJson")]
+        private Input<string>? _userSettingsOverrideJson;
 
         /// <summary>
         /// JSON-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         /// </summary>
-        [Input("userSettingsOverrideJson")]
-        public Input<string>? UserSettingsOverrideJson { get; set; }
+        public Input<string>? UserSettingsOverrideJson
+        {
+            get => _userSettingsOverrideJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsOverrideJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("userSettingsOverrideYaml")]
+        private Input<string>? _userSettingsOverrideYaml;
 
         /// <summary>
         /// YAML-formatted admin (ECE) level "elasticsearch.yml" setting overrides
         /// </summary>
-        [Input("userSettingsOverrideYaml")]
-        public Input<string>? UserSettingsOverrideYaml { get; set; }
+        public Input<string>? UserSettingsOverrideYaml
+        {
+            get => _userSettingsOverrideYaml;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsOverrideYaml = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("userSettingsYaml")]
+        private Input<string>? _userSettingsYaml;
 
         /// <summary>
         /// YAML-formatted user level "elasticsearch.yml" setting overrides
         /// </summary>
-        [Input("userSettingsYaml")]
-        public Input<string>? UserSettingsYaml { get; set; }
+        public Input<string>? UserSettingsYaml
+        {
+            get => _userSettingsYaml;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsYaml = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public DeploymentElasticsearchConfigGetArgs()
         {

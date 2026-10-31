@@ -19,6 +19,11 @@ apikey: Optional[str]
 API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
 """
 
+caCert: Optional[str]
+"""
+Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+"""
+
 endpoint: Optional[str]
 """
 Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
@@ -37,6 +42,16 @@ Password to use for API authentication. Available only when targeting ECE Instal
 timeout: Optional[str]
 """
 Timeout used for individual HTTP calls. Defaults to "1m".
+"""
+
+tlsCert: Optional[str]
+"""
+Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+"""
+
+tlsKey: Optional[str]
+"""
+Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
 """
 
 username: Optional[str]

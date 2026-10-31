@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ec.inputs.ElasticsearchProjectLinkedArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectMetadataArgs;
+import com.pulumi.ec.inputs.ElasticsearchProjectMonitoringArgs;
 import com.pulumi.ec.inputs.ElasticsearchProjectSearchLakeArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
@@ -63,6 +64,21 @@ public final class ElasticsearchProjectArgs extends com.pulumi.resources.Resourc
      */
     public Optional<Output<ElasticsearchProjectMetadataArgs>> metadata() {
         return Optional.ofNullable(this.metadata);
+    }
+
+    /**
+     * Configuration for monitoring a project.
+     * 
+     */
+    @Import(name="monitoring")
+    private @Nullable Output<ElasticsearchProjectMonitoringArgs> monitoring;
+
+    /**
+     * @return Configuration for monitoring a project.
+     * 
+     */
+    public Optional<Output<ElasticsearchProjectMonitoringArgs>> monitoring() {
+        return Optional.ofNullable(this.monitoring);
     }
 
     /**
@@ -152,6 +168,7 @@ public final class ElasticsearchProjectArgs extends com.pulumi.resources.Resourc
         this.alias = $.alias;
         this.linked = $.linked;
         this.metadata = $.metadata;
+        this.monitoring = $.monitoring;
         this.name = $.name;
         this.optimizedFor = $.optimizedFor;
         this.regionId = $.regionId;
@@ -238,6 +255,27 @@ public final class ElasticsearchProjectArgs extends com.pulumi.resources.Resourc
          */
         public Builder metadata(ElasticsearchProjectMetadataArgs metadata) {
             return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(@Nullable Output<ElasticsearchProjectMonitoringArgs> monitoring) {
+            $.monitoring = monitoring;
+            return this;
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(ElasticsearchProjectMonitoringArgs monitoring) {
+            return monitoring(Output.of(monitoring));
         }
 
         /**
