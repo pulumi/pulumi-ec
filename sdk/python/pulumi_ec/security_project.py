@@ -26,6 +26,7 @@ class SecurityProjectArgs:
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional['SecurityProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['SecurityProjectMetadataArgs']] = None,
+                 monitoring: pulumi.Input[Optional['SecurityProjectMonitoringArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None,
                  search_lake: pulumi.Input[Optional['SecurityProjectSearchLakeArgs']] = None,
@@ -38,6 +39,7 @@ class SecurityProjectArgs:
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input['SecurityProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
+        :param pulumi.Input['SecurityProjectMonitoringArgs'] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input['SecurityProjectSearchLakeArgs'] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traffic_filter_ids: Set of traffic filter IDs to associate with this project
@@ -51,6 +53,8 @@ class SecurityProjectArgs:
             pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if product_types is not None:
@@ -122,6 +126,18 @@ class SecurityProjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    def monitoring(self) -> pulumi.Input[Optional['SecurityProjectMonitoringArgs']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @monitoring.setter
+    def monitoring(self, value: pulumi.Input[Optional['SecurityProjectMonitoringArgs']]):
+        pulumi.set(self, "monitoring", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -176,6 +192,7 @@ class _SecurityProjectState:
                  endpoints: pulumi.Input[Optional['SecurityProjectEndpointsArgs']] = None,
                  linked: pulumi.Input[Optional['SecurityProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['SecurityProjectMetadataArgs']] = None,
+                 monitoring: pulumi.Input[Optional['SecurityProjectMonitoringArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_endpoints: pulumi.Input[Optional['SecurityProjectPrivateEndpointsArgs']] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityProjectProductTypeArgs']]]] = None,
@@ -193,6 +210,7 @@ class _SecurityProjectState:
         :param pulumi.Input['SecurityProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input['SecurityProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['SecurityProjectMetadataArgs'] metadata: Metadata request for a project with tags.
+        :param pulumi.Input['SecurityProjectMonitoringArgs'] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input['SecurityProjectPrivateEndpointsArgs'] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
@@ -214,6 +232,8 @@ class _SecurityProjectState:
             pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_endpoints is not None:
@@ -315,6 +335,18 @@ class _SecurityProjectState:
 
     @_builtins.property
     @pulumi.getter
+    def monitoring(self) -> pulumi.Input[Optional['SecurityProjectMonitoringArgs']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @monitoring.setter
+    def monitoring(self, value: pulumi.Input[Optional['SecurityProjectMonitoringArgs']]):
+        pulumi.set(self, "monitoring", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Descriptive name for a project.
@@ -405,6 +437,7 @@ class SecurityProject(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
                  metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
+                 monitoring: pulumi.Input[Optional[Union['SecurityProjectMonitoringArgs', 'SecurityProjectMonitoringArgsDict', 'outputs.SecurityProjectMonitoring']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -412,12 +445,9 @@ class SecurityProject(pulumi.CustomResource):
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## Technical preview
-
-        This functionality is in technical preview and may be changed or removed in a future release.
-        Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -427,6 +457,36 @@ class SecurityProject(pulumi.CustomResource):
             name="my_project",
             region_id="aws-us-east-1")
         ```
+
+        ### With audit logging
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        # The destination must be an existing observability or security project.
+        audit_logs = ec.ObservabilityProject("audit_logs",
+            name="my_audit_logs",
+            region_id="aws-us-east-1")
+        my_project = ec.SecurityProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            monitoring={
+                "logging": {
+                    "audit": {
+                        "destination": {
+                            "project_id": audit_logs.id,
+                            "project_type": "observability",
+                        },
+                        "ignore_filter_ids": ["audit-ignore-data-reads"],
+                    },
+                },
+            })
+        ```
+
+        Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+
+        > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
         ## Import
 
@@ -445,6 +505,7 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['SecurityProjectMonitoringArgs', 'SecurityProjectMonitoringArgsDict', 'outputs.SecurityProjectMonitoring']] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
         :param pulumi.Input[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']] search_lake: Configuration for the entire set of capabilities that make the data searchable in Security.
@@ -457,12 +518,9 @@ class SecurityProject(pulumi.CustomResource):
                  args: SecurityProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Technical preview
-
-        This functionality is in technical preview and may be changed or removed in a future release.
-        Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -472,6 +530,36 @@ class SecurityProject(pulumi.CustomResource):
             name="my_project",
             region_id="aws-us-east-1")
         ```
+
+        ### With audit logging
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        # The destination must be an existing observability or security project.
+        audit_logs = ec.ObservabilityProject("audit_logs",
+            name="my_audit_logs",
+            region_id="aws-us-east-1")
+        my_project = ec.SecurityProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            monitoring={
+                "logging": {
+                    "audit": {
+                        "destination": {
+                            "project_id": audit_logs.id,
+                            "project_type": "observability",
+                        },
+                        "ignore_filter_ids": ["audit-ignore-data-reads"],
+                    },
+                },
+            })
+        ```
+
+        Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+
+        > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
         ## Import
 
@@ -503,6 +591,7 @@ class SecurityProject(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
                  metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
+                 monitoring: pulumi.Input[Optional[Union['SecurityProjectMonitoringArgs', 'SecurityProjectMonitoringArgsDict', 'outputs.SecurityProjectMonitoring']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -521,6 +610,7 @@ class SecurityProject(pulumi.CustomResource):
             __props__.__dict__["alias"] = alias
             __props__.__dict__["linked"] = linked
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["monitoring"] = monitoring
             __props__.__dict__["name"] = name
             __props__.__dict__["product_types"] = product_types
             if region_id is None and not opts.urn:
@@ -550,6 +640,7 @@ class SecurityProject(pulumi.CustomResource):
             endpoints: pulumi.Input[Optional[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict', 'outputs.SecurityProjectEndpoints']]] = None,
             linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
             metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
+            monitoring: pulumi.Input[Optional[Union['SecurityProjectMonitoringArgs', 'SecurityProjectMonitoringArgsDict', 'outputs.SecurityProjectMonitoring']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             private_endpoints: pulumi.Input[Optional[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict', 'outputs.SecurityProjectPrivateEndpoints']]] = None,
             product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
@@ -571,6 +662,7 @@ class SecurityProject(pulumi.CustomResource):
         :param pulumi.Input[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict', 'outputs.SecurityProjectEndpoints']] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['SecurityProjectMonitoringArgs', 'SecurityProjectMonitoringArgsDict', 'outputs.SecurityProjectMonitoring']] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict', 'outputs.SecurityProjectPrivateEndpoints']] private_endpoints: Private endpoints (URLs) for Security projects when PrivateLink is enabled.
         :param pulumi.Input[_builtins.str] region_id: Unique human-readable identifier for a region in Elastic Cloud.
@@ -589,6 +681,7 @@ class SecurityProject(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["linked"] = linked
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["monitoring"] = monitoring
         __props__.__dict__["name"] = name
         __props__.__dict__["private_endpoints"] = private_endpoints
         __props__.__dict__["product_types"] = product_types
@@ -653,6 +746,14 @@ class SecurityProject(pulumi.CustomResource):
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def monitoring(self) -> pulumi.Output[Optional['outputs.SecurityProjectMonitoring']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
 
     @_builtins.property
     @pulumi.getter

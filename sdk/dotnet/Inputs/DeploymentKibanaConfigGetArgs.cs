@@ -18,29 +18,69 @@ namespace Pulumi.ElasticCloud.Inputs
         [Input("dockerImage")]
         public Input<string>? DockerImage { get; set; }
 
+        [Input("userSettingsJson")]
+        private Input<string>? _userSettingsJson;
+
         /// <summary>
         /// An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         /// </summary>
-        [Input("userSettingsJson")]
-        public Input<string>? UserSettingsJson { get; set; }
+        public Input<string>? UserSettingsJson
+        {
+            get => _userSettingsJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("userSettingsOverrideJson")]
+        private Input<string>? _userSettingsOverrideJson;
 
         /// <summary>
         /// An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         /// </summary>
-        [Input("userSettingsOverrideJson")]
-        public Input<string>? UserSettingsOverrideJson { get; set; }
+        public Input<string>? UserSettingsOverrideJson
+        {
+            get => _userSettingsOverrideJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsOverrideJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("userSettingsOverrideYaml")]
+        private Input<string>? _userSettingsOverrideYaml;
 
         /// <summary>
         /// An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)
         /// </summary>
-        [Input("userSettingsOverrideYaml")]
-        public Input<string>? UserSettingsOverrideYaml { get; set; }
+        public Input<string>? UserSettingsOverrideYaml
+        {
+            get => _userSettingsOverrideYaml;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsOverrideYaml = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("userSettingsYaml")]
+        private Input<string>? _userSettingsYaml;
 
         /// <summary>
         /// An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)
         /// </summary>
-        [Input("userSettingsYaml")]
-        public Input<string>? UserSettingsYaml { get; set; }
+        public Input<string>? UserSettingsYaml
+        {
+            get => _userSettingsYaml;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userSettingsYaml = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public DeploymentKibanaConfigGetArgs()
         {

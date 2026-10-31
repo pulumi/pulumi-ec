@@ -7,12 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## Technical preview
- *
- * This functionality is in technical preview and may be changed or removed in a future release.
- * Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
- *
  * ## Example Usage
+ *
+ * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,6 +20,38 @@ import * as utilities from "./utilities";
  *     regionId: "aws-us-east-1",
  * });
  * ```
+ *
+ * ### With audit logging
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * // The destination must be an existing observability or security project.
+ * const auditLogs = new ec.ObservabilityProject("audit_logs", {
+ *     name: "my_audit_logs",
+ *     regionId: "aws-us-east-1",
+ * });
+ * const myProject = new ec.ObservabilityProject("my_project", {
+ *     name: "my_project",
+ *     regionId: "aws-us-east-1",
+ *     monitoring: {
+ *         logging: {
+ *             audit: {
+ *                 destination: {
+ *                     projectId: auditLogs.id,
+ *                     projectType: "observability",
+ *                 },
+ *                 ignoreFilterIds: ["audit-ignore-data-reads"],
+ *             },
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignoreFilterIds` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+ *
+ * > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
  *
  * ## Import
  *
@@ -87,6 +116,10 @@ export class ObservabilityProject extends pulumi.CustomResource {
      */
     declare public readonly metadata: pulumi.Output<outputs.ObservabilityProjectMetadata>;
     /**
+     * Configuration for monitoring a project.
+     */
+    declare public readonly monitoring: pulumi.Output<outputs.ObservabilityProjectMonitoring | undefined>;
+    /**
      * Descriptive name for a project.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -130,6 +163,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
             resourceInputs["endpoints"] = state?.endpoints;
             resourceInputs["linked"] = state?.linked;
             resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["monitoring"] = state?.monitoring;
             resourceInputs["name"] = state?.name;
             resourceInputs["privateEndpoints"] = state?.privateEndpoints;
             resourceInputs["productTier"] = state?.productTier;
@@ -144,6 +178,7 @@ export class ObservabilityProject extends pulumi.CustomResource {
             resourceInputs["alias"] = args?.alias;
             resourceInputs["linked"] = args?.linked;
             resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["monitoring"] = args?.monitoring;
             resourceInputs["name"] = args?.name;
             resourceInputs["productTier"] = args?.productTier;
             resourceInputs["regionId"] = args?.regionId;
@@ -188,6 +223,10 @@ export interface ObservabilityProjectState {
      */
     metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata | undefined>;
     /**
+     * Configuration for monitoring a project.
+     */
+    monitoring?: pulumi.Input<inputs.ObservabilityProjectMonitoring | undefined>;
+    /**
      * Descriptive name for a project.
      */
     name?: pulumi.Input<string | undefined>;
@@ -229,6 +268,10 @@ export interface ObservabilityProjectArgs {
      * Metadata request for a project with tags.
      */
     metadata?: pulumi.Input<inputs.ObservabilityProjectMetadata | undefined>;
+    /**
+     * Configuration for monitoring a project.
+     */
+    monitoring?: pulumi.Input<inputs.ObservabilityProjectMonitoring | undefined>;
     /**
      * Descriptive name for a project.
      */

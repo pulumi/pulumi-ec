@@ -9129,6 +9129,8 @@ func (o ElasticsearchProjectCredentialsPtrOutput) Username() pulumi.StringPtrOut
 type ElasticsearchProjectEndpoints struct {
 	// The endpoint to access elasticsearch.
 	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The endpoint to access the Managed OpenTelemetry Collector.
+	Ingest *string `pulumi:"ingest"`
 	// The endpoint to access kibana.
 	Kibana *string `pulumi:"kibana"`
 }
@@ -9147,6 +9149,8 @@ type ElasticsearchProjectEndpointsInput interface {
 type ElasticsearchProjectEndpointsArgs struct {
 	// The endpoint to access elasticsearch.
 	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The endpoint to access the Managed OpenTelemetry Collector.
+	Ingest pulumi.StringPtrInput `pulumi:"ingest"`
 	// The endpoint to access kibana.
 	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
 }
@@ -9233,6 +9237,11 @@ func (o ElasticsearchProjectEndpointsOutput) Elasticsearch() pulumi.StringPtrOut
 	return o.ApplyT(func(v ElasticsearchProjectEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
 }
 
+// The endpoint to access the Managed OpenTelemetry Collector.
+func (o ElasticsearchProjectEndpointsOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectEndpoints) *string { return v.Ingest }).(pulumi.StringPtrOutput)
+}
+
 // The endpoint to access kibana.
 func (o ElasticsearchProjectEndpointsOutput) Kibana() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ElasticsearchProjectEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
@@ -9269,6 +9278,16 @@ func (o ElasticsearchProjectEndpointsPtrOutput) Elasticsearch() pulumi.StringPtr
 			return nil
 		}
 		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The endpoint to access the Managed OpenTelemetry Collector.
+func (o ElasticsearchProjectEndpointsPtrOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ingest
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -9782,9 +9801,639 @@ func (o ElasticsearchProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
+type ElasticsearchProjectMonitoring struct {
+	// Configuration for project logs.
+	Logging *ElasticsearchProjectMonitoringLogging `pulumi:"logging"`
+}
+
+// ElasticsearchProjectMonitoringInput is an input type that accepts ElasticsearchProjectMonitoringArgs and ElasticsearchProjectMonitoringOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringInput` via:
+//
+//	ElasticsearchProjectMonitoringArgs{...}
+type ElasticsearchProjectMonitoringInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringOutput() ElasticsearchProjectMonitoringOutput
+	ToElasticsearchProjectMonitoringOutputWithContext(context.Context) ElasticsearchProjectMonitoringOutput
+}
+
+type ElasticsearchProjectMonitoringArgs struct {
+	// Configuration for project logs.
+	Logging ElasticsearchProjectMonitoringLoggingPtrInput `pulumi:"logging"`
+}
+
+func (ElasticsearchProjectMonitoringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoring)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectMonitoringArgs) ToElasticsearchProjectMonitoringOutput() ElasticsearchProjectMonitoringOutput {
+	return i.ToElasticsearchProjectMonitoringOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringArgs) ToElasticsearchProjectMonitoringOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringOutput)
+}
+
+func (i ElasticsearchProjectMonitoringArgs) ToElasticsearchProjectMonitoringPtrOutput() ElasticsearchProjectMonitoringPtrOutput {
+	return i.ToElasticsearchProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringArgs) ToElasticsearchProjectMonitoringPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringOutput).ToElasticsearchProjectMonitoringPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectMonitoringPtrInput is an input type that accepts ElasticsearchProjectMonitoringArgs, ElasticsearchProjectMonitoringPtr and ElasticsearchProjectMonitoringPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringPtrInput` via:
+//
+//	        ElasticsearchProjectMonitoringArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectMonitoringPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringPtrOutput() ElasticsearchProjectMonitoringPtrOutput
+	ToElasticsearchProjectMonitoringPtrOutputWithContext(context.Context) ElasticsearchProjectMonitoringPtrOutput
+}
+
+type elasticsearchProjectMonitoringPtrType ElasticsearchProjectMonitoringArgs
+
+func ElasticsearchProjectMonitoringPtr(v *ElasticsearchProjectMonitoringArgs) ElasticsearchProjectMonitoringPtrInput {
+	return (*elasticsearchProjectMonitoringPtrType)(v)
+}
+
+func (*elasticsearchProjectMonitoringPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoring)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectMonitoringPtrType) ToElasticsearchProjectMonitoringPtrOutput() ElasticsearchProjectMonitoringPtrOutput {
+	return i.ToElasticsearchProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectMonitoringPtrType) ToElasticsearchProjectMonitoringPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoring)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringOutput) ToElasticsearchProjectMonitoringOutput() ElasticsearchProjectMonitoringOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringOutput) ToElasticsearchProjectMonitoringOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringOutput) ToElasticsearchProjectMonitoringPtrOutput() ElasticsearchProjectMonitoringPtrOutput {
+	return o.ToElasticsearchProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectMonitoringOutput) ToElasticsearchProjectMonitoringPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectMonitoring) *ElasticsearchProjectMonitoring {
+		return &v
+	}).(ElasticsearchProjectMonitoringPtrOutput)
+}
+
+// Configuration for project logs.
+func (o ElasticsearchProjectMonitoringOutput) Logging() ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoring) *ElasticsearchProjectMonitoringLogging { return v.Logging }).(ElasticsearchProjectMonitoringLoggingPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoring)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringPtrOutput) ToElasticsearchProjectMonitoringPtrOutput() ElasticsearchProjectMonitoringPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringPtrOutput) ToElasticsearchProjectMonitoringPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringPtrOutput) Elem() ElasticsearchProjectMonitoringOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoring) ElasticsearchProjectMonitoring {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectMonitoring
+		return ret
+	}).(ElasticsearchProjectMonitoringOutput)
+}
+
+// Configuration for project logs.
+func (o ElasticsearchProjectMonitoringPtrOutput) Logging() ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoring) *ElasticsearchProjectMonitoringLogging {
+		if v == nil {
+			return nil
+		}
+		return v.Logging
+	}).(ElasticsearchProjectMonitoringLoggingPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLogging struct {
+	// Configuration for logs from a specific category.
+	Audit *ElasticsearchProjectMonitoringLoggingAudit `pulumi:"audit"`
+}
+
+// ElasticsearchProjectMonitoringLoggingInput is an input type that accepts ElasticsearchProjectMonitoringLoggingArgs and ElasticsearchProjectMonitoringLoggingOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringLoggingInput` via:
+//
+//	ElasticsearchProjectMonitoringLoggingArgs{...}
+type ElasticsearchProjectMonitoringLoggingInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringLoggingOutput() ElasticsearchProjectMonitoringLoggingOutput
+	ToElasticsearchProjectMonitoringLoggingOutputWithContext(context.Context) ElasticsearchProjectMonitoringLoggingOutput
+}
+
+type ElasticsearchProjectMonitoringLoggingArgs struct {
+	// Configuration for logs from a specific category.
+	Audit ElasticsearchProjectMonitoringLoggingAuditPtrInput `pulumi:"audit"`
+}
+
+func (ElasticsearchProjectMonitoringLoggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectMonitoringLoggingArgs) ToElasticsearchProjectMonitoringLoggingOutput() ElasticsearchProjectMonitoringLoggingOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringLoggingArgs) ToElasticsearchProjectMonitoringLoggingOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingOutput)
+}
+
+func (i ElasticsearchProjectMonitoringLoggingArgs) ToElasticsearchProjectMonitoringLoggingPtrOutput() ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringLoggingArgs) ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingOutput).ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectMonitoringLoggingPtrInput is an input type that accepts ElasticsearchProjectMonitoringLoggingArgs, ElasticsearchProjectMonitoringLoggingPtr and ElasticsearchProjectMonitoringLoggingPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringLoggingPtrInput` via:
+//
+//	        ElasticsearchProjectMonitoringLoggingArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectMonitoringLoggingPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringLoggingPtrOutput() ElasticsearchProjectMonitoringLoggingPtrOutput
+	ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(context.Context) ElasticsearchProjectMonitoringLoggingPtrOutput
+}
+
+type elasticsearchProjectMonitoringLoggingPtrType ElasticsearchProjectMonitoringLoggingArgs
+
+func ElasticsearchProjectMonitoringLoggingPtr(v *ElasticsearchProjectMonitoringLoggingArgs) ElasticsearchProjectMonitoringLoggingPtrInput {
+	return (*elasticsearchProjectMonitoringLoggingPtrType)(v)
+}
+
+func (*elasticsearchProjectMonitoringLoggingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectMonitoringLoggingPtrType) ToElasticsearchProjectMonitoringLoggingPtrOutput() ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectMonitoringLoggingPtrType) ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringLoggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringLoggingOutput) ToElasticsearchProjectMonitoringLoggingOutput() ElasticsearchProjectMonitoringLoggingOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingOutput) ToElasticsearchProjectMonitoringLoggingOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingOutput) ToElasticsearchProjectMonitoringLoggingPtrOutput() ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return o.ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectMonitoringLoggingOutput) ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectMonitoringLogging) *ElasticsearchProjectMonitoringLogging {
+		return &v
+	}).(ElasticsearchProjectMonitoringLoggingPtrOutput)
+}
+
+// Configuration for logs from a specific category.
+func (o ElasticsearchProjectMonitoringLoggingOutput) Audit() ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLogging) *ElasticsearchProjectMonitoringLoggingAudit {
+		return v.Audit
+	}).(ElasticsearchProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringLoggingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringLoggingPtrOutput) ToElasticsearchProjectMonitoringLoggingPtrOutput() ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingPtrOutput) ToElasticsearchProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingPtrOutput) Elem() ElasticsearchProjectMonitoringLoggingOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLogging) ElasticsearchProjectMonitoringLogging {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectMonitoringLogging
+		return ret
+	}).(ElasticsearchProjectMonitoringLoggingOutput)
+}
+
+// Configuration for logs from a specific category.
+func (o ElasticsearchProjectMonitoringLoggingPtrOutput) Audit() ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLogging) *ElasticsearchProjectMonitoringLoggingAudit {
+		if v == nil {
+			return nil
+		}
+		return v.Audit
+	}).(ElasticsearchProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingAudit struct {
+	// Configuration for destination of logs.
+	Destination ElasticsearchProjectMonitoringLoggingAuditDestination `pulumi:"destination"`
+	// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+	Enabled *bool `pulumi:"enabled"`
+	// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+	IgnoreFilterIds []string `pulumi:"ignoreFilterIds"`
+}
+
+// ElasticsearchProjectMonitoringLoggingAuditInput is an input type that accepts ElasticsearchProjectMonitoringLoggingAuditArgs and ElasticsearchProjectMonitoringLoggingAuditOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringLoggingAuditInput` via:
+//
+//	ElasticsearchProjectMonitoringLoggingAuditArgs{...}
+type ElasticsearchProjectMonitoringLoggingAuditInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringLoggingAuditOutput() ElasticsearchProjectMonitoringLoggingAuditOutput
+	ToElasticsearchProjectMonitoringLoggingAuditOutputWithContext(context.Context) ElasticsearchProjectMonitoringLoggingAuditOutput
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditArgs struct {
+	// Configuration for destination of logs.
+	Destination ElasticsearchProjectMonitoringLoggingAuditDestinationInput `pulumi:"destination"`
+	// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+	IgnoreFilterIds pulumi.StringArrayInput `pulumi:"ignoreFilterIds"`
+}
+
+func (ElasticsearchProjectMonitoringLoggingAuditArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditArgs) ToElasticsearchProjectMonitoringLoggingAuditOutput() ElasticsearchProjectMonitoringLoggingAuditOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingAuditOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditArgs) ToElasticsearchProjectMonitoringLoggingAuditOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingAuditOutput)
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditArgs) ToElasticsearchProjectMonitoringLoggingAuditPtrOutput() ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditArgs) ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingAuditOutput).ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectMonitoringLoggingAuditPtrInput is an input type that accepts ElasticsearchProjectMonitoringLoggingAuditArgs, ElasticsearchProjectMonitoringLoggingAuditPtr and ElasticsearchProjectMonitoringLoggingAuditPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringLoggingAuditPtrInput` via:
+//
+//	        ElasticsearchProjectMonitoringLoggingAuditArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectMonitoringLoggingAuditPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringLoggingAuditPtrOutput() ElasticsearchProjectMonitoringLoggingAuditPtrOutput
+	ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(context.Context) ElasticsearchProjectMonitoringLoggingAuditPtrOutput
+}
+
+type elasticsearchProjectMonitoringLoggingAuditPtrType ElasticsearchProjectMonitoringLoggingAuditArgs
+
+func ElasticsearchProjectMonitoringLoggingAuditPtr(v *ElasticsearchProjectMonitoringLoggingAuditArgs) ElasticsearchProjectMonitoringLoggingAuditPtrInput {
+	return (*elasticsearchProjectMonitoringLoggingAuditPtrType)(v)
+}
+
+func (*elasticsearchProjectMonitoringLoggingAuditPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectMonitoringLoggingAuditPtrType) ToElasticsearchProjectMonitoringLoggingAuditPtrOutput() ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectMonitoringLoggingAuditPtrType) ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringLoggingAuditOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) ToElasticsearchProjectMonitoringLoggingAuditOutput() ElasticsearchProjectMonitoringLoggingAuditOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) ToElasticsearchProjectMonitoringLoggingAuditOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) ToElasticsearchProjectMonitoringLoggingAuditPtrOutput() ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return o.ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectMonitoringLoggingAudit) *ElasticsearchProjectMonitoringLoggingAudit {
+		return &v
+	}).(ElasticsearchProjectMonitoringLoggingAuditPtrOutput)
+}
+
+// Configuration for destination of logs.
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) Destination() ElasticsearchProjectMonitoringLoggingAuditDestinationOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLoggingAudit) ElasticsearchProjectMonitoringLoggingAuditDestination {
+		return v.Destination
+	}).(ElasticsearchProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLoggingAudit) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+func (o ElasticsearchProjectMonitoringLoggingAuditOutput) IgnoreFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLoggingAudit) []string { return v.IgnoreFilterIds }).(pulumi.StringArrayOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringLoggingAuditPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditPtrOutput) ToElasticsearchProjectMonitoringLoggingAuditPtrOutput() ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditPtrOutput) ToElasticsearchProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditPtrOutput) Elem() ElasticsearchProjectMonitoringLoggingAuditOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAudit) ElasticsearchProjectMonitoringLoggingAudit {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectMonitoringLoggingAudit
+		return ret
+	}).(ElasticsearchProjectMonitoringLoggingAuditOutput)
+}
+
+// Configuration for destination of logs.
+func (o ElasticsearchProjectMonitoringLoggingAuditPtrOutput) Destination() ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAudit) *ElasticsearchProjectMonitoringLoggingAuditDestination {
+		if v == nil {
+			return nil
+		}
+		return &v.Destination
+	}).(ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+func (o ElasticsearchProjectMonitoringLoggingAuditPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+func (o ElasticsearchProjectMonitoringLoggingAuditPtrOutput) IgnoreFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAudit) []string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreFilterIds
+	}).(pulumi.StringArrayOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditDestination struct {
+	// ID of the project.
+	ProjectId string `pulumi:"projectId"`
+	// The type of the linked project
+	ProjectType string `pulumi:"projectType"`
+	// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+	Status *string `pulumi:"status"`
+}
+
+// ElasticsearchProjectMonitoringLoggingAuditDestinationInput is an input type that accepts ElasticsearchProjectMonitoringLoggingAuditDestinationArgs and ElasticsearchProjectMonitoringLoggingAuditDestinationOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringLoggingAuditDestinationInput` via:
+//
+//	ElasticsearchProjectMonitoringLoggingAuditDestinationArgs{...}
+type ElasticsearchProjectMonitoringLoggingAuditDestinationInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringLoggingAuditDestinationOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationOutput
+	ToElasticsearchProjectMonitoringLoggingAuditDestinationOutputWithContext(context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationOutput
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditDestinationArgs struct {
+	// ID of the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The type of the linked project
+	ProjectType pulumi.StringInput `pulumi:"projectType"`
+	// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (ElasticsearchProjectMonitoringLoggingAuditDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditDestinationArgs) ToElasticsearchProjectMonitoringLoggingAuditDestinationOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingAuditDestinationOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditDestinationArgs) ToElasticsearchProjectMonitoringLoggingAuditDestinationOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditDestinationArgs) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i ElasticsearchProjectMonitoringLoggingAuditDestinationArgs) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingAuditDestinationOutput).ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx)
+}
+
+// ElasticsearchProjectMonitoringLoggingAuditDestinationPtrInput is an input type that accepts ElasticsearchProjectMonitoringLoggingAuditDestinationArgs, ElasticsearchProjectMonitoringLoggingAuditDestinationPtr and ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput values.
+// You can construct a concrete instance of `ElasticsearchProjectMonitoringLoggingAuditDestinationPtrInput` via:
+//
+//	        ElasticsearchProjectMonitoringLoggingAuditDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ElasticsearchProjectMonitoringLoggingAuditDestinationPtrInput interface {
+	pulumi.Input
+
+	ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput
+	ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput
+}
+
+type elasticsearchProjectMonitoringLoggingAuditDestinationPtrType ElasticsearchProjectMonitoringLoggingAuditDestinationArgs
+
+func ElasticsearchProjectMonitoringLoggingAuditDestinationPtr(v *ElasticsearchProjectMonitoringLoggingAuditDestinationArgs) ElasticsearchProjectMonitoringLoggingAuditDestinationPtrInput {
+	return (*elasticsearchProjectMonitoringLoggingAuditDestinationPtrType)(v)
+}
+
+func (*elasticsearchProjectMonitoringLoggingAuditDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (i *elasticsearchProjectMonitoringLoggingAuditDestinationPtrType) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return i.ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *elasticsearchProjectMonitoringLoggingAuditDestinationPtrType) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditDestinationOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ToElasticsearchProjectMonitoringLoggingAuditDestinationOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ToElasticsearchProjectMonitoringLoggingAuditDestinationOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ElasticsearchProjectMonitoringLoggingAuditDestination) *ElasticsearchProjectMonitoringLoggingAuditDestination {
+		return &v
+	}).(ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+// ID of the project.
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLoggingAuditDestination) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The type of the linked project
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) ProjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLoggingAuditDestination) string { return v.ProjectType }).(pulumi.StringOutput)
+}
+
+// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectMonitoringLoggingAuditDestination) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ElasticsearchProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput() ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) ToElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o
+}
+
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) Elem() ElasticsearchProjectMonitoringLoggingAuditDestinationOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAuditDestination) ElasticsearchProjectMonitoringLoggingAuditDestination {
+		if v != nil {
+			return *v
+		}
+		var ret ElasticsearchProjectMonitoringLoggingAuditDestination
+		return ret
+	}).(ElasticsearchProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+// ID of the project.
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of the linked project
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) ProjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+func (o ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
 type ElasticsearchProjectPrivateEndpoints struct {
 	// The PrivateLink endpoint URL to access elasticsearch.
 	Elasticsearch *string `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+	Ingest *string `pulumi:"ingest"`
 	// The PrivateLink endpoint URL to access kibana.
 	Kibana *string `pulumi:"kibana"`
 }
@@ -9803,6 +10452,8 @@ type ElasticsearchProjectPrivateEndpointsInput interface {
 type ElasticsearchProjectPrivateEndpointsArgs struct {
 	// The PrivateLink endpoint URL to access elasticsearch.
 	Elasticsearch pulumi.StringPtrInput `pulumi:"elasticsearch"`
+	// The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+	Ingest pulumi.StringPtrInput `pulumi:"ingest"`
 	// The PrivateLink endpoint URL to access kibana.
 	Kibana pulumi.StringPtrInput `pulumi:"kibana"`
 }
@@ -9889,6 +10540,11 @@ func (o ElasticsearchProjectPrivateEndpointsOutput) Elasticsearch() pulumi.Strin
 	return o.ApplyT(func(v ElasticsearchProjectPrivateEndpoints) *string { return v.Elasticsearch }).(pulumi.StringPtrOutput)
 }
 
+// The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+func (o ElasticsearchProjectPrivateEndpointsOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ElasticsearchProjectPrivateEndpoints) *string { return v.Ingest }).(pulumi.StringPtrOutput)
+}
+
 // The PrivateLink endpoint URL to access kibana.
 func (o ElasticsearchProjectPrivateEndpointsOutput) Kibana() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ElasticsearchProjectPrivateEndpoints) *string { return v.Kibana }).(pulumi.StringPtrOutput)
@@ -9925,6 +10581,16 @@ func (o ElasticsearchProjectPrivateEndpointsPtrOutput) Elasticsearch() pulumi.St
 			return nil
 		}
 		return v.Elasticsearch
+	}).(pulumi.StringPtrOutput)
+}
+
+// The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+func (o ElasticsearchProjectPrivateEndpointsPtrOutput) Ingest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ElasticsearchProjectPrivateEndpoints) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ingest
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10942,6 +11608,634 @@ func (o ObservabilityProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
 		}
 		return v.Tags
 	}).(pulumi.StringMapOutput)
+}
+
+type ObservabilityProjectMonitoring struct {
+	// Configuration for project logs.
+	Logging *ObservabilityProjectMonitoringLogging `pulumi:"logging"`
+}
+
+// ObservabilityProjectMonitoringInput is an input type that accepts ObservabilityProjectMonitoringArgs and ObservabilityProjectMonitoringOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringInput` via:
+//
+//	ObservabilityProjectMonitoringArgs{...}
+type ObservabilityProjectMonitoringInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringOutput() ObservabilityProjectMonitoringOutput
+	ToObservabilityProjectMonitoringOutputWithContext(context.Context) ObservabilityProjectMonitoringOutput
+}
+
+type ObservabilityProjectMonitoringArgs struct {
+	// Configuration for project logs.
+	Logging ObservabilityProjectMonitoringLoggingPtrInput `pulumi:"logging"`
+}
+
+func (ObservabilityProjectMonitoringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoring)(nil)).Elem()
+}
+
+func (i ObservabilityProjectMonitoringArgs) ToObservabilityProjectMonitoringOutput() ObservabilityProjectMonitoringOutput {
+	return i.ToObservabilityProjectMonitoringOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringArgs) ToObservabilityProjectMonitoringOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringOutput)
+}
+
+func (i ObservabilityProjectMonitoringArgs) ToObservabilityProjectMonitoringPtrOutput() ObservabilityProjectMonitoringPtrOutput {
+	return i.ToObservabilityProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringArgs) ToObservabilityProjectMonitoringPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringOutput).ToObservabilityProjectMonitoringPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectMonitoringPtrInput is an input type that accepts ObservabilityProjectMonitoringArgs, ObservabilityProjectMonitoringPtr and ObservabilityProjectMonitoringPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringPtrInput` via:
+//
+//	        ObservabilityProjectMonitoringArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectMonitoringPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringPtrOutput() ObservabilityProjectMonitoringPtrOutput
+	ToObservabilityProjectMonitoringPtrOutputWithContext(context.Context) ObservabilityProjectMonitoringPtrOutput
+}
+
+type observabilityProjectMonitoringPtrType ObservabilityProjectMonitoringArgs
+
+func ObservabilityProjectMonitoringPtr(v *ObservabilityProjectMonitoringArgs) ObservabilityProjectMonitoringPtrInput {
+	return (*observabilityProjectMonitoringPtrType)(v)
+}
+
+func (*observabilityProjectMonitoringPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoring)(nil)).Elem()
+}
+
+func (i *observabilityProjectMonitoringPtrType) ToObservabilityProjectMonitoringPtrOutput() ObservabilityProjectMonitoringPtrOutput {
+	return i.ToObservabilityProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectMonitoringPtrType) ToObservabilityProjectMonitoringPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringPtrOutput)
+}
+
+type ObservabilityProjectMonitoringOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoring)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringOutput) ToObservabilityProjectMonitoringOutput() ObservabilityProjectMonitoringOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringOutput) ToObservabilityProjectMonitoringOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringOutput) ToObservabilityProjectMonitoringPtrOutput() ObservabilityProjectMonitoringPtrOutput {
+	return o.ToObservabilityProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectMonitoringOutput) ToObservabilityProjectMonitoringPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectMonitoring) *ObservabilityProjectMonitoring {
+		return &v
+	}).(ObservabilityProjectMonitoringPtrOutput)
+}
+
+// Configuration for project logs.
+func (o ObservabilityProjectMonitoringOutput) Logging() ObservabilityProjectMonitoringLoggingPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoring) *ObservabilityProjectMonitoringLogging { return v.Logging }).(ObservabilityProjectMonitoringLoggingPtrOutput)
+}
+
+type ObservabilityProjectMonitoringPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoring)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringPtrOutput) ToObservabilityProjectMonitoringPtrOutput() ObservabilityProjectMonitoringPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringPtrOutput) ToObservabilityProjectMonitoringPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringPtrOutput) Elem() ObservabilityProjectMonitoringOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoring) ObservabilityProjectMonitoring {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectMonitoring
+		return ret
+	}).(ObservabilityProjectMonitoringOutput)
+}
+
+// Configuration for project logs.
+func (o ObservabilityProjectMonitoringPtrOutput) Logging() ObservabilityProjectMonitoringLoggingPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoring) *ObservabilityProjectMonitoringLogging {
+		if v == nil {
+			return nil
+		}
+		return v.Logging
+	}).(ObservabilityProjectMonitoringLoggingPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLogging struct {
+	// Configuration for logs from a specific category.
+	Audit *ObservabilityProjectMonitoringLoggingAudit `pulumi:"audit"`
+}
+
+// ObservabilityProjectMonitoringLoggingInput is an input type that accepts ObservabilityProjectMonitoringLoggingArgs and ObservabilityProjectMonitoringLoggingOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringLoggingInput` via:
+//
+//	ObservabilityProjectMonitoringLoggingArgs{...}
+type ObservabilityProjectMonitoringLoggingInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringLoggingOutput() ObservabilityProjectMonitoringLoggingOutput
+	ToObservabilityProjectMonitoringLoggingOutputWithContext(context.Context) ObservabilityProjectMonitoringLoggingOutput
+}
+
+type ObservabilityProjectMonitoringLoggingArgs struct {
+	// Configuration for logs from a specific category.
+	Audit ObservabilityProjectMonitoringLoggingAuditPtrInput `pulumi:"audit"`
+}
+
+func (ObservabilityProjectMonitoringLoggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (i ObservabilityProjectMonitoringLoggingArgs) ToObservabilityProjectMonitoringLoggingOutput() ObservabilityProjectMonitoringLoggingOutput {
+	return i.ToObservabilityProjectMonitoringLoggingOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringLoggingArgs) ToObservabilityProjectMonitoringLoggingOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingOutput)
+}
+
+func (i ObservabilityProjectMonitoringLoggingArgs) ToObservabilityProjectMonitoringLoggingPtrOutput() ObservabilityProjectMonitoringLoggingPtrOutput {
+	return i.ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringLoggingArgs) ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingOutput).ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectMonitoringLoggingPtrInput is an input type that accepts ObservabilityProjectMonitoringLoggingArgs, ObservabilityProjectMonitoringLoggingPtr and ObservabilityProjectMonitoringLoggingPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringLoggingPtrInput` via:
+//
+//	        ObservabilityProjectMonitoringLoggingArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectMonitoringLoggingPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringLoggingPtrOutput() ObservabilityProjectMonitoringLoggingPtrOutput
+	ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(context.Context) ObservabilityProjectMonitoringLoggingPtrOutput
+}
+
+type observabilityProjectMonitoringLoggingPtrType ObservabilityProjectMonitoringLoggingArgs
+
+func ObservabilityProjectMonitoringLoggingPtr(v *ObservabilityProjectMonitoringLoggingArgs) ObservabilityProjectMonitoringLoggingPtrInput {
+	return (*observabilityProjectMonitoringLoggingPtrType)(v)
+}
+
+func (*observabilityProjectMonitoringLoggingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (i *observabilityProjectMonitoringLoggingPtrType) ToObservabilityProjectMonitoringLoggingPtrOutput() ObservabilityProjectMonitoringLoggingPtrOutput {
+	return i.ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectMonitoringLoggingPtrType) ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringLoggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringLoggingOutput) ToObservabilityProjectMonitoringLoggingOutput() ObservabilityProjectMonitoringLoggingOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingOutput) ToObservabilityProjectMonitoringLoggingOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingOutput) ToObservabilityProjectMonitoringLoggingPtrOutput() ObservabilityProjectMonitoringLoggingPtrOutput {
+	return o.ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectMonitoringLoggingOutput) ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectMonitoringLogging) *ObservabilityProjectMonitoringLogging {
+		return &v
+	}).(ObservabilityProjectMonitoringLoggingPtrOutput)
+}
+
+// Configuration for logs from a specific category.
+func (o ObservabilityProjectMonitoringLoggingOutput) Audit() ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLogging) *ObservabilityProjectMonitoringLoggingAudit {
+		return v.Audit
+	}).(ObservabilityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringLoggingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringLoggingPtrOutput) ToObservabilityProjectMonitoringLoggingPtrOutput() ObservabilityProjectMonitoringLoggingPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingPtrOutput) ToObservabilityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingPtrOutput) Elem() ObservabilityProjectMonitoringLoggingOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLogging) ObservabilityProjectMonitoringLogging {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectMonitoringLogging
+		return ret
+	}).(ObservabilityProjectMonitoringLoggingOutput)
+}
+
+// Configuration for logs from a specific category.
+func (o ObservabilityProjectMonitoringLoggingPtrOutput) Audit() ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLogging) *ObservabilityProjectMonitoringLoggingAudit {
+		if v == nil {
+			return nil
+		}
+		return v.Audit
+	}).(ObservabilityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingAudit struct {
+	// Configuration for destination of logs.
+	Destination ObservabilityProjectMonitoringLoggingAuditDestination `pulumi:"destination"`
+	// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+	Enabled *bool `pulumi:"enabled"`
+	// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+	IgnoreFilterIds []string `pulumi:"ignoreFilterIds"`
+}
+
+// ObservabilityProjectMonitoringLoggingAuditInput is an input type that accepts ObservabilityProjectMonitoringLoggingAuditArgs and ObservabilityProjectMonitoringLoggingAuditOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringLoggingAuditInput` via:
+//
+//	ObservabilityProjectMonitoringLoggingAuditArgs{...}
+type ObservabilityProjectMonitoringLoggingAuditInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringLoggingAuditOutput() ObservabilityProjectMonitoringLoggingAuditOutput
+	ToObservabilityProjectMonitoringLoggingAuditOutputWithContext(context.Context) ObservabilityProjectMonitoringLoggingAuditOutput
+}
+
+type ObservabilityProjectMonitoringLoggingAuditArgs struct {
+	// Configuration for destination of logs.
+	Destination ObservabilityProjectMonitoringLoggingAuditDestinationInput `pulumi:"destination"`
+	// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+	IgnoreFilterIds pulumi.StringArrayInput `pulumi:"ignoreFilterIds"`
+}
+
+func (ObservabilityProjectMonitoringLoggingAuditArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditArgs) ToObservabilityProjectMonitoringLoggingAuditOutput() ObservabilityProjectMonitoringLoggingAuditOutput {
+	return i.ToObservabilityProjectMonitoringLoggingAuditOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditArgs) ToObservabilityProjectMonitoringLoggingAuditOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingAuditOutput)
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditArgs) ToObservabilityProjectMonitoringLoggingAuditPtrOutput() ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return i.ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditArgs) ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingAuditOutput).ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectMonitoringLoggingAuditPtrInput is an input type that accepts ObservabilityProjectMonitoringLoggingAuditArgs, ObservabilityProjectMonitoringLoggingAuditPtr and ObservabilityProjectMonitoringLoggingAuditPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringLoggingAuditPtrInput` via:
+//
+//	        ObservabilityProjectMonitoringLoggingAuditArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectMonitoringLoggingAuditPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringLoggingAuditPtrOutput() ObservabilityProjectMonitoringLoggingAuditPtrOutput
+	ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Context) ObservabilityProjectMonitoringLoggingAuditPtrOutput
+}
+
+type observabilityProjectMonitoringLoggingAuditPtrType ObservabilityProjectMonitoringLoggingAuditArgs
+
+func ObservabilityProjectMonitoringLoggingAuditPtr(v *ObservabilityProjectMonitoringLoggingAuditArgs) ObservabilityProjectMonitoringLoggingAuditPtrInput {
+	return (*observabilityProjectMonitoringLoggingAuditPtrType)(v)
+}
+
+func (*observabilityProjectMonitoringLoggingAuditPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (i *observabilityProjectMonitoringLoggingAuditPtrType) ToObservabilityProjectMonitoringLoggingAuditPtrOutput() ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return i.ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectMonitoringLoggingAuditPtrType) ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingAuditOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringLoggingAuditOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) ToObservabilityProjectMonitoringLoggingAuditOutput() ObservabilityProjectMonitoringLoggingAuditOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) ToObservabilityProjectMonitoringLoggingAuditOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) ToObservabilityProjectMonitoringLoggingAuditPtrOutput() ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectMonitoringLoggingAudit) *ObservabilityProjectMonitoringLoggingAudit {
+		return &v
+	}).(ObservabilityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+// Configuration for destination of logs.
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) Destination() ObservabilityProjectMonitoringLoggingAuditDestinationOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLoggingAudit) ObservabilityProjectMonitoringLoggingAuditDestination {
+		return v.Destination
+	}).(ObservabilityProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLoggingAudit) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+func (o ObservabilityProjectMonitoringLoggingAuditOutput) IgnoreFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLoggingAudit) []string { return v.IgnoreFilterIds }).(pulumi.StringArrayOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingAuditPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringLoggingAuditPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditPtrOutput) ToObservabilityProjectMonitoringLoggingAuditPtrOutput() ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditPtrOutput) ToObservabilityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditPtrOutput) Elem() ObservabilityProjectMonitoringLoggingAuditOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAudit) ObservabilityProjectMonitoringLoggingAudit {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectMonitoringLoggingAudit
+		return ret
+	}).(ObservabilityProjectMonitoringLoggingAuditOutput)
+}
+
+// Configuration for destination of logs.
+func (o ObservabilityProjectMonitoringLoggingAuditPtrOutput) Destination() ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAudit) *ObservabilityProjectMonitoringLoggingAuditDestination {
+		if v == nil {
+			return nil
+		}
+		return &v.Destination
+	}).(ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+func (o ObservabilityProjectMonitoringLoggingAuditPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+func (o ObservabilityProjectMonitoringLoggingAuditPtrOutput) IgnoreFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAudit) []string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreFilterIds
+	}).(pulumi.StringArrayOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingAuditDestination struct {
+	// ID of the project.
+	ProjectId string `pulumi:"projectId"`
+	// The type of the linked project
+	ProjectType string `pulumi:"projectType"`
+	// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+	Status *string `pulumi:"status"`
+}
+
+// ObservabilityProjectMonitoringLoggingAuditDestinationInput is an input type that accepts ObservabilityProjectMonitoringLoggingAuditDestinationArgs and ObservabilityProjectMonitoringLoggingAuditDestinationOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringLoggingAuditDestinationInput` via:
+//
+//	ObservabilityProjectMonitoringLoggingAuditDestinationArgs{...}
+type ObservabilityProjectMonitoringLoggingAuditDestinationInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringLoggingAuditDestinationOutput() ObservabilityProjectMonitoringLoggingAuditDestinationOutput
+	ToObservabilityProjectMonitoringLoggingAuditDestinationOutputWithContext(context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationOutput
+}
+
+type ObservabilityProjectMonitoringLoggingAuditDestinationArgs struct {
+	// ID of the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The type of the linked project
+	ProjectType pulumi.StringInput `pulumi:"projectType"`
+	// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (ObservabilityProjectMonitoringLoggingAuditDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditDestinationArgs) ToObservabilityProjectMonitoringLoggingAuditDestinationOutput() ObservabilityProjectMonitoringLoggingAuditDestinationOutput {
+	return i.ToObservabilityProjectMonitoringLoggingAuditDestinationOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditDestinationArgs) ToObservabilityProjectMonitoringLoggingAuditDestinationOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditDestinationArgs) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput() ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return i.ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i ObservabilityProjectMonitoringLoggingAuditDestinationArgs) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingAuditDestinationOutput).ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx)
+}
+
+// ObservabilityProjectMonitoringLoggingAuditDestinationPtrInput is an input type that accepts ObservabilityProjectMonitoringLoggingAuditDestinationArgs, ObservabilityProjectMonitoringLoggingAuditDestinationPtr and ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput values.
+// You can construct a concrete instance of `ObservabilityProjectMonitoringLoggingAuditDestinationPtrInput` via:
+//
+//	        ObservabilityProjectMonitoringLoggingAuditDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObservabilityProjectMonitoringLoggingAuditDestinationPtrInput interface {
+	pulumi.Input
+
+	ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput() ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput
+	ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput
+}
+
+type observabilityProjectMonitoringLoggingAuditDestinationPtrType ObservabilityProjectMonitoringLoggingAuditDestinationArgs
+
+func ObservabilityProjectMonitoringLoggingAuditDestinationPtr(v *ObservabilityProjectMonitoringLoggingAuditDestinationArgs) ObservabilityProjectMonitoringLoggingAuditDestinationPtrInput {
+	return (*observabilityProjectMonitoringLoggingAuditDestinationPtrType)(v)
+}
+
+func (*observabilityProjectMonitoringLoggingAuditDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (i *observabilityProjectMonitoringLoggingAuditDestinationPtrType) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput() ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return i.ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *observabilityProjectMonitoringLoggingAuditDestinationPtrType) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingAuditDestinationOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ToObservabilityProjectMonitoringLoggingAuditDestinationOutput() ObservabilityProjectMonitoringLoggingAuditDestinationOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ToObservabilityProjectMonitoringLoggingAuditDestinationOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput() ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObservabilityProjectMonitoringLoggingAuditDestination) *ObservabilityProjectMonitoringLoggingAuditDestination {
+		return &v
+	}).(ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+// ID of the project.
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLoggingAuditDestination) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The type of the linked project
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) ProjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLoggingAuditDestination) string { return v.ProjectType }).(pulumi.StringOutput)
+}
+
+// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObservabilityProjectMonitoringLoggingAuditDestination) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObservabilityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput() ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) ToObservabilityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o
+}
+
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) Elem() ObservabilityProjectMonitoringLoggingAuditDestinationOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAuditDestination) ObservabilityProjectMonitoringLoggingAuditDestination {
+		if v != nil {
+			return *v
+		}
+		var ret ObservabilityProjectMonitoringLoggingAuditDestination
+		return ret
+	}).(ObservabilityProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+// ID of the project.
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of the linked project
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) ProjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+func (o ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObservabilityProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
 }
 
 type ObservabilityProjectPrivateEndpoints struct {
@@ -12627,6 +13921,632 @@ func (o SecurityProjectMetadataPtrOutput) Tags() pulumi.StringMapOutput {
 		}
 		return v.Tags
 	}).(pulumi.StringMapOutput)
+}
+
+type SecurityProjectMonitoring struct {
+	// Configuration for project logs.
+	Logging *SecurityProjectMonitoringLogging `pulumi:"logging"`
+}
+
+// SecurityProjectMonitoringInput is an input type that accepts SecurityProjectMonitoringArgs and SecurityProjectMonitoringOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringInput` via:
+//
+//	SecurityProjectMonitoringArgs{...}
+type SecurityProjectMonitoringInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringOutput() SecurityProjectMonitoringOutput
+	ToSecurityProjectMonitoringOutputWithContext(context.Context) SecurityProjectMonitoringOutput
+}
+
+type SecurityProjectMonitoringArgs struct {
+	// Configuration for project logs.
+	Logging SecurityProjectMonitoringLoggingPtrInput `pulumi:"logging"`
+}
+
+func (SecurityProjectMonitoringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoring)(nil)).Elem()
+}
+
+func (i SecurityProjectMonitoringArgs) ToSecurityProjectMonitoringOutput() SecurityProjectMonitoringOutput {
+	return i.ToSecurityProjectMonitoringOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringArgs) ToSecurityProjectMonitoringOutputWithContext(ctx context.Context) SecurityProjectMonitoringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringOutput)
+}
+
+func (i SecurityProjectMonitoringArgs) ToSecurityProjectMonitoringPtrOutput() SecurityProjectMonitoringPtrOutput {
+	return i.ToSecurityProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringArgs) ToSecurityProjectMonitoringPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringOutput).ToSecurityProjectMonitoringPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectMonitoringPtrInput is an input type that accepts SecurityProjectMonitoringArgs, SecurityProjectMonitoringPtr and SecurityProjectMonitoringPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringPtrInput` via:
+//
+//	        SecurityProjectMonitoringArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectMonitoringPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringPtrOutput() SecurityProjectMonitoringPtrOutput
+	ToSecurityProjectMonitoringPtrOutputWithContext(context.Context) SecurityProjectMonitoringPtrOutput
+}
+
+type securityProjectMonitoringPtrType SecurityProjectMonitoringArgs
+
+func SecurityProjectMonitoringPtr(v *SecurityProjectMonitoringArgs) SecurityProjectMonitoringPtrInput {
+	return (*securityProjectMonitoringPtrType)(v)
+}
+
+func (*securityProjectMonitoringPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoring)(nil)).Elem()
+}
+
+func (i *securityProjectMonitoringPtrType) ToSecurityProjectMonitoringPtrOutput() SecurityProjectMonitoringPtrOutput {
+	return i.ToSecurityProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectMonitoringPtrType) ToSecurityProjectMonitoringPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringPtrOutput)
+}
+
+type SecurityProjectMonitoringOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoring)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringOutput) ToSecurityProjectMonitoringOutput() SecurityProjectMonitoringOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringOutput) ToSecurityProjectMonitoringOutputWithContext(ctx context.Context) SecurityProjectMonitoringOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringOutput) ToSecurityProjectMonitoringPtrOutput() SecurityProjectMonitoringPtrOutput {
+	return o.ToSecurityProjectMonitoringPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectMonitoringOutput) ToSecurityProjectMonitoringPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectMonitoring) *SecurityProjectMonitoring {
+		return &v
+	}).(SecurityProjectMonitoringPtrOutput)
+}
+
+// Configuration for project logs.
+func (o SecurityProjectMonitoringOutput) Logging() SecurityProjectMonitoringLoggingPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoring) *SecurityProjectMonitoringLogging { return v.Logging }).(SecurityProjectMonitoringLoggingPtrOutput)
+}
+
+type SecurityProjectMonitoringPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoring)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringPtrOutput) ToSecurityProjectMonitoringPtrOutput() SecurityProjectMonitoringPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringPtrOutput) ToSecurityProjectMonitoringPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringPtrOutput) Elem() SecurityProjectMonitoringOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoring) SecurityProjectMonitoring {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectMonitoring
+		return ret
+	}).(SecurityProjectMonitoringOutput)
+}
+
+// Configuration for project logs.
+func (o SecurityProjectMonitoringPtrOutput) Logging() SecurityProjectMonitoringLoggingPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoring) *SecurityProjectMonitoringLogging {
+		if v == nil {
+			return nil
+		}
+		return v.Logging
+	}).(SecurityProjectMonitoringLoggingPtrOutput)
+}
+
+type SecurityProjectMonitoringLogging struct {
+	// Configuration for logs from a specific category.
+	Audit *SecurityProjectMonitoringLoggingAudit `pulumi:"audit"`
+}
+
+// SecurityProjectMonitoringLoggingInput is an input type that accepts SecurityProjectMonitoringLoggingArgs and SecurityProjectMonitoringLoggingOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringLoggingInput` via:
+//
+//	SecurityProjectMonitoringLoggingArgs{...}
+type SecurityProjectMonitoringLoggingInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringLoggingOutput() SecurityProjectMonitoringLoggingOutput
+	ToSecurityProjectMonitoringLoggingOutputWithContext(context.Context) SecurityProjectMonitoringLoggingOutput
+}
+
+type SecurityProjectMonitoringLoggingArgs struct {
+	// Configuration for logs from a specific category.
+	Audit SecurityProjectMonitoringLoggingAuditPtrInput `pulumi:"audit"`
+}
+
+func (SecurityProjectMonitoringLoggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (i SecurityProjectMonitoringLoggingArgs) ToSecurityProjectMonitoringLoggingOutput() SecurityProjectMonitoringLoggingOutput {
+	return i.ToSecurityProjectMonitoringLoggingOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringLoggingArgs) ToSecurityProjectMonitoringLoggingOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingOutput)
+}
+
+func (i SecurityProjectMonitoringLoggingArgs) ToSecurityProjectMonitoringLoggingPtrOutput() SecurityProjectMonitoringLoggingPtrOutput {
+	return i.ToSecurityProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringLoggingArgs) ToSecurityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingOutput).ToSecurityProjectMonitoringLoggingPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectMonitoringLoggingPtrInput is an input type that accepts SecurityProjectMonitoringLoggingArgs, SecurityProjectMonitoringLoggingPtr and SecurityProjectMonitoringLoggingPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringLoggingPtrInput` via:
+//
+//	        SecurityProjectMonitoringLoggingArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectMonitoringLoggingPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringLoggingPtrOutput() SecurityProjectMonitoringLoggingPtrOutput
+	ToSecurityProjectMonitoringLoggingPtrOutputWithContext(context.Context) SecurityProjectMonitoringLoggingPtrOutput
+}
+
+type securityProjectMonitoringLoggingPtrType SecurityProjectMonitoringLoggingArgs
+
+func SecurityProjectMonitoringLoggingPtr(v *SecurityProjectMonitoringLoggingArgs) SecurityProjectMonitoringLoggingPtrInput {
+	return (*securityProjectMonitoringLoggingPtrType)(v)
+}
+
+func (*securityProjectMonitoringLoggingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (i *securityProjectMonitoringLoggingPtrType) ToSecurityProjectMonitoringLoggingPtrOutput() SecurityProjectMonitoringLoggingPtrOutput {
+	return i.ToSecurityProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectMonitoringLoggingPtrType) ToSecurityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingPtrOutput)
+}
+
+type SecurityProjectMonitoringLoggingOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringLoggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringLoggingOutput) ToSecurityProjectMonitoringLoggingOutput() SecurityProjectMonitoringLoggingOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingOutput) ToSecurityProjectMonitoringLoggingOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingOutput) ToSecurityProjectMonitoringLoggingPtrOutput() SecurityProjectMonitoringLoggingPtrOutput {
+	return o.ToSecurityProjectMonitoringLoggingPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectMonitoringLoggingOutput) ToSecurityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectMonitoringLogging) *SecurityProjectMonitoringLogging {
+		return &v
+	}).(SecurityProjectMonitoringLoggingPtrOutput)
+}
+
+// Configuration for logs from a specific category.
+func (o SecurityProjectMonitoringLoggingOutput) Audit() SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLogging) *SecurityProjectMonitoringLoggingAudit { return v.Audit }).(SecurityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type SecurityProjectMonitoringLoggingPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringLoggingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoringLogging)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringLoggingPtrOutput) ToSecurityProjectMonitoringLoggingPtrOutput() SecurityProjectMonitoringLoggingPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingPtrOutput) ToSecurityProjectMonitoringLoggingPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingPtrOutput) Elem() SecurityProjectMonitoringLoggingOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLogging) SecurityProjectMonitoringLogging {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectMonitoringLogging
+		return ret
+	}).(SecurityProjectMonitoringLoggingOutput)
+}
+
+// Configuration for logs from a specific category.
+func (o SecurityProjectMonitoringLoggingPtrOutput) Audit() SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLogging) *SecurityProjectMonitoringLoggingAudit {
+		if v == nil {
+			return nil
+		}
+		return v.Audit
+	}).(SecurityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type SecurityProjectMonitoringLoggingAudit struct {
+	// Configuration for destination of logs.
+	Destination SecurityProjectMonitoringLoggingAuditDestination `pulumi:"destination"`
+	// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+	Enabled *bool `pulumi:"enabled"`
+	// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+	IgnoreFilterIds []string `pulumi:"ignoreFilterIds"`
+}
+
+// SecurityProjectMonitoringLoggingAuditInput is an input type that accepts SecurityProjectMonitoringLoggingAuditArgs and SecurityProjectMonitoringLoggingAuditOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringLoggingAuditInput` via:
+//
+//	SecurityProjectMonitoringLoggingAuditArgs{...}
+type SecurityProjectMonitoringLoggingAuditInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringLoggingAuditOutput() SecurityProjectMonitoringLoggingAuditOutput
+	ToSecurityProjectMonitoringLoggingAuditOutputWithContext(context.Context) SecurityProjectMonitoringLoggingAuditOutput
+}
+
+type SecurityProjectMonitoringLoggingAuditArgs struct {
+	// Configuration for destination of logs.
+	Destination SecurityProjectMonitoringLoggingAuditDestinationInput `pulumi:"destination"`
+	// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+	IgnoreFilterIds pulumi.StringArrayInput `pulumi:"ignoreFilterIds"`
+}
+
+func (SecurityProjectMonitoringLoggingAuditArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (i SecurityProjectMonitoringLoggingAuditArgs) ToSecurityProjectMonitoringLoggingAuditOutput() SecurityProjectMonitoringLoggingAuditOutput {
+	return i.ToSecurityProjectMonitoringLoggingAuditOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringLoggingAuditArgs) ToSecurityProjectMonitoringLoggingAuditOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingAuditOutput)
+}
+
+func (i SecurityProjectMonitoringLoggingAuditArgs) ToSecurityProjectMonitoringLoggingAuditPtrOutput() SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return i.ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringLoggingAuditArgs) ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingAuditOutput).ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectMonitoringLoggingAuditPtrInput is an input type that accepts SecurityProjectMonitoringLoggingAuditArgs, SecurityProjectMonitoringLoggingAuditPtr and SecurityProjectMonitoringLoggingAuditPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringLoggingAuditPtrInput` via:
+//
+//	        SecurityProjectMonitoringLoggingAuditArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectMonitoringLoggingAuditPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringLoggingAuditPtrOutput() SecurityProjectMonitoringLoggingAuditPtrOutput
+	ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Context) SecurityProjectMonitoringLoggingAuditPtrOutput
+}
+
+type securityProjectMonitoringLoggingAuditPtrType SecurityProjectMonitoringLoggingAuditArgs
+
+func SecurityProjectMonitoringLoggingAuditPtr(v *SecurityProjectMonitoringLoggingAuditArgs) SecurityProjectMonitoringLoggingAuditPtrInput {
+	return (*securityProjectMonitoringLoggingAuditPtrType)(v)
+}
+
+func (*securityProjectMonitoringLoggingAuditPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (i *securityProjectMonitoringLoggingAuditPtrType) ToSecurityProjectMonitoringLoggingAuditPtrOutput() SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return i.ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectMonitoringLoggingAuditPtrType) ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+type SecurityProjectMonitoringLoggingAuditOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringLoggingAuditOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringLoggingAuditOutput) ToSecurityProjectMonitoringLoggingAuditOutput() SecurityProjectMonitoringLoggingAuditOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditOutput) ToSecurityProjectMonitoringLoggingAuditOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditOutput) ToSecurityProjectMonitoringLoggingAuditPtrOutput() SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectMonitoringLoggingAuditOutput) ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectMonitoringLoggingAudit) *SecurityProjectMonitoringLoggingAudit {
+		return &v
+	}).(SecurityProjectMonitoringLoggingAuditPtrOutput)
+}
+
+// Configuration for destination of logs.
+func (o SecurityProjectMonitoringLoggingAuditOutput) Destination() SecurityProjectMonitoringLoggingAuditDestinationOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLoggingAudit) SecurityProjectMonitoringLoggingAuditDestination {
+		return v.Destination
+	}).(SecurityProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+func (o SecurityProjectMonitoringLoggingAuditOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLoggingAudit) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+func (o SecurityProjectMonitoringLoggingAuditOutput) IgnoreFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLoggingAudit) []string { return v.IgnoreFilterIds }).(pulumi.StringArrayOutput)
+}
+
+type SecurityProjectMonitoringLoggingAuditPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringLoggingAuditPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoringLoggingAudit)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringLoggingAuditPtrOutput) ToSecurityProjectMonitoringLoggingAuditPtrOutput() SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditPtrOutput) ToSecurityProjectMonitoringLoggingAuditPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditPtrOutput) Elem() SecurityProjectMonitoringLoggingAuditOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAudit) SecurityProjectMonitoringLoggingAudit {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectMonitoringLoggingAudit
+		return ret
+	}).(SecurityProjectMonitoringLoggingAuditOutput)
+}
+
+// Configuration for destination of logs.
+func (o SecurityProjectMonitoringLoggingAuditPtrOutput) Destination() SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAudit) *SecurityProjectMonitoringLoggingAuditDestination {
+		if v == nil {
+			return nil
+		}
+		return &v.Destination
+	}).(SecurityProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+// When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+func (o SecurityProjectMonitoringLoggingAuditPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+func (o SecurityProjectMonitoringLoggingAuditPtrOutput) IgnoreFilterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAudit) []string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreFilterIds
+	}).(pulumi.StringArrayOutput)
+}
+
+type SecurityProjectMonitoringLoggingAuditDestination struct {
+	// ID of the project.
+	ProjectId string `pulumi:"projectId"`
+	// The type of the linked project
+	ProjectType string `pulumi:"projectType"`
+	// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+	Status *string `pulumi:"status"`
+}
+
+// SecurityProjectMonitoringLoggingAuditDestinationInput is an input type that accepts SecurityProjectMonitoringLoggingAuditDestinationArgs and SecurityProjectMonitoringLoggingAuditDestinationOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringLoggingAuditDestinationInput` via:
+//
+//	SecurityProjectMonitoringLoggingAuditDestinationArgs{...}
+type SecurityProjectMonitoringLoggingAuditDestinationInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringLoggingAuditDestinationOutput() SecurityProjectMonitoringLoggingAuditDestinationOutput
+	ToSecurityProjectMonitoringLoggingAuditDestinationOutputWithContext(context.Context) SecurityProjectMonitoringLoggingAuditDestinationOutput
+}
+
+type SecurityProjectMonitoringLoggingAuditDestinationArgs struct {
+	// ID of the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The type of the linked project
+	ProjectType pulumi.StringInput `pulumi:"projectType"`
+	// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (SecurityProjectMonitoringLoggingAuditDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (i SecurityProjectMonitoringLoggingAuditDestinationArgs) ToSecurityProjectMonitoringLoggingAuditDestinationOutput() SecurityProjectMonitoringLoggingAuditDestinationOutput {
+	return i.ToSecurityProjectMonitoringLoggingAuditDestinationOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringLoggingAuditDestinationArgs) ToSecurityProjectMonitoringLoggingAuditDestinationOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+func (i SecurityProjectMonitoringLoggingAuditDestinationArgs) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutput() SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return i.ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i SecurityProjectMonitoringLoggingAuditDestinationArgs) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingAuditDestinationOutput).ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx)
+}
+
+// SecurityProjectMonitoringLoggingAuditDestinationPtrInput is an input type that accepts SecurityProjectMonitoringLoggingAuditDestinationArgs, SecurityProjectMonitoringLoggingAuditDestinationPtr and SecurityProjectMonitoringLoggingAuditDestinationPtrOutput values.
+// You can construct a concrete instance of `SecurityProjectMonitoringLoggingAuditDestinationPtrInput` via:
+//
+//	        SecurityProjectMonitoringLoggingAuditDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecurityProjectMonitoringLoggingAuditDestinationPtrInput interface {
+	pulumi.Input
+
+	ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutput() SecurityProjectMonitoringLoggingAuditDestinationPtrOutput
+	ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Context) SecurityProjectMonitoringLoggingAuditDestinationPtrOutput
+}
+
+type securityProjectMonitoringLoggingAuditDestinationPtrType SecurityProjectMonitoringLoggingAuditDestinationArgs
+
+func SecurityProjectMonitoringLoggingAuditDestinationPtr(v *SecurityProjectMonitoringLoggingAuditDestinationArgs) SecurityProjectMonitoringLoggingAuditDestinationPtrInput {
+	return (*securityProjectMonitoringLoggingAuditDestinationPtrType)(v)
+}
+
+func (*securityProjectMonitoringLoggingAuditDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (i *securityProjectMonitoringLoggingAuditDestinationPtrType) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutput() SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return i.ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *securityProjectMonitoringLoggingAuditDestinationPtrType) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+type SecurityProjectMonitoringLoggingAuditDestinationOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringLoggingAuditDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) ToSecurityProjectMonitoringLoggingAuditDestinationOutput() SecurityProjectMonitoringLoggingAuditDestinationOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) ToSecurityProjectMonitoringLoggingAuditDestinationOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditDestinationOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutput() SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityProjectMonitoringLoggingAuditDestination) *SecurityProjectMonitoringLoggingAuditDestination {
+		return &v
+	}).(SecurityProjectMonitoringLoggingAuditDestinationPtrOutput)
+}
+
+// ID of the project.
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLoggingAuditDestination) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The type of the linked project
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) ProjectType() pulumi.StringOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLoggingAuditDestination) string { return v.ProjectType }).(pulumi.StringOutput)
+}
+
+// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+func (o SecurityProjectMonitoringLoggingAuditDestinationOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityProjectMonitoringLoggingAuditDestination) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type SecurityProjectMonitoringLoggingAuditDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityProjectMonitoringLoggingAuditDestination)(nil)).Elem()
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutput() SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) ToSecurityProjectMonitoringLoggingAuditDestinationPtrOutputWithContext(ctx context.Context) SecurityProjectMonitoringLoggingAuditDestinationPtrOutput {
+	return o
+}
+
+func (o SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) Elem() SecurityProjectMonitoringLoggingAuditDestinationOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAuditDestination) SecurityProjectMonitoringLoggingAuditDestination {
+		if v != nil {
+			return *v
+		}
+		var ret SecurityProjectMonitoringLoggingAuditDestination
+		return ret
+	}).(SecurityProjectMonitoringLoggingAuditDestinationOutput)
+}
+
+// ID of the project.
+func (o SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of the linked project
+func (o SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) ProjectType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+func (o SecurityProjectMonitoringLoggingAuditDestinationPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityProjectMonitoringLoggingAuditDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
 }
 
 type SecurityProjectPrivateEndpoints struct {
@@ -18912,6 +20832,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectLinkedProjectsMapInput)(nil)).Elem(), ElasticsearchProjectLinkedProjectsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMetadataPtrInput)(nil)).Elem(), ElasticsearchProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringInput)(nil)).Elem(), ElasticsearchProjectMonitoringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringPtrInput)(nil)).Elem(), ElasticsearchProjectMonitoringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingInput)(nil)).Elem(), ElasticsearchProjectMonitoringLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingPtrInput)(nil)).Elem(), ElasticsearchProjectMonitoringLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAuditInput)(nil)).Elem(), ElasticsearchProjectMonitoringLoggingAuditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAuditPtrInput)(nil)).Elem(), ElasticsearchProjectMonitoringLoggingAuditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAuditDestinationInput)(nil)).Elem(), ElasticsearchProjectMonitoringLoggingAuditDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectMonitoringLoggingAuditDestinationPtrInput)(nil)).Elem(), ElasticsearchProjectMonitoringLoggingAuditDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectPrivateEndpointsInput)(nil)).Elem(), ElasticsearchProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectPrivateEndpointsPtrInput)(nil)).Elem(), ElasticsearchProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ElasticsearchProjectSearchLakeInput)(nil)).Elem(), ElasticsearchProjectSearchLakeArgs{})
@@ -18926,6 +20854,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectLinkedProjectsMapInput)(nil)).Elem(), ObservabilityProjectLinkedProjectsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMetadataPtrInput)(nil)).Elem(), ObservabilityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringInput)(nil)).Elem(), ObservabilityProjectMonitoringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringPtrInput)(nil)).Elem(), ObservabilityProjectMonitoringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringLoggingInput)(nil)).Elem(), ObservabilityProjectMonitoringLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringLoggingPtrInput)(nil)).Elem(), ObservabilityProjectMonitoringLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAuditInput)(nil)).Elem(), ObservabilityProjectMonitoringLoggingAuditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAuditPtrInput)(nil)).Elem(), ObservabilityProjectMonitoringLoggingAuditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAuditDestinationInput)(nil)).Elem(), ObservabilityProjectMonitoringLoggingAuditDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectMonitoringLoggingAuditDestinationPtrInput)(nil)).Elem(), ObservabilityProjectMonitoringLoggingAuditDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectPrivateEndpointsInput)(nil)).Elem(), ObservabilityProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObservabilityProjectPrivateEndpointsPtrInput)(nil)).Elem(), ObservabilityProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationMembersInput)(nil)).Elem(), OrganizationMembersArgs{})
@@ -18948,6 +20884,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectLinkedProjectsMapInput)(nil)).Elem(), SecurityProjectLinkedProjectsMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMetadataPtrInput)(nil)).Elem(), SecurityProjectMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringInput)(nil)).Elem(), SecurityProjectMonitoringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringPtrInput)(nil)).Elem(), SecurityProjectMonitoringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringLoggingInput)(nil)).Elem(), SecurityProjectMonitoringLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringLoggingPtrInput)(nil)).Elem(), SecurityProjectMonitoringLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringLoggingAuditInput)(nil)).Elem(), SecurityProjectMonitoringLoggingAuditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringLoggingAuditPtrInput)(nil)).Elem(), SecurityProjectMonitoringLoggingAuditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringLoggingAuditDestinationInput)(nil)).Elem(), SecurityProjectMonitoringLoggingAuditDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectMonitoringLoggingAuditDestinationPtrInput)(nil)).Elem(), SecurityProjectMonitoringLoggingAuditDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectPrivateEndpointsInput)(nil)).Elem(), SecurityProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectPrivateEndpointsPtrInput)(nil)).Elem(), SecurityProjectPrivateEndpointsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityProjectProductTypeInput)(nil)).Elem(), SecurityProjectProductTypeArgs{})
@@ -19113,6 +21057,14 @@ func init() {
 	pulumi.RegisterOutputType(ElasticsearchProjectLinkedProjectsMapOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringLoggingOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringLoggingPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringLoggingAuditOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringLoggingAuditPtrOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringLoggingAuditDestinationOutput{})
+	pulumi.RegisterOutputType(ElasticsearchProjectMonitoringLoggingAuditDestinationPtrOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectPrivateEndpointsOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectPrivateEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(ElasticsearchProjectSearchLakeOutput{})
@@ -19127,6 +21079,14 @@ func init() {
 	pulumi.RegisterOutputType(ObservabilityProjectLinkedProjectsMapOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringLoggingOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringLoggingPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringLoggingAuditOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringLoggingAuditPtrOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringLoggingAuditDestinationOutput{})
+	pulumi.RegisterOutputType(ObservabilityProjectMonitoringLoggingAuditDestinationPtrOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectPrivateEndpointsOutput{})
 	pulumi.RegisterOutputType(ObservabilityProjectPrivateEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(OrganizationMembersOutput{})
@@ -19149,6 +21109,14 @@ func init() {
 	pulumi.RegisterOutputType(SecurityProjectLinkedProjectsMapOutput{})
 	pulumi.RegisterOutputType(SecurityProjectMetadataOutput{})
 	pulumi.RegisterOutputType(SecurityProjectMetadataPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringLoggingOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringLoggingPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringLoggingAuditOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringLoggingAuditPtrOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringLoggingAuditDestinationOutput{})
+	pulumi.RegisterOutputType(SecurityProjectMonitoringLoggingAuditDestinationPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectPrivateEndpointsOutput{})
 	pulumi.RegisterOutputType(SecurityProjectPrivateEndpointsPtrOutput{})
 	pulumi.RegisterOutputType(SecurityProjectProductTypeOutput{})

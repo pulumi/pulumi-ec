@@ -61,6 +61,10 @@
                 "description": "API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.",
                 "secret": true
             },
+            "caCert": {
+                "type": "string",
+                "description": "Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable."
+            },
             "endpoint": {
                 "type": "string",
                 "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\"."
@@ -77,6 +81,14 @@
             "timeout": {
                 "type": "string",
                 "description": "Timeout used for individual HTTP calls. Defaults to \"1m\"."
+            },
+            "tlsCert": {
+                "type": "string",
+                "description": "Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable."
+            },
+            "tlsKey": {
+                "type": "string",
+                "description": "Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable."
             },
             "username": {
                 "type": "string",
@@ -177,19 +189,23 @@
                 },
                 "userSettingsJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 }
             },
             "type": "object",
@@ -472,19 +488,23 @@
                 },
                 "userSettingsJson": {
                     "type": "string",
-                    "description": "JSON-formatted user level \"elasticsearch.yml\" setting overrides\n"
+                    "description": "JSON-formatted user level \"elasticsearch.yml\" setting overrides\n",
+                    "secret": true
                 },
                 "userSettingsOverrideJson": {
                     "type": "string",
-                    "description": "JSON-formatted admin (ECE) level \"elasticsearch.yml\" setting overrides\n"
+                    "description": "JSON-formatted admin (ECE) level \"elasticsearch.yml\" setting overrides\n",
+                    "secret": true
                 },
                 "userSettingsOverrideYaml": {
                     "type": "string",
-                    "description": "YAML-formatted admin (ECE) level \"elasticsearch.yml\" setting overrides\n"
+                    "description": "YAML-formatted admin (ECE) level \"elasticsearch.yml\" setting overrides\n",
+                    "secret": true
                 },
                 "userSettingsYaml": {
                     "type": "string",
-                    "description": "YAML-formatted user level \"elasticsearch.yml\" setting overrides\n"
+                    "description": "YAML-formatted user level \"elasticsearch.yml\" setting overrides\n",
+                    "secret": true
                 }
             },
             "type": "object",
@@ -1533,19 +1553,23 @@
                 },
                 "userSettingsJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 }
             },
             "type": "object"
@@ -1635,19 +1659,23 @@
                 },
                 "userSettingsJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 }
             },
             "type": "object",
@@ -1758,19 +1786,23 @@
                 },
                 "userSettingsJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*yaml' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (This field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideJson": {
                     "type": "string",
-                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary JSON object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*yaml' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsOverrideYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing ECE admins owners to set clusters' parameters (only one of this and 'user*settings*override*json' is allowed), ie in addition to the documented 'system*settings'. (This field together with 'system*settings' and 'user*settings*' defines the total set of resource settings)\n",
+                    "secret": true
                 },
                 "userSettingsYaml": {
                     "type": "string",
-                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n"
+                    "description": "An arbitrary YAML object allowing (non-admin) cluster owners to set their parameters (only one of this and 'user*settings*json' is allowed), provided they are on the whitelist ('user*settings*whitelist') and not on the blacklist ('user*settings*blacklist'). (These field together with 'user*settings*override*' and 'system_settings' defines the total set of resource settings)\n",
+                    "secret": true
                 }
             },
             "type": "object"
@@ -1873,6 +1905,10 @@
                     "type": "string",
                     "description": "The endpoint to access elasticsearch.\n"
                 },
+                "ingest": {
+                    "type": "string",
+                    "description": "The endpoint to access the Managed OpenTelemetry Collector.\n"
+                },
                 "kibana": {
                     "type": "string",
                     "description": "The endpoint to access kibana.\n"
@@ -1883,6 +1919,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "elasticsearch",
+                        "ingest",
                         "kibana"
                     ]
                 }
@@ -1981,11 +2018,94 @@
                 }
             }
         },
+        "ec:index/ElasticsearchProjectMonitoring:ElasticsearchProjectMonitoring": {
+            "properties": {
+                "logging": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMonitoringLogging:ElasticsearchProjectMonitoringLogging",
+                    "description": "Configuration for project logs.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/ElasticsearchProjectMonitoringLogging:ElasticsearchProjectMonitoringLogging": {
+            "properties": {
+                "audit": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMonitoringLoggingAudit:ElasticsearchProjectMonitoringLoggingAudit",
+                    "description": "Configuration for logs from a specific category.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/ElasticsearchProjectMonitoringLoggingAudit:ElasticsearchProjectMonitoringLoggingAudit": {
+            "properties": {
+                "destination": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMonitoringLoggingAuditDestination:ElasticsearchProjectMonitoringLoggingAuditDestination",
+                    "description": "Configuration for destination of logs.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.\n"
+                },
+                "ignoreFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "destination",
+                        "enabled"
+                    ]
+                }
+            }
+        },
+        "ec:index/ElasticsearchProjectMonitoringLoggingAuditDestination:ElasticsearchProjectMonitoringLoggingAuditDestination": {
+            "properties": {
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of the project.\n"
+                },
+                "projectType": {
+                    "type": "string",
+                    "description": "The type of the linked project\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The state of log delivery to this destination. Controlled by the system and read-only: it is set to \u003cspan pulumi-lang-nodejs=\"`suspended`\" pulumi-lang-dotnet=\"`Suspended`\" pulumi-lang-go=\"`suspended`\" pulumi-lang-python=\"`suspended`\" pulumi-lang-yaml=\"`suspended`\" pulumi-lang-java=\"`suspended`\" pulumi-lang-hcl=\"`suspended`\"\u003e`suspended`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`deleted`\" pulumi-lang-dotnet=\"`Deleted`\" pulumi-lang-go=\"`deleted`\" pulumi-lang-python=\"`deleted`\" pulumi-lang-yaml=\"`deleted`\" pulumi-lang-java=\"`deleted`\" pulumi-lang-hcl=\"`deleted`\"\u003e`deleted`\u003c/span\u003e when the destination project is suspended or deleted. Logs are only delivered when this is \u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\" pulumi-lang-hcl=\"`enabled`\"\u003e`enabled`\u003c/span\u003e and the logging category's \u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\" pulumi-lang-hcl=\"`enabled`\"\u003e`enabled`\u003c/span\u003e flag is true.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projectId",
+                "projectType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projectId",
+                        "projectType",
+                        "status"
+                    ]
+                }
+            }
+        },
         "ec:index/ElasticsearchProjectPrivateEndpoints:ElasticsearchProjectPrivateEndpoints": {
             "properties": {
                 "elasticsearch": {
                     "type": "string",
                     "description": "The PrivateLink endpoint URL to access elasticsearch.\n"
+                },
+                "ingest": {
+                    "type": "string",
+                    "description": "The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.\n"
                 },
                 "kibana": {
                     "type": "string",
@@ -1997,6 +2117,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "elasticsearch",
+                        "ingest",
                         "kibana"
                     ]
                 }
@@ -2165,6 +2286,85 @@
                         "suspendedReason",
                         "systemTags",
                         "tags"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectMonitoring:ObservabilityProjectMonitoring": {
+            "properties": {
+                "logging": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMonitoringLogging:ObservabilityProjectMonitoringLogging",
+                    "description": "Configuration for project logs.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/ObservabilityProjectMonitoringLogging:ObservabilityProjectMonitoringLogging": {
+            "properties": {
+                "audit": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMonitoringLoggingAudit:ObservabilityProjectMonitoringLoggingAudit",
+                    "description": "Configuration for logs from a specific category.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/ObservabilityProjectMonitoringLoggingAudit:ObservabilityProjectMonitoringLoggingAudit": {
+            "properties": {
+                "destination": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMonitoringLoggingAuditDestination:ObservabilityProjectMonitoringLoggingAuditDestination",
+                    "description": "Configuration for destination of logs.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.\n"
+                },
+                "ignoreFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "destination",
+                        "enabled"
+                    ]
+                }
+            }
+        },
+        "ec:index/ObservabilityProjectMonitoringLoggingAuditDestination:ObservabilityProjectMonitoringLoggingAuditDestination": {
+            "properties": {
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of the project.\n"
+                },
+                "projectType": {
+                    "type": "string",
+                    "description": "The type of the linked project\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The state of log delivery to this destination. Controlled by the system and read-only: it is set to \u003cspan pulumi-lang-nodejs=\"`suspended`\" pulumi-lang-dotnet=\"`Suspended`\" pulumi-lang-go=\"`suspended`\" pulumi-lang-python=\"`suspended`\" pulumi-lang-yaml=\"`suspended`\" pulumi-lang-java=\"`suspended`\" pulumi-lang-hcl=\"`suspended`\"\u003e`suspended`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`deleted`\" pulumi-lang-dotnet=\"`Deleted`\" pulumi-lang-go=\"`deleted`\" pulumi-lang-python=\"`deleted`\" pulumi-lang-yaml=\"`deleted`\" pulumi-lang-java=\"`deleted`\" pulumi-lang-hcl=\"`deleted`\"\u003e`deleted`\u003c/span\u003e when the destination project is suspended or deleted. Logs are only delivered when this is \u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\" pulumi-lang-hcl=\"`enabled`\"\u003e`enabled`\u003c/span\u003e and the logging category's \u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\" pulumi-lang-hcl=\"`enabled`\"\u003e`enabled`\u003c/span\u003e flag is true.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projectId",
+                "projectType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projectId",
+                        "projectType",
+                        "status"
                     ]
                 }
             }
@@ -2518,6 +2718,85 @@
                         "suspendedReason",
                         "systemTags",
                         "tags"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectMonitoring:SecurityProjectMonitoring": {
+            "properties": {
+                "logging": {
+                    "$ref": "#/types/ec:index/SecurityProjectMonitoringLogging:SecurityProjectMonitoringLogging",
+                    "description": "Configuration for project logs.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/SecurityProjectMonitoringLogging:SecurityProjectMonitoringLogging": {
+            "properties": {
+                "audit": {
+                    "$ref": "#/types/ec:index/SecurityProjectMonitoringLoggingAudit:SecurityProjectMonitoringLoggingAudit",
+                    "description": "Configuration for logs from a specific category.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ec:index/SecurityProjectMonitoringLoggingAudit:SecurityProjectMonitoringLoggingAudit": {
+            "properties": {
+                "destination": {
+                    "$ref": "#/types/ec:index/SecurityProjectMonitoringLoggingAuditDestination:SecurityProjectMonitoringLoggingAuditDestination",
+                    "description": "Configuration for destination of logs.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.\n"
+                },
+                "ignoreFilterIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "destination",
+                        "enabled"
+                    ]
+                }
+            }
+        },
+        "ec:index/SecurityProjectMonitoringLoggingAuditDestination:SecurityProjectMonitoringLoggingAuditDestination": {
+            "properties": {
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of the project.\n"
+                },
+                "projectType": {
+                    "type": "string",
+                    "description": "The type of the linked project\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The state of log delivery to this destination. Controlled by the system and read-only: it is set to \u003cspan pulumi-lang-nodejs=\"`suspended`\" pulumi-lang-dotnet=\"`Suspended`\" pulumi-lang-go=\"`suspended`\" pulumi-lang-python=\"`suspended`\" pulumi-lang-yaml=\"`suspended`\" pulumi-lang-java=\"`suspended`\" pulumi-lang-hcl=\"`suspended`\"\u003e`suspended`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`deleted`\" pulumi-lang-dotnet=\"`Deleted`\" pulumi-lang-go=\"`deleted`\" pulumi-lang-python=\"`deleted`\" pulumi-lang-yaml=\"`deleted`\" pulumi-lang-java=\"`deleted`\" pulumi-lang-hcl=\"`deleted`\"\u003e`deleted`\u003c/span\u003e when the destination project is suspended or deleted. Logs are only delivered when this is \u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\" pulumi-lang-hcl=\"`enabled`\"\u003e`enabled`\u003c/span\u003e and the logging category's \u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\" pulumi-lang-hcl=\"`enabled`\"\u003e`enabled`\u003c/span\u003e flag is true.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projectId",
+                "projectType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projectId",
+                        "projectType",
+                        "status"
                     ]
                 }
             }
@@ -4465,6 +4744,10 @@
                 "description": "API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.",
                 "secret": true
             },
+            "caCert": {
+                "type": "string",
+                "description": "Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable."
+            },
             "endpoint": {
                 "type": "string",
                 "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\"."
@@ -4481,6 +4764,14 @@
             "timeout": {
                 "type": "string",
                 "description": "Timeout used for individual HTTP calls. Defaults to \"1m\"."
+            },
+            "tlsCert": {
+                "type": "string",
+                "description": "Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable."
+            },
+            "tlsKey": {
+                "type": "string",
+                "description": "Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable."
             },
             "username": {
                 "type": "string",
@@ -4505,6 +4796,10 @@
                 "description": "API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.",
                 "secret": true
             },
+            "caCert": {
+                "type": "string",
+                "description": "Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable."
+            },
             "endpoint": {
                 "type": "string",
                 "description": "Endpoint where the terraform provider will point to. Defaults to \"https://api.elastic-cloud.com\"."
@@ -4521,6 +4816,14 @@
             "timeout": {
                 "type": "string",
                 "description": "Timeout used for individual HTTP calls. Defaults to \"1m\"."
+            },
+            "tlsCert": {
+                "type": "string",
+                "description": "Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable."
+            },
+            "tlsKey": {
+                "type": "string",
+                "description": "Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable."
             },
             "username": {
                 "type": "string",
@@ -5184,7 +5487,7 @@
             }
         },
         "ec:index/elasticsearchProject:ElasticsearchProject": {
-            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ElasticsearchProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ElasticsearchProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.ElasticsearchProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewElasticsearchProject(ctx, \"my_project\", \u0026ec.ElasticsearchProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\nresource \"ec_elasticsearch_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ElasticsearchProject;\nimport com.pulumi.ec.ElasticsearchProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ElasticsearchProject(\"myProject\", ElasticsearchProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ElasticsearchProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\" pulumi-lang-hcl=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\" pulumi-lang-hcl=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\" pulumi-lang-hcl=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
+            "description": "## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ElasticsearchProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ElasticsearchProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.ElasticsearchProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewElasticsearchProject(ctx, \"my_project\", \u0026ec.ElasticsearchProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\nresource \"ec_elasticsearch_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ElasticsearchProject;\nimport com.pulumi.ec.ElasticsearchProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ElasticsearchProject(\"myProject\", ElasticsearchProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ElasticsearchProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With audit logging\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\n// The destination must be an existing observability or security project.\nconst auditLogs = new ec.ObservabilityProject(\"audit_logs\", {\n    name: \"my_audit_logs\",\n    regionId: \"aws-us-east-1\",\n});\nconst myProject = new ec.ElasticsearchProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n    monitoring: {\n        logging: {\n            audit: {\n                destination: {\n                    projectId: auditLogs.id,\n                    projectType: \"observability\",\n                },\n                ignoreFilterIds: [\"audit-ignore-data-reads\"],\n            },\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\n# The destination must be an existing observability or security project.\naudit_logs = ec.ObservabilityProject(\"audit_logs\",\n    name=\"my_audit_logs\",\n    region_id=\"aws-us-east-1\")\nmy_project = ec.ElasticsearchProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\",\n    monitoring={\n        \"logging\": {\n            \"audit\": {\n                \"destination\": {\n                    \"project_id\": audit_logs.id,\n                    \"project_type\": \"observability\",\n                },\n                \"ignore_filter_ids\": [\"audit-ignore-data-reads\"],\n            },\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The destination must be an existing observability or security project.\n    var auditLogs = new ElasticCloud.ObservabilityProject(\"audit_logs\", new()\n    {\n        Name = \"my_audit_logs\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n    var myProject = new ElasticCloud.ElasticsearchProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n        Monitoring = new ElasticCloud.Inputs.ElasticsearchProjectMonitoringArgs\n        {\n            Logging = new ElasticCloud.Inputs.ElasticsearchProjectMonitoringLoggingArgs\n            {\n                Audit = new ElasticCloud.Inputs.ElasticsearchProjectMonitoringLoggingAuditArgs\n                {\n                    Destination = new ElasticCloud.Inputs.ElasticsearchProjectMonitoringLoggingAuditDestinationArgs\n                    {\n                        ProjectId = auditLogs.Id,\n                        ProjectType = \"observability\",\n                    },\n                    IgnoreFilterIds = new[]\n                    {\n                        \"audit-ignore-data-reads\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// The destination must be an existing observability or security project.\n\t\tauditLogs, err := ec.NewObservabilityProject(ctx, \"audit_logs\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_audit_logs\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewElasticsearchProject(ctx, \"my_project\", \u0026ec.ElasticsearchProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t\tMonitoring: \u0026ec.ElasticsearchProjectMonitoringArgs{\n\t\t\t\tLogging: \u0026ec.ElasticsearchProjectMonitoringLoggingArgs{\n\t\t\t\t\tAudit: \u0026ec.ElasticsearchProjectMonitoringLoggingAuditArgs{\n\t\t\t\t\t\tDestination: \u0026ec.ElasticsearchProjectMonitoringLoggingAuditDestinationArgs{\n\t\t\t\t\t\t\tProjectId:   auditLogs.ID(),\n\t\t\t\t\t\t\tProjectType: pulumi.String(\"observability\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tIgnoreFilterIds: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"audit-ignore-data-reads\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\n# The destination must be an existing observability or security project.\nresource \"ec_observability_project\" \"audit_logs\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_audit_logs\"\n  region_id = \"aws-us-east-1\"\n}\nresource \"ec_elasticsearch_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n  monitoring = {\n    logging = {\n      audit = {\n        destination = {\n          project_id   = ec_observability_project.audit_logs.id\n          project_type = \"observability\"\n        }\n        ignore_filter_ids = [\"audit-ignore-data-reads\"]\n      }\n    }\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport com.pulumi.ec.ElasticsearchProject;\nimport com.pulumi.ec.ElasticsearchProjectArgs;\nimport com.pulumi.ec.inputs.ElasticsearchProjectMonitoringArgs;\nimport com.pulumi.ec.inputs.ElasticsearchProjectMonitoringLoggingArgs;\nimport com.pulumi.ec.inputs.ElasticsearchProjectMonitoringLoggingAuditArgs;\nimport com.pulumi.ec.inputs.ElasticsearchProjectMonitoringLoggingAuditDestinationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The destination must be an existing observability or security project.\n        var auditLogs = new ObservabilityProject(\"auditLogs\", ObservabilityProjectArgs.builder()\n            .name(\"my_audit_logs\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n        var myProject = new ElasticsearchProject(\"myProject\", ElasticsearchProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .monitoring(ElasticsearchProjectMonitoringArgs.builder()\n                .logging(ElasticsearchProjectMonitoringLoggingArgs.builder()\n                    .audit(ElasticsearchProjectMonitoringLoggingAuditArgs.builder()\n                        .destination(ElasticsearchProjectMonitoringLoggingAuditDestinationArgs.builder()\n                            .projectId(auditLogs.id())\n                            .projectType(\"observability\")\n                            .build())\n                        .ignoreFilterIds(\"audit-ignore-data-reads\")\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # The destination must be an existing observability or security project.\n  auditLogs:\n    type: ec:ObservabilityProject\n    name: audit_logs\n    properties:\n      name: my_audit_logs\n      regionId: aws-us-east-1\n  myProject:\n    type: ec:ElasticsearchProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n      monitoring:\n        logging:\n          audit:\n            destination:\n              projectId: ${auditLogs.id}\n              projectType: observability\n            ignoreFilterIds:\n              - audit-ignore-data-reads\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nAudit logs are delivered to a serverless project of type \u003cspan pulumi-lang-nodejs=\"`observability`\" pulumi-lang-dotnet=\"`Observability`\" pulumi-lang-go=\"`observability`\" pulumi-lang-python=\"`observability`\" pulumi-lang-yaml=\"`observability`\" pulumi-lang-java=\"`observability`\" pulumi-lang-hcl=\"`observability`\"\u003e`observability`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`security`\" pulumi-lang-dotnet=\"`Security`\" pulumi-lang-go=\"`security`\" pulumi-lang-python=\"`security`\" pulumi-lang-yaml=\"`security`\" pulumi-lang-java=\"`security`\" pulumi-lang-hcl=\"`security`\"\u003e`security`\u003c/span\u003e. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined \u003cspan pulumi-lang-nodejs=\"`ignoreFilterIds`\" pulumi-lang-dotnet=\"`IgnoreFilterIds`\" pulumi-lang-go=\"`ignoreFilterIds`\" pulumi-lang-python=\"`ignore_filter_ids`\" pulumi-lang-yaml=\"`ignoreFilterIds`\" pulumi-lang-java=\"`ignoreFilterIds`\" pulumi-lang-hcl=\"`ignore_filter_ids`\"\u003e`ignoreFilterIds`\u003c/span\u003e are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).\n\n\u003e **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/elasticsearchProject:ElasticsearchProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\" pulumi-lang-hcl=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\" pulumi-lang-hcl=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\" pulumi-lang-hcl=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
             "properties": {
                 "alias": {
                     "type": "string",
@@ -5209,6 +5512,10 @@
                 "metadata": {
                     "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
                     "description": "Metadata request for a project with tags."
+                },
+                "monitoring": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMonitoring:ElasticsearchProjectMonitoring",
+                    "description": "Configuration for monitoring a project."
                 },
                 "name": {
                     "type": "string",
@@ -5268,6 +5575,10 @@
                     "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
                     "description": "Metadata request for a project with tags."
                 },
+                "monitoring": {
+                    "$ref": "#/types/ec:index/ElasticsearchProjectMonitoring:ElasticsearchProjectMonitoring",
+                    "description": "Configuration for monitoring a project."
+                },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for a project."
@@ -5322,6 +5633,10 @@
                         "$ref": "#/types/ec:index/ElasticsearchProjectMetadata:ElasticsearchProjectMetadata",
                         "description": "Metadata request for a project with tags."
                     },
+                    "monitoring": {
+                        "$ref": "#/types/ec:index/ElasticsearchProjectMonitoring:ElasticsearchProjectMonitoring",
+                        "description": "Configuration for monitoring a project."
+                    },
                     "name": {
                         "type": "string",
                         "description": "Descriptive name for a project."
@@ -5358,7 +5673,7 @@
             }
         },
         "ec:index/observabilityProject:ObservabilityProject": {
-            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ObservabilityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ObservabilityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.ObservabilityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewObservabilityProject(ctx, \"my_project\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\nresource \"ec_observability_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ObservabilityProject(\"myProject\", ObservabilityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ObservabilityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\" pulumi-lang-hcl=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\" pulumi-lang-hcl=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\" pulumi-lang-hcl=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
+            "description": "## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.ObservabilityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.ObservabilityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.ObservabilityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewObservabilityProject(ctx, \"my_project\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\nresource \"ec_observability_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new ObservabilityProject(\"myProject\", ObservabilityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:ObservabilityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With audit logging\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\n// The destination must be an existing observability or security project.\nconst auditLogs = new ec.ObservabilityProject(\"audit_logs\", {\n    name: \"my_audit_logs\",\n    regionId: \"aws-us-east-1\",\n});\nconst myProject = new ec.ObservabilityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n    monitoring: {\n        logging: {\n            audit: {\n                destination: {\n                    projectId: auditLogs.id,\n                    projectType: \"observability\",\n                },\n                ignoreFilterIds: [\"audit-ignore-data-reads\"],\n            },\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\n# The destination must be an existing observability or security project.\naudit_logs = ec.ObservabilityProject(\"audit_logs\",\n    name=\"my_audit_logs\",\n    region_id=\"aws-us-east-1\")\nmy_project = ec.ObservabilityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\",\n    monitoring={\n        \"logging\": {\n            \"audit\": {\n                \"destination\": {\n                    \"project_id\": audit_logs.id,\n                    \"project_type\": \"observability\",\n                },\n                \"ignore_filter_ids\": [\"audit-ignore-data-reads\"],\n            },\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The destination must be an existing observability or security project.\n    var auditLogs = new ElasticCloud.ObservabilityProject(\"audit_logs\", new()\n    {\n        Name = \"my_audit_logs\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n    var myProject = new ElasticCloud.ObservabilityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n        Monitoring = new ElasticCloud.Inputs.ObservabilityProjectMonitoringArgs\n        {\n            Logging = new ElasticCloud.Inputs.ObservabilityProjectMonitoringLoggingArgs\n            {\n                Audit = new ElasticCloud.Inputs.ObservabilityProjectMonitoringLoggingAuditArgs\n                {\n                    Destination = new ElasticCloud.Inputs.ObservabilityProjectMonitoringLoggingAuditDestinationArgs\n                    {\n                        ProjectId = auditLogs.Id,\n                        ProjectType = \"observability\",\n                    },\n                    IgnoreFilterIds = new[]\n                    {\n                        \"audit-ignore-data-reads\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// The destination must be an existing observability or security project.\n\t\tauditLogs, err := ec.NewObservabilityProject(ctx, \"audit_logs\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_audit_logs\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewObservabilityProject(ctx, \"my_project\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t\tMonitoring: \u0026ec.ObservabilityProjectMonitoringArgs{\n\t\t\t\tLogging: \u0026ec.ObservabilityProjectMonitoringLoggingArgs{\n\t\t\t\t\tAudit: \u0026ec.ObservabilityProjectMonitoringLoggingAuditArgs{\n\t\t\t\t\t\tDestination: \u0026ec.ObservabilityProjectMonitoringLoggingAuditDestinationArgs{\n\t\t\t\t\t\t\tProjectId:   auditLogs.ID(),\n\t\t\t\t\t\t\tProjectType: pulumi.String(\"observability\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tIgnoreFilterIds: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"audit-ignore-data-reads\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\n# The destination must be an existing observability or security project.\nresource \"ec_observability_project\" \"audit_logs\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_audit_logs\"\n  region_id = \"aws-us-east-1\"\n}\nresource \"ec_observability_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n  monitoring = {\n    logging = {\n      audit = {\n        destination = {\n          project_id   = ec_observability_project.audit_logs.id\n          project_type = \"observability\"\n        }\n        ignore_filter_ids = [\"audit-ignore-data-reads\"]\n      }\n    }\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport com.pulumi.ec.inputs.ObservabilityProjectMonitoringArgs;\nimport com.pulumi.ec.inputs.ObservabilityProjectMonitoringLoggingArgs;\nimport com.pulumi.ec.inputs.ObservabilityProjectMonitoringLoggingAuditArgs;\nimport com.pulumi.ec.inputs.ObservabilityProjectMonitoringLoggingAuditDestinationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The destination must be an existing observability or security project.\n        var auditLogs = new ObservabilityProject(\"auditLogs\", ObservabilityProjectArgs.builder()\n            .name(\"my_audit_logs\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n        var myProject = new ObservabilityProject(\"myProject\", ObservabilityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .monitoring(ObservabilityProjectMonitoringArgs.builder()\n                .logging(ObservabilityProjectMonitoringLoggingArgs.builder()\n                    .audit(ObservabilityProjectMonitoringLoggingAuditArgs.builder()\n                        .destination(ObservabilityProjectMonitoringLoggingAuditDestinationArgs.builder()\n                            .projectId(auditLogs.id())\n                            .projectType(\"observability\")\n                            .build())\n                        .ignoreFilterIds(\"audit-ignore-data-reads\")\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # The destination must be an existing observability or security project.\n  auditLogs:\n    type: ec:ObservabilityProject\n    name: audit_logs\n    properties:\n      name: my_audit_logs\n      regionId: aws-us-east-1\n  myProject:\n    type: ec:ObservabilityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n      monitoring:\n        logging:\n          audit:\n            destination:\n              projectId: ${auditLogs.id}\n              projectType: observability\n            ignoreFilterIds:\n              - audit-ignore-data-reads\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nAudit logs are delivered to a serverless project of type \u003cspan pulumi-lang-nodejs=\"`observability`\" pulumi-lang-dotnet=\"`Observability`\" pulumi-lang-go=\"`observability`\" pulumi-lang-python=\"`observability`\" pulumi-lang-yaml=\"`observability`\" pulumi-lang-java=\"`observability`\" pulumi-lang-hcl=\"`observability`\"\u003e`observability`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`security`\" pulumi-lang-dotnet=\"`Security`\" pulumi-lang-go=\"`security`\" pulumi-lang-python=\"`security`\" pulumi-lang-yaml=\"`security`\" pulumi-lang-java=\"`security`\" pulumi-lang-hcl=\"`security`\"\u003e`security`\u003c/span\u003e. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined \u003cspan pulumi-lang-nodejs=\"`ignoreFilterIds`\" pulumi-lang-dotnet=\"`IgnoreFilterIds`\" pulumi-lang-go=\"`ignoreFilterIds`\" pulumi-lang-python=\"`ignore_filter_ids`\" pulumi-lang-yaml=\"`ignoreFilterIds`\" pulumi-lang-java=\"`ignoreFilterIds`\" pulumi-lang-hcl=\"`ignore_filter_ids`\"\u003e`ignoreFilterIds`\u003c/span\u003e are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).\n\n\u003e **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/observabilityProject:ObservabilityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\" pulumi-lang-hcl=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\" pulumi-lang-hcl=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\" pulumi-lang-hcl=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
             "properties": {
                 "alias": {
                     "type": "string",
@@ -5383,6 +5698,10 @@
                 "metadata": {
                     "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
+                },
+                "monitoring": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMonitoring:ObservabilityProjectMonitoring",
+                    "description": "Configuration for monitoring a project.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5437,6 +5756,10 @@
                     "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
                 },
+                "monitoring": {
+                    "$ref": "#/types/ec:index/ObservabilityProjectMonitoring:ObservabilityProjectMonitoring",
+                    "description": "Configuration for monitoring a project.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for a project.\n"
@@ -5486,6 +5809,10 @@
                     "metadata": {
                         "$ref": "#/types/ec:index/ObservabilityProjectMetadata:ObservabilityProjectMetadata",
                         "description": "Metadata request for a project with tags.\n"
+                    },
+                    "monitoring": {
+                        "$ref": "#/types/ec:index/ObservabilityProjectMonitoring:ObservabilityProjectMonitoring",
+                        "description": "Configuration for monitoring a project.\n"
                     },
                     "name": {
                         "type": "string",
@@ -5553,7 +5880,7 @@
             }
         },
         "ec:index/securityProject:SecurityProject": {
-            "description": "## Technical preview\n\nThis functionality is in technical preview and may be changed or removed in a future release.\nElastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.SecurityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.SecurityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.SecurityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewSecurityProject(ctx, \"my_project\", \u0026ec.SecurityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\nresource \"ec_security_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.SecurityProject;\nimport com.pulumi.ec.SecurityProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new SecurityProject(\"myProject\", SecurityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:SecurityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\" pulumi-lang-hcl=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\" pulumi-lang-hcl=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\" pulumi-lang-hcl=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
+            "description": "## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\nconst myProject = new ec.SecurityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\nmy_project = ec.SecurityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProject = new ElasticCloud.SecurityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ec.NewSecurityProject(ctx, \"my_project\", \u0026ec.SecurityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\nresource \"ec_security_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.SecurityProject;\nimport com.pulumi.ec.SecurityProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProject = new SecurityProject(\"myProject\", SecurityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProject:\n    type: ec:SecurityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With audit logging\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ec from \"@pulumi/ec\";\n\n// The destination must be an existing observability or security project.\nconst auditLogs = new ec.ObservabilityProject(\"audit_logs\", {\n    name: \"my_audit_logs\",\n    regionId: \"aws-us-east-1\",\n});\nconst myProject = new ec.SecurityProject(\"my_project\", {\n    name: \"my_project\",\n    regionId: \"aws-us-east-1\",\n    monitoring: {\n        logging: {\n            audit: {\n                destination: {\n                    projectId: auditLogs.id,\n                    projectType: \"observability\",\n                },\n                ignoreFilterIds: [\"audit-ignore-data-reads\"],\n            },\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ec as ec\n\n# The destination must be an existing observability or security project.\naudit_logs = ec.ObservabilityProject(\"audit_logs\",\n    name=\"my_audit_logs\",\n    region_id=\"aws-us-east-1\")\nmy_project = ec.SecurityProject(\"my_project\",\n    name=\"my_project\",\n    region_id=\"aws-us-east-1\",\n    monitoring={\n        \"logging\": {\n            \"audit\": {\n                \"destination\": {\n                    \"project_id\": audit_logs.id,\n                    \"project_type\": \"observability\",\n                },\n                \"ignore_filter_ids\": [\"audit-ignore-data-reads\"],\n            },\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing ElasticCloud = Pulumi.ElasticCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The destination must be an existing observability or security project.\n    var auditLogs = new ElasticCloud.ObservabilityProject(\"audit_logs\", new()\n    {\n        Name = \"my_audit_logs\",\n        RegionId = \"aws-us-east-1\",\n    });\n\n    var myProject = new ElasticCloud.SecurityProject(\"my_project\", new()\n    {\n        Name = \"my_project\",\n        RegionId = \"aws-us-east-1\",\n        Monitoring = new ElasticCloud.Inputs.SecurityProjectMonitoringArgs\n        {\n            Logging = new ElasticCloud.Inputs.SecurityProjectMonitoringLoggingArgs\n            {\n                Audit = new ElasticCloud.Inputs.SecurityProjectMonitoringLoggingAuditArgs\n                {\n                    Destination = new ElasticCloud.Inputs.SecurityProjectMonitoringLoggingAuditDestinationArgs\n                    {\n                        ProjectId = auditLogs.Id,\n                        ProjectType = \"observability\",\n                    },\n                    IgnoreFilterIds = new[]\n                    {\n                        \"audit-ignore-data-reads\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-ec/sdk/go/ec\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// The destination must be an existing observability or security project.\n\t\tauditLogs, err := ec.NewObservabilityProject(ctx, \"audit_logs\", \u0026ec.ObservabilityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_audit_logs\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec.NewSecurityProject(ctx, \"my_project\", \u0026ec.SecurityProjectArgs{\n\t\t\tName:     pulumi.String(\"my_project\"),\n\t\t\tRegionId: pulumi.String(\"aws-us-east-1\"),\n\t\t\tMonitoring: \u0026ec.SecurityProjectMonitoringArgs{\n\t\t\t\tLogging: \u0026ec.SecurityProjectMonitoringLoggingArgs{\n\t\t\t\t\tAudit: \u0026ec.SecurityProjectMonitoringLoggingAuditArgs{\n\t\t\t\t\t\tDestination: \u0026ec.SecurityProjectMonitoringLoggingAuditDestinationArgs{\n\t\t\t\t\t\t\tProjectId:   auditLogs.ID(),\n\t\t\t\t\t\t\tProjectType: pulumi.String(\"observability\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tIgnoreFilterIds: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"audit-ignore-data-reads\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    ec = {\n      source = \"pulumi/ec\"\n    }\n  }\n}\n\n# The destination must be an existing observability or security project.\nresource \"ec_observability_project\" \"audit_logs\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_audit_logs\"\n  region_id = \"aws-us-east-1\"\n}\nresource \"ec_security_project\" \"my_project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name      = \"my_project\"\n  region_id = \"aws-us-east-1\"\n  monitoring = {\n    logging = {\n      audit = {\n        destination = {\n          project_id   = ec_observability_project.audit_logs.id\n          project_type = \"observability\"\n        }\n        ignore_filter_ids = [\"audit-ignore-data-reads\"]\n      }\n    }\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ec.ObservabilityProject;\nimport com.pulumi.ec.ObservabilityProjectArgs;\nimport com.pulumi.ec.SecurityProject;\nimport com.pulumi.ec.SecurityProjectArgs;\nimport com.pulumi.ec.inputs.SecurityProjectMonitoringArgs;\nimport com.pulumi.ec.inputs.SecurityProjectMonitoringLoggingArgs;\nimport com.pulumi.ec.inputs.SecurityProjectMonitoringLoggingAuditArgs;\nimport com.pulumi.ec.inputs.SecurityProjectMonitoringLoggingAuditDestinationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The destination must be an existing observability or security project.\n        var auditLogs = new ObservabilityProject(\"auditLogs\", ObservabilityProjectArgs.builder()\n            .name(\"my_audit_logs\")\n            .regionId(\"aws-us-east-1\")\n            .build());\n\n        var myProject = new SecurityProject(\"myProject\", SecurityProjectArgs.builder()\n            .name(\"my_project\")\n            .regionId(\"aws-us-east-1\")\n            .monitoring(SecurityProjectMonitoringArgs.builder()\n                .logging(SecurityProjectMonitoringLoggingArgs.builder()\n                    .audit(SecurityProjectMonitoringLoggingAuditArgs.builder()\n                        .destination(SecurityProjectMonitoringLoggingAuditDestinationArgs.builder()\n                            .projectId(auditLogs.id())\n                            .projectType(\"observability\")\n                            .build())\n                        .ignoreFilterIds(\"audit-ignore-data-reads\")\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # The destination must be an existing observability or security project.\n  auditLogs:\n    type: ec:ObservabilityProject\n    name: audit_logs\n    properties:\n      name: my_audit_logs\n      regionId: aws-us-east-1\n  myProject:\n    type: ec:SecurityProject\n    name: my_project\n    properties:\n      name: my_project\n      regionId: aws-us-east-1\n      monitoring:\n        logging:\n          audit:\n            destination:\n              projectId: ${auditLogs.id}\n              projectType: observability\n            ignoreFilterIds:\n              - audit-ignore-data-reads\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nAudit logs are delivered to a serverless project of type \u003cspan pulumi-lang-nodejs=\"`observability`\" pulumi-lang-dotnet=\"`Observability`\" pulumi-lang-go=\"`observability`\" pulumi-lang-python=\"`observability`\" pulumi-lang-yaml=\"`observability`\" pulumi-lang-java=\"`observability`\" pulumi-lang-hcl=\"`observability`\"\u003e`observability`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`security`\" pulumi-lang-dotnet=\"`Security`\" pulumi-lang-go=\"`security`\" pulumi-lang-python=\"`security`\" pulumi-lang-yaml=\"`security`\" pulumi-lang-java=\"`security`\" pulumi-lang-hcl=\"`security`\"\u003e`security`\u003c/span\u003e. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined \u003cspan pulumi-lang-nodejs=\"`ignoreFilterIds`\" pulumi-lang-dotnet=\"`IgnoreFilterIds`\" pulumi-lang-go=\"`ignoreFilterIds`\" pulumi-lang-python=\"`ignore_filter_ids`\" pulumi-lang-yaml=\"`ignoreFilterIds`\" pulumi-lang-java=\"`ignoreFilterIds`\" pulumi-lang-hcl=\"`ignore_filter_ids`\"\u003e`ignoreFilterIds`\u003c/span\u003e are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).\n\n\u003e **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e, for example:\n\n```sh\n$ pulumi import ec:index/securityProject:SecurityProject id 320b7b540dfc967a7a649c18e2fce4ed\n```\n\n\u003e **Note on Credentials** The \u003cspan pulumi-lang-nodejs=\"`credentials`\" pulumi-lang-dotnet=\"`Credentials`\" pulumi-lang-go=\"`credentials`\" pulumi-lang-python=\"`credentials`\" pulumi-lang-yaml=\"`credentials`\" pulumi-lang-java=\"`credentials`\" pulumi-lang-hcl=\"`credentials`\"\u003e`credentials`\u003c/span\u003e attribute (containing \u003cspan pulumi-lang-nodejs=\"`username`\" pulumi-lang-dotnet=\"`Username`\" pulumi-lang-go=\"`username`\" pulumi-lang-python=\"`username`\" pulumi-lang-yaml=\"`username`\" pulumi-lang-java=\"`username`\" pulumi-lang-hcl=\"`username`\"\u003e`username`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\" pulumi-lang-hcl=\"`password`\"\u003e`password`\u003c/span\u003e) is only available when the project is first created. When importing an existing project, these credentials will not be available in the Terraform state as the API does not return them on read operations.\n\n",
             "properties": {
                 "adminFeaturesPackage": {
                     "type": "string",
@@ -5582,6 +5909,10 @@
                 "metadata": {
                     "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
+                },
+                "monitoring": {
+                    "$ref": "#/types/ec:index/SecurityProjectMonitoring:SecurityProjectMonitoring",
+                    "description": "Configuration for monitoring a project.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5648,6 +5979,10 @@
                     "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
                     "description": "Metadata request for a project with tags.\n"
                 },
+                "monitoring": {
+                    "$ref": "#/types/ec:index/SecurityProjectMonitoring:SecurityProjectMonitoring",
+                    "description": "Configuration for monitoring a project.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for a project.\n"
@@ -5707,6 +6042,10 @@
                     "metadata": {
                         "$ref": "#/types/ec:index/SecurityProjectMetadata:SecurityProjectMetadata",
                         "description": "Metadata request for a project with tags.\n"
+                    },
+                    "monitoring": {
+                        "$ref": "#/types/ec:index/SecurityProjectMonitoring:SecurityProjectMonitoring",
+                        "description": "Configuration for monitoring a project.\n"
                     },
                     "name": {
                         "type": "string",

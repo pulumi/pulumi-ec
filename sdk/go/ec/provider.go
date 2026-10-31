@@ -20,12 +20,18 @@ type Provider struct {
 
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
 	Apikey pulumi.StringPtrOutput `pulumi:"apikey"`
+	// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
 	// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
 	// Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	Timeout pulumi.StringPtrOutput `pulumi:"timeout"`
+	// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+	TlsCert pulumi.StringPtrOutput `pulumi:"tlsCert"`
+	// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+	TlsKey pulumi.StringPtrOutput `pulumi:"tlsKey"`
 	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Username pulumi.StringPtrOutput `pulumi:"username"`
 	// Timeout used for individual HTTP calls. Defaults to "1m".
@@ -62,6 +68,8 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
 	Apikey *string `pulumi:"apikey"`
+	// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+	CaCert *string `pulumi:"caCert"`
 	// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 	Endpoint *string `pulumi:"endpoint"`
 	// Allow the provider to skip TLS validation on its outgoing HTTP calls.
@@ -70,6 +78,10 @@ type providerArgs struct {
 	Password *string `pulumi:"password"`
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	Timeout *string `pulumi:"timeout"`
+	// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+	TlsCert *string `pulumi:"tlsCert"`
+	// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+	TlsKey *string `pulumi:"tlsKey"`
 	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Username *string `pulumi:"username"`
 	// When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
@@ -84,6 +96,8 @@ type providerArgs struct {
 type ProviderArgs struct {
 	// API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
 	Apikey pulumi.StringPtrInput
+	// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+	CaCert pulumi.StringPtrInput
 	// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 	Endpoint pulumi.StringPtrInput
 	// Allow the provider to skip TLS validation on its outgoing HTTP calls.
@@ -92,6 +106,10 @@ type ProviderArgs struct {
 	Password pulumi.StringPtrInput
 	// Timeout used for individual HTTP calls. Defaults to "1m".
 	Timeout pulumi.StringPtrInput
+	// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+	TlsCert pulumi.StringPtrInput
+	// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+	TlsKey pulumi.StringPtrInput
 	// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
 	Username pulumi.StringPtrInput
 	// When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
@@ -167,6 +185,11 @@ func (o ProviderOutput) Apikey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Apikey }).(pulumi.StringPtrOutput)
 }
 
+// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
 // Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
@@ -180,6 +203,16 @@ func (o ProviderOutput) Password() pulumi.StringPtrOutput {
 // Timeout used for individual HTTP calls. Defaults to "1m".
 func (o ProviderOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+func (o ProviderOutput) TlsCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsCert }).(pulumi.StringPtrOutput)
+}
+
+// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+func (o ProviderOutput) TlsKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsKey }).(pulumi.StringPtrOutput)
 }
 
 // Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.

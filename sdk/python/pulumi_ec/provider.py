@@ -20,10 +20,13 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  insecure: pulumi.Input[Optional[_builtins.bool]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_key: pulumi.Input[Optional[_builtins.str]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  verbose: pulumi.Input[Optional[_builtins.bool]] = None,
                  verbose_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -32,10 +35,13 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
 
         :param pulumi.Input[_builtins.str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
+        :param pulumi.Input[_builtins.str] ca_cert: Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
         :param pulumi.Input[_builtins.str] endpoint: Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         :param pulumi.Input[_builtins.bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
         :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.str] timeout: Timeout used for individual HTTP calls. Defaults to "1m".
+        :param pulumi.Input[_builtins.str] tls_cert: Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        :param pulumi.Input[_builtins.str] tls_key: Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
         :param pulumi.Input[_builtins.str] username: Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.bool] verbose: When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
         :param pulumi.Input[_builtins.bool] verbose_credentials: When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
@@ -43,6 +49,8 @@ class ProviderArgs:
         """
         if apikey is not None:
             pulumi.set(__self__, "apikey", apikey)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
         if insecure is not None:
@@ -51,6 +59,10 @@ class ProviderArgs:
             pulumi.set(__self__, "password", password)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if tls_cert is not None:
+            pulumi.set(__self__, "tls_cert", tls_cert)
+        if tls_key is not None:
+            pulumi.set(__self__, "tls_key", tls_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if verbose is not None:
@@ -71,6 +83,18 @@ class ProviderArgs:
     @apikey.setter
     def apikey(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apikey", value)
+
+    @_builtins.property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "ca_cert", value)
 
     @_builtins.property
     @pulumi.getter
@@ -119,6 +143,30 @@ class ProviderArgs:
     @timeout.setter
     def timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tlsCert")
+    def tls_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        """
+        return pulumi.get(self, "tls_cert")
+
+    @tls_cert.setter
+    def tls_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tls_cert", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tlsKey")
+    def tls_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+        """
+        return pulumi.get(self, "tls_key")
+
+    @tls_key.setter
+    def tls_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tls_key", value)
 
     @_builtins.property
     @pulumi.getter
@@ -176,10 +224,13 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  insecure: pulumi.Input[Optional[_builtins.bool]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_key: pulumi.Input[Optional[_builtins.str]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  verbose: pulumi.Input[Optional[_builtins.bool]] = None,
                  verbose_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -195,10 +246,13 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] apikey: API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
+        :param pulumi.Input[_builtins.str] ca_cert: Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
         :param pulumi.Input[_builtins.str] endpoint: Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         :param pulumi.Input[_builtins.bool] insecure: Allow the provider to skip TLS validation on its outgoing HTTP calls.
         :param pulumi.Input[_builtins.str] password: Password to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.str] timeout: Timeout used for individual HTTP calls. Defaults to "1m".
+        :param pulumi.Input[_builtins.str] tls_cert: Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        :param pulumi.Input[_builtins.str] tls_key: Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
         :param pulumi.Input[_builtins.str] username: Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
         :param pulumi.Input[_builtins.bool] verbose: When set, a "request.log" file will be written with all outgoing HTTP requests. Defaults to "false".
         :param pulumi.Input[_builtins.bool] verbose_credentials: When set with verbose, the contents of the Authorization header will not be redacted. Defaults to "false".
@@ -233,10 +287,13 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  insecure: pulumi.Input[Optional[_builtins.bool]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_key: pulumi.Input[Optional[_builtins.str]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  verbose: pulumi.Input[Optional[_builtins.bool]] = None,
                  verbose_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -251,10 +308,13 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["apikey"] = None if apikey is None else pulumi.Output.secret(apikey)
+            __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["endpoint"] = endpoint
             __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["timeout"] = timeout
+            __props__.__dict__["tls_cert"] = tls_cert
+            __props__.__dict__["tls_key"] = tls_key
             __props__.__dict__["username"] = username
             __props__.__dict__["verbose"] = pulumi.Output.from_input(verbose).apply(pulumi.runtime.to_json) if verbose is not None else None
             __props__.__dict__["verbose_credentials"] = pulumi.Output.from_input(verbose_credentials).apply(pulumi.runtime.to_json) if verbose_credentials is not None else None
@@ -274,6 +334,14 @@ class Provider(pulumi.ProviderResource):
         API Key to use for API authentication. The only valid authentication mechanism for the Elasticsearch Service.
         """
         return pulumi.get(self, "apikey")
+
+    @_builtins.property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+        """
+        return pulumi.get(self, "ca_cert")
 
     @_builtins.property
     @pulumi.getter
@@ -298,6 +366,22 @@ class Provider(pulumi.ProviderResource):
         Timeout used for individual HTTP calls. Defaults to "1m".
         """
         return pulumi.get(self, "timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="tlsCert")
+    def tls_cert(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        """
+        return pulumi.get(self, "tls_cert")
+
+    @_builtins.property
+    @pulumi.getter(name="tlsKey")
+    def tls_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+        """
+        return pulumi.get(self, "tls_key")
 
     @_builtins.property
     @pulumi.getter

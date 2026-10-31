@@ -1079,6 +1079,10 @@ export interface ElasticsearchProjectEndpoints {
      */
     elasticsearch?: pulumi.Input<string | undefined>;
     /**
+     * The endpoint to access the Managed OpenTelemetry Collector.
+     */
+    ingest?: pulumi.Input<string | undefined>;
+    /**
      * The endpoint to access kibana.
      */
     kibana?: pulumi.Input<string | undefined>;
@@ -1130,11 +1134,59 @@ export interface ElasticsearchProjectMetadata {
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
+export interface ElasticsearchProjectMonitoring {
+    /**
+     * Configuration for project logs.
+     */
+    logging?: pulumi.Input<inputs.ElasticsearchProjectMonitoringLogging | undefined>;
+}
+
+export interface ElasticsearchProjectMonitoringLogging {
+    /**
+     * Configuration for logs from a specific category.
+     */
+    audit?: pulumi.Input<inputs.ElasticsearchProjectMonitoringLoggingAudit | undefined>;
+}
+
+export interface ElasticsearchProjectMonitoringLoggingAudit {
+    /**
+     * Configuration for destination of logs.
+     */
+    destination: pulumi.Input<inputs.ElasticsearchProjectMonitoringLoggingAuditDestination>;
+    /**
+     * When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+     */
+    enabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+     */
+    ignoreFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface ElasticsearchProjectMonitoringLoggingAuditDestination {
+    /**
+     * ID of the project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * The type of the linked project
+     */
+    projectType: pulumi.Input<string>;
+    /**
+     * The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+     */
+    status?: pulumi.Input<string | undefined>;
+}
+
 export interface ElasticsearchProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access elasticsearch.
      */
     elasticsearch?: pulumi.Input<string | undefined>;
+    /**
+     * The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+     */
+    ingest?: pulumi.Input<string | undefined>;
     /**
      * The PrivateLink endpoint URL to access kibana.
      */
@@ -1378,6 +1430,50 @@ export interface ObservabilityProjectMetadata {
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
+export interface ObservabilityProjectMonitoring {
+    /**
+     * Configuration for project logs.
+     */
+    logging?: pulumi.Input<inputs.ObservabilityProjectMonitoringLogging | undefined>;
+}
+
+export interface ObservabilityProjectMonitoringLogging {
+    /**
+     * Configuration for logs from a specific category.
+     */
+    audit?: pulumi.Input<inputs.ObservabilityProjectMonitoringLoggingAudit | undefined>;
+}
+
+export interface ObservabilityProjectMonitoringLoggingAudit {
+    /**
+     * Configuration for destination of logs.
+     */
+    destination: pulumi.Input<inputs.ObservabilityProjectMonitoringLoggingAuditDestination>;
+    /**
+     * When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+     */
+    enabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+     */
+    ignoreFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface ObservabilityProjectMonitoringLoggingAuditDestination {
+    /**
+     * ID of the project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * The type of the linked project
+     */
+    projectType: pulumi.Input<string>;
+    /**
+     * The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+     */
+    status?: pulumi.Input<string | undefined>;
+}
+
 export interface ObservabilityProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access APM.
@@ -1578,6 +1674,50 @@ export interface SecurityProjectMetadata {
      * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface SecurityProjectMonitoring {
+    /**
+     * Configuration for project logs.
+     */
+    logging?: pulumi.Input<inputs.SecurityProjectMonitoringLogging | undefined>;
+}
+
+export interface SecurityProjectMonitoringLogging {
+    /**
+     * Configuration for logs from a specific category.
+     */
+    audit?: pulumi.Input<inputs.SecurityProjectMonitoringLoggingAudit | undefined>;
+}
+
+export interface SecurityProjectMonitoringLoggingAudit {
+    /**
+     * Configuration for destination of logs.
+     */
+    destination: pulumi.Input<inputs.SecurityProjectMonitoringLoggingAuditDestination>;
+    /**
+     * When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+     */
+    enabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+     */
+    ignoreFilterIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface SecurityProjectMonitoringLoggingAuditDestination {
+    /**
+     * ID of the project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * The type of the linked project
+     */
+    projectType: pulumi.Input<string>;
+    /**
+     * The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+     */
+    status?: pulumi.Input<string | undefined>;
 }
 
 export interface SecurityProjectPrivateEndpoints {

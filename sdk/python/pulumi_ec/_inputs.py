@@ -97,6 +97,14 @@ __all__ = [
     'ElasticsearchProjectLinkedProjectsArgsDict',
     'ElasticsearchProjectMetadataArgs',
     'ElasticsearchProjectMetadataArgsDict',
+    'ElasticsearchProjectMonitoringArgs',
+    'ElasticsearchProjectMonitoringArgsDict',
+    'ElasticsearchProjectMonitoringLoggingArgs',
+    'ElasticsearchProjectMonitoringLoggingArgsDict',
+    'ElasticsearchProjectMonitoringLoggingAuditArgs',
+    'ElasticsearchProjectMonitoringLoggingAuditArgsDict',
+    'ElasticsearchProjectMonitoringLoggingAuditDestinationArgs',
+    'ElasticsearchProjectMonitoringLoggingAuditDestinationArgsDict',
     'ElasticsearchProjectPrivateEndpointsArgs',
     'ElasticsearchProjectPrivateEndpointsArgsDict',
     'ElasticsearchProjectSearchLakeArgs',
@@ -111,6 +119,14 @@ __all__ = [
     'ObservabilityProjectLinkedProjectsArgsDict',
     'ObservabilityProjectMetadataArgs',
     'ObservabilityProjectMetadataArgsDict',
+    'ObservabilityProjectMonitoringArgs',
+    'ObservabilityProjectMonitoringArgsDict',
+    'ObservabilityProjectMonitoringLoggingArgs',
+    'ObservabilityProjectMonitoringLoggingArgsDict',
+    'ObservabilityProjectMonitoringLoggingAuditArgs',
+    'ObservabilityProjectMonitoringLoggingAuditArgsDict',
+    'ObservabilityProjectMonitoringLoggingAuditDestinationArgs',
+    'ObservabilityProjectMonitoringLoggingAuditDestinationArgsDict',
     'ObservabilityProjectPrivateEndpointsArgs',
     'ObservabilityProjectPrivateEndpointsArgsDict',
     'OrganizationMembersArgs',
@@ -133,6 +149,14 @@ __all__ = [
     'SecurityProjectLinkedProjectsArgsDict',
     'SecurityProjectMetadataArgs',
     'SecurityProjectMetadataArgsDict',
+    'SecurityProjectMonitoringArgs',
+    'SecurityProjectMonitoringArgsDict',
+    'SecurityProjectMonitoringLoggingArgs',
+    'SecurityProjectMonitoringLoggingArgsDict',
+    'SecurityProjectMonitoringLoggingAuditArgs',
+    'SecurityProjectMonitoringLoggingAuditArgsDict',
+    'SecurityProjectMonitoringLoggingAuditDestinationArgs',
+    'SecurityProjectMonitoringLoggingAuditDestinationArgsDict',
     'SecurityProjectPrivateEndpointsArgs',
     'SecurityProjectPrivateEndpointsArgsDict',
     'SecurityProjectProductTypeArgs',
@@ -5719,6 +5743,10 @@ class ElasticsearchProjectEndpointsArgsDict(TypedDict):
     """
     The endpoint to access elasticsearch.
     """
+    ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The endpoint to access the Managed OpenTelemetry Collector.
+    """
     kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The endpoint to access kibana.
@@ -5728,13 +5756,17 @@ class ElasticsearchProjectEndpointsArgsDict(TypedDict):
 class ElasticsearchProjectEndpointsArgs:
     def __init__(__self__, *,
                  elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 ingest: pulumi.Input[Optional[_builtins.str]] = None,
                  kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The endpoint to access elasticsearch.
+        :param pulumi.Input[_builtins.str] ingest: The endpoint to access the Managed OpenTelemetry Collector.
         :param pulumi.Input[_builtins.str] kibana: The endpoint to access kibana.
         """
         if elasticsearch is not None:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if ingest is not None:
+            pulumi.set(__self__, "ingest", ingest)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
 
@@ -5749,6 +5781,18 @@ class ElasticsearchProjectEndpointsArgs:
     @elasticsearch.setter
     def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The endpoint to access the Managed OpenTelemetry Collector.
+        """
+        return pulumi.get(self, "ingest")
+
+    @ingest.setter
+    def ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
@@ -5981,10 +6025,207 @@ class ElasticsearchProjectMetadataArgs:
         pulumi.set(self, "tags", value)
 
 
+class ElasticsearchProjectMonitoringArgsDict(TypedDict):
+    logging: NotRequired[pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingArgsDict']]]
+    """
+    Configuration for project logs.
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectMonitoringArgs:
+    def __init__(__self__, *,
+                 logging: pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingArgs']] = None):
+        """
+        :param pulumi.Input['ElasticsearchProjectMonitoringLoggingArgs'] logging: Configuration for project logs.
+        """
+        if logging is not None:
+            pulumi.set(__self__, "logging", logging)
+
+    @_builtins.property
+    @pulumi.getter
+    def logging(self) -> pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingArgs']]:
+        """
+        Configuration for project logs.
+        """
+        return pulumi.get(self, "logging")
+
+    @logging.setter
+    def logging(self, value: pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingArgs']]):
+        pulumi.set(self, "logging", value)
+
+
+class ElasticsearchProjectMonitoringLoggingArgsDict(TypedDict):
+    audit: NotRequired[pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingAuditArgsDict']]]
+    """
+    Configuration for logs from a specific category.
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectMonitoringLoggingArgs:
+    def __init__(__self__, *,
+                 audit: pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingAuditArgs']] = None):
+        """
+        :param pulumi.Input['ElasticsearchProjectMonitoringLoggingAuditArgs'] audit: Configuration for logs from a specific category.
+        """
+        if audit is not None:
+            pulumi.set(__self__, "audit", audit)
+
+    @_builtins.property
+    @pulumi.getter
+    def audit(self) -> pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingAuditArgs']]:
+        """
+        Configuration for logs from a specific category.
+        """
+        return pulumi.get(self, "audit")
+
+    @audit.setter
+    def audit(self, value: pulumi.Input[Optional['ElasticsearchProjectMonitoringLoggingAuditArgs']]):
+        pulumi.set(self, "audit", value)
+
+
+class ElasticsearchProjectMonitoringLoggingAuditArgsDict(TypedDict):
+    destination: pulumi.Input['ElasticsearchProjectMonitoringLoggingAuditDestinationArgsDict']
+    """
+    Configuration for destination of logs.
+    """
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+    """
+    ignore_filter_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectMonitoringLoggingAuditArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input['ElasticsearchProjectMonitoringLoggingAuditDestinationArgs'],
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input['ElasticsearchProjectMonitoringLoggingAuditDestinationArgs'] destination: Configuration for destination of logs.
+        :param pulumi.Input[_builtins.bool] enabled: When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ignore_filter_ids: IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+        """
+        pulumi.set(__self__, "destination", destination)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if ignore_filter_ids is not None:
+            pulumi.set(__self__, "ignore_filter_ids", ignore_filter_ids)
+
+    @_builtins.property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input['ElasticsearchProjectMonitoringLoggingAuditDestinationArgs']:
+        """
+        Configuration for destination of logs.
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input['ElasticsearchProjectMonitoringLoggingAuditDestinationArgs']):
+        pulumi.set(self, "destination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreFilterIds")
+    def ignore_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+        """
+        return pulumi.get(self, "ignore_filter_ids")
+
+    @ignore_filter_ids.setter
+    def ignore_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ignore_filter_ids", value)
+
+
+class ElasticsearchProjectMonitoringLoggingAuditDestinationArgsDict(TypedDict):
+    project_id: pulumi.Input[_builtins.str]
+    """
+    ID of the project.
+    """
+    project_type: pulumi.Input[_builtins.str]
+    """
+    The type of the linked project
+    """
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+    """
+
+@pulumi.input_type
+class ElasticsearchProjectMonitoringLoggingAuditDestinationArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[_builtins.str],
+                 project_type: pulumi.Input[_builtins.str],
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] project_id: ID of the project.
+        :param pulumi.Input[_builtins.str] project_type: The type of the linked project
+        :param pulumi.Input[_builtins.str] status: The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_type", project_type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        ID of the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectType")
+    def project_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the linked project
+        """
+        return pulumi.get(self, "project_type")
+
+    @project_type.setter
+    def project_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+
 class ElasticsearchProjectPrivateEndpointsArgsDict(TypedDict):
     elasticsearch: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PrivateLink endpoint URL to access elasticsearch.
+    """
+    ingest: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
     """
     kibana: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -5995,13 +6236,17 @@ class ElasticsearchProjectPrivateEndpointsArgsDict(TypedDict):
 class ElasticsearchProjectPrivateEndpointsArgs:
     def __init__(__self__, *,
                  elasticsearch: pulumi.Input[Optional[_builtins.str]] = None,
+                 ingest: pulumi.Input[Optional[_builtins.str]] = None,
                  kibana: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] elasticsearch: The PrivateLink endpoint URL to access elasticsearch.
+        :param pulumi.Input[_builtins.str] ingest: The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
         :param pulumi.Input[_builtins.str] kibana: The PrivateLink endpoint URL to access kibana.
         """
         if elasticsearch is not None:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if ingest is not None:
+            pulumi.set(__self__, "ingest", ingest)
         if kibana is not None:
             pulumi.set(__self__, "kibana", kibana)
 
@@ -6016,6 +6261,18 @@ class ElasticsearchProjectPrivateEndpointsArgs:
     @elasticsearch.setter
     def elasticsearch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "elasticsearch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ingest(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+        """
+        return pulumi.get(self, "ingest")
+
+    @ingest.setter
+    def ingest(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "ingest", value)
 
     @_builtins.property
     @pulumi.getter
@@ -6433,6 +6690,199 @@ class ObservabilityProjectMetadataArgs:
     @tags.setter
     def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
+
+
+class ObservabilityProjectMonitoringArgsDict(TypedDict):
+    logging: NotRequired[pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingArgsDict']]]
+    """
+    Configuration for project logs.
+    """
+
+@pulumi.input_type
+class ObservabilityProjectMonitoringArgs:
+    def __init__(__self__, *,
+                 logging: pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingArgs']] = None):
+        """
+        :param pulumi.Input['ObservabilityProjectMonitoringLoggingArgs'] logging: Configuration for project logs.
+        """
+        if logging is not None:
+            pulumi.set(__self__, "logging", logging)
+
+    @_builtins.property
+    @pulumi.getter
+    def logging(self) -> pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingArgs']]:
+        """
+        Configuration for project logs.
+        """
+        return pulumi.get(self, "logging")
+
+    @logging.setter
+    def logging(self, value: pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingArgs']]):
+        pulumi.set(self, "logging", value)
+
+
+class ObservabilityProjectMonitoringLoggingArgsDict(TypedDict):
+    audit: NotRequired[pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingAuditArgsDict']]]
+    """
+    Configuration for logs from a specific category.
+    """
+
+@pulumi.input_type
+class ObservabilityProjectMonitoringLoggingArgs:
+    def __init__(__self__, *,
+                 audit: pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingAuditArgs']] = None):
+        """
+        :param pulumi.Input['ObservabilityProjectMonitoringLoggingAuditArgs'] audit: Configuration for logs from a specific category.
+        """
+        if audit is not None:
+            pulumi.set(__self__, "audit", audit)
+
+    @_builtins.property
+    @pulumi.getter
+    def audit(self) -> pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingAuditArgs']]:
+        """
+        Configuration for logs from a specific category.
+        """
+        return pulumi.get(self, "audit")
+
+    @audit.setter
+    def audit(self, value: pulumi.Input[Optional['ObservabilityProjectMonitoringLoggingAuditArgs']]):
+        pulumi.set(self, "audit", value)
+
+
+class ObservabilityProjectMonitoringLoggingAuditArgsDict(TypedDict):
+    destination: pulumi.Input['ObservabilityProjectMonitoringLoggingAuditDestinationArgsDict']
+    """
+    Configuration for destination of logs.
+    """
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+    """
+    ignore_filter_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+    """
+
+@pulumi.input_type
+class ObservabilityProjectMonitoringLoggingAuditArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input['ObservabilityProjectMonitoringLoggingAuditDestinationArgs'],
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input['ObservabilityProjectMonitoringLoggingAuditDestinationArgs'] destination: Configuration for destination of logs.
+        :param pulumi.Input[_builtins.bool] enabled: When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ignore_filter_ids: IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+        """
+        pulumi.set(__self__, "destination", destination)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if ignore_filter_ids is not None:
+            pulumi.set(__self__, "ignore_filter_ids", ignore_filter_ids)
+
+    @_builtins.property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input['ObservabilityProjectMonitoringLoggingAuditDestinationArgs']:
+        """
+        Configuration for destination of logs.
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input['ObservabilityProjectMonitoringLoggingAuditDestinationArgs']):
+        pulumi.set(self, "destination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreFilterIds")
+    def ignore_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+        """
+        return pulumi.get(self, "ignore_filter_ids")
+
+    @ignore_filter_ids.setter
+    def ignore_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ignore_filter_ids", value)
+
+
+class ObservabilityProjectMonitoringLoggingAuditDestinationArgsDict(TypedDict):
+    project_id: pulumi.Input[_builtins.str]
+    """
+    ID of the project.
+    """
+    project_type: pulumi.Input[_builtins.str]
+    """
+    The type of the linked project
+    """
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+    """
+
+@pulumi.input_type
+class ObservabilityProjectMonitoringLoggingAuditDestinationArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[_builtins.str],
+                 project_type: pulumi.Input[_builtins.str],
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] project_id: ID of the project.
+        :param pulumi.Input[_builtins.str] project_type: The type of the linked project
+        :param pulumi.Input[_builtins.str] status: The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_type", project_type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        ID of the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectType")
+    def project_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the linked project
+        """
+        return pulumi.get(self, "project_type")
+
+    @project_type.setter
+    def project_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "status", value)
 
 
 class ObservabilityProjectPrivateEndpointsArgsDict(TypedDict):
@@ -7379,6 +7829,199 @@ class SecurityProjectMetadataArgs:
     @tags.setter
     def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
+
+
+class SecurityProjectMonitoringArgsDict(TypedDict):
+    logging: NotRequired[pulumi.Input[Optional['SecurityProjectMonitoringLoggingArgsDict']]]
+    """
+    Configuration for project logs.
+    """
+
+@pulumi.input_type
+class SecurityProjectMonitoringArgs:
+    def __init__(__self__, *,
+                 logging: pulumi.Input[Optional['SecurityProjectMonitoringLoggingArgs']] = None):
+        """
+        :param pulumi.Input['SecurityProjectMonitoringLoggingArgs'] logging: Configuration for project logs.
+        """
+        if logging is not None:
+            pulumi.set(__self__, "logging", logging)
+
+    @_builtins.property
+    @pulumi.getter
+    def logging(self) -> pulumi.Input[Optional['SecurityProjectMonitoringLoggingArgs']]:
+        """
+        Configuration for project logs.
+        """
+        return pulumi.get(self, "logging")
+
+    @logging.setter
+    def logging(self, value: pulumi.Input[Optional['SecurityProjectMonitoringLoggingArgs']]):
+        pulumi.set(self, "logging", value)
+
+
+class SecurityProjectMonitoringLoggingArgsDict(TypedDict):
+    audit: NotRequired[pulumi.Input[Optional['SecurityProjectMonitoringLoggingAuditArgsDict']]]
+    """
+    Configuration for logs from a specific category.
+    """
+
+@pulumi.input_type
+class SecurityProjectMonitoringLoggingArgs:
+    def __init__(__self__, *,
+                 audit: pulumi.Input[Optional['SecurityProjectMonitoringLoggingAuditArgs']] = None):
+        """
+        :param pulumi.Input['SecurityProjectMonitoringLoggingAuditArgs'] audit: Configuration for logs from a specific category.
+        """
+        if audit is not None:
+            pulumi.set(__self__, "audit", audit)
+
+    @_builtins.property
+    @pulumi.getter
+    def audit(self) -> pulumi.Input[Optional['SecurityProjectMonitoringLoggingAuditArgs']]:
+        """
+        Configuration for logs from a specific category.
+        """
+        return pulumi.get(self, "audit")
+
+    @audit.setter
+    def audit(self, value: pulumi.Input[Optional['SecurityProjectMonitoringLoggingAuditArgs']]):
+        pulumi.set(self, "audit", value)
+
+
+class SecurityProjectMonitoringLoggingAuditArgsDict(TypedDict):
+    destination: pulumi.Input['SecurityProjectMonitoringLoggingAuditDestinationArgsDict']
+    """
+    Configuration for destination of logs.
+    """
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+    """
+    ignore_filter_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+    """
+
+@pulumi.input_type
+class SecurityProjectMonitoringLoggingAuditArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input['SecurityProjectMonitoringLoggingAuditDestinationArgs'],
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input['SecurityProjectMonitoringLoggingAuditDestinationArgs'] destination: Configuration for destination of logs.
+        :param pulumi.Input[_builtins.bool] enabled: When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ignore_filter_ids: IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+        """
+        pulumi.set(__self__, "destination", destination)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if ignore_filter_ids is not None:
+            pulumi.set(__self__, "ignore_filter_ids", ignore_filter_ids)
+
+    @_builtins.property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input['SecurityProjectMonitoringLoggingAuditDestinationArgs']:
+        """
+        Configuration for destination of logs.
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input['SecurityProjectMonitoringLoggingAuditDestinationArgs']):
+        pulumi.set(self, "destination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreFilterIds")
+    def ignore_filter_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+        """
+        return pulumi.get(self, "ignore_filter_ids")
+
+    @ignore_filter_ids.setter
+    def ignore_filter_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ignore_filter_ids", value)
+
+
+class SecurityProjectMonitoringLoggingAuditDestinationArgsDict(TypedDict):
+    project_id: pulumi.Input[_builtins.str]
+    """
+    ID of the project.
+    """
+    project_type: pulumi.Input[_builtins.str]
+    """
+    The type of the linked project
+    """
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+    """
+
+@pulumi.input_type
+class SecurityProjectMonitoringLoggingAuditDestinationArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[_builtins.str],
+                 project_type: pulumi.Input[_builtins.str],
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] project_id: ID of the project.
+        :param pulumi.Input[_builtins.str] project_type: The type of the linked project
+        :param pulumi.Input[_builtins.str] status: The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_type", project_type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        ID of the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectType")
+    def project_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the linked project
+        """
+        return pulumi.get(self, "project_type")
+
+    @project_type.setter
+    def project_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "status", value)
 
 
 class SecurityProjectPrivateEndpointsArgsDict(TypedDict):

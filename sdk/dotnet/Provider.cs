@@ -25,6 +25,12 @@ namespace Pulumi.ElasticCloud
         public Output<string?> Apikey { get; private set; } = null!;
 
         /// <summary>
+        /// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+        /// </summary>
+        [Output("caCert")]
+        public Output<string?> CaCert { get; private set; } = null!;
+
+        /// <summary>
         /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         /// </summary>
         [Output("endpoint")]
@@ -41,6 +47,18 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Output("timeout")]
         public Output<string?> Timeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        /// </summary>
+        [Output("tlsCert")]
+        public Output<string?> TlsCert { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+        /// </summary>
+        [Output("tlsKey")]
+        public Output<string?> TlsKey { get; private set; } = null!;
 
         /// <summary>
         /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
@@ -110,6 +128,12 @@ namespace Pulumi.ElasticCloud
         }
 
         /// <summary>
+        /// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
         /// Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
         /// </summary>
         [Input("endpoint")]
@@ -142,6 +166,18 @@ namespace Pulumi.ElasticCloud
         /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
+
+        /// <summary>
+        /// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+        /// </summary>
+        [Input("tlsCert")]
+        public Input<string>? TlsCert { get; set; }
+
+        /// <summary>
+        /// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+        /// </summary>
+        [Input("tlsKey")]
+        public Input<string>? TlsKey { get; set; }
 
         /// <summary>
         /// Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.

@@ -31,6 +31,21 @@ public final class ElasticsearchProjectPrivateEndpointsArgs extends com.pulumi.r
     }
 
     /**
+     * The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+     * 
+     */
+    @Import(name="ingest")
+    private @Nullable Output<String> ingest;
+
+    /**
+     * @return The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+     * 
+     */
+    public Optional<Output<String>> ingest() {
+        return Optional.ofNullable(this.ingest);
+    }
+
+    /**
      * The PrivateLink endpoint URL to access kibana.
      * 
      */
@@ -49,6 +64,7 @@ public final class ElasticsearchProjectPrivateEndpointsArgs extends com.pulumi.r
 
     private ElasticsearchProjectPrivateEndpointsArgs(ElasticsearchProjectPrivateEndpointsArgs $) {
         this.elasticsearch = $.elasticsearch;
+        this.ingest = $.ingest;
         this.kibana = $.kibana;
     }
 
@@ -89,6 +105,27 @@ public final class ElasticsearchProjectPrivateEndpointsArgs extends com.pulumi.r
          */
         public Builder elasticsearch(String elasticsearch) {
             return elasticsearch(Output.of(elasticsearch));
+        }
+
+        /**
+         * @param ingest The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingest(@Nullable Output<String> ingest) {
+            $.ingest = ingest;
+            return this;
+        }
+
+        /**
+         * @param ingest The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingest(String ingest) {
+            return ingest(Output.of(ingest));
         }
 
         /**

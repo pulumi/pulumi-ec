@@ -19,6 +19,12 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<string>? Elasticsearch { get; set; }
 
         /// <summary>
+        /// The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+        /// </summary>
+        [Input("ingest")]
+        public Input<string>? Ingest { get; set; }
+
+        /// <summary>
         /// The PrivateLink endpoint URL to access kibana.
         /// </summary>
         [Input("kibana")]

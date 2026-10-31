@@ -9,6 +9,7 @@ import com.pulumi.ec.inputs.ObservabilityProjectCredentialsArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectEndpointsArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectLinkedArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectMetadataArgs;
+import com.pulumi.ec.inputs.ObservabilityProjectMonitoringArgs;
 import com.pulumi.ec.inputs.ObservabilityProjectPrivateEndpointsArgs;
 import java.lang.String;
 import java.util.List;
@@ -112,6 +113,21 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
     }
 
     /**
+     * Configuration for monitoring a project.
+     * 
+     */
+    @Import(name="monitoring")
+    private @Nullable Output<ObservabilityProjectMonitoringArgs> monitoring;
+
+    /**
+     * @return Configuration for monitoring a project.
+     * 
+     */
+    public Optional<Output<ObservabilityProjectMonitoringArgs>> monitoring() {
+        return Optional.ofNullable(this.monitoring);
+    }
+
+    /**
      * Descriptive name for a project.
      * 
      */
@@ -210,6 +226,7 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
         this.endpoints = $.endpoints;
         this.linked = $.linked;
         this.metadata = $.metadata;
+        this.monitoring = $.monitoring;
         this.name = $.name;
         this.privateEndpoints = $.privateEndpoints;
         this.productTier = $.productTier;
@@ -360,6 +377,27 @@ public final class ObservabilityProjectState extends com.pulumi.resources.Resour
          */
         public Builder metadata(ObservabilityProjectMetadataArgs metadata) {
             return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(@Nullable Output<ObservabilityProjectMonitoringArgs> monitoring) {
+            $.monitoring = monitoring;
+            return this;
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(ObservabilityProjectMonitoringArgs monitoring) {
+            return monitoring(Output.of(monitoring));
         }
 
         /**

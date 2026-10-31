@@ -16,6 +16,11 @@ func GetApikey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:apikey")
 }
 
+// Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+func GetCaCert(ctx *pulumi.Context) string {
+	return config.Get(ctx, "ec:caCert")
+}
+
 // Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
 func GetEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:endpoint")
@@ -34,6 +39,16 @@ func GetPassword(ctx *pulumi.Context) string {
 // Timeout used for individual HTTP calls. Defaults to "1m".
 func GetTimeout(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ec:timeout")
+}
+
+// Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+func GetTlsCert(ctx *pulumi.Context) string {
+	return config.Get(ctx, "ec:tlsCert")
+}
+
+// Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+func GetTlsKey(ctx *pulumi.Context) string {
+	return config.Get(ctx, "ec:tlsKey")
 }
 
 // Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.

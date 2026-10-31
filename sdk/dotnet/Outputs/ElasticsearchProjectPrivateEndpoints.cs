@@ -18,6 +18,10 @@ namespace Pulumi.ElasticCloud.Outputs
         /// </summary>
         public readonly string? Elasticsearch;
         /// <summary>
+        /// The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+        /// </summary>
+        public readonly string? Ingest;
+        /// <summary>
         /// The PrivateLink endpoint URL to access kibana.
         /// </summary>
         public readonly string? Kibana;
@@ -26,9 +30,12 @@ namespace Pulumi.ElasticCloud.Outputs
         private ElasticsearchProjectPrivateEndpoints(
             string? elasticsearch,
 
+            string? ingest,
+
             string? kibana)
         {
             Elasticsearch = elasticsearch;
+            Ingest = ingest;
             Kibana = kibana;
         }
     }

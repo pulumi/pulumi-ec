@@ -1079,6 +1079,10 @@ export interface ElasticsearchProjectEndpoints {
      */
     elasticsearch: string;
     /**
+     * The endpoint to access the Managed OpenTelemetry Collector.
+     */
+    ingest: string;
+    /**
      * The endpoint to access kibana.
      */
     kibana: string;
@@ -1130,11 +1134,59 @@ export interface ElasticsearchProjectMetadata {
     tags: {[key: string]: string};
 }
 
+export interface ElasticsearchProjectMonitoring {
+    /**
+     * Configuration for project logs.
+     */
+    logging?: outputs.ElasticsearchProjectMonitoringLogging;
+}
+
+export interface ElasticsearchProjectMonitoringLogging {
+    /**
+     * Configuration for logs from a specific category.
+     */
+    audit?: outputs.ElasticsearchProjectMonitoringLoggingAudit;
+}
+
+export interface ElasticsearchProjectMonitoringLoggingAudit {
+    /**
+     * Configuration for destination of logs.
+     */
+    destination: outputs.ElasticsearchProjectMonitoringLoggingAuditDestination;
+    /**
+     * When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+     */
+    enabled: boolean;
+    /**
+     * IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+     */
+    ignoreFilterIds?: string[];
+}
+
+export interface ElasticsearchProjectMonitoringLoggingAuditDestination {
+    /**
+     * ID of the project.
+     */
+    projectId: string;
+    /**
+     * The type of the linked project
+     */
+    projectType: string;
+    /**
+     * The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+     */
+    status: string;
+}
+
 export interface ElasticsearchProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access elasticsearch.
      */
     elasticsearch: string;
+    /**
+     * The PrivateLink endpoint URL to access the Managed OpenTelemetry Collector.
+     */
+    ingest: string;
     /**
      * The PrivateLink endpoint URL to access kibana.
      */
@@ -2106,6 +2158,50 @@ export interface ObservabilityProjectMetadata {
     tags: {[key: string]: string};
 }
 
+export interface ObservabilityProjectMonitoring {
+    /**
+     * Configuration for project logs.
+     */
+    logging?: outputs.ObservabilityProjectMonitoringLogging;
+}
+
+export interface ObservabilityProjectMonitoringLogging {
+    /**
+     * Configuration for logs from a specific category.
+     */
+    audit?: outputs.ObservabilityProjectMonitoringLoggingAudit;
+}
+
+export interface ObservabilityProjectMonitoringLoggingAudit {
+    /**
+     * Configuration for destination of logs.
+     */
+    destination: outputs.ObservabilityProjectMonitoringLoggingAuditDestination;
+    /**
+     * When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+     */
+    enabled: boolean;
+    /**
+     * IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+     */
+    ignoreFilterIds?: string[];
+}
+
+export interface ObservabilityProjectMonitoringLoggingAuditDestination {
+    /**
+     * ID of the project.
+     */
+    projectId: string;
+    /**
+     * The type of the linked project
+     */
+    projectType: string;
+    /**
+     * The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+     */
+    status: string;
+}
+
 export interface ObservabilityProjectPrivateEndpoints {
     /**
      * The PrivateLink endpoint URL to access APM.
@@ -2306,6 +2402,50 @@ export interface SecurityProjectMetadata {
      * Tags associated with a project in the form of key-value pairs. Tags are limited to a minimum of 1 and a maximum of 64 per project. Each tag key must begin with a lowercase letter (a-z), contain only lowercase letters, digits, underscores, and hyphens (a-z0-9_-), and have a maximum length of 32 characters.
      */
     tags: {[key: string]: string};
+}
+
+export interface SecurityProjectMonitoring {
+    /**
+     * Configuration for project logs.
+     */
+    logging?: outputs.SecurityProjectMonitoringLogging;
+}
+
+export interface SecurityProjectMonitoringLogging {
+    /**
+     * Configuration for logs from a specific category.
+     */
+    audit?: outputs.SecurityProjectMonitoringLoggingAudit;
+}
+
+export interface SecurityProjectMonitoringLoggingAudit {
+    /**
+     * Configuration for destination of logs.
+     */
+    destination: outputs.SecurityProjectMonitoringLoggingAuditDestination;
+    /**
+     * When true (default), logs from this category are delivered to the configured destination. When false, delivery is paused but the configuration is preserved.
+     */
+    enabled: boolean;
+    /**
+     * IDs of logging ignore filters applied to reduce the volume of logs delivered for this category. The predefined IDs are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+     */
+    ignoreFilterIds?: string[];
+}
+
+export interface SecurityProjectMonitoringLoggingAuditDestination {
+    /**
+     * ID of the project.
+     */
+    projectId: string;
+    /**
+     * The type of the linked project
+     */
+    projectType: string;
+    /**
+     * The state of log delivery to this destination. Controlled by the system and read-only: it is set to `suspended` or `deleted` when the destination project is suspended or deleted. Logs are only delivered when this is `enabled` and the logging category's `enabled` flag is true.
+     */
+    status: string;
 }
 
 export interface SecurityProjectPrivateEndpoints {

@@ -9,6 +9,7 @@ import com.pulumi.ec.inputs.SecurityProjectCredentialsArgs;
 import com.pulumi.ec.inputs.SecurityProjectEndpointsArgs;
 import com.pulumi.ec.inputs.SecurityProjectLinkedArgs;
 import com.pulumi.ec.inputs.SecurityProjectMetadataArgs;
+import com.pulumi.ec.inputs.SecurityProjectMonitoringArgs;
 import com.pulumi.ec.inputs.SecurityProjectPrivateEndpointsArgs;
 import com.pulumi.ec.inputs.SecurityProjectProductTypeArgs;
 import com.pulumi.ec.inputs.SecurityProjectSearchLakeArgs;
@@ -129,6 +130,21 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Configuration for monitoring a project.
+     * 
+     */
+    @Import(name="monitoring")
+    private @Nullable Output<SecurityProjectMonitoringArgs> monitoring;
+
+    /**
+     * @return Configuration for monitoring a project.
+     * 
+     */
+    public Optional<Output<SecurityProjectMonitoringArgs>> monitoring() {
+        return Optional.ofNullable(this.monitoring);
+    }
+
+    /**
      * Descriptive name for a project.
      * 
      */
@@ -235,6 +251,7 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
         this.endpoints = $.endpoints;
         this.linked = $.linked;
         this.metadata = $.metadata;
+        this.monitoring = $.monitoring;
         this.name = $.name;
         this.privateEndpoints = $.privateEndpoints;
         this.productTypes = $.productTypes;
@@ -407,6 +424,27 @@ public final class SecurityProjectState extends com.pulumi.resources.ResourceArg
          */
         public Builder metadata(SecurityProjectMetadataArgs metadata) {
             return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(@Nullable Output<SecurityProjectMonitoringArgs> monitoring) {
+            $.monitoring = monitoring;
+            return this;
+        }
+
+        /**
+         * @param monitoring Configuration for monitoring a project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder monitoring(SecurityProjectMonitoringArgs monitoring) {
+            return monitoring(Output.of(monitoring));
         }
 
         /**

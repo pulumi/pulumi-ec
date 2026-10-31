@@ -32,6 +32,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    @Import(name="caCert")
+    private @Nullable Output<String> caCert;
+
+    /**
+     * @return Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    public Optional<Output<String>> caCert() {
+        return Optional.ofNullable(this.caCert);
+    }
+
+    /**
      * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
      * 
      */
@@ -89,6 +104,36 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> timeout() {
         return Optional.ofNullable(this.timeout);
+    }
+
+    /**
+     * Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    @Import(name="tlsCert")
+    private @Nullable Output<String> tlsCert;
+
+    /**
+     * @return Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    public Optional<Output<String>> tlsCert() {
+        return Optional.ofNullable(this.tlsCert);
+    }
+
+    /**
+     * Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+     * 
+     */
+    @Import(name="tlsKey")
+    private @Nullable Output<String> tlsKey;
+
+    /**
+     * @return Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+     * 
+     */
+    public Optional<Output<String>> tlsKey() {
+        return Optional.ofNullable(this.tlsKey);
     }
 
     /**
@@ -155,10 +200,13 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     private ProviderArgs(ProviderArgs $) {
         this.apikey = $.apikey;
+        this.caCert = $.caCert;
         this.endpoint = $.endpoint;
         this.insecure = $.insecure;
         this.password = $.password;
         this.timeout = $.timeout;
+        this.tlsCert = $.tlsCert;
+        this.tlsKey = $.tlsKey;
         this.username = $.username;
         this.verbose = $.verbose;
         this.verboseCredentials = $.verboseCredentials;
@@ -202,6 +250,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder apikey(String apikey) {
             return apikey(Output.of(apikey));
+        }
+
+        /**
+         * @param caCert Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder caCert(@Nullable Output<String> caCert) {
+            $.caCert = caCert;
+            return this;
+        }
+
+        /**
+         * @param caCert Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder caCert(String caCert) {
+            return caCert(Output.of(caCert));
         }
 
         /**
@@ -286,6 +355,48 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder timeout(String timeout) {
             return timeout(Output.of(timeout));
+        }
+
+        /**
+         * @param tlsCert Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCert(@Nullable Output<String> tlsCert) {
+            $.tlsCert = tlsCert;
+            return this;
+        }
+
+        /**
+         * @param tlsCert Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCert(String tlsCert) {
+            return tlsCert(Output.of(tlsCert));
+        }
+
+        /**
+         * @param tlsKey Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsKey(@Nullable Output<String> tlsKey) {
+            $.tlsKey = tlsKey;
+            return this;
+        }
+
+        /**
+         * @param tlsKey Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsKey(String tlsKey) {
+            return tlsKey(Output.of(tlsKey));
         }
 
         /**

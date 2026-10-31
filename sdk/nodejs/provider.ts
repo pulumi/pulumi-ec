@@ -30,6 +30,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly apikey: pulumi.Output<string | undefined>;
     /**
+     * Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+     */
+    declare public readonly caCert: pulumi.Output<string | undefined>;
+    /**
      * Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
      */
     declare public readonly endpoint: pulumi.Output<string | undefined>;
@@ -41,6 +45,14 @@ export class Provider extends pulumi.ProviderResource {
      * Timeout used for individual HTTP calls. Defaults to "1m".
      */
     declare public readonly timeout: pulumi.Output<string | undefined>;
+    /**
+     * Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+     */
+    declare public readonly tlsCert: pulumi.Output<string | undefined>;
+    /**
+     * Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+     */
+    declare public readonly tlsKey: pulumi.Output<string | undefined>;
     /**
      * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */
@@ -62,10 +74,13 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apikey"] = args?.apikey ? pulumi.secret(args.apikey) : undefined;
+            resourceInputs["caCert"] = args?.caCert;
             resourceInputs["endpoint"] = args?.endpoint;
             resourceInputs["insecure"] = pulumi.output(args?.insecure).apply(JSON.stringify);
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["timeout"] = args?.timeout;
+            resourceInputs["tlsCert"] = args?.tlsCert;
+            resourceInputs["tlsKey"] = args?.tlsKey;
             resourceInputs["username"] = args?.username;
             resourceInputs["verbose"] = pulumi.output(args?.verbose).apply(JSON.stringify);
             resourceInputs["verboseCredentials"] = pulumi.output(args?.verboseCredentials).apply(JSON.stringify);
@@ -96,6 +111,10 @@ export interface ProviderArgs {
      */
     apikey?: pulumi.Input<string | undefined>;
     /**
+     * Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+     */
+    caCert?: pulumi.Input<string | undefined>;
+    /**
      * Endpoint where the terraform provider will point to. Defaults to "https://api.elastic-cloud.com".
      */
     endpoint?: pulumi.Input<string | undefined>;
@@ -111,6 +130,14 @@ export interface ProviderArgs {
      * Timeout used for individual HTTP calls. Defaults to "1m".
      */
     timeout?: pulumi.Input<string | undefined>;
+    /**
+     * Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+     */
+    tlsCert?: pulumi.Input<string | undefined>;
+    /**
+     * Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+     */
+    tlsKey?: pulumi.Input<string | undefined>;
     /**
      * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.
      */

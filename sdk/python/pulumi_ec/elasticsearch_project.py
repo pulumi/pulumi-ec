@@ -25,6 +25,7 @@ class ElasticsearchProjectArgs:
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']] = None,
+                 monitoring: pulumi.Input[Optional['ElasticsearchProjectMonitoringArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
                  search_lake: pulumi.Input[Optional['ElasticsearchProjectSearchLakeArgs']] = None,
@@ -36,6 +37,7 @@ class ElasticsearchProjectArgs:
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input['ElasticsearchProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Metadata request for a project with tags.
+        :param pulumi.Input['ElasticsearchProjectMonitoringArgs'] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
                
@@ -51,6 +53,8 @@ class ElasticsearchProjectArgs:
             pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if optimized_for is not None:
@@ -107,6 +111,18 @@ class ElasticsearchProjectArgs:
     @metadata.setter
     def metadata(self, value: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']]):
         pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def monitoring(self) -> pulumi.Input[Optional['ElasticsearchProjectMonitoringArgs']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @monitoring.setter
+    def monitoring(self, value: pulumi.Input[Optional['ElasticsearchProjectMonitoringArgs']]):
+        pulumi.set(self, "monitoring", value)
 
     @_builtins.property
     @pulumi.getter
@@ -169,6 +185,7 @@ class _ElasticsearchProjectState:
                  endpoints: pulumi.Input[Optional['ElasticsearchProjectEndpointsArgs']] = None,
                  linked: pulumi.Input[Optional['ElasticsearchProjectLinkedArgs']] = None,
                  metadata: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']] = None,
+                 monitoring: pulumi.Input[Optional['ElasticsearchProjectMonitoringArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
                  private_endpoints: pulumi.Input[Optional['ElasticsearchProjectPrivateEndpointsArgs']] = None,
@@ -185,6 +202,7 @@ class _ElasticsearchProjectState:
         :param pulumi.Input['ElasticsearchProjectEndpointsArgs'] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input['ElasticsearchProjectLinkedArgs'] linked: Configuration for linked projects associated with this project
         :param pulumi.Input['ElasticsearchProjectMetadataArgs'] metadata: Metadata request for a project with tags.
+        :param pulumi.Input['ElasticsearchProjectMonitoringArgs'] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
                
@@ -208,6 +226,8 @@ class _ElasticsearchProjectState:
             pulumi.set(__self__, "linked", linked)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if optimized_for is not None:
@@ -294,6 +314,18 @@ class _ElasticsearchProjectState:
     @metadata.setter
     def metadata(self, value: pulumi.Input[Optional['ElasticsearchProjectMetadataArgs']]):
         pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def monitoring(self) -> pulumi.Input[Optional['ElasticsearchProjectMonitoringArgs']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @monitoring.setter
+    def monitoring(self, value: pulumi.Input[Optional['ElasticsearchProjectMonitoringArgs']]):
+        pulumi.set(self, "monitoring", value)
 
     @_builtins.property
     @pulumi.getter
@@ -392,6 +424,7 @@ class ElasticsearchProject(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
                  metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
+                 monitoring: pulumi.Input[Optional[Union['ElasticsearchProjectMonitoringArgs', 'ElasticsearchProjectMonitoringArgsDict', 'outputs.ElasticsearchProjectMonitoring']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -399,12 +432,9 @@ class ElasticsearchProject(pulumi.CustomResource):
                  traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## Technical preview
-
-        This functionality is in technical preview and may be changed or removed in a future release.
-        Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -414,6 +444,36 @@ class ElasticsearchProject(pulumi.CustomResource):
             name="my_project",
             region_id="aws-us-east-1")
         ```
+
+        ### With audit logging
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        # The destination must be an existing observability or security project.
+        audit_logs = ec.ObservabilityProject("audit_logs",
+            name="my_audit_logs",
+            region_id="aws-us-east-1")
+        my_project = ec.ElasticsearchProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            monitoring={
+                "logging": {
+                    "audit": {
+                        "destination": {
+                            "project_id": audit_logs.id,
+                            "project_type": "observability",
+                        },
+                        "ignore_filter_ids": ["audit-ignore-data-reads"],
+                    },
+                },
+            })
+        ```
+
+        Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+
+        > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
         ## Import
 
@@ -431,6 +491,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
         :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ElasticsearchProjectMonitoringArgs', 'ElasticsearchProjectMonitoringArgsDict', 'outputs.ElasticsearchProjectMonitoring']] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
                
@@ -447,12 +508,9 @@ class ElasticsearchProject(pulumi.CustomResource):
                  args: ElasticsearchProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Technical preview
-
-        This functionality is in technical preview and may be changed or removed in a future release.
-        Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -462,6 +520,36 @@ class ElasticsearchProject(pulumi.CustomResource):
             name="my_project",
             region_id="aws-us-east-1")
         ```
+
+        ### With audit logging
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        # The destination must be an existing observability or security project.
+        audit_logs = ec.ObservabilityProject("audit_logs",
+            name="my_audit_logs",
+            region_id="aws-us-east-1")
+        my_project = ec.ElasticsearchProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            monitoring={
+                "logging": {
+                    "audit": {
+                        "destination": {
+                            "project_id": audit_logs.id,
+                            "project_type": "observability",
+                        },
+                        "ignore_filter_ids": ["audit-ignore-data-reads"],
+                    },
+                },
+            })
+        ```
+
+        Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
+
+        > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
         ## Import
 
@@ -492,6 +580,7 @@ class ElasticsearchProject(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
                  metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
+                 monitoring: pulumi.Input[Optional[Union['ElasticsearchProjectMonitoringArgs', 'ElasticsearchProjectMonitoringArgsDict', 'outputs.ElasticsearchProjectMonitoring']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
                  region_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -509,6 +598,7 @@ class ElasticsearchProject(pulumi.CustomResource):
             __props__.__dict__["alias"] = alias
             __props__.__dict__["linked"] = linked
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["monitoring"] = monitoring
             __props__.__dict__["name"] = name
             __props__.__dict__["optimized_for"] = optimized_for
             if region_id is None and not opts.urn:
@@ -537,6 +627,7 @@ class ElasticsearchProject(pulumi.CustomResource):
             endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict', 'outputs.ElasticsearchProjectEndpoints']]] = None,
             linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
             metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
+            monitoring: pulumi.Input[Optional[Union['ElasticsearchProjectMonitoringArgs', 'ElasticsearchProjectMonitoringArgsDict', 'outputs.ElasticsearchProjectMonitoring']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
             private_endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict', 'outputs.ElasticsearchProjectPrivateEndpoints']]] = None,
@@ -557,6 +648,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         :param pulumi.Input[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict', 'outputs.ElasticsearchProjectEndpoints']] endpoints: The endpoints to access the different apps of the project.
         :param pulumi.Input[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']] linked: Configuration for linked projects associated with this project
         :param pulumi.Input[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']] metadata: Metadata request for a project with tags.
+        :param pulumi.Input[Union['ElasticsearchProjectMonitoringArgs', 'ElasticsearchProjectMonitoringArgsDict', 'outputs.ElasticsearchProjectMonitoring']] monitoring: Configuration for monitoring a project.
         :param pulumi.Input[_builtins.str] name: Descriptive name for a project.
         :param pulumi.Input[_builtins.str] optimized_for: The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
                
@@ -578,6 +670,7 @@ class ElasticsearchProject(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["linked"] = linked
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["monitoring"] = monitoring
         __props__.__dict__["name"] = name
         __props__.__dict__["optimized_for"] = optimized_for
         __props__.__dict__["private_endpoints"] = private_endpoints
@@ -634,6 +727,14 @@ class ElasticsearchProject(pulumi.CustomResource):
         Metadata request for a project with tags.
         """
         return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def monitoring(self) -> pulumi.Output[Optional['outputs.ElasticsearchProjectMonitoring']]:
+        """
+        Configuration for monitoring a project.
+        """
+        return pulumi.get(self, "monitoring")
 
     @_builtins.property
     @pulumi.getter

@@ -38,6 +38,20 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.apikey);
     }
     /**
+     * Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    @Export(name="caCert", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> caCert;
+
+    /**
+     * @return Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    public Output<Optional<String>> caCert() {
+        return Codegen.optional(this.caCert);
+    }
+    /**
      * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
      * 
      */
@@ -78,6 +92,34 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      */
     public Output<Optional<String>> timeout() {
         return Codegen.optional(this.timeout);
+    }
+    /**
+     * Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    @Export(name="tlsCert", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tlsCert;
+
+    /**
+     * @return Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+     * 
+     */
+    public Output<Optional<String>> tlsCert() {
+        return Codegen.optional(this.tlsCert);
+    }
+    /**
+     * Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+     * 
+     */
+    @Export(name="tlsKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tlsKey;
+
+    /**
+     * @return Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+     * 
+     */
+    public Output<Optional<String>> tlsKey() {
+        return Codegen.optional(this.tlsKey);
     }
     /**
      * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.

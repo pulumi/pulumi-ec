@@ -19,6 +19,13 @@ public final class Config {
         return Codegen.stringProp("apikey").config(config).get();
     }
 /**
+ * Path to a PEM-encoded CA certificate bundle to trust in addition to the system certificates. Can also be set with EC_CA_CERT; set to an empty string to ignore the environment variable.
+ * 
+ */
+    public Optional<String> caCert() {
+        return Codegen.stringProp("caCert").config(config).get();
+    }
+/**
  * Endpoint where the terraform provider will point to. Defaults to &#34;https://api.elastic-cloud.com&#34;.
  * 
  */
@@ -45,6 +52,20 @@ public final class Config {
  */
     public Optional<String> timeout() {
         return Codegen.stringProp("timeout").config(config).get();
+    }
+/**
+ * Path to a PEM-encoded client certificate for mutual TLS. Must be configured together with tls_key. Can also be set with EC_TLS_CERT; set to an empty string to ignore the environment variable.
+ * 
+ */
+    public Optional<String> tlsCert() {
+        return Codegen.stringProp("tlsCert").config(config).get();
+    }
+/**
+ * Path to the PEM-encoded private key for the mutual TLS client certificate. Must be configured together with tls_cert. Can also be set with EC_TLS_KEY; set to an empty string to ignore the environment variable.
+ * 
+ */
+    public Optional<String> tlsKey() {
+        return Codegen.stringProp("tlsKey").config(config).get();
     }
 /**
  * Username to use for API authentication. Available only when targeting ECE Installations or Elasticsearch Service Private.

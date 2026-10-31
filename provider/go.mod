@@ -5,7 +5,7 @@ go 1.26.10
 replace github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0
 
 require (
-	github.com/elastic/terraform-provider-ec v0.13.1
+	github.com/elastic/terraform-provider-ec v0.14.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.142.0
 	github.com/pulumi/pulumi/sdk/v3 v3.272.0
 	github.com/stretchr/testify v1.12.1
@@ -179,7 +179,7 @@ require (
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
-	github.com/oapi-codegen/runtime v1.7.0 // indirect
+	github.com/oapi-codegen/runtime v1.8.0 // indirect
 	github.com/oklog/run v1.2.0 // indirect
 	github.com/oklog/ulid/v2 v2.1.2 // indirect
 	github.com/olekukonko/cat v0.0.0-20250911104152-50322a0618f6 // indirect
