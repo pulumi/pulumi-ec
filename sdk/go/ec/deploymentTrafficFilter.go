@@ -291,6 +291,12 @@ func (DeploymentTrafficFilterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentTrafficFilterState)(nil)).Elem()
 }
 
+// DeploymentTrafficFilterExists checks whether an existing DeploymentTrafficFilter resource with the given ID exists.
+func DeploymentTrafficFilterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentTrafficFilterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/deploymentTrafficFilter:DeploymentTrafficFilter", id, state, "", opts...)
+}
+
 type deploymentTrafficFilterArgs struct {
 	// Ruleset description
 	Description *string `pulumi:"description"`

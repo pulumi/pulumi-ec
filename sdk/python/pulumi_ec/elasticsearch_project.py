@@ -680,6 +680,40 @@ class ElasticsearchProject(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return ElasticsearchProject(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[Union['ElasticsearchProjectCredentialsArgs', 'ElasticsearchProjectCredentialsArgsDict', 'outputs.ElasticsearchProjectCredentials']]] = None,
+            endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectEndpointsArgs', 'ElasticsearchProjectEndpointsArgsDict', 'outputs.ElasticsearchProjectEndpoints']]] = None,
+            linked: pulumi.Input[Optional[Union['ElasticsearchProjectLinkedArgs', 'ElasticsearchProjectLinkedArgsDict', 'outputs.ElasticsearchProjectLinked']]] = None,
+            metadata: pulumi.Input[Optional[Union['ElasticsearchProjectMetadataArgs', 'ElasticsearchProjectMetadataArgsDict', 'outputs.ElasticsearchProjectMetadata']]] = None,
+            monitoring: pulumi.Input[Optional[Union['ElasticsearchProjectMonitoringArgs', 'ElasticsearchProjectMonitoringArgsDict', 'outputs.ElasticsearchProjectMonitoring']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            optimized_for: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['ElasticsearchProjectPrivateEndpointsArgs', 'ElasticsearchProjectPrivateEndpointsArgsDict', 'outputs.ElasticsearchProjectPrivateEndpoints']]] = None,
+            region_id: pulumi.Input[Optional[_builtins.str]] = None,
+            search_lake: pulumi.Input[Optional[Union['ElasticsearchProjectSearchLakeArgs', 'ElasticsearchProjectSearchLakeArgsDict', 'outputs.ElasticsearchProjectSearchLake']]] = None,
+            traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alias"] = alias
+        __props__["cloudId"] = cloud_id
+        __props__["credentials"] = credentials
+        __props__["endpoints"] = endpoints
+        __props__["linked"] = linked
+        __props__["metadata"] = metadata
+        __props__["monitoring"] = monitoring
+        __props__["name"] = name
+        __props__["optimizedFor"] = optimized_for
+        __props__["privateEndpoints"] = private_endpoints
+        __props__["regionId"] = region_id
+        __props__["searchLake"] = search_lake
+        __props__["trafficFilterIds"] = traffic_filter_ids
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'ec:index/elasticsearchProject:ElasticsearchProject', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def alias(self) -> pulumi.Output[_builtins.str]:

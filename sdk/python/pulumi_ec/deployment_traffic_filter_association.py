@@ -232,6 +232,16 @@ class DeploymentTrafficFilterAssociation(pulumi.CustomResource):
         __props__.__dict__["traffic_filter_id"] = traffic_filter_id
         return DeploymentTrafficFilterAssociation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            traffic_filter_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["deploymentId"] = deployment_id
+        __props__["trafficFilterId"] = traffic_filter_id
+        return pulumi.runtime.exists_resource(None, 'ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Output[_builtins.str]:

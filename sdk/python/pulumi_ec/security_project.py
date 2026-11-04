@@ -691,6 +691,42 @@ class SecurityProject(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return SecurityProject(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            admin_features_package: pulumi.Input[Optional[_builtins.str]] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[Union['SecurityProjectCredentialsArgs', 'SecurityProjectCredentialsArgsDict', 'outputs.SecurityProjectCredentials']]] = None,
+            endpoints: pulumi.Input[Optional[Union['SecurityProjectEndpointsArgs', 'SecurityProjectEndpointsArgsDict', 'outputs.SecurityProjectEndpoints']]] = None,
+            linked: pulumi.Input[Optional[Union['SecurityProjectLinkedArgs', 'SecurityProjectLinkedArgsDict', 'outputs.SecurityProjectLinked']]] = None,
+            metadata: pulumi.Input[Optional[Union['SecurityProjectMetadataArgs', 'SecurityProjectMetadataArgsDict', 'outputs.SecurityProjectMetadata']]] = None,
+            monitoring: pulumi.Input[Optional[Union['SecurityProjectMonitoringArgs', 'SecurityProjectMonitoringArgsDict', 'outputs.SecurityProjectMonitoring']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['SecurityProjectPrivateEndpointsArgs', 'SecurityProjectPrivateEndpointsArgsDict', 'outputs.SecurityProjectPrivateEndpoints']]] = None,
+            product_types: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityProjectProductTypeArgs', 'SecurityProjectProductTypeArgsDict', 'outputs.SecurityProjectProductType']]]]] = None,
+            region_id: pulumi.Input[Optional[_builtins.str]] = None,
+            search_lake: pulumi.Input[Optional[Union['SecurityProjectSearchLakeArgs', 'SecurityProjectSearchLakeArgsDict', 'outputs.SecurityProjectSearchLake']]] = None,
+            traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adminFeaturesPackage"] = admin_features_package
+        __props__["alias"] = alias
+        __props__["cloudId"] = cloud_id
+        __props__["credentials"] = credentials
+        __props__["endpoints"] = endpoints
+        __props__["linked"] = linked
+        __props__["metadata"] = metadata
+        __props__["monitoring"] = monitoring
+        __props__["name"] = name
+        __props__["privateEndpoints"] = private_endpoints
+        __props__["productTypes"] = product_types
+        __props__["regionId"] = region_id
+        __props__["searchLake"] = search_lake
+        __props__["trafficFilterIds"] = traffic_filter_ids
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'ec:index/securityProject:SecurityProject', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adminFeaturesPackage")
     def admin_features_package(self) -> pulumi.Output[_builtins.str]:

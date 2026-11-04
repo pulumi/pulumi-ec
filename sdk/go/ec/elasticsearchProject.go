@@ -242,6 +242,12 @@ func (ElasticsearchProjectState) ElementType() reflect.Type {
 	return reflect.TypeOf((*elasticsearchProjectState)(nil)).Elem()
 }
 
+// ElasticsearchProjectExists checks whether an existing ElasticsearchProject resource with the given ID exists.
+func ElasticsearchProjectExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ElasticsearchProjectState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/elasticsearchProject:ElasticsearchProject", id, state, "", opts...)
+}
+
 type elasticsearchProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`

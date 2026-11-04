@@ -264,6 +264,12 @@ func (DeploymentExtensionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentExtensionState)(nil)).Elem()
 }
 
+// DeploymentExtensionExists checks whether an existing DeploymentExtension resource with the given ID exists.
+func DeploymentExtensionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentExtensionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/deploymentExtension:DeploymentExtension", id, state, "", opts...)
+}
+
 type deploymentExtensionArgs struct {
 	// Description for the extension
 	Description *string `pulumi:"description"`

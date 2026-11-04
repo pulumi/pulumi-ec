@@ -197,6 +197,12 @@ func (OrganizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationState)(nil)).Elem()
 }
 
+// OrganizationExists checks whether an existing Organization resource with the given ID exists.
+func OrganizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrganizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/organization:Organization", id, state, "", opts...)
+}
+
 type organizationArgs struct {
 	// Manages the members of an Elastic Cloud organization. The key of each entry should be the email of the member.
 	Members map[string]OrganizationMembers `pulumi:"members"`

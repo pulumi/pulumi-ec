@@ -143,6 +143,12 @@ func (ServerlessTrafficFilterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverlessTrafficFilterState)(nil)).Elem()
 }
 
+// ServerlessTrafficFilterExists checks whether an existing ServerlessTrafficFilter resource with the given ID exists.
+func ServerlessTrafficFilterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerlessTrafficFilterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/serverlessTrafficFilter:ServerlessTrafficFilter", id, state, "", opts...)
+}
+
 type serverlessTrafficFilterArgs struct {
 	// Description of the traffic filter
 	Description *string `pulumi:"description"`

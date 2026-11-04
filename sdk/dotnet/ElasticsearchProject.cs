@@ -143,8 +143,8 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
         /// 
-        /// 	- The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
-        /// 	- The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+        ///     - The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        ///     - The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         /// </summary>
         [Output("optimizedFor")]
         public Output<string> OptimizedFor { get; private set; } = null!;
@@ -258,8 +258,8 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
         /// 
-        /// 	- The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
-        /// 	- The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+        ///     - The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        ///     - The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         /// </summary>
         [Input("optimizedFor")]
         public Input<string>? OptimizedFor { get; set; }
@@ -347,8 +347,8 @@ namespace Pulumi.ElasticCloud
         /// <summary>
         /// The purpose for which the hardware of this elasticsearch project is optimized. Also known as the Elasticsearch project subtype.
         /// 
-        /// 	- The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
-        /// 	- The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
+        ///     - The `GeneralPurpose` option is suitable for most search use cases. For example, it is the right profile for full-text search, sparse vectors, and dense vectors that use compression such as BBQ. It is used by default when you create projects from the UI.
+        ///     - The `Vector` option is recommended only for uncompressed dense vectors (`DenseVector` fields with `Int4` or `Int8` quantization strategies) and high dimensionality. Refer to documentation about billing dimensions for the impact to virtual compute unit (VCU) consumption.
         /// </summary>
         [Input("optimizedFor")]
         public Input<string>? OptimizedFor { get; set; }

@@ -30,22 +30,22 @@ public final class GetDeploymentElasticsearchTopology {
      */
     private List<String> nodeRoles;
     /**
-     * @return Defines whether this node can hold data (\n\n).
+     * @return Defines whether this node can hold data (&#92;n&#92;n).
      * 
      */
     private Boolean nodeTypeData;
     /**
-     * @return Defines whether this node can run an ingest pipeline (\n\n).
+     * @return Defines whether this node can run an ingest pipeline (&#92;n&#92;n).
      * 
      */
     private Boolean nodeTypeIngest;
     /**
-     * @return Defines whether this node can be elected master (\n\n).
+     * @return Defines whether this node can be elected master (&#92;n&#92;n).
      * 
      */
     private Boolean nodeTypeMaster;
     /**
-     * @return Defines whether this node can run ML jobs (\n\n).
+     * @return Defines whether this node can run ML jobs (&#92;n&#92;n).
      * 
      */
     private Boolean nodeTypeMl;
@@ -88,28 +88,28 @@ public final class GetDeploymentElasticsearchTopology {
         return this.nodeRoles;
     }
     /**
-     * @return Defines whether this node can hold data (\n\n).
+     * @return Defines whether this node can hold data (&#92;n&#92;n).
      * 
      */
     public Boolean nodeTypeData() {
         return this.nodeTypeData;
     }
     /**
-     * @return Defines whether this node can run an ingest pipeline (\n\n).
+     * @return Defines whether this node can run an ingest pipeline (&#92;n&#92;n).
      * 
      */
     public Boolean nodeTypeIngest() {
         return this.nodeTypeIngest;
     }
     /**
-     * @return Defines whether this node can be elected master (\n\n).
+     * @return Defines whether this node can be elected master (&#92;n&#92;n).
      * 
      */
     public Boolean nodeTypeMaster() {
         return this.nodeTypeMaster;
     }
     /**
-     * @return Defines whether this node can run ML jobs (\n\n).
+     * @return Defines whether this node can run ML jobs (&#92;n&#92;n).
      * 
      */
     public Boolean nodeTypeMl() {

@@ -227,6 +227,12 @@ func (ObservabilityProjectState) ElementType() reflect.Type {
 	return reflect.TypeOf((*observabilityProjectState)(nil)).Elem()
 }
 
+// ObservabilityProjectExists checks whether an existing ObservabilityProject resource with the given ID exists.
+func ObservabilityProjectExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ObservabilityProjectState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/observabilityProject:ObservabilityProject", id, state, "", opts...)
+}
+
 type observabilityProjectArgs struct {
 	// A custom domain label compatible with RFC-1035 standards. Derived from the project name by default.
 	Alias *string `pulumi:"alias"`

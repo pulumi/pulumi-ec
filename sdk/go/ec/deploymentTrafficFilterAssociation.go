@@ -125,6 +125,12 @@ func (DeploymentTrafficFilterAssociationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentTrafficFilterAssociationState)(nil)).Elem()
 }
 
+// DeploymentTrafficFilterAssociationExists checks whether an existing DeploymentTrafficFilterAssociation resource with the given ID exists.
+func DeploymentTrafficFilterAssociationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentTrafficFilterAssociationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/deploymentTrafficFilterAssociation:DeploymentTrafficFilterAssociation", id, state, "", opts...)
+}
+
 type deploymentTrafficFilterAssociationArgs struct {
 	// Required deployment ID where the traffic filter will be associated
 	DeploymentId string `pulumi:"deploymentId"`
