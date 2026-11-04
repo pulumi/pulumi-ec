@@ -355,6 +355,18 @@ class SnapshotRepository(pulumi.CustomResource):
         __props__.__dict__["s3"] = s3
         return SnapshotRepository(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            generic: pulumi.Input[Optional[Union['SnapshotRepositoryGenericArgs', 'SnapshotRepositoryGenericArgsDict', 'outputs.SnapshotRepositoryGeneric']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            s3: pulumi.Input[Optional[Union['SnapshotRepositoryS3Args', 'SnapshotRepositoryS3ArgsDict', 'outputs.SnapshotRepositoryS3']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["generic"] = generic
+        __props__["name"] = name
+        __props__["s3"] = s3
+        return pulumi.runtime.exists_resource(None, 'ec:index/snapshotRepository:SnapshotRepository', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def generic(self) -> pulumi.Output[Optional['outputs.SnapshotRepositoryGeneric']]:

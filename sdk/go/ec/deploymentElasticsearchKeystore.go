@@ -229,6 +229,12 @@ func (DeploymentElasticsearchKeystoreState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentElasticsearchKeystoreState)(nil)).Elem()
 }
 
+// DeploymentElasticsearchKeystoreExists checks whether an existing DeploymentElasticsearchKeystore resource with the given ID exists.
+func DeploymentElasticsearchKeystoreExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentElasticsearchKeystoreState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/deploymentElasticsearchKeystore:DeploymentElasticsearchKeystore", id, state, "", opts...)
+}
+
 type deploymentElasticsearchKeystoreArgs struct {
 	// Indicates the the remote keystore setting should be stored as a file. The default is false, which stores the keystore setting as string when value is a plain string.
 	AsFile *bool `pulumi:"asFile"`

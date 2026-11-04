@@ -199,6 +199,12 @@ func (SnapshotRepositoryState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snapshotRepositoryState)(nil)).Elem()
 }
 
+// SnapshotRepositoryExists checks whether an existing SnapshotRepository resource with the given ID exists.
+func SnapshotRepositoryExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnapshotRepositoryState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/snapshotRepository:SnapshotRepository", id, state, "", opts...)
+}
+
 type snapshotRepositoryArgs struct {
 	// Generic repository settings.
 	Generic *SnapshotRepositoryGeneric `pulumi:"generic"`

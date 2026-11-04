@@ -965,6 +965,52 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         return Deployment(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            apm: pulumi.Input[Optional[Union['DeploymentApmArgs', 'DeploymentApmArgsDict', 'outputs.DeploymentApm']]] = None,
+            apm_secret_token: pulumi.Input[Optional[_builtins.str]] = None,
+            deployment_template_id: pulumi.Input[Optional[_builtins.str]] = None,
+            elasticsearch: pulumi.Input[Optional[Union['DeploymentElasticsearchArgs', 'DeploymentElasticsearchArgsDict', 'outputs.DeploymentElasticsearch']]] = None,
+            elasticsearch_password: pulumi.Input[Optional[_builtins.str]] = None,
+            elasticsearch_username: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_key_path: pulumi.Input[Optional[_builtins.str]] = None,
+            enterprise_search: pulumi.Input[Optional[Union['DeploymentEnterpriseSearchArgs', 'DeploymentEnterpriseSearchArgsDict', 'outputs.DeploymentEnterpriseSearch']]] = None,
+            integrations_server: pulumi.Input[Optional[Union['DeploymentIntegrationsServerArgs', 'DeploymentIntegrationsServerArgsDict', 'outputs.DeploymentIntegrationsServer']]] = None,
+            kibana: pulumi.Input[Optional[Union['DeploymentKibanaArgs', 'DeploymentKibanaArgsDict', 'outputs.DeploymentKibana']]] = None,
+            migrate_to_latest_hardware: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            observability: pulumi.Input[Optional[Union['DeploymentObservabilityArgs', 'DeploymentObservabilityArgsDict', 'outputs.DeploymentObservability']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            request_id: pulumi.Input[Optional[_builtins.str]] = None,
+            reset_elasticsearch_password: pulumi.Input[Optional[_builtins.bool]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            traffic_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alias"] = alias
+        __props__["apm"] = apm
+        __props__["apmSecretToken"] = apm_secret_token
+        __props__["deploymentTemplateId"] = deployment_template_id
+        __props__["elasticsearch"] = elasticsearch
+        __props__["elasticsearchPassword"] = elasticsearch_password
+        __props__["elasticsearchUsername"] = elasticsearch_username
+        __props__["encryptionKeyPath"] = encryption_key_path
+        __props__["enterpriseSearch"] = enterprise_search
+        __props__["integrationsServer"] = integrations_server
+        __props__["kibana"] = kibana
+        __props__["migrateToLatestHardware"] = migrate_to_latest_hardware
+        __props__["name"] = name
+        __props__["observability"] = observability
+        __props__["region"] = region
+        __props__["requestId"] = request_id
+        __props__["resetElasticsearchPassword"] = reset_elasticsearch_password
+        __props__["tags"] = tags
+        __props__["trafficFilters"] = traffic_filters
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'ec:index/deployment:Deployment', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def alias(self) -> pulumi.Output[_builtins.str]:

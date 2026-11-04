@@ -623,6 +623,38 @@ class ObservabilityProject(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return ObservabilityProject(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[Union['ObservabilityProjectCredentialsArgs', 'ObservabilityProjectCredentialsArgsDict', 'outputs.ObservabilityProjectCredentials']]] = None,
+            endpoints: pulumi.Input[Optional[Union['ObservabilityProjectEndpointsArgs', 'ObservabilityProjectEndpointsArgsDict', 'outputs.ObservabilityProjectEndpoints']]] = None,
+            linked: pulumi.Input[Optional[Union['ObservabilityProjectLinkedArgs', 'ObservabilityProjectLinkedArgsDict', 'outputs.ObservabilityProjectLinked']]] = None,
+            metadata: pulumi.Input[Optional[Union['ObservabilityProjectMetadataArgs', 'ObservabilityProjectMetadataArgsDict', 'outputs.ObservabilityProjectMetadata']]] = None,
+            monitoring: pulumi.Input[Optional[Union['ObservabilityProjectMonitoringArgs', 'ObservabilityProjectMonitoringArgsDict', 'outputs.ObservabilityProjectMonitoring']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoints: pulumi.Input[Optional[Union['ObservabilityProjectPrivateEndpointsArgs', 'ObservabilityProjectPrivateEndpointsArgsDict', 'outputs.ObservabilityProjectPrivateEndpoints']]] = None,
+            product_tier: pulumi.Input[Optional[_builtins.str]] = None,
+            region_id: pulumi.Input[Optional[_builtins.str]] = None,
+            traffic_filter_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alias"] = alias
+        __props__["cloudId"] = cloud_id
+        __props__["credentials"] = credentials
+        __props__["endpoints"] = endpoints
+        __props__["linked"] = linked
+        __props__["metadata"] = metadata
+        __props__["monitoring"] = monitoring
+        __props__["name"] = name
+        __props__["privateEndpoints"] = private_endpoints
+        __props__["productTier"] = product_tier
+        __props__["regionId"] = region_id
+        __props__["trafficFilterIds"] = traffic_filter_ids
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'ec:index/observabilityProject:ObservabilityProject', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def alias(self) -> pulumi.Output[_builtins.str]:

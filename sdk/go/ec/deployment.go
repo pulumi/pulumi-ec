@@ -263,6 +263,12 @@ func (DeploymentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentState)(nil)).Elem()
 }
 
+// DeploymentExists checks whether an existing Deployment resource with the given ID exists.
+func DeploymentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/deployment:Deployment", id, state, "", opts...)
+}
+
 type deploymentArgs struct {
 	// Deployment alias, affects the format of the resource URLs. Set to an empty value ("") to disable the alias.
 	Alias *string `pulumi:"alias"`

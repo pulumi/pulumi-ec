@@ -236,6 +236,12 @@ func (SecurityProjectState) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityProjectState)(nil)).Elem()
 }
 
+// SecurityProjectExists checks whether an existing SecurityProject resource with the given ID exists.
+func SecurityProjectExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecurityProjectState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("ec:index/securityProject:SecurityProject", id, state, "", opts...)
+}
+
 type securityProjectArgs struct {
 	// admin features package (BYOK, BYOIDP, CCS, CCR)
 	AdminFeaturesPackage *string `pulumi:"adminFeaturesPackage"`

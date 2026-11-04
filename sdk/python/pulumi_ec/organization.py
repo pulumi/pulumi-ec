@@ -303,6 +303,14 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["members"] = members
         return Organization(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            members: pulumi.Input[Optional[Mapping[str, pulumi.Input[Union['OrganizationMembersArgs', 'OrganizationMembersArgsDict', 'outputs.OrganizationMembers']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["members"] = members
+        return pulumi.runtime.exists_resource(None, 'ec:index/organization:Organization', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def members(self) -> pulumi.Output[Optional[Mapping[str, 'outputs.OrganizationMembers']]]:

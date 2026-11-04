@@ -88,7 +88,7 @@ namespace Pulumi.ElasticCloud
         /// Password for authenticating to the Elasticsearch resource.
         /// 
         /// &gt; **Note on deployment credentials** The &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
-        /// &gt; **Note on deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+        /// **Note on deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         /// </summary>
         [Output("elasticsearchPassword")]
         public Output<string> ElasticsearchPassword { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.ElasticCloud
         /// When set to true, the deployment will be updated according to the latest deployment template values.
         /// 
         /// &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
-        /// &gt; **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+        /// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Output("migrateToLatestHardware")]
         public Output<bool?> MigrateToLatestHardware { get; private set; } = null!;
@@ -291,7 +291,7 @@ namespace Pulumi.ElasticCloud
         /// When set to true, the deployment will be updated according to the latest deployment template values.
         /// 
         /// &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
-        /// &gt; **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+        /// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Input("migrateToLatestHardware")]
         public Input<bool>? MigrateToLatestHardware { get; set; }
@@ -407,7 +407,7 @@ namespace Pulumi.ElasticCloud
         /// Password for authenticating to the Elasticsearch resource.
         /// 
         /// &gt; **Note on deployment credentials** The &lt;code&gt;elastic&lt;/code&gt; user credentials are only available whilst creating a deployment. Importing a deployment will not import the &lt;code&gt;elasticsearch_username&lt;/code&gt; or &lt;code&gt;elasticsearch_password&lt;/code&gt; attributes.
-        /// &gt; **Note on deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
+        /// **Note on deployment credentials in state** The &lt;code&gt;elastic&lt;/code&gt; user credentials are stored in the state file as plain text. Please follow the official Terraform recommendations regarding senstaive data in state.
         /// </summary>
         public Input<string>? ElasticsearchPassword
         {
@@ -457,7 +457,7 @@ namespace Pulumi.ElasticCloud
         /// When set to true, the deployment will be updated according to the latest deployment template values.
         /// 
         /// &gt; **Note** If the &lt;code&gt;instance_configuration_id&lt;/code&gt; or &lt;code&gt;instance_configuration_version&lt;/code&gt; fields are set for a specific topology element, that element will not be updated.
-        /// &gt; **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
+        /// **Note** Hardware migrations are not supported for deployments with node types. To use this field, the deployment needs to be migrated to node roles first.
         /// </summary>
         [Input("migrateToLatestHardware")]
         public Input<bool>? MigrateToLatestHardware { get; set; }
