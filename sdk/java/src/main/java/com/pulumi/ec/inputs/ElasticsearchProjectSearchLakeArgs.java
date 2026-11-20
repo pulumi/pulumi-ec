@@ -31,6 +31,21 @@ public final class ElasticsearchProjectSearchLakeArgs extends com.pulumi.resourc
     }
 
     /**
+     * The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+     * 
+     */
+    @Import(name="minSearchVcu")
+    private @Nullable Output<Integer> minSearchVcu;
+
+    /**
+     * @return The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+     * 
+     */
+    public Optional<Output<Integer>> minSearchVcu() {
+        return Optional.ofNullable(this.minSearchVcu);
+    }
+
+    /**
      * Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
      * 
      */
@@ -49,6 +64,7 @@ public final class ElasticsearchProjectSearchLakeArgs extends com.pulumi.resourc
 
     private ElasticsearchProjectSearchLakeArgs(ElasticsearchProjectSearchLakeArgs $) {
         this.boostWindow = $.boostWindow;
+        this.minSearchVcu = $.minSearchVcu;
         this.searchPower = $.searchPower;
     }
 
@@ -89,6 +105,27 @@ public final class ElasticsearchProjectSearchLakeArgs extends com.pulumi.resourc
          */
         public Builder boostWindow(Integer boostWindow) {
             return boostWindow(Output.of(boostWindow));
+        }
+
+        /**
+         * @param minSearchVcu The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder minSearchVcu(@Nullable Output<Integer> minSearchVcu) {
+            $.minSearchVcu = minSearchVcu;
+            return this;
+        }
+
+        /**
+         * @param minSearchVcu The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder minSearchVcu(Integer minSearchVcu) {
+            return minSearchVcu(Output.of(minSearchVcu));
         }
 
         /**

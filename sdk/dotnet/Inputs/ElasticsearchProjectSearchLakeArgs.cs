@@ -19,6 +19,12 @@ namespace Pulumi.ElasticCloud.Inputs
         public Input<int>? BoostWindow { get; set; }
 
         /// <summary>
+        /// The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `SearchLake` block, or set it to `Null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+        /// </summary>
+        [Input("minSearchVcu")]
+        public Input<int>? MinSearchVcu { get; set; }
+
+        /// <summary>
         /// Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
         /// </summary>
         [Input("searchPower")]

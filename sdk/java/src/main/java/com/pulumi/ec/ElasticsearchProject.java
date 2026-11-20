@@ -120,6 +120,53 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
  * 
+ * ### With a minimum Search VCU floor
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ec.ElasticsearchProject;
+ * import com.pulumi.ec.ElasticsearchProjectArgs;
+ * import com.pulumi.ec.inputs.ElasticsearchProjectSearchLakeArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myProject = new ElasticsearchProject("myProject", ElasticsearchProjectArgs.builder()
+ *             .name("my_project")
+ *             .regionId("aws-us-east-1")
+ *             .searchLake(ElasticsearchProjectSearchLakeArgs.builder()
+ *                 .searchPower(100)
+ *                 .boostWindow(7)
+ *                 .minSearchVcu(64)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * `search_lake.min_search_vcu` pins a lower bound on Search tier autoscaling, expressed in VCUs. Refer to [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the floor affects scaling and billing. At plan time the provider only checks that the value is between 2 and 2147483647, the largest value every provider build can send; the API enforces its own maximum at apply time.
+ * 
+ * The floor follows the usual Terraform rules for the `searchLake` block:
+ * 
+ * - A `searchLake` block without `minSearchVcu` means &#34;no floor&#34;: a floor set outside Terraform shows as a planned removal and is unset on the next apply.
+ * - Omitting the whole `searchLake` block leaves it unmanaged, floor included: nothing is sent and the values the API reports are stored.
+ * 
  * ## Import
  * 
  * Projects can be imported using the `id`, for example:

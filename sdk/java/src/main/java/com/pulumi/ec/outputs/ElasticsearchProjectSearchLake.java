@@ -17,6 +17,11 @@ public final class ElasticsearchProjectSearchLake {
      */
     private @Nullable Integer boostWindow;
     /**
+     * @return The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+     * 
+     */
+    private @Nullable Integer minSearchVcu;
+    /**
      * @return Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
      * 
      */
@@ -29,6 +34,13 @@ public final class ElasticsearchProjectSearchLake {
      */
     public Optional<Integer> boostWindow() {
         return Optional.ofNullable(this.boostWindow);
+    }
+    /**
+     * @return The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+     * 
+     */
+    public Optional<Integer> minSearchVcu() {
+        return Optional.ofNullable(this.minSearchVcu);
     }
     /**
      * @return Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
@@ -48,11 +60,13 @@ public final class ElasticsearchProjectSearchLake {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer boostWindow;
+        private @Nullable Integer minSearchVcu;
         private @Nullable Integer searchPower;
         public Builder() {}
         public Builder(ElasticsearchProjectSearchLake defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.boostWindow = defaults.boostWindow;
+    	      this.minSearchVcu = defaults.minSearchVcu;
     	      this.searchPower = defaults.searchPower;
         }
 
@@ -60,6 +74,12 @@ public final class ElasticsearchProjectSearchLake {
         public Builder boostWindow(@Nullable Integer boostWindow) {
 
             this.boostWindow = boostWindow;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder minSearchVcu(@Nullable Integer minSearchVcu) {
+
+            this.minSearchVcu = minSearchVcu;
             return this;
         }
         @CustomType.Setter
@@ -71,6 +91,7 @@ public final class ElasticsearchProjectSearchLake {
         public ElasticsearchProjectSearchLake build() {
             final var _resultValue = new ElasticsearchProjectSearchLake();
             _resultValue.boostWindow = boostWindow;
+            _resultValue.minSearchVcu = minSearchVcu;
             _resultValue.searchPower = searchPower;
             return _resultValue;
         }

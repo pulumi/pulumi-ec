@@ -475,6 +475,29 @@ class ElasticsearchProject(pulumi.CustomResource):
 
         > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
 
+        ### With a minimum Search VCU floor
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        my_project = ec.ElasticsearchProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            search_lake={
+                "search_power": 100,
+                "boost_window": 7,
+                "min_search_vcu": 64,
+            })
+        ```
+
+        `search_lake.min_search_vcu` pins a lower bound on Search tier autoscaling, expressed in VCUs. Refer to [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the floor affects scaling and billing. At plan time the provider only checks that the value is between 2 and 2147483647, the largest value every provider build can send; the API enforces its own maximum at apply time.
+
+        The floor follows the usual Terraform rules for the `search_lake` block:
+
+        - A `search_lake` block without `min_search_vcu` means "no floor": a floor set outside Terraform shows as a planned removal and is unset on the next apply.
+        - Omitting the whole `search_lake` block leaves it unmanaged, floor included: nothing is sent and the values the API reports are stored.
+
         ## Import
 
         Projects can be imported using the `id`, for example:
@@ -550,6 +573,29 @@ class ElasticsearchProject(pulumi.CustomResource):
         Audit logs are delivered to a serverless project of type `observability` or `security`. `destination.status` is read-only and reports whether that project is accepting logs. Set `enabled = false` to pause delivery while keeping the configuration. The predefined `ignore_filter_ids` are listed in the [Elastic Cloud Serverless API reference](https://www.elastic.co/docs/api/doc/elastic-cloud-serverless/operation/operation-listignorefilters).
 
         > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
+
+        ### With a minimum Search VCU floor
+
+        ```python
+        import pulumi
+        import pulumi_ec as ec
+
+        my_project = ec.ElasticsearchProject("my_project",
+            name="my_project",
+            region_id="aws-us-east-1",
+            search_lake={
+                "search_power": 100,
+                "boost_window": 7,
+                "min_search_vcu": 64,
+            })
+        ```
+
+        `search_lake.min_search_vcu` pins a lower bound on Search tier autoscaling, expressed in VCUs. Refer to [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the floor affects scaling and billing. At plan time the provider only checks that the value is between 2 and 2147483647, the largest value every provider build can send; the API enforces its own maximum at apply time.
+
+        The floor follows the usual Terraform rules for the `search_lake` block:
+
+        - A `search_lake` block without `min_search_vcu` means "no floor": a floor set outside Terraform shows as a planned removal and is unset on the next apply.
+        - Omitting the whole `search_lake` block leaves it unmanaged, floor included: nothing is sent and the values the API reports are stored.
 
         ## Import
 
