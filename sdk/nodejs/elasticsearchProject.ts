@@ -53,6 +53,30 @@ import * as utilities from "./utilities";
  *
  * > **Note on audit logging** Audit logging configured outside Terraform is removed on the next apply unless the configuration includes `monitoring.logging.audit`.
  *
+ * ### With a minimum Search VCU floor
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ec from "@pulumi/ec";
+ *
+ * const myProject = new ec.ElasticsearchProject("my_project", {
+ *     name: "my_project",
+ *     regionId: "aws-us-east-1",
+ *     searchLake: {
+ *         searchPower: 100,
+ *         boostWindow: 7,
+ *         minSearchVcu: 64,
+ *     },
+ * });
+ * ```
+ *
+ * `search_lake.min_search_vcu` pins a lower bound on Search tier autoscaling, expressed in VCUs. Refer to [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the floor affects scaling and billing. At plan time the provider only checks that the value is between 2 and 2147483647, the largest value every provider build can send; the API enforces its own maximum at apply time.
+ *
+ * The floor follows the usual Terraform rules for the `searchLake` block:
+ *
+ * - A `searchLake` block without `minSearchVcu` means "no floor": a floor set outside Terraform shows as a planned removal and is unset on the next apply.
+ * - Omitting the whole `searchLake` block leaves it unmanaged, floor included: nothing is sent and the values the API reports are stored.
+ *
  * ## Import
  *
  * Projects can be imported using the `id`, for example:

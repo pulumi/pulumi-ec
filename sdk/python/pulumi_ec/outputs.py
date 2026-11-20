@@ -4854,6 +4854,8 @@ class ElasticsearchProjectSearchLake(dict):
         suggest = None
         if key == "boostWindow":
             suggest = "boost_window"
+        elif key == "minSearchVcu":
+            suggest = "min_search_vcu"
         elif key == "searchPower":
             suggest = "search_power"
 
@@ -4870,13 +4872,17 @@ class ElasticsearchProjectSearchLake(dict):
 
     def __init__(__self__, *,
                  boost_window: Optional[_builtins.int] = None,
+                 min_search_vcu: Optional[_builtins.int] = None,
                  search_power: Optional[_builtins.int] = None):
         """
         :param _builtins.int boost_window: Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
+        :param _builtins.int min_search_vcu: The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `search_lake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
         :param _builtins.int search_power: Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
         """
         if boost_window is not None:
             pulumi.set(__self__, "boost_window", boost_window)
+        if min_search_vcu is not None:
+            pulumi.set(__self__, "min_search_vcu", min_search_vcu)
         if search_power is not None:
             pulumi.set(__self__, "search_power", search_power)
 
@@ -4887,6 +4893,14 @@ class ElasticsearchProjectSearchLake(dict):
         Determines how much data can benefit from faster search. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. The system dynamically adjusts the cache allocated to your project based on how much data you ingest during the period defined by your Search Boost Window.
         """
         return pulumi.get(self, "boost_window")
+
+    @_builtins.property
+    @pulumi.getter(name="minSearchVcu")
+    def min_search_vcu(self) -> Optional[_builtins.int]:
+        """
+        The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `search_lake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+        """
+        return pulumi.get(self, "min_search_vcu")
 
     @_builtins.property
     @pulumi.getter(name="searchPower")

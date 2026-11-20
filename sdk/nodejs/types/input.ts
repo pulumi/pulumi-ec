@@ -1199,6 +1199,10 @@ export interface ElasticsearchProjectSearchLake {
      */
     boostWindow?: pulumi.Input<number | undefined>;
     /**
+     * The minimum number of search VCUs allocated to your project. Remove the attribute from a configured `searchLake` block, or set it to `null`, to unset the minimum. See [Minimum Search VCUs](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/project-settings#minimum-search-vcus) for how the setting affects scaling and billing.
+     */
+    minSearchVcu?: pulumi.Input<number | undefined>;
+    /**
      * Controls how fast searches are against your project data. When ingested, a certain amount of data is loaded into a cache that makes it super fast to query. You can either increase the performance of searches on cached data by adding replicas, or reduce the quantity of cached data by a static factor to save on costs.
      */
     searchPower?: pulumi.Input<number | undefined>;
