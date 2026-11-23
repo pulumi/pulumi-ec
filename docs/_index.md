@@ -12,7 +12,7 @@ The ElasticCloud (EC) provider is available as a package in all Pulumi languages
 * JavaScript/TypeScript: [`@pulumi/ec`](https://www.npmjs.com/package/@pulumi/ec)
 * Python: [`pulumi-ec`](https://pypi.org/project/pulumi-ec/)
 * Go: [`github.com/pulumi/pulumi-ec/sdk/go/ec`](https://github.com/pulumi/pulumi-ec)
-* .NET: [`Pulumi.Ec`](https://www.nuget.org/packages/Pulumi.Ec)
+* .NET: [`Pulumi.ElasticCloud`](https://www.nuget.org/packages/Pulumi.ElasticCloud)
 * Java: [`com.pulumi/ec`](https://central.sonatype.com/artifact/com.pulumi/ec)
 
 ## Overview
